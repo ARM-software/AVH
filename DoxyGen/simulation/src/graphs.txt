@@ -1,0 +1,59 @@
+﻿/**
+@page graph_page Graph Examples
+
+@dot "Example DOT Graph"
+digraph di_graph_example
+{
+    node[shape=box, fontname=Helvetica, fontsize=10, style=filled];
+    edge[fontname=Helvetica, fontsize=10];
+
+    ota[label="OTA", fillcolor="#cc00ccff"];
+
+    subgraph
+    {
+        node[fillcolor="#aed8a9ff"];
+        mqtt[label="MQTT interface"];
+    }
+    subgraph
+    {
+        node[fillcolor="#aed8a9ff"];
+        rank = same;
+        http[label="HTTP interface"];
+    }
+    subgraph
+    {
+        node[fillcolor="#aed8a9ff"];
+        rank = same;
+        pal[label="PAL interface"];
+    }
+    subgraph
+    {
+        node[fillcolor="#aed8a9ff"];
+        rank = same;
+        os[label="OS interface"];
+    }
+    subgraph
+    {
+        node[fillcolor="#cc00ccff"];
+        rank = same;
+        cbor[label="tinyCBOR"];
+    }
+    subgraph
+    {
+        node[fillcolor="#cc00ccff"];
+        rank = same;
+        json[label="coreJSON"];
+    }
+
+    ota -> mqtt[style="dashed"];
+    ota -> http[label=" if data over http enabled", style="dashed"];
+    ota -> pal[style="dashed"];
+    ota -> os[style="dashed"];
+    ota -> cbor[label="For decoding data streams"];
+    ota -> json[label="For Job Parsing"];
+}
+\enddot
+\n\n\n
+\image html "uml_graph.png" "Example PlantUML sequence"
+
+*/

@@ -1,0 +1,58 @@
+@startuml
+skinparam Shadowing False
+skinparam NoteBorderColor #White
+skinparam NoteBackgroundColor #White
+skinparam ParticipantFontColor #White
+skinparam ParticipantBorderColor Grey
+skinparam ParticipantBorderThickness 1
+skinparam ParticipantFontStyle Bold
+
+skinparam ArrowColor #DimGrey
+
+!define green_clr #70A000
+!define blue_clr #0091BD
+!define brown_clr #BF5000
+
+skinparam sequence {
+LifeLineBorderThickness 1
+LifeLineBorderColor #Grey
+}
+
+participant CortexM as "Cortex-M\nSoftware" green_clr
+participant VSIper as "VSI\nPeripheral" blue_clr
+participant VSIpy as "VSI Python\nScript" brown_clr
+
+activate CortexM green_clr
+CortexM -> VSIper : Setup Peripheral
+activate VSIper blue_clr
+CortexM -> VSIper : Setup Data Transfer
+VSIper -> VSIpy : Write DMA registers
+activate VSIpy brown_clr
+note right: Capture DMA setup
+
+CortexM->VSIper: Start Operation
+VSIper->VSIpy: Write Timer registers
+note right: Capture timer setup
+
+VSIper->VSIpy: Timer event
+note right of VSIpy: Copy Data Block #0
+VSIpy->VSIper
+VSIper->CortexM: Driver Event (New Data)
+
+...
+
+VSIper->VSIpy: Timer event
+note right of VSIpy: Copy Data Block #n
+VSIpy->VSIper
+VSIper->CortexM: Driver Event (New Data)
+
+...
+
+CortexM->VSIper: Stop operation
+VSIper->VSIpy: Clear registers
+note right: Capture register values
+
+deactivate VSIpy
+deactivate VSIper
+deactivate CortexM
+@enduml

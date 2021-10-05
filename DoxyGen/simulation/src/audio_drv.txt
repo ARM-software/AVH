@@ -1,0 +1,155 @@
+/**
+\addtogroup arm_vsi_audio Audio via VSI
+\ingroup arm_cmvp
+\brief Audio file streaming interface for Cortex-M applications to Python scripting
+\details
+The VSI implements general purpose peripheral registers, a timer peripheral, and a DMA peripheral.
+The peripheral is accessed using the \ref ARM_VSI_Type structure definition in arm_vsi.h
+
+@{
+
+\struct AudioDrv_Status_t
+\details
+Structure with information about the status of the Audio driver. The data fields encode busy flags and error flags.
+
+<b>Returned by:</b>
+  - \ref AudioDrv_GetStatus
+
+\typedef AudioDrv_Event_t
+\details
+Provides the typedef for the event callback function <b>AudioDrv_Event (uint32 event)</b> to be registered with \ref AudioDrv_Initialize.
+
+The parameter \em event indicates one or more \ref audio_events that occurred during driver operation.
+
+<b>Parameter for:</b>
+  - \ref AudioDrv_Initialize
+
+\defgroup audio_drv_errors Status Error Codes
+\ingroup arm_vsi_audio
+\brief Error codes returned by Audio interface functions.
+\details
+Following error codes can be reported:
+@{
+\def AUDIO_DRV_OK
+Operation succeeded
+\def AUDIO_DRV_ERROR
+Unspecified error
+\def AUDIO_DRV_ERROR_BUSY
+Driver is busy
+\def AUDIO_DRV_ERROR_TIMEOUT
+Timeout occurred
+\def AUDIO_DRV_ERROR_UNSUPPORTED
+Operation not supported
+\def AUDIO_DRV_ERROR_PARAMETER
+Parameter error
+@}
+
+\defgroup audio_events Audio Driver Events
+\ingroup arm_vsi_audio
+\brief Events reported by audio driver
+\details
+The Audio driver reports its events via the registered callback function \ref AudioDrv_Event_t. Each event is encoded in a separate bit and therefore it is possible to signal multiple events within the same call.
+
+@{
+\def AUDIO_DRV_EVENT_RX_DATA
+\details Triggered to indicate that all the data has been received. The driver is ready to receive next data block.
+
+\def AUDIO_DRV_EVENT_TX_DATA
+\details Triggered to indicate that all the data has been sent (or queued in transmit buffers). The driver is ready for the next transmission.
+@}
+
+
+\fn int32_t AudioDrv_Initialize (AudioDrv_Event_t cb_event)
+\details
+The function \b AudioDrv_Initialize initializes the Audio interface over VSI peripheral. It is called when the middleware component starts
+operation.
+
+The function performs the following operations:
+  - Initializes the required resources of the audio interface.
+  - Registers the \ref AudioDrv_Event_t callback function.
+
+The parameter \em cb_event is a pointer to the \ref AudioDrv_Event_t callback function; use a NULL pointer when no callback signals are required.
+
+Possible return values:
+    - \ref AUDIO_DRV_OK : audio interface is successfully initialized.
+
+
+\fn int32_t AudioDrv_Uninitialize (void)
+\details
+The function \b AudioDrv_Uninitialize de-initializes the resources of Audio interface.
+
+It is called when the middleware component stops operation and releases the software resources used by the interface.
+
+Possible return values:
+    - \ref AUDIO_DRV_OK : audio interface is successfully de-initialized.
+
+\fn int32_t AudioDrv_Configure (uint32_t interface, uint32_t channels, uint32_t sample_bits, uint32_t sample_rate)
+\details
+The function \b AudioDrv_Configure configures audio interface according to specified arguments.
+
+\em interface configures the audio interface either for input (\ref AUDIO_DRV_INTERFACE_RX) or output (\ref AUDIO_DRV_INTERFACE_TX , currently not supported). \em channels, \em sample_bits, \em sample_rate define configuration parameters.
+
+Possible return values:
+    - \ref AUDIO_DRV_OK : configuration completed successfully.
+    - \ref AUDIO_DRV_ERROR_PARAMETER : invalid argument values. Returned in the following cases:
+      - \em interface is not \ref AUDIO_DRV_INTERFACE_TX or \ref AUDIO_DRV_INTERFACE_TX
+      - \em channel is &lt;0 or &gt;32
+      - \em sample_bits is &lt;8 or &gt;32
+      - \em sample_rate is 0
+    - \ref AUDIO_DRV_ERROR_UNSUPPORTED : \em interface has value \ref AUDIO_DRV_INTERFACE_TX that is currently not supported.
+    - \ref AUDIO_DRV_ERROR : audio control is already enabled with \ref AudioDrv_Control.
+
+\fn int32_t AudioDrv_SetBuf (uint32_t interface, void *buf, uint32_t block_num, uint32_t block_size)
+\details
+The function \b AudioDrv_SetBuf assigns DMA buffer to the audio driver interface.
+
+\em interface specifies whether the buffer is used for input (\ref AUDIO_DRV_INTERFACE_RX) or output (ref AUDIO_DRV_INTERFACE_TX, not supported yet).
+
+\em buf points to the memory buffer. \em block_num and \em block_size define buffer configuration. Note that the memory allocated for the buffer shall be at least \em block_num*block_size bytes.
+
+Possible return values:
+    - \ref AUDIO_DRV_OK : buffer is set correctly.
+    - \ref AUDIO_DRV_ERROR_PARAMETER : invalid \em interface value.
+    - \ref AUDIO_DRV_ERROR_UNSUPPORTED : \em interface has value \ref AUDIO_DRV_INTERFACE_TX that is currently not supported.
+    - \ref AUDIO_DRV_ERROR : returned in the following cases:
+      - audio driver  is not initialized with \ref AudioDrv_Initialize
+      - audio control is already enabled with \ref AudioDrv_Control
+
+\fn int32_t AudioDrv_Control (uint32_t control)
+\details
+The function \b AudioDrv_Control controls the Audio interface.
+
+The parameter \em control specifies the operation as described in the table.
+
+<table class="cmtable" summary="">
+<tr><th> Parameter \em control </th><th> Bit </th><th> Description </th></tr>
+<tr><td> \ref AUDIO_DRV_CONTROL_TX_ENABLE </td>
+    <td> 1 </td>
+    <td> Enable transmit operation. Currently not supported.</td></tr>
+<tr><td> \ref AUDIO_DRV_CONTROL_RX_ENABLE </td>
+    <td> 2 </td>
+    <td> Enable receive operation. When executed, a timer is configured that periodically sends event to python interface for retrieving the audio data.</td></tr>
+<tr><td> \ref AUDIO_DRV_CONTROL_TX_DISABLE </td>
+    <td> 3 </td>
+    <td> Disable transmit operation. Currently not supported.</td></tr>
+<tr><td> \ref AUDIO_DRV_CONTROL_RX_DISABLE </td>
+    <td> 4 </td>
+    <td> Disable receive operation.</td></tr>
+</table>
+
+\fn uint32_t AudioDrv_GetTxCount (void)
+\details
+The function \b AudioDrv_GetTxCount returns the number of the currently transmitted data items.
+
+\fn uint32_t AudioDrv_GetRxCount (void)
+\details
+The function \b AudioDrv_GetRxCount returns the number of the currently received data items.
+
+\fn AudioDrv_Status_t AudioDrv_GetStatus (void)
+\details
+The function \b AudioDrv_GetStatus retrieves the current Audio interface status.
+
+@}
+*/
+*/
+// End Audio Interface

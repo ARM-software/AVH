@@ -1,0 +1,35 @@
+/**
+\defgroup   arm_py_tmpl Python Script Templates
+\brief      Python Script Bridge to Cortex-M Virtual Peripherals
+\details
+
+The Python script templates interface to the virtual peripherals.
+
+\addtogroup arm_vsi_py VSI Python interface
+\ingroup arm_py_tmpl
+\brief      VSI python interface.
+\details
+
+The Python interface described in this section trigger on peripheral registers and events of the \ref arm_vsi_api.
+Each peripheral instance has a separate dedicated Python script file with the names **arm_vsi0.py**, **arm_vsi1.py**, ..., **arm_vsi7.py**.
+
+\image html "uml_graph.png" "Using VSI peripheral"
+
+\namespace  arm_vsi0 VSI Python peripheral
+\brief      Accessing VSI interface instance #0
+\namespace  arm_vsi1 VSI Python peripheral
+\brief      Accessing VSI interface instance #1
+\namespace  arm_vsi2 VSI Python peripheral
+\brief      Accessing VSI interface instance #2
+\namespace  arm_vsi3 VSI Python peripheral
+\brief      Accessing VSI interface instance #3
+\namespace  arm_vsi4 VSI Python peripheral
+\brief      Accessing VSI interface instance #4
+\namespace  arm_vsi5 VSI Python peripheral
+\brief      Accessing VSI interface instance #5
+\namespace  arm_vsi6 VSI Python peripheral
+\brief      Accessing VSI interface instance #6
+\namespace  arm_vsi7 VSI Python peripheral
+\brief      Accessing VSI interface instance #7
+
+*/
