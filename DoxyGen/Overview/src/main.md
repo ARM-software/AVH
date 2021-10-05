@@ -31,8 +31,26 @@ Section                                                    | Description
 
 # Motivation {#motivation}
 
-\todo facts missing
-The simulation-based Arm VHT framework integrates with the cloud-native CI/CD and MLOps workflows as explained in the subsections below.
+## Test without Hardware
+
+Orta allows to verify your code without the need for physical hardware which provides a robust test environment which enables:
+ - Early software development for faster time-to-market
+ - Select optimal target device once the software workload is analysed
+ - Re-target applications to production hardware with driver abstractions
+
+## Verify Correctness
+
+Orta is based on Arm simulation models that are validated with the same process as the IP. Specially it allows you to:
+ - Algorithm testing with identical logical behaviour of the target device
+ - Precisely repeat complex input patterns in CI/CD test environments
+ - Analyse software behaviour with event annotations
+
+## Evaluate Performance
+
+ - Compare speed of different implementations of an algorithm
+ - Identify timing issues during system integration
+ - Optimize resources (i.e. data buffers) towards application requirements
+
 
 ## Cloud-based Continuous Testing {#overview_motiv_test}
 
