@@ -27,12 +27,11 @@ var NAVTREE =
   [ "Overview", "index.html", [
     [ "Introduction", "index.html", [
       [ "Documentation", "index.html#overview_doc", null ],
-      [ "Motivation", "index.html#motivation", [
+      [ "User Benefits", "index.html#benefits", [
         [ "Test without Hardware", "index.html#autotoc_md0", null ],
         [ "Verify Correctness", "index.html#autotoc_md1", null ],
         [ "Evaluate Performance", "index.html#autotoc_md2", null ],
-        [ "Cloud-based Continuous Testing", "index.html#overview_motiv_test", null ],
-        [ "Performance comparisons", "index.html#overview_motiv_perf", null ]
+        [ "Continuous Testing", "index.html#CI", null ]
       ] ]
     ] ]
   ] ]
