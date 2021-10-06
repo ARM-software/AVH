@@ -26,11 +26,11 @@ var NAVTREE =
 [
   [ "Overview", "index.html", [
     [ "Introduction", "index.html", [
-      [ "Documentation Structure {#Documentation Structure}", "index.html#autotoc_md0", null ],
-      [ "User Benefits {#User Benefits}", "index.html#autotoc_md1", [
-        [ "Test without Hardware {#Test without Hardware}", "index.html#autotoc_md2", null ],
-        [ "Verify Correctness {#Verify Correctness}", "index.html#autotoc_md3", null ],
-        [ "Evaluate Performance {#Evaluate Performance}", "index.html#autotoc_md4", null ],
+      [ "Documentation Structure", "index.html#Sections", null ],
+      [ "User Benefits", "index.html#User_Benefits", [
+        [ "Test without Hardware", "index.html#No_Hardware", null ],
+        [ "Verify Correctness", "index.html#Verify", null ],
+        [ "Evaluate Performance", "index.html#Evaluate", null ],
         [ "Continuous Testing", "index.html#CI", null ]
       ] ]
     ] ]
