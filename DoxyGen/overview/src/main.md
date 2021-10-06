@@ -25,23 +25,23 @@ Section                                                    | Description
 [**Examples**](../../examples/html/index.html)             | Guides you through the examples demonstrating how to use **\prj_name**.
 
 
-# User Benefits {#User Benefits}
+# User Benefits {#User_Benefits}
 
-## Test without Hardware {#Test without Hardware}
+## Test without Hardware {#No_Hardware}
 
 **\prj_name** allows to verify your code without the need for physical hardware which provides a robust test environment that enables:
  - Early software development for faster time-to-market
  - Select optimal target device once the software workload is analysed
  - Re-target applications to production hardware with driver abstractions
 
-## Verify Correctness {#Verify Correctness}
+## Verify Correctness {#Verify}
 
 **\prj_name Targets** are based on Arm simulation models that are validated with the same process as the IP. Specially it allows you to:
  - Algorithm testing with identical logical behaviour of the target device
  - Precisely repeat complex input patterns in CI/CD test environments
  - Analyse software behaviour with event annotations
 
-## Evaluate Performance {#Evaluate Performance}
+## Evaluate Performance {#Evaluate}
 
 Software algorithms for Digital Signal Processing (DSP) or Machine Learning (ML) frequently require significant CPU resources and need to be optimized for the target hardware. Comparing performance of such "load heavy" algorithms requires that they can be automatically executed with different configurations parameters but using identical input. 
 
