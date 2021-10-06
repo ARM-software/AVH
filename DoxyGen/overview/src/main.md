@@ -15,7 +15,7 @@
 \image html "vht_overview.png" "\prj_name - Components"
 
 
-# Documentation Structure {#Documentation Structure}
+# Documentation Structure {#Sections}
 
 Section                                                    | Description
 :----------------------------------------------------------|:--------------------
