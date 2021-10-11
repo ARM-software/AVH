@@ -6,6 +6,21 @@
 The VSI implements general purpose peripheral registers, a timer peripheral, and a DMA peripheral.
 The peripheral is accessed using the \ref ARM_VSI_Type structure definition in arm_vsi.h
 
+This reference implementation provides an audio input interface with the files listed in the table below.
+There are several implementations of the audio driver: 
+  - for the \ref arm_vsi_api "VSI" with an interface to a Python test script that streams *.wav files.
+  - for an NXP iMXRT1064 or iMXRT1050 evaluation board that uses a microphone as audio input.
+
+File                                                                                 | Description
+:------------------------------------------------------------------------------------|:-----------------------------------
+./interface/audio/include/audio_drv.h                                                | \ref arm_vsi_audio "Audio via VSI"  API header file
+./interface/audio/driver/audio_drv.c                                                 | \ref arm_vsi_audio "Audio via VSI"  Implementation based on \ref arm_vsi_api "VSI"
+./interface/audio/python/arm_vsi0.py                                                 | \ref arm_vsi_audio "Audio via VSI"  Python test script for audio input interface based on \ref arm_vsi_py "VSI Python interface" 
+./examples/micro_speech/Platform_MIMXRT1064-EVK/Driver_Audio/Audio_MIMXRT1064-EVK.c  | \ref arm_vsi_audio "Audio via VSI"  Implementation for NXP iMXRT1064
+
+The chapter [**Examples**](../../examples/html/index.html) describes projects that demonstrate use of this audio driver API in both the Arm VHT test environment and on the physical evaluation boards.
+
+
 @{
 
 \struct AudioDrv_Status_t

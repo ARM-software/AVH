@@ -1,16 +1,35 @@
 /*=======0=========1=========2=========3=========4=========5=========6=========7=========8=========9=========0=========1====*/
-//  ==== Virtual Interfaces ====
+//  ==== VSI ====
 /**
-\defgroup   arm_cmvp Cortex-M Virtual Peripherals
-\brief      Virtual Interfaces for Python script execution
-\details
-
-The **Virtual Interfaces** described in this section connect a Cortex-M application to the Python script engine for software test automation.
-
 \defgroup arm_vsi_api Virtual Streaming Interface (VSI)
 \ingroup arm_cmvp
 \brief Data streaming interface for Cortex-M applications to Python scripting
 \details
+
+The Virtual Streaming Interface (VSI) is a flexible peripheral that allows to implement a wide range of use cases. 
+Eight VSI instances are available and may be used in parallel to stream simultaneous multi-channel inputs.
+VSI can be used to simulate data streaming such as audio, video and various sensors frequently found in Machine-Learning applications.
+
+The VSI provides register interface for the following components:
+  - Interrupt control
+  - Timer peripheral with 1MHz input clock
+  - DMA peripheral with block buffer handling
+  - 64 user registers to implement bespoke functionality (i.e. for Audio, Video, or Sensor streaming)
+
+Examples demonstrate the \ref arm_vsi_audio "Audio" streaming as shown in the diagram below.
+
+\image html ./images/Example-Structure.png "Arm VHT CoreStone-300 for Linux and Windows"
+
+A read or write access to **VSI** peripheral registers triggers the \ref arm_vsi_py "VSI Python interface" which provides a script interface for software testing.  The following files define the access to the VSI peripherals.
+
+File                             | Description
+:--------------------------------|:-----------------------------------
+./interface/include/arm_vsi.h    | \ref arm_vsi_api "VSI" API header files
+./interface/python/arm_vsi0.py   | \ref arm_vsi0_py "VSI Python interface" script template for instance 0
+  :                              |   :
+./interface/python/arm_vsi7.py   | \ref arm_vsi0_py "VSI Python interface" script template for instance 7
+
+
 The VSI implements general purpose peripheral registers, a timer peripheral, and a DMA peripheral.
 The peripheral is accessed using the \ref ARM_VSI_Type structure definition in arm_vsi.h
 

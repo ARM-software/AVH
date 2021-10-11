@@ -1,0 +1,26 @@
+/*=======0=========1=========2=========3=========4=========5=========6=========7=========8=========9=========0=========1====*/
+//  ==== Virtual Interfaces ====
+/**
+\defgroup   arm_cmvp Virtual Peripherals
+\brief      Virtual Interfaces for Python script execution
+\details
+
+The **Virtual Interfaces** described in this section connect a user application application running on a virtual Cortex processor to the Python script engine for software test automation.
+
+
+\defgroup arm_vio_api Virtual I/O (VIO)
+\ingroup arm_cmvp
+\brief Controls simple I/O such as LED and switches
+\details
+
+The **Virtual I/O Interface (VIO) connects a [**CMSIS-Driver VIO**](https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html) to
+Phyton and allows test scripts that stimulate simple I/O such as switches and LEDs.
+
+It maps the following [**CMSIS-Driver VIO**](https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html) functions:
+  - vioSetSignal 
+  - vioGetSignal
+  - vioSetValue
+  - vioGetValue
+
+*/
+
