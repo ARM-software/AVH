@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cortex_2dm_20virtual_20peripherals_304',['Cortex-M Virtual Peripherals',['../group__arm__cmvp.html',1,'']]]
+  ['python_20script_20templates_281',['Python Script Templates',['../group__arm__py__tmpl.html',1,'']]]
 ];

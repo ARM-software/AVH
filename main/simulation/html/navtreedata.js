@@ -24,11 +24,12 @@
 */
 var NAVTREE =
 [
-  [ "Simulation", "index.html", [
-    [ "Arm VHT Systems", "index.html", [
-      [ "Virtual Streaming Interface (VSI)", "index.html#vsi", [
-        [ "Audio Streaming Interface via VSI", "index.html#vsi_audio", null ]
-      ] ]
+  [ "Targets", "index.html", [
+    [ "Orta Targets", "index.html", [
+      [ "Virtual Interfaces", "index.html#Virtual_Interfaces", null ],
+      [ "Physical Hardware", "index.html#Physical_Hardware", null ],
+      [ "Development Workflow", "index.html#Development_Workflow", null ],
+      [ "Development Challenges", "index.html#Development_Challanges", null ]
     ] ],
     [ "Reference", "modules.html", "modules" ],
     [ "Namespaces", "namespaces.html", [
@@ -46,9 +47,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html",
-"group__arm__vsi4__py.html#ga8901b1392ac99505b7c8a5e5e0808c3a",
-"namespacearm__vsi1.html"
+"annotated.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

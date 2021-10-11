@@ -34,7 +34,7 @@
    <div id="projectname">Orta
    &#160;<span id="projectnumber">Version 0.2</span>
    </div>
-   <div id="projectbrief">Simulation Models with Virtual Interfaces for Testing</div>
+   <div id="projectbrief">Simulation Models with Virtual Interfaces for Test Automation</div>
   </td>
  </tr>
  </tbody>
@@ -115,7 +115,7 @@ $(document).ready(function(){initNavTree('group__arm__vsi__api.html',''); initRe
   <div class="summary">
 <a href="#nested-classes">Data Structures</a>  </div>
   <div class="headertitle">
-<div class="title">Virtual Streaming Interface (VSI)<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Cortex-M Virtual Peripherals</a></div></div>  </div>
+<div class="title">Virtual Streaming Interface (VSI)<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -135,6 +135,31 @@ Data Structures</h2></td></tr>
 <tr class="separator:structARM__VSI__Type_8DMA"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
+<p>The Virtual Streaming Interface (VSI) is a flexible peripheral that allows to implement a wide range of use cases. Eight VSI instances are available and may be used in parallel to stream simultaneous multi-channel inputs. VSI can be used to simulate data streaming such as audio, video and various sensors frequently found in Machine-Learning applications.</p>
+<p>The VSI provides register interface for the following components:</p><ul>
+<li>Interrupt control</li>
+<li>Timer peripheral with 1MHz input clock</li>
+<li>DMA peripheral with block buffer handling</li>
+<li>64 user registers to implement bespoke functionality (i.e. for Audio, Video, or Sensor streaming)</li>
+</ul>
+<p>Examples demonstrate the <a class="el" href="group__arm__vsi__audio.html">Audio</a> streaming as shown in the diagram below.</p>
+<div class="image">
+<img src="Example-Structure.png" alt=""/>
+<div class="caption">
+Arm VHT CoreStone-300 for Linux and Windows</div></div>
+<p>A read or write access to <b>VSI</b> peripheral registers triggers the <a class="el" href="group__arm__vsi__py.html">VSI Python interface</a> which provides a script interface for software testing. The following files define the access to the VSI peripherals.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">File   </th><th class="markdownTableHeadLeft">Description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">./interface/include/arm_vsi.h   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__api.html">VSI</a> API header files    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">./interface/python/arm_vsi0.py   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi0__py.html">VSI Python interface</a> script template for instance 0    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">:   </td><td class="markdownTableBodyLeft">:    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">./interface/python/arm_vsi7.py   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi0__py.html">VSI Python interface</a> script template for instance 7   </td></tr>
+</table>
 <p>The VSI implements general purpose peripheral registers, a timer peripheral, and a DMA peripheral. The peripheral is accessed using the <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure definition in <a class="el" href="arm__vsi_8h.html">arm_vsi.h</a></p>
 <div class="fragment"><div class="line">typedef struct</div>
 <div class="line">{</div>
@@ -172,7 +197,7 @@ Data Structures</h2></td></tr>
 <div class="line">#define ARM_VSI5        ((ARM_VSI_Type *)ARM_VSI5_BASE)      /*!&lt; VSI 5 struct */</div>
 <div class="line">#define ARM_VSI6        ((ARM_VSI_Type *)ARM_VSI6_BASE)      /*!&lt; VSI 6 struct */</div>
 <div class="line">#define ARM_VSI7        ((ARM_VSI_Type *)ARM_VSI7_BASE)      /*!&lt; VSI 7 struct */</div>
-</div><!-- fragment --><p>Each instance interfaces to a <a class="el" href="group__arm__vsi__py.html">VSI Python interface</a> whereby the script files of the various instances are named is <b><a class="el" href="arm__vsi0_8py.html">arm_vsi0.py</a></b>, <b><a class="el" href="arm__vsi1_8py.html">arm_vsi1.py</a></b>, ..., <b><a class="el" href="arm__vsi7_8py.html">arm_vsi7.py</a></b>.</p>
+</div><!-- fragment --><p>Each instance interfaces to a <a class="el" href="group__arm__vsi__py.html">VSI Python interface</a> whereby the script files of the various instances are named is <b><a class="el" href="arm__vsi0_8py.html">arm_vsi0.py</a></b>, <b>arm_vsi1.py</b>, ..., <b>arm_vsi7.py</b>.</p>
 <div class="image">
 <img src="DMA_Buffer.png" alt=""/>
 <div class="caption">

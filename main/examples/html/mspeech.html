@@ -116,7 +116,7 @@ $(document).ready(function(){initNavTree('mspeech.html',''); initResizable(); })
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_src_mspeech"></a> An implementation of the micro speech example with VHT support is available at <a href="https://github.com/MDK-Packs/VHT-TFLmicrospeech">github.com/MDK-Packs/VHT-TFLmicrospeech</a>.</p>
 <p>The program analyzes an audio input with a voice recognition model that can detect 2 keywords - <b>yes</b> and <b>no</b>. The recognized keywords are then printed into a serial interface. The voice recognition model is implemented using <a href="https://www.tensorflow.org/lite/microcontrollers">TensorFlow Lite for Microcontrollers</a>.</p>
-<p>The example project can be executed on <a class="el" href="mspeech.html#mspeech_vht">\prj_name</a> as well as on <a class="el" href="mspeech.html#mspeech_hw">hardware</a>. This demonstrates how to use the processor and peripheral abstraction layers for simpler software portability across different targets.</p>
+<p>The example project can be executed on <a class="el" href="mspeech.html#mspeech_vht">Orta</a> as well as on <a class="el" href="mspeech.html#mspeech_hw">hardware</a>. This demonstrates how to use the processor and peripheral abstraction layers for simpler software portability across different targets.</p>
 <h1><a class="anchor" id="autotoc_md0"></a>
 Structure</h1>
 <p>The table below explains the content in the micro speech example's repository.</p>
@@ -127,7 +127,7 @@ Structure</h1>
 <td class="markdownTableBodyLeft"><code>./micro_speech/</code>   </td><td class="markdownTableBodyLeft">Contains the voice recognition model that is used by all targets. This part is similar to the original TF-Lite for Microcontrollers example, with just minor modifications.<br  />
 TensorFlow calculation kernel is provided separately via corresponding software packs listed in <a class="el" href="mspeech.html#mspeech_pre">Prerequisites</a> and as explained in <a class="el" href="mspeech.html#tf_variants">TensorFlow-Lite kernel variants</a>.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code>./Platform_FVP_Corstone_SSE-300_Ethos-U55/</code>   </td><td class="markdownTableBodyLeft">Project files specific for executing the program on VHT. See <a class="el" href="mspeech.html#mspeech_vht">Running on \prj_name</a> for details and execution instructions.    </td></tr>
+<td class="markdownTableBodyLeft"><code>./Platform_FVP_Corstone_SSE-300_Ethos-U55/</code>   </td><td class="markdownTableBodyLeft">Project files specific for executing the program on VHT. See <a class="el" href="mspeech.html#mspeech_vht">Running on Orta</a> for details and execution instructions.    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><code>./Platform_MIMXRT1064-EVK/</code>   </td><td class="markdownTableBodyLeft">Project files specific for executing the program on MIMXRT1064-EVK. See <a class="el" href="mspeech.html#mspeech_hw">Running on a hardware target</a> for details and execution instructions.    </td></tr>
 <tr class="markdownTableRowEven">
@@ -156,7 +156,7 @@ Prerequisites</h1>
 <li><a href="https://github.com/MDK-Packs/tensorflow-pack/releases/download/preview-0.3/Arm.ethos-u-core-driver.0.1.20210719.pack">Arm.ethos-u-core-driver.0.1.20210719</a> (for virtual target with Ethos-U55)</li>
 </ul>
 </li>
-<li>**Specific for \prj_name**<ul>
+<li><b>Specific for Orta</b><ul>
 <li><a href="https://developer.arm.com/tools-and-software/embedded/cmsis/cmsis-packs">public CMSIS software packs</a> for target support:<ul>
 <li>ARM::V2M_MPS3_SSE_300_BSP 1.2.0</li>
 </ul>
@@ -192,9 +192,9 @@ Prerequisites</h1>
 </ul>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Program Execution</h1>
-<p>The example project can be executed on <a class="el" href="mspeech.html#mspeech_vht">\prj_name</a> as well as on <a class="el" href="mspeech.html#mspeech_hw">hardware</a> as explained in this section.</p>
+<p>The example project can be executed on <a class="el" href="mspeech.html#mspeech_vht">Orta</a> as well as on <a class="el" href="mspeech.html#mspeech_hw">hardware</a> as explained in this section.</p>
 <h2><a class="anchor" id="mspeech_vht"></a>
-Running on \prj_name</h2>
+Running on Orta</h2>
 <p>Directory <code>./VHT-TFLmicrospeech/Platform_FVP_Corstone_SSE-300_Ethos-U55/</code> in the example repository contains the project files for executing the program on VHT.</p>
 <p>The project can be executed on two types of targets:</p><ul>
 <li><b>with VSI support</b>: implements audio driver on VSI peripheral with audio test data provided through Python script as explained in <a href="../../simulation/html/index.html"><b>Simulation</b></a> chapter.</li>

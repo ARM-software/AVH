@@ -29,7 +29,7 @@ var NAVTREE =
       [ "Structure", "mspeech.html#autotoc_md0", null ],
       [ "Prerequisites", "mspeech.html#mspeech_pre", null ],
       [ "Program Execution", "mspeech.html#autotoc_md1", [
-        [ "Running on \\prj_name", "mspeech.html#mspeech_vht", null ],
+        [ "Running on Orta", "mspeech.html#mspeech_vht", null ],
         [ "Running on a hardware target", "mspeech.html#mspeech_hw", null ]
       ] ],
       [ "TensorFlow-Lite kernel variants", "mspeech.html#tf_variants", null ],

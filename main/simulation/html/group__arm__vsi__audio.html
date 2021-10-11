@@ -34,7 +34,7 @@
    <div id="projectname">Orta
    &#160;<span id="projectnumber">Version 0.2</span>
    </div>
-   <div id="projectbrief">Simulation Models with Virtual Interfaces for Testing</div>
+   <div id="projectbrief">Simulation Models with Virtual Interfaces for Test Automation</div>
   </td>
  </tr>
  </tbody>
@@ -118,7 +118,7 @@ $(document).ready(function(){initNavTree('group__arm__vsi__audio.html',''); init
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Audio via VSI<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Cortex-M Virtual Peripherals</a></div></div>  </div>
+<div class="title">Audio via VSI<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -174,7 +174,24 @@ Functions</h2></td></tr>
 <tr class="separator:ga5d9c0749586bd5c75db54d92fa28049d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
-<p>The VSI implements general purpose peripheral registers, a timer peripheral, and a DMA peripheral. The peripheral is accessed using the <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure definition in <a class="el" href="arm__vsi_8h.html">arm_vsi.h</a> </p>
+<p>The VSI implements general purpose peripheral registers, a timer peripheral, and a DMA peripheral. The peripheral is accessed using the <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure definition in <a class="el" href="arm__vsi_8h.html">arm_vsi.h</a></p>
+<p>This reference implementation provides an audio input interface with the files listed in the table below. There are several implementations of the audio driver:</p><ul>
+<li>for the <a class="el" href="group__arm__vsi__api.html">VSI</a> with an interface to a Python test script that streams *.wav files.</li>
+<li>for an NXP iMXRT1064 or iMXRT1050 evaluation board that uses a microphone as audio input.</li>
+</ul>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">File   </th><th class="markdownTableHeadLeft">Description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">./interface/audio/include/audio_drv.h   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a> API header file    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">./interface/audio/driver/audio_drv.c   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a> Implementation based on <a class="el" href="group__arm__vsi__api.html">VSI</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">./interface/audio/python/arm_vsi0.py   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a> Python test script for audio input interface based on <a class="el" href="group__arm__vsi__py.html">VSI Python interface</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">./examples/micro_speech/Platform_MIMXRT1064-EVK/Driver_Audio/Audio_MIMXRT1064-EVK.c   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a> Implementation for NXP iMXRT1064   </td></tr>
+</table>
+<p>The chapter <a href="../../examples/html/index.html"><b>Examples</b></a> describes projects that demonstrate use of this audio driver API in both the Arm VHT test environment and on the physical evaluation boards. </p>
 <hr/><h2 class="groupheader">Data Structure Documentation</h2>
 <a name="structAudioDrv__Status__t" id="structAudioDrv__Status__t"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#structAudioDrv__Status__t">&#9670;&nbsp;</a></span>AudioDrv_Status_t</h2>

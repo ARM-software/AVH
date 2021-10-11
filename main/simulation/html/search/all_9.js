@@ -1,14 +1,16 @@
 var searchData=
 [
-  ['rddatadma_130',['rdDataDMA',['../group__arm__vsi7__py.html#ga28a6a027eac7daf2f3046262a7ebc2a4',1,'arm_vsi7.rdDataDMA()'],['../group__arm__vsi6__py.html#ga58c26a386e588bdf10c842f929340ecf',1,'arm_vsi6.rdDataDMA()'],['../group__arm__vsi5__py.html#gab58e5e9ea1dd779b9b2ea624a8cc3010',1,'arm_vsi5.rdDataDMA()'],['../group__arm__vsi4__py.html#gac0e449f2deec96dc3518ae8f273b9d30',1,'arm_vsi4.rdDataDMA()'],['../group__arm__vsi3__py.html#ga078762c270e4c7589f41d399d554ce29',1,'arm_vsi3.rdDataDMA()'],['../group__arm__vsi2__py.html#gaadf48450e4973410351c2b537ff1da12',1,'arm_vsi2.rdDataDMA()'],['../group__arm__vsi0__py.html#ga2850f146457a13a84be8b3cf3510bfaf',1,'arm_vsi0.rdDataDMA()'],['../group__arm__vsi1__py.html#gabe478e476a379d5caf7dfc0223699b27',1,'arm_vsi1.rdDataDMA(size)']]],
-  ['rdirq_131',['rdIRQ',['../group__arm__vsi1__py.html#ga11aea16f9cfad368cdc37364967af0f0',1,'arm_vsi1.rdIRQ()'],['../group__arm__vsi0__py.html#gac89f3b60c2bf1d7055d6133a6f666544',1,'arm_vsi0.rdIRQ()'],['../group__arm__vsi2__py.html#gae1e221240a6394050f0dcf139b40b829',1,'arm_vsi2.rdIRQ()'],['../group__arm__vsi3__py.html#gaa7efe0cdbb8af96a8c09233969157428',1,'arm_vsi3.rdIRQ()'],['../group__arm__vsi4__py.html#ga2c3f55d9f67e43e93c62ff1c2a7a3af5',1,'arm_vsi4.rdIRQ()'],['../group__arm__vsi5__py.html#ga9ddb10c25e504619e609fc0722bfa27b',1,'arm_vsi5.rdIRQ()'],['../group__arm__vsi6__py.html#ga81220c9b8a8056c3834c3bd443b1e718',1,'arm_vsi6.rdIRQ()'],['../group__arm__vsi7__py.html#ga9c2752a1ca5b845aaaf47a15d8934cf3',1,'arm_vsi7.rdIRQ()']]],
-  ['rdregs_132',['rdRegs',['../group__arm__vsi0__py.html#gaeb7664fa99429eba0237dba7397811d4',1,'arm_vsi0.rdRegs()'],['../group__arm__vsi1__py.html#ga91c5ea1b9bf2634661ee136ce4b92e8f',1,'arm_vsi1.rdRegs()'],['../group__arm__vsi2__py.html#ga74609c1b4914906026fefae75317f31f',1,'arm_vsi2.rdRegs()'],['../group__arm__vsi3__py.html#ga7787d2eb6cd9f6da8dbb343cd7718a89',1,'arm_vsi3.rdRegs()'],['../group__arm__vsi4__py.html#ga8b8aca73831c258a017b4a52ff96b9aa',1,'arm_vsi4.rdRegs()'],['../group__arm__vsi5__py.html#ga5fd1c0316162c23347a91120625eed8f',1,'arm_vsi5.rdRegs()'],['../group__arm__vsi6__py.html#ga66477924b5d41eff9ca9d7748d32ad38',1,'arm_vsi6.rdRegs()'],['../group__arm__vsi7__py.html#gaa69b075a6a74eb461a8124ee4504bef9',1,'arm_vsi7.rdRegs()']]],
-  ['ref_5fvsi_2etxt_133',['Ref_vsi.txt',['../Ref__vsi_8txt.html',1,'']]],
-  ['ref_5fvsi_5fpy_2etxt_134',['Ref_vsi_py.txt',['../Ref__vsi__py_8txt.html',1,'']]],
-  ['regs_135',['Regs',['../group__arm__vsi__api.html#ad9292adad4a74b2256c2b61200c8a526',1,'ARM_VSI_Type::Regs()'],['../group__arm__vsi0__py.html#ga6ea815021a8ad0a07f755e36028b46c9',1,'arm_vsi0.Regs()'],['../group__arm__vsi1__py.html#ga6ea815021a8ad0a07f755e36028b46c9',1,'arm_vsi1.Regs()'],['../group__arm__vsi2__py.html#ga6ea815021a8ad0a07f755e36028b46c9',1,'arm_vsi2.Regs()'],['../group__arm__vsi3__py.html#ga6ea815021a8ad0a07f755e36028b46c9',1,'arm_vsi3.Regs()'],['../group__arm__vsi4__py.html#ga6ea815021a8ad0a07f755e36028b46c9',1,'arm_vsi4.Regs()'],['../group__arm__vsi5__py.html#ga6ea815021a8ad0a07f755e36028b46c9',1,'arm_vsi5.Regs()'],['../group__arm__vsi6__py.html#ga6ea815021a8ad0a07f755e36028b46c9',1,'arm_vsi6.Regs()'],['../group__arm__vsi7__py.html#ga6ea815021a8ad0a07f755e36028b46c9',1,'arm_vsi7.Regs()']]],
-  ['reserved_136',['reserved',['../group__arm__vsi__audio.html#aa43c4c21b173ada1b6b7568956f0d650',1,'AudioDrv_Status_t']]],
-  ['reserved1_137',['reserved1',['../group__arm__vsi__api.html#adaaed01be51d9b1ab577eb1f2cb6b119',1,'ARM_VSI_Type']]],
-  ['reserved2_138',['reserved2',['../group__arm__vsi__api.html#a377b67a502c3683e082b971bd3e875e7',1,'ARM_VSI_Type']]],
-  ['reserved3_139',['reserved3',['../group__arm__vsi__api.html#a8f2070e44b076d7d9ade3ca394890737',1,'ARM_VSI_Type']]],
-  ['rx_5factive_140',['rx_active',['../group__arm__vsi__audio.html#abf786bdf31f500a28b33b2f49461b982',1,'AudioDrv_Status_t']]]
+  ['rddatadma_115',['rdDataDMA',['../group__arm__vsi0__py.html#ga2850f146457a13a84be8b3cf3510bfaf',1,'arm_vsi0']]],
+  ['rdirq_116',['rdIRQ',['../group__arm__vsi0__py.html#gac89f3b60c2bf1d7055d6133a6f666544',1,'arm_vsi0']]],
+  ['rdregs_117',['rdRegs',['../group__arm__vsi0__py.html#gaeb7664fa99429eba0237dba7397811d4',1,'arm_vsi0']]],
+  ['ref_5fvio_2etxt_118',['Ref_vio.txt',['../Ref__vio_8txt.html',1,'']]],
+  ['ref_5fvsi_2etxt_119',['Ref_vsi.txt',['../Ref__vsi_8txt.html',1,'']]],
+  ['ref_5fvsi_5fpy_2etxt_120',['Ref_vsi_py.txt',['../Ref__vsi__py_8txt.html',1,'']]],
+  ['ref_5fvsocket_2etxt_121',['Ref_vsocket.txt',['../Ref__vsocket_8txt.html',1,'']]],
+  ['regs_122',['Regs',['../group__arm__vsi__api.html#ad9292adad4a74b2256c2b61200c8a526',1,'ARM_VSI_Type::Regs()'],['../group__arm__vsi0__py.html#ga6ea815021a8ad0a07f755e36028b46c9',1,'arm_vsi0.Regs()']]],
+  ['reserved_123',['reserved',['../group__arm__vsi__audio.html#aa43c4c21b173ada1b6b7568956f0d650',1,'AudioDrv_Status_t']]],
+  ['reserved1_124',['reserved1',['../group__arm__vsi__api.html#adaaed01be51d9b1ab577eb1f2cb6b119',1,'ARM_VSI_Type']]],
+  ['reserved2_125',['reserved2',['../group__arm__vsi__api.html#a377b67a502c3683e082b971bd3e875e7',1,'ARM_VSI_Type']]],
+  ['reserved3_126',['reserved3',['../group__arm__vsi__api.html#a8f2070e44b076d7d9ade3ca394890737',1,'ARM_VSI_Type']]],
+  ['rx_5factive_127',['rx_active',['../group__arm__vsi__audio.html#abf786bdf31f500a28b33b2f49461b982',1,'AudioDrv_Status_t']]]
 ];

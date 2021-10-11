@@ -34,7 +34,7 @@
    <div id="projectname">Orta
    &#160;<span id="projectnumber">Version 0.2</span>
    </div>
-   <div id="projectbrief">Simulation Models with Virtual Interfaces for Testing</div>
+   <div id="projectbrief">Simulation Models with Virtual Interfaces for Test Automation</div>
   </td>
  </tr>
  </tbody>
@@ -118,21 +118,16 @@ $(document).ready(function(){initNavTree('modules.html',''); initResizable(); })
 <div class="contents">
 <div class="textblock">Here is a list of all modules:</div><div class="directory">
 <div class="levels">[detail level <span onclick="javascript:toggleLevel(1);">1</span><span onclick="javascript:toggleLevel(2);">2</span><span onclick="javascript:toggleLevel(3);">3</span>]</div><table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_0_" class="arrow" onclick="toggleFolder('0_')">&#9658;</span><a class="el" href="group__arm__cmvp.html" target="_self">Cortex-M Virtual Peripherals</a></td><td class="desc">Virtual Interfaces for Python script execution </td></tr>
-<tr id="row_0_0_" style="display:none;"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a class="el" href="group__arm__vsi__api.html" target="_self">Virtual Streaming Interface (VSI)</a></td><td class="desc">Data streaming interface for Cortex-M applications to Python scripting </td></tr>
-<tr id="row_0_1_" style="display:none;"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span id="arr_0_1_" class="arrow" onclick="toggleFolder('0_1_')">&#9658;</span><a class="el" href="group__arm__vsi__audio.html" target="_self">Audio via VSI</a></td><td class="desc">Audio file streaming interface for Cortex-M applications to Python scripting </td></tr>
-<tr id="row_0_1_0_" style="display:none;"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><a class="el" href="group__audio__drv__errors.html" target="_self">Status Error Codes</a></td><td class="desc">Error codes returned by Audio interface functions </td></tr>
-<tr id="row_0_1_1_" style="display:none;"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><a class="el" href="group__audio__events.html" target="_self">Audio Driver Events</a></td><td class="desc">Events reported by audio driver </td></tr>
+<tr id="row_0_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_0_" class="arrow" onclick="toggleFolder('0_')">&#9658;</span><a class="el" href="group__arm__cmvp.html" target="_self">Virtual Peripherals</a></td><td class="desc">Virtual Interfaces for Python script execution </td></tr>
+<tr id="row_0_0_" style="display:none;"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a class="el" href="group__arm__vio__api.html" target="_self">Virtual I/O (VIO)</a></td><td class="desc">Controls simple I/O such as LED and switches </td></tr>
+<tr id="row_0_1_" style="display:none;"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a class="el" href="group__arm__vsi__api.html" target="_self">Virtual Streaming Interface (VSI)</a></td><td class="desc">Data streaming interface for Cortex-M applications to Python scripting </td></tr>
+<tr id="row_0_2_" style="display:none;"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a class="el" href="group__arm__vsocket__api.html" target="_self">Virtual Streaming Interface (VSI)</a></td><td class="desc">IP network connectivity to Host computer </td></tr>
+<tr id="row_0_3_" style="display:none;"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span id="arr_0_3_" class="arrow" onclick="toggleFolder('0_3_')">&#9658;</span><a class="el" href="group__arm__vsi__audio.html" target="_self">Audio via VSI</a></td><td class="desc">Audio file streaming interface for Cortex-M applications to Python scripting </td></tr>
+<tr id="row_0_3_0_" style="display:none;"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><a class="el" href="group__audio__drv__errors.html" target="_self">Status Error Codes</a></td><td class="desc">Error codes returned by Audio interface functions </td></tr>
+<tr id="row_0_3_1_" style="display:none;"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><a class="el" href="group__audio__events.html" target="_self">Audio Driver Events</a></td><td class="desc">Events reported by audio driver </td></tr>
 <tr id="row_1_"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_1_" class="arrow" onclick="toggleFolder('1_')">&#9658;</span><a class="el" href="group__arm__py__tmpl.html" target="_self">Python Script Templates</a></td><td class="desc">Python Script Bridge to Cortex-M Virtual Peripherals </td></tr>
 <tr id="row_1_0_" class="even" style="display:none;"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a class="el" href="group__arm__vsi__py.html" target="_self">VSI Python interface</a></td><td class="desc">VSI python interface </td></tr>
 <tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="group__arm__vsi0__py.html" target="_self">Arm_vsi0_py</a></td><td class="desc"></td></tr>
-<tr id="row_3_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="group__arm__vsi1__py.html" target="_self">Arm_vsi1_py</a></td><td class="desc"></td></tr>
-<tr id="row_4_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="group__arm__vsi2__py.html" target="_self">Arm_vsi2_py</a></td><td class="desc"></td></tr>
-<tr id="row_5_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="group__arm__vsi3__py.html" target="_self">Arm_vsi3_py</a></td><td class="desc"></td></tr>
-<tr id="row_6_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="group__arm__vsi4__py.html" target="_self">Arm_vsi4_py</a></td><td class="desc"></td></tr>
-<tr id="row_7_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="group__arm__vsi5__py.html" target="_self">Arm_vsi5_py</a></td><td class="desc"></td></tr>
-<tr id="row_8_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="group__arm__vsi6__py.html" target="_self">Arm_vsi6_py</a></td><td class="desc"></td></tr>
-<tr id="row_9_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="group__arm__vsi7__py.html" target="_self">Arm_vsi7_py</a></td><td class="desc"></td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->
