@@ -3,7 +3,7 @@ This document describes how to generate Doxygen-style documentation.
 
 ## Required setup (Windows):
 
-- Install Doxygen (verified to work with v1.9.1) - https://www.doxygen.nl/download.html
+- Install Doxygen (verified to work with v1.9.2) - https://www.doxygen.nl/download.html
 - Install Graphiz (verified to work with v4.73) - http://www.graphviz.org/download/
 - Download PlantUML compiled Jar under Apache license (verified to work with v1.2021.8):
   - download link:  http://sourceforge.net/projects/plantuml/files/plantuml-jar-asl-1.2021.8.zip/download
