@@ -25,9 +25,9 @@ A read or write access to **VSI** peripheral registers triggers the \ref arm_vsi
 File                             | Description
 :--------------------------------|:-----------------------------------
 ./interface/include/arm_vsi.h    | \ref arm_vsi_api "VSI" API header files
-./interface/python/arm_vsi0.py   | \ref arm_vsi0_py "VSI Python interface" script template for instance 0
+./interface/python/arm_vsi0.py   | \ref arm_vsi_py "VSI Python interface" script template for instance 0
   :                              |   :
-./interface/python/arm_vsi7.py   | \ref arm_vsi0_py "VSI Python interface" script template for instance 7
+./interface/python/arm_vsi7.py   | \ref arm_vsi_py "VSI Python interface" script template for instance 7
 
 
 The VSI implements general purpose peripheral registers, a timer peripheral, and a DMA peripheral.

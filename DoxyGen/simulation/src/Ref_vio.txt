@@ -13,7 +13,7 @@ The **Virtual Interfaces** described in this section connect a user application 
 \brief Controls simple I/O such as LED and switches
 \details
 
-The **Virtual I/O Interface (VIO) connects a [**CMSIS-Driver VIO**](https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html) to
+The **Virtual I/O Interface (VIO)** connects a [**CMSIS-Driver VIO**](https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html) to
 Phyton and allows test scripts that stimulate simple I/O such as switches and LEDs.
 
 It maps the following [**CMSIS-Driver VIO**](https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html) functions:

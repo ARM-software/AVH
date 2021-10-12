@@ -1,12 +1,9 @@
+/*=======0=========1=========2=========3=========4=========5=========6=========7=========8=========9=========0=========1====*/
+//  ==== VSI ====
 /**
-\defgroup   arm_py_tmpl Python Script Templates
-\brief      Python Script Bridge to Cortex-M Virtual Peripherals
-\details
 
-The Python script templates interface to the virtual peripherals.
-
-\addtogroup arm_vsi_py VSI Python interface
-\ingroup arm_py_tmpl
+\defgroup arm_vsi_py VSI Python interface
+\ingroup arm_cmvp
 \brief      VSI python interface.
 \details
 

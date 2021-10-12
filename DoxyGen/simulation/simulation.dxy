@@ -743,14 +743,14 @@ SHOW_USED_FILES        = NO
 # (if specified).
 # The default value is: YES.
 
-SHOW_FILES             = YES
+SHOW_FILES             = NO
 
 # Set the SHOW_NAMESPACES tag to NO to disable the generation of the Namespaces
 # page. This will remove the Namespaces entry from the Quick Index and from the
 # Folder Tree View (if specified).
 # The default value is: YES.
 
-SHOW_NAMESPACES        = YES
+SHOW_NAMESPACES        = NO
 
 # The FILE_VERSION_FILTER tag can be used to specify a program or script that
 # doxygen should invoke to get the current version for each file (typically from
@@ -866,11 +866,12 @@ WARN_LOGFILE           =
 
 INPUT                  = ./src/main.md \
                          ./src/Ref_vio.txt \
+                         ./src/Ref_vsi.txt \
                          ../../interface/include/arm_vsi.h \
                          ./src/Ref_vsi_py.txt \
                          ../../interface/python/arm_vsi0.py \
-                         ./src/Ref_vsi.txt \
                          ./src/Ref_vsocket.txt \
+                         ./src/Ref_vsi_cases.txt \
                          ./src/audio_drv.txt \
                          ../../interface/audio/include/audio_drv.h \
 
