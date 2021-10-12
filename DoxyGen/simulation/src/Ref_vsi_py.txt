@@ -1,7 +1,6 @@
 /*=======0=========1=========2=========3=========4=========5=========6=========7=========8=========9=========0=========1====*/
 //  ==== VSI ====
 /**
-
 \defgroup arm_vsi_py VSI Python interface
 \ingroup arm_cmvp
 \brief      VSI python interface.
@@ -14,19 +13,6 @@ Each peripheral instance has a separate dedicated Python script file with the na
 
 \namespace  arm_vsi0 VSI Python peripheral
 \brief      Accessing VSI interface instance #0
-\namespace  arm_vsi1 VSI Python peripheral
-\brief      Accessing VSI interface instance #1
-\namespace  arm_vsi2 VSI Python peripheral
-\brief      Accessing VSI interface instance #2
-\namespace  arm_vsi3 VSI Python peripheral
-\brief      Accessing VSI interface instance #3
-\namespace  arm_vsi4 VSI Python peripheral
-\brief      Accessing VSI interface instance #4
-\namespace  arm_vsi5 VSI Python peripheral
-\brief      Accessing VSI interface instance #5
-\namespace  arm_vsi6 VSI Python peripheral
-\brief      Accessing VSI interface instance #6
-\namespace  arm_vsi7 VSI Python peripheral
-\brief      Accessing VSI interface instance #7
+
 
 */

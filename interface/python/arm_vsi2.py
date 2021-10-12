@@ -2,7 +2,7 @@
 
 # Virtual Streaming Interface instance 2 Python script
 
-##@addtogroup arm_vsi2_py
+##@addtogroup arm_vsi_py
 #  @{
 #
 ##@package arm_vsi2
