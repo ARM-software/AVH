@@ -61,10 +61,6 @@ CONTROL_ENABLE_Msk = 1<<0
 Data = bytearray()
 
 
-# Audio Frames
-AudioFrames = bytearray()
-
-
 ## Open WAVE file (store object into global WAVE object)
 #  @param name name of WAVE file to open
 def openWAVE(name):
@@ -78,11 +74,12 @@ def openWAVE(name):
     logging.info("  Sample bits: {}".format(SAMPLE_BITS))
     logging.info("  Sample rate: {}".format(SAMPLE_RATE))
 
-## Write WAVE frames (global WAVE object) from global AudioFrames object
-def writeWAVE():
-    global WAVE, AudioFrames
+## Write WAVE frames (global WAVE object)
+#  @param frames frames to write
+def writeWAVE(frames):
+    global WAVE
     logging.info("Write WAVE frames")
-    WAVE.writeframes(AudioFrames)
+    WAVE.writeframes(frames)
 
 ## Close WAVE file (global WAVE object)
 def closeWAVE():
@@ -94,12 +91,9 @@ def closeWAVE():
 ## Store audio frames from global Data buffer
 #  @param block_size size of block to store (in bytes)
 def storeAudioFrames(block_size):
-    global AudioFrames, Data
+    global Data
     logging.info("Store audio frames from data buffer")
-    frame_size = CHANNELS * ((SAMPLE_BITS + 7) // 8)
-    frames_max = block_size // frame_size
-    AudioFrames = Data
-    writeWAVE()
+    writeWAVE(Data)
 
 
 ## Initialize
