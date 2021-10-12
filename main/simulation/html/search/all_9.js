@@ -5,5 +5,6 @@ var searchData=
   ['virtual_20peripherals_67',['Virtual Peripherals',['../group__arm__cmvp.html',1,'']]],
   ['virtual_20socket_20interface_20_28vsocket_29_68',['Virtual Socket Interface (VSocket)',['../group__arm__vsocket__api.html',1,'']]],
   ['virtual_20streaming_20interface_20_28vsi_29_69',['Virtual Streaming Interface (VSI)',['../group__arm__vsi__api.html',1,'']]],
-  ['vsi_20python_20interface_70',['VSI Python interface',['../group__arm__vsi__py.html',1,'']]]
+  ['vsi_20python_20interface_70',['VSI Python interface',['../group__arm__vsi__py.html',1,'']]],
+  ['vsi_20use_20cases_71',['VSI Use Cases',['../group__arm__vsi__cases.html',1,'']]]
 ];

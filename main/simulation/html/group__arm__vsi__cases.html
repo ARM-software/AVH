@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>Audio Driver Interface</title>
+<title>VSI Use Cases</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="extra_stylesheet.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="jquery.js"></script>
@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('group__audio__drv__interface.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('group__arm__vsi__cases.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -111,57 +111,23 @@ $(document).ready(function(){initNavTree('group__audio__drv__interface.html','')
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a>  </div>
+<a href="#groups">Content</a>  </div>
   <div class="headertitle">
-<div class="title">Audio Driver Interface<div class="ingroups"><a class="el" href="group__arm__vsi__cases.html">VSI Use Cases</a> &raquo; <a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a></div></div>  </div>
+<div class="title">VSI Use Cases</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Definitions of audio driver interface.  
+<p>Use Cases for Virtual Streaming Interface (VSI)  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:gabc3aa9d4319a122dcb68f08bf2d1d8ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__audio__drv__interface.html#gabc3aa9d4319a122dcb68f08bf2d1d8ab">AUDIO_DRV_INTERFACE_RX</a>&#160;&#160;&#160;(2U)</td></tr>
-<tr class="memdesc:gabc3aa9d4319a122dcb68f08bf2d1d8ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receiver.  <a href="group__audio__drv__interface.html#gabc3aa9d4319a122dcb68f08bf2d1d8ab">More...</a><br /></td></tr>
-<tr class="separator:gabc3aa9d4319a122dcb68f08bf2d1d8ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4e7d0e17edb9300964e60db8fd9b7ce3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a>&#160;&#160;&#160;(1U)</td></tr>
-<tr class="memdesc:ga4e7d0e17edb9300964e60db8fd9b7ce3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmitter.  <a href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">More...</a><br /></td></tr>
-<tr class="separator:ga4e7d0e17edb9300964e60db8fd9b7ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="groups"></a>
+Content</h2></td></tr>
+<tr class="memitem:group__arm__vsi__audio"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a></td></tr>
+<tr class="memdesc:group__arm__vsi__audio"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio file streaming interface for Cortex-M applications to Python scripting. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
-<p>Audio driver interface definitions for use in various audio driver functions (for example <a class="el" href="group__arm__vsi__audio.html#gaa57e127ec95db9c076d939f43311b2a7">AudioDrv_Configure</a>, <a class="el" href="group__arm__vsi__audio.html#ga69ef0761019c0316ba5073c33570fa65">AudioDrv_SetBuf</a>). </p>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="gabc3aa9d4319a122dcb68f08bf2d1d8ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gabc3aa9d4319a122dcb68f08bf2d1d8ab">&#9670;&nbsp;</a></span>AUDIO_DRV_INTERFACE_RX</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define AUDIO_DRV_INTERFACE_RX&#160;&#160;&#160;(2U)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Receiver interface </p>
-
-</div>
-</div>
-<a id="ga4e7d0e17edb9300964e60db8fd9b7ce3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4e7d0e17edb9300964e60db8fd9b7ce3">&#9670;&nbsp;</a></span>AUDIO_DRV_INTERFACE_TX</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define AUDIO_DRV_INTERFACE_TX&#160;&#160;&#160;(1U)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Transmitter interface </p>
-
-</div>
-</div>
+<p><a class="el" href="group__arm__vsi__api.html">Virtual Streaming Interface (VSI)</a> provides a general purpose implementation for data streaming peripherals. This chapter shows how VSI can be applied in specific use cases. </p>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
