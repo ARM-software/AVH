@@ -38,8 +38,8 @@ static AudioDrv_Event_t CB_Event = NULL;
 void AudioO_Handler (void) {
 
   AudioO->IRQ.Clear = 0x00000001U;
-  __ISB();
   __DSB();
+  __ISB();
   if (CB_Event != NULL) {
     CB_Event(AUDIO_DRV_EVENT_TX_DATA);
   }
@@ -49,8 +49,8 @@ void AudioO_Handler (void) {
 void AudioI_Handler (void) {
 
   AudioI->IRQ.Clear = 0x00000001U;
-  __ISB();
   __DSB();
+  __ISB();
   if (CB_Event != NULL) {
     CB_Event(AUDIO_DRV_EVENT_RX_DATA);
   }
@@ -80,8 +80,8 @@ int32_t AudioDrv_Initialize (AudioDrv_Event_t cb_event) {
   NVIC->ISER[(((uint32_t)AudioO_IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)AudioO_IRQn) & 0x1FUL));
 //NVIC_EnableIRQ(AudioI_IRQn);
   NVIC->ISER[(((uint32_t)AudioI_IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)AudioI_IRQn) & 0x1FUL));
-  __ISB();
   __DSB();
+  __ISB();
 
   Initialized = 1U;
 
