@@ -60,8 +60,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li class="current"><a href="modules.html"><span>Reference</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -118,7 +116,7 @@ $(document).ready(function(){initNavTree('group__arm__vsi__audio.html',''); init
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Audio via VSI<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a></div></div>  </div>
+<div class="title">Audio via VSI</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -127,11 +125,17 @@ $(document).ready(function(){initNavTree('group__arm__vsi__audio.html',''); init
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="groups"></a>
 Content</h2></td></tr>
-<tr class="memitem:group__audio__drv__errors"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__audio__drv__errors.html">Status Error Codes</a></td></tr>
-<tr class="memdesc:group__audio__drv__errors"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error codes returned by Audio interface functions. <br /></td></tr>
+<tr class="memitem:group__audio__drv__interface"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__audio__drv__interface.html">Audio Driver Interface</a></td></tr>
+<tr class="memdesc:group__audio__drv__interface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definitions of audio driver interface. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__audio__drv__control"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__audio__drv__control.html">Audio Driver Controls</a></td></tr>
+<tr class="memdesc:group__audio__drv__control"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definitions of control parameters. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group__audio__events"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__audio__events.html">Audio Driver Events</a></td></tr>
 <tr class="memdesc:group__audio__events"><td class="mdescLeft">&#160;</td><td class="mdescRight">Events reported by audio driver. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__audio__drv__errors"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__audio__drv__errors.html">Status Error Codes</a></td></tr>
+<tr class="memdesc:group__audio__drv__errors"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error codes returned by Audio interface functions. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
@@ -174,7 +178,7 @@ Functions</h2></td></tr>
 <tr class="separator:ga5d9c0749586bd5c75db54d92fa28049d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
-<p>The VSI implements general purpose peripheral registers, a timer peripheral, and a DMA peripheral. The peripheral is accessed using the <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure definition in <a class="el" href="arm__vsi_8h.html">arm_vsi.h</a></p>
+<p>The VSI implements general purpose peripheral registers, a timer peripheral, and a DMA peripheral. The peripheral is accessed using the <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure definition in arm_vsi.h</p>
 <p>This reference implementation provides an audio input interface with the files listed in the table below. There are several implementations of the audio driver:</p><ul>
 <li>for the <a class="el" href="group__arm__vsi__api.html">VSI</a> with an interface to a Python test script that streams *.wav files.</li>
 <li>for an NXP iMXRT1064 or iMXRT1050 evaluation board that uses a microphone as audio input.</li>
@@ -356,17 +360,17 @@ reserved: 30</td>
       </table>
 </div><div class="memdoc">
 <p>The function <b>AudioDrv_Configure</b> configures audio interface according to specified arguments.</p>
-<p><em>interface</em> configures the audio interface either for input (<a class="el" href="audio__drv_8h.html#abc3aa9d4319a122dcb68f08bf2d1d8ab">AUDIO_DRV_INTERFACE_RX</a>) or output (<a class="el" href="audio__drv_8h.html#a4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a> , currently not supported). <em>channels</em>, <em>sample_bits</em>, <em>sample_rate</em> define configuration parameters.</p>
+<p><em>interface</em> configures the audio interface either for input (<a class="el" href="group__audio__drv__interface.html#gabc3aa9d4319a122dcb68f08bf2d1d8ab">AUDIO_DRV_INTERFACE_RX</a>) or output (<a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a> , currently not supported). <em>channels</em>, <em>sample_bits</em>, <em>sample_rate</em> define configuration parameters.</p>
 <p>Possible return values:</p><ul>
 <li><a class="el" href="group__audio__drv__errors.html#gac12cb06a8d6cfc11afb624b3880e1044">AUDIO_DRV_OK</a> : configuration completed successfully.</li>
 <li><a class="el" href="group__audio__drv__errors.html#gae491b5a2b45c6f067d727efa16ab0cd6">AUDIO_DRV_ERROR_PARAMETER</a> : invalid argument values. Returned in the following cases:<ul>
-<li><em>interface</em> is not <a class="el" href="audio__drv_8h.html#a4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a> or <a class="el" href="audio__drv_8h.html#a4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a></li>
+<li><em>interface</em> is not <a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a> or <a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a></li>
 <li><em>channel</em> is &lt;0 or &gt;32</li>
 <li><em>sample_bits</em> is &lt;8 or &gt;32</li>
 <li><em>sample_rate</em> is 0</li>
 </ul>
 </li>
-<li><a class="el" href="group__audio__drv__errors.html#ga29ab542a49be2b0c1a94a0cca7574d2c">AUDIO_DRV_ERROR_UNSUPPORTED</a> : <em>interface</em> has value <a class="el" href="audio__drv_8h.html#a4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a> that is currently not supported.</li>
+<li><a class="el" href="group__audio__drv__errors.html#ga29ab542a49be2b0c1a94a0cca7574d2c">AUDIO_DRV_ERROR_UNSUPPORTED</a> : <em>interface</em> has value <a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a> that is currently not supported.</li>
 <li><a class="el" href="group__audio__drv__errors.html#ga65425fdcbb4d5c8533b7355b3dfa4876">AUDIO_DRV_ERROR</a> : audio control is already enabled with <a class="el" href="group__arm__vsi__audio.html#ga907ce53168efb2f29dce946226fa52a1">AudioDrv_Control</a>.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -420,12 +424,12 @@ reserved: 30</td>
       </table>
 </div><div class="memdoc">
 <p>The function <b>AudioDrv_SetBuf</b> assigns DMA buffer to the audio driver interface.</p>
-<p><em>interface</em> specifies whether the buffer is used for input (<a class="el" href="audio__drv_8h.html#abc3aa9d4319a122dcb68f08bf2d1d8ab">AUDIO_DRV_INTERFACE_RX</a>) or output (ref AUDIO_DRV_INTERFACE_TX, not supported yet).</p>
+<p><em>interface</em> specifies whether the buffer is used for input (<a class="el" href="group__audio__drv__interface.html#gabc3aa9d4319a122dcb68f08bf2d1d8ab">AUDIO_DRV_INTERFACE_RX</a>) or output (<a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a>, not supported yet).</p>
 <p><em>buf</em> points to the memory buffer. <em>block_num</em> and <em>block_size</em> define buffer configuration. Note that the memory allocated for the buffer shall be at least <em>block_num*block_size</em> bytes.</p>
 <p>Possible return values:</p><ul>
 <li><a class="el" href="group__audio__drv__errors.html#gac12cb06a8d6cfc11afb624b3880e1044">AUDIO_DRV_OK</a> : buffer is set correctly.</li>
 <li><a class="el" href="group__audio__drv__errors.html#gae491b5a2b45c6f067d727efa16ab0cd6">AUDIO_DRV_ERROR_PARAMETER</a> : invalid <em>interface</em> value.</li>
-<li><a class="el" href="group__audio__drv__errors.html#ga29ab542a49be2b0c1a94a0cca7574d2c">AUDIO_DRV_ERROR_UNSUPPORTED</a> : <em>interface</em> has value <a class="el" href="audio__drv_8h.html#a4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a> that is currently not supported.</li>
+<li><a class="el" href="group__audio__drv__errors.html#ga29ab542a49be2b0c1a94a0cca7574d2c">AUDIO_DRV_ERROR_UNSUPPORTED</a> : <em>interface</em> has value <a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a> that is currently not supported.</li>
 <li><a class="el" href="group__audio__drv__errors.html#ga65425fdcbb4d5c8533b7355b3dfa4876">AUDIO_DRV_ERROR</a> : returned in the following cases:<ul>
 <li>audio driver is not initialized with <a class="el" href="group__arm__vsi__audio.html#ga3df94f2eb2478ea1229356dd7deee319">AudioDrv_Initialize</a></li>
 <li>audio control is already enabled with <a class="el" href="group__arm__vsi__audio.html#ga907ce53168efb2f29dce946226fa52a1">AudioDrv_Control</a></li>
@@ -466,13 +470,13 @@ reserved: 30</td>
 <tr>
 <th>Parameter <em>control</em> </th><th>Bit </th><th>Description  </th></tr>
 <tr>
-<td><a class="el" href="audio__drv_8h.html#a19fd4bec18bcaa695ce70e60785346fa">AUDIO_DRV_CONTROL_TX_ENABLE</a>  </td><td>1  </td><td>Enable transmit operation. Currently not supported. </td></tr>
+<td><a class="el" href="group__audio__drv__control.html#ga19fd4bec18bcaa695ce70e60785346fa">AUDIO_DRV_CONTROL_TX_ENABLE</a>  </td><td>1  </td><td>Enable transmit operation. Currently not supported. </td></tr>
 <tr>
-<td><a class="el" href="audio__drv_8h.html#af6f490a2e326fe5db6a2ae3d3ff90d08">AUDIO_DRV_CONTROL_RX_ENABLE</a>  </td><td>2  </td><td>Enable receive operation. When executed, a timer is configured that periodically sends event to python interface for retrieving the audio data. </td></tr>
+<td><a class="el" href="group__audio__drv__control.html#gaf6f490a2e326fe5db6a2ae3d3ff90d08">AUDIO_DRV_CONTROL_RX_ENABLE</a>  </td><td>2  </td><td>Enable receive operation. When executed, a timer is configured that periodically sends event to python interface for retrieving the audio data. </td></tr>
 <tr>
-<td><a class="el" href="audio__drv_8h.html#a1c054890d0d31601c71ede31ae8d9f7c">AUDIO_DRV_CONTROL_TX_DISABLE</a>  </td><td>3  </td><td>Disable transmit operation. Currently not supported. </td></tr>
+<td><a class="el" href="group__audio__drv__control.html#ga1c054890d0d31601c71ede31ae8d9f7c">AUDIO_DRV_CONTROL_TX_DISABLE</a>  </td><td>3  </td><td>Disable transmit operation. Currently not supported. </td></tr>
 <tr>
-<td><a class="el" href="audio__drv_8h.html#af2030e115e7ab830c9524d64ca46fafc">AUDIO_DRV_CONTROL_RX_DISABLE</a>  </td><td>4  </td><td>Disable receive operation. </td></tr>
+<td><a class="el" href="group__audio__drv__control.html#gaf2030e115e7ab830c9524d64ca46fafc">AUDIO_DRV_CONTROL_RX_DISABLE</a>  </td><td>4  </td><td>Disable receive operation. </td></tr>
 </table>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

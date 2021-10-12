@@ -60,8 +60,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li class="current"><a href="modules.html"><span>Reference</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -154,13 +152,13 @@ Arm VHT CoreStone-300 for Linux and Windows</div></div>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">./interface/include/arm_vsi.h   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__api.html">VSI</a> API header files    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft">./interface/python/arm_vsi0.py   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi0__py.html">VSI Python interface</a> script template for instance 0    </td></tr>
+<td class="markdownTableBodyLeft">./interface/python/arm_vsi0.py   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__py.html">VSI Python interface</a> script template for instance 0    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">:   </td><td class="markdownTableBodyLeft">:    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft">./interface/python/arm_vsi7.py   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi0__py.html">VSI Python interface</a> script template for instance 7   </td></tr>
+<td class="markdownTableBodyLeft">./interface/python/arm_vsi7.py   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__py.html">VSI Python interface</a> script template for instance 7   </td></tr>
 </table>
-<p>The VSI implements general purpose peripheral registers, a timer peripheral, and a DMA peripheral. The peripheral is accessed using the <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure definition in <a class="el" href="arm__vsi_8h.html">arm_vsi.h</a></p>
+<p>The VSI implements general purpose peripheral registers, a timer peripheral, and a DMA peripheral. The peripheral is accessed using the <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure definition in arm_vsi.h</p>
 <div class="fragment"><div class="line">typedef struct</div>
 <div class="line">{</div>
 <div class="line">  struct {</div>
@@ -197,7 +195,7 @@ Arm VHT CoreStone-300 for Linux and Windows</div></div>
 <div class="line">#define ARM_VSI5        ((ARM_VSI_Type *)ARM_VSI5_BASE)      /*!&lt; VSI 5 struct */</div>
 <div class="line">#define ARM_VSI6        ((ARM_VSI_Type *)ARM_VSI6_BASE)      /*!&lt; VSI 6 struct */</div>
 <div class="line">#define ARM_VSI7        ((ARM_VSI_Type *)ARM_VSI7_BASE)      /*!&lt; VSI 7 struct */</div>
-</div><!-- fragment --><p>Each instance interfaces to a <a class="el" href="group__arm__vsi__py.html">VSI Python interface</a> whereby the script files of the various instances are named is <b><a class="el" href="arm__vsi0_8py.html">arm_vsi0.py</a></b>, <b>arm_vsi1.py</b>, ..., <b>arm_vsi7.py</b>.</p>
+</div><!-- fragment --><p>Each instance interfaces to a <a class="el" href="group__arm__vsi__py.html">VSI Python interface</a> whereby the script files of the various instances are named is <b>arm_vsi0.py</b>, <b>arm_vsi1.py</b>, ..., <b>arm_vsi7.py</b>.</p>
 <div class="image">
 <img src="DMA_Buffer.png" alt=""/>
 <div class="caption">
@@ -285,7 +283,7 @@ reserved3[59]</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="ad9292adad4a74b2256c2b61200c8a526"></a><a class="el" href="arm__vsi_8h.html#ab6caba5853a60a17e8e04499b52bf691">__IOM</a> uint32_t</td>
+<a id="ad9292adad4a74b2256c2b61200c8a526"></a>__IOM uint32_t</td>
 <td class="fieldname">
 Regs[64]</td>
 <td class="fielddoc">
@@ -309,28 +307,28 @@ Regs[64]</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a2faec1f9f8cc7f8f40d521c4dd574f49"></a><a class="el" href="arm__vsi_8h.html#ab6caba5853a60a17e8e04499b52bf691">__IOM</a> uint32_t</td>
+<a id="a2faec1f9f8cc7f8f40d521c4dd574f49"></a>__IOM uint32_t</td>
 <td class="fieldname">
 Enable</td>
 <td class="fielddoc">
 <p>Offset: 0x0000 (R/W) IRQ Enable </p>
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a5d5b78699e57104f2fa03bbdf7b9197b"></a><a class="el" href="arm__vsi_8h.html#a0ea2009ed8fd9ef35b48708280fdb758">__OM</a> uint32_t</td>
+<a id="a5d5b78699e57104f2fa03bbdf7b9197b"></a>__OM uint32_t</td>
 <td class="fieldname">
 Set</td>
 <td class="fielddoc">
 <p>Offset: 0x0004 (-/W) IRQ Set </p>
 </td></tr>
 <tr><td class="fieldtype">
-<a id="adc30bc0c7914db5918da4263fce93ad2"></a><a class="el" href="arm__vsi_8h.html#a0ea2009ed8fd9ef35b48708280fdb758">__OM</a> uint32_t</td>
+<a id="adc30bc0c7914db5918da4263fce93ad2"></a>__OM uint32_t</td>
 <td class="fieldname">
 Clear</td>
 <td class="fielddoc">
 <p>Offset: 0x0008 (-/W) IRQ Clear </p>
 </td></tr>
 <tr><td class="fieldtype">
-<a id="aec53a8c4f07baed5d8825072c89799be"></a><a class="el" href="arm__vsi_8h.html#a4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint32_t</td>
+<a id="aec53a8c4f07baed5d8825072c89799be"></a>__IM uint32_t</td>
 <td class="fieldname">
 Status</td>
 <td class="fielddoc">
@@ -354,21 +352,21 @@ Status</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="aa1595abbb4c3a326636dd178757cd6c1"></a><a class="el" href="arm__vsi_8h.html#ab6caba5853a60a17e8e04499b52bf691">__IOM</a> uint32_t</td>
+<a id="aa1595abbb4c3a326636dd178757cd6c1"></a>__IOM uint32_t</td>
 <td class="fieldname">
 Control</td>
 <td class="fielddoc">
 <p>Offset: 0x0100 (R/W) Timer Control </p>
 </td></tr>
 <tr><td class="fieldtype">
-<a id="ad16dd01adf735ed9b87eebff5fc39ce5"></a><a class="el" href="arm__vsi_8h.html#ab6caba5853a60a17e8e04499b52bf691">__IOM</a> uint32_t</td>
+<a id="ad16dd01adf735ed9b87eebff5fc39ce5"></a>__IOM uint32_t</td>
 <td class="fieldname">
 Interval</td>
 <td class="fielddoc">
 <p>Offset: 0x0104 (R/W) Timer Interval Value (in microseconds) </p>
 </td></tr>
 <tr><td class="fieldtype">
-<a id="ae93f994f01c537c4e2f7d8528c3eb5e9"></a><a class="el" href="arm__vsi_8h.html#a4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint32_t</td>
+<a id="ae93f994f01c537c4e2f7d8528c3eb5e9"></a>__IM uint32_t</td>
 <td class="fieldname">
 Count</td>
 <td class="fielddoc">
@@ -392,35 +390,35 @@ Count</td>
 <div class="textblock"></div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="aa1595abbb4c3a326636dd178757cd6c1"></a><a class="el" href="arm__vsi_8h.html#ab6caba5853a60a17e8e04499b52bf691">__IOM</a> uint32_t</td>
+<a id="aa1595abbb4c3a326636dd178757cd6c1"></a>__IOM uint32_t</td>
 <td class="fieldname">
 Control</td>
 <td class="fielddoc">
 <p>Offset: 0x0200 (R/W) DMA Control </p>
 </td></tr>
 <tr><td class="fieldtype">
-<a id="add7bf230fde8d4836917806aff6a6b27"></a><a class="el" href="arm__vsi_8h.html#ab6caba5853a60a17e8e04499b52bf691">__IOM</a> uint32_t</td>
+<a id="add7bf230fde8d4836917806aff6a6b27"></a>__IOM uint32_t</td>
 <td class="fieldname">
 Address</td>
 <td class="fielddoc">
 <p>Offset: 0x0204 (R/W) DMA Memory Start Address </p>
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a18d721bf398e589932630551a08d2b1a"></a><a class="el" href="arm__vsi_8h.html#ab6caba5853a60a17e8e04499b52bf691">__IOM</a> uint32_t</td>
+<a id="a18d721bf398e589932630551a08d2b1a"></a>__IOM uint32_t</td>
 <td class="fieldname">
 BlockSize</td>
 <td class="fielddoc">
 <p>Offset: 0x0208 (R/W) DMA Block Size (in bytes, multiple of 4) </p>
 </td></tr>
 <tr><td class="fieldtype">
-<a id="ad24b082591fff65e08958c0fcb18eaea"></a><a class="el" href="arm__vsi_8h.html#ab6caba5853a60a17e8e04499b52bf691">__IOM</a> uint32_t</td>
+<a id="ad24b082591fff65e08958c0fcb18eaea"></a>__IOM uint32_t</td>
 <td class="fieldname">
 BlockNum</td>
 <td class="fielddoc">
 <p>Offset: 0x020C (R/W) DMA Number of Blocks (must be 2^n) </p>
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a6ea0de6fb5c3cd10e657992dba5b80d3"></a><a class="el" href="arm__vsi_8h.html#a4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint32_t</td>
+<a id="a6ea0de6fb5c3cd10e657992dba5b80d3"></a>__IM uint32_t</td>
 <td class="fieldname">
 BlockIndex</td>
 <td class="fielddoc">

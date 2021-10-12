@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['python_20script_20templates_281',['Python Script Templates',['../group__arm__py__tmpl.html',1,'']]]
+  ['status_20error_20codes_145',['Status Error Codes',['../group__audio__drv__errors.html',1,'']]]
 ];
