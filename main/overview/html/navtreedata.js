@@ -32,7 +32,8 @@ var NAVTREE =
         [ "Verify Correctness", "index.html#Verify", null ],
         [ "Evaluate Performance", "index.html#Evaluate", null ],
         [ "Continuous Testing", "index.html#CI", null ]
-      ] ]
+      ] ],
+      [ "Product Roadmap", "index.html#autotoc_md0", null ]
     ] ]
   ] ]
 ];
