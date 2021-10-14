@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>Using Arm VHT with GitHub Actions</title>
+<title>Using GitHub Actions</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="extra_stylesheet.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="jquery.js"></script>
@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",'Search','.html');
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('vht_github.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('md_src_github.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -110,15 +110,82 @@ $(document).ready(function(){initNavTree('vht_github.html',''); initResizable();
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Using Arm VHT with GitHub Actions </div></div>
+  <div class="headertitle"><div class="title">Using GitHub Actions </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md_src_github"></a> GitHub Actions help you automate tasks within your software development life cycle. GitHub Actions are event-driven, meaning that you can run a series of commands after a specified event has occurred. For example, every time someone commits a push or creates a pull request for a repository, you can automatically run the Arm VHT Services that execute automated build or test scripts. Refer to <a href="https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions">Introduction to GitHub Actions</a> for information about the components of GitHub Actions.</p>
+<div class="textblock"><p >GitHub Actions help you automate tasks within your software development life cycle. GitHub Actions are event-driven, meaning that you can run a series of commands after a specified event has occurred. For example, every time someone commits a push or creates a pull request for a repository, you can automatically run the Arm VHT Services that execute automated build or test scripts. Refer to <a href="https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions">Introduction to GitHub Actions</a> for information about the components of GitHub Actions.</p>
+<p >There are several different ways to execute GitHub Actions:</p><ul>
+<li><a href="./#self_hosted"><b>Self-hosted GitHub runners</b></a> where the complete GitHub Action is executed on an AWS EC2 Linux instance.</li>
+<li><a href="./#GitHub_hosted"><b>GitHub-hosted runners</b></a> where only a part of the GitHub Action (for example testing) is executed on an AWS EC2 Linux instance.</li>
+</ul>
+<p >The approach that you should choose depends on your CI/CD requirements.</p>
+<h1><a class="anchor" id="self_hosted"></a>
+Self-hosted GitHub Runners</h1>
+<p >The following section explains how to use <b>self-hosted GitHub runners</b> with <a href="https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g">AWS Marketplace: Orta</a>.</p>
+<h2><a class="anchor" id="setup_AWS"></a>
+Setup AWS EC2 Instance</h2>
+<ul>
+<li>Subscribe to the <a href="https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g">AWS Marketplace: Orta</a></li>
+<li>What are the steps to configure/setup the Orta?</li>
+</ul>
+<h2><a class="anchor" id="add_secrets"></a>
+Add GitHub Secrets</h2>
+<ul>
+<li>What/how to setup secrets?</li>
+</ul>
+<h2><a class="anchor" id="add_action"></a>
+Add GitHub Action</h2>
+<ul>
+<li>How is the EC2 instance started/stopped? What effect to charging has this?</li>
+<li>What are the steps to add the GitHub action?</li>
+</ul>
+<div class="fragment"><div class="line"># This is a sample workflow for projects that use CMSIS-Build</div>
+<div class="line"> </div>
+<div class="line">name: Arm Virtual Hardware example</div>
+<div class="line"> </div>
+<div class="line">on:</div>
+<div class="line">  push:</div>
+<div class="line">    branches: [ main ]</div>
+<div class="line">  pull_request:</div>
+<div class="line">    branches: [ main ]</div>
+<div class="line"> </div>
+<div class="line"># To allow you to run this workflow manually from the GitHub Actions tab add</div>
+<div class="line">  workflow_dispatch:</div>
+<div class="line"> </div>
+<div class="line">jobs:</div>
+<div class="line">  ci_demonstration:</div>
+<div class="line">    runs-on: self-hosted</div>
+<div class="line">    env:</div>
+<div class="line">      working-directory: ${{ github.workspace }}/Platform_FVP_Corstone_SSE-300_Ethos-U55/</div>
+<div class="line">    steps:</div>
+<div class="line">      - name: Check out repository code</div>
+<div class="line">        uses: actions/checkout@v2</div>
+<div class="line"> </div>
+<div class="line">      - name: What has been cloned?</div>
+<div class="line">        run: echo &quot;${{ github.repository }} has been cloned.&quot;</div>
+<div class="line"> </div>
+<div class="line">      - name: Get dependencies</div>
+<div class="line">        run: cp_install.sh packlist</div>
+<div class="line">        working-directory: ${{env.working-directory}}</div>
+<div class="line"> </div>
+<div class="line">      - name: Build the micro_speech example</div>
+<div class="line">        run: cbuild.sh microspeech.Example.cprj</div>
+<div class="line">        working-directory: ${{env.working-directory}}</div>
+<div class="line"> </div>
+<div class="line">      - name: Run the micro_speech example</div>
+<div class="line">        run: ./run_example.sh</div>
+<div class="line">        working-directory: ${{env.working-directory}}</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1"></a>
+Test GitHub Action</h2>
+<p >Once this GitHub action is deployed, it may be manually tested.</p>
+<p >Describe the steps, i.e to start <a href="https://github.com/MDK-Packs/VHT-TFLmicrospeech/actions">https://github.com/MDK-Packs/VHT-TFLmicrospeech/actions</a></p>
+<h1><a class="anchor" id="GitHub_hosted"></a>
+GitHub-hosted Runners</h1>
 <p >An <a class="el" href="vht_aws.html">Amazon Machine Image (AMI)</a> provides a complete tool installation that can be integrated with GitHub Actions. To simplify integration the <a href="https://github.com/ARM-software/VHT-AMI">Arm Orta - GitHub Action</a> can be integrated into GitHub jobs. This action manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an <a class="el" href="vht_aws.html">Arm VHT AMI</a>.</p>
 <p ><img src="vht_action.png" alt="" class="inline" title="VHT GitHub action"/></p>
 <p >The VHT-AMI action receives a *.tar input file (vht_in) that contains the vht.yml control file. The vht.yml is the run control commands for the AMI and defines the execution of build scripts or test runs. Once the AMI run control commands are complete the results are returned as *.tar file to the GitHub runner.</p>
 <p >The file <a href="https://github.com/ARM-software/VHT-AMI/blob/master/action.yml">action.yml</a> defines the parameters for the GitHub action.</p>
-<h1><a class="anchor" id="autotoc_md0"></a>
+<h1><a class="anchor" id="autotoc_md2"></a>
 Configure the Arm VHT AMI</h1>
 <p >The next few steps are required to install the agent and configure a dedicated SSH access for file transfers on the AMI instance.</p>
 <ol type="1">
@@ -138,9 +205,9 @@ Configure the Arm VHT AMI</h1>
 </li>
 <li>Create an instance profile as documented on <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-instance-profile.html">https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-instance-profile.html</a></li>
 <li>Add the secrets as documented in the Usage section. <img src="./images/GHSecrets.png" alt="GHSecrets" title="Github Secrets" class="inline"/></li>
-<li>Add vht.yml to your repostitory, at the location specified by avt_in.</li>
+<li>Add vht.yml to your repository, at the location specified by avt_in.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md1"></a>
+<h2><a class="anchor" id="autotoc_md3"></a>
 Usage</h2>
 <p >You can now consume the action by referencing the v1 branch</p>
 <div class="fragment"><div class="line">uses: Arm-Software/VHT-AMI@v1</div>
@@ -162,7 +229,6 @@ Usage</h2>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="index.html">Infrastructure</a></li>
     <li class="footer">
 	Copyright &copy; 2021 Arm Limited (or its affiliates). All rights reserved.
 	<!-- Use script below for auto-inserting date, project name, version, etc  -->

@@ -38,12 +38,19 @@ var NAVTREE =
       ] ],
       [ "Running Micro Speech", "vht_aws.html#run_example", null ]
     ] ],
-    [ "Using Arm VHT with GitHub Actions", "vht_github.html", [
-      [ "Configure the Arm VHT AMI", "vht_github.html#autotoc_md0", [
-        [ "Usage", "vht_github.html#autotoc_md1", null ]
+    [ "Using Arm VHT with MDK-Professional", "vht_mdk_pro.html", null ],
+    [ "Using GitHub Actions", "md_src_github.html", [
+      [ "Self-hosted GitHub Runners", "md_src_github.html#self_hosted", [
+        [ "Setup AWS EC2 Instance", "md_src_github.html#setup_AWS", null ],
+        [ "Add GitHub Secrets", "md_src_github.html#add_secrets", null ],
+        [ "Add GitHub Action", "md_src_github.html#add_action", null ],
+        [ "Test GitHub Action", "md_src_github.html#autotoc_md1", null ]
+      ] ],
+      [ "GitHub-hosted Runners", "md_src_github.html#GitHub_hosted", null ],
+      [ "Configure the Arm VHT AMI", "md_src_github.html#autotoc_md2", [
+        [ "Usage", "md_src_github.html#autotoc_md3", null ]
       ] ]
-    ] ],
-    [ "Using Arm VHT with MDK-Professional", "vht_mdk_pro.html", null ]
+    ] ]
   ] ]
 ];
 

@@ -1,6 +1,15 @@
 var NAVTREEINDEX0 =
 {
 "index.html":[],
+"md_src_github.html":[2],
+"md_src_github.html#GitHub_hosted":[2,1],
+"md_src_github.html#add_action":[2,0,2],
+"md_src_github.html#add_secrets":[2,0,1],
+"md_src_github.html#autotoc_md1":[2,0,3],
+"md_src_github.html#autotoc_md2":[2,2],
+"md_src_github.html#autotoc_md3":[2,2,0],
+"md_src_github.html#self_hosted":[2,0],
+"md_src_github.html#setup_AWS":[2,0,0],
 "pages.html":[],
 "vht_aws.html":[0],
 "vht_aws.html#access":[0,0],
@@ -12,8 +21,5 @@ var NAVTREEINDEX0 =
 "vht_aws.html#use_code_server":[0,2,2],
 "vht_aws.html#use_ssh":[0,2,0],
 "vht_aws.html#use_vnc":[0,2,1],
-"vht_github.html":[1],
-"vht_github.html#autotoc_md0":[1,0],
-"vht_github.html#autotoc_md1":[1,0,0],
-"vht_mdk_pro.html":[2]
+"vht_mdk_pro.html":[1]
 };
