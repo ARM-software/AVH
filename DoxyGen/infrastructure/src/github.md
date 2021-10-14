@@ -1,7 +1,89 @@
 
-# Using Arm VHT with GitHub Actions {#vht_github}
+# Using GitHub Actions
 
 GitHub Actions help you automate tasks within your software development life cycle. GitHub Actions are event-driven, meaning that you can run a series of commands after a specified event has occurred.  For example, every time someone commits a push or creates a pull request for a repository, you can automatically run the Arm VHT Services that execute automated build or test scripts. Refer to [Introduction to GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions) for information about the components of GitHub Actions.
+
+There are several different ways to execute GitHub Actions:
+  - [**Self-hosted GitHub runners**](./#self_hosted) where the complete GitHub Action is executed on an AWS EC2 Linux instance.
+  - [**GitHub-hosted runners**](./#GitHub_hosted) where only a part of the GitHub Action (for example testing) is executed on an AWS EC2 Linux instance.
+  
+The approach that you should choose depends on your CI/CD requirements.
+
+
+# Self-hosted GitHub Runners {#self_hosted}
+
+\todo fix final AWS links
+
+The following section explains how to use **self-hosted GitHub runners** with [AWS Marketplace: \prj_name](https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g).
+
+
+## Setup AWS EC2 Instance {#setup_AWS}
+
+
+ - Subscribe to the [AWS Marketplace: \prj_name](https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g)
+ - What are the steps to configure/setup the \prj_name?
+
+## Add GitHub Secrets {#add_secrets}
+
+ - What/how to setup secrets? 
+
+## Add GitHub Action {#add_action}
+
+ - How is the EC2 instance started/stopped?  What effect to charging has this?
+
+ - What are the steps to add the GitHub action?
+
+```
+# This is a sample workflow for projects that use CMSIS-Build
+
+name: Arm Virtual Hardware example
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# To allow you to run this workflow manually from the GitHub Actions tab add
+  workflow_dispatch:
+
+jobs:
+  ci_demonstration:
+    runs-on: self-hosted
+    env:
+      working-directory: ${{ github.workspace }}/Platform_FVP_Corstone_SSE-300_Ethos-U55/
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: What has been cloned?
+        run: echo "${{ github.repository }} has been cloned."
+
+      - name: Get dependencies
+        run: cp_install.sh packlist
+        working-directory: ${{env.working-directory}}
+
+      - name: Build the micro_speech example
+        run: cbuild.sh microspeech.Example.cprj
+        working-directory: ${{env.working-directory}}
+
+      - name: Run the micro_speech example
+        run: ./run_example.sh
+        working-directory: ${{env.working-directory}}
+```
+
+
+
+
+## Test GitHub Action
+
+Once this GitHub action is deployed, it may be manually tested.
+
+Describe the steps, i.e to start https://github.com/MDK-Packs/VHT-TFLmicrospeech/actions
+
+
+# GitHub-hosted Runners {#GitHub_hosted}
+
 
 An \ref vht_aws "Amazon Machine Image (AMI)" provides a complete tool installation that can be integrated with GitHub Actions.
 To simplify integration the [Arm \prj_name - GitHub Action](https://github.com/ARM-software/VHT-AMI) can be integrated into GitHub jobs. This action manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an \ref vht_aws "Arm VHT AMI".
@@ -44,7 +126,7 @@ The next few steps are required to install the agent and configure a dedicated S
  8. Add the secrets as documented in the Usage section.
   ![GHSecrets](./images/GHSecrets.png "Github Secrets")
 
- 9. Add vht.yml to your repostitory, at the location specified by avt_in.
+ 9. Add vht.yml to your repository, at the location specified by avt_in.
 
 
 ## Usage
