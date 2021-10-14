@@ -66,16 +66,16 @@ For unit and integration tests virtual targets offer additional advantages over 
 
 # Product Roadmap
 
-\prj_name is currently under public beta which let's you evaluate how our products can help in your development processes. Below is a feature roadmap of Arm Virtual Hardware that gives you indication what to expect in the final release.
+\prj_name is currently under public beta which let's you evaluate how our products can help in your development processes. Below is a feature roadmap of Arm Virtual Hardware that gives you indication what to expect. We will release this features as they become available during the beta phase (within the next 6 months) to allow product evaluation before the final release.
 
-Feature                         | Description     | Timeline
-:-------------------------------|:----------------|:---------------
-**VSocket Interface**           | BSD socket interface that connects the application under test to networks, including public Internet.  | Nov 2021
-**VIO Interface**               | Simple interface to control I/O such as switches and LEDs via Python scripts.   | Dec 2021
-**Support in MDK-Professional** | Desktop development will be enabled in classic tooling, with priority on MDK. This complements our CI Cloud service that is already deployed. | Dec 2021
+Feature                         | Description     
+:-------------------------------|:----------------
+**VSocket Interface**           | BSD socket interface that connects the application under test to networks, including public Internet.
+**VIO Interface**               | Simple interface to control I/O such as switches and LEDs via Python scripts.
+**Support in MDK-Professional** | Desktop development will be enabled in classic tooling, with priority on MDK. This complements our CI Cloud service that is already deployed.
 **Extended Target support**     | The Corstone-300 model is a Cortex-M55/Ethos-U55 simulation that allows to develop a wide range of applications. Support will be extended to many other Cortex-M processors. | Jan 2022
-**Event Recorder CLI Tools**    | Event Recorder is currently supported in MDK. This support will be extended to off-line and command line tools. | Jan 2022
-**More Usage Examples**         | Example projects help to get started: Audio/Video/Sensor I/O, Cloud connectivity, CI integration, Test code development is the range of examples we are working on. | Nov 2021 - Feb 2022
+**Event Recorder CLI Tools**    | Event Recorder is currently supported in MDK. This support will be extended to off-line and command line tools.
+**More Usage Examples**         | Example projects help to get started: Audio/Video/Sensor I/O, Cloud connectivity, CI integration, Test code development is the range of examples we are working on.
 
 \todo add feedback channel;
 \todo can I register for update information?
