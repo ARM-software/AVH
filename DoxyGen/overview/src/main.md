@@ -64,7 +64,7 @@ For unit and integration tests virtual targets offer additional advantages over 
  - **Maintenance** – unlike physical hardware, virtual platforms do not overheat, wear out from overuse, break from misuse, or use physical space and resources. 
  - **Upgrades** – virtual platforms can be adapted and re-configured to match corresponding changes to the underlying hardware platform that is under development. These types of changes can be costly or impossible with physical hardware.
 
-# Product Roadmap
+# Product Roadmap {#Roadmap}
 
 \prj_name is currently under public beta which let's you evaluate how our products can help in your development processes. Below is a feature roadmap of Arm Virtual Hardware that gives you indication what to expect. We will release this features as they become available during the beta phase (within the next 6 months) to allow product evaluation before the final release.
 
@@ -73,9 +73,10 @@ Feature                         | Description
 **VSocket Interface**           | BSD socket interface that connects the application under test to networks, including public Internet.
 **VIO Interface**               | Simple interface to control I/O such as switches and LEDs via Python scripts.
 **Support in MDK-Professional** | Desktop development will be enabled in classic tooling, with priority on MDK. This complements our CI Cloud service that is already deployed.
-**Extended Target support**     | The Corstone-300 model is a Cortex-M55/Ethos-U55 simulation that allows to develop a wide range of applications. Support will be extended to many other Cortex-M processors. | Jan 2022
+**Extended Target support**     | The Corstone-300 model is a Cortex-M55/Ethos-U55 simulation that allows to develop a wide range of applications. Support will be extended to many other Cortex-M processors.
 **Event Recorder CLI Tools**    | Event Recorder is currently supported in MDK. This support will be extended to off-line and command line tools.
 **More Usage Examples**         | Example projects help to get started: Audio/Video/Sensor I/O, Cloud connectivity, CI integration, Test code development is the range of examples we are working on.
 
-\todo add feedback channel;
-\todo can I register for update information?
+# Feedback and Support {#Support}
+
+The \prj_name is supported during public beta via this [Arm forum](https://community.arm.com/support-forums/f/arm-virtual-hardware-targets-forum).
