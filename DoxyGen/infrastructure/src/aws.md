@@ -5,20 +5,32 @@ This section describes how to run the **AMI with \prj_name** on a local computer
 \note
    Refer to \ref mainpage for others ways to use the \prj_name.
 
-There are two was to access the AMI:
-  - **\ref Launch_website** gives direct access. 
-  - **\ref Launch_EC2** gives you more control over the EC2 instance and is more flexible.
+There are two was to launch the AMI:
+  - \ref Launch_website gives direct access. 
+  - \ref Launch_EC2 gives you more control over the EC2 instance and is more flexible.
+  
+Once the AMI is launched you may \ref connect.
+
+\note
+  Terminate the AMI instance once it is no longer required.
+  
+
 
 ## Launch from Website {#Launch_website}
 
-EC2 Instance Type **t3.medium** is sufficient to run \prj_name.
+Before you can launch from a Website you should create a **VPC** and a **key pair**. 
 
-
+Choose the following settings:
+  - **EC2 Instance Type:** *t3.medium* is sufficient to run \prj_name. An instance with more resources may improve performance.
+  - **VPC Settings:** select the VPC settings for the EC2 instance.
+  - **Key Pair Settings:** select your key.
+  
+  
 ## Launch trough EC2 {#Launch_EC2}
 
-The following steps launch **Arm VHT AMI** (currently named Orta-beta-phase2) from the AWS Console:
+The following steps launch the **\prj_name AMI** from the AWS Console:
 
- 1. **Choose AMI:** Select the AMI **Arm VHT AMI** (currently named Orta-beta-phase2) and click **Launch**. 
+ 1. **Choose AMI:** Select the **\prj_name** and click **Launch** (skip this step when you launch from marketplace).
 
 
  2. **Choose an Instance Type:** Select *t3.medium* (2 vCPUs, 4 GiB memory) is recommended. An instance with more resources may improve performance. 
@@ -116,7 +128,7 @@ Using a local browser connect to http://localhost:8080 and you should see Visual
 
 Run the micro speech example. Connect to the EC2 instance using ssh as described above and then get the example, compile, and run.
 ```
-$ git clone https://github.com/MDK-Packs/VHT-TFLmicrospeech.git
+$ git clone https://github.com/arm-software/VHT-TFLmicrospeech.git
 ```
 
 For shared private projects your GitHub Username and Password key will be required to clone.
@@ -168,3 +180,5 @@ Performance index                       : 0.05
 cpu_core.cpu0                           :  10.03 MIPS (  4000000000 Inst)
 ----------------------------------------------------------------------------
 ```
+
+

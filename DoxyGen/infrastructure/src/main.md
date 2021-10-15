@@ -14,7 +14,7 @@ The following AWS tutorials help you to get started:
   - [How do I create and activate a new AWS account?](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
   - [Tutorial: Get started with Amazon EC2 Linux instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)
 
-### Subscribe \prj_name {Subscribe}
+### Subscribe \prj_name {#Subscribe}
 
 Before you can use the **AMI with \prj_name Targets** you should have a AWS account.  The following steps describe how to subscribe to the AWS Service for \prj_name:
   - Open [AWS Marketplace](https://aws.amazon.com/marketplace) and search for **\prj_name**. 
