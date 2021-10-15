@@ -13,8 +13,6 @@ Once the AMI is launched you may \ref connect.
 
 \note
   Terminate the AMI instance once it is no longer required.
-  
-
 
 ## Launch from Website {#Launch_website}
 
