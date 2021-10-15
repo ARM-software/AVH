@@ -1,37 +1,53 @@
 /*=======0=========1=========2=========3=========4=========5=========6=========7=========8=========9=========0=========1====*/
 //  ==== VSI ====
 /**
-\defgroup arm_vsi_api Virtual Streaming Interface (VSI)
+\defgroup arm_vsi Virtual Streaming Interface (VSI)
 \ingroup arm_cmvp
 \brief Data streaming interface for Cortex-M applications to Python scripting
 \details
 
 The Virtual Streaming Interface (VSI) is a flexible peripheral that allows to implement a wide range of use cases. 
-Eight VSI instances are available and may be used in parallel to stream simultaneous multi-channel inputs.
-VSI can be used to simulate data streaming such as audio, video and various sensors frequently found in Machine-Learning applications.
+It can be used to simulate data streaming such as audio, video and various sensors frequently found in Machine-Learning applications.
+Eight VSI instances are available and may be used in parallel for simultaneous multi-channel streaming inputs and outputs.
 
-The VSI provides register interface for the following components:
-  - Interrupt control
-  - Timer peripheral with 1MHz input clock
-  - DMA peripheral with block buffer handling
-  - 64 user registers to implement bespoke functionality (i.e. for Audio, Video, or Sensor streaming)
 
 Examples demonstrate the \ref arm_vsi_audio "Audio" streaming as shown in the diagram below.
 
 \image html ./images/Example-Structure.png "Arm VHT CoreStone-300 for Linux and Windows"
 
-A read or write access to **VSI** peripheral registers triggers the \ref arm_vsi_py "VSI Python interface" which provides a script interface for software testing.  The following files define the access to the VSI peripherals.
+The VSI implements general purpose peripheral registers, an interrupt peripheral, a timer peripheral, and a DMA peripheral. The following files define and the access to the VSI peripherals.
 
 File                             | Description
 :--------------------------------|:-----------------------------------
-./interface/include/arm_vsi.h    | \ref arm_vsi_api "VSI" API header files
+./interface/include/arm_vsi.h    | \ref arm_vsi_api "VSI API" header file
 ./interface/python/arm_vsi0.py   | \ref arm_vsi_py "VSI Python interface" script template for instance 0
   :                              |   :
 ./interface/python/arm_vsi7.py   | \ref arm_vsi_py "VSI Python interface" script template for instance 7
 
+\section vsi_regs VSI registers
+The VSI peripheral is accessed using the \ref ARM_VSI_Type structure that provides register interface for the following components:
+  - Interrupt control
+  - Timer peripheral with 1MHz input clock
+  - DMA peripheral with block buffer handling
+  - 64 user registers to implement bespoke functionality (i.e. for Audio, Video, or Sensor streaming)
 
-The VSI implements general purpose peripheral registers, a timer peripheral, and a DMA peripheral.
-The peripheral is accessed using the \ref ARM_VSI_Type structure definition in arm_vsi.h
+There are 8 VSI peripheral instances mapped into the memory of the Cortex-M system. These are accessed via these defines:
+\code{.unparsed}
+#define ARM_VSI0        ((ARM_VSI_Type *)ARM_VSI0_BASE)      /*!< VSI 0 struct */
+#define ARM_VSI1        ((ARM_VSI_Type *)ARM_VSI1_BASE)      /*!< VSI 1 struct */
+#define ARM_VSI2        ((ARM_VSI_Type *)ARM_VSI2_BASE)      /*!< VSI 2 struct */
+#define ARM_VSI3        ((ARM_VSI_Type *)ARM_VSI3_BASE)      /*!< VSI 3 struct */
+#define ARM_VSI4        ((ARM_VSI_Type *)ARM_VSI4_BASE)      /*!< VSI 4 struct */
+#define ARM_VSI5        ((ARM_VSI_Type *)ARM_VSI5_BASE)      /*!< VSI 5 struct */
+#define ARM_VSI6        ((ARM_VSI_Type *)ARM_VSI6_BASE)      /*!< VSI 6 struct */
+#define ARM_VSI7        ((ARM_VSI_Type *)ARM_VSI7_BASE)      /*!< VSI 7 struct */
+\endcode
+
+A read or write access to a VSI peripheral triggers execution of a Python script that implements corresponding instance of \ref arm_vsi_py "VSI Python interface". The python scripts are named as **arm_vsi0.py**, **arm_vsi1.py**, ..., **arm_vsi7.py**. The concept is shown on the figure below.
+
+\image html "uml_graph.png" "Using VSI peripheral"
+
+The \ref ARM_VSI_Type structure is defined in arm_vsi.h file as follows:
 
 \code{.unparsed}
 typedef struct
@@ -60,61 +76,15 @@ typedef struct
   __IOM uint32_t Regs[64];      /*!< Offset: 0x0300 (R/W) User Registers */
 } ARM_VSI_Type;
 \endcode
- 
-An access to VSI peripheral registers triggers Python script execution.
+
+The **IRQ** peripheral simulates an interrupt request. **Set** and **Clear** parameters have only write access and are used for triggering and clearing the interrupt. **Status** field indicates the interrupt state.
 
 The **Timer** peripheral is a simple counting timer with a 1MHz input frequency based on the time domain 
 of the Arm Fast Model instruction set simulator. The **Count** value increments when the **Interval** value elapses.
 
-The **DMA Controller** accesses a rotating memory buffer as shown in the diagram below. Each block transfer increments the **BlockIndex** value (does not restart when the buffer rotates).
-
-There are 8 instances of the \ref arm_vsi_api mapped into the memory of the Cortex-M system.  These are accessed via these defines:
-\code{.unparsed}
-#define ARM_VSI0        ((ARM_VSI_Type *)ARM_VSI0_BASE)      /*!< VSI 0 struct */
-#define ARM_VSI1        ((ARM_VSI_Type *)ARM_VSI1_BASE)      /*!< VSI 1 struct */
-#define ARM_VSI2        ((ARM_VSI_Type *)ARM_VSI2_BASE)      /*!< VSI 2 struct */
-#define ARM_VSI3        ((ARM_VSI_Type *)ARM_VSI3_BASE)      /*!< VSI 3 struct */
-#define ARM_VSI4        ((ARM_VSI_Type *)ARM_VSI4_BASE)      /*!< VSI 4 struct */
-#define ARM_VSI5        ((ARM_VSI_Type *)ARM_VSI5_BASE)      /*!< VSI 5 struct */
-#define ARM_VSI6        ((ARM_VSI_Type *)ARM_VSI6_BASE)      /*!< VSI 6 struct */
-#define ARM_VSI7        ((ARM_VSI_Type *)ARM_VSI7_BASE)      /*!< VSI 7 struct */
-\endcode
-
-Each instance interfaces to a \ref arm_vsi_py whereby the script files of the various instances are named is **arm_vsi0.py**, **arm_vsi1.py**, ..., **arm_vsi7.py**.
-
+The **DMA Controller** accesses a rotating memory buffer as shown in the diagram below. Each block transfer increments the **BlockIndex** value (restarts when the buffer rotates).
 
 \image html "DMA_Buffer.png" "Structure of DMA memory buffer"
 
-@{
-
-\struct ARM_VSI_Type
-\details
-The \ref ARM_VSI_Type structure provides access to the VSI peripheral registers. 
-The peripheral provides the following registers:
-
-  - **Regs** is array of registers that allows to implement peripheral specific operations.
-  - **Timer** accesses a counting timer peripheral with 1MHz input clock that generates interrupts.
-  - **DMA** is a virtual DMA controller copies data to/from the 32KB data buffer to other Cortex-M memory.
-  - **IRQ** is a group of registers that can enable and set/clear interrupt requests.
-
-The **Timer** peripheral has the following registers:
-  - **Control** the operation of the timer with the following control bits:
-     - **Control.0** 0=stop timer and timer reset, 1=start timer
-     - **Control.1** 0=on-shoot timer, 1=periodic timer by reloading Interval value
-     - **Control.2** 0=no interrupt, 1=trigger interrupt at overflow, sets IRQ.Status=1
-     - **Control.3** 0=no DMA transfer, 1=trigger DMA transfer at overflow
-  - **Interval** value in microseconds for timer overflows
-  - **Count** timer overflow counter, incremented when the time interval elapses.
-
-The **DMA** peripheral has the following registers:
-  - **Control** the operation of the DMA with the following control bits:
-     - **Control.0** 0=disable DMA and reset DMA, 1=enable DMA
-     - **Control.1** DMA transfer direction 0=peripheral to memory, 1=memory to peripheral
-  - **Address** start address of the memory region
-  - **BlockSize** number of bytes for each DMA transfer.
-  - **BlockNum** number of blocks before the memory buffer rotates, next DMA transfer uses start address.
-  - **BlockIndex** counts the total number of blocks transferred (not set to 0 at buffer rotates).
-
-@}
 */
 

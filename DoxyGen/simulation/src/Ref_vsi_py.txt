@@ -2,17 +2,11 @@
 //  ==== VSI ====
 /**
 \defgroup arm_vsi_py VSI Python interface
-\ingroup arm_cmvp
+\ingroup arm_vsi
 \brief      VSI python interface.
 \details
 
 The Python interface described in this section trigger on peripheral registers and events of the \ref arm_vsi_api.
 Each peripheral instance has a separate dedicated Python script file with the names **arm_vsi0.py**, **arm_vsi1.py**, ..., **arm_vsi7.py**.
-
-\image html "uml_graph.png" "Using VSI peripheral"
-
-\namespace  arm_vsi0 VSI Python peripheral
-\brief      Accessing VSI interface instance #0
-
 
 */

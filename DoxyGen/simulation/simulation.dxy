@@ -509,7 +509,7 @@ EXTRACT_STATIC         = NO
 # for Java sources.
 # The default value is: YES.
 
-EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_LOCAL_CLASSES  = NO
 
 # This flag is only useful for Objective-C code. If set to YES, local methods,
 # which are defined in the implementation section but not in the interface are
@@ -860,6 +860,7 @@ INPUT                  = ./src/main.md \
                          ./src/Ref_vio.txt \
                          ./src/Ref_vsi.txt \
                          ../../interface/include/arm_vsi.h \
+                         ./src/Ref_vsi_api.txt \
                          ./src/Ref_vsi_py.txt \
                          ../../interface/python/arm_vsi0.py \
                          ./src/Ref_vsocket.txt \
@@ -1083,13 +1084,13 @@ STRIP_CODE_COMMENTS    = NO
 # entity all documented functions referencing it will be listed.
 # The default value is: NO.
 
-REFERENCED_BY_RELATION = YES
+REFERENCED_BY_RELATION = NO
 
 # If the REFERENCES_RELATION tag is set to YES then for each documented function
 # all documented entities called/used by that function will be listed.
 # The default value is: NO.
 
-REFERENCES_RELATION    = YES
+REFERENCES_RELATION    = NO
 
 # If the REFERENCES_LINK_SOURCE tag is set to YES and SOURCE_BROWSER tag is set
 # to YES then the hyperlinks from functions in REFERENCES_RELATION and
@@ -1186,7 +1187,7 @@ CLANG_DATABASE_PATH    =
 # classes, structs, unions or interfaces.
 # The default value is: YES.
 
-ALPHABETICAL_INDEX     = NO
+ALPHABETICAL_INDEX     = YES
 
 # In case all classes in a project start with a common prefix, all classes will
 # be put under the same header in the alphabetical index. The IGNORE_PREFIX tag

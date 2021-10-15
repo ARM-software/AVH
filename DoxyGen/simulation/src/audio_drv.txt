@@ -6,20 +6,22 @@
 The VSI implements general purpose peripheral registers, a timer peripheral, and a DMA peripheral.
 The peripheral is accessed using the \ref ARM_VSI_Type structure definition in arm_vsi.h
 
-This reference implementation provides an audio input interface with the files listed in the table below.
-There are several implementations of the audio driver: 
+Several implementations of the audio driver available with the common audio driver API used:
   - for the \ref arm_vsi_api "VSI" with an interface to a Python test script that streams *.wav files.
-  - for an NXP iMXRT1064 or iMXRT1050 evaluation board that uses a microphone as audio input.
+  - for NXP IMXRT1064 and IMXRT1050 evaluation boards that use microphone as audio input.
+
+The implementations are done with the following files:
 
 File                                                                                 | Description
 :------------------------------------------------------------------------------------|:-----------------------------------
-./interface/audio/include/audio_drv.h                                                | \ref arm_vsi_audio "Audio via VSI"  API header file
-./interface/audio/driver/audio_drv.c                                                 | \ref arm_vsi_audio "Audio via VSI"  Implementation based on \ref arm_vsi_api "VSI"
-./interface/audio/python/arm_vsi0.py                                                 | \ref arm_vsi_audio "Audio via VSI"  Python test script for audio input interface based on \ref arm_vsi_py "VSI Python interface" 
-./examples/micro_speech/Platform_MIMXRT1064-EVK/Driver_Audio/Audio_MIMXRT1064-EVK.c  | \ref arm_vsi_audio "Audio via VSI"  Implementation for NXP iMXRT1064
+./interface/audio/include/audio_drv.h                                                | \ref arm_vsi_audio "Audio Driver API" header file
+./interface/audio/driver/audio_drv.c                                                 | Audio driver implementation for \prj_name based on \ref arm_vsi_api "VSI"
+./interface/audio/python/arm_vsi0.py                                                 | \ref arm_vsi_audio "Audio via VSI"  Python script for audio input interface based on \ref arm_vsi_py "VSI Python interface" 
+./interface/audio/python/arm_vsi1.py                                                 | \ref arm_vsi_audio "Audio via VSI"  Python script for audio output interface based on \ref arm_vsi_py "VSI Python interface" 
+./examples/micro_speech/Platform_MIMXRT10504-EVKB/Driver_Audio/                      | Audio driver implementation for NXP IMXRT1050-EVKB. See [VHT-TFL microspeech GitHub repo](https://github.com/arm-software/VHT-TFLmicrospeech)
+./examples/micro_speech/Platform_MIMXRT1064-EVK/Driver_Audio/                        | Audio driver implementation for NXP MIMXRT1064-EVK. See [VHT-TFL microspeech GitHub repo](https://github.com/arm-software/VHT-TFLmicrospeech)
 
 The chapter [**Examples**](../../examples/html/index.html) describes projects that demonstrate use of this audio driver API in both the Arm VHT test environment and on the physical evaluation boards.
-
 
 @{
 
@@ -128,7 +130,7 @@ Possible return values:
 \details
 The function \b AudioDrv_Configure configures audio interface according to specified arguments.
 
-\em interface configures the audio interface either for input (\ref AUDIO_DRV_INTERFACE_RX) or output (\ref AUDIO_DRV_INTERFACE_TX , currently not supported). \em channels, \em sample_bits, \em sample_rate define configuration parameters.
+\em interface configures the audio interface either for input (\ref AUDIO_DRV_INTERFACE_RX) or output (\ref AUDIO_DRV_INTERFACE_TX). \em channels, \em sample_bits, \em sample_rate define configuration parameters.
 
 Possible return values:
     - \ref AUDIO_DRV_OK : configuration completed successfully.
@@ -137,21 +139,21 @@ Possible return values:
       - \em channel is &lt;0 or &gt;32
       - \em sample_bits is &lt;8 or &gt;32
       - \em sample_rate is 0
-    - \ref AUDIO_DRV_ERROR_UNSUPPORTED : \em interface has value \ref AUDIO_DRV_INTERFACE_TX that is currently not supported.
+    - \ref AUDIO_DRV_ERROR_UNSUPPORTED : requested configuration is not supported by the driver.
     - \ref AUDIO_DRV_ERROR : audio control is already enabled with \ref AudioDrv_Control.
 
 \fn int32_t AudioDrv_SetBuf (uint32_t interface, void *buf, uint32_t block_num, uint32_t block_size)
 \details
 The function \b AudioDrv_SetBuf assigns DMA buffer to the audio driver interface.
 
-\em interface specifies whether the buffer is used for input (\ref AUDIO_DRV_INTERFACE_RX) or output (\ref AUDIO_DRV_INTERFACE_TX, not supported yet).
+\em interface specifies whether the buffer is used for input (\ref AUDIO_DRV_INTERFACE_RX) or output (\ref AUDIO_DRV_INTERFACE_TX).
 
 \em buf points to the memory buffer. \em block_num and \em block_size define buffer configuration. Note that the memory allocated for the buffer shall be at least \em block_num*block_size bytes.
 
 Possible return values:
     - \ref AUDIO_DRV_OK : buffer is set correctly.
     - \ref AUDIO_DRV_ERROR_PARAMETER : invalid \em interface value.
-    - \ref AUDIO_DRV_ERROR_UNSUPPORTED : \em interface has value \ref AUDIO_DRV_INTERFACE_TX that is currently not supported.
+    - \ref AUDIO_DRV_ERROR_UNSUPPORTED : requested buffer configuration is not supported by the driver.
     - \ref AUDIO_DRV_ERROR : returned in the following cases:
       - audio driver  is not initialized with \ref AudioDrv_Initialize
       - audio control is already enabled with \ref AudioDrv_Control
@@ -166,13 +168,13 @@ The parameter \em control specifies the operation as described in the table.
 <tr><th> Parameter \em control </th><th> Bit </th><th> Description </th></tr>
 <tr><td> \ref AUDIO_DRV_CONTROL_TX_ENABLE </td>
     <td> 1 </td>
-    <td> Enable transmit operation. Currently not supported.</td></tr>
-<tr><td> \ref AUDIO_DRV_CONTROL_RX_ENABLE </td>
+    <td> Enable transmit operation.</td></tr>
+<tr><td> \ref AUDIO_DRV_CONTROL_RX_ENABLE. When executed, a timer is configured that periodically sends event to python interface for delivering the audio data.</td>
     <td> 2 </td>
     <td> Enable receive operation. When executed, a timer is configured that periodically sends event to python interface for retrieving the audio data.</td></tr>
 <tr><td> \ref AUDIO_DRV_CONTROL_TX_DISABLE </td>
     <td> 3 </td>
-    <td> Disable transmit operation. Currently not supported.</td></tr>
+    <td> Disable transmit operation.</td></tr>
 <tr><td> \ref AUDIO_DRV_CONTROL_RX_DISABLE </td>
     <td> 4 </td>
     <td> Disable receive operation.</td></tr>
