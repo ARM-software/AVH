@@ -115,18 +115,25 @@ $(document).ready(function(){initNavTree('run_ami_local.html',''); initResizable
 <div class="contents">
 <div class="textblock"><p ><a class="anchor" id="md_src_aws"></a> This section describes how to run the <b>AMI with Orta</b> on a local computer and assumes that have setup the <a class="el" href="index.html#AWS">AWS Marketplace</a>.</p>
 <dl class="section note"><dt>Note</dt><dd>Refer to <a class="el" href="index.html#mainpage">mainpage</a> for others ways to use the Orta.</dd></dl>
-<p>There are two was to access the AMI:</p><ul>
-<li>**<a class="el" href="run_ami_local.html#Launch_website">Launch from Website</a>** gives direct access.</li>
-<li>**<a class="el" href="run_ami_local.html#Launch_EC2">Launch trough EC2</a>** gives you more control over the EC2 instance and is more flexible.</li>
+<p>There are two was to launch the AMI:</p><ul>
+<li><a class="el" href="run_ami_local.html#Launch_website">Launch from Website</a> gives direct access.</li>
+<li><a class="el" href="run_ami_local.html#Launch_EC2">Launch trough EC2</a> gives you more control over the EC2 instance and is more flexible.</li>
 </ul>
+<p >Once the AMI is launched you may <a class="el" href="run_ami_local.html#connect">Connect to the EC2 Instance</a>.</p>
+<dl class="section note"><dt>Note</dt><dd>Terminate the AMI instance once it is no longer required.</dd></dl>
 <h1><a class="anchor" id="Launch_website"></a>
 Launch from Website</h1>
-<p >EC2 Instance Type <b>t3.medium</b> is sufficient to run Orta.</p>
+<p >Before you can launch from a Website you should create a <b>VPC</b> and a <b>key pair</b>.</p>
+<p >Choose the following settings:</p><ul>
+<li><b>EC2 Instance Type:</b> <em>t3.medium</em> is sufficient to run Orta. An instance with more resources may improve performance.</li>
+<li><b>VPC Settings:</b> select the VPC settings for the EC2 instance.</li>
+<li><b>Key Pair Settings:</b> select your key.</li>
+</ul>
 <h1><a class="anchor" id="Launch_EC2"></a>
 Launch trough EC2</h1>
-<p >The following steps launch <b>Arm VHT AMI</b> (currently named Orta-beta-phase2) from the AWS Console:</p>
+<p >The following steps launch the <b>Orta AMI</b> from the AWS Console:</p>
 <ol type="1">
-<li><b>Choose AMI:</b> Select the AMI <b>Arm VHT AMI</b> (currently named Orta-beta-phase2) and click <b>Launch</b>.</li>
+<li><b>Choose AMI:</b> Select the <b>Orta</b> and click <b>Launch</b> (skip this step when you launch from marketplace).</li>
 <li><b>Choose an Instance Type:</b> Select <em>t3.medium</em> (2 vCPUs, 4 GiB memory) is recommended. An instance with more resources may improve performance.</li>
 <li><b>Configure Instance Details:</b> Under Network select a VPC. Note: a public IP address is required for SSH access. <br  />
 </li>
@@ -172,7 +179,7 @@ Using Code Server</h2>
 </div><!-- fragment --><p> Using a local browser connect to <a href="http://localhost:8080">http://localhost:8080</a> and you should see Visual Studio Code appear in the browser.</p>
 <h1><a class="anchor" id="run_example"></a>
 Running Micro Speech</h1>
-<p >Run the micro speech example. Connect to the EC2 instance using ssh as described above and then get the example, compile, and run. </p><div class="fragment"><div class="line">$ git clone https://github.com/MDK-Packs/VHT-TFLmicrospeech.git</div>
+<p >Run the micro speech example. Connect to the EC2 instance using ssh as described above and then get the example, compile, and run. </p><div class="fragment"><div class="line">$ git clone https://github.com/arm-software/VHT-TFLmicrospeech.git</div>
 </div><!-- fragment --><p >For shared private projects your GitHub Username and Password key will be required to clone.</p>
 <div class="fragment"><div class="line">$ cd ./VHT-TFLmicrospeech/Platform_FVP_Corstone_SSE-300_Ethos-U55</div>
 <div class="line"> </div>

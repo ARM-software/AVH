@@ -26,8 +26,8 @@ var NAVTREE =
 [
   [ "Infrastructure", "index.html", [
     [ "AWS Marketplace", "index.html#AWS", [
-      [ "Subscribe Orta {Subscribe}", "index.html#autotoc_md0", null ],
-      [ "Use AMI", "index.html#autotoc_md1", null ]
+      [ "Subscribe Orta", "index.html#Subscribe", null ],
+      [ "Use AMI", "index.html#autotoc_md0", null ]
     ] ],
     [ "Local Tool Installation", "index.html#Local", null ],
     [ "Run AMI on local computer", "run_ami_local.html", [
@@ -45,11 +45,11 @@ var NAVTREE =
         [ "Setup AWS EC2 Instance", "run_ami_github.html#setup_AWS", null ],
         [ "Add GitHub Secrets", "run_ami_github.html#add_secrets", null ],
         [ "Add GitHub Action", "run_ami_github.html#add_action", null ],
-        [ "Test GitHub Action", "run_ami_github.html#autotoc_md2", null ]
+        [ "Test GitHub Action", "run_ami_github.html#autotoc_md1", null ]
       ] ],
       [ "GitHub-hosted Runners", "run_ami_github.html#GitHub_hosted", null ],
-      [ "Configure the Arm VHT AMI", "run_ami_github.html#autotoc_md3", [
-        [ "Usage", "run_ami_github.html#autotoc_md4", null ]
+      [ "Configure the Arm VHT AMI", "run_ami_github.html#autotoc_md2", [
+        [ "Usage", "run_ami_github.html#autotoc_md3", null ]
       ] ]
     ] ],
     [ "Run with MDK-Professional", "run_mdk_pro.html", null ]
