@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['using_20arm_20vht_20ami_0',['Using Arm VHT AMI',['../vht_aws.html',1,'index']]],
-  ['using_20arm_20vht_20with_20mdk_2dprofessional_1',['Using Arm VHT with MDK-Professional',['../vht_mdk_pro.html',1,'index']]],
-  ['using_20github_20actions_2',['Using GitHub Actions',['../md_src_github.html',1,'']]]
+  ['run_20ami_20on_20local_20computer_0',['Run AMI on local computer',['../run_ami_local.html',1,'index']]],
+  ['run_20ami_20with_20github_20actions_1',['Run AMI with GitHub Actions',['../run_ami_github.html',1,'index']]],
+  ['run_20with_20mdk_2dprofessional_2',['Run with MDK-Professional',['../run_mdk_pro.html',1,'index']]]
 ];

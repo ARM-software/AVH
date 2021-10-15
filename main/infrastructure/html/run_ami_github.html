@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>Using GitHub Actions</title>
+<title>Run AMI with GitHub Actions</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="extra_stylesheet.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="jquery.js"></script>
@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",'Search','.html');
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('md_src_github.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('run_ami_github.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -110,10 +110,10 @@ $(document).ready(function(){initNavTree('md_src_github.html',''); initResizable
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Using GitHub Actions </div></div>
+  <div class="headertitle"><div class="title">Run AMI with GitHub Actions </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >GitHub Actions help you automate tasks within your software development life cycle. GitHub Actions are event-driven, meaning that you can run a series of commands after a specified event has occurred. For example, every time someone commits a push or creates a pull request for a repository, you can automatically run the Arm VHT Services that execute automated build or test scripts. Refer to <a href="https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions">Introduction to GitHub Actions</a> for information about the components of GitHub Actions.</p>
+<div class="textblock"><p ><a class="anchor" id="md_src_github"></a> GitHub Actions help you automate tasks within your software development life cycle. GitHub Actions are event-driven, meaning that you can run a series of commands after a specified event has occurred. For example, every time someone commits a push or creates a pull request for a repository, you can automatically run the Arm VHT Services that execute automated build or test scripts. Refer to <a href="https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions">Introduction to GitHub Actions</a> for information about the components of GitHub Actions.</p>
 <p >There are several different ways to execute GitHub Actions:</p><ul>
 <li><a href="./#self_hosted"><b>Self-hosted GitHub runners</b></a> where the complete GitHub Action is executed on an AWS EC2 Linux instance.</li>
 <li><a href="./#GitHub_hosted"><b>GitHub-hosted runners</b></a> where only a part of the GitHub Action (for example testing) is executed on an AWS EC2 Linux instance.</li>
@@ -121,7 +121,14 @@ $(document).ready(function(){initNavTree('md_src_github.html',''); initResizable
 <p >The approach that you should choose depends on your CI/CD requirements.</p>
 <h1><a class="anchor" id="self_hosted"></a>
 Self-hosted GitHub Runners</h1>
-<p >The following section explains how to use <b>self-hosted GitHub runners</b> with <a href="https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g">AWS Marketplace: Orta</a>.</p>
+<p >The following steps explain how to use <b>self-hosted GitHub runners</b> with <a href="https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g">AWS Marketplace: Orta</a>.</p>
+<ol type="1">
+<li><a href="#setup_AWS"><b>Setup AWS EC2 Instance</b></a> and obtain the <em>access information</em>.</li>
+<li><a href="#add_secrets"><b>Add GitHub Secrets</b></a> with the <em>access information</em> to your GitHub repository with gives access to the AWS EC2 instance.</li>
+<li><a href="#add_action"><b>Add GitHub Action</b></a> to your GitHub repository and configure it for your requirements.</li>
+<li><a href="#test_action"><b>Test GitHub Action</b></a> to verify that it performs as expected.</li>
+</ol>
+<p >Once this steps are completed, any commit or pull request to the repository should trigger the <em>CI</em> workflow that you have defined.</p>
 <h2><a class="anchor" id="setup_AWS"></a>
 Setup AWS EC2 Instance</h2>
 <ul>
@@ -175,17 +182,25 @@ Add GitHub Action</h2>
 <div class="line">      - name: Run the micro_speech example</div>
 <div class="line">        run: ./run_example.sh</div>
 <div class="line">        working-directory: ${{env.working-directory}}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md2"></a>
 Test GitHub Action</h2>
 <p >Once this GitHub action is deployed, it may be manually tested.</p>
 <p >Describe the steps, i.e to start <a href="https://github.com/MDK-Packs/VHT-TFLmicrospeech/actions">https://github.com/MDK-Packs/VHT-TFLmicrospeech/actions</a></p>
 <h1><a class="anchor" id="GitHub_hosted"></a>
 GitHub-hosted Runners</h1>
-<p >An <a class="el" href="vht_aws.html">Amazon Machine Image (AMI)</a> provides a complete tool installation that can be integrated with GitHub Actions. To simplify integration the <a href="https://github.com/ARM-software/VHT-AMI">Arm Orta - GitHub Action</a> can be integrated into GitHub jobs. This action manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an <a class="el" href="vht_aws.html">Arm VHT AMI</a>.</p>
+<p >The following steps explain how to use <b>GitHub-hosted runners</b> with <a href="https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g">AWS Marketplace: Orta</a>.</p>
+<ol type="1">
+<li><a href="#setup_AWS"><b>Setup AWS EC2 Instance</b></a> and obtain the <em>access information</em>.</li>
+<li><a href="#add_secrets"><b>Add GitHub Secrets</b></a> with the <em>access information</em> to your GitHub repository with gives access to the AWS EC2 instance.</li>
+<li><a href="#add_action"><b>Add GitHub Action</b></a> to your GitHub repository and configure it for your requirements.</li>
+<li><a href="#test_action"><b>Test GitHub Action</b></a> to verify that it performs as expected.</li>
+</ol>
+<p >Once this steps are completed, any commit or pull request to the repository should trigger the <em>CI</em> workflow that you have defined.</p>
+<p >An Amazon Machine Image (AMI) provides a complete tool installation that can be integrated with GitHub Actions. To simplify integration the <a href="https://github.com/ARM-software/VHT-AMI">Arm Orta - GitHub Action</a> can be integrated into GitHub jobs. This action manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an Arm VHT AMI.</p>
 <p ><img src="vht_action.png" alt="" class="inline" title="VHT GitHub action"/></p>
 <p >The VHT-AMI action receives a *.tar input file (vht_in) that contains the vht.yml control file. The vht.yml is the run control commands for the AMI and defines the execution of build scripts or test runs. Once the AMI run control commands are complete the results are returned as *.tar file to the GitHub runner.</p>
 <p >The file <a href="https://github.com/ARM-software/VHT-AMI/blob/master/action.yml">action.yml</a> defines the parameters for the GitHub action.</p>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<h1><a class="anchor" id="autotoc_md3"></a>
 Configure the Arm VHT AMI</h1>
 <p >The next few steps are required to install the agent and configure a dedicated SSH access for file transfers on the AMI instance.</p>
 <ol type="1">
@@ -207,7 +222,7 @@ Configure the Arm VHT AMI</h1>
 <li>Add the secrets as documented in the Usage section. <img src="./images/GHSecrets.png" alt="GHSecrets" title="Github Secrets" class="inline"/></li>
 <li>Add vht.yml to your repository, at the location specified by avt_in.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md3"></a>
+<h2><a class="anchor" id="autotoc_md4"></a>
 Usage</h2>
 <p >You can now consume the action by referencing the v1 branch</p>
 <div class="fragment"><div class="line">uses: Arm-Software/VHT-AMI@v1</div>
@@ -229,6 +244,7 @@ Usage</h2>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="index.html">Infrastructure</a></li>
     <li class="footer">
 	Copyright &copy; 2021 Arm Limited (or its affiliates). All rights reserved.
 	<!-- Use script below for auto-inserting date, project name, version, etc  -->

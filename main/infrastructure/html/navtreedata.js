@@ -25,32 +25,34 @@
 var NAVTREE =
 [
   [ "Infrastructure", "index.html", [
-    [ "Using Arm VHT AMI", "vht_aws.html", [
-      [ "Access the Arm VHT AMI", "vht_aws.html#access", null ],
-      [ "Launch the Arm VHT AMI", "vht_aws.html#launch", [
-        [ "Launch via AWS Console", "vht_aws.html#console", null ],
-        [ "Launch via Command Line Script", "vht_aws.html#script", null ]
-      ] ],
-      [ "Connect to the EC2 Instance", "vht_aws.html#connect", [
-        [ "Using SSH", "vht_aws.html#use_ssh", null ],
-        [ "Using VNC", "vht_aws.html#use_vnc", null ],
-        [ "Using Code Server", "vht_aws.html#use_code_server", null ]
-      ] ],
-      [ "Running Micro Speech", "vht_aws.html#run_example", null ]
+    [ "AWS Marketplace", "index.html#AWS", [
+      [ "Subscribe Orta {Subscribe}", "index.html#autotoc_md0", null ],
+      [ "Use AMI", "index.html#autotoc_md1", null ]
     ] ],
-    [ "Using Arm VHT with MDK-Professional", "vht_mdk_pro.html", null ],
-    [ "Using GitHub Actions", "md_src_github.html", [
-      [ "Self-hosted GitHub Runners", "md_src_github.html#self_hosted", [
-        [ "Setup AWS EC2 Instance", "md_src_github.html#setup_AWS", null ],
-        [ "Add GitHub Secrets", "md_src_github.html#add_secrets", null ],
-        [ "Add GitHub Action", "md_src_github.html#add_action", null ],
-        [ "Test GitHub Action", "md_src_github.html#autotoc_md1", null ]
+    [ "Local Tool Installation", "index.html#Local", null ],
+    [ "Run AMI on local computer", "run_ami_local.html", [
+      [ "Launch from Website", "run_ami_local.html#Launch_website", null ],
+      [ "Launch trough EC2", "run_ami_local.html#Launch_EC2", null ],
+      [ "Connect to the EC2 Instance", "run_ami_local.html#connect", [
+        [ "Using SSH", "run_ami_local.html#use_ssh", null ],
+        [ "Using VNC", "run_ami_local.html#use_vnc", null ],
+        [ "Using Code Server", "run_ami_local.html#use_code_server", null ]
       ] ],
-      [ "GitHub-hosted Runners", "md_src_github.html#GitHub_hosted", null ],
-      [ "Configure the Arm VHT AMI", "md_src_github.html#autotoc_md2", [
-        [ "Usage", "md_src_github.html#autotoc_md3", null ]
+      [ "Running Micro Speech", "run_ami_local.html#run_example", null ]
+    ] ],
+    [ "Run AMI with GitHub Actions", "run_ami_github.html", [
+      [ "Self-hosted GitHub Runners", "run_ami_github.html#self_hosted", [
+        [ "Setup AWS EC2 Instance", "run_ami_github.html#setup_AWS", null ],
+        [ "Add GitHub Secrets", "run_ami_github.html#add_secrets", null ],
+        [ "Add GitHub Action", "run_ami_github.html#add_action", null ],
+        [ "Test GitHub Action", "run_ami_github.html#autotoc_md2", null ]
+      ] ],
+      [ "GitHub-hosted Runners", "run_ami_github.html#GitHub_hosted", null ],
+      [ "Configure the Arm VHT AMI", "run_ami_github.html#autotoc_md3", [
+        [ "Usage", "run_ami_github.html#autotoc_md4", null ]
       ] ]
-    ] ]
+    ] ],
+    [ "Run with MDK-Professional", "run_mdk_pro.html", null ]
   ] ]
 ];
 

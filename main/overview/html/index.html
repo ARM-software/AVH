@@ -178,7 +178,7 @@ Comparison of test efforts in CI and no CI workflows</div></div>
 </ul>
 <h1><a class="anchor" id="Roadmap"></a>
 Product Roadmap</h1>
-<p >Orta is currently under public beta which let's you evaluate how our products can help in your development processes. Below is a feature roadmap of Arm Virtual Hardware that gives you indication what to expect. We will release this features as they become available during the beta phase (within the next 6 months) to allow product evaluation before the final release.</p>
+<p >Orta is now in public beta phase. The table below shows features that we will deploy in the <b>next 6 months</b>. During the beta phase, you may evaluate how our products help in your development processes. The feature roadmap of Orta gives you indication what to expect. We will release this features as they become available during the beta phase to allow product evaluation before the final release.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">Feature   </th><th class="markdownTableHeadLeft">Description    </th></tr>
@@ -195,9 +195,15 @@ Product Roadmap</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><b>More Usage Examples</b>   </td><td class="markdownTableBodyLeft">Example projects help to get started: Audio/Video/Sensor I/O, Cloud connectivity, CI integration, Test code development is the range of examples we are working on.   </td></tr>
 </table>
+<h1><a class="anchor" id="Issues"></a>
+Known Limitations</h1>
+<p >The current beta version of of Orta has the following known issues:</p>
+<p ><a href="../../simulation/html/group__arm__vsi__api.html"><b>VSI Interface</b></a></p><ul>
+<li>With TrustZone enabled, the DMA of the Cortex-M55 processor does not work in Secure mode in the address ranges of the TCM aliases (0x10000000 ITCM and 0x3000000 DTCM).</li>
+</ul>
 <h1><a class="anchor" id="Support"></a>
 Feedback and Support</h1>
-<p >The Orta is supported during public beta via this <a href="https://community.arm.com/support-forums/f/arm-virtual-hardware-targets-forum">Arm forum</a>. </p>
+<p >The Orta is supported during public beta via this <a href="https://community.arm.com/support-forums/f/arm-virtual-hardware-targets-forum">Arm forum</a>. Your feedback will influence our future roadmap and we try to help you promptly with your questions. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
