@@ -114,7 +114,7 @@ $(document).ready(function(){initNavTree('group__arm__vsi__py.html',''); initRes
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
-  <div class="headertitle"><div class="title">VSI Python interface<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a></div></div></div>
+  <div class="headertitle"><div class="title">VSI Python interface<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a> &raquo; <a class="el" href="group__arm__vsi.html">Virtual Streaming Interface (VSI)</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -124,7 +124,7 @@ $(document).ready(function(){initNavTree('group__arm__vsi__py.html',''); initRes
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacearm__vsi0"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacearm__vsi0.html">arm_vsi0</a></td></tr>
-<tr class="memdesc:namespacearm__vsi0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accessing VSI interface instance #0. <br /></td></tr>
+<tr class="memdesc:namespacearm__vsi0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Documentation for VSI peripherals module. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -199,12 +199,8 @@ Variables</h2></td></tr>
 <tr class="separator:gaf5baa506e65b4caa6be6d1c6661dfe63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
-<p >The Python interface described in this section trigger on peripheral registers and events of the <a class="el" href="group__arm__vsi__api.html">Virtual Streaming Interface (VSI)</a>. Each peripheral instance has a separate dedicated Python script file with the names <b>arm_vsi0.py</b>, <b>arm_vsi1.py</b>, ..., <b>arm_vsi7.py</b>.</p>
-<div class="image">
-<img src="uml_graph.png" alt=""/>
-<div class="caption">
-Using VSI peripheral</div></div>
- <h2 class="groupheader">Function Documentation</h2>
+<p >The Python interface described in this section trigger on peripheral registers and events of the <a class="el" href="group__arm__vsi__api.html">VSI embedded API</a>. Each peripheral instance has a separate dedicated Python script file with the names <b>arm_vsi0.py</b>, <b>arm_vsi1.py</b>, ..., <b>arm_vsi7.py</b>. </p>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="ga15a63c7123ecb9407ecfc8f3d422dab7" name="ga15a63c7123ecb9407ecfc8f3d422dab7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga15a63c7123ecb9407ecfc8f3d422dab7">&#9670;&nbsp;</a></span>init()</h2>
 
@@ -219,10 +215,6 @@ Using VSI peripheral</div></div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="reference">References <a class="el" href="group__arm__vsi__py.html#ga15a63c7123ecb9407ecfc8f3d422dab7">arm_vsi0.init()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="group__arm__vsi__py.html#ga15a63c7123ecb9407ecfc8f3d422dab7">arm_vsi0.init()</a>.</p>
 
 </div>
 </div>
@@ -241,10 +233,6 @@ Using VSI peripheral</div></div>
       </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>value value read (32-bit) </dd></dl>
-
-<p class="reference">References <a class="el" href="group__arm__vsi__py.html#ga387137c43ed9616d39ba90e890d181eb">arm_vsi0.format</a>, and <a class="el" href="group__arm__vsi__py.html#gac89f3b60c2bf1d7055d6133a6f666544">arm_vsi0.rdIRQ()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="group__arm__vsi__py.html#gac89f3b60c2bf1d7055d6133a6f666544">arm_vsi0.rdIRQ()</a>.</p>
 
 </div>
 </div>
@@ -270,10 +258,6 @@ Using VSI peripheral</div></div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value value written (32-bit) </dd></dl>
-
-<p class="reference">References <a class="el" href="group__arm__vsi__py.html#ga387137c43ed9616d39ba90e890d181eb">arm_vsi0.format</a>, and <a class="el" href="group__arm__vsi__py.html#ga43d3a46017dc89df066aacfb9e7df7b5">arm_vsi0.wrIRQ()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="group__arm__vsi__py.html#ga43d3a46017dc89df066aacfb9e7df7b5">arm_vsi0.wrIRQ()</a>.</p>
 
 </div>
 </div>
@@ -311,10 +295,6 @@ Using VSI peripheral</div></div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value value written (32-bit) </dd></dl>
 
-<p class="reference">References <a class="el" href="group__arm__vsi__py.html#ga387137c43ed9616d39ba90e890d181eb">arm_vsi0.format</a>, and <a class="el" href="group__arm__vsi__py.html#gadb1b8dbd347a9daa1eeca5b21b52bd93">arm_vsi0.wrTimer()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="group__arm__vsi__py.html#gadb1b8dbd347a9daa1eeca5b21b52bd93">arm_vsi0.wrTimer()</a>.</p>
-
 </div>
 </div>
 <a id="ga99efc8c6c86f4e319dcf191317bd0ff9" name="ga99efc8c6c86f4e319dcf191317bd0ff9"></a>
@@ -331,10 +311,6 @@ Using VSI peripheral</div></div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="reference">References <a class="el" href="group__arm__vsi__py.html#ga99efc8c6c86f4e319dcf191317bd0ff9">arm_vsi0.timerEvent()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="group__arm__vsi__py.html#ga99efc8c6c86f4e319dcf191317bd0ff9">arm_vsi0.timerEvent()</a>.</p>
 
 </div>
 </div>
@@ -372,10 +348,6 @@ Using VSI peripheral</div></div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value value written (32-bit) </dd></dl>
 
-<p class="reference">References <a class="el" href="group__arm__vsi__py.html#ga387137c43ed9616d39ba90e890d181eb">arm_vsi0.format</a>, and <a class="el" href="group__arm__vsi__py.html#gac643893241d1c7d4fa0eac562f8ac714">arm_vsi0.wrDMA()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="group__arm__vsi__py.html#gac643893241d1c7d4fa0eac562f8ac714">arm_vsi0.wrDMA()</a>.</p>
-
 </div>
 </div>
 <a id="ga2850f146457a13a84be8b3cf3510bfaf" name="ga2850f146457a13a84be8b3cf3510bfaf"></a>
@@ -400,10 +372,6 @@ Using VSI peripheral</div></div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>data data read (bytearray) </dd></dl>
-
-<p class="reference">References <a class="el" href="group__arm__vsi__py.html#ga387137c43ed9616d39ba90e890d181eb">arm_vsi0.format</a>, and <a class="el" href="group__arm__vsi__py.html#ga2850f146457a13a84be8b3cf3510bfaf">arm_vsi0.rdDataDMA()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="group__arm__vsi__py.html#ga2850f146457a13a84be8b3cf3510bfaf">arm_vsi0.rdDataDMA()</a>.</p>
 
 </div>
 </div>
@@ -440,10 +408,6 @@ Using VSI peripheral</div></div>
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="group__arm__vsi__py.html#ga387137c43ed9616d39ba90e890d181eb">arm_vsi0.format</a>, and <a class="el" href="group__arm__vsi__py.html#ga609003669f1d8dc8e11165adffee495f">arm_vsi0.wrDataDMA()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="group__arm__vsi__py.html#ga609003669f1d8dc8e11165adffee495f">arm_vsi0.wrDataDMA()</a>.</p>
-
 </div>
 </div>
 <a id="gaeb7664fa99429eba0237dba7397811d4" name="gaeb7664fa99429eba0237dba7397811d4"></a>
@@ -468,10 +432,6 @@ Using VSI peripheral</div></div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value value read (32-bit) </dd></dl>
-
-<p class="reference">References <a class="el" href="group__arm__vsi__py.html#ga387137c43ed9616d39ba90e890d181eb">arm_vsi0.format</a>, and <a class="el" href="group__arm__vsi__py.html#gaeb7664fa99429eba0237dba7397811d4">arm_vsi0.rdRegs()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="group__arm__vsi__py.html#gaeb7664fa99429eba0237dba7397811d4">arm_vsi0.rdRegs()</a>.</p>
 
 </div>
 </div>
@@ -508,10 +468,6 @@ Using VSI peripheral</div></div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value value written (32-bit) </dd></dl>
-
-<p class="reference">References <a class="el" href="group__arm__vsi__py.html#ga387137c43ed9616d39ba90e890d181eb">arm_vsi0.format</a>, and <a class="el" href="group__arm__vsi__py.html#gaa2d49666cf6d074777e7150ef76327e6">arm_vsi0.wrRegs()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="group__arm__vsi__py.html#gaa2d49666cf6d074777e7150ef76327e6">arm_vsi0.wrRegs()</a>.</p>
 
 </div>
 </div>
@@ -555,8 +511,6 @@ Using VSI peripheral</div></div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="reference">Referenced by <a class="el" href="group__arm__vsi__py.html#ga2850f146457a13a84be8b3cf3510bfaf">arm_vsi0.rdDataDMA()</a>, <a class="el" href="group__arm__vsi__py.html#gac89f3b60c2bf1d7055d6133a6f666544">arm_vsi0.rdIRQ()</a>, <a class="el" href="group__arm__vsi__py.html#gaeb7664fa99429eba0237dba7397811d4">arm_vsi0.rdRegs()</a>, <a class="el" href="group__arm__vsi__py.html#ga609003669f1d8dc8e11165adffee495f">arm_vsi0.wrDataDMA()</a>, <a class="el" href="group__arm__vsi__py.html#gac643893241d1c7d4fa0eac562f8ac714">arm_vsi0.wrDMA()</a>, <a class="el" href="group__arm__vsi__py.html#ga43d3a46017dc89df066aacfb9e7df7b5">arm_vsi0.wrIRQ()</a>, <a class="el" href="group__arm__vsi__py.html#gaa2d49666cf6d074777e7150ef76327e6">arm_vsi0.wrRegs()</a>, and <a class="el" href="group__arm__vsi__py.html#gadb1b8dbd347a9daa1eeca5b21b52bd93">arm_vsi0.wrTimer()</a>.</p>
 
 </div>
 </div>

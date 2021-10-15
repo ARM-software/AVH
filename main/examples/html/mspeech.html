@@ -113,12 +113,12 @@ $(document).ready(function(){initNavTree('mspeech.html',''); initResizable(); })
   <div class="headertitle"><div class="title">Micro speech example </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md_src_mspeech"></a> An implementation of the micro speech example with VHT support is available at <a href="https://github.com/MDK-Packs/VHT-TFLmicrospeech">github.com/MDK-Packs/VHT-TFLmicrospeech</a>.</p>
+<div class="textblock"><p ><a class="anchor" id="md_src_mspeech"></a> An implementation of the micro speech example with VHT support is available at <a href="https://github.com/arm-software/VHT-TFLmicrospeech">github.com/arm-software/VHT-TFLmicrospeech</a>.</p>
 <p >The program analyzes an audio input with a voice recognition model that can detect 2 keywords - <b>yes</b> and <b>no</b>. The recognized keywords are then printed into a serial interface. The voice recognition model is implemented using <a href="https://www.tensorflow.org/lite/microcontrollers">TensorFlow Lite for Microcontrollers</a>.</p>
 <p >The example project can be executed on <a class="el" href="mspeech.html#mspeech_vht">Orta</a> as well as on <a class="el" href="mspeech.html#mspeech_hw">hardware</a>. This demonstrates how to use the processor and peripheral abstraction layers for simpler software portability across different targets.</p>
 <h1><a class="anchor" id="autotoc_md0"></a>
 Structure</h1>
-<p >The table below explains the content in the micro speech example's repository.</p>
+<p >The micro speech example's repository is organized as follows:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">Folder   </th><th class="markdownTableHeadLeft">Description    </th></tr>
@@ -128,46 +128,41 @@ TensorFlow calculation kernel is provided separately via corresponding software 
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><code>./Platform_FVP_Corstone_SSE-300_Ethos-U55/</code>   </td><td class="markdownTableBodyLeft">Project files specific for executing the program on VHT. See <a class="el" href="mspeech.html#mspeech_vht">Running on Orta</a> for details and execution instructions.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code>./Platform_MIMXRT1064-EVK/</code>   </td><td class="markdownTableBodyLeft">Project files specific for executing the program on MIMXRT1064-EVK. See <a class="el" href="mspeech.html#mspeech_hw">Running on a hardware target</a> for details and execution instructions.    </td></tr>
+<td class="markdownTableBodyLeft"><code>./Platform_IMXRT1050-EVKB/</code>   </td><td class="markdownTableBodyLeft">Project files specific for executing the program on IMXRT1050-EVKB. See <a class="el" href="mspeech.html#mspeech_hw_1050">NXP IMXRT1050-EVKB</a> for execution instructions.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code>./VSI</code>   </td><td class="markdownTableBodyLeft">Implementation of Audio Streaming Interface via VSI. See <a href="../../simulation/html/index.html"><b>Simulation</b></a> chapter for details.   </td></tr>
+<td class="markdownTableBodyLeft"><code>./Platform_MIMXRT1064-EVK/</code>   </td><td class="markdownTableBodyLeft">Project files specific for executing the program on MIMXRT1064-EVK. See <a class="el" href="mspeech.html#mspeech_hw_1064">NXP MIMXRT-1064-EVK</a> for execution instructions.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>./VSI/</code>   </td><td class="markdownTableBodyLeft">Implementation of Audio Streaming Interface via VSI. See <a href="../../simulation/html/index.html"><b>Simulation</b></a> chapter for details.   </td></tr>
 </table>
 <h1><a class="anchor" id="mspeech_pre"></a>
 Prerequisites</h1>
 <p >Following items are required for running the micro speech example on a PC:</p>
 <ul>
 <li><b>Toolchain</b><ul>
-<li>IDE (Windows only): <a href="https://www.keil.com/mdk5">MDK Microcontroller Development Kit</a></li>
+<li>IDE (Windows only): <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">MDK Microcontroller Development Kit</a></li>
 <li>alternatively, command-line building tool: <a href="https://github.com/ARM-software/CMSIS_5/releases/download/5.7.0/cbuild_install.0.10.2.sh">CMSIS-Build</a></li>
 </ul>
 </li>
-<li><a href="https://developer.arm.com/tools-and-software/embedded/cmsis/cmsis-packs"><b>Common public CMSIS Software Packs</b></a><ul>
+<li><a href="https://developer.arm.com/tools-and-software/embedded/cmsis/cmsis-packs"><b>Common CMSIS Software Packs</b></a><ul>
 <li>ARM::CMSIS 5.8.0</li>
 <li>Keil::ARM_Compiler 1.6.3</li>
-</ul>
-</li>
-<li><b>Non-public TensorFlow CMSIS Software Packs</b><ul>
-<li><a href="https://github.com/MDK-Packs/tensorflow-pack/releases/download/preview-0.3/tensorflow.flatbuffers.0.1.20210719.pack">tensorflow.flatbuffers.0.1.20210719</a></li>
-<li><a href="https://github.com/MDK-Packs/tensorflow-pack/releases/download/preview-0.3/tensorflow.gemmlowp.0.0.1.20210719.pack">tensorflow.gemmlowp.0.0.1.20210719</a></li>
-<li><a href="https://github.com/MDK-Packs/tensorflow-pack/releases/download/preview-0.3/tensorflow.kissfft.0.1.20210719.pack">kissfft.0.1.20210719</a></li>
-<li><a href="https://github.com/MDK-Packs/tensorflow-pack/releases/download/preview-0.3/tensorflow.ruy.0.1.20210719.pack">tensorflow.ruy.0.1.20210719</a></li>
-<li><a href="https://github.com/MDK-Packs/tensorflow-pack/releases/download/preview-0.3/tensorflow.tensorflow-lite-micro.0.2.20210719.pack">tensorflow.tensorflow-lite-micro.0.2.20210719</a></li>
-<li><a href="https://github.com/MDK-Packs/tensorflow-pack/releases/download/preview-0.3/Arm.ethos-u-core-driver.0.1.20210719.pack">Arm.ethos-u-core-driver.0.1.20210719</a> (for virtual target with Ethos-U55)</li>
+<li>tensorflow::flatbuffers 0.4.0</li>
+<li>tensorflow::gemmlowp 0.4.0</li>
+<li>tensorflow::kissfft 0.4.0</li>
+<li>tensorflow::ruy 0.4.0</li>
+<li>tensorflow::tensorflow-lite-micro 0.4.0</li>
+<li>Arm::ethos-u-core-driver 0.4.0 (for virtual target with Ethos-U55)</li>
 </ul>
 </li>
 <li><b>Specific for Orta</b><ul>
-<li><a href="https://developer.arm.com/tools-and-software/embedded/cmsis/cmsis-packs">public CMSIS software packs</a> for target support:<ul>
+<li><a href="https://developer.arm.com/tools-and-software/embedded/cmsis/cmsis-packs">CMSIS software packs</a> for target support:<ul>
 <li>ARM::V2M_MPS3_SSE_300_BSP 1.2.0</li>
 </ul>
 </li>
 <li>for targets with VSI support<ul>
 <li><a href="https://www.python.org/downloads/">Python 3.9</a></li>
-<li><a href="https://developer.arm.com/tools-and-software/simulation-models/fast-models">Fast Models</a> 11.15</li>
-<li>FVP model for Corstone-300 MPS3 with VSI support<ul>
-<li>The prebuilt model binaries are available as assets in Git under <a href="https://github.com/RobertRostohar/Orta/releases"><b>Releases</b></a>. The contents of <code>FVP_VSI_Corstone_SSE-300_Ethos-U55_xxx.zip</code> shall be extracted into directory <code>./VHT/Build_Corstone_SSE-300_Ethos-U55/system</code>.</li>
-<li>Alternatively, the model executable can be built manually as explained in <code>./VHT/README.md</code>.</li>
-</ul>
-</li>
+<li><a href="https://developer.arm.com/tools-and-software/simulation-models/fast-models">Fast Models</a> 11.16</li>
+<li>FVP model for Corstone-300 MPS3 with VSI support</li>
 </ul>
 </li>
 <li>for targets without VSI support<ul>
@@ -176,10 +171,19 @@ Prerequisites</h1>
 </li>
 </ul>
 </li>
-<li><b>Specific for HW target</b><ul>
-<li><a href="https://www.nxp.com/design/development-boards/i-mx-evaluation-and-development-boards/mimxrt1064-evk-i-mx-rt1064-evaluation-kit:MIMXRT1064-EVK">NXP MIMXRT1064-EVK</a></li>
-<li><a href="https://developer.arm.com/tools-and-software/embedded/cmsis/cmsis-packs">public CMSIS packs</a>:<ul>
+<li><b>Specific for HW targets</b><ul>
+<li><a href="https://www.nxp.com/design/development-boards/i-mx-evaluation-and-development-boards/mimxrt1064-evk-i-mx-rt1064-evaluation-kit:MIMXRT1064-EVK">NXP MIMXRT1050-EVKB</a> board, or</li>
+<li><a href="https://www.nxp.com/design/development-boards/i-mx-evaluation-and-development-boards/mimxrt1064-evk-i-mx-rt1064-evaluation-kit:MIMXRT1064-EVK">NXP MIMXRT1064-EVK</a> board</li>
+<li><a href="https://developer.arm.com/tools-and-software/embedded/cmsis/cmsis-packs">CMSIS packs</a>:<ul>
 <li>ARM::CMSIS-Driver 2.6.1</li>
+<li>For IMXRT1050-EVKB board<ul>
+<li>NXP::MIMXRT1052_DFP 13.1.0</li>
+<li>NXP::EVKB-IMXRT1050_BSP 13.1.0</li>
+<li>Keil::IMXRT1050-EVKB_BSP 1.0.0</li>
+<li>Keil::iMXRT105x_MWP 1.4.0</li>
+</ul>
+</li>
+<li>For MIMXRT1064-EVK board<ul>
 <li>NXP::MIMXRT1064_DFP 13.0.0</li>
 <li>NXP::EVK-MIMXRT1064_BSP 13.0.0</li>
 <li>Keil::MIMXRT1064-EVK_BSP 1.2.1</li>
@@ -189,9 +193,12 @@ Prerequisites</h1>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+<p >Note that CMSIS software packs used in the specific project will be requested and installed automatically when using Keil MDK or CMSIS-Build.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Program Execution</h1>
-<p >The example project can be executed on <a class="el" href="mspeech.html#mspeech_vht">Orta</a> as well as on <a class="el" href="mspeech.html#mspeech_hw">hardware</a> as explained in this section.</p>
+<p >The example project can be executed on <a class="el" href="mspeech.html#mspeech_vht">Orta</a> as well as on <a class="el" href="mspeech.html#mspeech_hw">hardware targets</a> as explained in this section.</p>
 <h2><a class="anchor" id="mspeech_vht"></a>
 Running on Orta</h2>
 <p >Directory <code>./VHT-TFLmicrospeech/Platform_FVP_Corstone_SSE-300_Ethos-U55/</code> in the example repository contains the project files for executing the program on VHT.</p>
@@ -238,9 +245,22 @@ Running on Orta</h2>
 <p ><b>Audio Provider Mock Test</b>: internal test for Audio Provider Mock target</p>
 <h2><a class="anchor" id="mspeech_hw"></a>
 Running on a hardware target</h2>
-<p >Directory <code>./VHT-TFLmicrospeech/Platform_MIMXRT1064-EVK/</code> in the example repository contains the project files for executing the program on <a href="https://www.nxp.com/design/development-boards/i-mx-evaluation-and-development-boards/mimxrt1064-evk-i-mx-rt1064-evaluation-kit:MIMXRT1064-EVK">NXP MIMXRT1064-EVK</a> development board with an Arm Cortex-M7 processor. One target <b>MIMXRT1064-EVK</b> is provided in the project.</p>
+<h3><a class="anchor" id="mspeech_hw_1050"></a>
+NXP IMXRT1050-EVKB</h3>
+<p >Directory <code>./VHT-TFLmicrospeech/Platform_IMXRT1050-EVKB/</code> in the example repository contains the project files for executing the program on <a href="https://www.nxp.com/design/development-boards/i-mx-evaluation-and-development-boards/i-mx-rt1050-evaluation-kit:MIMXRT1050-EVK">NXP IMXRT1050-EVKB</a> development board with an Arm Cortex-M7 processor. One target <b>IMXRT1050-EVK</b> is provided in the project.</p>
 <p >This project uses the on-board microphone for audio input and prints recognized keywords to the serial interface.</p>
-<p >The hardware setup is simple and requires only connection to the PC via USB. The project is configured to load the program to QSPI NOR flash so the boot switch SW7 shall be set to 0010.</p>
+<p >The board shall be connected to a PC via USB port J28. Jumper J1 shall connect pins 5-6 to ensure correct power supply in such setup. The project is configured to load the program to on-board Hyper Flash so the boot switch SW7 shall be set to 0110.</p>
+<p ><img src="mimxrt1050_hw_setup.png" alt="" class="inline" title="IMXRT1050-EVKB board"/></p>
+<p >Execute the program in following steps:</p><ul>
+<li>Build example with MDK using uVision project <code>microspeech.uvprojx</code> or with CMSIS-Build using <code>microspeech.IMXRT1050-EVKB.cprj</code> project.</li>
+<li>Program and run the example with MDK or use Drag-and-drop programming through the DAP-Link drive.</li>
+<li>Open the DAP-Link Virtual COM port in a terminal (baudrate = 115200), speak the keywords and monitor recognition results in the terminal window.</li>
+</ul>
+<h3><a class="anchor" id="mspeech_hw_1064"></a>
+NXP MIMXRT-1064-EVK</h3>
+<p >Directory <code>./VHT-TFLmicrospeech/Platform_MIMXRT1064-EVK/</code> in the example repository contains the project files for executing the program on <a href="https://www.nxp.com/design/development-boards/i-mx-evaluation-and-development-boards/mimxrt1064-evk-i-mx-rt1064-evaluation-kit:MIMXRT1064-EVK">NXP MIMXRT10504-EVK</a> development board with an Arm Cortex-M7 processor. One target <b>MIMXRT1064-EVK</b> is provided in the project.</p>
+<p >This project uses the on-board microphone for audio input and prints recognized keywords to the serial interface.</p>
+<p >The board shall be connected to a PC via USB port J41. Jumper J1 shall connect the pins 5-6 to ensure correct power supply in such setup. The project is configured to load the program to on-board QSPI NOR flash so the boot switch SW7 shall be set to 0010.</p>
 <p ><img src="mimxrt1064_hw_setup.png" alt="" class="inline" title="MIMXRT1064-EVK board"/></p>
 <p >Execute the program in following steps:</p><ul>
 <li>Build example with MDK using uVision project <code>microspeech.uvprojx</code> or with CMSIS-Build using <code>microspeech.MIMXRT1064-EVK.cprj</code> project.</li>
@@ -257,7 +277,8 @@ TensorFlow-Lite kernel variants</h1>
 <li><b>CMSIS-NN</b><br  />
 Optimizes execution on Cortex-M devices by using mathematical functions from <a href="https://arm-software.github.io/CMSIS_5/NN/html/index.html">CMSIS-NN software library</a>.<br  />
  Underlying implementations automatically utilize target-specific hardware extensions such as <a href="https://developer.arm.com/architectures/instruction-sets/simd-isas/helium"><b>Helium</b></a> (or MVE: M-Profile Vector Extensions) and <a href="https://developer.arm.com/architectures/instruction-sets/dsp-extensions/dsp-for-cortex-m"><b>SIMD</b></a> (Single Instruction Multiple Data) and so maximize computing performance and reduce code footprint.<br  />
- For devices with MVE (such as Cortex-M55), there is additional configuration field <b>Vector Extensions</b> in the <b>Options for Target..</b>-<a href="https://www.keil.com/support/man/docs/uv4/uv4_dg_adstarg.htm"><b>Target</b></a> dialog, that specifies MVE use in the project. <img src="mdk_conf_mve.png" alt="" class="inline" title="MVE configuration in uVision"/></li>
+ For devices with MVE (such as Cortex-M55), there is additional configuration field <b>Vector Extensions</b> in the <b>Options for Target..</b>-<a href="https://www.keil.com/support/man/docs/uv4/uv4_dg_adstarg.htm"><b>Target</b></a> dialog, that specifies MVE use in the project. <br  />
+ <img src="mdk_conf_mve.png" alt="" class="inline" title="MVE configuration in uVision"/></li>
 </ul>
 <ul>
 <li><b>Ethos-U</b><br  />
@@ -273,7 +294,7 @@ Performance measurement</h1>
 <li><b>Event C1</b>: ML inference algorithm for the created spectrogram. Most compute-intensive part.</li>
 <li><b>Event C2</b>: Verifies if a keyword was detected.</li>
 </ul>
-<p >Execute the program with different <a class="el" href="mspeech.html#tf_variants">TensorFlow-Lite kernel variants</a> and compare the Event Statistics output. Implementations optimized for Arm hardware extensions provide significant performance improvement C1 measurement and also shorten C0 duration. </p>
+<p >Execute the program with different <a class="el" href="mspeech.html#tf_variants">TensorFlow-Lite kernel variants</a> and compare the Event Statistics output. Implementations optimized for Arm hardware extensions achieve significantly better performance for ML inference (C1 measurement), but also have shorter times for signal processing (C0 event statistic). </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

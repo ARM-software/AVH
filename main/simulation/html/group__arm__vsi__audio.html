@@ -178,21 +178,26 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
 <p >The VSI implements general purpose peripheral registers, a timer peripheral, and a DMA peripheral. The peripheral is accessed using the <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure definition in arm_vsi.h</p>
-<p >This reference implementation provides an audio input interface with the files listed in the table below. There are several implementations of the audio driver:</p><ul>
+<p >Several implementations of the audio driver available with the common audio driver API used:</p><ul>
 <li>for the <a class="el" href="group__arm__vsi__api.html">VSI</a> with an interface to a Python test script that streams *.wav files.</li>
-<li>for an NXP iMXRT1064 or iMXRT1050 evaluation board that uses a microphone as audio input.</li>
+<li>for NXP IMXRT1064 and IMXRT1050 evaluation boards that use microphone as audio input.</li>
 </ul>
+<p >The implementations are done with the following files:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">File   </th><th class="markdownTableHeadLeft">Description    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">./interface/audio/include/audio_drv.h   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a> API header file    </td></tr>
+<td class="markdownTableBodyLeft">./interface/audio/include/audio_drv.h   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__audio.html">Audio Driver API</a> header file    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft">./interface/audio/driver/audio_drv.c   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a> Implementation based on <a class="el" href="group__arm__vsi__api.html">VSI</a>    </td></tr>
+<td class="markdownTableBodyLeft">./interface/audio/driver/audio_drv.c   </td><td class="markdownTableBodyLeft">Audio driver implementation for Orta based on <a class="el" href="group__arm__vsi__api.html">VSI</a>    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">./interface/audio/python/arm_vsi0.py   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a> Python test script for audio input interface based on <a class="el" href="group__arm__vsi__py.html">VSI Python interface</a>    </td></tr>
+<td class="markdownTableBodyLeft">./interface/audio/python/arm_vsi0.py   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a> Python script for audio input interface based on <a class="el" href="group__arm__vsi__py.html">VSI Python interface</a>    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft">./examples/micro_speech/Platform_MIMXRT1064-EVK/Driver_Audio/Audio_MIMXRT1064-EVK.c   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a> Implementation for NXP iMXRT1064   </td></tr>
+<td class="markdownTableBodyLeft">./interface/audio/python/arm_vsi1.py   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a> Python script for audio output interface based on <a class="el" href="group__arm__vsi__py.html">VSI Python interface</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">./examples/micro_speech/Platform_MIMXRT10504-EVKB/Driver_Audio/   </td><td class="markdownTableBodyLeft">Audio driver implementation for NXP IMXRT1050-EVKB. See <a href="https://github.com/arm-software/VHT-TFLmicrospeech">VHT-TFL microspeech GitHub repo</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">./examples/micro_speech/Platform_MIMXRT1064-EVK/Driver_Audio/   </td><td class="markdownTableBodyLeft">Audio driver implementation for NXP MIMXRT1064-EVK. See <a href="https://github.com/arm-software/VHT-TFLmicrospeech">VHT-TFL microspeech GitHub repo</a>   </td></tr>
 </table>
 <p >The chapter <a href="../../examples/html/index.html"><b>Examples</b></a> describes projects that demonstrate use of this audio driver API in both the Arm VHT test environment and on the physical evaluation boards. </p>
 <hr/><h2 class="groupheader">Data Structure Documentation</h2>
@@ -359,7 +364,7 @@ reserved: 30</td>
       </table>
 </div><div class="memdoc">
 <p >The function <b>AudioDrv_Configure</b> configures audio interface according to specified arguments.</p>
-<p ><em>interface</em> configures the audio interface either for input (<a class="el" href="group__audio__drv__interface.html#gabc3aa9d4319a122dcb68f08bf2d1d8ab">AUDIO_DRV_INTERFACE_RX</a>) or output (<a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a> , currently not supported). <em>channels</em>, <em>sample_bits</em>, <em>sample_rate</em> define configuration parameters.</p>
+<p ><em>interface</em> configures the audio interface either for input (<a class="el" href="group__audio__drv__interface.html#gabc3aa9d4319a122dcb68f08bf2d1d8ab">AUDIO_DRV_INTERFACE_RX</a>) or output (<a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a>). <em>channels</em>, <em>sample_bits</em>, <em>sample_rate</em> define configuration parameters.</p>
 <p >Possible return values:</p><ul>
 <li><a class="el" href="group__audio__drv__errors.html#gac12cb06a8d6cfc11afb624b3880e1044">AUDIO_DRV_OK</a> : configuration completed successfully.</li>
 <li><a class="el" href="group__audio__drv__errors.html#gae491b5a2b45c6f067d727efa16ab0cd6">AUDIO_DRV_ERROR_PARAMETER</a> : invalid argument values. Returned in the following cases:<ul>
@@ -369,7 +374,7 @@ reserved: 30</td>
 <li><em>sample_rate</em> is 0</li>
 </ul>
 </li>
-<li><a class="el" href="group__audio__drv__errors.html#ga29ab542a49be2b0c1a94a0cca7574d2c">AUDIO_DRV_ERROR_UNSUPPORTED</a> : <em>interface</em> has value <a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a> that is currently not supported.</li>
+<li><a class="el" href="group__audio__drv__errors.html#ga29ab542a49be2b0c1a94a0cca7574d2c">AUDIO_DRV_ERROR_UNSUPPORTED</a> : requested configuration is not supported by the driver.</li>
 <li><a class="el" href="group__audio__drv__errors.html#ga65425fdcbb4d5c8533b7355b3dfa4876">AUDIO_DRV_ERROR</a> : audio control is already enabled with <a class="el" href="group__arm__vsi__audio.html#ga907ce53168efb2f29dce946226fa52a1">AudioDrv_Control</a>.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -423,12 +428,12 @@ reserved: 30</td>
       </table>
 </div><div class="memdoc">
 <p >The function <b>AudioDrv_SetBuf</b> assigns DMA buffer to the audio driver interface.</p>
-<p ><em>interface</em> specifies whether the buffer is used for input (<a class="el" href="group__audio__drv__interface.html#gabc3aa9d4319a122dcb68f08bf2d1d8ab">AUDIO_DRV_INTERFACE_RX</a>) or output (<a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a>, not supported yet).</p>
+<p ><em>interface</em> specifies whether the buffer is used for input (<a class="el" href="group__audio__drv__interface.html#gabc3aa9d4319a122dcb68f08bf2d1d8ab">AUDIO_DRV_INTERFACE_RX</a>) or output (<a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a>).</p>
 <p ><em>buf</em> points to the memory buffer. <em>block_num</em> and <em>block_size</em> define buffer configuration. Note that the memory allocated for the buffer shall be at least <em>block_num*block_size</em> bytes.</p>
 <p >Possible return values:</p><ul>
 <li><a class="el" href="group__audio__drv__errors.html#gac12cb06a8d6cfc11afb624b3880e1044">AUDIO_DRV_OK</a> : buffer is set correctly.</li>
 <li><a class="el" href="group__audio__drv__errors.html#gae491b5a2b45c6f067d727efa16ab0cd6">AUDIO_DRV_ERROR_PARAMETER</a> : invalid <em>interface</em> value.</li>
-<li><a class="el" href="group__audio__drv__errors.html#ga29ab542a49be2b0c1a94a0cca7574d2c">AUDIO_DRV_ERROR_UNSUPPORTED</a> : <em>interface</em> has value <a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a> that is currently not supported.</li>
+<li><a class="el" href="group__audio__drv__errors.html#ga29ab542a49be2b0c1a94a0cca7574d2c">AUDIO_DRV_ERROR_UNSUPPORTED</a> : requested buffer configuration is not supported by the driver.</li>
 <li><a class="el" href="group__audio__drv__errors.html#ga65425fdcbb4d5c8533b7355b3dfa4876">AUDIO_DRV_ERROR</a> : returned in the following cases:<ul>
 <li>audio driver is not initialized with <a class="el" href="group__arm__vsi__audio.html#ga3df94f2eb2478ea1229356dd7deee319">AudioDrv_Initialize</a></li>
 <li>audio control is already enabled with <a class="el" href="group__arm__vsi__audio.html#ga907ce53168efb2f29dce946226fa52a1">AudioDrv_Control</a></li>
@@ -469,11 +474,11 @@ reserved: 30</td>
 <tr>
 <th>Parameter <em>control</em> </th><th>Bit </th><th>Description  </th></tr>
 <tr>
-<td><a class="el" href="group__audio__drv__control.html#ga19fd4bec18bcaa695ce70e60785346fa">AUDIO_DRV_CONTROL_TX_ENABLE</a>  </td><td>1  </td><td>Enable transmit operation. Currently not supported. </td></tr>
+<td><a class="el" href="group__audio__drv__control.html#ga19fd4bec18bcaa695ce70e60785346fa">AUDIO_DRV_CONTROL_TX_ENABLE</a>  </td><td>1  </td><td>Enable transmit operation. </td></tr>
 <tr>
-<td><a class="el" href="group__audio__drv__control.html#gaf6f490a2e326fe5db6a2ae3d3ff90d08">AUDIO_DRV_CONTROL_RX_ENABLE</a>  </td><td>2  </td><td>Enable receive operation. When executed, a timer is configured that periodically sends event to python interface for retrieving the audio data. </td></tr>
+<td><a class="el" href="group__audio__drv__control.html#gaf6f490a2e326fe5db6a2ae3d3ff90d08">AUDIO_DRV_CONTROL_RX_ENABLE</a>. When executed, a timer is configured that periodically sends event to python interface for delivering the audio data. </td><td>2  </td><td>Enable receive operation. When executed, a timer is configured that periodically sends event to python interface for retrieving the audio data. </td></tr>
 <tr>
-<td><a class="el" href="group__audio__drv__control.html#ga1c054890d0d31601c71ede31ae8d9f7c">AUDIO_DRV_CONTROL_TX_DISABLE</a>  </td><td>3  </td><td>Disable transmit operation. Currently not supported. </td></tr>
+<td><a class="el" href="group__audio__drv__control.html#ga1c054890d0d31601c71ede31ae8d9f7c">AUDIO_DRV_CONTROL_TX_DISABLE</a>  </td><td>3  </td><td>Disable transmit operation. </td></tr>
 <tr>
 <td><a class="el" href="group__audio__drv__control.html#gaf2030e115e7ab830c9524d64ca46fafc">AUDIO_DRV_CONTROL_RX_DISABLE</a>  </td><td>4  </td><td>Disable receive operation. </td></tr>
 </table>
