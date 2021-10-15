@@ -1,34 +1,20 @@
-# Using Arm VHT AMI {#vht_aws}
+# Run AMI on local computer {#run_ami_local}
 
-The **Arm VHT AMI** is powered by [Amazon Web Services](https://aws.amazon.com/) (AWS) and gives you access to a ready-to-use [Amazon Machine Image](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) (AMI) that is a configured Amazon EC2 Linux instance with Arm VHT Systems, compiler, and other tools. 
+This section describes how to run the **AMI with \prj_name** on a local computer and assumes that have setup the \ref AWS.
 
 \note
-Arm VHT in [AWS Marketplace](https://aws.amazon.com/marketplace) is not yet available, but until it is ready the Arm VHT AMI can be shared privately to closed beta users.  During closed beta we need therefore your AWS Account number and GitHub user name.
+   Refer to \ref mainpage for others ways to use the \prj_name.
 
-The Arm VHT AMI solution enables many concurrent instances that let you accelerate test and verification workflow. AMI is also highly integrated in platforms such as GitHub, making it ideal for modern DevOps.
+There are two was to access the AMI:
+  - **\ref Launch_website** gives direct access. 
+  - **\ref Launch_EC2** gives you more control over the EC2 instance and is more flexible.
 
-The following AWS tutorials help you to get started:
+## Launch from Website {#Launch_website}
 
-  - [How do I create and activate a new AWS account?](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
-  - [Tutorial: Get started with Amazon EC2 Linux instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)
-
-# Access the Arm VHT AMI {#access}
-
-In the AWS EC2 Management Console, set the region to **N. Virginia (us-east-1)** which is currently the only region that hosts the "Orta-Beta" images.  To access the image:
-  - Select in the AWS EC2 Management Console from "All services" **Compute - EC2** which opens the AWS EC2 Management Console.
-  - In the AWS EC2 Management Console select **Images - AMIs**.
-  - Then select **Private images** as filter.  An Orta Beta AMI should be visible (details may change the AMI gets updated) as shown below.
+EC2 Instance Type **t3.medium** is sufficient to run \prj_name.
 
 
-![EC2 Images - AMIs](./images/Access_AMI.png "Arm VHT in AWS EC2 Management Console")
-
-\note The private AMI is region specific so **if you are not in region N. Virginia** it will not appear.
-
-# Launch the Arm VHT AMI {#launch}
-
-There are two ways to launch an EC2 instance based on the Orta AMI, using the AWS Console or using a command line script. 
-
-## Launch via AWS Console {#console}
+## Launch trough EC2 {#Launch_EC2}
 
 The following steps launch **Arm VHT AMI** (currently named Orta-beta-phase2) from the AWS Console:
 
@@ -56,13 +42,6 @@ The following steps launch **Arm VHT AMI** (currently named Orta-beta-phase2) fr
 You may then select an existing key pair or create a new key pair. When an existing key pair is selected, confirm in the dialog the check box *I acknowledge...*. To finally start, click **Launch Instances**.
 
 ![Select key pair](./images/select_existing_key.png "Select an existing key pair or create a new key pair")
-
-
-## Launch via Command Line Script {#script}
-
-The second way to launch the Arm Orta AMI is using a command line script. 
-
-The script will be provided in GitHub at (location to be determined).
 
 # Connect to the EC2 Instance {#connect}
 

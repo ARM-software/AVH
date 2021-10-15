@@ -1,5 +1,5 @@
 
-# Using GitHub Actions
+# Run AMI with GitHub Actions {#run_ami_github}
 
 GitHub Actions help you automate tasks within your software development life cycle. GitHub Actions are event-driven, meaning that you can run a series of commands after a specified event has occurred.  For example, every time someone commits a push or creates a pull request for a repository, you can automatically run the Arm VHT Services that execute automated build or test scripts. Refer to [Introduction to GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions) for information about the components of GitHub Actions.
 
@@ -9,14 +9,20 @@ There are several different ways to execute GitHub Actions:
   
 The approach that you should choose depends on your CI/CD requirements.
 
-
 # Self-hosted GitHub Runners {#self_hosted}
 
 \todo fix final AWS links
 
-The following section explains how to use **self-hosted GitHub runners** with [AWS Marketplace: \prj_name](https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g).
+The following steps explain how to use **self-hosted GitHub runners** with [AWS Marketplace: \prj_name](https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g).
 
-
+  1. [**Setup AWS EC2 Instance**](#setup_AWS) and obtain the *access information*.
+  2. [**Add GitHub Secrets**](#add_secrets) with the *access information* to your GitHub repository with gives access to the AWS EC2 instance.
+  3. [**Add GitHub Action**](#add_action) to your GitHub repository and configure it for your requirements.
+  4. [**Test GitHub Action**](#test_action) to verify that it performs as expected.
+  
+Once this steps are completed, any commit or pull request to the repository should trigger the *CI* workflow that you have defined.
+  
+  
 ## Setup AWS EC2 Instance {#setup_AWS}
 
 
@@ -84,6 +90,15 @@ Describe the steps, i.e to start https://github.com/MDK-Packs/VHT-TFLmicrospeech
 
 # GitHub-hosted Runners {#GitHub_hosted}
 
+
+The following steps explain how to use **GitHub-hosted runners** with [AWS Marketplace: \prj_name](https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g).
+
+  1. [**Setup AWS EC2 Instance**](#setup_AWS) and obtain the *access information*.
+  2. [**Add GitHub Secrets**](#add_secrets) with the *access information* to your GitHub repository with gives access to the AWS EC2 instance.
+  3. [**Add GitHub Action**](#add_action) to your GitHub repository and configure it for your requirements.
+  4. [**Test GitHub Action**](#test_action) to verify that it performs as expected.
+  
+Once this steps are completed, any commit or pull request to the repository should trigger the *CI* workflow that you have defined.
 
 An \ref vht_aws "Amazon Machine Image (AMI)" provides a complete tool installation that can be integrated with GitHub Actions.
 To simplify integration the [Arm \prj_name - GitHub Action](https://github.com/ARM-software/VHT-AMI) can be integrated into GitHub jobs. This action manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an \ref vht_aws "Arm VHT AMI".

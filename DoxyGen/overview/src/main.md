@@ -66,7 +66,7 @@ For unit and integration tests virtual targets offer additional advantages over 
 
 # Product Roadmap {#Roadmap}
 
-\prj_name is currently under public beta which let's you evaluate how our products can help in your development processes. Below is a feature roadmap of Arm Virtual Hardware that gives you indication what to expect. We will release this features as they become available during the beta phase (within the next 6 months) to allow product evaluation before the final release.
+\prj_name is now in public beta phase. The table below shows features that we will deploy in the **next 6 months**.  During the beta phase, you may evaluate how our products help in your development processes. The feature roadmap of \prj_name gives you indication what to expect. We will release this features as they become available during the beta phase to allow product evaluation before the final release.
 
 Feature                         | Description     
 :-------------------------------|:----------------
@@ -77,6 +77,14 @@ Feature                         | Description
 **Event Recorder CLI Tools**    | Event Recorder is currently supported in MDK. This support will be extended to off-line and command line tools.
 **More Usage Examples**         | Example projects help to get started: Audio/Video/Sensor I/O, Cloud connectivity, CI integration, Test code development is the range of examples we are working on.
 
+# Known Limitations {#Issues}
+
+The current beta version of of \prj_name has the following known issues:
+
+[**VSI Interface**](../../simulation/html/group__arm__vsi__api.html)
+  - With TrustZone enabled, the DMA of the Cortex-M55 processor does not work in Secure mode in the address ranges of the TCM aliases (0x10000000 ITCM and 0x3000000 DTCM).
+
 # Feedback and Support {#Support}
 
-The \prj_name is supported during public beta via this [Arm forum](https://community.arm.com/support-forums/f/arm-virtual-hardware-targets-forum).
+The \prj_name is supported during public beta via this [Arm forum](https://community.arm.com/support-forums/f/arm-virtual-hardware-targets-forum). Your feedback will influence our future roadmap and we try to help you promptly with your questions.
+
