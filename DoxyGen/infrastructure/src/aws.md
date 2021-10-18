@@ -69,7 +69,7 @@ $ ssh  -i <path>/your_key.pem ubuntu@<Public IPv4 DNS>
  - **ssh** is the SSH command
  - option **-i** specifies the location of the AWS private key file that has the file extension \*.pem.
  - **ubuntu** is the user name of the Amazon EC2 Ubuntu Linux instance.
- - **\<Public IPv4 DNS\>** is the public address typically in the format: ec2-*nn*-*nn*-*nn*-*nn*.compute-1.amazonaws.com
+ - <b>\<Public IPv4 DNS\></b> is the public address typically in the format: ec2-*nn*-*nn*-*nn*-*nn*.compute-1.amazonaws.com
 
 You can review this details also under the AWS EC2 Management Console under **EC2 - Instances - \<select instance\> - Connect** and then select the tab **SSH Client**.
 
@@ -119,8 +119,97 @@ $ ssh -i /path/to/aws.pem -L 8080:localhost:8080 ubuntu@@<EC2-IP-addr>
 ```
 Using a local browser connect to http://localhost:8080 and you should see Visual Studio Code appear in the browser. 
 
+# List AMI Inventory {#inventory}
+
+To obtain the list of tools installed in the AMI instance use:
+
+```
+$ ./tool-inventory.sh
+```
+
+Following output shall be expected by default:
+
+```
+ubuntu@ip-10-252-70-253:~$ ./tool-inventory.sh
+Arm Compiler information:
+Product: ARM Compiler 6.16 Professional
+Component: ARM Compiler 6.16
+Tool: armclang [5dfeab00]
+
+Target: arm-arm-none-eabi
 
 
+GNU Compiler information:
+arm-none-eabi-gcc (GNU Arm Embedded Toolchain 10-2020-q4-major) 10.2.1 20201103 (release)
+Copyright (C) 2020 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+
+Corstone-300 FVP information:
+
+Fast Models [11.15.24 (Aug 17 2021)]
+Copyright 2000-2021 ARM Limited.
+All Rights Reserved.
+
+
+Info: /OSCI/SystemC: Simulation stopped by user.
+
+
+Vela Compiler information:
+3.1.0
+
+
+CMSIS build information:
+(cbuild.sh): Build Invocation 0.10.1 (C) 2021 ARM
+Usage:
+  cbuild.sh <ProjectFile>.cprj
+  [--toolchain=<Toolchain> --outdir=<OutDir> --intdir=<IntDir> <MakefileTarget>]
+
+  <ProjectFile>.cprj      : CMSIS Project Description input file
+  --toolchain=<Toolchain> : select the toolchain
+  --intdir=<IntDir>       : set intermediate directory
+  --outdir=<OutDir>       : set output directory
+  <MakefileTarget>        : optional makefile target name, for example 'clean'
+  --quiet                 : suppress output messages except build invocations
+  --merge                 : update of config with ccmerge
+  --clean                 : remove intermediate and output directories
+  --update=<CprjFile>     : generate <CprjFile> for reproducing current build
+  --help                  : launch documentation and exit
+  --log=<LogFile>         : save output messages in a log file
+  --jobs=<N>              : number of job slots for parallel execution
+  --cmake[=<BuildSystem>] : generate CMakeLists.txt and invoke cmake
+                            default <BuildSystem>=Ninja
+
+
+Arm Fast Models information:
+Fast Models
+
+System Canvas 11.16.14  (Sep 29 2021)
+Copyright 2000-2021 ARM Limited.
+All Rights Reserved.
+
+$PVLIB_HOME = /opt/FM/FastModelsPortfolio_11.16 (Version = 11.16.14)
+```
+
+For the list of locally installed CMSIS Packs use:
+
+```
+$ cp_list.sh
+```
+
+For example, default output on a new AMI instance would be:
+
+```
+ubuntu@ip-10-252-70-253:~$ cp_list.sh
+Software packs are installed at: /home/ubuntu/packs
+
+Currently installed software packs:
+
+ARM.V2M_MPS2_SSE_300_BSP.1.0.0.pack
+ARM.CMSIS.5.7.0.pack
+```
 
 # Running Micro Speech  {#run_example}
 
