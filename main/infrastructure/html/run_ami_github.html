@@ -182,7 +182,7 @@ Add GitHub Action</h2>
 <div class="line">      - name: Run the micro_speech example</div>
 <div class="line">        run: ./run_example.sh</div>
 <div class="line">        working-directory: ${{env.working-directory}}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md8"></a>
 Test GitHub Action</h2>
 <p >Once this GitHub action is deployed, it may be manually tested.</p>
 <p >Describe the steps, i.e to start <a href="https://github.com/MDK-Packs/VHT-TFLmicrospeech/actions">https://github.com/MDK-Packs/VHT-TFLmicrospeech/actions</a></p>
@@ -200,7 +200,7 @@ GitHub-hosted Runners</h1>
 <p ><img src="vht_action.png" alt="" class="inline" title="VHT GitHub action"/></p>
 <p >The VHT-AMI action receives a *.tar input file (vht_in) that contains the vht.yml control file. The vht.yml is the run control commands for the AMI and defines the execution of build scripts or test runs. Once the AMI run control commands are complete the results are returned as *.tar file to the GitHub runner.</p>
 <p >The file <a href="https://github.com/ARM-software/VHT-AMI/blob/master/action.yml">action.yml</a> defines the parameters for the GitHub action.</p>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<h1><a class="anchor" id="autotoc_md9"></a>
 Configure the Arm VHT AMI</h1>
 <p >The next few steps are required to install the agent and configure a dedicated SSH access for file transfers on the AMI instance.</p>
 <ol type="1">
@@ -222,7 +222,7 @@ Configure the Arm VHT AMI</h1>
 <li>Add the secrets as documented in the Usage section. <img src="./images/GHSecrets.png" alt="GHSecrets" title="Github Secrets" class="inline"/></li>
 <li>Add vht.yml to your repository, at the location specified by avt_in.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md3"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 Usage</h2>
 <p >You can now consume the action by referencing the v1 branch</p>
 <div class="fragment"><div class="line">uses: Arm-Software/VHT-AMI@v1</div>

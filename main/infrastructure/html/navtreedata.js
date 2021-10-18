@@ -45,14 +45,23 @@ var NAVTREE =
         [ "Setup AWS EC2 Instance", "run_ami_github.html#setup_AWS", null ],
         [ "Add GitHub Secrets", "run_ami_github.html#add_secrets", null ],
         [ "Add GitHub Action", "run_ami_github.html#add_action", null ],
-        [ "Test GitHub Action", "run_ami_github.html#autotoc_md1", null ]
+        [ "Test GitHub Action", "run_ami_github.html#autotoc_md8", null ]
       ] ],
       [ "GitHub-hosted Runners", "run_ami_github.html#GitHub_hosted", null ],
-      [ "Configure the Arm VHT AMI", "run_ami_github.html#autotoc_md2", [
-        [ "Usage", "run_ami_github.html#autotoc_md3", null ]
+      [ "Configure the Arm VHT AMI", "run_ami_github.html#autotoc_md9", [
+        [ "Usage", "run_ami_github.html#autotoc_md10", null ]
       ] ]
     ] ],
-    [ "Run with MDK-Professional", "run_mdk_pro.html", null ]
+    [ "Run with MDK-Professional", "run_mdk_pro.html", null ],
+    [ "AVH CLI Script", "md_src_avh_doc.html", [
+      [ "Requirements", "md_src_avh_doc.html#autotoc_md2", null ],
+      [ "Usage", "md_src_avh_doc.html#autotoc_md3", null ],
+      [ "Usage examples", "md_src_avh_doc.html#autotoc_md4", [
+        [ "Instance start wihout specifying any key", "md_src_avh_doc.html#autotoc_md5", null ],
+        [ "Connecting to the instance", "md_src_avh_doc.html#autotoc_md6", null ],
+        [ "Instance stop", "md_src_avh_doc.html#autotoc_md7", null ]
+      ] ]
+    ] ]
   ] ]
 ];
 
