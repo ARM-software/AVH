@@ -38,6 +38,7 @@ var NAVTREE =
         [ "Using VNC", "run_ami_local.html#use_vnc", null ],
         [ "Using Code Server", "run_ami_local.html#use_code_server", null ]
       ] ],
+      [ "List AMI Inventory", "run_ami_local.html#inventory", null ],
       [ "Running Micro Speech", "run_ami_local.html#run_example", null ]
     ] ],
     [ "Run AMI with GitHub Actions", "run_ami_github.html", [

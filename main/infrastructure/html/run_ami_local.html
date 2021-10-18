@@ -157,7 +157,7 @@ Using SSH</h2>
 <li><b>ssh</b> is the SSH command</li>
 <li>option <b>-i</b> specifies the location of the AWS private key file that has the file extension *.pem.</li>
 <li><b>ubuntu</b> is the user name of the Amazon EC2 Ubuntu Linux instance.</li>
-<li>**&lt;Public IPv4 DNS&gt;** is the public address typically in the format: ec2-*nn*-*nn*-*nn*-*nn*.compute-1.amazonaws.com</li>
+<li><b>&lt;Public IPv4 DNS&gt;</b> is the public address typically in the format: ec2-*nn*-*nn*-*nn*-*nn*.compute-1.amazonaws.com</li>
 </ul>
 <p >You can review this details also under the AWS EC2 Management Console under <b>EC2 - Instances - &lt;select instance&gt; - Connect</b> and then select the tab <b>SSH Client</b>.</p>
 <h2><a class="anchor" id="use_vnc"></a>
@@ -177,7 +177,83 @@ Using VNC</h2>
 Using Code Server</h2>
 <p >Code Server is automatically running on the AMI on port 8080. To connect use port forwarding to ssh into the EC2 instance. </p><div class="fragment"><div class="line">$ ssh -i /path/to/aws.pem -L 8080:localhost:8080 ubuntu@@&lt;EC2-IP-addr&gt;</div>
 </div><!-- fragment --><p> Using a local browser connect to <a href="http://localhost:8080">http://localhost:8080</a> and you should see Visual Studio Code appear in the browser.</p>
-<h1><a class="anchor" id="run_example"></a>
+<h1><a class="anchor" id="inventory"></a>
+List AMI Inventory</h1>
+<p >To obtain the list of tools installed in the AMI instance use:</p>
+<div class="fragment"><div class="line">$ ./tool-inventory.sh</div>
+</div><!-- fragment --><p >Following output shall be expected by default:</p>
+<div class="fragment"><div class="line">ubuntu@ip-10-252-70-253:~$ ./tool-inventory.sh</div>
+<div class="line">Arm Compiler information:</div>
+<div class="line">Product: ARM Compiler 6.16 Professional</div>
+<div class="line">Component: ARM Compiler 6.16</div>
+<div class="line">Tool: armclang [5dfeab00]</div>
+<div class="line"> </div>
+<div class="line">Target: arm-arm-none-eabi</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">GNU Compiler information:</div>
+<div class="line">arm-none-eabi-gcc (GNU Arm Embedded Toolchain 10-2020-q4-major) 10.2.1 20201103 (release)</div>
+<div class="line">Copyright (C) 2020 Free Software Foundation, Inc.</div>
+<div class="line">This is free software; see the source for copying conditions.  There is NO</div>
+<div class="line">warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">Corstone-300 FVP information:</div>
+<div class="line"> </div>
+<div class="line">Fast Models [11.15.24 (Aug 17 2021)]</div>
+<div class="line">Copyright 2000-2021 ARM Limited.</div>
+<div class="line">All Rights Reserved.</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">Info: /OSCI/SystemC: Simulation stopped by user.</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">Vela Compiler information:</div>
+<div class="line">3.1.0</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">CMSIS build information:</div>
+<div class="line">(cbuild.sh): Build Invocation 0.10.1 (C) 2021 ARM</div>
+<div class="line">Usage:</div>
+<div class="line">  cbuild.sh &lt;ProjectFile&gt;.cprj</div>
+<div class="line">  [--toolchain=&lt;Toolchain&gt; --outdir=&lt;OutDir&gt; --intdir=&lt;IntDir&gt; &lt;MakefileTarget&gt;]</div>
+<div class="line"> </div>
+<div class="line">  &lt;ProjectFile&gt;.cprj      : CMSIS Project Description input file</div>
+<div class="line">  --toolchain=&lt;Toolchain&gt; : select the toolchain</div>
+<div class="line">  --intdir=&lt;IntDir&gt;       : set intermediate directory</div>
+<div class="line">  --outdir=&lt;OutDir&gt;       : set output directory</div>
+<div class="line">  &lt;MakefileTarget&gt;        : optional makefile target name, for example &#39;clean&#39;</div>
+<div class="line">  --quiet                 : suppress output messages except build invocations</div>
+<div class="line">  --merge                 : update of config with ccmerge</div>
+<div class="line">  --clean                 : remove intermediate and output directories</div>
+<div class="line">  --update=&lt;CprjFile&gt;     : generate &lt;CprjFile&gt; for reproducing current build</div>
+<div class="line">  --help                  : launch documentation and exit</div>
+<div class="line">  --log=&lt;LogFile&gt;         : save output messages in a log file</div>
+<div class="line">  --jobs=&lt;N&gt;              : number of job slots for parallel execution</div>
+<div class="line">  --cmake[=&lt;BuildSystem&gt;] : generate CMakeLists.txt and invoke cmake</div>
+<div class="line">                            default &lt;BuildSystem&gt;=Ninja</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">Arm Fast Models information:</div>
+<div class="line">Fast Models</div>
+<div class="line"> </div>
+<div class="line">System Canvas 11.16.14  (Sep 29 2021)</div>
+<div class="line">Copyright 2000-2021 ARM Limited.</div>
+<div class="line">All Rights Reserved.</div>
+<div class="line"> </div>
+<div class="line">$PVLIB_HOME = /opt/FM/FastModelsPortfolio_11.16 (Version = 11.16.14)</div>
+</div><!-- fragment --><p >For the list of locally installed CMSIS Packs use:</p>
+<div class="fragment"><div class="line">$ cp_list.sh</div>
+</div><!-- fragment --><p >For example, default output on a new AMI instance would be:</p>
+<div class="fragment"><div class="line">ubuntu@ip-10-252-70-253:~$ cp_list.sh</div>
+<div class="line">Software packs are installed at: /home/ubuntu/packs</div>
+<div class="line"> </div>
+<div class="line">Currently installed software packs:</div>
+<div class="line"> </div>
+<div class="line">ARM.V2M_MPS2_SSE_300_BSP.1.0.0.pack</div>
+<div class="line">ARM.CMSIS.5.7.0.pack</div>
+</div><!-- fragment --><h1><a class="anchor" id="run_example"></a>
 Running Micro Speech</h1>
 <p >Run the micro speech example. Connect to the EC2 instance using ssh as described above and then get the example, compile, and run. </p><div class="fragment"><div class="line">$ git clone https://github.com/arm-software/VHT-TFLmicrospeech.git</div>
 </div><!-- fragment --><p >For shared private projects your GitHub Username and Password key will be required to clone.</p>
