@@ -99,8 +99,8 @@ The following steps explain how to use **GitHub-hosted runners** with [AWS Marke
   
 Once this steps are completed, any commit or pull request to the repository should trigger the *CI* workflow that you have defined.
 
-An \ref vht_aws "Amazon Machine Image (AMI)" provides a complete tool installation that can be integrated with GitHub Actions.
-To simplify integration the [Arm \prj_name - GitHub Action](https://github.com/ARM-software/VHT-AMI) can be integrated into GitHub jobs. This action manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an \ref vht_aws "Arm VHT AMI".
+An \ref AWS "Amazon Machine Image (AMI)" provides a complete tool installation that can be integrated with GitHub Actions.
+To simplify integration the [Arm \prj_name - GitHub Action](https://github.com/ARM-software/VHT-AMI) can be integrated into GitHub jobs. This action manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an \ref AWS "Arm VHT AMI".
 
 ![VHT GitHub action](./images/vht_action.png "VHT GitHub action for AMI integration")
 
