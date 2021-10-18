@@ -11,21 +11,5 @@ var group__arm__vsi__py =
     [ "arm_vsi0.wrDataDMA", "group__arm__vsi__py.html#ga609003669f1d8dc8e11165adffee495f", null ],
     [ "arm_vsi0.rdRegs", "group__arm__vsi__py.html#gaeb7664fa99429eba0237dba7397811d4", null ],
     [ "arm_vsi0.wrRegs", "group__arm__vsi__py.html#gaa2d49666cf6d074777e7150ef76327e6", null ],
-    [ "arm_vsi0.verbosity", "group__arm__vsi__py.html#ga97b1cc04ec204ba7f1507498beb1d460", null ],
-    [ "arm_vsi0.level", "group__arm__vsi__py.html#gafde8e18a788ccc92fc61cab298bca7e3", null ],
-    [ "arm_vsi0.format", "group__arm__vsi__py.html#ga387137c43ed9616d39ba90e890d181eb", null ],
-    [ "arm_vsi0.IRQ_Status", "group__arm__vsi__py.html#ga62c0f89d575554f7e7097ad908ec122d", null ],
-    [ "arm_vsi0.Timer_Control", "group__arm__vsi__py.html#gad6b5ef49d7aab67dc698d7846d15249a", null ],
-    [ "arm_vsi0.Timer_Interval", "group__arm__vsi__py.html#ga8bfe5aea56c92b017ffa0d327c0dad18", null ],
-    [ "arm_vsi0.Timer_Control_Run_Msk", "group__arm__vsi__py.html#ga0b39188ae28b55a14443931becfb7d0c", null ],
-    [ "arm_vsi0.Timer_Control_Periodic_Msk", "group__arm__vsi__py.html#gaca0865357f319fe8856dede47679dd07", null ],
-    [ "arm_vsi0.Timer_Control_Trig_IRQ_Msk", "group__arm__vsi__py.html#gabb532b1fe5760178cc16e72e81c3d15b", null ],
-    [ "arm_vsi0.Timer_Control_Trig_DMA_Msk", "group__arm__vsi__py.html#gaa5338c1ac1772a0086c8bcb448a9c9dc", null ],
-    [ "arm_vsi0.DMA_Control", "group__arm__vsi__py.html#ga917724bf1c0133475d821211d41bb56c", null ],
-    [ "arm_vsi0.DMA_Control_Enable_Msk", "group__arm__vsi__py.html#ga6599e2472130d2007a5c22bbb1e9ef3d", null ],
-    [ "arm_vsi0.DMA_Control_Direction_Msk", "group__arm__vsi__py.html#ga46c7a3fe0329d8cc84225bf64f35b2bd", null ],
-    [ "arm_vsi0.DMA_Control_Direction_P2M", "group__arm__vsi__py.html#ga76614d9da1a08a411dfeb0118a4b8a94", null ],
-    [ "arm_vsi0.DMA_Control_Direction_M2P", "group__arm__vsi__py.html#ga8901b1392ac99505b7c8a5e5e0808c3a", null ],
-    [ "arm_vsi0.Regs", "group__arm__vsi__py.html#ga6ea815021a8ad0a07f755e36028b46c9", null ],
-    [ "arm_vsi0.Data", "group__arm__vsi__py.html#gaf5baa506e65b4caa6be6d1c6661dfe63", null ]
+    [ "arm_vsi0.verbosity", "group__arm__vsi__py.html#ga97b1cc04ec204ba7f1507498beb1d460", null ]
 ];

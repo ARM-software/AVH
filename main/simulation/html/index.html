@@ -31,8 +31,8 @@
  <tr style="height: 55px;">
   <td style="padding: 1em;"id="projectlogo"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
-   <div id="projectname">Orta
-   &#160;<span id="projectnumber">Version 0.2</span>
+   <div id="projectname">Virtual Hardware
+   &#160;<span id="projectnumber">Version 0.2 - beta</span>
    </div>
    <div id="projectbrief">Simulation Models with Virtual Interfaces for Test Automation</div>
   </td>
@@ -114,18 +114,18 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Arm Virtual Hardware Targets </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >The <b>Arm Virtual Hardware Targets</b> provide a functional accurate simulation of an Arm-based SoC and can be automated for scalable deployment in the CI development flow. This virtual platform can be used standalone or with development tools such as <a href="https://developer.arm.com/tools-and-software/embedded/arm-development-studio" target="_blank"><b>Arm Development Studio</b></a> or <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk" target="_blank"><b>Arm Keil MDK</b></a> with debug and trace capabilities supported as well.</p>
-<p >The <b>Arm Virtual Hardware Targets</b> are based on the Arm Fast Model technology and are extended FVP models that add virtual interfaces for peripheral emulation. In addition <b>Arm Virtual Hardware</b> provides concepts to re-target applications from simulation models to physical hardware which simplifies to combine unit/integration tests with the final system integration.</p>
+<div class="textblock"><p >The <b>Arm Virtual Hardware Targets (VHT)</b> provide a functional accurate simulation of an Arm-based SoC and can be automated for scalable deployment in the CI development flow. This virtual platform can be used standalone or with development tools such as <a href="https://developer.arm.com/tools-and-software/embedded/arm-development-studio" target="_blank"><b>Arm Development Studio</b></a> or <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk" target="_blank"><b>Arm Keil MDK</b></a> with debug and trace capabilities supported as well.</p>
+<p >The <b>Arm Virtual Hardware Targets</b> are based on the Arm Fast Model technology and are extended FVP models that add virtual interfaces for peripheral emulation. In addition Arm VHT provides concepts to re-target applications from simulation models to physical hardware which simplifies to combine unit/integration tests with the final system integration.</p>
 <h1><a class="anchor" id="Virtual_Interfaces"></a>
 Virtual Interfaces</h1>
 <p >The <b>Arm Virtual Hardware Targets</b> implement various Virtual Interfaces that can be used to stimulate the application under test.</p>
 <p ><img src="Virtual_Interfaces.png" alt="" class="inline" title="Arm VHT Virtual Interfaces"/></p>
 <ul>
-<li>The <a class="el" href="group__arm__vio__api.html">Virtual I/O (VIO)</a> interface controls simple I/O such as LED and switches.</li>
-<li>The <a class="el" href="group__arm__vsi__api.html">VSI embedded API</a> provides up to 8 instances for data streaming.</li>
-<li>The <a class="el" href="group__arm__vsocket__api.html">Virtual Socket Interface (VSocket)</a> connects the user application to <a href="https://en.wikipedia.org/wiki/Berkeley_sockets"><b>BSD sockets</b></a> on the Host computer for IP network connectivity.</li>
+<li>The <a class="el" href="group__arm__vio.html">Virtual I/O (VIO)</a> interface controls simple I/O such as LED and switches.</li>
+<li>The <a class="el" href="group__arm__vsi.html">Virtual Streaming Interface (VSI)</a> provides up to 8 instances for data streaming.</li>
+<li>The <a class="el" href="group__arm__vsocket.html">Virtual Socket Interface (VSocket)</a> connects the user application to <a href="https://en.wikipedia.org/wiki/Berkeley_sockets"><b>BSD sockets</b></a> on the Host computer for IP network connectivity.</li>
 </ul>
-<p >Both <a class="el" href="group__arm__vio__api.html">VIO</a> and <a class="el" href="group__arm__vsi__api.html">VSI</a> connect to Python and enable flexible scripting for test automation. Eight VSI interfaces are available and may be used in parallel to stream simultaneous multi-channel inputs and outputs. The interfaces are tailored for simulation, but can also map to physical target hardware.</p>
+<p >Both <a class="el" href="group__arm__vio.html">VIO</a> and <a class="el" href="group__arm__vsi.html">VSI</a> connect to Python and enable flexible scripting for test automation. Eight VSI interfaces are available and may be used in parallel to stream simultaneous multi-channel inputs and outputs. The interfaces are tailored for simulation, but can also map to physical target hardware.</p>
 <p >In addition the <b>Event Recorder Capturing</b> provides an interface for the <a href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_overview.html">Event Recorder</a> API. This software component enables event annotations in the application code or software component libraries. The <b>Event Recorder</b> provides visibility to the dynamic execution of an application, enables RTOS awareness, and <a href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/group__Event__Execution__Statistic.html"><b>Event Execution Statistics</b></a> which helps to optimize the timing of complex algorithms.</p>
 <h1><a class="anchor" id="Physical_Hardware"></a>
 Physical Hardware</h1>
@@ -151,7 +151,7 @@ Development Challenges</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">The <b>Arm Virtual Hardware Services</b> provide a cloud-native infra-structure for software test and validation. But currently there is no debug possible with this CI/CD system. How are test cases developed and analysed?   </td><td class="markdownTableBodyLeft">Today, desktop tools (for example <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">Keil MDK</a>) are required to develop test cases and debug failures. <a href="./index.html##Development_Workflow">Development Workflow</a> explains this process.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft">The examples for <a class="el" href="group__arm__vsi__api.html">VSI</a> show currently Audio streaming. Is it possible to use this interface also for other data sources?   </td><td class="markdownTableBodyLeft">The <a class="el" href="group__arm__vsi__api.html">VSI</a> is a simple, but flexible interface that connects a generic streaming peripheral with Python for test script automation. It is today possible to develop own data streaming interfaces but we work on more examples that show the potential of this interface.   </td></tr>
+<td class="markdownTableBodyLeft">The examples for <a class="el" href="group__arm__vsi.html">VSI</a> show currently Audio streaming. Is it possible to use this interface also for other data sources?   </td><td class="markdownTableBodyLeft">The <a class="el" href="group__arm__vsi.html">VSI</a> is a simple, but flexible interface that connects a generic streaming peripheral with Python for test script automation. It is today possible to develop own data streaming interfaces but we work on more examples that show the potential of this interface.   </td></tr>
 </table>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->

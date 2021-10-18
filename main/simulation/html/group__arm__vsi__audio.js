@@ -6,8 +6,7 @@ var group__arm__vsi__audio =
     [ "Status Error Codes", "group__audio__drv__errors.html", "group__audio__drv__errors" ],
     [ "AudioDrv_Status_t", "group__arm__vsi__audio.html#structAudioDrv__Status__t", [
       [ "tx_active", "group__arm__vsi__audio.html#a8aadf78b02db62a5c4a4c30cd3aa2399", null ],
-      [ "rx_active", "group__arm__vsi__audio.html#abf786bdf31f500a28b33b2f49461b982", null ],
-      [ "reserved", "group__arm__vsi__audio.html#aa43c4c21b173ada1b6b7568956f0d650", null ]
+      [ "rx_active", "group__arm__vsi__audio.html#abf786bdf31f500a28b33b2f49461b982", null ]
     ] ],
     [ "AudioDrv_Event_t", "group__arm__vsi__audio.html#ga76a21d8243b1b87fb51efe30532d94b6", null ],
     [ "AudioDrv_Initialize", "group__arm__vsi__audio.html#ga3df94f2eb2478ea1229356dd7deee319", null ],

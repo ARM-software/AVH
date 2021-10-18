@@ -26,7 +26,7 @@ var NAVTREE =
 [
   [ "Infrastructure", "index.html", [
     [ "AWS Marketplace", "index.html#AWS", [
-      [ "Subscribe Orta", "index.html#Subscribe", null ],
+      [ "Subscribe Arm Virtual Hardware", "index.html#Subscribe", null ],
       [ "Use AMI", "index.html#autotoc_md0", null ]
     ] ],
     [ "Local Tool Installation", "index.html#Local", null ],

@@ -31,8 +31,8 @@
  <tr style="height: 55px;">
   <td style="padding: 1em;"id="projectlogo"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
-   <div id="projectname">Orta
-   &#160;<span id="projectnumber">Version 0.2</span>
+   <div id="projectname">Virtual Hardware
+   &#160;<span id="projectnumber">Version 0.2 - beta</span>
    </div>
    <div id="projectbrief">Simulation Models with Virtual Interfaces for Test Automation</div>
   </td>
@@ -117,12 +117,12 @@ $(document).ready(function(){initNavTree('group__arm__vsi.html',''); initResizab
 </div><!--header-->
 <div class="contents">
 
-<p>Data streaming interface for Cortex-M applications to Python scripting.  
+<p>Data streaming interface for Cortex-M applications.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="groups" name="groups"></a>
 Content</h2></td></tr>
-<tr class="memitem:group__arm__vsi__api"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vsi__api.html">VSI embedded API</a></td></tr>
+<tr class="memitem:group__arm__vsi__api"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vsi__api.html">VSI API</a></td></tr>
 <tr class="memdesc:group__arm__vsi__api"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data streaming interface for Cortex-M applications to Python scripting. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group__arm__vsi__py"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vsi__py.html">VSI Python interface</a></td></tr>
@@ -136,7 +136,7 @@ Content</h2></td></tr>
 <img src="Example-Structure.png" alt=""/>
 <div class="caption">
 Arm VHT CoreStone-300 for Linux and Windows</div></div>
-<p >The VSI implements general purpose peripheral registers, an interrupt peripheral, a timer peripheral, and a DMA peripheral. The following files define and the access to the VSI peripherals.</p>
+<p >The VSI implements general purpose peripheral registers, an interrupt peripheral, a timer peripheral, and a DMA peripheral. The following files define the access to the VSI peripherals.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">File   </th><th class="markdownTableHeadLeft">Description    </th></tr>
@@ -149,60 +149,11 @@ Arm VHT CoreStone-300 for Linux and Windows</div></div>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">./interface/python/arm_vsi7.py   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__py.html">VSI Python interface</a> script template for instance 7   </td></tr>
 </table>
-<h1><a class="anchor" id="vsi_regs"></a>
-VSI registers</h1>
-<p >The VSI peripheral is accessed using the <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure that provides register interface for the following components:</p><ul>
-<li>Interrupt control</li>
-<li>Timer peripheral with 1MHz input clock</li>
-<li>DMA peripheral with block buffer handling</li>
-<li>64 user registers to implement bespoke functionality (i.e. for Audio, Video, or Sensor streaming)</li>
-</ul>
-<p >There are 8 VSI peripheral instances mapped into the memory of the Cortex-M system. These are accessed via these defines: </p><div class="fragment"><div class="line">#define ARM_VSI0        ((ARM_VSI_Type *)ARM_VSI0_BASE)      /*!&lt; VSI 0 struct */</div>
-<div class="line">#define ARM_VSI1        ((ARM_VSI_Type *)ARM_VSI1_BASE)      /*!&lt; VSI 1 struct */</div>
-<div class="line">#define ARM_VSI2        ((ARM_VSI_Type *)ARM_VSI2_BASE)      /*!&lt; VSI 2 struct */</div>
-<div class="line">#define ARM_VSI3        ((ARM_VSI_Type *)ARM_VSI3_BASE)      /*!&lt; VSI 3 struct */</div>
-<div class="line">#define ARM_VSI4        ((ARM_VSI_Type *)ARM_VSI4_BASE)      /*!&lt; VSI 4 struct */</div>
-<div class="line">#define ARM_VSI5        ((ARM_VSI_Type *)ARM_VSI5_BASE)      /*!&lt; VSI 5 struct */</div>
-<div class="line">#define ARM_VSI6        ((ARM_VSI_Type *)ARM_VSI6_BASE)      /*!&lt; VSI 6 struct */</div>
-<div class="line">#define ARM_VSI7        ((ARM_VSI_Type *)ARM_VSI7_BASE)      /*!&lt; VSI 7 struct */</div>
-</div><!-- fragment --><p >A read or write access to a VSI peripheral triggers execution of a Python script that implements corresponding instance of <a class="el" href="group__arm__vsi__py.html">VSI Python interface</a>. The python scripts are named as <b>arm_vsi0.py</b>, <b>arm_vsi1.py</b>, ..., <b>arm_vsi7.py</b>. The concept is shown on the figure below.</p>
+<p >A read or write access to a VSI peripheral via its <a class="el" href="group__arm__vsi__api.html">API</a> triggers execution of a corresponding function in the Python script that implements the <a class="el" href="group__arm__vsi__py.html">VSI Python interface</a> instance. The concept is shown on the figure below.</p>
 <div class="image">
 <img src="uml_graph.png" alt=""/>
 <div class="caption">
 Using VSI peripheral</div></div>
-<p >The <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure is defined in arm_vsi.h file as follows:</p>
-<div class="fragment"><div class="line">typedef struct</div>
-<div class="line">{</div>
-<div class="line">  struct {</div>
-<div class="line">    __IOM uint32_t Enable;      /*!&lt; Offset: 0x0000 (R/W) IRQ Enable */</div>
-<div class="line">    __OM  uint32_t Set;         /*!&lt; Offset: 0x0004 (-/W) IRQ Set */</div>
-<div class="line">    __OM  uint32_t Clear;       /*!&lt; Offset: 0x0008 (-/W) IRQ Clear */</div>
-<div class="line">    __IM  uint32_t Status;      /*!&lt; Offset: 0x000C (R/-) IRQ Status */</div>
-<div class="line">  } IRQ;                        /*!&lt; Interrupt Request (IRQ) */</div>
-<div class="line">  uint32_t reserved1[60];</div>
-<div class="line">  struct {</div>
-<div class="line">    __IOM uint32_t Control;     /*!&lt; Offset: 0x0100 (R/W) Timer Control */</div>
-<div class="line">    __IOM uint32_t Interval;    /*!&lt; Offset: 0x0104 (R/W) Timer Interval Value (in microseconds) */</div>
-<div class="line">    __IM  uint32_t Count;       /*!&lt; Offset: 0x0108 (R/-) Timer Overflow Count */</div>
-<div class="line">  } Timer;                      /*!&lt; Time counter with 1MHz input frequency */</div>
-<div class="line">  uint32_t reserved2[61];</div>
-<div class="line">  struct {</div>
-<div class="line">    __IOM uint32_t Control;     /*!&lt; Offset: 0x0200 (R/W) DMA Control */</div>
-<div class="line">    __IOM uint32_t Address;     /*!&lt; Offset: 0x0204 (R/W) DMA Memory Start Address */</div>
-<div class="line">    __IOM uint32_t BlockSize;   /*!&lt; Offset: 0x0208 (R/W) DMA Block Size (in bytes, multiple of 4) */</div>
-<div class="line">    __IOM uint32_t BlockNum;    /*!&lt; Offset: 0x020C (R/W) DMA Number of Blocks (must be 2^n) */</div>
-<div class="line">    __IM  uint32_t BlockIndex;  /*!&lt; Offset: 0x0210 (R/-) DMA Block Index */</div>
-<div class="line">  } DMA;                        /*!&lt; Direct Memory Access (DMA) Controller */</div>
-<div class="line">  uint32_t reserved3[59];</div>
-<div class="line">  __IOM uint32_t Regs[64];      /*!&lt; Offset: 0x0300 (R/W) User Registers */</div>
-<div class="line">} ARM_VSI_Type;</div>
-</div><!-- fragment --><p >The <b>IRQ</b> peripheral simulates an interrupt request. <b>Set</b> and <b>Clear</b> parameters have only write access and are used for triggering and clearing the interrupt. <b>Status</b> field indicates the interrupt state.</p>
-<p >The <b>Timer</b> peripheral is a simple counting timer with a 1MHz input frequency based on the time domain of the Arm Fast Model instruction set simulator. The <b>Count</b> value increments when the <b>Interval</b> value elapses.</p>
-<p >The <b>DMA Controller</b> accesses a rotating memory buffer as shown in the diagram below. Each block transfer increments the <b>BlockIndex</b> value (restarts when the buffer rotates).</p>
-<div class="image">
-<img src="DMA_Buffer.png" alt=""/>
-<div class="caption">
-Structure of DMA memory buffer</div></div>
  </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

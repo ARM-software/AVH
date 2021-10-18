@@ -31,8 +31,8 @@
  <tr style="height: 55px;">
   <td style="padding: 1em;"id="projectlogo"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
-   <div id="projectname">Orta
-   &#160;<span id="projectnumber">Version 0.2</span>
+   <div id="projectname">Virtual Hardware
+   &#160;<span id="projectnumber">Version 0.2 - beta</span>
    </div>
    <div id="projectbrief">Infrastructure Service and Tool Integration</div>
   </td>
@@ -121,7 +121,7 @@ $(document).ready(function(){initNavTree('run_ami_github.html',''); initResizabl
 <p >The approach that you should choose depends on your CI/CD requirements.</p>
 <h1><a class="anchor" id="self_hosted"></a>
 Self-hosted GitHub Runners</h1>
-<p >The following steps explain how to use <b>self-hosted GitHub runners</b> with <a href="https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g">AWS Marketplace: Orta</a>.</p>
+<p >The following steps explain how to use <b>self-hosted GitHub runners</b> with <a href="https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g">AWS Marketplace: Arm Virtual Hardware</a>.</p>
 <ol type="1">
 <li><a href="#setup_AWS"><b>Setup AWS EC2 Instance</b></a> and obtain the <em>access information</em>.</li>
 <li><a href="#add_secrets"><b>Add GitHub Secrets</b></a> with the <em>access information</em> to your GitHub repository with gives access to the AWS EC2 instance.</li>
@@ -132,8 +132,8 @@ Self-hosted GitHub Runners</h1>
 <h2><a class="anchor" id="setup_AWS"></a>
 Setup AWS EC2 Instance</h2>
 <ul>
-<li>Subscribe to the <a href="https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g">AWS Marketplace: Orta</a></li>
-<li>What are the steps to configure/setup the Orta?</li>
+<li>Subscribe to the <a href="https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g">AWS Marketplace: Arm Virtual Hardware</a></li>
+<li>What are the steps to configure/setup the Arm Virtual Hardware?</li>
 </ul>
 <h2><a class="anchor" id="add_secrets"></a>
 Add GitHub Secrets</h2>
@@ -188,7 +188,7 @@ Test GitHub Action</h2>
 <p >Describe the steps, i.e to start <a href="https://github.com/MDK-Packs/VHT-TFLmicrospeech/actions">https://github.com/MDK-Packs/VHT-TFLmicrospeech/actions</a></p>
 <h1><a class="anchor" id="GitHub_hosted"></a>
 GitHub-hosted Runners</h1>
-<p >The following steps explain how to use <b>GitHub-hosted runners</b> with <a href="https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g">AWS Marketplace: Orta</a>.</p>
+<p >The following steps explain how to use <b>GitHub-hosted runners</b> with <a href="https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g">AWS Marketplace: Arm Virtual Hardware</a>.</p>
 <ol type="1">
 <li><a href="#setup_AWS"><b>Setup AWS EC2 Instance</b></a> and obtain the <em>access information</em>.</li>
 <li><a href="#add_secrets"><b>Add GitHub Secrets</b></a> with the <em>access information</em> to your GitHub repository with gives access to the AWS EC2 instance.</li>
@@ -196,7 +196,7 @@ GitHub-hosted Runners</h1>
 <li><a href="#test_action"><b>Test GitHub Action</b></a> to verify that it performs as expected.</li>
 </ol>
 <p >Once this steps are completed, any commit or pull request to the repository should trigger the <em>CI</em> workflow that you have defined.</p>
-<p >An <a class="el" href="index.html#AWS">Amazon Machine Image (AMI)</a> provides a complete tool installation that can be integrated with GitHub Actions. To simplify integration the <a href="https://github.com/ARM-software/VHT-AMI">Arm Orta - GitHub Action</a> can be integrated into GitHub jobs. This action manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an <a class="el" href="index.html#AWS">Arm VHT AMI</a>.</p>
+<p >An <a class="el" href="index.html#AWS">Amazon Machine Image (AMI)</a> provides a complete tool installation that can be integrated with GitHub Actions. To simplify integration the <a href="https://github.com/ARM-software/VHT-AMI">Arm Arm Virtual Hardware - GitHub Action</a> can be integrated into GitHub jobs. This action manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an <a class="el" href="index.html#AWS">Arm VHT AMI</a>.</p>
 <p ><img src="vht_action.png" alt="" class="inline" title="VHT GitHub action"/></p>
 <p >The VHT-AMI action receives a *.tar input file (vht_in) that contains the vht.yml control file. The vht.yml is the run control commands for the AMI and defines the execution of build scripts or test runs. Once the AMI run control commands are complete the results are returned as *.tar file to the GitHub runner.</p>
 <p >The file <a href="https://github.com/ARM-software/VHT-AMI/blob/master/action.yml">action.yml</a> defines the parameters for the GitHub action.</p>

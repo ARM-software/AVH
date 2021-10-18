@@ -29,7 +29,7 @@ var NAVTREE =
       [ "Structure", "mspeech.html#autotoc_md0", null ],
       [ "Prerequisites", "mspeech.html#mspeech_pre", null ],
       [ "Program Execution", "mspeech.html#autotoc_md1", [
-        [ "Running on Orta", "mspeech.html#mspeech_vht", null ],
+        [ "Running on Arm Virtual Hardware", "mspeech.html#mspeech_vht", null ],
         [ "Running on a hardware target", "mspeech.html#mspeech_hw", [
           [ "NXP IMXRT1050-EVKB", "mspeech.html#mspeech_hw_1050", null ],
           [ "NXP MIMXRT-1064-EVK", "mspeech.html#mspeech_hw_1064", null ]

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['level_0',['level',['../group__arm__vsi__py.html#gafde8e18a788ccc92fc61cab298bca7e3',1,'arm_vsi0']]]
+  ['status_20error_20codes_0',['Status Error Codes',['../group__audio__drv__errors.html',1,'']]]
 ];
