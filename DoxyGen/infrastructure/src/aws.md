@@ -1,9 +1,9 @@
-# Run AMI on local computer {#run_ami_local}
+# Run AMI on Local Host {#run_ami_local}
 
-This section describes how to run the **AMI with \prj_name** on a local computer and assumes that have setup the \ref AWS.
+This section describes how to run the **AMI with \prj_name** on a local host computer and assumes that have setup the \ref AWS.
 
 \note
-   Refer to \ref mainpage for others ways to use the \prj_name.
+   Refer to \ref mainpage "Infrastructure" for others ways to use the \prj_name.
 
 There are two was to launch the AMI:
   - \ref Launch_website gives direct access. 

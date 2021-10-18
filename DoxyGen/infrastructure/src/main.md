@@ -2,8 +2,8 @@
 
 The [**\prj_name Targets**](../../simulation/html/index.html) can be accessed via:
 
-  - \ref AWS 
-  - \ref Local
+  - \ref AWS : access to a ready-to-use image on a Cloud Service for CI/CD and MLOps workflow automation.
+  - \ref Local : development of test cases and analyzing test failures on a desktop development system.
 
 ## AWS Marketplace {#AWS}
 
@@ -29,7 +29,7 @@ Before you can use the **AMI with \prj_name Targets** you should have a AWS acco
 The **AMI** provides a lot of flexibility and gives you the option to integrate **\prj_name** various CI/CD DevOps environments that range from on-premise IT to Cloud-native infrastructure. The following sections give you some flavors of possible integrations:
 
   - \subpage run_ami_local allows to use the AMI from a local computer.
-  - \subpage run_ami_github explains how to integrate the **\prj_name AWS AMI ** in GitHub action workflows.
+  - \subpage run_ami_github explains how to integrate the **\prj_name AWS AMI** in GitHub action workflows.
 
   
 ## Local Tool Installation {#Local}
