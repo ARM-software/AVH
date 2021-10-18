@@ -15,7 +15,7 @@ The **\prj_name Targets** implement various Virtual Interfaces that can be used 
   - The \ref arm_vsi_api provides up to 8 instances for data streaming. 
   - The \ref arm_vsocket_api "Virtual Socket Interface (VSocket)" connects the user application to [**BSD sockets**](https://en.wikipedia.org/wiki/Berkeley_sockets) on the Host computer for IP network connectivity.
 
-Both \ref arm_vio_api "VIO" and \ref arm_vsi_api "VSI" connect to Python and enable flexible scripting for test automation. Eight VSI interfaces are available and may be used in parallel to stream simultaneous multi-channel inputs. The interfaces are tailored for simulation, but can also map to physical target hardware.
+Both \ref arm_vio_api "VIO" and \ref arm_vsi_api "VSI" connect to Python and enable flexible scripting for test automation. Eight VSI interfaces are available and may be used in parallel to stream simultaneous multi-channel inputs and outputs. The interfaces are tailored for simulation, but can also map to physical target hardware.
 
 In addition the **Event Recorder Capturing** provides an interface for the [Event Recorder](https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_overview.html) API. This software component enables event annotations in the application code or software component libraries. The **Event Recorder** provides visibility to the dynamic execution of an application, enables RTOS awareness, and [**Event Execution Statistics**](https://www.keil.com/pack/doc/compiler/EventRecorder/html/group__Event__Execution__Statistic.html) which helps to optimize the timing of complex algorithms.
 
