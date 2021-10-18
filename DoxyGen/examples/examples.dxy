@@ -38,7 +38,7 @@ PROJECT_NAME           = "Examples"
 # could be handy for archiving the generated documentation or if some version
 # control system is used.
 
-PROJECT_NUMBER         = "Version 0.2"
+PROJECT_NUMBER         = "Version 0.2 - beta"
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer a
@@ -261,7 +261,7 @@ TAB_SIZE               = 8
 # commands \{ and \} for these it is advised to use the version @{ and @} or use
 # a double escape (\\{ and \\})
 
-ALIASES                = "prj_name=Orta"
+ALIASES                = "prj_name=Arm Virtual Hardware"
 
 # Set the OPTIMIZE_OUTPUT_FOR_C tag to YES if your project consists of C sources
 # only. Doxygen will then generate output that is more tailored for C. For

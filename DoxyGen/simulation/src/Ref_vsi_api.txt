@@ -1,10 +1,68 @@
 /*=======0=========1=========2=========3=========4=========5=========6=========7=========8=========9=========0=========1====*/
 //  ==== VSI API ====
 /**
-\defgroup arm_vsi_api VSI embedded API
+\defgroup arm_vsi_api VSI API
 \ingroup arm_vsi
 \brief Data streaming interface for Cortex-M applications to Python scripting
 \details
+
+The VSI peripheral is accessed using the \ref ARM_VSI_Type structure that provides register interface for the following components:
+  - Interrupt control
+  - Timer peripheral with 1MHz input clock
+  - DMA peripheral with block buffer handling
+  - 64 user registers to implement bespoke functionality (i.e. for Audio, Video, or Sensor streaming)
+
+There are 8 VSI peripheral instances mapped into the memory of the Cortex-M system. These are accessed via these defines:
+\code{.unparsed}
+#define ARM_VSI0        ((ARM_VSI_Type *)ARM_VSI0_BASE)      /*!< VSI 0 struct */
+#define ARM_VSI1        ((ARM_VSI_Type *)ARM_VSI1_BASE)      /*!< VSI 1 struct */
+#define ARM_VSI2        ((ARM_VSI_Type *)ARM_VSI2_BASE)      /*!< VSI 2 struct */
+#define ARM_VSI3        ((ARM_VSI_Type *)ARM_VSI3_BASE)      /*!< VSI 3 struct */
+#define ARM_VSI4        ((ARM_VSI_Type *)ARM_VSI4_BASE)      /*!< VSI 4 struct */
+#define ARM_VSI5        ((ARM_VSI_Type *)ARM_VSI5_BASE)      /*!< VSI 5 struct */
+#define ARM_VSI6        ((ARM_VSI_Type *)ARM_VSI6_BASE)      /*!< VSI 6 struct */
+#define ARM_VSI7        ((ARM_VSI_Type *)ARM_VSI7_BASE)      /*!< VSI 7 struct */
+\endcode
+
+The \ref ARM_VSI_Type structure is defined in arm_vsi.h file as follows:
+
+\code{.unparsed}
+typedef struct
+{
+  struct {
+    __IOM uint32_t Enable;      /*!< Offset: 0x0000 (R/W) IRQ Enable */
+    __OM  uint32_t Set;         /*!< Offset: 0x0004 (-/W) IRQ Set */
+    __OM  uint32_t Clear;       /*!< Offset: 0x0008 (-/W) IRQ Clear */
+    __IM  uint32_t Status;      /*!< Offset: 0x000C (R/-) IRQ Status */
+  } IRQ;                        /*!< Interrupt Request (IRQ) */
+  uint32_t reserved1[60];
+  struct {
+    __IOM uint32_t Control;     /*!< Offset: 0x0100 (R/W) Timer Control */
+    __IOM uint32_t Interval;    /*!< Offset: 0x0104 (R/W) Timer Interval Value (in microseconds) */
+    __IM  uint32_t Count;       /*!< Offset: 0x0108 (R/-) Timer Overflow Count */
+  } Timer;                      /*!< Time counter with 1MHz input frequency */
+  uint32_t reserved2[61];
+  struct {
+    __IOM uint32_t Control;     /*!< Offset: 0x0200 (R/W) DMA Control */
+    __IOM uint32_t Address;     /*!< Offset: 0x0204 (R/W) DMA Memory Start Address */
+    __IOM uint32_t BlockSize;   /*!< Offset: 0x0208 (R/W) DMA Block Size (in bytes, multiple of 4) */
+    __IOM uint32_t BlockNum;    /*!< Offset: 0x020C (R/W) DMA Number of Blocks (must be 2^n) */
+    __IM  uint32_t BlockIndex;  /*!< Offset: 0x0210 (R/-) DMA Block Index */
+  } DMA;                        /*!< Direct Memory Access (DMA) Controller */
+  uint32_t reserved3[59];
+  __IOM uint32_t Regs[64];      /*!< Offset: 0x0300 (R/W) User Registers */
+} ARM_VSI_Type;
+\endcode
+
+The ARM_VSI_Type::IRQ peripheral simulates an interrupt request. ARM_VSI_Type.IRQ.Set and **Clear** parameters have only write access and are used for triggering and clearing the interrupt. **Status** field indicates the interrupt state.
+
+The ARM_VSI_Type::Timer peripheral is a simple counting timer with a 1MHz input frequency based on the time domain 
+of the Arm Fast Model instruction set simulator. The **Count** value increments when the **Interval** value elapses.
+
+The ARM_VSI_Type::DMA controller accesses a rotating memory buffer as shown in the diagram below. Each block transfer increments the **BlockIndex** value (restarts when the buffer rotates).
+
+\image html "DMA_Buffer.png" "Structure of DMA memory buffer"
+
 
 @{
 
@@ -13,10 +71,17 @@
 The \ref ARM_VSI_Type structure provides access to the VSI peripheral registers. 
 The peripheral provides the following registers:
 
-  - **Regs** is array of registers that allows to implement peripheral specific operations.
-  - **Timer** accesses a counting timer peripheral with 1MHz input clock that generates interrupts.
-  - **DMA** is a virtual DMA controller which copies data from/to peripheral to/from memory.
-  - **IRQ** is a group of registers that can enable and set/clear interrupt requests.
+@}
+
+\var ARM_VSI_Type::Regs
+\details
+Array of registers that allows to implement peripheral specific operations.
+
+
+\var ARM_VSI_Type::Timer
+\details
+A simple counting timer with a 1MHz input frequency based on the time domain 
+of the Arm Fast Model instruction set simulator. 
 
 The **Timer** peripheral has the following registers:
   - **Control** the operation of the timer with the following control bits:
@@ -27,7 +92,15 @@ The **Timer** peripheral has the following registers:
   - **Interval** value in microseconds for timer overflows
   - **Count** timer overflow counter, incremented when the time interval elapses and reset to 0 when timer starts.
 
-The **DMA** peripheral has the following registers:
+\var ARM_VSI_Type::IRQ
+\details
+A group of registers that can enable and set/clear interrupt requests.
+
+\var ARM_VSI_Type::DMA
+\details
+A virtual DMA controller which copies data from/to peripheral to/from memory.
+
+It has the following registers:
   - **Control** the operation of the DMA with the following control bits:
      - **Control.0** 0=disable DMA and reset DMA, 1=enable DMA
      - **Control.1** DMA transfer direction 0=peripheral to memory, 1=memory to peripheral
@@ -35,7 +108,6 @@ The **DMA** peripheral has the following registers:
   - **BlockSize** number of bytes for each DMA transfer.
   - **BlockNum** number of blocks before the memory buffer rotates, next DMA transfer uses start address.
   - **BlockIndex** counts the total number of blocks transferred. It gets set to 0 when DMA is enabled and also when buffer rotates.
-
-@}
+ 
 */
 

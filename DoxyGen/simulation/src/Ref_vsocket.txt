@@ -2,7 +2,7 @@
 //  ==== VSocket ====
 /**
 
-\defgroup arm_vsocket_api Virtual Socket Interface (VSocket)
+\defgroup arm_vsocket Virtual Socket Interface (VSocket)
 \ingroup arm_cmvp
 \brief IP network connectivity to Host computer 
 \details

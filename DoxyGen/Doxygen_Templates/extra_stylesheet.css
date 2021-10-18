@@ -22,7 +22,7 @@ body, table, div, p, dl {
 /* styles */
 
 .style1 {
-		text-align: center;
+	text-align: center;
 }
 .style2 {
 		color: var(--arm_blue);
@@ -74,12 +74,12 @@ body, table, div, p, dl {
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-	user-select: none;
-	cursor: pointer;
+    user-select: none;
+    cursor: pointer;
     font-size: 100%;
     width: 16px;
     height: 22px;
-	display: inline-block;
+    display: inline-block;
 }
 
 .main-menu {
@@ -941,7 +941,7 @@ table.fieldtable {
         padding: 3px 7px 2px;
 }
 
-.fieldtable td.fieldtype, .fieldtable td.fieldname {
+.fieldtable td.fieldtype, .fieldtable td.fieldname, td.fieldoc{
         white-space: nowrap;
         border-right: 1px solid var(--arm_dark_gray);
         border-bottom: 1px solid var(--arm_dark_gray);
@@ -951,6 +951,10 @@ table.fieldtable {
 .fieldtable td.fielddoc {
         border-bottom: 1px solid var(--arm_dark_gray);
         width: 100%;
+}
+
+.fieldtable td.fielddoc p {
+        margin-top: 0px;
 }
 
 .fieldtable tr:last-child td {
@@ -1086,7 +1090,7 @@ div.ingroups a
 div.header
 {
     background-color: white;
-	margin:  0px;
+    margin:  0px;
 }
 
 div.headertitle

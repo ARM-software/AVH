@@ -21,9 +21,9 @@
     color: var(--arm_black);
     width: 100%;
     z-index: 101;
-	font-family: 'Futura PT W01 Medium', 'Lato Light', Lato, Calibri, sans-serif;
+    font-family: 'Futura PT W01 Medium', 'Lato Light', Lato, Calibri, sans-serif;
     font-size: 14px;
-	font-weight: 800;
+    font-weight: 800;
 }
 
 .tabs1 {
@@ -45,30 +45,30 @@
 .tablist li {
     float: left;
     display: table-cell;
-	background-color: var(--arm_light_gray);
-	border-right-style:solid;
-	border-right-width:1px;
-	border-right-color:var(--arm_dark_gray);
+    background-color: var(--arm_light_gray);
+    border-right-style:solid;
+    border-right-width:1px;
+    border-right-color:var(--arm_dark_gray);
     list-style: none;
-	margin:0px;
+    margin:0px;
 }
 
 .tabs1 .tablist li {
     background-color: var(--arm_black);
-	font-weight: 1000;
+    font-weight: 1000;
 }
 
 .tablist a {
     display: block;
-	padding: 0 10px;
-	color: var(--arm_dark_gray);
-	font-weight: 600;
+    padding: 0 10px;
+    color: var(--arm_dark_gray);
+    font-weight: 600;
     outline: none;
 }
 
 .tabs1 .tablist a {
     padding: 3px 20px;
-	color: white;
+    color: white;
     background-color:var(--arm_black);
 }
 
@@ -82,13 +82,13 @@
 }
 
 .tablist a:hover {
-	color: var(--arm_orange);
+    color: var(--arm_orange);
 }
 
 .tabs1 a:hover {
-	color: var(--arm_yellow);
+    color: var(--arm_yellow);
 }
 
 .tablist li.current :hover {
-	color: white;
+    color: white;
 }

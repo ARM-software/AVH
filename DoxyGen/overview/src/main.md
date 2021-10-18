@@ -20,7 +20,7 @@
 Section                                                    | Description
 :----------------------------------------------------------|:--------------------
 [**Overview**](index.html)                                 | Introduces **\prj_name** along with the top-level structure.
-[**Simulation**](../../simulation/html/index.html)         | Explains the **\prj_name** Targets along with the simulation technology and the virtual interfaces.
+[**Simulation**](../../simulation/html/index.html)         | Explains the **\prj_name Targets (VHT)** along with the simulation technology and the virtual interfaces.
 [**Infrastructure**](../../infrastructure/html/index.html) | Describes how to setup development work flows with **\prj_name**.
 [**Examples**](../../examples/html/index.html)             | Guides you through the examples demonstrating how to use **\prj_name**.
 
@@ -81,7 +81,7 @@ Feature                         | Description
 
 The current beta version of of \prj_name has the following known issues:
 
-[**VSI Interface**](../../simulation/html/group__arm__vsi__api.html)
+[**VSI Interface**](../../simulation/html/group__arm__vsi.html)
   - With TrustZone enabled, the DMA of the Cortex-M55 processor does not work in Secure mode in the address ranges of the TCM aliases (0x10000000 ITCM and 0x3000000 DTCM).
 
 # Feedback and Support {#Support}
