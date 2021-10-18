@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['orta_20targets_0',['Orta Targets',['../index.html',1,'']]]
+  ['arm_20virtual_20hardware_20targets_0',['Arm Virtual Hardware Targets',['../index.html',1,'']]]
 ];

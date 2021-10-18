@@ -30,7 +30,7 @@ var NAVTREE =
       [ "Use AMI", "index.html#autotoc_md0", null ]
     ] ],
     [ "Local Tool Installation", "index.html#Local", null ],
-    [ "Run AMI on local computer", "run_ami_local.html", [
+    [ "Run AMI on Local Host", "run_ami_local.html", [
       [ "Launch from Website", "run_ami_local.html#Launch_website", null ],
       [ "Launch trough EC2", "run_ami_local.html#Launch_EC2", null ],
       [ "Connect to the EC2 Instance", "run_ami_local.html#connect", [

@@ -24,20 +24,21 @@
 */
 var NAVTREE =
 [
-  [ "Targets", "index.html", [
-    [ "Orta Targets", "index.html", [
+  [ "Simulation", "index.html", [
+    [ "Arm Virtual Hardware Targets", "index.html", [
       [ "Virtual Interfaces", "index.html#Virtual_Interfaces", null ],
       [ "Physical Hardware", "index.html#Physical_Hardware", null ],
       [ "Development Workflow", "index.html#Development_Workflow", null ],
       [ "Development Challenges", "index.html#Development_Challanges", null ]
     ] ],
+    [ "Using Arm Virtual Hardware Targets", "Using.html", null ],
     [ "Reference", "modules.html", "modules" ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"group__arm__cmvp.html"
+"Using.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>Orta Targets</title>
+<title>Arm Virtual Hardware Targets</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="extra_stylesheet.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="jquery.js"></script>
@@ -59,6 +59,7 @@ var searchBox = new SearchBox("searchBox", "search",'Search','.html');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Usage&#160;and&#160;Description</span></a></li>
       <li><a href="modules.html"><span>Reference</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -110,14 +111,14 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Orta Targets </div></div>
+  <div class="headertitle"><div class="title">Arm Virtual Hardware Targets </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >The <b>Orta Targets</b> provide a functional accurate simulation of an Arm-based SoC and can be automated for scalable deployment in the CI development flow. This virtual platform can be used standalone or with development tools such as <a href="https://developer.arm.com/tools-and-software/embedded/arm-development-studio" target="_blank"><b>Arm Development Studio</b></a> or <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk" target="_blank"><b>Arm Keil MDK</b></a> with debug and trace capabilities supported as well.</p>
-<p >The <b>Orta Targets</b> are based on the Arm Fast Model technology and are extended FVP models that add virtual interfaces for peripheral emulation. In addition <b>Orta</b> provides concepts to re-target applications from simulation models to physical hardware which simplifies to combine unit/integration tests with the final system integration.</p>
+<div class="textblock"><p >The <b>Arm Virtual Hardware Targets</b> provide a functional accurate simulation of an Arm-based SoC and can be automated for scalable deployment in the CI development flow. This virtual platform can be used standalone or with development tools such as <a href="https://developer.arm.com/tools-and-software/embedded/arm-development-studio" target="_blank"><b>Arm Development Studio</b></a> or <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk" target="_blank"><b>Arm Keil MDK</b></a> with debug and trace capabilities supported as well.</p>
+<p >The <b>Arm Virtual Hardware Targets</b> are based on the Arm Fast Model technology and are extended FVP models that add virtual interfaces for peripheral emulation. In addition <b>Arm Virtual Hardware</b> provides concepts to re-target applications from simulation models to physical hardware which simplifies to combine unit/integration tests with the final system integration.</p>
 <h1><a class="anchor" id="Virtual_Interfaces"></a>
 Virtual Interfaces</h1>
-<p >The <b>Orta Targets</b> implement various Virtual Interfaces that can be used to stimulate the application under test.</p>
+<p >The <b>Arm Virtual Hardware Targets</b> implement various Virtual Interfaces that can be used to stimulate the application under test.</p>
 <p ><img src="Virtual_Interfaces.png" alt="" class="inline" title="Arm VHT Virtual Interfaces"/></p>
 <ul>
 <li>The <a class="el" href="group__arm__vio__api.html">Virtual I/O (VIO)</a> interface controls simple I/O such as LED and switches.</li>
@@ -129,7 +130,7 @@ Virtual Interfaces</h1>
 <h1><a class="anchor" id="Physical_Hardware"></a>
 Physical Hardware</h1>
 <p ><a href="https://en.wikipedia.org/wiki/Modular_programming"><b>Modular programming</b></a> recommends to separate the functionality of a program into independent, interchangeable modules that use defined interfaces that abstract the hardware functionality. This design concept simplifies code re-use and allows to implement <b>Virtual Drivers</b> and <b>Hardware Drivers</b> that expose the same API and implement the same logical behavior. If built correctly, it overcomes many issues that are typically found in monolithic software and enables a staged <a href="https://en.wikipedia.org/wiki/Software_testing">software validation</a> with multiple test levels such as unit, integration, and system testing.</p>
-<p >To simplify re-targeting from <b>Orta Targets</b> to final production hardware, the examples implement the concept of software layers. As the next generation tooling will provide native support for program layers, it makes it easy to work on a combination of simulated and physical hardware. The picture below examplifies this concept.</p>
+<p >To simplify re-targeting from <b>Arm Virtual Hardware Targets</b> to final production hardware, the examples implement the concept of software layers. As the next generation tooling will provide native support for program layers, it makes it easy to work on a combination of simulated and physical hardware. The picture below examplifies this concept.</p>
 <p ><img src="Simulation2Hardware.png" alt="" class="inline" title="Arm VHT Re-target to Hardware"/></p>
 <h1><a class="anchor" id="Development_Workflow"></a>
 Development Workflow</h1>
@@ -138,17 +139,17 @@ Development Workflow</h1>
 <p >This workflow mandates that a set of test cases are developed. For test case development and failure analysis, it is currently recommended to use desktop tools such as <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">Keil MDK</a>. However, over time the more flexible <a href="https://www.keil.arm.com/">Keil Studio</a> will enable a hybrid work-style that allows to use cloud-native or desktop development workflows.</p>
 <h1><a class="anchor" id="Development_Challanges"></a>
 Development Challenges</h1>
-<p >Naturally, the <b>Orta Targets</b> cannot simulate the exact behavior of every Arm Cortex processor-based microcontroller that is available today. However, the simulated targets overcome many challenges that users are facing with physical hardware. The <b>Orta Targets</b> make CI/CD economic for embedded applications and enable modern DevOps workflows that benefit from test automation. <br  />
+<p >Naturally, the <b>Arm Virtual Hardware Targets</b> cannot simulate the exact behavior of every Arm Cortex processor-based microcontroller that is available today. However, the simulated targets overcome many challenges that users are facing with physical hardware. The <b>Arm Virtual Hardware Targets</b> make CI/CD economic for embedded applications and enable modern DevOps workflows that benefit from test automation. <br  />
 </p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">Challenge   </th><th class="markdownTableHeadLeft">Solution    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">Over 9000 different Arm based Microcontrollers are available and many have a comprehensive peripheral set along with sophisticated clock and power-down features. Is it possible to simulation bespoke Microcontroller peripherals? Can I validate device-specific drivers?   </td><td class="markdownTableBodyLeft">It is not economic to simulate specific microcontrollers, but with driver abstraction the behavior of software can be analyzed. The device-specific interfaces should be tested on final target hardware, but the more complex high-level software can be verified using Orta.    </td></tr>
+<td class="markdownTableBodyLeft">Over 9000 different Arm based Microcontrollers are available and many have a comprehensive peripheral set along with sophisticated clock and power-down features. Is it possible to simulation bespoke Microcontroller peripherals? Can I validate device-specific drivers?   </td><td class="markdownTableBodyLeft">It is not economic to simulate specific microcontrollers, but with driver abstraction the behavior of software can be analyzed. The device-specific interfaces should be tested on final target hardware, but the more complex high-level software can be verified using Arm Virtual Hardware.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">Arm Fast Models are not timing-accurate and the timing of the memory system is not simulated too. How is it possible to identify timing issues that may appear in final target hardware?   </td><td class="markdownTableBodyLeft">The simulation is not timing accurate but gives still a good approximation that can be validated using <a href="https://www.keil.com/support/man/docs/uv4/uv4_db_dbg_evr_stat.htm"><b>Event Statistics</b></a>. It is recommended to run simulation at lower clock frequency that maps to worst-case timing of final target hardware.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">The <b>Orta Services</b> provide a cloud-native infra-structure for software test and validation. But currently there is no debug possible with this CI/CD system. How are test cases developed and analysed?   </td><td class="markdownTableBodyLeft">Today, desktop tools (for example <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">Keil MDK</a>) are required to develop test cases and debug failures. <a href="./index.html##Development_Workflow">Development Workflow</a> explains this process.    </td></tr>
+<td class="markdownTableBodyLeft">The <b>Arm Virtual Hardware Services</b> provide a cloud-native infra-structure for software test and validation. But currently there is no debug possible with this CI/CD system. How are test cases developed and analysed?   </td><td class="markdownTableBodyLeft">Today, desktop tools (for example <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">Keil MDK</a>) are required to develop test cases and debug failures. <a href="./index.html##Development_Workflow">Development Workflow</a> explains this process.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">The examples for <a class="el" href="group__arm__vsi__api.html">VSI</a> show currently Audio streaming. Is it possible to use this interface also for other data sources?   </td><td class="markdownTableBodyLeft">The <a class="el" href="group__arm__vsi__api.html">VSI</a> is a simple, but flexible interface that connects a generic streaming peripheral with Python for test script automation. It is today possible to develop own data streaming interfaces but we work on more examples that show the potential of this interface.   </td></tr>
 </table>
