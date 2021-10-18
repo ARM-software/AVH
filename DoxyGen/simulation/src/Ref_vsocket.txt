@@ -7,7 +7,7 @@
 \brief IP network connectivity to Host computer 
 \details
 
-The **Virtual Socket Interface (Vsocket)** connects the user application to [**BSD sockets**](https://en.wikipedia.org/wiki/Berkeley_sockets) on the Host computer for IP network connectivity. 
+The **Virtual Socket Interface (VSocket)** connects the user application to [**BSD sockets**](https://en.wikipedia.org/wiki/Berkeley_sockets) on the Host computer for IP network connectivity. 
 
 Its support will become available in future releases according to the <a href="../../overview/html/index.html#Roadmap">Product Roadmap</a>.
 
