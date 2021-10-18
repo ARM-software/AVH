@@ -177,7 +177,7 @@ Functions</h2></td></tr>
 <tr class="separator:ga5d9c0749586bd5c75db54d92fa28049d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
-<p >The VSI implements general purpose peripheral registers, a timer peripheral, and a DMA peripheral. The peripheral is accessed using the <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure definition in arm_vsi.h</p>
+<p >The VSI implements general purpose peripheral registers, interrupt control, a timer peripheral, and a DMA peripheral. The peripheral is accessed using the <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure definition in arm_vsi.h</p>
 <p >Several implementations of the audio driver available with the common audio driver API used:</p><ul>
 <li>for the <a class="el" href="group__arm__vsi__api.html">VSI</a> with an interface to a Python test script that streams *.wav files.</li>
 <li>for NXP IMXRT1064 and IMXRT1050 evaluation boards that use microphone as audio input.</li>
@@ -364,7 +364,8 @@ reserved: 30</td>
       </table>
 </div><div class="memdoc">
 <p >The function <b>AudioDrv_Configure</b> configures audio interface according to specified arguments.</p>
-<p ><em>interface</em> configures the audio interface either for input (<a class="el" href="group__audio__drv__interface.html#gabc3aa9d4319a122dcb68f08bf2d1d8ab">AUDIO_DRV_INTERFACE_RX</a>) or output (<a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a>). <em>channels</em>, <em>sample_bits</em>, <em>sample_rate</em> define configuration parameters.</p>
+<p ><em>interface</em> configures the audio interface either for input (<a class="el" href="group__audio__drv__interface.html#gabc3aa9d4319a122dcb68f08bf2d1d8ab">AUDIO_DRV_INTERFACE_RX</a>) or output (<a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a>).</p>
+<p ><em>channels</em>, <em>sample_bits</em>, <em>sample_rate</em> define configuration parameters.</p>
 <p >Possible return values:</p><ul>
 <li><a class="el" href="group__audio__drv__errors.html#gac12cb06a8d6cfc11afb624b3880e1044">AUDIO_DRV_OK</a> : configuration completed successfully.</li>
 <li><a class="el" href="group__audio__drv__errors.html#gae491b5a2b45c6f067d727efa16ab0cd6">AUDIO_DRV_ERROR_PARAMETER</a> : invalid argument values. Returned in the following cases:<ul>
@@ -474,13 +475,13 @@ reserved: 30</td>
 <tr>
 <th>Parameter <em>control</em> </th><th>Bit </th><th>Description  </th></tr>
 <tr>
-<td><a class="el" href="group__audio__drv__control.html#ga19fd4bec18bcaa695ce70e60785346fa">AUDIO_DRV_CONTROL_TX_ENABLE</a>  </td><td>1  </td><td>Enable transmit operation. </td></tr>
+<td><a class="el" href="group__audio__drv__control.html#ga19fd4bec18bcaa695ce70e60785346fa">AUDIO_DRV_CONTROL_TX_ENABLE</a>. When executed, a timer is configured that periodically sends event to python interface for delivering the audio data. </td><td>0  </td><td>Enable transmit operation. </td></tr>
 <tr>
-<td><a class="el" href="group__audio__drv__control.html#gaf6f490a2e326fe5db6a2ae3d3ff90d08">AUDIO_DRV_CONTROL_RX_ENABLE</a>. When executed, a timer is configured that periodically sends event to python interface for delivering the audio data. </td><td>2  </td><td>Enable receive operation. When executed, a timer is configured that periodically sends event to python interface for retrieving the audio data. </td></tr>
+<td><a class="el" href="group__audio__drv__control.html#gaf6f490a2e326fe5db6a2ae3d3ff90d08">AUDIO_DRV_CONTROL_RX_ENABLE</a>. When executed, a timer is configured that periodically sends event to python interface for delivering the audio data. </td><td>1  </td><td>Enable receive operation. When executed, a timer is configured that periodically sends event to python interface for retrieving the audio data. </td></tr>
 <tr>
-<td><a class="el" href="group__audio__drv__control.html#ga1c054890d0d31601c71ede31ae8d9f7c">AUDIO_DRV_CONTROL_TX_DISABLE</a>  </td><td>3  </td><td>Disable transmit operation. </td></tr>
+<td><a class="el" href="group__audio__drv__control.html#ga1c054890d0d31601c71ede31ae8d9f7c">AUDIO_DRV_CONTROL_TX_DISABLE</a>  </td><td>2  </td><td>Disable transmit operation. </td></tr>
 <tr>
-<td><a class="el" href="group__audio__drv__control.html#gaf2030e115e7ab830c9524d64ca46fafc">AUDIO_DRV_CONTROL_RX_DISABLE</a>  </td><td>4  </td><td>Disable receive operation. </td></tr>
+<td><a class="el" href="group__audio__drv__control.html#gaf2030e115e7ab830c9524d64ca46fafc">AUDIO_DRV_CONTROL_RX_DISABLE</a>  </td><td>3  </td><td>Disable receive operation. </td></tr>
 </table>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

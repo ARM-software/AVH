@@ -148,7 +148,7 @@ Data Structures</h2></td></tr>
 <ul>
 <li><b>Regs</b> is array of registers that allows to implement peripheral specific operations.</li>
 <li><b>Timer</b> accesses a counting timer peripheral with 1MHz input clock that generates interrupts.</li>
-<li><b>DMA</b> is a virtual DMA controller copies data to/from the 32KB data buffer to other Cortex-M memory.</li>
+<li><b>DMA</b> is a virtual DMA controller which copies data from/to peripheral to/from memory.</li>
 <li><b>IRQ</b> is a group of registers that can enable and set/clear interrupt requests.</li>
 </ul>
 <p >The <b>Timer</b> peripheral has the following registers:</p><ul>
@@ -160,7 +160,7 @@ Data Structures</h2></td></tr>
 </ul>
 </li>
 <li><b>Interval</b> value in microseconds for timer overflows</li>
-<li><b>Count</b> timer overflow counter, incremented when the time interval elapses.</li>
+<li><b>Count</b> timer overflow counter, incremented when the time interval elapses and reset to 0 when timer starts.</li>
 </ul>
 <p >The <b>DMA</b> peripheral has the following registers:</p><ul>
 <li><b>Control</b> the operation of the DMA with the following control bits:<ul>
@@ -171,7 +171,7 @@ Data Structures</h2></td></tr>
 <li><b>Address</b> start address of the memory region</li>
 <li><b>BlockSize</b> number of bytes for each DMA transfer.</li>
 <li><b>BlockNum</b> number of blocks before the memory buffer rotates, next DMA transfer uses start address.</li>
-<li><b>BlockIndex</b> counts the total number of blocks transferred. It gets set to 0 when buffer rotates. </li>
+<li><b>BlockIndex</b> counts the total number of blocks transferred. It gets set to 0 when DMA is enabled and also when buffer rotates. </li>
 </ul>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
