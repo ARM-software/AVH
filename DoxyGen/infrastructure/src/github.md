@@ -25,7 +25,6 @@ Once this steps are completed, any commit or pull request to the repository shou
   
 ## Setup AWS EC2 Instance {#setup_AWS}
 
-
  - Subscribe to the [AWS Marketplace: \prj_name](https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g)
  - What are the steps to configure/setup the \prj_name?
 
