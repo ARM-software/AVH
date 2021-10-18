@@ -173,7 +173,7 @@ Data Structures</h2></td></tr>
 <div class="line">  uint32_t reserved3[59];</div>
 <div class="line">  __IOM uint32_t Regs[64];      /*!&lt; Offset: 0x0300 (R/W) User Registers */</div>
 <div class="line">} ARM_VSI_Type;</div>
-</div><!-- fragment --><p >The <a class="el" href="group__arm__vsi__api.html#a891c9036e6872ed134c185addd341b24">ARM_VSI_Type::IRQ</a> peripheral simulates an interrupt request. ARM_VSI_Type.IRQ.Set and <b>Clear</b> parameters have only write access and are used for triggering and clearing the interrupt. <b>Status</b> field indicates the interrupt state.</p>
+</div><!-- fragment --><p >The <a class="el" href="group__arm__vsi__api.html#a891c9036e6872ed134c185addd341b24">ARM_VSI_Type::IRQ</a> peripheral simulates an interrupt request. <b>Set</b> and <b>Clear</b> parameters have only write access and are used for triggering and clearing the interrupt. <b>Status</b> field indicates the interrupt state.</p>
 <p >The <a class="el" href="group__arm__vsi__api.html#a6e0035edd58cc6ca8c94b5f9723a0d80">ARM_VSI_Type::Timer</a> peripheral is a simple counting timer with a 1MHz input frequency based on the time domain of the Arm Fast Model instruction set simulator. The <b>Count</b> value increments when the <b>Interval</b> value elapses.</p>
 <p >The <a class="el" href="group__arm__vsi__api.html#a2adfebde5b46a4adc0318f5077f03c6d">ARM_VSI_Type::DMA</a> controller accesses a rotating memory buffer as shown in the diagram below. Each block transfer increments the <b>BlockIndex</b> value (restarts when the buffer rotates).</p>
 <div class="image">
