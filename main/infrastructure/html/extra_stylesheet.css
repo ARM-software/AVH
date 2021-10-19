@@ -981,24 +981,24 @@ table.fieldtable {
 /* @group Markdown */
 
 table.markdownTable {
-	border-collapse:collapse;
-    margin-top: 4px;
-    margin-bottom: 4px;
+        border-collapse:collapse;
+        margin-top: 4px;
+        margin-bottom: 4px;
 }
 
 table.markdownTable td, table.markdownTable th {
-	border: 1px solid var(--arm_light_gray);
-	padding: 7px 10px 5px;
-	text-align:left;
+       border: 1px solid var(--arm_light_gray);
+       padding: 7px 10px 5px;
+       text-align:left;
 }
 
 table.markdownTable th {
-	background-color: var(--arm_blue);
-	color: white;
+       background-color: var(--arm_blue);
+       color: white;
 }
 
 table.markdownTable tr:nth-child(even) {
-	background-color: var(--arm_light_gray3);
+       background-color: var(--arm_light_gray3);
 }
 
 /* @end */
