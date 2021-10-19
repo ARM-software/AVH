@@ -1,6 +1,8 @@
 var NAVTREEINDEX0 =
 {
 "Using.html":[1],
+"Using.html#Example":[1,1],
+"Using.html#Options":[1,0],
 "group__arm__cmvp.html":[2,0],
 "group__arm__vio.html":[2,0,0],
 "group__arm__vsi.html":[2,0,1],

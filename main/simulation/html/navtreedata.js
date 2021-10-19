@@ -31,7 +31,10 @@ var NAVTREE =
       [ "Development Workflow", "index.html#Development_Workflow", null ],
       [ "Development Challenges", "index.html#Development_Challanges", null ]
     ] ],
-    [ "Using Arm Virtual Hardware Targets", "Using.html", null ],
+    [ "Using Arm Virtual Hardware Targets", "Using.html", [
+      [ "Command Line Options", "Using.html#Options", null ],
+      [ "Usage Example", "Using.html#Example", null ]
+    ] ],
     [ "Reference", "modules.html", "modules" ]
   ] ]
 ];
