@@ -1279,7 +1279,8 @@ HTML_EXTRA_FILES       = ../Doxygen_Templates/tabs.css \
                          ../Doxygen_Templates/search.css \
                          ../Doxygen_Templates/navtree.css \
                          ../Doxygen_Templates/tab_b.png \
-                         ../Doxygen_Templates/printComponentTabs.js
+                         ../Doxygen_Templates/printComponentTabs.js \
+                         ../Doxygen_Templates/navtree.js
 
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. Doxygen
 # will adjust the colors in the style sheet and background images according to
@@ -1551,7 +1552,7 @@ ECLIPSE_DOC_ID         = org.doxygen.Project
 # The default value is: NO.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-DISABLE_INDEX          = NO
+DISABLE_INDEX          = YES
 
 # The GENERATE_TREEVIEW tag is used to specify whether a tree-like index
 # structure should be generated to display hierarchical information. If the tag
