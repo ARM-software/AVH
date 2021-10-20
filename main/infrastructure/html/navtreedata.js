@@ -48,9 +48,13 @@ var NAVTREE =
         [ "Add GitHub Action", "run_ami_github.html#add_action", null ],
         [ "Test GitHub Action", "run_ami_github.html#autotoc_md8", null ]
       ] ],
-      [ "GitHub-hosted Runners", "run_ami_github.html#GitHub_hosted", null ],
-      [ "Configure the Arm VHT AMI", "run_ami_github.html#autotoc_md9", [
-        [ "Usage", "run_ami_github.html#autotoc_md10", null ]
+      [ "GitHub-hosted Runners", "run_ami_github.html#GitHub_hosted", [
+        [ "AWS Account Setup", "run_ami_github.html#autotoc_md9", [
+          [ "Create PassRole policy for VHT-AMI", "run_ami_github.html#autotoc_md10", null ],
+          [ "Create Identity and Access Management (IAM) User", "run_ami_github.html#autotoc_md11", null ],
+          [ "Create an IAM Role For EC2 Services", "run_ami_github.html#autotoc_md12", null ]
+        ] ],
+        [ "Usage", "run_ami_github.html#autotoc_md13", null ]
       ] ]
     ] ],
     [ "Run with MDK-Professional", "run_mdk_pro.html", null ],

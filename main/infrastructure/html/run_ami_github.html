@@ -193,29 +193,46 @@ GitHub-hosted Runners</h1>
 <p ><img src="vht_action.png" alt="" class="inline" title="VHT GitHub action"/></p>
 <p >The VHT-AMI action receives a *.tar input file (vht_in) that contains the vht.yml control file. The vht.yml is the run control commands for the AMI and defines the execution of build scripts or test runs. Once the AMI run control commands are complete the results are returned as *.tar file to the GitHub runner.</p>
 <p >The file <a href="https://github.com/ARM-software/VHT-AMI/blob/master/action.yml">action.yml</a> defines the parameters for the GitHub action.</p>
-<h1><a class="anchor" id="autotoc_md9"></a>
-Configure the Arm VHT AMI</h1>
-<p >The next few steps are required to install the agent and configure a dedicated SSH access for file transfers on the AMI instance.</p>
-<ol type="1">
-<li><b>Create IAM role:</b> Access the AWS console and select <b>IAM</b> from the selection of services. Go to <b>Users</b> and <b>Add users</b></li>
-<li>Choose an name for your new user and allow <b>Programmatic access</b> <img src="IAM1.PNG" alt="" class="inline" title="IAM Add Users"/></li>
-<li>Add a permission group and add the policies for <em>AmazonEC2FullAccess</em> and <em>AmazonSSMFullAccess</em> <img src="IAM2.PNG" alt="" class="inline" title="IAM Add Users"/></li>
-<li>Select the newly created group and continue. <img src="IAM3.PNG" alt="" class="inline" title="IAM Add Users"/></li>
-<li>Continue with default settings through the rest of the steps.</li>
-<li>Connect to the instance via SSH console and enter following commands:<ul>
-<li>cd /home/ubuntu</li>
-<li>mkdir vhtwork &amp;&amp; mkdir vhtagent</li>
-<li>cd vhtengine</li>
-<li>wget <a href="https://github.com/ARM-software/VHT-AMI/blob/master/agent/process_vht.py">https://github.com/ARM-software/VHT-AMI/blob/master/agent/process_vht.py</a></li>
-<li>ssh-keygen -t rsa -b 2048 -f github.pem -N ""</li>
-<li>cat github.pem.pub &gt;&gt; ~/.ssh/authorized_keys</li>
+<h2><a class="anchor" id="autotoc_md9"></a>
+AWS Account Setup</h2>
+<p >The following AWS account requirements are needed to run VHT-AMI action.</p>
+<h3><a class="anchor" id="autotoc_md10"></a>
+Create PassRole policy for VHT-AMI</h3>
+<p >You need to create a PassRole IAM policy to be attached to our IAM User with the following content. You can name it <code>vht-passrole</code>. </p><div class="fragment"><div class="line">{</div>
+<div class="line">    &quot;Version&quot;: &quot;2012-10-17&quot;,</div>
+<div class="line">    &quot;Statement&quot;: [</div>
+<div class="line">        {</div>
+<div class="line">            &quot;Effect&quot;: &quot;Allow&quot;,</div>
+<div class="line">            &quot;Action&quot;: &quot;iam:PassRole&quot;,</div>
+<div class="line">            &quot;Resource&quot;: &quot;*&quot;</div>
+<div class="line">        }</div>
+<div class="line">    ]</div>
+<div class="line">}</div>
+</div><!-- fragment --><p >More info: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html">Create IAM Policy</a></p>
+<h3><a class="anchor" id="autotoc_md11"></a>
+Create Identity and Access Management (IAM) User</h3>
+<p >You have to create an IAM User to limit resource permission to your CI. In addition, the IAM User provides fixed <code>AWS Access Key Id</code> and <code>AWS Secret access key</code> values. For this user, you have to add the following <code>policies</code>:</p><ul>
+<li>vht-passrole (created before)</li>
+<li>AmazonEC2FullAccess (AWS managed policy --&gt; It already exists in your account)</li>
+<li>AmazonS3FullAccess (AWS managed policy --&gt; It already exists in your account)</li>
+<li>AmazonSSMFullAccess (AWS managed policy --&gt; It already exists in your account)</li>
 </ul>
-</li>
-<li>Create an instance profile as documented on <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-instance-profile.html">https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-instance-profile.html</a></li>
-<li>Add the secrets as documented in the Usage section. <img src="./images/GHSecrets.png" alt="GHSecrets" title="Github Secrets" class="inline"/></li>
-<li>Add vht.yml to your repository, at the location specified by avt_in.</li>
-</ol>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<p >You also need to add the following <code>Permission boundary</code>:</p><ul>
+<li>PowerUserAccess</li>
+</ul>
+<p >The user can be called <code>vht</code>.</p>
+<p >More info: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html">Create IAM User</a></p>
+<h3><a class="anchor" id="autotoc_md12"></a>
+Create an IAM Role For EC2 Services</h3>
+<p >You have to create IAM Role to be attached to the EC2 Instances. This role gives EC2 Instances access to S3 buckets and SSM services. For this role, you have to add the following <code>policies</code>:</p><ul>
+<li>AmazonS3FullAccess</li>
+<li>AmazonSSMFullAccess</li>
+</ul>
+<p >You also need to add the following <code>Permission boundary</code>:</p><ul>
+<li>PowerUserAccess</li>
+</ul>
+<p >More info: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html">Create IAM Role For Service</a></p>
+<h2><a class="anchor" id="autotoc_md13"></a>
 Usage</h2>
 <p >You can now consume the action by referencing the v1 branch</p>
 <div class="fragment"><div class="line">uses: Arm-Software/VHT-AMI@v1</div>
