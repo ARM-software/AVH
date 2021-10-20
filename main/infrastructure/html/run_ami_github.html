@@ -114,18 +114,18 @@ $(document).ready(function(){initNavTree('run_ami_github.html',''); initResizabl
 <p >The approach that you should choose depends on your CI/CD requirements.</p>
 <h1><a class="anchor" id="self_hosted"></a>
 Self-hosted GitHub Runners</h1>
-<p >The following steps explain how to use <b>self-hosted GitHub runners</b> with <a href="https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g">AWS Marketplace: Arm Virtual Hardware</a>.</p>
+<p >The following steps explain how to use <b>self-hosted GitHub runners</b> with <a href="https://aws.amazon.com/marketplace/search/results?searchTerms=Arm+Virtual+Hardware">AWS Marketplace: Arm Virtual Hardware</a>.</p>
 <ol type="1">
-<li><a href="#setup_AWS"><b>Setup AWS EC2 Instance</b></a> and obtain the <em>access information</em>.</li>
-<li><a href="#add_secrets"><b>Add GitHub Secrets</b></a> with the <em>access information</em> to your GitHub repository with gives access to the AWS EC2 instance.</li>
-<li><a href="#add_action"><b>Add GitHub Action</b></a> to your GitHub repository and configure it for your requirements.</li>
+<li><a href="#self-hosted1"><b>Configure GitHub Actions</b></a> and obtain the <em>download</em> and <em>configuration</em> scripts.</li>
+<li><a href="#self-hosted2"><b>Start AMI Console</b></a> and copy the <em>download</em> and <em>configuration</em> scripts.</li>
+<li><a href="#self-hosted3"><b>Setup runner on AMI</b></a> to your GitHub repository and configure it for your requirements.</li>
 <li><a href="#test_action"><b>Test GitHub Action</b></a> to verify that it performs as expected.</li>
 </ol>
 <p >Once this steps are completed, any commit or pull request to the repository should trigger the <em>CI</em> workflow that you have defined.</p>
 <h2><a class="anchor" id="setup_AWS"></a>
 Setup AWS EC2 Instance</h2>
 <ul>
-<li>Subscribe to the <a href="https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g">AWS Marketplace: Arm Virtual Hardware</a></li>
+<li>Subscribe to the <a href="https://aws.amazon.com/marketplace/search/results?searchTerms=Arm+Virtual+Hardware">AWS Marketplace: Arm Virtual Hardware</a></li>
 <li>What are the steps to configure/setup the Arm Virtual Hardware?</li>
 </ul>
 <h2><a class="anchor" id="add_secrets"></a>
