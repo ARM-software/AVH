@@ -6,7 +6,7 @@
 The VSI implements general purpose peripheral registers, interrupt control, a timer peripheral, and a DMA peripheral.
 The peripheral is accessed using the \ref ARM_VSI_Type structure definition in [arm_vsi.h](https://github.com/ARM-software/VHT/blob/main/interface/include/arm_vsi.h)
 
-Several implementations of the audio driver available with the common audio driver API used:
+Several implementations of the audio driver **with the same common audio driver API** are available. This allows to re-target an application from Arm Virtual Hardware to physical devices while implementing the same logical behavior:
   - for the \ref arm_vsi_api "VSI" with an interface to a Python test script that streams *.wav files.
   - for NXP IMXRT1064 and IMXRT1050 evaluation boards that use microphone as audio input.
 

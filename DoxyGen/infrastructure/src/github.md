@@ -11,13 +11,11 @@ The approach that you should choose depends on your CI/CD requirements.
 
 # Self-hosted GitHub Runners {#self_hosted}
 
-\todo fix final AWS links
+The following steps explain how to use **self-hosted GitHub runners** with [AWS Marketplace: \prj_name](https://aws.amazon.com/marketplace/search/results?searchTerms=Arm+Virtual+Hardware).
 
-The following steps explain how to use **self-hosted GitHub runners** with [AWS Marketplace: \prj_name](https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g).
-
-  1. [**Setup AWS EC2 Instance**](#setup_AWS) and obtain the *access information*.
-  2. [**Add GitHub Secrets**](#add_secrets) with the *access information* to your GitHub repository with gives access to the AWS EC2 instance.
-  3. [**Add GitHub Action**](#add_action) to your GitHub repository and configure it for your requirements.
+  1. [**Configure GitHub Actions**](#self-hosted1) and obtain the *download* and *configuration* scripts.
+  2. [**Start AMI Console**](#self-hosted2) and copy the *download* and *configuration* scripts.
+  3. [**Setup runner on AMI**](#self-hosted3) to your GitHub repository and configure it for your requirements.
   4. [**Test GitHub Action**](#test_action) to verify that it performs as expected.
   
 Once this steps are completed, any commit or pull request to the repository should trigger the *CI* workflow that you have defined.
@@ -25,7 +23,7 @@ Once this steps are completed, any commit or pull request to the repository shou
   
 ## Setup AWS EC2 Instance {#setup_AWS}
 
- - Subscribe to the [AWS Marketplace: \prj_name](https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g)
+ - Subscribe to the [AWS Marketplace: \prj_name](https://aws.amazon.com/marketplace/search/results?searchTerms=Arm+Virtual+Hardware)
  - What are the steps to configure/setup the \prj_name?
 
 ## Add GitHub Secrets {#add_secrets}

@@ -17,7 +17,7 @@ The following AWS tutorials help you to get started:
 ### Subscribe \prj_name {#Subscribe}
 
 Before you can use the **AMI with \prj_name Targets** you should have a AWS account.  The following steps describe how to subscribe to the AWS Service for \prj_name:
-  - Open [AWS Marketplace](https://aws.amazon.com/marketplace) and search for **\prj_name**. 
+  - Open [AWS Marketplace](https://aws.amazon.com/marketplace/search/results?x=24&y=20&searchTerms=Arm+Virtual+Hardware) and search for **\prj_name**. 
   - Click on **\prj_name** to open the product page.
   - Click on **Continue to Subscribe** to active the product.
   - Click on **Configure this software** and select the parameters. Note that this page gives you access to the **Ami Id**.
