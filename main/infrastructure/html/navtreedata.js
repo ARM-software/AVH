@@ -58,13 +58,13 @@ var NAVTREE =
       ] ]
     ] ],
     [ "Run with MDK-Professional", "run_mdk_pro.html", null ],
-    [ "AVH CLI Script", "md_src_avh_doc.html", [
-      [ "Requirements", "md_src_avh_doc.html#autotoc_md2", null ],
-      [ "Usage", "md_src_avh_doc.html#autotoc_md3", null ],
-      [ "Usage examples", "md_src_avh_doc.html#autotoc_md4", [
-        [ "Instance start wihout specifying any key", "md_src_avh_doc.html#autotoc_md5", null ],
-        [ "Connecting to the instance", "md_src_avh_doc.html#autotoc_md6", null ],
-        [ "Instance stop", "md_src_avh_doc.html#autotoc_md7", null ]
+    [ "VHT CLI Script", "md_src_vht_doc.html", [
+      [ "Requirements", "md_src_vht_doc.html#autotoc_md2", null ],
+      [ "Usage", "md_src_vht_doc.html#autotoc_md3", null ],
+      [ "Usage examples", "md_src_vht_doc.html#autotoc_md4", [
+        [ "Instance start wihout specifying any key", "md_src_vht_doc.html#autotoc_md5", null ],
+        [ "Connecting to the instance", "md_src_vht_doc.html#autotoc_md6", null ],
+        [ "Instance stop", "md_src_vht_doc.html#autotoc_md7", null ]
       ] ]
     ] ]
   ] ]
