@@ -40,15 +40,15 @@ The content of the *fvp_config.txt* could be:
 # Parameters:
 # instance.parameter=value       #(type, mode) default = 'def value' : description : [min..max]
 #------------------------------------------------------------------------------
-cpu_core.core_clk.mul=32000000                                 # (int   , init-time) default = '0x17d7840' : Clock Rate Multiplier. This parameter is not exposed via CADI and can only be set in LISA
-cpu_core.mps3_board.telnetterminal0.start_telnet=0             # (bool  , init-time) default = '1'      : Start telnet if nothing connected
-cpu_core.mps3_board.uart0.out_file=-                           # (string, init-time) default = ''       : Output file to hold data written by the UART (use '-' to send all output to stdout)
-cpu_core.mps3_board.visualisation.disable-visualisation=1      # (bool  , init-time) default = '0'      : Enable/disable visualisation
+core_clk.mul=32000000                                 # (int   , init-time) default = '0x17d7840' : Clock Rate Multiplier. This parameter is not exposed via CADI and can only be set in LISA
+mps3_board.telnetterminal0.start_telnet=0             # (bool  , init-time) default = '1'      : Start telnet if nothing connected
+mps3_board.uart0.out_file=-                           # (string, init-time) default = ''       : Output file to hold data written by the UART (use '-' to send all output to stdout)
+mps3_board.visualisation.disable-visualisation=1      # (bool  , init-time) default = '0'      : Enable/disable visualisation
 #------------------------------------------------------------------------------
 ```
 
 Where:
- - **cpu_core.core_clk.mul=32000000** specifies the virtual time, in this case 32MHz CPU clock.
- - **cpu_core.mps3_board.telnetterminal0.start_telnet=0** disables the Telnet connectivity.
- - **cpu_core.mps3_board.uart0.out_file=-** UART output is send to stdout.
- - **cpu_core.mps3_board.visualisation.disable-visualisation=1** disables the graphical user interface of the FVP.
+ - **core_clk.mul=32000000** specifies the virtual time, in this case 32MHz CPU clock.
+ - **mps3_board.telnetterminal0.start_telnet=0** disables the Telnet connectivity.
+ - **mps3_board.uart0.out_file=-** UART output is send to stdout.
+ - **mps3_board.visualisation.disable-visualisation=1** disables the graphical user interface of the FVP.
