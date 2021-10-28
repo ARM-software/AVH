@@ -241,11 +241,15 @@ Usage</h2>
 <div class="line">  instance_id: ${{ secrets.AWS_INSTANCE_ID }}</div>
 <div class="line">  access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}</div>
 <div class="line">  secret_key_id: ${{ secrets.AWS_SECRET_KEY }}</div>
+<div class="line">  aws_region: &quot;eu-west-1&quot;</div>
+<div class="line">  s3_bucket_name: my_bucket</div>
 </div><!-- fragment --><p ><b>Where</b></p>
 <ul>
 <li><em>secrets.AWS_INSTANCE_ID</em> is the instance ID of the AMI stored as GitHub secret.</li>
 <li><em>secrets.AWS_ACCESS_KEY_ID</em> is the access key to AMI stored as GitHub secret.</li>
 <li><em>secrets.AWS_SECRET_KEY</em> is the secret key to AMI stored as GitHub secret.</li>
+<li>aws_region: name of the region your EC2 and S3 instances are located</li>
+<li>s3_bucket_name: for temporary storage an S3 bucket is used</li>
 </ul>
 <p >Refer to <a href="https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository">Creating encrypted secrets for a repository</a> for storing the AMI access information. </p>
 </div></div><!-- contents -->
