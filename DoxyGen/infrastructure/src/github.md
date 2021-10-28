@@ -166,6 +166,8 @@ with:
   instance_id: ${{ secrets.AWS_INSTANCE_ID }}
   access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
   secret_key_id: ${{ secrets.AWS_SECRET_KEY }}
+  aws_region: "eu-west-1"
+  s3_bucket_name: my_bucket
 ```
 
 **Where**
@@ -175,6 +177,10 @@ with:
  - *secrets.AWS_ACCESS_KEY_ID* is the access key to AMI stored as GitHub secret.
 
  - *secrets.AWS_SECRET_KEY* is the secret key to AMI stored as GitHub secret.
+
+ - aws_region: name of the region your EC2 and S3 instances are located
+
+ - s3_bucket_name: for temporary storage an S3 bucket is used
 
 Refer to [Creating encrypted secrets for a repository](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for storing the AMI access information.
 
