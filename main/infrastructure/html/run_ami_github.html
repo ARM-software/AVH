@@ -116,89 +116,94 @@ $(document).ready(function(){initNavTree('run_ami_github.html',''); initResizabl
 Self-hosted GitHub Runners</h1>
 <p >The following steps explain how to use <b>self-hosted GitHub runners</b> with <a href="https://aws.amazon.com/marketplace/search/results?searchTerms=Arm+Virtual+Hardware">AWS Marketplace: Arm Virtual Hardware</a>.</p>
 <ol type="1">
-<li><a href="#self-hosted1"><b>Configure GitHub Actions</b></a> and obtain the <em>download</em> and <em>configuration</em> scripts.</li>
-<li><a href="#self-hosted2"><b>Start AMI Console</b></a> and copy the <em>download</em> and <em>configuration</em> scripts.</li>
-<li><a href="#self-hosted3"><b>Setup runner on AMI</b></a> to your GitHub repository and configure it for your requirements.</li>
-<li><a href="#test_action"><b>Test GitHub Action</b></a> to verify that it performs as expected.</li>
+<li><a href="#self-hosted1"><b>Setup Github</b></a> to obtain a control point for your runner.</li>
+<li><a href="#self-hosted2"><b>Setup AWS EC2 Instance</b></a>, install and connect the runner agent.</li>
+<li><a href="#self-hosted3"><b>Add github actions</b></a> to your GitHub repository and configure it for your requirements.</li>
 </ol>
-<p >Once this steps are completed, any commit or pull request to the repository should trigger the <em>CI</em> workflow that you have defined.</p>
-<h2><a class="anchor" id="setup_AWS"></a>
+<h2><a class="anchor" id="self-hosted1"></a>
+Setup Github</h2>
+<p >From your github repository on github.com, go to Settings &gt; Actions &gt; Runners &gt; New self-hosted runner. Make sure you have selected "Operating System: Linux x86" and follow the instructions of <a href="#self-hosted2">Setup AWS EC2 Instance</a>.</p>
+<h2><a class="anchor" id="self-hosted2"></a>
 Setup AWS EC2 Instance</h2>
-<ul>
-<li>Subscribe to the <a href="https://aws.amazon.com/marketplace/search/results?searchTerms=Arm+Virtual+Hardware">AWS Marketplace: Arm Virtual Hardware</a></li>
-<li>What are the steps to configure/setup the Arm Virtual Hardware?</li>
-</ul>
-<h2><a class="anchor" id="add_secrets"></a>
-Add GitHub Secrets</h2>
-<ul>
-<li>What/how to setup secrets?</li>
-</ul>
-<h2><a class="anchor" id="add_action"></a>
-Add GitHub Action</h2>
-<ul>
-<li>How is the EC2 instance started/stopped? What effect to charging has this?</li>
-<li>What are the steps to add the GitHub action?</li>
-</ul>
-<div class="fragment"><div class="line"># This is a sample workflow for projects that use CMSIS-Build</div>
-<div class="line"> </div>
-<div class="line">name: Arm Virtual Hardware example</div>
-<div class="line"> </div>
-<div class="line">on:</div>
-<div class="line">  push:</div>
-<div class="line">    branches: [ main ]</div>
-<div class="line">  pull_request:</div>
-<div class="line">    branches: [ main ]</div>
-<div class="line"> </div>
-<div class="line"># To allow you to run this workflow manually from the GitHub Actions tab add</div>
-<div class="line">  workflow_dispatch:</div>
-<div class="line"> </div>
-<div class="line">jobs:</div>
-<div class="line">  ci_demonstration:</div>
-<div class="line">    runs-on: self-hosted</div>
-<div class="line">    env:</div>
-<div class="line">      working-directory: ${{ github.workspace }}/Platform_FVP_Corstone_SSE-300_Ethos-U55/</div>
-<div class="line">    steps:</div>
-<div class="line">      - name: Check out repository code</div>
-<div class="line">        uses: actions/checkout@v2</div>
-<div class="line"> </div>
-<div class="line">      - name: What has been cloned?</div>
-<div class="line">        run: echo &quot;${{ github.repository }} has been cloned.&quot;</div>
-<div class="line"> </div>
-<div class="line">      - name: Get dependencies</div>
-<div class="line">        run: cp_install.sh packlist</div>
-<div class="line">        working-directory: ${{env.working-directory}}</div>
-<div class="line"> </div>
-<div class="line">      - name: Build the micro_speech example</div>
-<div class="line">        run: cbuild.sh microspeech.Example.cprj</div>
-<div class="line">        working-directory: ${{env.working-directory}}</div>
-<div class="line"> </div>
-<div class="line">      - name: Run the micro_speech example</div>
-<div class="line">        run: ./run_example.sh</div>
-<div class="line">        working-directory: ${{env.working-directory}}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md8"></a>
-Test GitHub Action</h2>
-<p >Once this GitHub action is deployed, it may be manually tested.</p>
-<p >Describe the steps, i.e to start <a href="https://github.com/MDK-Packs/VHT-TFLmicrospeech/actions">https://github.com/MDK-Packs/VHT-TFLmicrospeech/actions</a></p>
-<h1><a class="anchor" id="GitHub_hosted"></a>
-GitHub-hosted Runners</h1>
-<p >The following steps explain how to use <b>GitHub-hosted runners</b> with <a href="https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g">AWS Marketplace: Arm Virtual Hardware</a>.</p>
+<p >Before you start with the following steps, make sure you created an EC2 instance on your AWS account. For instructions, see: <a href="https://arm-software.github.io/VHT/main/infrastructure/html/run_ami_local.html#Launch_EC2">Launch through EC2</a>.</p>
 <ol type="1">
-<li><a href="#setup_AWS"><b>Setup AWS EC2 Instance</b></a> and obtain the <em>access information</em>.</li>
-<li><a href="#add_secrets"><b>Add GitHub Secrets</b></a> with the <em>access information</em> to your GitHub repository with gives access to the AWS EC2 instance.</li>
-<li><a href="#add_action"><b>Add GitHub Action</b></a> to your GitHub repository and configure it for your requirements.</li>
-<li><a href="#test_action"><b>Test GitHub Action</b></a> to verify that it performs as expected.</li>
+<li>Open an SSH connection as described on: <a href="https://arm-software.github.io/VHT/main/infrastructure/html/run_ami_local.html#connect">Connect to the EC2 instance</a></li>
 </ol>
-<p >Once this steps are completed, any commit or pull request to the repository should trigger the <em>CI</em> workflow that you have defined.</p>
-<p >An <a class="el" href="index.html#AWS">Amazon Machine Image (AMI)</a> provides a complete tool installation that can be integrated with GitHub Actions. To simplify integration the <a href="https://github.com/ARM-software/VHT-AMI">Arm Arm Virtual Hardware - GitHub Action</a> can be integrated into GitHub jobs. This action manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an <a class="el" href="index.html#AWS">Arm VHT AMI</a>.</p>
-<p ><img src="vht_action.png" alt="" class="inline" title="VHT GitHub action"/></p>
-<p >The VHT-AMI action receives a *.tar input file (vht_in) that contains the vht.yml control file. The vht.yml is the run control commands for the AMI and defines the execution of build scripts or test runs. Once the AMI run control commands are complete the results are returned as *.tar file to the GitHub runner.</p>
-<p >The file <a href="https://github.com/ARM-software/VHT-AMI/blob/master/action.yml">action.yml</a> defines the parameters for the GitHub action.</p>
-<h2><a class="anchor" id="autotoc_md9"></a>
-AWS Account Setup</h2>
-<p >The following AWS account requirements are needed to run VHT-AMI action.</p>
-<h3><a class="anchor" id="autotoc_md10"></a>
-Create PassRole policy for VHT-AMI</h3>
-<p >You need to create a PassRole IAM policy to be attached to our IAM User with the following content. You can name it <code>vht-passrole</code>. </p><div class="fragment"><div class="line">{</div>
+<p >Follow these steps on SSH:</p>
+<ol type="1">
+<li>Gain proper permissions: <code>sudo -u ubuntu bash &amp;&amp; cd /home/ubuntu</code></li>
+<li>Download the latest installer: <code>curl -o actions-runner-linux-x64-2.283.3.tar.gz -L <a href="https://github.com/actions/runner/releases/download/v2.283.3/actions-runner-linux-x64-2.283.3.tar.gz">https://github.com/actions/runner/releases/download/v2.283.3/actions-runner-linux-x64-2.283.3.tar.gz</a></code></li>
+<li>Extract the installer: <code>tar xzf ./actions-runner-linux-x64-2.283.3.tar.gz</code></li>
+<li>Create the runner instance with the personal token shown on github. Copy and paste the instruction from github. It will look similar to: <code>./config.sh --url <a href="https://github.com/myuser/myproject">https://github.com/myuser/myproject</a> --token ABCDEFGHIJKLMNOP</code></li>
+<li>Launch the runner: <code>./run.sh</code></li>
+</ol>
+<h2><a class="anchor" id="self_hosted3"></a>
+Add GitHub Action</h2>
+<p >Using the github runner is very simple. All jobs in the workflow file that should be executed on the EC2 instance via the runner, need to have the <b>runs-on</b> parameter added:</p>
+<div class="fragment"><div class="line"> {runs-on:}</div>
+<div class="line"> </div>
+<div class="line">## This is a sample workflow for projects that run on an self-hosted runner:</div>
+</div><!-- fragment --><p> name: Arm Virtual Hardware example</p>
+<p >on: push: branches: [ main ] pull_request: branches: [ main ]</p>
+<h1><a class="anchor" id="autotoc_md8"></a>
+To allow you to run this workflow manually from the GitHub Actions tab add</h1>
+<p >workflow_dispatch:</p>
+<p >jobs: ci_demonstration: runs-on: self-hosted env: working-directory: ${{ github.workspace }}/Platform_FVP_Corstone_SSE-300_Ethos-U55/ steps:</p><ul>
+<li>name: Check out repository code uses: actions/checkout@v2</li>
+<li>name: What has been cloned? run: echo "${{ github.repository }} has been cloned."</li>
+<li>name: Get dependencies run: cp_install.sh packlist working-directory: ${{env.working-directory}}</li>
+<li>name: Build the micro_speech example run: cbuild.sh microspeech.Example.cprj working-directory: ${{env.working-directory}}</li>
+<li>name: Run the micro_speech example run: ./run_example.sh working-directory: ${{env.working-directory}} <div class="fragment"><div class="line">Once this steps are completed, any commit or pull request to the repository should trigger the *CI* workflow that you have defined.</div>
+<div class="line">Make sure that the EC2 instance is up and in running state, for the github runner to be available to your actions.</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"># GitHub-hosted Runners {#GitHub_hosted}</div>
+<div class="line"> </div>
+<div class="line">The following steps explain how to use **GitHub-hosted runners** with [AWS Marketplace: Arm Virtual Hardware](https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g).</div>
+<div class="line">The github-hosted runner will run the action on an github-hosted VM instance. A plugin is provided to provide remote execution on Arm Virtual Hardware. The plugin manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an \ref AWS &quot;Arm VHT AMI&quot;. It also provides run-control of the EC2 instance itself, starting and stopping on demand.</div>
+<div class="line"> </div>
+<div class="line">![VHT GitHub action](./images/Github-GH-AWS.png &quot;VHT GitHub action for AMI integration&quot;)</div>
+<div class="line"> </div>
+<div class="line">  1. [**Create user roles on AWS IAM**](github_hosted1)</div>
+<div class="line">  2. [**Setup AWS EC2 Instance**](#github_hosted2), obtain the *access information*.</div>
+<div class="line">  3. [**Add GitHub Secrets**](#github_hosted3) with the *access information* to your GitHub repository with gives access to the AWS EC2 instance.</div>
+<div class="line">  4. [**Add GitHub Action**](#github_hosted4) to your GitHub repository and configure it for your requirements.</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">The VHT-AMI action receives a *.tar input file (vht_in) that contains the vht.yml control file. The vht.yml is the run control commands for the AMI and defines the execution of build scripts or test runs. Once the AMI run control commands are complete the results are returned as *.tar file to the GitHub runner.</div>
+<div class="line"> </div>
+<div class="line">The file [action.yml](https://github.com/ARM-software/VHT-AMI/blob/master/action.yml) defines the parameters for the GitHub action.</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">## Create user roles on AWS IAM </div>
+<div class="line">The following AWS account requirements are needed to run VHT-AMI action.</div>
+<div class="line"> </div>
+<div class="line">1. ### Create Identity and Access Management (IAM) User</div>
+<div class="line">You have to create an IAM User to limit resource permission to your CI. In addition, the IAM User provides fixed `AWS Access Key Id` and `AWS Secret access key` values. </div>
+<div class="line"> </div>
+<div class="line">**Make notes of the the users credentials as you will need them in futures steps of the setup.**</div>
+<div class="line"> </div>
+<div class="line">For this user, you have to add the following `policies`:</div>
+<div class="line">- vht-passrole (created before)</div>
+<div class="line">- AmazonEC2FullAccess (AWS managed policy --&gt; It already exists in your account)</div>
+<div class="line">- AmazonS3FullAccess (AWS managed policy --&gt; It already exists in your account)</div>
+<div class="line">- AmazonSSMFullAccess (AWS managed policy --&gt; It already exists in your account)</div>
+<div class="line"> </div>
+<div class="line">You also need to add the following `Permission boundary`:</div>
+<div class="line">- PowerUserAccess</div>
+<div class="line"> </div>
+<div class="line">The user can be called `vht`.</div>
+<div class="line"> </div>
+<div class="line">More information on the AWS documentation: [Create IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html)</div>
+<div class="line"> </div>
+<div class="line">2. ### Create PassRole policy for VHT-AMI</div>
+<div class="line">You need to create a PassRole IAM policy to be attached to our IAM User with the following content.</div>
+<div class="line">You can name it `vht-passrole`.</div>
+<div class="line">```json</div>
+<div class="line">{</div>
 <div class="line">    &quot;Version&quot;: &quot;2012-10-17&quot;,</div>
 <div class="line">    &quot;Statement&quot;: [</div>
 <div class="line">        {</div>
@@ -208,50 +213,157 @@ Create PassRole policy for VHT-AMI</h3>
 <div class="line">        }</div>
 <div class="line">    ]</div>
 <div class="line">}</div>
-</div><!-- fragment --><p >More info: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html">Create IAM Policy</a></p>
-<h3><a class="anchor" id="autotoc_md11"></a>
-Create Identity and Access Management (IAM) User</h3>
-<p >You have to create an IAM User to limit resource permission to your CI. In addition, the IAM User provides fixed <code>AWS Access Key Id</code> and <code>AWS Secret access key</code> values. For this user, you have to add the following <code>policies</code>:</p><ul>
-<li>vht-passrole (created before)</li>
-<li>AmazonEC2FullAccess (AWS managed policy --&gt; It already exists in your account)</li>
-<li>AmazonS3FullAccess (AWS managed policy --&gt; It already exists in your account)</li>
-<li>AmazonSSMFullAccess (AWS managed policy --&gt; It already exists in your account)</li>
+</div><!-- fragment --></li>
 </ul>
-<p >You also need to add the following <code>Permission boundary</code>:</p><ul>
-<li>PowerUserAccess</li>
-</ul>
-<p >The user can be called <code>vht</code>.</p>
-<p >More info: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html">Create IAM User</a></p>
-<h3><a class="anchor" id="autotoc_md12"></a>
-Create an IAM Role For EC2 Services</h3>
-<p >You have to create IAM Role to be attached to the EC2 Instances. This role gives EC2 Instances access to S3 buckets and SSM services. For this role, you have to add the following <code>policies</code>:</p><ul>
+<p >More information on the AWS documentation: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html">Create IAM Policy</a></p>
+<ol type="1">
+<li>### Create an IAM Role For EC2 Services You have to create IAM Role to be attached to the EC2 Instances. This role gives EC2 Instances access to S3 buckets and SSM services. For this role, you have to add the following <code>policies</code>:</li>
+</ol>
+<ul>
 <li>AmazonS3FullAccess</li>
 <li>AmazonSSMFullAccess</li>
 </ul>
 <p >You also need to add the following <code>Permission boundary</code>:</p><ul>
 <li>PowerUserAccess</li>
 </ul>
-<p >More info: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html">Create IAM Role For Service</a></p>
-<h2><a class="anchor" id="autotoc_md13"></a>
-Usage</h2>
-<p >You can now consume the action by referencing the v1 branch</p>
+<p >More information on the AWS documentation: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html">Create IAM Role For Service</a></p>
+<h2><a class="anchor" id="autotoc_md9"></a>
+Setup AWS EC2 Instance</h2>
+<p >Make sure you created an EC2 instance on your AWS account. For instructions, see: <a href="https://arm-software.github.io/VHT/main/infrastructure/html/run_ami_local.html#Launch_EC2">Launch through EC2</a>. Once created you need to make notes of the Instance ID, for later reference. You can stop the machine once it has reached running state. The plugin will start the machine on demand.</p>
+<h2><a class="anchor" id="autotoc_md10"></a>
+Setup AWS S3 Instance</h2>
+<p >Use the AWS console to create an S3 storage with default options. Note the name to specify it the the parameters of the actions afterwards.</p>
+<h2><a class="anchor" id="autotoc_md11"></a>
+Add Github Secrets</h2>
+<p >Add the information from the last to steps to the secrets of your github repository. Secrets cannot be reviewed and are a secure way of providing the access credentials to the plugin.</p>
+<p >From your github repository on github.com, go to Settings &gt; Secrets &gt; Actions &gt; New repository secret.</p>
+<p >We recommend to add the Instance ID of the EC2 instance, and the IAM Access key pair into secrets with the following names: AWS_INSTANCE_ID AWS_ACCESS_KEY AWS_ACCESS_KEY_SECRET</p>
+<p >More information on github documentation: <a href="https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository">Creating encrypted secrets for a repository</a></p>
+<h2><a class="anchor" id="autotoc_md12"></a>
+Add Github Action</h2>
+<p >The basic idea of creating a github-hosted CI flow is to run steps on the github VM instance - except build and execution of test cases. The testsuite contains of a collection of files that are required on the VHT instance on AWS and a yaml-based inventory file, that includes instructions. This file is called <b>vht.yml</b>. It will mark the root of a folder used to stage a testsuite on the Github VM.</p>
+<p >A complete example workflow is found in the example hosted on: <a href="https://github.com/ARM-software/VHT-TFLmicrospeech">https://github.com/ARM-software/VHT-TFLmicrospeech</a></p>
+<h3><a class="anchor" id="autotoc_md13"></a>
+Prepare the testsuite</h3>
+<p >Steps before the actual execution should copy every file required to staging folder. It will then be passed in the vht_in parameter. File and path references in the vht.yml should be relative to the root of this folder, where also the vht.yml needs to be placed.</p>
+<p >Refer to <a href="https://github.com/ARM-software/VHT-TFLmicrospeech/blob/main/.github/workflows/virtual_hardware_gh.yml">https://github.com/ARM-software/VHT-TFLmicrospeech/blob/main/.github/workflows/virtual_hardware_gh.yml</a> for some detailed example.</p>
+<h3><a class="anchor" id="autotoc_md14"></a>
+The vht.yml</h3>
+<p >vht.yml describes the content of the testsuite, assets, build and test run instructions. It is located in the root of the folder specified in vht_in. Its format is YAML (<a href="https://yaml.org/spec/">https://yaml.org/spec/</a>)</p>
+<h3><a class="anchor" id="autotoc_md15"></a>
+The YAML structure</h3>
+<div class="fragment"><div class="line">suite:</div>
+<div class="line">  name: &lt;value&gt;</div>
+<div class="line">  model: &lt;value&gt;</div>
+<div class="line">  configuration: &lt;value&gt;</div>
+<div class="line">  pre: &lt;value&gt;</div>
+<div class="line">  post: &lt;value&gt;</div>
+<div class="line"> </div>
+<div class="line">  builds:</div>
+<div class="line">   - &quot;&lt;value&gt;&quot;:</div>
+<div class="line">      shell: &lt;value&gt;</div>
+<div class="line">      pre: &lt;value&gt;</div>
+<div class="line">      post: &lt;value&gt;</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">  tests:</div>
+<div class="line">   - &quot;&lt;value&gt;&quot;:</div>
+<div class="line">      executable: &lt;value&gt;</div>
+<div class="line">      arguments: &lt;value&gt;</div>
+<div class="line">      pre: &lt;value&gt;</div>
+<div class="line">      post: &lt;value&gt;</div>
+<div class="line">      timeout: &lt;value&gt;</div>
+</div><!-- fragment --><h4><a class="anchor" id="autotoc_md16"></a>
+&lt;strong&gt;suite&lt;/strong&gt;</h4>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">keyword   </th><th class="markdownTableHeadNone">description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">suite   </td><td class="markdownTableBodyNone">Starts the declaration of a testsuite    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">name   </td><td class="markdownTableBodyNone">Name of the testsuite    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">model   </td><td class="markdownTableBodyNone">Executable name of the FVP used    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">configuration   </td><td class="markdownTableBodyNone">Configuration file for the FVP    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">pre   </td><td class="markdownTableBodyNone">Execute command on shell before suite or test    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">post   </td><td class="markdownTableBodyNone">Execute command on shell after suite or test   </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md17"></a>
+&lt;strong&gt;builds&lt;/strong&gt; (optional)</h4>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">keyword   </th><th class="markdownTableHeadNone">description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">builds   </td><td class="markdownTableBodyNone">Starts a list of build declarations    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">shell   </td><td class="markdownTableBodyNone">Execute command on shell that builds executable    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">pre   </td><td class="markdownTableBodyNone">Execute command on shell before suite or test    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">post   </td><td class="markdownTableBodyNone">Execute command on shell after suite or test   </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md18"></a>
+&lt;strong&gt;tests&lt;/strong&gt;</h4>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">keyword   </th><th class="markdownTableHeadNone">description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">tests   </td><td class="markdownTableBodyNone">Starts a list of test declarations    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">executable   </td><td class="markdownTableBodyNone">ELF format executable file to be executed on test    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">arguments   </td><td class="markdownTableBodyNone">Additional arguments passed to FVP    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">timeout   </td><td class="markdownTableBodyNone">Optional timeout for test    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">pre   </td><td class="markdownTableBodyNone">Execute command on shell before suite or test    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">post   </td><td class="markdownTableBodyNone">Execute command on shell after suite or test   </td></tr>
+</table>
+<h3><a class="anchor" id="autotoc_md19"></a>
+Example</h3>
+<div class="fragment"><div class="line">suite:</div>
+<div class="line">  name: &quot;Tensorflow lite micro examples&quot;</div>
+<div class="line">  model: &quot;/opt/arm_vsi/arm_vsi.x&quot;</div>
+<div class="line">  configuration: &quot;&quot;</div>
+<div class="line">  pre: &quot;&quot;</div>
+<div class="line">  post: &quot;&quot;</div>
+<div class="line"> </div>
+<div class="line">  builds:</div>
+<div class="line">   - &quot;microspeech example&quot;:</div>
+<div class="line">      shell: &quot;cbuild.sh ./Platform_FVP_Corstone_SSE-300_Ethos-U55/microspeech.Example.cprj&quot;</div>
+<div class="line">      post: &quot;cp ./Platform_FVP_Corstone_SSE-300_Ethos-U55/Objects/microspeech.axf ./elf/&quot; </div>
+<div class="line"> </div>
+<div class="line">  tests:</div>
+<div class="line">   - &quot;microspeech example&quot;:</div>
+<div class="line">      executable: &quot;./elf/microspeech.axf&quot;</div>
+<div class="line">      arguments: &quot;-V ./VSI/audio/python -f fvp_config.txt -a Objects/microspeech.axf --stat $*&quot;</div>
+<div class="line">      pre: &quot;&quot;</div>
+<div class="line">      post: &quot;&quot;</div>
+<div class="line">      timeout: 20</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md20"></a>
+Use Action</h3>
+<p >You can now consume the action by referencing the v1 branch...</p>
 <div class="fragment"><div class="line">uses: Arm-Software/VHT-AMI@v1</div>
 <div class="line">with:</div>
 <div class="line">  vht_in:</div>
 <div class="line">  instance_id: ${{ secrets.AWS_INSTANCE_ID }}</div>
-<div class="line">  access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}</div>
-<div class="line">  secret_key_id: ${{ secrets.AWS_SECRET_KEY }}</div>
+<div class="line">  access_key_id: ${{ secrets.AWS_INSTANCE_ID }}</div>
+<div class="line">  secret_key_id: ${{ secrets.AWS_ACCESS_KEY_SECRET }}</div>
 <div class="line">  aws_region: &quot;eu-west-1&quot;</div>
 <div class="line">  s3_bucket_name: my_bucket</div>
 </div><!-- fragment --><p ><b>Where</b></p>
 <ul>
+<li>vht_in is the folder to the staged files, with vht.yml in root.</li>
 <li><em>secrets.AWS_INSTANCE_ID</em> is the instance ID of the AMI stored as GitHub secret.</li>
 <li><em>secrets.AWS_ACCESS_KEY_ID</em> is the access key to AMI stored as GitHub secret.</li>
 <li><em>secrets.AWS_SECRET_KEY</em> is the secret key to AMI stored as GitHub secret.</li>
 <li>aws_region: name of the region your EC2 and S3 instances are located</li>
-<li>s3_bucket_name: for temporary storage an S3 bucket is used</li>
+<li>s3_bucket_name: for temporary storage an S3 bucket is used </li>
 </ul>
-<p >Refer to <a href="https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository">Creating encrypted secrets for a repository</a> for storing the AMI access information. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

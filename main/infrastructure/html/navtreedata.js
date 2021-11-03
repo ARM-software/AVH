@@ -43,18 +43,25 @@ var NAVTREE =
     ] ],
     [ "Run AMI with GitHub Actions", "run_ami_github.html", [
       [ "Self-hosted GitHub Runners", "run_ami_github.html#self_hosted", [
-        [ "Setup AWS EC2 Instance", "run_ami_github.html#setup_AWS", null ],
-        [ "Add GitHub Secrets", "run_ami_github.html#add_secrets", null ],
-        [ "Add GitHub Action", "run_ami_github.html#add_action", null ],
-        [ "Test GitHub Action", "run_ami_github.html#autotoc_md8", null ]
+        [ "Setup Github", "run_ami_github.html#self-hosted1", null ],
+        [ "Setup AWS EC2 Instance", "run_ami_github.html#self-hosted2", null ],
+        [ "Add GitHub Action", "run_ami_github.html#self_hosted3", null ]
       ] ],
-      [ "GitHub-hosted Runners", "run_ami_github.html#GitHub_hosted", [
-        [ "AWS Account Setup", "run_ami_github.html#autotoc_md9", [
-          [ "Create PassRole policy for VHT-AMI", "run_ami_github.html#autotoc_md10", null ],
-          [ "Create Identity and Access Management (IAM) User", "run_ami_github.html#autotoc_md11", null ],
-          [ "Create an IAM Role For EC2 Services", "run_ami_github.html#autotoc_md12", null ]
-        ] ],
-        [ "Usage", "run_ami_github.html#autotoc_md13", null ]
+      [ "To allow you to run this workflow manually from the GitHub Actions tab add", "run_ami_github.html#autotoc_md8", [
+        [ "Setup AWS EC2 Instance", "run_ami_github.html#autotoc_md9", null ],
+        [ "Setup AWS S3 Instance", "run_ami_github.html#autotoc_md10", null ],
+        [ "Add Github Secrets", "run_ami_github.html#autotoc_md11", null ],
+        [ "Add Github Action", "run_ami_github.html#autotoc_md12", [
+          [ "Prepare the testsuite", "run_ami_github.html#autotoc_md13", null ],
+          [ "The vht.yml", "run_ami_github.html#autotoc_md14", null ],
+          [ "The YAML structure", "run_ami_github.html#autotoc_md15", [
+            [ "<strong>suite</strong>", "run_ami_github.html#autotoc_md16", null ],
+            [ "<strong>builds</strong> (optional)", "run_ami_github.html#autotoc_md17", null ],
+            [ "<strong>tests</strong>", "run_ami_github.html#autotoc_md18", null ]
+          ] ],
+          [ "Example", "run_ami_github.html#autotoc_md19", null ],
+          [ "Use Action", "run_ami_github.html#autotoc_md20", null ]
+        ] ]
       ] ]
     ] ],
     [ "Run with MDK-Professional", "run_mdk_pro.html", null ],
