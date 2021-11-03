@@ -93,7 +93,7 @@ Make sure that the EC2 instance is up and in running state, for the github runne
 The following steps explain how to use **GitHub-hosted runners** with [AWS Marketplace: \prj_name](https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g).
 The github-hosted runner will run the action on an github-hosted VM instance. A plugin is provided to provide remote execution on Arm Virtual Hardware. The plugin manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an \ref AWS "Arm VHT AMI". It also provides run-control of the EC2 instance itself, starting and stopping on demand.
 
-![VHT GitHub action](./images/Github-GH-AWS.png "VHT GitHub action for AMI integration")
+![VHT GitHub action](./images/GitHub-GH-AWS.png "VHT GitHub action for AMI integration")
 
   1. [**Create user roles on AWS IAM**](#github_hosted1)
   2. [**Setup AWS EC2 Instance**](#github_hosted2), obtain the *access information*.
