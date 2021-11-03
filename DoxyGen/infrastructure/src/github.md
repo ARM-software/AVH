@@ -29,23 +29,23 @@ Before you start with the following steps, make sure you created an EC2 instance
   
   Follow these steps on SSH:
 
-  2. Gain proper permissions: ```sudo -u ubuntu bash && cd /home/ubuntu```
-  3. Download the latest installer: ```curl -o actions-runner-linux-x64-2.283.3.tar.gz -L https://github.com/actions/runner/releases/download/v2.283.3/actions-runner-linux-x64-2.283.3.tar.gz```
-  4. Extract the installer: ```tar xzf ./actions-runner-linux-x64-2.283.3.tar.gz```
-  5. Create the runner instance with the personal token shown on github. Copy and paste the instruction from github. It will look similar to: ```./config.sh --url https://github.com/myuser/myproject --token ABCDEFGHIJKLMNOP```
-  6. Launch the runner: ```./run.sh```
+  1. Gain proper permissions: `sudo -u ubuntu bash && cd /home/ubuntu`
+  2. Download the latest installer: `curl -o actions-runner-linux-x64-2.283.3.tar.gz -L https://github.com/actions/runner/releases/download/v2.283.3/actions-runner-linux-x64-2.283.3.tar.gz`
+  3. Extract the installer: `tar xzf ./actions-runner-linux-x64-2.283.3.tar.gz`
+  4. Create the runner instance with the personal token shown on github. Copy and paste the instruction from github. It will look similar to: `./config.sh --url https://github.com/myuser/myproject --token ABCDEFGHIJKLMNOP`
+  5. Launch the runner: `./run.sh`
 
 
 ## Add GitHub Action {#self_hosted3}
 
 Using the github runner is very simple. All jobs in the workflow file that should be executed on the EC2 instance via the runner, need to have the **runs-on** parameter added:
 
-```runs-on: self-hosted```
+` runs-on: self-hosted `
 
-## This is a sample workflow for projects that run on an self-hosted runner:
+This is a sample workflow for projects that run on an self-hosted runner:
 
-```
-name: Arm Virtual Hardware example
+``` 
+name: Arm Virtual Hardware example 
 
 on:
   push:
@@ -79,6 +79,7 @@ jobs:
       - name: Run the micro_speech example
         run: ./run_example.sh
         working-directory: ${{env.working-directory}}
+
 ```
 
 Once this steps are completed, any commit or pull request to the repository should trigger the *CI* workflow that you have defined.
@@ -96,8 +97,9 @@ The github-hosted runner will run the action on an github-hosted VM instance. A 
 
   1. [**Create user roles on AWS IAM**](github_hosted1)
   2. [**Setup AWS EC2 Instance**](#github_hosted2), obtain the *access information*.
-  3. [**Add GitHub Secrets**](#github_hosted3) with the *access information* to your GitHub repository with gives access to the AWS EC2 instance.
-  4. [**Add GitHub Action**](#github_hosted4) to your GitHub repository and configure it for your requirements.
+  3. [**Setup AWS S3 Instance**](#github_hosted3)
+  4. [**Add GitHub Secrets**](#github_hosted4) with the *access information* to your GitHub repository with gives access to the AWS EC2 instance.
+  5. [**Add GitHub Action**](#github_hosted5) to your GitHub repository and configure it for your requirements.
 
 
 The VHT-AMI action receives a *.tar input file (vht_in) that contains the vht.yml control file. The vht.yml is the run control commands for the AMI and defines the execution of build scripts or test runs. Once the AMI run control commands are complete the results are returned as *.tar file to the GitHub runner.
@@ -106,7 +108,7 @@ The file [action.yml](https://github.com/ARM-software/VHT-AMI/blob/master/action
 
 
 
-## Create user roles on AWS IAM 
+## Create user roles on AWS IAM {github_hosted1}
 The following AWS account requirements are needed to run VHT-AMI action.
 
 1. ### Create Identity and Access Management (IAM) User
@@ -157,15 +159,15 @@ You also need to add the following `Permission boundary`:
 More information on the AWS documentation: [Create IAM Role For Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)
 
 
-## Setup AWS EC2 Instance
+## Setup AWS EC2 Instance {github_hosted2}
 Make sure you created an EC2 instance on your AWS account. For instructions, see: [Launch through EC2](https://arm-software.github.io/VHT/main/infrastructure/html/run_ami_local.html#Launch_EC2).
 Once created you need to make notes of the Instance ID, for later reference. You can stop the machine once it has reached running state. The plugin will start the machine on demand.
 
-## Setup AWS S3 Instance
+## Setup AWS S3 Instance {github_hosted3}
 
 Use the AWS console to create an S3 storage with default options. Note the name to specify it the the parameters of the actions afterwards.
 
-## Add Github Secrets
+## Add Github Secrets {github_hosted4}
 
 Add the information from the last to steps to the secrets of your github repository. Secrets cannot be reviewed and are a secure way of providing the access credentials to the plugin. 
 
@@ -180,7 +182,7 @@ More information on github documentation: [Creating encrypted secrets for a repo
 
 
 
-## Add Github Action
+## Add Github Action {github_hosted5}
 
 The basic idea of creating a github-hosted CI flow is to run steps on the github VM instance - except build and execution of test cases. The testsuite contains of a collection of files that are required on the VHT instance on AWS and a yaml-based inventory file, that includes instructions. This file is called **vht.yml**. It will mark the root of a folder used to stage a testsuite on the Github VM. 
 
