@@ -224,7 +224,7 @@ suite:
       timeout: <value>
 ```
 
-#### **suite**
+#### suite
 
 |  keyword      |  description                                       |
 |---------------|----------------------------------------------------|
@@ -235,7 +235,7 @@ suite:
 | pre           |  Execute command on shell before suite or test     |
 | post          |  Execute command on shell after suite or test      |
 
-#### **builds** (optional)
+#### builds (optiona)
 
 |  keyword      |  description                                       |
 |---------------|----------------------------------------------------|
@@ -244,7 +244,7 @@ suite:
 | pre           |  Execute command on shell before suite or test     |
 | post          |  Execute command on shell after suite or test      |
 
-#### **tests**
+#### tests
 
 |  keyword      |  description                                       |
 |---------------|----------------------------------------------------|
