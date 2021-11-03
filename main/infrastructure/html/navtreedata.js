@@ -47,11 +47,12 @@ var NAVTREE =
         [ "Setup AWS EC2 Instance", "run_ami_github.html#self-hosted2", null ],
         [ "Add GitHub Action", "run_ami_github.html#self_hosted3", null ]
       ] ],
-      [ "To allow you to run this workflow manually from the GitHub Actions tab add", "run_ami_github.html#autotoc_md8", [
-        [ "Setup AWS EC2 Instance", "run_ami_github.html#autotoc_md9", null ],
-        [ "Setup AWS S3 Instance", "run_ami_github.html#autotoc_md10", null ],
-        [ "Add Github Secrets", "run_ami_github.html#autotoc_md11", null ],
-        [ "Add Github Action", "run_ami_github.html#autotoc_md12", [
+      [ "GitHub-hosted Runners", "run_ami_github.html#GitHub_hosted", [
+        [ "Create user roles on AWS IAM {github_hosted1}", "run_ami_github.html#autotoc_md8", null ],
+        [ "Setup AWS EC2 Instance {github_hosted2}", "run_ami_github.html#autotoc_md9", null ],
+        [ "Setup AWS S3 Instance {github_hosted3}", "run_ami_github.html#autotoc_md10", null ],
+        [ "Add Github Secrets {github_hosted4}", "run_ami_github.html#autotoc_md11", null ],
+        [ "Add Github Action {github_hosted5}", "run_ami_github.html#autotoc_md12", [
           [ "Prepare the testsuite", "run_ami_github.html#autotoc_md13", null ],
           [ "The vht.yml", "run_ami_github.html#autotoc_md14", null ],
           [ "The YAML structure", "run_ami_github.html#autotoc_md15", [
