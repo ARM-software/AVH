@@ -56,9 +56,9 @@ var NAVTREE =
           [ "Prepare the testsuite", "run_ami_github.html#autotoc_md8", null ],
           [ "The vht.yml", "run_ami_github.html#autotoc_md9", null ],
           [ "The YAML structure", "run_ami_github.html#autotoc_md10", [
-            [ "<strong>suite</strong>", "run_ami_github.html#autotoc_md11", null ],
-            [ "<strong>builds</strong> (optional)", "run_ami_github.html#autotoc_md12", null ],
-            [ "<strong>tests</strong>", "run_ami_github.html#autotoc_md13", null ]
+            [ "suite", "run_ami_github.html#autotoc_md11", null ],
+            [ "builds (optiona)", "run_ami_github.html#autotoc_md12", null ],
+            [ "tests", "run_ami_github.html#autotoc_md13", null ]
           ] ],
           [ "Example", "run_ami_github.html#autotoc_md14", null ],
           [ "Use Action", "run_ami_github.html#autotoc_md15", null ]
