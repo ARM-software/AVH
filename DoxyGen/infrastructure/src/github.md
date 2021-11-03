@@ -111,25 +111,8 @@ The file [action.yml](https://github.com/ARM-software/VHT-AMI/blob/master/action
 ## Create user roles on AWS IAM {#github_hosted1}
 The following AWS account requirements are needed to run VHT-AMI action.
 
-1. ### Create Identity and Access Management (IAM) User
-You have to create an IAM User to limit resource permission to your CI. In addition, the IAM User provides fixed `AWS Access Key Id` and `AWS Secret access key` values. 
 
-**Make notes of the the users credentials as you will need them in futures steps of the setup.**
-
-For this user, you have to add the following `policies`:
-- vht-passrole (created before)
-- AmazonEC2FullAccess (AWS managed policy --> It already exists in your account)
-- AmazonS3FullAccess (AWS managed policy --> It already exists in your account)
-- AmazonSSMFullAccess (AWS managed policy --> It already exists in your account)
-
-You also need to add the following `Permission boundary`:
-- PowerUserAccess
-
-The user can be called `vht`.
-
-More information on the AWS documentation: [Create IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html)
-
-2. ### Create PassRole policy for VHT-AMI
+1. ### Create PassRole policy for VHT-AMI
 You need to create a PassRole IAM policy to be attached to our IAM User with the following content.
 You can name it `vht-passrole`.
 ```json
@@ -147,6 +130,24 @@ You can name it `vht-passrole`.
 
 More information on the AWS documentation: [Create IAM Policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html)
 
+2. ### Create Identity and Access Management (IAM) User
+You have to create an IAM User to limit resource permission to your CI. In addition, the IAM User provides fixed `AWS Access Key Id` and `AWS Secret access key` values. 
+
+**Make notes of the the users credentials as you will need them in futures steps of the setup.**
+
+For this user, you have to add the following `policies`:
+- vht-passrole (created before)
+- AmazonEC2FullAccess (AWS managed policy --> It already exists in your account)
+- AmazonS3FullAccess (AWS managed policy --> It already exists in your account)
+- AmazonSSMFullAccess (AWS managed policy --> It already exists in your account)
+
+You also need to add the following `Permission boundary`:
+- PowerUserAccess
+
+The user can be called `vht`.
+
+More information on the AWS documentation: [Create IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html)
+
 3. ### Create an IAM Role For EC2 Services
 You have to create IAM Role to be attached to the EC2 Instances. This role gives EC2 Instances access to S3 buckets and SSM services.
 For this role, you have to add the following `policies`:
@@ -162,6 +163,8 @@ More information on the AWS documentation: [Create IAM Role For Service](https:/
 ## Setup AWS EC2 Instance {#github_hosted2}
 Make sure you created an EC2 instance on your AWS account. For instructions, see: [Launch through EC2](https://arm-software.github.io/VHT/main/infrastructure/html/run_ami_local.html#Launch_EC2).
 Once created you need to make notes of the Instance ID, for later reference. You can stop the machine once it has reached running state. The plugin will start the machine on demand.
+
+The IAM role created in the previous step, can either be specified on launch or it is added from the EC2 management. Attach it anytime using Actions - Security - Modify IAM role from the menu.
 
 ## Setup AWS S3 Instance {#github_hosted3}
 
