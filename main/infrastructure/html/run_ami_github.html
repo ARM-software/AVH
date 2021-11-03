@@ -182,7 +182,7 @@ GitHub-hosted Runners</h1>
 <p >The following steps explain how to use <b>GitHub-hosted runners</b> with <a href="https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g">AWS Marketplace: Arm Virtual Hardware</a>. The github-hosted runner will run the action on an github-hosted VM instance. A plugin is provided to provide remote execution on Arm Virtual Hardware. The plugin manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an <a class="el" href="index.html#AWS">Arm VHT AMI</a>. It also provides run-control of the EC2 instance itself, starting and stopping on demand.</p>
 <p ><img src="./images/Github-GH-AWS.png" alt="VHT GitHub action" title="VHT GitHub action for AMI integration" class="inline"/></p>
 <ol type="1">
-<li>[<b>Create user roles on AWS IAM</b>](github_hosted1)</li>
+<li><a href="#github_hosted1"><b>Create user roles on AWS IAM</b></a></li>
 <li><a href="#github_hosted2"><b>Setup AWS EC2 Instance</b></a>, obtain the <em>access information</em>.</li>
 <li><a href="#github_hosted3"><b>Setup AWS S3 Instance</b></a></li>
 <li><a href="#github_hosted4"><b>Add GitHub Secrets</b></a> with the <em>access information</em> to your GitHub repository with gives access to the AWS EC2 instance.</li>
@@ -190,8 +190,8 @@ GitHub-hosted Runners</h1>
 </ol>
 <p >The VHT-AMI action receives a *.tar input file (vht_in) that contains the vht.yml control file. The vht.yml is the run control commands for the AMI and defines the execution of build scripts or test runs. Once the AMI run control commands are complete the results are returned as *.tar file to the GitHub runner.</p>
 <p >The file <a href="https://github.com/ARM-software/VHT-AMI/blob/master/action.yml">action.yml</a> defines the parameters for the GitHub action.</p>
-<h2><a class="anchor" id="autotoc_md8"></a>
-Create user roles on AWS IAM {github_hosted1}</h2>
+<h2><a class="anchor" id="github_hosted1"></a>
+Create user roles on AWS IAM</h2>
 <p >The following AWS account requirements are needed to run VHT-AMI action.</p>
 <ol type="1">
 <li>### Create Identity and Access Management (IAM) User You have to create an IAM User to limit resource permission to your CI. In addition, the IAM User provides fixed <code>AWS Access Key Id</code> and <code>AWS Secret access key</code> values.</li>
@@ -233,35 +233,35 @@ Create user roles on AWS IAM {github_hosted1}</h2>
 <li>PowerUserAccess</li>
 </ul>
 <p >More information on the AWS documentation: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html">Create IAM Role For Service</a></p>
-<h2><a class="anchor" id="autotoc_md9"></a>
-Setup AWS EC2 Instance {github_hosted2}</h2>
+<h2><a class="anchor" id="github_hosted2"></a>
+Setup AWS EC2 Instance</h2>
 <p >Make sure you created an EC2 instance on your AWS account. For instructions, see: <a href="https://arm-software.github.io/VHT/main/infrastructure/html/run_ami_local.html#Launch_EC2">Launch through EC2</a>. Once created you need to make notes of the Instance ID, for later reference. You can stop the machine once it has reached running state. The plugin will start the machine on demand.</p>
-<h2><a class="anchor" id="autotoc_md10"></a>
-Setup AWS S3 Instance {github_hosted3}</h2>
+<h2><a class="anchor" id="github_hosted3"></a>
+Setup AWS S3 Instance</h2>
 <p >Use the AWS console to create an S3 storage with default options. Note the name to specify it the the parameters of the actions afterwards.</p>
-<h2><a class="anchor" id="autotoc_md11"></a>
-Add Github Secrets {github_hosted4}</h2>
+<h2><a class="anchor" id="github_hosted4"></a>
+Add Github Secrets</h2>
 <p >Add the information from the last to steps to the secrets of your github repository. Secrets cannot be reviewed and are a secure way of providing the access credentials to the plugin.</p>
 <p >From your github repository on github.com, go to Settings &gt; Secrets &gt; Actions &gt; New repository secret.</p>
 <p >We recommend to add the Instance ID of the EC2 instance, and the IAM Access key pair into secrets with the following names: AWS_INSTANCE_ID AWS_ACCESS_KEY AWS_ACCESS_KEY_SECRET</p>
 <p >More information on github documentation: <a href="https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository">Creating encrypted secrets for a repository</a></p>
-<h2><a class="anchor" id="autotoc_md12"></a>
-Add Github Action {github_hosted5}</h2>
+<h2><a class="anchor" id="github_hosted5"></a>
+Add Github Action</h2>
 <p >The basic idea of creating a github-hosted CI flow is to run steps on the github VM instance - except build and execution of test cases. The testsuite contains of a collection of files that are required on the VHT instance on AWS and a yaml-based inventory file, that includes instructions. This file is called <b>vht.yml</b>. It will mark the root of a folder used to stage a testsuite on the Github VM.</p>
 <p >A complete example workflow is found in the example hosted on: <a href="https://github.com/ARM-software/VHT-TFLmicrospeech">https://github.com/ARM-software/VHT-TFLmicrospeech</a></p>
-<h3><a class="anchor" id="autotoc_md13"></a>
+<h3><a class="anchor" id="autotoc_md8"></a>
 Prepare the testsuite</h3>
 <p >Steps before the actual execution should copy every file required to staging folder. It will then be passed in the vht_in parameter. File and path references in the vht.yml should be relative to the root of this folder, where also the vht.yml needs to be placed.</p>
 <p >Refer to <a href="https://github.com/ARM-software/VHT-TFLmicrospeech/blob/main/.github/workflows/virtual_hardware_gh.yml">https://github.com/ARM-software/VHT-TFLmicrospeech/blob/main/.github/workflows/virtual_hardware_gh.yml</a> for some detailed example.</p>
-<h3><a class="anchor" id="autotoc_md14"></a>
+<h3><a class="anchor" id="autotoc_md9"></a>
 The vht.yml</h3>
 <p >vht.yml describes the content of the testsuite, assets, build and test run instructions. It is located in the root of the folder specified in vht_in. Its format is YAML (<a href="https://yaml.org/spec/">https://yaml.org/spec/</a>)</p>
-<h3><a class="anchor" id="autotoc_md15"></a>
+<h3><a class="anchor" id="autotoc_md10"></a>
 The YAML structure</h3>
 <div class="fragment"><div class="line">suite:</div>
 <div class="line">  name: &lt;value&gt;</div>
 <div class="line">  model: &lt;value&gt;</div>
-<div class="line">  configuration: &lt;value&gt;</div>
+<div class="line">  configuration: &lt;value&gt;^</div>
 <div class="line">  pre: &lt;value&gt;</div>
 <div class="line">  post: &lt;value&gt;</div>
 <div class="line"> </div>
@@ -279,7 +279,7 @@ The YAML structure</h3>
 <div class="line">      pre: &lt;value&gt;</div>
 <div class="line">      post: &lt;value&gt;</div>
 <div class="line">      timeout: &lt;value&gt;</div>
-</div><!-- fragment --><h4><a class="anchor" id="autotoc_md16"></a>
+</div><!-- fragment --><h4><a class="anchor" id="autotoc_md11"></a>
 &lt;strong&gt;suite&lt;/strong&gt;</h4>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -297,7 +297,7 @@ The YAML structure</h3>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">post   </td><td class="markdownTableBodyNone">Execute command on shell after suite or test   </td></tr>
 </table>
-<h4><a class="anchor" id="autotoc_md17"></a>
+<h4><a class="anchor" id="autotoc_md12"></a>
 &lt;strong&gt;builds&lt;/strong&gt; (optional)</h4>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -311,7 +311,7 @@ The YAML structure</h3>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">post   </td><td class="markdownTableBodyNone">Execute command on shell after suite or test   </td></tr>
 </table>
-<h4><a class="anchor" id="autotoc_md18"></a>
+<h4><a class="anchor" id="autotoc_md13"></a>
 &lt;strong&gt;tests&lt;/strong&gt;</h4>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -329,7 +329,7 @@ The YAML structure</h3>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">post   </td><td class="markdownTableBodyNone">Execute command on shell after suite or test   </td></tr>
 </table>
-<h3><a class="anchor" id="autotoc_md19"></a>
+<h3><a class="anchor" id="autotoc_md14"></a>
 Example</h3>
 <div class="fragment"><div class="line">suite:</div>
 <div class="line">  name: &quot;Tensorflow lite micro examples&quot;</div>
@@ -350,7 +350,7 @@ Example</h3>
 <div class="line">      pre: &quot;&quot;</div>
 <div class="line">      post: &quot;&quot;</div>
 <div class="line">      timeout: 20</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md20"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md15"></a>
 Use Action</h3>
 <p >You can now consume the action by referencing the v1 branch...</p>
 <div class="fragment"><div class="line">uses: Arm-Software/VHT-AMI@v1</div>

@@ -48,20 +48,20 @@ var NAVTREE =
         [ "Add GitHub Action", "run_ami_github.html#self_hosted3", null ]
       ] ],
       [ "GitHub-hosted Runners", "run_ami_github.html#GitHub_hosted", [
-        [ "Create user roles on AWS IAM {github_hosted1}", "run_ami_github.html#autotoc_md8", null ],
-        [ "Setup AWS EC2 Instance {github_hosted2}", "run_ami_github.html#autotoc_md9", null ],
-        [ "Setup AWS S3 Instance {github_hosted3}", "run_ami_github.html#autotoc_md10", null ],
-        [ "Add Github Secrets {github_hosted4}", "run_ami_github.html#autotoc_md11", null ],
-        [ "Add Github Action {github_hosted5}", "run_ami_github.html#autotoc_md12", [
-          [ "Prepare the testsuite", "run_ami_github.html#autotoc_md13", null ],
-          [ "The vht.yml", "run_ami_github.html#autotoc_md14", null ],
-          [ "The YAML structure", "run_ami_github.html#autotoc_md15", [
-            [ "<strong>suite</strong>", "run_ami_github.html#autotoc_md16", null ],
-            [ "<strong>builds</strong> (optional)", "run_ami_github.html#autotoc_md17", null ],
-            [ "<strong>tests</strong>", "run_ami_github.html#autotoc_md18", null ]
+        [ "Create user roles on AWS IAM", "run_ami_github.html#github_hosted1", null ],
+        [ "Setup AWS EC2 Instance", "run_ami_github.html#github_hosted2", null ],
+        [ "Setup AWS S3 Instance", "run_ami_github.html#github_hosted3", null ],
+        [ "Add Github Secrets", "run_ami_github.html#github_hosted4", null ],
+        [ "Add Github Action", "run_ami_github.html#github_hosted5", [
+          [ "Prepare the testsuite", "run_ami_github.html#autotoc_md8", null ],
+          [ "The vht.yml", "run_ami_github.html#autotoc_md9", null ],
+          [ "The YAML structure", "run_ami_github.html#autotoc_md10", [
+            [ "<strong>suite</strong>", "run_ami_github.html#autotoc_md11", null ],
+            [ "<strong>builds</strong> (optional)", "run_ami_github.html#autotoc_md12", null ],
+            [ "<strong>tests</strong>", "run_ami_github.html#autotoc_md13", null ]
           ] ],
-          [ "Example", "run_ami_github.html#autotoc_md19", null ],
-          [ "Use Action", "run_ami_github.html#autotoc_md20", null ]
+          [ "Example", "run_ami_github.html#autotoc_md14", null ],
+          [ "Use Action", "run_ami_github.html#autotoc_md15", null ]
         ] ]
       ] ]
     ] ],
