@@ -95,7 +95,7 @@ The github-hosted runner will run the action on an github-hosted VM instance. A 
 
 ![VHT GitHub action](./images/Github-GH-AWS.png "VHT GitHub action for AMI integration")
 
-  1. [**Create user roles on AWS IAM**](github_hosted1)
+  1. [**Create user roles on AWS IAM**](#github_hosted1)
   2. [**Setup AWS EC2 Instance**](#github_hosted2), obtain the *access information*.
   3. [**Setup AWS S3 Instance**](#github_hosted3)
   4. [**Add GitHub Secrets**](#github_hosted4) with the *access information* to your GitHub repository with gives access to the AWS EC2 instance.
@@ -108,7 +108,7 @@ The file [action.yml](https://github.com/ARM-software/VHT-AMI/blob/master/action
 
 
 
-## Create user roles on AWS IAM {github_hosted1}
+## Create user roles on AWS IAM {#github_hosted1}
 The following AWS account requirements are needed to run VHT-AMI action.
 
 1. ### Create Identity and Access Management (IAM) User
@@ -159,15 +159,15 @@ You also need to add the following `Permission boundary`:
 More information on the AWS documentation: [Create IAM Role For Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)
 
 
-## Setup AWS EC2 Instance {github_hosted2}
+## Setup AWS EC2 Instance {#github_hosted2}
 Make sure you created an EC2 instance on your AWS account. For instructions, see: [Launch through EC2](https://arm-software.github.io/VHT/main/infrastructure/html/run_ami_local.html#Launch_EC2).
 Once created you need to make notes of the Instance ID, for later reference. You can stop the machine once it has reached running state. The plugin will start the machine on demand.
 
-## Setup AWS S3 Instance {github_hosted3}
+## Setup AWS S3 Instance {#github_hosted3}
 
 Use the AWS console to create an S3 storage with default options. Note the name to specify it the the parameters of the actions afterwards.
 
-## Add Github Secrets {github_hosted4}
+## Add Github Secrets {#github_hosted4}
 
 Add the information from the last to steps to the secrets of your github repository. Secrets cannot be reviewed and are a secure way of providing the access credentials to the plugin. 
 
@@ -182,7 +182,7 @@ More information on github documentation: [Creating encrypted secrets for a repo
 
 
 
-## Add Github Action {github_hosted5}
+## Add Github Action {#github_hosted5}
 
 The basic idea of creating a github-hosted CI flow is to run steps on the github VM instance - except build and execution of test cases. The testsuite contains of a collection of files that are required on the VHT instance on AWS and a yaml-based inventory file, that includes instructions. This file is called **vht.yml**. It will mark the root of a folder used to stage a testsuite on the Github VM. 
 
@@ -204,7 +204,7 @@ vht.yml describes the content of the testsuite, assets, build and test run instr
 suite:
   name: <value>
   model: <value>
-  configuration: <value>
+  configuration: <value>^
   pre: <value>
   post: <value>
 
