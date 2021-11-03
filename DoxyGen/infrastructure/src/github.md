@@ -44,7 +44,7 @@ Using the github runner is very simple. All jobs in the workflow file that shoul
 
 This is a sample workflow for projects that run on an self-hosted runner:
 
-``` 
+``` yml
 name: Arm Virtual Hardware example 
 
 on:
