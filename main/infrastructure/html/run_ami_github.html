@@ -194,6 +194,20 @@ GitHub-hosted Runners</h1>
 Create user roles on AWS IAM</h2>
 <p >The following AWS account requirements are needed to run VHT-AMI action.</p>
 <ol type="1">
+<li>### Create PassRole policy for VHT-AMI You need to create a PassRole IAM policy to be attached to our IAM User with the following content. You can name it <code>vht-passrole</code>. <div class="fragment"><div class="line">{</div>
+<div class="line">    &quot;Version&quot;: &quot;2012-10-17&quot;,</div>
+<div class="line">    &quot;Statement&quot;: [</div>
+<div class="line">        {</div>
+<div class="line">            &quot;Effect&quot;: &quot;Allow&quot;,</div>
+<div class="line">            &quot;Action&quot;: &quot;iam:PassRole&quot;,</div>
+<div class="line">            &quot;Resource&quot;: &quot;*&quot;</div>
+<div class="line">        }</div>
+<div class="line">    ]</div>
+<div class="line">}</div>
+</div><!-- fragment --></li>
+</ol>
+<p >More information on the AWS documentation: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html">Create IAM Policy</a></p>
+<ol type="1">
 <li>### Create Identity and Access Management (IAM) User You have to create an IAM User to limit resource permission to your CI. In addition, the IAM User provides fixed <code>AWS Access Key Id</code> and <code>AWS Secret access key</code> values.</li>
 </ol>
 <p ><b>Make notes of the the users credentials as you will need them in futures steps of the setup.</b></p>
@@ -209,20 +223,6 @@ Create user roles on AWS IAM</h2>
 <p >The user can be called <code>vht</code>.</p>
 <p >More information on the AWS documentation: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html">Create IAM User</a></p>
 <ol type="1">
-<li>### Create PassRole policy for VHT-AMI You need to create a PassRole IAM policy to be attached to our IAM User with the following content. You can name it <code>vht-passrole</code>. <div class="fragment"><div class="line">{</div>
-<div class="line">    &quot;Version&quot;: &quot;2012-10-17&quot;,</div>
-<div class="line">    &quot;Statement&quot;: [</div>
-<div class="line">        {</div>
-<div class="line">            &quot;Effect&quot;: &quot;Allow&quot;,</div>
-<div class="line">            &quot;Action&quot;: &quot;iam:PassRole&quot;,</div>
-<div class="line">            &quot;Resource&quot;: &quot;*&quot;</div>
-<div class="line">        }</div>
-<div class="line">    ]</div>
-<div class="line">}</div>
-</div><!-- fragment --></li>
-</ol>
-<p >More information on the AWS documentation: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html">Create IAM Policy</a></p>
-<ol type="1">
 <li>### Create an IAM Role For EC2 Services You have to create IAM Role to be attached to the EC2 Instances. This role gives EC2 Instances access to S3 buckets and SSM services. For this role, you have to add the following <code>policies</code>:</li>
 </ol>
 <ul>
@@ -236,6 +236,7 @@ Create user roles on AWS IAM</h2>
 <h2><a class="anchor" id="github_hosted2"></a>
 Setup AWS EC2 Instance</h2>
 <p >Make sure you created an EC2 instance on your AWS account. For instructions, see: <a href="https://arm-software.github.io/VHT/main/infrastructure/html/run_ami_local.html#Launch_EC2">Launch through EC2</a>. Once created you need to make notes of the Instance ID, for later reference. You can stop the machine once it has reached running state. The plugin will start the machine on demand.</p>
+<p >The IAM role created in the previous step, can either be specified on launch or it is added from the EC2 management. Attach it anytime using Actions - Security - Modify IAM role from the menu.</p>
 <h2><a class="anchor" id="github_hosted3"></a>
 Setup AWS S3 Instance</h2>
 <p >Use the AWS console to create an S3 storage with default options. Note the name to specify it the the parameters of the actions afterwards.</p>
