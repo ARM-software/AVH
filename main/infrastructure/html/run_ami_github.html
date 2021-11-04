@@ -179,7 +179,7 @@ Add GitHub Action</h2>
 </div><!-- fragment --><p >Once this steps are completed, any commit or pull request to the repository should trigger the <em>CI</em> workflow that you have defined. Make sure that the EC2 instance is up and in running state, for the github runner to be available to your actions.</p>
 <h1><a class="anchor" id="GitHub_hosted"></a>
 GitHub-hosted Runners</h1>
-<p >The following steps explain how to use <b>GitHub-hosted runners</b> with <a href="https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g">AWS Marketplace: Arm Virtual Hardware</a>. The github-hosted runner will run the action on an github-hosted VM instance. A plugin is provided to provide remote execution on Arm Virtual Hardware. The plugin manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an <a class="el" href="index.html#AWS">Arm VHT AMI</a>. It also provides run-control of the EC2 instance itself, starting and stopping on demand.</p>
+<p >The following steps explain how to use <b>GitHub-hosted runners</b> with <a href="https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g">AWS Marketplace: Arm Virtual Hardware</a>. The github-hosted runner will run the action on an github-hosted VM instance. The <a href="https://github.com/ARM-software/VHT-AMI">VHT-AMI action</a> controls the remote execution of <em>builds</em> and <em>tests</em> on Arm Virtual Hardware. The plugin manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an <a class="el" href="index.html#AWS">Arm VHT AMI</a>. It also provides run-control of the EC2 instance itself, starting and stopping on demand.</p>
 <p ><img src="GitHub-GH-AWS.png" alt="" class="inline" title="VHT GitHub action"/></p>
 <ol type="1">
 <li><a href="#github_hosted1"><b>Create user roles on AWS IAM</b></a></li>
@@ -256,9 +256,7 @@ Prepare the testsuite</h3>
 <p >Refer to <a href="https://github.com/ARM-software/VHT-TFLmicrospeech/blob/main/.github/workflows/virtual_hardware_gh.yml">https://github.com/ARM-software/VHT-TFLmicrospeech/blob/main/.github/workflows/virtual_hardware_gh.yml</a> for some detailed example.</p>
 <h3><a class="anchor" id="autotoc_md9"></a>
 The vht.yml</h3>
-<p >vht.yml describes the content of the testsuite, assets, build and test run instructions. It is located in the root of the folder specified in vht_in. Its format is YAML (<a href="https://yaml.org/spec/">https://yaml.org/spec/</a>)</p>
-<h3><a class="anchor" id="autotoc_md10"></a>
-The YAML structure</h3>
+<p >The <b>vht.yml</b> file describes the content of the testsuite, assets, build and test run instructions. It is located in the root of the folder specified in vht_in. Its format is YAML (<a href="https://yaml.org/spec/">https://yaml.org/spec/</a>) with the following structure:</p>
 <div class="fragment"><div class="line">suite:</div>
 <div class="line">  name: &lt;value&gt;</div>
 <div class="line">  model: &lt;value&gt;</div>
@@ -280,57 +278,57 @@ The YAML structure</h3>
 <div class="line">      pre: &lt;value&gt;</div>
 <div class="line">      post: &lt;value&gt;</div>
 <div class="line">      timeout: &lt;value&gt;</div>
-</div><!-- fragment --><h4><a class="anchor" id="autotoc_md11"></a>
+</div><!-- fragment --><h4><a class="anchor" id="autotoc_md10"></a>
 suite</h4>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadNone">keyword   </th><th class="markdownTableHeadNone">description    </th></tr>
+<th class="markdownTableHeadLeft">Keyword   </th><th class="markdownTableHeadLeft">Description    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">suite   </td><td class="markdownTableBodyNone">Starts the declaration of a testsuite    </td></tr>
+<td class="markdownTableBodyLeft"><code>suite:</code>   </td><td class="markdownTableBodyLeft">Starts the declaration of a testsuite    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">name   </td><td class="markdownTableBodyNone">Name of the testsuite    </td></tr>
+<td class="markdownTableBodyLeft"><code>name:</code>   </td><td class="markdownTableBodyLeft">Name of the testsuite    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">model   </td><td class="markdownTableBodyNone">Executable name of the FVP used    </td></tr>
+<td class="markdownTableBodyLeft"><code>model:</code>   </td><td class="markdownTableBodyLeft">Executable name of the <a href="./simulation/html/Using.html">VHT simulation model</a> used.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">configuration   </td><td class="markdownTableBodyNone">Configuration file for the FVP    </td></tr>
+<td class="markdownTableBodyLeft"><code>configuration:</code>   </td><td class="markdownTableBodyLeft">Configuration file for the <a href="./simulation/html/Using.html">VHT simulation model</a>.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">pre   </td><td class="markdownTableBodyNone">Execute command on shell before suite or test    </td></tr>
+<td class="markdownTableBodyLeft"><code>pre:</code>   </td><td class="markdownTableBodyLeft">Execute command on shell before executing any <code>builds:</code> or <code>tests:</code>.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">post   </td><td class="markdownTableBodyNone">Execute command on shell after suite or test   </td></tr>
+<td class="markdownTableBodyLeft"><code>post:</code>   </td><td class="markdownTableBodyLeft">Execute command on shell after executing any <code>builds:</code> or <code>tests:</code>.   </td></tr>
 </table>
-<h4><a class="anchor" id="autotoc_md12"></a>
-builds (optiona)</h4>
+<h4><a class="anchor" id="autotoc_md11"></a>
+builds (optional)</h4>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadNone">keyword   </th><th class="markdownTableHeadNone">description    </th></tr>
+<th class="markdownTableHeadLeft">Keyword   </th><th class="markdownTableHeadLeft">Description    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">builds   </td><td class="markdownTableBodyNone">Starts a list of build declarations    </td></tr>
+<td class="markdownTableBodyLeft"><code>builds:</code>   </td><td class="markdownTableBodyLeft">Starts a list of build declarations.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">shell   </td><td class="markdownTableBodyNone">Execute command on shell that builds executable    </td></tr>
+<td class="markdownTableBodyLeft"><code>shell:</code>   </td><td class="markdownTableBodyLeft">Execute command on shell that builds the executable file.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">pre   </td><td class="markdownTableBodyNone">Execute command on shell before suite or test    </td></tr>
+<td class="markdownTableBodyLeft"><code>pre:</code>   </td><td class="markdownTableBodyLeft">Execute command on shell before the build <code>shell:</code> command.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">post   </td><td class="markdownTableBodyNone">Execute command on shell after suite or test   </td></tr>
+<td class="markdownTableBodyLeft"><code>post:</code>   </td><td class="markdownTableBodyLeft">Execute command on shell after the build <code>shell:</code> command.   </td></tr>
 </table>
-<h4><a class="anchor" id="autotoc_md13"></a>
+<h4><a class="anchor" id="autotoc_md12"></a>
 tests</h4>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadNone">keyword   </th><th class="markdownTableHeadNone">description    </th></tr>
+<th class="markdownTableHeadLeft">Keyword   </th><th class="markdownTableHeadNone">Description    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">tests   </td><td class="markdownTableBodyNone">Starts a list of test declarations    </td></tr>
+<td class="markdownTableBodyLeft"><code>tests:</code>   </td><td class="markdownTableBodyNone">Starts a list of test declarations.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">executable   </td><td class="markdownTableBodyNone">ELF format executable file to be executed on test    </td></tr>
+<td class="markdownTableBodyLeft"><code>executable:</code>   </td><td class="markdownTableBodyNone">Executable file in ELF format to be executed on the <a href="./simulation/html/Using.html">VHT simulation model</a>.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">arguments   </td><td class="markdownTableBodyNone">Additional arguments passed to FVP    </td></tr>
+<td class="markdownTableBodyLeft"><code>arguments:</code>   </td><td class="markdownTableBodyNone">Additional arguments passed to the <a href="./simulation/html/Using.html">VHT simulation model</a>.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">timeout   </td><td class="markdownTableBodyNone">Optional timeout for test    </td></tr>
+<td class="markdownTableBodyLeft"><code>timeout:</code>   </td><td class="markdownTableBodyNone">Optional timeout for test execution.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">pre   </td><td class="markdownTableBodyNone">Execute command on shell before suite or test    </td></tr>
+<td class="markdownTableBodyLeft"><code>pre:</code>   </td><td class="markdownTableBodyNone">Execute command on shell before starting the <code>executable:</code>.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">post   </td><td class="markdownTableBodyNone">Execute command on shell after suite or test   </td></tr>
+<td class="markdownTableBodyLeft"><code>post:</code>   </td><td class="markdownTableBodyNone">Execute command on shell after completing the <code>executable:</code>.   </td></tr>
 </table>
-<h3><a class="anchor" id="autotoc_md14"></a>
+<h3><a class="anchor" id="autotoc_md13"></a>
 Example</h3>
 <div class="fragment"><div class="line">suite:</div>
 <div class="line">  name: &quot;Tensorflow lite micro examples&quot;</div>
@@ -351,9 +349,9 @@ Example</h3>
 <div class="line">      pre: &quot;&quot;</div>
 <div class="line">      post: &quot;&quot;</div>
 <div class="line">      timeout: 20</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md15"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md14"></a>
 Use Action</h3>
-<p >You can now consume the action by referencing the v1 branch...</p>
+<p >You can now the <a href="https://github.com/ARM-software/VHT-AMI">VHT-AMI action</a> by referencing the v1 branch as shown below:</p>
 <div class="fragment"><div class="line">uses: Arm-Software/VHT-AMI@v1</div>
 <div class="line">with:</div>
 <div class="line">  vht_in:</div>
@@ -362,15 +360,23 @@ Use Action</h3>
 <div class="line">  secret_key_id: ${{ secrets.AWS_ACCESS_KEY_SECRET }}</div>
 <div class="line">  aws_region: &quot;eu-west-1&quot;</div>
 <div class="line">  s3_bucket_name: my_bucket</div>
-</div><!-- fragment --><p ><b>Where</b></p>
-<ul>
-<li>vht_in is the folder to the staged files, with vht.yml in root.</li>
-<li><em>secrets.AWS_INSTANCE_ID</em> is the instance ID of the AMI stored as GitHub secret.</li>
-<li><em>secrets.AWS_ACCESS_KEY_ID</em> is the access key to AMI stored as GitHub secret.</li>
-<li><em>secrets.AWS_SECRET_KEY</em> is the secret key to AMI stored as GitHub secret.</li>
-<li>aws_region: name of the region your EC2 and S3 instances are located</li>
-<li>s3_bucket_name: for temporary storage an S3 bucket is used </li>
-</ul>
+</div><!-- fragment --><p >The <a href="https://github.com/ARM-software/VHT-AMI">VHT-AMI action</a> is controlled using the following parameters.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Keyword   </th><th class="markdownTableHeadLeft">Description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>vht_in:</code>   </td><td class="markdownTableBodyLeft">Folder to the staged files. The <b>vht.yml</b> file should be provided in the root folder.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>instance_id:</code>   </td><td class="markdownTableBodyLeft">Instance ID of the AMI stored as GitHub secret <em>secrets.AWS_INSTANCE_ID</em>.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>access_key_id:</code>   </td><td class="markdownTableBodyLeft">Access key to AMI stored as GitHub secret <em>secrets.AWS_ACCESS_KEY_ID</em>.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>secret_key_id:</code>   </td><td class="markdownTableBodyLeft">Secret key to AMI stored as GitHub secret <em>secrets.AWS_SECRET_KEY</em>.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>aws_region:</code>   </td><td class="markdownTableBodyLeft">Name of the region where your EC2 and S3 instances are located.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>s3_bucket_name:</code>   </td><td class="markdownTableBodyLeft">Name of the temporary storage an S3 bucket is used.   </td></tr>
+</table>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
