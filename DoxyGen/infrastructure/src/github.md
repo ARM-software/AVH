@@ -91,7 +91,7 @@ Make sure that the EC2 instance is up and in running state, for the github runne
 # GitHub-hosted Runners {#GitHub_hosted}
 
 The following steps explain how to use **GitHub-hosted runners** with [AWS Marketplace: \prj_name](https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g).
-The github-hosted runner will run the action on an github-hosted VM instance. A plugin is provided to provide remote execution on Arm Virtual Hardware. The plugin manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an \ref AWS "Arm VHT AMI". It also provides run-control of the EC2 instance itself, starting and stopping on demand.
+The github-hosted runner will run the action on an github-hosted VM instance. The [VHT-AMI action](https://github.com/ARM-software/VHT-AMI) controls the remote execution of *builds* and *tests* on Arm Virtual Hardware. The plugin manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an \ref AWS "Arm VHT AMI". It also provides run-control of the EC2 instance itself, starting and stopping on demand.
 
 ![VHT GitHub action](./images/GitHub-GH-AWS.png "VHT GitHub action for AMI integration")
 
@@ -199,9 +199,7 @@ Refer to https://github.com/ARM-software/VHT-TFLmicrospeech/blob/main/.github/wo
 
 ### The vht.yml
 
-vht.yml describes the content of the testsuite, assets, build and test run instructions. It is located in the root of the folder specified in vht_in. Its format is YAML (https://yaml.org/spec/)
-
-### The YAML structure
+The **vht.yml** file describes the content of the testsuite, assets, build and test run instructions. It is located in the root of the folder specified in vht_in. Its format is YAML (https://yaml.org/spec/) with the following structure:
 
 ``` yml
 suite:
@@ -229,34 +227,34 @@ suite:
 
 #### suite
 
-|  keyword      |  description                                       |
-|---------------|----------------------------------------------------|
-| suite         |  Starts the declaration of a testsuite             |
-| name          |  Name of the testsuite                             |
-| model         |  Executable name of the FVP used                   |
-| configuration |  Configuration file for the FVP                    |
-| pre           |  Execute command on shell before suite or test     |
-| post          |  Execute command on shell after suite or test      |
+| Keyword          |  Description
+|:-----------------|:---------------------------------------------------
+| `suite:`         |  Starts the declaration of a testsuite
+| `name:`          |  Name of the testsuite
+| `model:`         |  Executable name of the [VHT simulation model](./simulation/html/Using.html) used.
+| `configuration:` |  Configuration file for the [VHT simulation model](./simulation/html/Using.html).
+| `pre:`           |  Execute command on shell before executing any `builds:` or `tests:`.
+| `post:`          |  Execute command on shell after executing any `builds:` or `tests:`.
 
-#### builds (optiona)
+#### builds (optional)
 
-|  keyword      |  description                                       |
-|---------------|----------------------------------------------------|
-| builds        |  Starts a list of build declarations               |
-| shell         |  Execute command on shell that builds executable   |
-| pre           |  Execute command on shell before suite or test     |
-| post          |  Execute command on shell after suite or test      |
+| Keyword          |  Description
+|:-----------------|:---------------------------------------------------
+| `builds:`        |  Starts a list of build declarations.
+| `shell:`         |  Execute command on shell that builds the executable file.
+| `pre:`           |  Execute command on shell before the build `shell:` command.
+| `post:`          |  Execute command on shell after the build `shell:` command.
 
 #### tests
 
-|  keyword      |  description                                       |
-|---------------|----------------------------------------------------|
-| tests         |  Starts a list of test declarations                |
-| executable    |  ELF format executable file to be executed on test |
-| arguments     |  Additional arguments passed to FVP                |
-| timeout       |  Optional timeout for test                         |
-| pre           |  Execute command on shell before suite or test     |
-| post          |  Execute command on shell after suite or test      |
+| Keyword          |  Description
+|:-----------------|----------------------------------------------------
+| `tests:`         |  Starts a list of test declarations.
+| `executable:`    |  Executable file in ELF format to be executed on the [VHT simulation model](./simulation/html/Using.html).
+| `arguments:`     |  Additional arguments passed to the [VHT simulation model](./simulation/html/Using.html).
+| `timeout:`       |  Optional timeout for test execution.
+| `pre:`           |  Execute command on shell before starting the `executable:`.
+| `post:`          |  Execute command on shell after completing the `executable:`.
 
 ### Example
 
@@ -284,7 +282,7 @@ suite:
 
 ### Use Action
 
-You can now consume the action by referencing the v1 branch...
+You can now the [VHT-AMI action](https://github.com/ARM-software/VHT-AMI) by referencing the v1 branch as shown below:
 
 ```
 uses: Arm-Software/VHT-AMI@v1
@@ -297,17 +295,13 @@ with:
   s3_bucket_name: my_bucket
 ```
 
-**Where**
+The [VHT-AMI action](https://github.com/ARM-software/VHT-AMI) is controlled using the following parameters.
 
- - vht_in is the folder to the staged files, with vht.yml in root.
-
- - *secrets.AWS_INSTANCE_ID* is the instance ID of the AMI stored as GitHub secret.
-
- - *secrets.AWS_ACCESS_KEY_ID* is the access key to AMI stored as GitHub secret.
-
- - *secrets.AWS_SECRET_KEY* is the secret key to AMI stored as GitHub secret.
-
- - aws_region: name of the region your EC2 and S3 instances are located
-
- - s3_bucket_name: for temporary storage an S3 bucket is used
-
+| Keyword           |  Description
+|:------------------|:----------------------------------------------------
+| `vht_in:`         |  Folder to the staged files. The **vht.yml** file should be provided in the root folder.
+| `instance_id:`    |  Instance ID of the AMI stored as GitHub secret *secrets.AWS_INSTANCE_ID*.
+| `access_key_id:`  |  Access key to AMI stored as GitHub secret *secrets.AWS_ACCESS_KEY_ID*.
+| `secret_key_id:`  |  Secret key to AMI stored as GitHub secret *secrets.AWS_SECRET_KEY*.
+| `aws_region:`     |  Name of the region where your EC2 and S3 instances are located.
+| `s3_bucket_name:` |  Name of the temporary storage an S3 bucket is used.
