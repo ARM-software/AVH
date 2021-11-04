@@ -109,10 +109,11 @@ The file [action.yml](https://github.com/ARM-software/VHT-AMI/blob/master/action
 
 
 ## Create user roles on AWS IAM {#github_hosted1}
-The following AWS account requirements are needed to run VHT-AMI action.
+The following AWS account requirements are needed to run VHT-AMI action:
 
 
-1. ### Create PassRole policy for VHT-AMI
+**1. Create PassRole policy for VHT-AMI**
+
 You need to create a PassRole IAM policy to be attached to our IAM User with the following content.
 You can name it `vht-passrole`.
 ```json
@@ -130,7 +131,8 @@ You can name it `vht-passrole`.
 
 More information on the AWS documentation: [Create IAM Policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html)
 
-2. ### Create Identity and Access Management (IAM) User
+**2. Create Identity and Access Management (IAM) User**
+
 You have to create an IAM User to limit resource permission to your CI. In addition, the IAM User provides fixed `AWS Access Key Id` and `AWS Secret access key` values. 
 
 **Make notes of the the users credentials as you will need them in futures steps of the setup.**
@@ -148,7 +150,8 @@ The user can be called `vht`.
 
 More information on the AWS documentation: [Create IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html)
 
-3. ### Create an IAM Role For EC2 Services
+**3. Create an IAM Role For EC2 Services**
+
 You have to create IAM Role to be attached to the EC2 Instances. This role gives EC2 Instances access to S3 buckets and SSM services.
 For this role, you have to add the following `policies`:
 - AmazonS3FullAccess
