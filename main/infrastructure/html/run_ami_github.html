@@ -192,9 +192,9 @@ GitHub-hosted Runners</h1>
 <p >The file <a href="https://github.com/ARM-software/VHT-AMI/blob/master/action.yml">action.yml</a> defines the parameters for the GitHub action.</p>
 <h2><a class="anchor" id="github_hosted1"></a>
 Create user roles on AWS IAM</h2>
-<p >The following AWS account requirements are needed to run VHT-AMI action.</p>
-<ol type="1">
-<li>### Create PassRole policy for VHT-AMI You need to create a PassRole IAM policy to be attached to our IAM User with the following content. You can name it <code>vht-passrole</code>. <div class="fragment"><div class="line">{</div>
+<p >The following AWS account requirements are needed to run VHT-AMI action:</p>
+<p ><b>1. Create PassRole policy for VHT-AMI</b></p>
+<p >You need to create a PassRole IAM policy to be attached to our IAM User with the following content. You can name it <code>vht-passrole</code>. </p><div class="fragment"><div class="line">{</div>
 <div class="line">    &quot;Version&quot;: &quot;2012-10-17&quot;,</div>
 <div class="line">    &quot;Statement&quot;: [</div>
 <div class="line">        {</div>
@@ -204,12 +204,9 @@ Create user roles on AWS IAM</h2>
 <div class="line">        }</div>
 <div class="line">    ]</div>
 <div class="line">}</div>
-</div><!-- fragment --></li>
-</ol>
-<p >More information on the AWS documentation: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html">Create IAM Policy</a></p>
-<ol type="1">
-<li>### Create Identity and Access Management (IAM) User You have to create an IAM User to limit resource permission to your CI. In addition, the IAM User provides fixed <code>AWS Access Key Id</code> and <code>AWS Secret access key</code> values.</li>
-</ol>
+</div><!-- fragment --><p >More information on the AWS documentation: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html">Create IAM Policy</a></p>
+<p ><b>2. Create Identity and Access Management (IAM) User</b></p>
+<p >You have to create an IAM User to limit resource permission to your CI. In addition, the IAM User provides fixed <code>AWS Access Key Id</code> and <code>AWS Secret access key</code> values.</p>
 <p ><b>Make notes of the the users credentials as you will need them in futures steps of the setup.</b></p>
 <p >For this user, you have to add the following <code>policies</code>:</p><ul>
 <li>vht-passrole (created before)</li>
@@ -222,10 +219,8 @@ Create user roles on AWS IAM</h2>
 </ul>
 <p >The user can be called <code>vht</code>.</p>
 <p >More information on the AWS documentation: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html">Create IAM User</a></p>
-<ol type="1">
-<li>### Create an IAM Role For EC2 Services You have to create IAM Role to be attached to the EC2 Instances. This role gives EC2 Instances access to S3 buckets and SSM services. For this role, you have to add the following <code>policies</code>:</li>
-</ol>
-<ul>
+<p ><b>3. Create an IAM Role For EC2 Services</b></p>
+<p >You have to create IAM Role to be attached to the EC2 Instances. This role gives EC2 Instances access to S3 buckets and SSM services. For this role, you have to add the following <code>policies</code>:</p><ul>
 <li>AmazonS3FullAccess</li>
 <li>AmazonSSMFullAccess</li>
 </ul>
