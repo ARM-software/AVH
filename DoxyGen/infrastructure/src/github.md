@@ -233,8 +233,8 @@ The following tables describe the different sections of the **vht.yml** file.
 | `suite:`         |  Starts the declaration of a test suite
 |:-----------------|:---------------------------------------------------
 | `name:`          |  Name of the test suite
-| `model:`         |  Executable name of the [VHT simulation model](./simulation/html/Using.html) used.
-| `configuration:` |  Configuration file for the [VHT simulation model](./simulation/html/Using.html).
+| `model:`         |  Executable name of the [VHT simulation model](../../simulation/html/Using.html) used.
+| `configuration:` |  Configuration file for the [VHT simulation model](../../simulation/html/Using.html).
 | `pre:`           |  Execute command on shell before executing any `builds:` or `tests:`.
 | `post:`          |  Execute command on shell after executing any `builds:` or `tests:`.
 
@@ -248,8 +248,8 @@ The following tables describe the different sections of the **vht.yml** file.
 
 | `tests:`         |  Starts a list of test declarations.
 |:-----------------|:---------------------------------------------------
-| `executable:`    |  Executable file in ELF format to be executed on the [VHT simulation model](./simulation/html/Using.html).
-| `arguments:`     |  Additional arguments passed to the [VHT simulation model](./simulation/html/Using.html).
+| `executable:`    |  Executable file in ELF format to be executed on the [VHT simulation model](../../simulation/html/Using.html).
+| `arguments:`     |  Additional arguments passed to the [VHT simulation model](../../simulation/html/Using.html).
 | `timeout:`       |  Optional timeout for test execution.
 | `pre:`           |  Execute command on shell before starting the `executable:`.
 | `post:`          |  Execute command on shell after completing the `executable:`.
