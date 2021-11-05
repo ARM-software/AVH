@@ -190,7 +190,7 @@ More information on github documentation: [Creating encrypted secrets for a repo
 
 ## Add Github Action {#github_hosted5}
 
-The basic idea of creating a github-hosted CI flow is to run steps on the github VM instance - except build and execution of test cases. The testsuite contains of a collection of files that are required on the VHT instance on AWS and a yaml-based inventory file, that includes instructions. This file is called **vht.yml**. It will mark the root of a folder used to stage a testsuite on the Github VM. 
+The basic idea of creating a github-hosted CI flow is to run steps on the github VM instance - except build and execution of test cases. The test suite contains of a collection of files that are required on the VHT instance on AWS and a yaml-based inventory file, that includes instructions. This file is called **vht.yml**. It will mark the root of a folder used to stage a test suite on the Github VM. 
 
 A complete example workflow is found in the example hosted on: https://github.com/ARM-software/VHT-TFLmicrospeech
 
@@ -202,7 +202,7 @@ Refer to https://github.com/ARM-software/VHT-TFLmicrospeech/blob/main/.github/wo
 
 ### The vht.yml
 
-The **vht.yml** file describes the content of the testsuite, assets, build and test run instructions. It is located in the root of the folder specified in vht_in. Its format is YAML (https://yaml.org/spec/) with the following structure:
+The **vht.yml** file describes the content of the test suite, assets, build and test run instructions. It is located in the root of the folder specified in vht_in. Its format is YAML (https://yaml.org/spec/) with the following structure:
 
 ``` yml
 suite:
@@ -228,31 +228,26 @@ suite:
       timeout: <value>
 ```
 
-#### suite
+The following tables describe the different sections of the **vht.yml** file.
 
-| Keyword          |  Description
+| `suite:`         |  Starts the declaration of a test suite
 |:-----------------|:---------------------------------------------------
-| `suite:`         |  Starts the declaration of a testsuite
-| `name:`          |  Name of the testsuite
+| `name:`          |  Name of the test suite
 | `model:`         |  Executable name of the [VHT simulation model](./simulation/html/Using.html) used.
 | `configuration:` |  Configuration file for the [VHT simulation model](./simulation/html/Using.html).
 | `pre:`           |  Execute command on shell before executing any `builds:` or `tests:`.
 | `post:`          |  Execute command on shell after executing any `builds:` or `tests:`.
 
-#### builds (optional)
 
-| Keyword          |  Description
-|:-----------------|:---------------------------------------------------
 | `builds:`        |  Starts a list of build declarations.
+|:-----------------|:---------------------------------------------------
 | `shell:`         |  Execute command on shell that builds the executable file.
 | `pre:`           |  Execute command on shell before the build `shell:` command.
 | `post:`          |  Execute command on shell after the build `shell:` command.
 
-#### tests
 
-| Keyword          |  Description
-|:-----------------|----------------------------------------------------
 | `tests:`         |  Starts a list of test declarations.
+|:-----------------|----------------------------------------------------
 | `executable:`    |  Executable file in ELF format to be executed on the [VHT simulation model](./simulation/html/Using.html).
 | `arguments:`     |  Additional arguments passed to the [VHT simulation model](./simulation/html/Using.html).
 | `timeout:`       |  Optional timeout for test execution.
