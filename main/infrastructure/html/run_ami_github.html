@@ -243,7 +243,7 @@ Add Github Secrets</h2>
 <p >More information on github documentation: <a href="https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository">Creating encrypted secrets for a repository</a></p>
 <h2><a class="anchor" id="github_hosted5"></a>
 Add Github Action</h2>
-<p >The basic idea of creating a github-hosted CI flow is to run steps on the github VM instance - except build and execution of test cases. The testsuite contains of a collection of files that are required on the VHT instance on AWS and a yaml-based inventory file, that includes instructions. This file is called <b>vht.yml</b>. It will mark the root of a folder used to stage a testsuite on the Github VM.</p>
+<p >The basic idea of creating a github-hosted CI flow is to run steps on the github VM instance - except build and execution of test cases. The test suite contains of a collection of files that are required on the VHT instance on AWS and a yaml-based inventory file, that includes instructions. This file is called <b>vht.yml</b>. It will mark the root of a folder used to stage a test suite on the Github VM.</p>
 <p >A complete example workflow is found in the example hosted on: <a href="https://github.com/ARM-software/VHT-TFLmicrospeech">https://github.com/ARM-software/VHT-TFLmicrospeech</a></p>
 <h3><a class="anchor" id="autotoc_md8"></a>
 Prepare the testsuite</h3>
@@ -251,7 +251,7 @@ Prepare the testsuite</h3>
 <p >Refer to <a href="https://github.com/ARM-software/VHT-TFLmicrospeech/blob/main/.github/workflows/virtual_hardware_gh.yml">https://github.com/ARM-software/VHT-TFLmicrospeech/blob/main/.github/workflows/virtual_hardware_gh.yml</a> for some detailed example.</p>
 <h3><a class="anchor" id="autotoc_md9"></a>
 The vht.yml</h3>
-<p >The <b>vht.yml</b> file describes the content of the testsuite, assets, build and test run instructions. It is located in the root of the folder specified in vht_in. Its format is YAML (<a href="https://yaml.org/spec/">https://yaml.org/spec/</a>) with the following structure:</p>
+<p >The <b>vht.yml</b> file describes the content of the test suite, assets, build and test run instructions. It is located in the root of the folder specified in vht_in. Its format is YAML (<a href="https://yaml.org/spec/">https://yaml.org/spec/</a>) with the following structure:</p>
 <div class="fragment"><div class="line">suite:</div>
 <div class="line">  name: &lt;value&gt;</div>
 <div class="line">  model: &lt;value&gt;</div>
@@ -273,57 +273,46 @@ The vht.yml</h3>
 <div class="line">      pre: &lt;value&gt;</div>
 <div class="line">      post: &lt;value&gt;</div>
 <div class="line">      timeout: &lt;value&gt;</div>
-</div><!-- fragment --><h4><a class="anchor" id="autotoc_md10"></a>
-suite</h4>
+</div><!-- fragment --><p >The following tables describe the different sections of the <b>vht.yml</b> file.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">Keyword   </th><th class="markdownTableHeadLeft">Description    </th></tr>
+<th class="markdownTableHeadLeft"><code>suite:</code>   </th><th class="markdownTableHeadLeft">Starts the declaration of a test suite    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code>suite:</code>   </td><td class="markdownTableBodyLeft">Starts the declaration of a testsuite    </td></tr>
+<td class="markdownTableBodyLeft"><code>name:</code>   </td><td class="markdownTableBodyLeft">Name of the test suite    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code>name:</code>   </td><td class="markdownTableBodyLeft">Name of the testsuite    </td></tr>
-<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><code>model:</code>   </td><td class="markdownTableBodyLeft">Executable name of the <a href="./simulation/html/Using.html">VHT simulation model</a> used.    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code>configuration:</code>   </td><td class="markdownTableBodyLeft">Configuration file for the <a href="./simulation/html/Using.html">VHT simulation model</a>.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code>pre:</code>   </td><td class="markdownTableBodyLeft">Execute command on shell before executing any <code>builds:</code> or <code>tests:</code>.    </td></tr>
+<td class="markdownTableBodyLeft"><code>configuration:</code>   </td><td class="markdownTableBodyLeft">Configuration file for the <a href="./simulation/html/Using.html">VHT simulation model</a>.    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>pre:</code>   </td><td class="markdownTableBodyLeft">Execute command on shell before executing any <code>builds:</code> or <code>tests:</code>.    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><code>post:</code>   </td><td class="markdownTableBodyLeft">Execute command on shell after executing any <code>builds:</code> or <code>tests:</code>.   </td></tr>
 </table>
-<h4><a class="anchor" id="autotoc_md11"></a>
-builds (optional)</h4>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">Keyword   </th><th class="markdownTableHeadLeft">Description    </th></tr>
+<th class="markdownTableHeadLeft"><code>builds:</code>   </th><th class="markdownTableHeadLeft">Starts a list of build declarations.    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code>builds:</code>   </td><td class="markdownTableBodyLeft">Starts a list of build declarations.    </td></tr>
-<tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><code>shell:</code>   </td><td class="markdownTableBodyLeft">Execute command on shell that builds the executable file.    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code>pre:</code>   </td><td class="markdownTableBodyLeft">Execute command on shell before the build <code>shell:</code> command.    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>pre:</code>   </td><td class="markdownTableBodyLeft">Execute command on shell before the build <code>shell:</code> command.    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><code>post:</code>   </td><td class="markdownTableBodyLeft">Execute command on shell after the build <code>shell:</code> command.   </td></tr>
 </table>
-<h4><a class="anchor" id="autotoc_md12"></a>
-tests</h4>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">Keyword   </th><th class="markdownTableHeadNone">Description    </th></tr>
+<th class="markdownTableHeadLeft"><code>tests:</code>   </th><th class="markdownTableHeadNone">Starts a list of test declarations.    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code>tests:</code>   </td><td class="markdownTableBodyNone">Starts a list of test declarations.    </td></tr>
-<tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><code>executable:</code>   </td><td class="markdownTableBodyNone">Executable file in ELF format to be executed on the <a href="./simulation/html/Using.html">VHT simulation model</a>.    </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><code>arguments:</code>   </td><td class="markdownTableBodyNone">Additional arguments passed to the <a href="./simulation/html/Using.html">VHT simulation model</a>.    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code>timeout:</code>   </td><td class="markdownTableBodyNone">Optional timeout for test execution.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code>pre:</code>   </td><td class="markdownTableBodyNone">Execute command on shell before starting the <code>executable:</code>.    </td></tr>
+<td class="markdownTableBodyLeft"><code>timeout:</code>   </td><td class="markdownTableBodyNone">Optional timeout for test execution.    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>pre:</code>   </td><td class="markdownTableBodyNone">Execute command on shell before starting the <code>executable:</code>.    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><code>post:</code>   </td><td class="markdownTableBodyNone">Execute command on shell after completing the <code>executable:</code>.   </td></tr>
 </table>
-<h3><a class="anchor" id="autotoc_md13"></a>
+<h3><a class="anchor" id="autotoc_md10"></a>
 Example</h3>
 <div class="fragment"><div class="line">suite:</div>
 <div class="line">  name: &quot;Tensorflow lite micro examples&quot;</div>
@@ -344,7 +333,7 @@ Example</h3>
 <div class="line">      pre: &quot;&quot;</div>
 <div class="line">      post: &quot;&quot;</div>
 <div class="line">      timeout: 20</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md14"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md11"></a>
 Use Action</h3>
 <p >You can now the <a href="https://github.com/ARM-software/VHT-AMI">VHT-AMI action</a> by referencing the v1 branch as shown below:</p>
 <div class="fragment"><div class="line">uses: Arm-Software/VHT-AMI@v1</div>

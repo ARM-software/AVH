@@ -54,13 +54,9 @@ var NAVTREE =
         [ "Add Github Secrets", "run_ami_github.html#github_hosted4", null ],
         [ "Add Github Action", "run_ami_github.html#github_hosted5", [
           [ "Prepare the testsuite", "run_ami_github.html#autotoc_md8", null ],
-          [ "The vht.yml", "run_ami_github.html#autotoc_md9", [
-            [ "suite", "run_ami_github.html#autotoc_md10", null ],
-            [ "builds (optional)", "run_ami_github.html#autotoc_md11", null ],
-            [ "tests", "run_ami_github.html#autotoc_md12", null ]
-          ] ],
-          [ "Example", "run_ami_github.html#autotoc_md13", null ],
-          [ "Use Action", "run_ami_github.html#autotoc_md14", null ]
+          [ "The vht.yml", "run_ami_github.html#autotoc_md9", null ],
+          [ "Example", "run_ami_github.html#autotoc_md10", null ],
+          [ "Use Action", "run_ami_github.html#autotoc_md11", null ]
         ] ]
       ] ]
     ] ],
