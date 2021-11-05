@@ -247,7 +247,7 @@ The following tables describe the different sections of the **vht.yml** file.
 
 
 | `tests:`         |  Starts a list of test declarations.
-|:-----------------|----------------------------------------------------
+|:-----------------|:---------------------------------------------------
 | `executable:`    |  Executable file in ELF format to be executed on the [VHT simulation model](./simulation/html/Using.html).
 | `arguments:`     |  Additional arguments passed to the [VHT simulation model](./simulation/html/Using.html).
 | `timeout:`       |  Optional timeout for test execution.
