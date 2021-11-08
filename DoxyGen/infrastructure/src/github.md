@@ -241,6 +241,7 @@ The following tables describe the different sections of the **vht.yml** file.
 
 | `builds:`        |  Starts a list of build declarations.
 |:-----------------|:---------------------------------------------------
+| `"<value>"`      |  Name of the build declaration.
 | `shell:`         |  Execute command on shell that builds the executable file.
 | `pre:`           |  Execute command on shell before the build `shell:` command.
 | `post:`          |  Execute command on shell after the build `shell:` command.
@@ -248,6 +249,7 @@ The following tables describe the different sections of the **vht.yml** file.
 
 | `tests:`         |  Starts a list of test declarations.
 |:-----------------|:---------------------------------------------------
+| `"<value>"`      |  Name of the test declaration.
 | `executable:`    |  Executable file in ELF format to be executed on the [VHT simulation model](../../simulation/html/Using.html).
 | `arguments:`     |  Additional arguments passed to the [VHT simulation model](../../simulation/html/Using.html).
 | `timeout:`       |  Optional timeout for test execution.
