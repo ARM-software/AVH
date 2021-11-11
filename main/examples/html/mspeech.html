@@ -107,8 +107,353 @@ $(document).ready(function(){initNavTree('mspeech.html',''); initResizable(); })
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p ><a class="anchor" id="md_src_mspeech"></a> The Micro speech program analyzes an audio input with a voice recognition model that can detect 2 keywords - <b>yes</b> and <b>no</b>. The recognized keywords are then printed into a serial interface. The voice recognition model is implemented using <a href="https://www.tensorflow.org/lite/microcontrollers">TensorFlow Lite for Microcontrollers</a>.</p>
-<p >GitHub repository <a href="https://github.com/arm-software/VHT-TFLmicrospeech"><b>github.com/arm-software/VHT-TFLmicrospeech</b></a> contains an implementation supporting Arm Virtual Hardware Targets (VHT) as well as real hardware boards. It demonstrates how to use the processor and peripheral abstraction layers for simpler software portability across different targets. The example repository contains documentation with running instructions.</p>
-<p >Sections <a href="../../infrastructure/html/run_ami_local.html"><b>Run AMI with Local Host</b></a> and <a href="../../infrastructure/html/run_ami_github.html"><b>Run AMI with GitHub Actions</b></a> explain how to build and run an application project on Arm Virtual Hardware and use the Micro speech example as a reference. </p>
+<p >GitHub repository <a href="https://github.com/arm-software/VHT-TFLmicrospeech"><b>github.com/arm-software/VHT-TFLmicrospeech</b></a> contains an implementation supporting Arm Virtual Hardware Targets (VHT) as well as real hardware boards.</p>
+<p >Micro speech demonstrates how to use the processor and peripheral abstraction layers for simpler software portability across different targets. The example repository contains documentation with running instructions.</p>
+<h1><a class="anchor" id="autotoc_md0"></a>
+Getting Started with Micro speech on Arm Virtual Hardware</h1>
+<p ><b>Table of contents</b></p>
+<ol type="1">
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#amilaunch">Accessing and launching the AMI</a><ul>
+<li>2.1 <a href="#marketplace">Find AMI on AWS Marketplace</a></li>
+<li>2.2 <a href="#launch">(Alternative) Launch the AMI from AWS EC2</a></li>
+<li>2.3 <a href="#console">Enable AMI console</a></li>
+<li>2.4 <a href="#codeserver">(Optional) Enable Code Server</a></li>
+<li>2.5 <a href="#vnc">(Optional) Enable Virtual Network Computing (VNC)</a></li>
+</ul>
+</li>
+<li><a href="#buildexample">Import and build example</a><ul>
+<li>3.1 <a href="#clone">Fork and clone example</a></li>
+<li>3.2 <a href="#build">Build example within the AMI</a></li>
+<li>3.3 <a href="#run">Run the example in place</a></li>
+<li>3.4 <a href="#edit">Edit example</a></li>
+<li>3.5 <a href="#push">Submit changes back to GitHub</a></li>
+</ul>
+</li>
+<li><a href="#actions">Automated CI/CD with GitHub Actions</a><ul>
+<li>4.1 <a href="#confactions">Configure GitHub Actions</a></li>
+<li>4.2 <a href="#runner">Setup runner on AMI</a></li>
+<li>4.3 <a href="#workflow">GitHub Actions workflow</a></li>
+<li>4.4 <a href="#failure">Demonstration of a failed workflow</a></li>
+</ul>
+</li>
+<li><a href="#further">To go further</a></li>
+</ol>
+<p ><a class="anchor" id="prerequisites"></a> </p>
+<h2><a class="anchor" id="autotoc_md1"></a>
+1. Prerequisites</h2>
+<ul>
+<li>a valid <a href="https://github.com/">Github</a> account</li>
+<li>a SSH (VNC) client installed: <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PuTTY</a>, <a href="https://mobaxterm.mobatek.net/">MobaXterm</a></li>
+<li>a valid <a href="https://aws.amazon.com/">AWS</a> account</li>
+</ul>
+<p ><a class="anchor" id="amilaunch"></a> </p>
+<h2><a class="anchor" id="autotoc_md2"></a>
+2. Accessing and launching the AMI</h2>
+<p ><a class="anchor" id="marketplace"></a> </p>
+<h3><a class="anchor" id="autotoc_md3"></a>
+2.1. Find AMI on AWS Marketplace</h3>
+<ol type="1">
+<li>Log into your <a href="https://aws.amazon.com/">AWS account</a> and select <em>AWS Marketplace Subscriptions</em> service</li>
+<li>Go to <em>Discover products</em> and search for <em>Arm Virtual Hardware</em> (with spaces)</li>
+</ol>
+<p ><img src="subscribe.png" alt="" class="inline" title="AWS AMI subscription button"/></p>
+<ol type="1">
+<li>Click on <em>Continue to subscribe to the AMI</em> &gt; <em>Continue to configuration</em> &gt; <em>Continue to launch</em></li>
+<li>Choose <b>c5.large</b> instance type. This type has 2 powerful vCPU and 4 GB of RAM which is enough resources to run the AMI and simulation fast.</li>
+</ol>
+<p ><img src="instance_type.png" alt="" class="inline" title="AWS instance size list"/></p>
+<ol type="1">
+<li>If you don't have a VPC (Virtual Private Cloud network) already, click on <em>Create a VPC in EC2 * in the corresponding section. In the *Your VPCs</em> interface, click on <em>Actions</em> &gt; <em>Create default VPC</em> in the top-right corner.</li>
+</ol>
+<p ><img src="ec2_vpc.png" alt="" class="inline" title="AWS instance size list"/></p>
+<ol type="1">
+<li>If you don't have a Security Group already, click on <em>Create new security group based on seller settings</em> in the corresponding section. This will allow SSH connection to the instance. Add a name and description to save it.</li>
+</ol>
+<p ><img src="ec2_sg.png" alt="" class="inline" title="AWS instance size list"/></p>
+<ol type="1">
+<li>If you don't have a Key Pair already, click on "Create a key pair in EC2" in the corresponding section. A SSH key pair correspond to a public key that will be copied on the server side (the running AVH AMI instance) and a private key needed by a client to connect to it (your local machine). In the <em>Key pairs</em> interface, click on <em>Create a pair</em> in the top-right corner and follow the default steps to download the private key that you will need to connect.</li>
+</ol>
+<p ><img src="key_pair.png" alt="" class="inline" title="AWS key pair selection menu"/></p>
+<ol type="1">
+<li>Click on <em>Launch</em>. You will see a "Congratulations" message to inform you that the instance was successfully deployed. Click on the link provided "You can view this instance on EC2 Console" to check the instance status and retrieve its <em>Public IPv4 address</em>.</li>
+</ol>
+<p ><a class="anchor" id="launch"></a> </p>
+<h3><a class="anchor" id="autotoc_md4"></a>
+2.2. (Alternative) Launch the AMI from AWS EC2</h3>
+<ol type="1">
+<li>Log into your <a href="https://aws.amazon.com/">AWS account</a> and select <em>Elastic Compute Cloud (EC2)</em> service</li>
+<li>Locate <em>Images &gt; AMIs</em> in the sidebar</li>
+<li>Search <em>Public Images</em> for <em>ArmVirtualHardware</em> (without spaces) and click on Launch.</li>
+</ol>
+<p ><img src="ec2_launch.png" alt="" class="inline" title="AWS key pair selection menu"/></p>
+<ol type="1">
+<li>Follow the steps with the default options. If this has not been configured already, you will need to create a VPC, a new security group similar to what is described in <a href="#marketplace">section 2.4</a>.</li>
+<li>Click on <em>Review and launch</em> &gt; <em>Launch</em> to select or create a key pair (see <a href="#marketplace">section 2.4</a>). You will see a message to inform you that the instance was successfully launched. Click on the <em>View instances</em> link provided to check its status and retrieve its <em>Public IPv4 address</em>.</li>
+</ol>
+<p ><a class="anchor" id="console"></a> </p>
+<h3><a class="anchor" id="autotoc_md5"></a>
+2.3. Enable AMI console</h3>
+<p >To connect to the running instance, you will need its <em>Public IPv4 address</em>. If you don't have it already, you can get from the <em>EC2</em> &gt; <em>Instances</em>.</p>
+<p >Use SSH command on Linux, MacOS or <a href="https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/">Windows Powershell</a>: </p><pre class="fragment">    ssh -i &lt;key.pem&gt; ubuntu@&lt;AMI_IP_addr&gt;
+</pre><p> Or, if using MobaXterm on Windows:</p>
+<ul>
+<li>Add new SSH session</li>
+<li>Specify <code>&lt;AMI_IP_addr&gt;</code> as <em>Remote host</em></li>
+<li>Specify <code>ubuntu</code> as <em>username</em></li>
+<li>Enable <em>Use private key</em> and specify path to <code>&lt;key.pem&gt;</code></li>
+</ul>
+<p ><img src="moba_ssh.png" alt="" class="inline" title="MobaXterm SSH configuration"/></p>
+<p >Or, if using PuTTY:</p>
+<ul>
+<li>Use <b>PuTTYgen</b> to convert the .pem file to .ppk</li>
+<li>Specify <code>ubuntu@&lt;AMI_IP_addr&gt;</code> in <em>Session &gt; Host name</em></li>
+</ul>
+<p ><img src="putty_ip.png" alt="" class="inline" title="PuTTY username and hostname/IP configuration"/></p>
+<ul>
+<li>Specify path to <code>key.pem</code> in <em>Session &gt; Connection &gt; SSH &gt; Auth &gt; Private key file for authentication</em></li>
+</ul>
+<p ><img src="putty_key.png" alt="" class="inline" title="PuTTY private key configuration"/></p>
+<p ><a class="anchor" id="codeserver"></a> </p>
+<h3><a class="anchor" id="autotoc_md6"></a>
+2.4. [Optional] Enable &lt;a href="https://github.com/cdr/code-server" &gt;Code Server&lt;/a&gt; (Visual Studio Code)</h3>
+<p >The Arm Virtual Hardware AMI comes with an IDE (Visual Studio Code) which can be accessed with a web browser. To access it, you will need to:</p>
+<ol type="1">
+<li><p class="startli">Start a SSH tunnel to the instance and forward port 8080. On Linux, MacOS or <a href="https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/">Windows Powershell</a>:</p>
+<p class="startli"><code>ssh -i &lt;key.pem&gt; -N -L 8080:localhost:8080 ubuntu@&lt;AMI_IP_addr&gt;</code></p>
+<p class="startli">The -N option holds the SSH tunnel connection and does not allow to execute other remote commands. This is useful for just forwarding ports.</p>
+<p class="startli">Or, with MobaXterm on Windows:</p><ul>
+<li>Add new SSH tunnel</li>
+<li>Specify <code>8080</code> in <em>My computer &gt; Forwarded port</em></li>
+<li>Specify <code>&lt;AMI_IP_addr&gt;</code> in <em>SSH server</em></li>
+<li>Specify <code>ubuntu</code> in <em>SSH login</em></li>
+<li>Specify <code>22</code> in <em>SSH port</em></li>
+<li>Specify <code>localhost</code> in <em>Remote server</em></li>
+<li>Specify <code>8080</code> in <em>Remote port</em></li>
+<li>Save configuration. Click on the key icon to specify the path to <code>&lt;key.pem&gt;</code></li>
+<li>Start the tunnel connection</li>
+</ul>
+</li>
+</ol>
+<p ><img src="moba_tunnel.png" alt="" class="inline" title="MobaXterm SSH tunnel configuration"/></p>
+<ol type="1">
+<li>Launch a web browser on your local machine and open the following URL: <a href="http://localhost:8080">http://localhost:8080</a></li>
+</ol>
+<p ><a class="anchor" id="vnc"></a> </p>
+<h3><a class="anchor" id="autotoc_md7"></a>
+2.5. [Optional] Enable Virtual Network Computing (VNC)</h3>
+<p >VNC is a protocol to enable remote desktop. The instruction below will securely enable VNC through a SSH tunnel.</p>
+<p >In the AMI terminal:</p>
+<ol type="1">
+<li><p class="startli">Enable VNC password (no need to enter a view-only password)</p>
+<p class="startli"><code>vncpasswd</code></p>
+</li>
+<li><p class="startli">Start the VNC server for the session</p>
+<p class="startli"><code>sudo systemctl start vncserver@1.service</code></p>
+<p class="startli">To restart the VNC server after reboot</p>
+<p class="startli"><code>sudo systemctl enable vncserver@1.service</code></p>
+</li>
+</ol>
+<p >On your local machine:</p>
+<ol type="1">
+<li><p class="startli">Forward port 5901 on local machine​. On Linux, MacOS or <a href="https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/">Windows Powershell</a>:</p>
+<p class="startli"><code>ssh -I &lt;key.pem&gt; -N –L 5901:localhost:5901 ubuntu@&lt;AMI_IP_addr&gt;​</code></p>
+<p class="startli">Then, connect VNC client (e.g. Remmina, TigerVNC) to port 5901​. You will be prompted for password.</p>
+<p class="startli">Or, with MobaXterm on Windows:</p><ul>
+<li>Add new VNC session</li>
+<li>Specify <code>localhost</code> as <em>Remote hostname</em></li>
+<li>Specify <code>5901</code> as <em>Port</em></li>
+<li>Select the <em>Network settings</em> tab configure the <em>SSH gateway</em> with:<ul>
+<li><code>&lt;AMI_IP_addr&gt;</code> as <em>Gateway host</em></li>
+<li><code>ubuntu</code> as <em>Username</em></li>
+<li><code>22</code> as <em>Port</em></li>
+<li>Enable <em>Use SSH key</em> and specify path to <code>&lt;key.pem&gt;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p ><img src="moba_vnc.png" alt="" class="inline" title="MobaXterm VNC configuration through SSH gateway"/></p>
+<p ><a class="anchor" id="buildexample"></a> </p>
+<h2><a class="anchor" id="autotoc_md8"></a>
+3. Import and build example</h2>
+<p ><a class="anchor" id="clone"></a> </p>
+<h3><a class="anchor" id="autotoc_md9"></a>
+3.1. Fork and clone example</h3>
+<ol type="1">
+<li>Open a web browser and enter the following URL: <a href="https://github.com/ARM-software/VHT-TFLmicrospeech">https://github.com/ARM-software/VHT-TFLmicrospeech</a></li>
+<li>Log in to your github account and click on <em>Fork</em> (upper right)</li>
+<li>In the AMI terminal: <pre class="fragment"> git config --global user.name YourGitHubName​
+ git config --global user.email Your.Email@domain.com​
+ git config --list​
+ git clone https://github.com/&lt;YourGitHubName&gt;/VHT-TFLmicrospeech
+</pre> <a class="anchor" id="build"></a> </li>
+</ol>
+<h3><a class="anchor" id="autotoc_md10"></a>
+3.2. Build example within the AMI</h3>
+<p >In the AMI terminal:</p>
+<ol type="1">
+<li><p class="startli">Navigate to build folder​</p>
+<p class="startli"><code>cd VHT-TFLmicrospeech/Platform_FVP_Corstone_SSE-300_Ethos-U55​</code></p>
+</li>
+<li><p class="startli">Use <a href="https://arm-software.github.io/CMSIS_5/Build/html/cp_install.html">cp_install</a> utility (do once) to install the necessary <a href="https://developer.arm.com/tools-and-software/embedded/cmsis">CMSIS</a> Packs​ dependencies</p>
+<p class="startli"><code>cp_install.sh packlist​</code></p>
+</li>
+<li><p class="startli">Use (cbuild)[<a href="https://arm-software.github.io/CMSIS_5/Build/html/index.html">https://arm-software.github.io/CMSIS_5/Build/html/index.html</a>] to build the software project​ (this should take about a minute)</p>
+<p class="startli"><code>cbuild.sh microspeech.Example.cprj</code></p>
+</li>
+</ol>
+<p ><a class="anchor" id="run"></a> </p>
+<h3><a class="anchor" id="autotoc_md11"></a>
+3.3. Run the example in place</h3>
+<p >In the AMI terminal:</p>
+<ol type="1">
+<li><p class="startli">Run script to load application to model and execute​ </p><pre class="fragment"> ./run_example.sh
+</pre><p class="startli">This will run the application until it terminates (about a minute). You can terminate the simulation faster by specifying the number of cycles: </p><pre class="fragment">./run_example.sh --cyclelimit 100000000
+</pre></li>
+<li>Observe banner and output log​ <pre class="fragment"> Fast Models [11.16.14 (Sep 29 2021)]​
+ Copyright 2000-2021 ARM Limited.​
+ All Rights Reserved.​
+
+ telnetterminal0: Listening for serial connection on port 5000​
+ telnetterminal1: Listening for serial connection on port 5001​
+ telnetterminal2: Listening for serial connection on port 5002​
+ telnetterminal5: Listening for serial connection on port 5003​
+
+ Ethos-U rev afc78a99 --- Aug 31 2021 22:30:42​
+ (C) COPYRIGHT 2019-2021 Arm Limited​
+ ALL RIGHTS RESERVED​
+
+ Heard yes (146) @1000ms
+ Heard no (145) @5600ms
+ Heard yes (143) @9100ms
+ Heard no (145) @13600ms
+ Heard yes (143) @17100ms
+ Heard no (145) @21600ms
+
+ Info: Simulation is stopping. Reason: Cycle limit has been exceeded.
+
+ Info: /OSCI/SystemC: Simulation stopped by user.
+ [warning ][main@0][01 ns] Simulation stopped by user
+
+ --- cpu_core statistics: ------------------------------------------------------
+ Simulated time                          : 23.999999s
+ User time                               : 25.804117s
+ System time                             : 3.336213s
+ Wall time                               : 29.132544s
+ Performance index                       : 0.82
+ cpu_core.cpu0                           :  26.36 MIPS (   768000000 Inst)
+ -------------------------------------------------------------------------------
+</pre> ​</li>
+</ol>
+<p ><a class="anchor" id="edit"></a> </p>
+<h3><a class="anchor" id="autotoc_md12"></a>
+3.4. Edit example</h3>
+<p >In the AMI terminal:</p>
+<ol type="1">
+<li><p class="startli">Navigate to source folder​</p>
+<p class="startli"><code>cd ../micro_speech/src/​</code></p>
+</li>
+<li><p class="startli">Edit <code>command_responder.cc</code> using the nano text editor for example:</p>
+<p class="startli"><code>nano command_responder.cc</code></p>
+<p class="startli">And change output (e.g. add your name as below)​ </p><pre class="fragment">TF_LITE_REPORT_ERROR(error_reporter, “YourName Heard %s (%d) @%dms", found_command, score, current_time);
+</pre></li>
+<li>Save (Ctrl+X with nano), rebuild (cbuild will just rebuild the files that have changed) and run to verify change​ <pre class="fragment"> cd ../../Platform_FVP_Corstone_SSE-300_Ethos-U55​
+ cbuild.sh microspeech.Example.cprj​
+ ./run_example.sh​
+</pre> <a class="anchor" id="push"></a> </li>
+</ol>
+<h3><a class="anchor" id="autotoc_md13"></a>
+3.5 Submit changes back to GitHub</h3>
+<p >In the AMI terminal</p>
+<ol type="1">
+<li>mark changed file(s) you wish to submit​ <pre class="fragment"> cd ../micro_speech/src/​
+ git add .​
+</pre></li>
+<li>Commit changes, with arbitrary message​ <pre class="fragment"> git commit -m "Added my name to output message"
+</pre></li>
+<li>Verify the repository referenced is your forked copy​ <pre class="fragment"> git remote -v​
+</pre></li>
+<li><p class="startli">Submit changes back to your repository​ </p><pre class="fragment"> git push​
+</pre><p> You will be asked your login and Personal Access Token (password) information.</p>
+<p class="startli">To ​enable Personal Access Token in GitHub:</p><ul>
+<li>go to <em>Settings &gt; Developer settings &gt; Personal access tokens &gt; Generate new token</em></li>
+<li>Enable <b>repo</b> to access the repository from the command-line</li>
+<li>Generate and copy the token to provide</li>
+</ul>
+<p class="startli">In your own fork on Github, observe the change registered</p>
+<p class="startli"><code><a href="https://github.com/">https://github.com/</a>&lt;YourGitHubName&gt;/VHT-TFLmicrospeech​/blob/main/micro_speech/src/command_responder.cc​</code></p>
+</li>
+</ol>
+<p ><a class="anchor" id="actions"></a> </p>
+<h2><a class="anchor" id="autotoc_md14"></a>
+4. Automated CI/CD with GitHub Actions</h2>
+<p ><a class="anchor" id="confactions"></a> </p>
+<h3><a class="anchor" id="autotoc_md15"></a>
+4.1. Configure GitHub Actions</h3>
+<p >In your own fork on GitHub</p>
+<ol type="1">
+<li>Navigate to <em>Settings &gt; Actions &gt; Runners</em></li>
+<li>Add <code>New self-hosted runner</code></li>
+</ol>
+<p ><img src="github_newrunner.png" alt="" class="inline" title="GitHub New self-hosted runner button"/></p>
+<ol type="1">
+<li>Select Linux, x64 Runner image and copy the commands to set up</li>
+</ol>
+<p ><img src="github_createrunner.png" alt="" class="inline" title="GitHub Self-hosted runner configuration instructions"/></p>
+<p ><a class="anchor" id="runner"></a> </p>
+<h3><a class="anchor" id="autotoc_md16"></a>
+4.2. Setup runner on AMI</h3>
+<p >In the AMI terminal</p>
+<ol type="1">
+<li>Go to base directory <pre class="fragment"> cd /home/ubuntu
+</pre></li>
+<li>Copy the commands from GitHub to configure with default options (no need for a runner group name)</li>
+<li>Once configured, use run.sh to start the runner on the AMI <pre class="fragment"> ./run.sh
+ Connected to GitHub
+ yyyy-mm-dd hh:mm:ss: Listening for Jobs
+</pre> In Github, go the <em>Runner</em> tab to see the runner listed and idle</li>
+</ol>
+<p ><img src="github_idlerunner.png" alt="" class="inline" title="GitHub runner list"/></p>
+<p ><a class="anchor" id="workflow"></a> </p>
+<h3><a class="anchor" id="autotoc_md17"></a>
+4.3. GitHub Actions workflow</h3>
+<ol type="1">
+<li>In Github, the file .github/workflows/virtual_hardware.yml defines the list of actions to perform (e.g. code checkout, build, run test script) on the runner and when (e.g. for every push to the repo)</li>
+<li><b>In a new AMI terminal</b>, revert your change in command_responder.cc and push to the repo <pre class="fragment"> cd VHT-TFLmicrospeech/micro_speech/src
+ git add .
+ git commit -m "Original message"
+ git push
+</pre></li>
+<li><b>Back to the first AMI terminal where the runner has been started with ./run.sh</b>, the runner reports the status <pre class="fragment"> &lt;timestamp&gt;: Listening for Jobs
+ &lt;timestamp&gt;: Running job: ci_demonstration
+ &lt;timestamp&gt;: Job ci_demonstration completed with result: Succeeded
+</pre></li>
+<li>In GitHub, locate the <em>Actions</em> sections and inspect the history of the workflow runs on the AMI instance</li>
+</ol>
+<p ><img src="github_actionreports.png" alt="" class="inline" title="GitHub actions reports"/></p>
+<p ><a class="anchor" id="failure"></a> </p>
+<h3><a class="anchor" id="autotoc_md18"></a>
+4.4. Demonstration of a failed workflow</h3>
+<ol type="1">
+<li>Change the code to be non-valid C e.g. edit <code>command_responder.cc</code> and remove the semicolon at the end of the line: <pre class="fragment"> TF_LITE_REPORT_ERROR(error_reporter, “YourName Heard %s (%d) @%dms", found_command, score, current_time)
+</pre></li>
+<li>Commit change to GitHub <pre class="fragment"> git add .
+ git commit -m "Example of failure"
+ git push
+</pre></li>
+<li>Observe in AMI that the runner reports failure <pre class="fragment"> &lt;timestamp&gt;: Running job: ci_demonstration
+ &lt;timestamp&gt;: Job ci_demonstration completed with result: Failed
+</pre> Same in GitHub's <em>Actions</em> tab</li>
+</ol>
+<p ><img src="github_actionreports_failed.png" alt="" class="inline" title="GitHub actions reports"/></p>
+<p ><a class="anchor" id="further"></a> </p>
+<h3><a class="anchor" id="autotoc_md19"></a>
+5. To go further</h3>
+<p >The Machine Learning Group at Arm have developed <a href="https://review.mlplatform.org/plugins/gitiles/ml/ethos-u/ml-embedded-evaluation-kit/">other examples</a> which can be run in with the Arm Virtual Hardware AMI.</p>
+<p >The instructions in the <a href="https://review.mlplatform.org/plugins/gitiles/ml/ethos-u/ml-embedded-evaluation-kit/+/HEAD/docs/quick_start.md">quick start guide</a> are easily reproducible in the AMI. You will need to enable VNC to visualize.</p>
+<p >For more information on Arm's solution for IoT: <a href="https://www.arm.com/solutions/iot/total-solutions-iot">https://www.arm.com/solutions/iot/total-solutions-iot</a></p>
+<p >Have questions, comments, or suggestions? Visit the <a href="https://community.arm.com/support-forums/f/arm-virtual-hardware-targets-forum">Arm Virtual Hardware support forum</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
