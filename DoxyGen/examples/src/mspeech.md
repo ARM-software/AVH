@@ -1,4 +1,4 @@
-# Micro speech example {#mspeech}
+# Micro Speech Example {#MicroSpeech}
 
 The Micro speech program analyzes an audio input with a voice recognition model that can detect 2 keywords - **yes** and **no**. The recognized keywords are then printed into a serial interface. The voice recognition model is implemented using [TensorFlow Lite for Microcontrollers](https://www.tensorflow.org/lite/microcontrollers).
 

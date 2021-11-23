@@ -1,9 +1,9 @@
 # Examples {#mainpage}
 
-This chapter describes the examples that demonstrate how to use Arm \prj_name in various scenarios. Detailed descriptions can be found from the references provided in the table below:
+This chapter describes the examples that demonstrate how to use **Arm Virtual Hardware** in various scenarios. Detailed descriptions can be found from the references provided in the table below:
 
-<table>
-<tr><th>Example</th><th>Description</th>
-<tr><td>\subpage mspeech </td><td>Voice recognition example for VHT and HW targets [(GitHub repo)](https://github.com/arm-software/VHT-TFLmicrospeech).</td></tr>
-<tr><td>To be added in next iterations..</td><td>   </td></tr>
-</table>
+Example               | Description
+:---------------------|:----------------
+\subpage GetStarted   | Simple example that explains the setup of a CI test run on Arm Virtual Hardware [(GitHub repo)](https://github.com/arm-software/VHT-GetStarted)
+\subpage MicroSpeech  | Tensorflow voice recognition example that runs on Arm Virtual Hardware and Physical Hardware targets [(GitHub repo)](https://github.com/arm-software/VHT-TFLmicrospeech)
+
