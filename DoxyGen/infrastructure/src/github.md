@@ -4,8 +4,8 @@
 GitHub Actions help you automate tasks within your software development life cycle. GitHub Actions are event-driven, meaning that you can run a series of commands after a specified event has occurred.  For example, every time someone commits a push or creates a pull request for a repository, you can automatically run the Arm VHT Services that execute automated build or test scripts. Refer to [Introduction to GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions) for information about the components of GitHub Actions.
 
 There are several different ways to execute GitHub Actions:
-  - [**Self-hosted GitHub runners**](./#self_hosted) where the complete GitHub Action is executed on an AWS EC2 Linux instance.
-  - [**GitHub-hosted runners**](./#GitHub_hosted) where only a part of the GitHub Action (for example testing) is executed on an AWS EC2 Linux instance.
+  - [**Self-hosted GitHub runners**](#self_hosted) where the complete GitHub Action is executed on an AWS EC2 Linux instance.
+  - [**GitHub-hosted runners**](#GitHub_hosted) where only a part of the GitHub Action (for example testing) is executed on an AWS EC2 Linux instance.
   
 The approach that you should choose depends on your CI/CD requirements.
 
