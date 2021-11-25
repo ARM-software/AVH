@@ -56,13 +56,17 @@ var NAVTREE =
           [ "5. To go further", "MicroSpeech.html#autotoc_md23", null ]
         ] ]
       ] ]
+    ] ],
+    [ "ATS-Keyword Example", "ATS-Keyword.html", [
+      [ "Build Application", "ATS-Keyword.html#Build", null ],
+      [ "Run on Virtual Hardware", "ATS-Keyword.html#VHT", null ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"GetStarted.html"
+"ATS-Keyword.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
