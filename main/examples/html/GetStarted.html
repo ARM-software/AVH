@@ -106,18 +106,96 @@ $(document).ready(function(){initNavTree('GetStarted.html',''); initResizable();
   <div class="headertitle"><div class="title">Get Started Example </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md_src_GetStarted"></a> todo add overview description of example</p>
+<div class="textblock"><p ><a class="anchor" id="md_src_GetStarted"></a> VHT Basic example demonstrates how to setup a Continuous Integration (CI) workflow for testing and debugging embedded applications using Arm Virtual Hardware (AVH). The project is maintained in GitHub repository <a href="https://github.com/ARM-software/VHT-GetStarted/"><b>github.com/ARM-software/VHT-GetStarted</b></a> that also contains detailed description of the example.</p>
+<p >This chapter provides step-by-step guide through the CI workflow operation and its setup.</p>
+<h1><a class="anchor" id="GS_Overview"></a>
+Overview</h1>
+<p >The VHT Basic example implements common steps in the CI workflow as shown on the figure below.</p>
+<p ><img src="basic_ci_workflow.png" alt="" class="inline" title="Continuous Integration (CI) workflow"/></p>
+<p >The steps are explained in more details in the subsequent sections.</p><ol type="1">
+<li><a class="el" href="GetStarted.html#DevelopTest">Local development</a>: at first, the software is developed locally using common embedded toolchain such as <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">Keil MDK</a> and with <a href="../../simulation/html/index.html">Arm Virtual Hardware Target (VHT)</a> used for MCU simulation. <br  />
+ A GitHub repository is used as a source code management system for synchronization, storage and version control.</li>
+<li><a class="el" href="GetStarted.html#SetupCI">CI pipeline setup</a>: a GitHub Action implements the CI pipeline that gets triggered on every code update in the repository.</li>
+<li><a class="el" href="GetStarted.html#ExecuteCI">CI execution</a>: automated program build and testing is performed in AVH cloud environment and results are reported back to the repository.</li>
+<li><a class="el" href="GetStarted.html#AnalyseFailure">Failure analysis and local debug</a>: developer can observe the CI test results in the GitHub Actions of the repository. In case of any failures they can be reproduced and debugged locally.</li>
+</ol>
 <h1><a class="anchor" id="autotoc_md0"></a>
-Develop Tests (#DevelopTest)</h1>
-<p >todo describe the setup of local VHT with MDK</p>
-<h1><a class="anchor" id="autotoc_md1"></a>
-Setup CI (#SetupCI)</h1>
+Prerequisites</h1>
+<p >Following is required to reproduce operation of the example project:</p>
+<ul>
+<li>a valid <a href="https://github.com/">GitHub</a> account</li>
+<li>a valid <a href="https://aws.amazon.com/">AWS</a> account</li>
+<li>a Windows PC with administrator rights</li>
+</ul>
+<p >Other necessary software items are freely available and their installation is described in the related steps.</p>
+<h1><a class="anchor" id="DevelopTest"></a>
+Develop tests</h1>
+<p >The VHT Basic embedded program implements a set of unit tests for validating operation of a simple function that is expected to return the sum value of two integer arguments. The example uses <a href="https://github.com/ThrowTheSwitch/Unity">Unity Framework</a> for test implementation and execution, however, the demonstrated concept is universal and can be applied for a different testing framework as well.</p>
+<h2><a class="anchor" id="autotoc_md1"></a>
+Create project repository in GitHub</h2>
+<p >Initial repository setup should follow a standard git process for either <a href="https://docs.github.com/en/get-started/quickstart/create-a-repo">creating a new repo</a> or <a href="https://docs.github.com/en/get-started/quickstart/fork-a-repo">forking</a> already existing one. In this example we use a fork of the VHT GetStarted repository:</p><ul>
+<li>Open a web browser and enter the URL: <a href="https://github.com/ARM-software/VHT-GetStarted">https://github.com/ARM-software/VHT-GetStarted</a></li>
+<li>Log in to your GitHub account and click on <em>Fork</em> (upper right side).<ul>
+<li>The repo gets forked into <code><a href="https://github.com/">https://github.com/</a>&lt;YourGitHubName&gt;/VHT-GetStarted</code> repository, where <code>&lt;YourGitHubName&gt;</code> corresponds your GitHub user name.</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Setup local project folder on your PC</h2>
+<p >If the repo is present in GitHub, it can be easily copied onto local PC using following steps:</p><ul>
+<li>Make sure Git Bash is installed on the PC. For example <a href="https://gitforwindows.org/">git for Windows</a>.</li>
+<li>Make sure your GitHub account credentials are assigned.</li>
+<li>Open the Git Bash terminal in the target directory and execute clone command as: <pre class="fragment"> git clone https://github.com/&lt;YourGitHubName&gt;/VHT-GetStarted
+</pre></li>
+</ul>
+<p>For new projects the local files need to be committed to a newly created GitHub repo.</p>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Install Keil MDK and VHT AddOn</h2>
+<ul>
+<li>Install <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">Keil MDK</a> on your Windows PC, if not present.</li>
+<li><a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk/buy">MDK-Professional Edition</a> is required. If not available, you can <a href="https://www.keil.com/support/man/docs/license/license_eval.htm">request evaluation license</a>.</li>
+<li>Install the MDK_AddOn_VHT with the Virtual Hardware Targets. It is recommended to use Keil MDK installation folder for it (for example <code>C:/Keil_v5/</code>), as the example projects use this path by default.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Setup Keil MDK project</h2>
+<ul>
+<li>Double-click on the <code>basic.debug.uvprojx</code> file to open the project in uVision IDE.</li>
+<li>Agree to install missing software packs if requested.</li>
+<li>Verify the VHT model configuration in the project:<ul>
+<li>Open <em>Options for target...</em> dialog from the toolbar and navigate to the <em>Debug</em> tab</li>
+<li>Verify that the <em>Models ARMv8-M Debugger</em> is selected in <em>Use:</em> drop-down menu<br  />
+ <img src="uv4_model_debug.png" alt="" class="inline" title="Models ARMv8-M Debugger"/></li>
+<li>Click on the <em>Settings</em> button. This opens the <em>Models ARMv8-M Target Driver Setup</em> dialog that shall have settings as shown below.<ul>
+<li>Note that <em>Command</em> specifies the path to the model executable installed into Keil MDK installation folder (indicated with <code>$K\</code>). Change the value in this field if the VHT is present in a different location.</li>
+</ul>
+<img src="vht_setup_basic.png" alt="" class="inline" title="Default VHT model configuration in the MDK project"/></li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Implement tests locally</h2>
+<p >The <code>main.c</code> file in the example implements a set of unit tests validating the application function <code>int my_sum(int a, int b)</code>. The implementation relies on the <a href="https://github.com/ThrowTheSwitch/Unity">Unity Framework</a> that is added to the example as a software component with the <a href="https://github.com/MDK-Packs/Pack/tree/master/Unity">Unity software pack</a>. In the example, the <code>test_my_sum_fail</code> demonstrates a test failure and section <a class="el" href="GetStarted.html#AnalyseFailure">Analyse Failure</a> explains how to analyze CI output for debugging such failed tests.</p>
+<p >The implementation of tests in the example can be considered as a template for adding more tests, covering other functions, or setting up unit testing in a custom project. Please refer to the documentation in <a href="https://github.com/ThrowTheSwitch/Unity">Unity GitHub</a> for further details and more complex examples.</p>
+<p >The VHT Basic project is also described in <code>basic.debug.cprj</code> file using universal <a href="https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html">.cprj format</a> that can be used both in IDE and in command-line CI environments. For correct workflow operation it is important to keep the MDK project file <code>basic.debug.uvprojx</code> and the <code>basic.debug.cprj</code> file synchronized. For that after saving modifications in the MDK project go to the uVision menu <em>Project</em> - <em>Export</em> - <em>Save project to CPRJ format</em>.</p>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Build and Run the example in Keil MDK</h2>
+<ul>
+<li>Press <em>Rebuild</em> button in the toolbar. Only one linker warning L6314W shall be expected.<ul>
+<li>The warning occurs because the example uses default scatter file <code>fvp_sse300_mps3.sct</code> with a memory region reserved for CMSE Veneers. These are not present in the Basic example because TrustZone is not used and there is no split into secure/non-secure code.</li>
+</ul>
+</li>
+<li>Start the debug session in uVision. The model executable should pop up. By default the project is configured to stop execution when reaching the <code>main()</code> function.</li>
+<li>Step through the code or press <code>Run</code> for continuous program execution.</li>
+<li>By default Unity uses <code>putchar</code> to print out test results. Because the execution in Keil MDK does not support semihosting, in the default setup this test output cannot be seen in the IDE or in serial terminals. However, <a href="https://www.keil.com/pack/doc/compiler/RetargetIO/html/index.html"><b>Redirect I/O</b></a> component enables several mechanisms for redirecting standard output and can be used to make it visible directly in the uVision debugger when program runs.</li>
+</ul>
+<h1><a class="anchor" id="SetupCI"></a>
+Setup CI</h1>
 <p >todo explain that the code is pushed to GitHub and describe the setup of the CI system on GitHub</p>
-<h1><a class="anchor" id="autotoc_md2"></a>
-Execute CI (#ExecuteCI)</h1>
+<h1><a class="anchor" id="ExecuteCI"></a>
+Execute CI</h1>
 <p >todo show how a modification executes on GitHub and delivers results</p>
-<h1><a class="anchor" id="autotoc_md3"></a>
-Analyse Failure (#AnalyseFailure)</h1>
+<h1><a class="anchor" id="AnalyseFailure"></a>
+Analyse Failure</h1>
 <p >todo explain how to check issues </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
