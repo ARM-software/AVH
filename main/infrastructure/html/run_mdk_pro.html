@@ -106,12 +106,65 @@ $(document).ready(function(){initNavTree('run_mdk_pro.html',''); initResizable()
   <div class="headertitle"><div class="title">Run with MDK-Professional </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md_src_mdk"></a> Refer to <a href="https://www.keil.com/support/man/docs/fstmdls/">Fast Models Debugger Configuration</a> for using <b>Arm Virtual Hardware Targets</b> with MDK-Professional.</p>
+<div class="textblock"><p ><a class="anchor" id="md_src_mdk"></a> This section explains how Virtual Hardware Targets can be used with <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">Keil MDK</a> tools for developing and debugging your embedded application on a local computer.</p>
 <dl class="section note"><dt>Note</dt><dd><ul>
-<li><a href="../../overview/html/index.html#Roadmap"><b>ON ROADMAP</b></a>: The <b>Arm Virtual Hardware Targets</b> for Keil MDK are in development an will become available in the next few weeks. <br  />
- </li>
+<li><a href="../../overview/html/index.html#Roadmap"><b>ON ROADMAP</b></a>: The <b>Arm Virtual Hardware Targets</b> for Keil MDK are in development an will become available soon.</li>
 </ul>
 </dd></dl>
+<h1><a class="anchor" id="mdk_vht_install"></a>
+Tools Installation</h1>
+<ul>
+<li>Download and install Keil MDK on your Windows PC, if not present yet.</li>
+<li><a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk/buy">MDK-Professional Edition</a> is required for using VHTs. If it is not available, you can <a href="https://www.keil.com/support/man/docs/license/license_eval.htm">request evaluation license</a>.</li>
+<li>Install the MDK_AddOn_VHT with the VHT models. It is recommended to use Keil MDK installation folder for it (for example <code>C:/Keil_v5/</code>), because some example projects use this path by default.</li>
+<li>Enable Telnet Client on Windows 10. This will allow to observe UART output from the VHT during debug in MDK.<ul>
+<li>Open <em>Start</em> &gt; <em>Settings</em>.</li>
+<li>In the search box, type <em>Turn Windows features on or off</em> and click on the suggested item. The <em>Windows Features</em> dialog opens.</li>
+<li>Select the <em>Telnet Client</em> check box and click <em>OK</em>. The installation might take several minutes to complete.</li>
+</ul>
+<img src="windows_telnet_enable.png" alt="" class="inline" title="Enable Windows Telnet Client"/></li>
+</ul>
+<h1><a class="anchor" id="mdk_project_config"></a>
+Project Configuration</h1>
+<ul>
+<li>Open the target project in uVision IDE:<ul>
+<li>either double-click on existing <em>uvprojx</em> project file,</li>
+<li>or <a href="https://www.keil.com/support/man/docs/uv4/uv4_ui_import.htm">import a .cprj project</a> from uVision menu.</li>
+</ul>
+</li>
+<li>Agree to install missing software packs when requested.<ul>
+<li>In some cases, to proceed with the installation you need to accept license agreement displayed in a separate dialog.</li>
+</ul>
+</li>
+<li>Return to the project window and accept to reload packs.</li>
+</ul>
+<p ><b>Target configuration</b></p><ul>
+<li>todo: explain how VHT target is selected.</li>
+</ul>
+<p ><b>VHT debug configuration</b></p><ul>
+<li>Open <em>Options for Target...</em> dialog from the toolbar and navigate to the <em>Debug</em> tab.</li>
+<li>Verify that the <em>Models Debugger</em> is selected in <em>Use:</em> drop-down menu. For example for Corstone-3300:<br  />
+ <img src="uv4_model_debug.png" alt="" class="inline" title="Models ARMv8-M Debugger"/></li>
+<li>Click on the <em>Settings</em> button. This opens corresponding <em>Models Target Driver Setup</em> dialog. Configuration from the VHT Basic example is shown below: <img src="vht_uv4_setup_basic.png" alt="" class="inline" title="VHT model configuration in VHT Basic example"/><ul>
+<li><em>Command</em> line contains the path to the model executable.<code>$K</code> is a <a href="https://www.keil.com/support/man/docs/uv4/uv4_ut_keysequence.htm">key sequence</a> shortening the Keil MDK installation path (for example <code>C:\Keil_v5\</code>). Change the value in this field if the VHT is installed in a different location.</li>
+<li><em>Arguments</em> field specifies optional <a href="https://developer.arm.com/documentation/100966/1116/Getting-Started-with-Fixed-Virtual-Platforms/FVP-command-line-options">FVP command-line options</a> to be used with the model execution. In many examples it contains an option for starting a Telnet client for displaying the redirected output during debug session.</li>
+<li><em>Target</em> field shall contain <code>cpu0</code> when using VHT.</li>
+<li><em>Configuration File</em> points to the file with model configuration parameters (passed to the model executable with <code>-f</code> option).</li>
+</ul>
+<a href="https://www.keil.com/support/man/docs/fstmdls/fstmdls_debug_cfg.htm">Fast Models Debug Driver Configuration</a> explains the configuration dialog in details.</li>
+</ul>
+<h1><a class="anchor" id="mdk_program_run"></a>
+Program Build and Debug</h1>
+<p >Project build and debug on VHT can be done in the similar way as any other Keil MDK project:</p>
+<ul>
+<li>Press <em>Rebuild</em> button in uVision toolbar (or use <code>F7</code> hotkey).</li>
+<li>Start the debug session from uVision toolbar (or with <code>Ctrl-F5</code>). The model executable window should pop up ( with <code>C:\WINDOWS\system32\cmd.exe</code>) but it will stay empty during the session.</li>
+<li>A Telnet client will start if configured accordingly in the project. Program output should be expected there.</li>
+<li>Debug the project as usual with available uVision functionality. Refer to <a href="https://www.keil.com/support/man/docs/uv4/">uVision User's Guide</a> for details about user interface and debug capabilities.</li>
+</ul>
+<h1><a class="anchor" id="mdk_cprj_export"></a>
+Project Export</h1>
+<p >Universal <a href="https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html">.cprj format</a> is required for building the program in AVH cloud environment. So it is important to keep the MDK project files and the <em>cprj</em> file synchronized. For that after saving modifications in the MDK project go to the uVision menu <a href="https://www.keil.com/support/man/docs/uv4/uv4_ui_export.htm"><em>Project</em> - <em>Export</em></a> and select <em>Save project to CPRJ format</em>. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

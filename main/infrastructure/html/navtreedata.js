@@ -60,7 +60,12 @@ var NAVTREE =
         ] ]
       ] ]
     ] ],
-    [ "Run with MDK-Professional", "run_mdk_pro.html", null ],
+    [ "Run with MDK-Professional", "run_mdk_pro.html", [
+      [ "Tools Installation", "run_mdk_pro.html#mdk_vht_install", null ],
+      [ "Project Configuration", "run_mdk_pro.html#mdk_project_config", null ],
+      [ "Program Build and Debug", "run_mdk_pro.html#mdk_program_run", null ],
+      [ "Project Export", "run_mdk_pro.html#mdk_cprj_export", null ]
+    ] ],
     [ "VHT CLI Script", "md_src_vht_doc.html", [
       [ "Requirements", "md_src_vht_doc.html#autotoc_md2", null ],
       [ "Usage", "md_src_vht_doc.html#autotoc_md3", null ],

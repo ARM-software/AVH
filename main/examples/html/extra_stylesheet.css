@@ -116,7 +116,12 @@ em {
 	font-style:italic;
 }
 
-
+code {
+	font-family: monospace;
+	background-color: var(--arm_light_gray3);
+	border-radius: 6px;
+	padding: 0.2em 0.4em;
+}
 
 /*  Tables */
 table.cmtab1 {
@@ -201,8 +206,23 @@ div.del
 
 h1 {
 	font-size: 150%;
+	border-top-color: var(--arm_light_gray3);
+	border-top-width: 2px;
+	border-top-style: solid;
+	padding: 1em 0 0;
+	margin-top: 0.5em;
+	margin-bottom: 0.75em;
 }
-
+/*
+h1:before {
+	margin-bottom: 1em;
+	content: "";
+	background-color: var(--arm_light_gray3);
+	height: 2px;
+	display: block;
+	width: 100%;
+}
+*/
 .title {
 	font-size: 150%;
 	font-weight: bold;
@@ -211,10 +231,14 @@ h1 {
 
 h2 {
 	font-size: 120%;
+	margin-top: 1.25em;
+	margin-bottom: 0.25em;
 }
 
 h3 {
 	font-size: 100%;
+	margin-top: 1.25em;
+	margin-bottom: 0.25em;
 }
 
 h4 {
@@ -346,8 +370,7 @@ dl.el {
 }
 
 pre.fragment {
-        border: 1px solid #C4CFE5;
-        background-color: #FBFCFD;
+        background-color: var(--arm_light_gray3);
         padding: 4px 6px;
         margin: 4px 8px 4px 2px;
         overflow: auto;
@@ -355,13 +378,13 @@ pre.fragment {
         font-size:  9pt;
         line-height: 125%;
         font-family: monospace, fixed;
-        font-size: 105%;
+        font-size: 100%;
 }
 
 div.fragment {
-        padding: 4px;
-        margin: 4px;
-	background-color: #FBFCFD;
+	padding: 4px;
+	margin: 4px;
+	background-color: var(--arm_light_gray3);
 	border: 1px solid #C3CFE6;
 }
 
