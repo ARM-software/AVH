@@ -1,0 +1,21 @@
+python3 vht_cli.py --get-ami-id 1.0.0
+
+python3 vht_cli.py --create-ec2-instance ImageId=ami-0c5eeabe11f3a2685 InstanceType=t2.micro MaxCount=1 MinCount=1 SecurityGroupIds='['sg-04022e04e91197ce3']' SubnetId=subnet-00455495b268076f0  IamInstanceProfile="{'Name': 'Proj-s3-orta-vht-role'}"
+
+python3 vht_cli.py --send-ssm-shell-command InstanceId=i-09cc4c3c32b5dd0b0 commandlist='ls -la'
+
+python3 vht_cli.py --get-ssm-command-id-status 1395f9fc-8cc4-475e-9ab7-ee72c9722bae
+
+python3 vht_cli.py --get-s3-ssm-command-id-key InstanceId=i-09cc4c3c32b5dd0b0 CommandId=1395f9fc-8cc4-475e-9ab7-ee72c9722bae OutputType=stdout
+
+python3 vht_cli.py --download-s3-file s3BucketName=gh-orta-vht key=ssm/1395f9fc-8cc4-475e-9ab7-ee72c9722bae/i-09cc4c3c32b5dd0b0/awsrunShellScript/0.awsrunShellScript/stdout filename=stdout
+
+python3 vht_cli.py --get-s3-file-content s3BucketName=gh-orta-vht key=ssm/1395f9fc-8cc4-475e-9ab7-ee72c9722bae/i-09cc4c3c32b5dd0b0/awsrunShellScript/0.awsrunShellScript/stdout
+
+python3 vht_cli.py --get-ec2-instance-state i-09cc4c3c32b5dd0b0
+
+python3 vht_cli.py --stop-ec2-instance i-09cc4c3c32b5dd0b0
+
+python3 vht_cli.py --start-ec2-instance i-09cc4c3c32b5dd0b0
+
+python3 vht_cli.py --terminate-ec2-instance i-09cc4c3c32b5dd0b0
