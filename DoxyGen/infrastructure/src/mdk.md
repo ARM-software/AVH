@@ -10,7 +10,7 @@ This section explains how Virtual Hardware Targets can be used with [Keil MDK](h
  - Download and install Keil MDK on your Windows PC, if not present yet.
  - [MDK-Professional Edition](https://developer.arm.com/tools-and-software/embedded/keil-mdk/buy) is required for using VHTs. If it is not available, you can [request evaluation license](https://www.keil.com/support/man/docs/license/license_eval.htm).
  - Install the MDK_AddOn_VHT with the VHT models. It is recommended to use Keil MDK installation folder for it (for example `C:/Keil_v5/`), because some example projects use this path by default.
- - Enable Telnet Client on Windows 10. This will allow to observe UART output from the VHT during debug in MDK.
+ - Enable Telnet Client on Windows 10. This will allow to observe UART output from the VHT during debug.
    - Open _Start_ > _Settings_.
    - In the search box, type _Turn Windows features on or off_ and click on the suggested item. The _Windows Features_ dialog opens.
    - Select the _Telnet Client_ check box and click _OK_. The installation might take several minutes to
