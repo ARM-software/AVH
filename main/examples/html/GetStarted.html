@@ -221,21 +221,23 @@ Execute CI</h1>
 <h1><a class="anchor" id="GS_AnalyseFailure"></a>
 Analyse Failures</h1>
 <p ><a href="https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/about-monitoring-and-troubleshooting">GitHub Documentation</a> gives an overview about monitoring and troubleshooting options available for GitHub Actions.</p>
-<p >The VHT Basic example workflow executes three CI jobs as visible in the <em>Jobs</em> area on the left side. By default it appears as follows:</p>
-<p ><img src="basic_gh_workflow_jobs_default.png" alt="" class="inline" title="GitHub Actions workflow jobs "/></p>
+<p >Steps below guide through the analysis for VHT Basic example.</p>
 <ul>
+<li>Observe the three CI jobs executed in the selected CI workflow as shown in the <em>Jobs</em> area on the left side.<ul>
 <li><b>ci_test</b> job executes the CI pipeline without doing any analysis of unit test results. It is considered as successful (green circle) when the CI pipeline was executed fully to the end.</li>
 <li><b>badge</b> job generates <a href="https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge">GitHub badges</a> for the <em>README.md</em> file to make the CI workflow status easily visible. The <em>badge</em> job is shown as successful when badge generation worked correctly.</li>
 <li><b>Test results</b> job analyses actual results of the unit test execution in the CI. Green checkmark indicates that all executed tests pass.</li>
 </ul>
-<p >In the <em>Artifacts</em> area click on <em>results</em> to download an archive file with additional details about the test run. It contains:</p><ul>
+By default it appears as follows:<br  />
+ <img src="basic_gh_workflow_jobs_default.png" alt="" class="inline" title="GitHub Actions workflow jobs "/></li>
+<li>In the <em>Artifacts</em> area click on <em>results</em> to download an archive file with additional details about the test run. It contains:<ul>
 <li><em>basic.axf</em> binary image that was built and tested in the CI run.</li>
-<li>*.log* file with program execution output.</li>
-<li>*.xunit* file with unit test results.</li>
+<li><em>.log</em> file with program execution output.</li>
+<li><em>.xunit</em> file with unit test results.</li>
 </ul>
-<p >Click on <em>ci_test</em> or <em>badge</em> jobs to open corresponding <a href="https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/using-workflow-run-logs">run log</a> that can be explored for execution details. For example for <em>ci_test</em>:<br  />
- <img src="basic_gh_ci_test_log.png" alt="" class="inline" title="GitHub Actions workflow log example"/></p>
-<ul>
+</li>
+<li>Click on <em>ci_test</em> or <em>badge</em> jobs to open corresponding <a href="https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/using-workflow-run-logs">run log</a> that can be explored for execution details. For example for <em>ci_test</em>:<br  />
+ <img src="basic_gh_ci_test_log.png" alt="" class="inline" title="GitHub Actions workflow log example"/></li>
 <li>Click on <em>Test results</em> job that analyses the results of the executed tests. It can be seen that in default setup 1 out of 4 tests fails. Specific location (<em>check on line 48 in main.c</em>) and the reason (<em>Expected 2 Was 0</em>) for the failure are shown as well.<br  />
  <img src="basic_gh_test_results_view.png" alt="" class="inline" title="GitHub Actions test results view"/></li>
 </ul>
@@ -248,7 +250,7 @@ Analyse Failures</h1>
 <li>Start debug session and observe in Telnet client that all tests pass: <br  />
  <img src="basic_telnet_success.png" alt="" class="inline" title="Telnet output of successful execution"/><br  />
 </li>
-<li>Export the project to .cprj format to ensure it is synchronized with the MDK project. In this case no changes are .</li>
+<li>Although this specific change only impacts <em>main.c</em> file, it is a good practice to also export the project to .cprj format to ensure it is synchronized with the MDK project.</li>
 <li>Open the Git bash in your local repository and execute following commands that upload only the updated <em>main.c</em> file to your <em>main</em> repository: <pre class="fragment">  git commit basic/main.c -m "Fixed test_my_sum_fail"
   git push
 </pre></li>
