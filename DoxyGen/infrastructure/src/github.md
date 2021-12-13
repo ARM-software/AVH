@@ -230,7 +230,7 @@ suite:
 
 The following tables describe the different sections of the **vht.yml** file.
 
-| `suite:`         |  Starts the declaration of a test suite
+| suite:         |  Starts the declaration of a test suite
 |:-----------------|:---------------------------------------------------
 | `name:`          |  Name of the test suite
 | `model:`         |  Executable name of the [VHT simulation model](../../simulation/html/Using.html) used.
@@ -239,7 +239,7 @@ The following tables describe the different sections of the **vht.yml** file.
 | `post:`          |  Execute command on shell after executing any `builds:` or `tests:`.
 
 
-| `builds:`        |  Starts a list of build declarations.
+| builds:        |  Starts a list of build declarations.
 |:-----------------|:---------------------------------------------------
 | `"<value>":`     |  Name of the build declaration.
 | `shell:`         |  Execute command on shell that builds the executable file.
@@ -247,7 +247,7 @@ The following tables describe the different sections of the **vht.yml** file.
 | `post:`          |  Execute command on shell after the build `shell:` command.
 
 
-| `tests:`         |  Starts a list of test declarations.
+| tests:         |  Starts a list of test declarations.
 |:-----------------|:---------------------------------------------------
 | `"<value>":`     |  Name of the test declaration.
 | `executable:`    |  Executable file in ELF format to be executed on the [VHT simulation model](../../simulation/html/Using.html).

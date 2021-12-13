@@ -128,18 +128,19 @@ CI pipeline gets executed automatically on every code change in the _main_ branc
 
 [GitHub Documentation](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/about-monitoring-and-troubleshooting) gives an overview about monitoring and troubleshooting options available for GitHub Actions.
 
-The VHT Basic example workflow executes three CI jobs as visible in the _Jobs_ area on the left side. By default it appears as follows:
+Steps below guide through the analysis for VHT Basic example.
 
+- Observe the three CI jobs executed in the selected CI workflow as shown in the _Jobs_ area on the left side.
+  - **ci_test** job executes the CI pipeline without doing any analysis of unit test results. It is considered as successful (green circle) when the CI pipeline was executed fully to the end.
+  - **badge** job generates [GitHub badges](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge) for the _README.md_ file to make the CI workflow status easily visible. The _badge_ job is shown as successful when badge generation worked correctly.
+  - **Test results** job analyses actual results of the unit test execution in the CI. Green checkmark indicates that all executed tests pass.
+  .
+  By default it appears as follows:<br>
 ![GitHub Actions workflow jobs ](images/basic_gh_workflow_jobs_default.png)
-
- - **ci_test** job executes the CI pipeline without doing any analysis of unit test results. It is considered as successful (green circle) when the CI pipeline was executed fully to the end.
- - **badge** job generates [GitHub badges](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge) for the _README.md_ file to make the CI workflow status easily visible. The _badge_ job is shown as successful when badge generation worked correctly.
- - **Test results** job analyses actual results of the unit test execution in the CI. Green checkmark indicates that all executed tests pass.
-
 - In the _Artifacts_ area click on _results_ to download an archive file with additional details about the test run. It contains:
- - *basic.axf* binary image that was built and tested in the CI run.
- - *.log* file with program execution output.
- - *.xunit* file with unit test results.
+  - <i>basic.axf</i> binary image that was built and tested in the CI run.
+  - <i>.log</i> file with program execution output.
+  - <i>.xunit</i> file with unit test results.
 
 - Click on _ci_test_ or _badge_ jobs to open corresponding [run log](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/using-workflow-run-logs) that can be explored for execution details. For example for _ci_test_:<br>
 ![GitHub Actions workflow log example](images/basic_gh_ci_test_log.png)
@@ -158,7 +159,7 @@ This allows to find the failure quickly. In our example it is a trivial one, int
 - Rebuild the project.
 - Start debug session and observe in Telnet client that all tests pass: <br>
 ![Telnet output of successful execution](images/basic_telnet_success.png)<br>
-- Export the project to .cprj format to ensure it is synchronized with the MDK project. In this case no changes are .
+- Although this specific change only impacts _main.c_ file, it is a good practice to also export the project to .cprj format to ensure it is synchronized with the MDK project.
 - Open the Git bash in your local repository and execute following commands that upload only the updated *main.c* file to your _main_ repository:
 
         git commit basic/main.c -m "Fixed test_my_sum_fail"
