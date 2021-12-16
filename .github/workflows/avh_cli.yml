@@ -1,0 +1,33 @@
+name: AVH CLI
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, refactor_vhtcli]
+    paths:
+      - 'instrastructure/**'
+  pull_request:
+    branches: [main, refactor_vhtcli]
+    paths:
+      - 'instrastructure/**'
+jobs:
+  lint:
+    name: Run PyLint checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Install dev dependencies
+        working-directory: ./instrastructure
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .vh_cli[dev]
+      - name: Run pylint
+        working-directory: ./instrastructure
+        run: |
+          echo "::add-matcher::.github/pylint.json"
+          pylint --exit-zero --rcfile=pylintrc . tests
