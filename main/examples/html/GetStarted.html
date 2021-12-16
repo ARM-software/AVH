@@ -133,36 +133,40 @@ Develop tests</h1>
 <p >The VHT Basic embedded program implements a set of unit tests for validating operation of a simple function that is expected to return the sum value of two integer arguments. The example uses <a href="https://github.com/ThrowTheSwitch/Unity">Unity Framework</a> for test implementation and execution, however, the demonstrated concept is universal and can be applied for a different testing framework as well.</p>
 <h2><a class="anchor" id="autotoc_md0"></a>
 Create project repository on GitHub</h2>
-<p >Initial repository setup should follow a standard git process for either <a href="https://docs.github.com/en/get-started/quickstart/create-a-repo">creating a new repo</a> or <a href="https://docs.github.com/en/get-started/quickstart/fork-a-repo">forking</a> already existing one. In this example we use a fork of the VHT GetStarted repository:</p><ul>
-<li>Open a web browser and enter the URL: <a href="https://github.com/ARM-software/VHT-GetStarted">https://github.com/ARM-software/VHT-GetStarted</a></li>
+<p >Initial repository setup should follow a standard git process for either <a href="https://docs.github.com/en/get-started/quickstart/create-a-repo">creating a new repo</a> or <a href="https://docs.github.com/en/get-started/quickstart/fork-a-repo">forking</a> already existing one. The VHT GetStarted repository is setup as a GitHub template repository so it is very easy to <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template">create own repository from it</a>:</p><ul>
+<li>Open a web browser and go to the URL: <a href="https://github.com/ARM-software/VHT-GetStarted">https://github.com/ARM-software/VHT-GetStarted</a></li>
 <li>Verify that you are logged in to your GitHub account.</li>
-<li>Click on <em>Fork</em> (upper right side).<ul>
-<li>The repo gets forked into <code>`https://github.com/&lt;YourGitHubName&gt;/VHT-GetStarted`</code> repository, where <code>&lt;YourGitHubName&gt;</code> corresponds your GitHub user name.</li>
+<li>Click on <em>Use this template</em> button. This opens the <em>Create a new repository from VHT-GetStarted</em> page.</li>
+<li>In <em>Repository name</em> field provide the name for the new repository to be created under your account. For simplicity just reuse the original name <code>VHT-GetStarted</code>.</li>
+<li>Select whether you want the new repository to be Public or Private. This does not impact example operation, but be aware of limited quotas for automation in private repositories depending on your <a href="https://github.com/pricing">GitHub account plan</a>.</li>
+<li>Check <em>Include all branches</em>. This is important for getting GitHub badges working correctly in your target repo.</li>
+<li>Click on <em>Create repository from template</em>.<ul>
+<li>The example repo gets copied into <code>`https://github.com/&lt;YourGitHubName&gt;/VHT-GetStarted`</code> repository, where <code>&lt;YourGitHubName&gt;</code> corresponds your GitHub user name.</li>
 </ul>
-</li>
+<img src="basic_gh_create_repo.png" alt="" class="inline" title="Create a repository from VHT-GetStarted template"/></li>
 </ul>
 <h2><a class="anchor" id="autotoc_md1"></a>
 Setup local project folder on your PC</h2>
-<p >If the repo is present on GitHub, it can be easily copied onto local PC using following steps:</p><ul>
+<p >Once the repository is present on GitHub, it can be easily copied onto local PC.</p><ul>
 <li>Make sure Git Bash is installed on the PC. For example <a href="https://gitforwindows.org/">git for Windows</a>.</li>
 <li>Open the Git Bash terminal in the target directory and execute clone command as: <pre class="fragment"> git clone https://github.com/&lt;YourGitHubName&gt;/VHT-GetStarted
-</pre> </li>
+</pre> This copies the content of the <em>main</em> branch to on your local drive. The <em>badges</em> branch is present in the GitHub repository but is not required for local use.</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md2"></a>
 Setup Keil MDK project</h2>
 <ul>
 <li>Install Keil MDK and related tools as described in <a href="../../infrastructure/html/run_mdk_pro.html#mdk_vht_install">Tools installation</a>.</li>
-<li>In the local project repository double-click on the <em>basic/basic.debug.uvprojx</em> file to open the project in uVision IDE.</li>
+<li>In the local project repository double-click on the <em>basic/basic.debug.uvprojx</em> file to open the project in µVision IDE.</li>
 <li>Verify the project setup as explained in <a href="../../infrastructure/html/run_mdk_pro.html#mdk_project_config">Project Configuration</a>.</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md3"></a>
 Implement tests locally</h2>
-<p >The <em>main.c</em> file in the example implements a set of unit tests validating the application function <code>int my_sum(int a, int b)</code>. The implementation relies on the <a href="https://github.com/ThrowTheSwitch/Unity">Unity Framework</a> that is added to the example as a software component with the <a href="https://github.com/MDK-Packs/Pack/tree/master/Unity">Unity software pack</a>. In the example, the <code>test_my_sum_fail</code> demonstrates a test failure and section <a class="el" href="GetStarted.html#GS_AnalyseFailure">Analyse Failures</a> explains how to analyze CI output for debugging such failed tests.</p>
+<p >The <em>main.c</em> file in the example implements a set of unit tests validating the application function <code>int my_sum(int a, int b)</code>. The implementation relies on the <a href="https://github.com/ThrowTheSwitch/Unity">Unity Framework</a> that is added to the example as a software component with the <a href="https://github.com/MDK-Packs/Pack/tree/master/Unity">Unity software pack</a>. In the example, the <code>test_my_sum_fail</code> demonstrates a test failure and section <a class="el" href="GetStarted.html#GS_AnalyseFailure">Analyse failures</a> explains how to analyze CI output for debugging such failed tests.</p>
 <p >The implementation of tests in the example can be considered as a template for adding more tests, covering other functions, or setting up unit testing in a custom project. Please refer to the documentation in <a href="https://github.com/ThrowTheSwitch/Unity">Unity GitHub</a> for further details and more complex examples.</p>
 <p ><b>Redirect stdout</b></p>
 <p >By default Unity uses <code>putchar</code> for print out. Keil MDK does not support semihosting and hence standard output needs to be redirected to become visible during debug session. <a href="https://www.keil.com/pack/doc/compiler/RetargetIO/html/index.html"><b>Redirect I/O</b></a> component enables several mechanisms for that. In our example this output gets redirected to a UART interface.</p>
 <p ><b>Export project to CPRJ format</b></p>
-<p >The VHT Basic project is also described in <em>basic.debug.cprj</em> file using universal <a href="https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html">.cprj format</a> that gets used in command-line CI environments. For correct workflow operation it is important to keep the MDK project files and the <em>basic.debug.cprj</em> file synchronized. For that after saving modifications in the MDK project go to the uVision menu <a href="https://www.keil.com/support/man/docs/uv4/uv4_ui_export.htm"><em>Project</em> - <em>Export</em></a> and select <em>Save project to CPRJ format</em>.</p>
+<p >The VHT Basic project is also described in <em>basic.debug.cprj</em> file using universal <a href="https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html">.cprj format</a> that gets used in command-line CI environments. For correct workflow operation it is important to keep the MDK project files and the <em>basic.debug.cprj</em> file synchronized. For that after saving modifications in the MDK project go to the µVision menu <a href="https://www.keil.com/support/man/docs/uv4/uv4_ui_export.htm"><em>Project</em> - <em>Export</em></a> and select <em>Save project to CPRJ format</em>.</p>
 <p ><b>Build and Run the example in Keil MDK</b></p>
 <p >Build and execute the program in Keil MDK in the same way as any other project. Refer to <a href="../../infrastructure/html/run_mdk_pro.html#mdk_program_run">Program Build and Debug</a> for additional description.</p>
 <p >In the VHT Basic example by default the following output shall be observed in the Telnet window, indicating an intentional failure in <code>test_my_sum_fail</code>:</p>
@@ -172,13 +176,23 @@ CI pipeline setup</h1>
 <p >As common for many projects, the CI pipeline for the VHT Get Started repository is triggered on every code change via push and pull requests. In our example this is explicitly limited to the <em>main</em> branch only.</p>
 <p >The CI implementation relies on <a href="https://docs.github.com/en/actions">GitHub Actions</a> with <a href="../../infrastructure/html/run_ami_github.html#GitHub_hosted">GitHub-hosted Runners</a>. Program build and execution are done on <a href="../../infrastructure/html/index.html#AWS">AVH AMI</a> instance in Amazon AWS. Custom GitHub action <a href="https://github.com/ARM-software/VHT-AMI">Arm-Software/VHT-AMI</a> manages the connection between the GitHub repository and the AVH AMI instance in AWS, as well as configures the actions to be performed on the AMI.</p>
 <p >Subsections below explain the setup for the AWS and GitHub Actions.</p>
-<h2><a class="anchor" id="autotoc_md4"></a>
+<h2><a class="anchor" id="GS_AWS_Setup"></a>
 AWS setup</h2>
 <p >On the AWS side several items shall be setup to enable execution of example CI pipeline on AVH AMI.</p>
+<p ><b>AVH AMI subscription</b></p>
 <ul>
-<li>Enable use of AVH AMI in your AWS account with the steps described in <a href="../../infrastructure/html/index.html#Subscribe">Subscribe Arm Virtual Hardware</a>.</li>
+<li>Enable use of AVH AMI in your AWS account with the steps described in <a href="../../infrastructure/html/index.html#Subscribe">Subscribe Arm Virtual Hardware</a>.<ul>
+<li>Note the AMI ID value as it will be needed later for <a class="el" href="GetStarted.html#GS_GitHub_Setup">GitHub Actions setup</a>.</li>
+</ul>
+</li>
+</ul>
+<p ><b>AWS resources setup</b></p>
+<ul>
 <li>Provision the AWS resources required for AVH AMI operation.<ul>
-<li>The simplest way is explained in <a href="https://github.com/spcaipers-arm/VHT-AWS-Infra-CloudFormation">AVH-AWS-Infra-CloudFormation</a> and relies on AWS CloudFormation service with the template file describing default stack configuration.</li>
+<li>The simplest way is explained in <a href="https://github.com/spcaipers-arm/VHT-AWS-Infra-CloudFormation">AVH-AWS-Infra-CloudFormation</a> and relies on AWS CloudFormation service with the template file describing default stack configuration.<ul>
+<li>Note the parameters available in the <em>Output</em> tab of the created stack. They will be needed later for <a class="el" href="GetStarted.html#GS_GitHub_Setup">GitHub Actions setup</a>.</li>
+</ul>
+</li>
 <li>Alternatively, for a more customized setup see <a href="../../infrastructure/html/run_ami_github.html#GitHub_hosted">GitHub-hosted Runners</a>.</li>
 </ul>
 </li>
@@ -194,15 +208,40 @@ AWS setup</h2>
 <li>Click on <em>Create key pair</em>.</li>
 <li>Save the file with the private key locally when corresponding file dialog opens. <br  />
  <img src="basic_ec2_keypair_create.png" alt="" class="inline" title="AWS EC2 Key Pair create"/></li>
-<li>Observe the created Key Pair appear in the list.</li>
+<li>Observe the created Key Pair appears in the list.</li>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md5"></a>
+<h2><a class="anchor" id="GS_GitHub_Setup"></a>
 GitHub Actions setup</h2>
-<p >Section <a href="../../infrastructure/html/run_ami_github.html#GitHub_hosted">GitHub-hosted Runners</a> introdues the concept and explains it in details.</p>
-<p ><a href="https://github.com/ARM-software/VHT-GetStarted/blob/main/.github/workflows/basic.yml">./.github/workflows/basic.yml</a> file using corresponding <a href="https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions">YAML syntax for GitHub workflows</a>.</p>
-<p >todo: explain GitHub setup</p>
+<p >Section <a href="../../infrastructure/html/run_ami_github.html#GitHub_hosted">GitHub-hosted Runners</a> introduces the concept and explains it in details.</p>
+<p >The GitHub Action is implemented in the <a href="https://github.com/ARM-software/VHT-GetStarted/blob/main/.github/workflows/basic.yml">./.github/workflows/basic.yml</a> file using corresponding <a href="https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions">YAML syntax for GitHub workflows</a>.</p>
+<p >todo: describe the workflow setup</p>
+<p ><b>Add GitHub Secrets</b></p>
+<p >Several parameters need to be configured in the repository as <a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets">GitHub Secrets</a> to enable communication with your AWS account. For that:</p><ul>
+<li>Go to the GitHub web-page of your repository.</li>
+<li>Go to <em>Settings</em> tab and in the list on the left side select <em>Secrets</em>.</li>
+<li>Use button <em>New repository secret</em> and add one by one following secrets:</li>
+</ul>
+<table class="doxtable">
+<tr>
+<th>Secret Name </th><th>Value for your VHT-GetStarted repository </th><th>Description  </th></tr>
+<tr>
+<td>AWS_IAM_PROFILE </td><td>The value of <em>AVHInstanceRole</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>, preceded with <code>Name=</code>. </td><td>The <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html">IAM Role</a> to be used for AWS access. The value shall be preceded with <code>Name=</code> prior to the actual profile name. For example <code>Name=myAVHRole</code>. </td></tr>
+<tr>
+<td>AWS_ACCESS_KEY_ID<br  />
+AWS_ACCESS_KEY_SECRET </td><td>The values of <em>AVHUserAccessKeyId</em> and <em>AVHUserSecretAccessKey</em> respectively from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">Access key pair</a> for the AWS account (as IAM user) that shall be used by the CI workflow for AWS access. </td></tr>
+<tr>
+<td>AWS_S3_BUCKET  </td><td>The value of <em>AVHBucketName</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td>The name of the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html">S3 storage bucket</a> to be used for data exchange between GitHub and AVH AMI. </td></tr>
+<tr>
+<td>AWS_SECURITY_GROUP_ID  </td><td>The value of <em>AVHEC2SecurityGroup</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td>The id of the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html">VPC security group</a> to add the EC2 instance to. Shall have format <code>sg-xxxxxxxx</code>. </td></tr>
+<tr>
+<td>AWS_DEFAULT_REGION  </td><td>Use the same region as was used for <a href="#GS_AWS_Setup">AWS setup</a>. </td><td>The data center region the AVH AMI will be run on. For example <code>eu-west-1</code>. </td></tr>
+<tr>
+<td>AWS_AMI_ID  </td><td>Use the value provided during <a href="#GS_AWS_Setup">AVH AMI subscription</a>. </td><td>The id of the AVH AMI to be used. Shall correspond to the value provided in <em>AWS_DEFAULT_REGION</em>. Shall have format <code>ami-xxxxxxxx</code>. </td></tr>
+<tr>
+<td>AWS_SUBNET_ID  </td><td>Obtain a value as described in <a href="https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#view-subnet">View your subnet</a>. </td><td>The id of the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics">VPC subnet</a> to connect the EC2 instance to. Shall have format <code>subnet-xxxxxxxx</code>. </td></tr>
+</table>
 <h1><a class="anchor" id="GS_ExecuteCI"></a>
 Execute CI</h1>
 <p >CI pipeline gets executed automatically on every code change in the <em>main</em> branch and execution results can be observed on the repository GitHub page.</p>
@@ -219,7 +258,7 @@ Execute CI</h1>
 <li>Click on the title of a workflow run to analyze its execution as explained in next section.</li>
 </ul>
 <h1><a class="anchor" id="GS_AnalyseFailure"></a>
-Analyse Failures</h1>
+Analyse failures</h1>
 <p ><a href="https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/about-monitoring-and-troubleshooting">GitHub Documentation</a> gives an overview about monitoring and troubleshooting options available for GitHub Actions.</p>
 <p >Steps below guide through the analysis for VHT Basic example.</p>
 <ul>
