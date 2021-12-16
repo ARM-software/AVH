@@ -33,24 +33,32 @@ The VHT Basic embedded program implements a set of unit tests for validating ope
 ### Create project repository on GitHub
 
 Initial repository setup should follow a standard git process for either [creating a new repo] (https://docs.github.com/en/get-started/quickstart/create-a-repo) or [forking](https://docs.github.com/en/get-started/quickstart/fork-a-repo) already existing one.
-In this example we use a fork of the VHT GetStarted repository:
- - Open a web browser and enter the URL: [https://github.com/ARM-software/VHT-GetStarted](https://github.com/ARM-software/VHT-GetStarted)
+The VHT GetStarted repository is setup as a GitHub template repository so it is very easy to [create own repository from it](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template):
+ - Open a web browser and go to the URL: [https://github.com/ARM-software/VHT-GetStarted](https://github.com/ARM-software/VHT-GetStarted)
  - Verify that you are logged in to your GitHub account.
- - Click on *Fork* (upper right side).
-   - The repo gets forked into `` `https://github.com/<YourGitHubName>/VHT-GetStarted` `` repository, where ```<YourGitHubName>``` corresponds your GitHub user name.
+ - Click on *Use this template* button. This opens the _Create a new repository from VHT-GetStarted_ page.
+ - In *Repository name* field provide the name for the new repository to be created under your account. For simplicity just reuse the original name `VHT-GetStarted`.
+ - Select whether you want the new repository to be Public or Private. This does not impact example operation, but be aware of limited quotas for automation in private repositories depending on your [GitHub account plan](https://github.com/pricing).
+ - Check *Include all branches*. This is important for getting GitHub badges working correctly in your target repo.
+ - Click on *Create repository from template*.
+   - The example repo gets copied into `` `https://github.com/<YourGitHubName>/VHT-GetStarted` `` repository, where ```<YourGitHubName>``` corresponds your GitHub user name.
+   .
+![Create a repository from VHT-GetStarted template](images/basic_gh_create_repo.png)
 
 ### Setup local project folder on your PC
 
-If the repo is present on GitHub, it can be easily copied onto local PC using following steps:
+Once the repository is present on GitHub, it can be easily copied onto local PC.
  - Make sure Git Bash is installed on the PC. For example [git for Windows] (https://gitforwindows.org/).
  - Open the Git Bash terminal in the target directory and execute clone command as:
 
         git clone https://github.com/<YourGitHubName>/VHT-GetStarted
 
+This copies the content of the _main_ branch to on your local drive. The _badges_ branch is present in the GitHub repository but is not required for local use.
+
 ### Setup Keil MDK project
 
  - Install Keil MDK and related tools as described in [Tools installation](../../infrastructure/html/run_mdk_pro.html#mdk_vht_install).
- - In the local project repository double-click on the _basic/basic.debug.uvprojx_ file to open the project in uVision IDE.
+ - In the local project repository double-click on the _basic/basic.debug.uvprojx_ file to open the project in µVision IDE.
  - Verify the project setup as explained in [Project Configuration](../../infrastructure/html/run_mdk_pro.html#mdk_project_config).
 
 ### Implement tests locally
@@ -65,7 +73,7 @@ By default Unity uses `putchar` for print out. Keil MDK does not support semihos
 
 **Export project to CPRJ format**
 
-The VHT Basic project is also described in _basic.debug.cprj_ file using universal [.cprj format](https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html) that gets used in command-line CI environments. For correct workflow operation it is important to keep the MDK project files and the _basic.debug.cprj_ file synchronized. For that after saving modifications in the MDK project go to the uVision menu [_Project_ - _Export_](https://www.keil.com/support/man/docs/uv4/uv4_ui_export.htm) and select _Save project to CPRJ format_.
+The VHT Basic project is also described in _basic.debug.cprj_ file using universal [.cprj format](https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html) that gets used in command-line CI environments. For correct workflow operation it is important to keep the MDK project files and the _basic.debug.cprj_ file synchronized. For that after saving modifications in the MDK project go to the µVision menu [_Project_ - _Export_](https://www.keil.com/support/man/docs/uv4/uv4_ui_export.htm) and select _Save project to CPRJ format_.
 
 **Build and Run the example in Keil MDK**
 
@@ -83,13 +91,20 @@ The CI implementation relies on [GitHub Actions](https://docs.github.com/en/acti
 
 Subsections below explain the setup for the AWS and GitHub Actions.
 
-### AWS setup
+### AWS setup {#GS_AWS_Setup}
 
 On the AWS side several items shall be setup to enable execution of example CI pipeline on AVH AMI.
 
+**AVH AMI subscription**
+
  - Enable use of AVH AMI in your AWS account with the steps described in [Subscribe Arm Virtual Hardware](../../infrastructure/html/index.html#Subscribe).
+  - Note the AMI ID value as it will be needed later for \ref GS_GitHub_Setup.
+
+**AWS resources setup**
+
  - Provision the AWS resources required for AVH AMI operation.
   - The simplest way is explained in [AVH-AWS-Infra-CloudFormation](https://github.com/spcaipers-arm/VHT-AWS-Infra-CloudFormation) and relies on AWS CloudFormation service with the template file describing default stack configuration.
+   - Note the parameters available in the _Output_ tab of the created stack. They will be needed later for \ref GS_GitHub_Setup.
   - Alternatively, for a more customized setup see [GitHub-hosted Runners](../../infrastructure/html/run_ami_github.html#GitHub_hosted).
  - Ensure that a Key Pair is available for use with EC2.<br>
    By default the VHT Basic example expects a key pair with name `common` to create an EC2 instance (with line `ssh_key_name: common` in _basic.yml_ file).
@@ -102,15 +117,47 @@ On the AWS side several items shall be setup to enable execution of example CI p
   - Click on _Create key pair_.
   - Save the file with the private key locally when corresponding file dialog opens. <br>
     ![AWS EC2 Key Pair create](images/basic_ec2_keypair_create.png)
-  - Observe the created Key Pair appear in the list.
+  - Observe the created Key Pair appears in the list.
 
-### GitHub Actions setup
+### GitHub Actions setup {#GS_GitHub_Setup}
 
-Section [GitHub-hosted Runners](../../infrastructure/html/run_ami_github.html#GitHub_hosted) introdues the concept and explains it in details.
+Section [GitHub-hosted Runners](../../infrastructure/html/run_ami_github.html#GitHub_hosted) introduces the concept and explains it in details.
 
-[./.github/workflows/basic.yml](https://github.com/ARM-software/VHT-GetStarted/blob/main/.github/workflows/basic.yml) file using corresponding [YAML syntax for GitHub workflows](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions). 
+The GitHub Action is implemented in the [./.github/workflows/basic.yml](https://github.com/ARM-software/VHT-GetStarted/blob/main/.github/workflows/basic.yml) file using corresponding [YAML syntax for GitHub workflows](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions). 
 
-todo: explain GitHub setup
+todo: describe the workflow setup
+
+**Add GitHub Secrets**
+
+Several parameters need to be configured in the repository as [GitHub Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) to enable communication with your AWS account. For that:
+ - Go to the GitHub web-page of your repository.
+ - Go to *Settings* tab and in the list on the left side select _Secrets_.
+ - Use button _New repository secret_ and add one by one following secrets:
+ .
+<table>
+<tr><th> Secret Name </th><th> Value for your VHT-GetStarted repository </th><th> Description </th></tr>
+<tr><td> AWS_IAM_PROFILE</td>
+    <td> The value of _AVHInstanceRole_ from the output of [AWS resources setup](#GS_AWS_Setup), preceded with `Name=`.</td>
+    <td> The [IAM Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) to be used for AWS access. The value shall be preceded with `Name=` prior to the actual profile name. For example `Name=myAVHRole`.</td></tr>
+<tr><td> AWS_ACCESS_KEY_ID<br>AWS_ACCESS_KEY_SECRET</td>
+    <td> The values of _AVHUserAccessKeyId_ and _AVHUserSecretAccessKey_ respectively from the output of [AWS resources setup](#GS_AWS_Setup).</td>
+    <td> [Access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) for the AWS account (as IAM user) that shall be used by the CI workflow for AWS access.</td></tr>
+<tr><td> AWS_S3_BUCKET </td>
+    <td> The value of _AVHBucketName_ from the output of [AWS resources setup](#GS_AWS_Setup).</td>
+    <td> The name of the [S3 storage bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html) to be used for data exchange between GitHub and AVH AMI.</td></tr>
+<tr><td> AWS_SECURITY_GROUP_ID </td>
+    <td> The value of _AVHEC2SecurityGroup_ from the output of [AWS resources setup](#GS_AWS_Setup).</td>
+    <td> The id of the [VPC security group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) to add the EC2 instance to. Shall have format `sg-xxxxxxxx`.</td></tr>
+<tr><td> AWS_DEFAULT_REGION </td>
+    <td> Use the same region as was used for [AWS setup](#GS_AWS_Setup).</td>
+    <td> The data center region the AVH AMI will be run on. For example `eu-west-1`.</td></tr>
+<tr><td> AWS_AMI_ID </td>
+    <td> Use the value provided during [AVH AMI subscription](#GS_AWS_Setup).</td>
+    <td> The id of the AVH AMI to be used. Shall correspond to the value provided in _AWS_DEFAULT_REGION_. Shall have format `ami-xxxxxxxx`.</td></tr>
+<tr><td> AWS_SUBNET_ID </td>
+    <td> Obtain a value as described in [View your subnet](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#view-subnet).</td>
+    <td> The id of the [VPC subnet](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics) to connect the EC2 instance to. Shall have format `subnet-xxxxxxxx`.</td></tr>
+</table>
 
 ## Execute CI {#GS_ExecuteCI}
 
@@ -124,7 +171,7 @@ CI pipeline gets executed automatically on every code change in the _main_ branc
     ![GitHub Actions view](images/basic_gh_actions.png)
  - Click on the title of a workflow run to analyze its execution as explained in next section.
 
-## Analyse Failures {#GS_AnalyseFailure}
+## Analyse failures {#GS_AnalyseFailure}
 
 [GitHub Documentation](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/about-monitoring-and-troubleshooting) gives an overview about monitoring and troubleshooting options available for GitHub Actions.
 
