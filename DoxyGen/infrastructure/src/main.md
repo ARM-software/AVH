@@ -31,13 +31,9 @@ The **AMI** provides a lot of flexibility and gives you the option to integrate 
   - \subpage run_ami_local allows to use the AMI from a local computer.
   - \subpage run_ami_github explains how to integrate the **\prj_name AWS AMI** in GitHub action workflows.
 
-  
 ## Local Tool Installation {#Local}
 
-Arm provides [**\prj_name Targets**](../../simulation/html/index.html) also as part of [**Keil MDK-Professional edition**](https://developer.arm.com/mdk). This local tool installation allows to setup and create test cases and to analyze/debug test case failures.
+Tools on a local PC can be used together with Arm Virtual Hardware for developing and debugging embedded applications.
 
-  - \subpage run_mdk_pro explains how to use **\prj_name Targets** with Keil MDK.
-
-\note
-  - [**ON ROADMAP**](../../overview/html/index.html#Roadmap): This feature is in development an will become available in the next few weeks.  
-
+  - \subpage debug_ds explains how to connect to AVH AMI from a local PC and debug the program with Arm DS.
+  - \subpage run_mdk_pro explains how to use Keil MDK for developing and debugging a program  with [Arm Virtual Hardware Targets](../../simulation/html/index.html) running on a local PC.

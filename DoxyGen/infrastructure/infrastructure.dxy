@@ -860,6 +860,7 @@ INPUT                  = ./src/main.md  \
                          ./src/aws.md  \
                          ./src/vht_doc.md \
                          ./src/github.md \
+                         ./src/ds_debug.md \
                          ./src/mdk.md
 
 # This tag can be used to specify the character encoding of the source files

@@ -25,7 +25,7 @@ The VHT simulation models can be configured using the option *-f FILE* that spec
 
 # Usage Example {#Example}
 ```
-VHT-Corstone-300.exe" -V "..\VSI\audio\python" -f fvp_config.txt -a Objects\microspeech.axf --stat --cyclelimit 768000000
+VHT-Corstone-300.exe -V "..\VSI\audio\python" -f fvp_config.txt -a Objects\microspeech.axf --stat --cyclelimit 768000000
 ```
 
 Where:
