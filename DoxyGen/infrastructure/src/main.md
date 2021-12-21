@@ -35,5 +35,5 @@ The **AMI** provides a lot of flexibility and gives you the option to integrate 
 
 Tools on a local PC can be used together with Arm Virtual Hardware for developing and debugging embedded applications.
 
-  - \subpage debug_ds explains how to connect to AVH AMI from a local PC and debug the program with Arm DS.
+  - \subpage debug_ds explains how to connect to Arm Virtual Hardware AMI from a local PC and debug the program with Arm DS.
   - \subpage run_mdk_pro explains how to use Keil MDK for developing and debugging a program  with [Arm Virtual Hardware Targets](../../simulation/html/index.html) running on a local PC.

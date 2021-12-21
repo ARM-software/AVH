@@ -1,6 +1,6 @@
 # Get Started Example {#GetStarted}
 
-VHT Basic example demonstrates how to setup a Continuous Integration (CI) workflow for testing and debugging embedded applications using Arm Virtual Hardware (AVH). The project is maintained in the GitHub repository [**github.com/ARM-software/VHT-GetStarted**](https://github.com/ARM-software/VHT-GetStarted/) that also contains detailed description of the example.
+VHT Basic example demonstrates how to setup a Continuous Integration (CI) workflow for testing and debugging embedded applications using Arm Virtual Hardware. The project is maintained in the GitHub repository [**github.com/ARM-software/VHT-GetStarted**](https://github.com/ARM-software/VHT-GetStarted/) that also contains detailed description of the example.
 
 This chapter provides step-by-step guide through the CI workflow operation and its setup.
 
@@ -13,7 +13,7 @@ The VHT Basic example implements common steps in the CI workflow as shown on the
 1. \ref GS_DevelopTest "Local development": at first, the software is developed locally using common embedded toolchain such as [Keil MDK](https://developer.arm.com/tools-and-software/embedded/keil-mdk) and with [Arm Virtual Hardware Target (VHT)](../../simulation/html/index.html) used for MCU simulation. <br>
  A GitHub repository is used as a source code management system for synchronization, storage and version control.
 2. \ref GS_SetupCI "CI pipeline setup": a GitHub Action implements the CI pipeline that gets triggered on every code update in the repository.
-3. \ref GS_ExecuteCI "CI execution": automated program build and testing is performed in AVH cloud environment and results are reported back to the repository.
+3. \ref GS_ExecuteCI "CI execution": automated program build and testing is performed in the cloud with Arm Virtual Hardware and results are reported back to the repository.
 4. \ref GS_AnalyseFailure "Failure analysis and local debug": developer can observe the CI test results in the GitHub Actions of the repository. In case of any failures they can be reproduced and debugged locally.
 
 ## Prerequisites {#GS_Prerequisites}
@@ -87,30 +87,30 @@ In the VHT Basic example by default the following output shall be observed in th
 
 As common for many projects, the CI pipeline for the VHT Get Started repository is triggered on every code change via push and pull requests. In our example this is explicitly limited to the _main_ branch only.
 
-The CI implementation relies on [GitHub Actions](https://docs.github.com/en/actions) with [GitHub-hosted Runners](../../infrastructure/html/run_ami_github.html#GitHub_hosted). Program build and execution are done on [AVH AMI](../../infrastructure/html/index.html#AWS) instance in Amazon AWS. Custom GitHub action [Arm-Software/VHT-AMI](https://github.com/ARM-software/VHT-AMI) manages the connection between the GitHub repository and the AVH AMI instance in AWS, as well as configures the actions to be performed on the AMI.
+The CI implementation relies on [GitHub Actions](https://docs.github.com/en/actions) with [GitHub-hosted Runners](../../infrastructure/html/run_ami_github.html#GitHub_hosted). Program build and execution are done on [Arm Virtual Hardware AMI](../../infrastructure/html/index.html#AWS) instance in Amazon AWS. Custom GitHub action [Arm-Software/VHT-AMI](https://github.com/ARM-software/VHT-AMI) manages the connection between the GitHub repository and the AMI instance in AWS, as well as configures the actions to be performed on the AMI.
 
 Subsections below explain the setup for the AWS and GitHub Actions.
 
 ### AWS setup {#GS_AWS_Setup}
 
-On the AWS side several items shall be setup to enable execution of example CI pipeline on AVH AMI.
+On the AWS side several items shall be setup to enable execution of example CI pipeline on Arm Virtual Hardware AMI.
 
-**AVH AMI subscription**
+**Arm Virtual Hardware AMI subscription**
 
- - Enable use of AVH AMI in your AWS account with the steps described in [Subscribe Arm Virtual Hardware](../../infrastructure/html/index.html#Subscribe).
+ - Enable use of Arm Virtual Hardware AMI in your AWS account with the steps described in [Subscribe Arm Virtual Hardware](../../infrastructure/html/index.html#Subscribe).
   - Note the AMI ID value as it will be needed later for \ref GS_GitHub_Setup.
 
 **AWS resources setup**
 
- - Provision the AWS resources required for AVH AMI operation.
-  - The simplest way is explained in [AVH-AWS-Infra-CloudFormation](https://github.com/spcaipers-arm/VHT-AWS-Infra-CloudFormation) and relies on AWS CloudFormation service with the template file describing default stack configuration.
+ - Provision the AWS resources required for using Arm Virtual Hardware AMI.
+  - The simplest way is explained in [Arm Virtual Hardware AWS-CloudFormation](https://github.com/spcaipers-arm/VHT-AWS-Infra-CloudFormation) and relies on AWS CloudFormation service with the template file specifying default stack configuration.
    - Note the parameters available in the _Output_ tab of the created stack. They will be needed later for \ref GS_GitHub_Setup.
   - Alternatively, for a more customized setup see [GitHub-hosted Runners](../../infrastructure/html/run_ami_github.html#GitHub_hosted).
  - Ensure that a Key Pair is available for use with EC2.<br>
    By default the VHT Basic example expects a key pair with name `common` to create an EC2 instance (with line `ssh_key_name: common` in _basic.yml_ file).
   - In AWS Management Console type _EC2_ and go to the EC2 service.
   - In the left menu find _Network & Security_ section and click on _Key Pairs_.
-  - Verify that the same AWS region is selected as will be used with AVH AMI later.
+  - Verify that the same AWS region is selected as will be used with Arm Virtual Hardware AMI later.
   - If no `common` key pair exists then click on _Create key pair_ button. <br>
     ![AWS EC2 Key Pair view](images/basic_ec2_keypair_overview.png)<br>
   - In the _Create key pair_ dialog provide `common` as _Name_. Other settings can be kept at default values.
@@ -137,23 +137,23 @@ Several parameters need to be configured in the repository as [GitHub Secrets](h
 <table>
 <tr><th> Secret Name </th><th> Value for your VHT-GetStarted repository </th><th> Description </th></tr>
 <tr><td> AWS_IAM_PROFILE</td>
-    <td> The value of _AVHInstanceRole_ from the output of [AWS resources setup](#GS_AWS_Setup), preceded with `Name=`.</td>
-    <td> The [IAM Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) to be used for AWS access. The value shall be preceded with `Name=` prior to the actual profile name. For example `Name=myAVHRole`.</td></tr>
+    <td> The value of _VHTInstanceRole_ from the output of [AWS resources setup](#GS_AWS_Setup), preceded with `Name=`.</td>
+    <td> The [IAM Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) to be used for AWS access. The value shall be preceded with `Name=` prior to the actual profile name. For example `Name=myVHTRole`.</td></tr>
 <tr><td> AWS_ACCESS_KEY_ID<br>AWS_ACCESS_KEY_SECRET</td>
-    <td> The values of _AVHUserAccessKeyId_ and _AVHUserSecretAccessKey_ respectively from the output of [AWS resources setup](#GS_AWS_Setup).</td>
+    <td> The values of _VHTAccessKeyId_ and _VHTSecretAccessKey_ respectively from the output of [AWS resources setup](#GS_AWS_Setup).</td>
     <td> [Access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) for the AWS account (as IAM user) that shall be used by the CI workflow for AWS access.</td></tr>
-<tr><td> AWS_S3_BUCKET </td>
-    <td> The value of _AVHBucketName_ from the output of [AWS resources setup](#GS_AWS_Setup).</td>
-    <td> The name of the [S3 storage bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html) to be used for data exchange between GitHub and AVH AMI.</td></tr>
-<tr><td> AWS_SECURITY_GROUP_ID </td>
-    <td> The value of _AVHEC2SecurityGroup_ from the output of [AWS resources setup](#GS_AWS_Setup).</td>
+<tr><td> AWS_S3_BUCKET_NAME </td>
+    <td> The value of _VHTS3BucketName_ from the output of [AWS resources setup](#GS_AWS_Setup).</td>
+    <td> The name of the [S3 storage bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html) to be used for data exchange between GitHub and Arm Virtual Hardware AMI.</td></tr>
+<tr><td> AWS_EC2_SECURITY_GROUP_ID </td>
+    <td> The value of _VHTEC2SecurityGroup_ from the output of [AWS resources setup](#GS_AWS_Setup).</td>
     <td> The id of the [VPC security group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) to add the EC2 instance to. Shall have format `sg-xxxxxxxx`.</td></tr>
-<tr><td> AWS_DEFAULT_REGION </td>
+<tr><td> AWS_REGION </td>
     <td> Use the same region as was used for [AWS setup](#GS_AWS_Setup).</td>
-    <td> The data center region the AVH AMI will be run on. For example `eu-west-1`.</td></tr>
+    <td> The data center region the Arm Virtual Hardware AMI will be run on. For example `eu-west-1`.</td></tr>
 <tr><td> AWS_AMI_ID </td>
-    <td> Use the value provided during [AVH AMI subscription](#GS_AWS_Setup).</td>
-    <td> The id of the AVH AMI to be used. Shall correspond to the value provided in _AWS_DEFAULT_REGION_. Shall have format `ami-xxxxxxxx`.</td></tr>
+    <td> Use the value provided during [Arm Virtual Hardware AMI subscription](#GS_AWS_Setup).</td>
+    <td> The id of the Arm Virtual Hardware AMI to be used. Shall correspond to the value provided in _AWS_REGION_. Shall have format `ami-xxxxxxxx`.</td></tr>
 <tr><td> AWS_SUBNET_ID </td>
     <td> Obtain a value as described in [View your subnet](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#view-subnet).</td>
     <td> The id of the [VPC subnet](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics) to connect the EC2 instance to. Shall have format `subnet-xxxxxxxx`.</td></tr>
