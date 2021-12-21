@@ -106,7 +106,7 @@ $(document).ready(function(){initNavTree('GetStarted.html',''); initResizable();
   <div class="headertitle"><div class="title">Get Started Example </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md_src_GetStarted"></a> VHT Basic example demonstrates how to setup a Continuous Integration (CI) workflow for testing and debugging embedded applications using Arm Virtual Hardware (AVH). The project is maintained in the GitHub repository <a href="https://github.com/ARM-software/VHT-GetStarted/"><b>github.com/ARM-software/VHT-GetStarted</b></a> that also contains detailed description of the example.</p>
+<div class="textblock"><p ><a class="anchor" id="md_src_GetStarted"></a> VHT Basic example demonstrates how to setup a Continuous Integration (CI) workflow for testing and debugging embedded applications using Arm Virtual Hardware. The project is maintained in the GitHub repository <a href="https://github.com/ARM-software/VHT-GetStarted/"><b>github.com/ARM-software/VHT-GetStarted</b></a> that also contains detailed description of the example.</p>
 <p >This chapter provides step-by-step guide through the CI workflow operation and its setup.</p>
 <h1><a class="anchor" id="GS_Overview"></a>
 Overview</h1>
@@ -116,7 +116,7 @@ Overview</h1>
 <li><a class="el" href="GetStarted.html#GS_DevelopTest">Local development</a>: at first, the software is developed locally using common embedded toolchain such as <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">Keil MDK</a> and with <a href="../../simulation/html/index.html">Arm Virtual Hardware Target (VHT)</a> used for MCU simulation. <br  />
  A GitHub repository is used as a source code management system for synchronization, storage and version control.</li>
 <li><a class="el" href="GetStarted.html#GS_SetupCI">CI pipeline setup</a>: a GitHub Action implements the CI pipeline that gets triggered on every code update in the repository.</li>
-<li><a class="el" href="GetStarted.html#GS_ExecuteCI">CI execution</a>: automated program build and testing is performed in AVH cloud environment and results are reported back to the repository.</li>
+<li><a class="el" href="GetStarted.html#GS_ExecuteCI">CI execution</a>: automated program build and testing is performed in the cloud with Arm Virtual Hardware and results are reported back to the repository.</li>
 <li><a class="el" href="GetStarted.html#GS_AnalyseFailure">Failure analysis and local debug</a>: developer can observe the CI test results in the GitHub Actions of the repository. In case of any failures they can be reproduced and debugged locally.</li>
 </ol>
 <h1><a class="anchor" id="GS_Prerequisites"></a>
@@ -174,22 +174,22 @@ Implement tests locally</h2>
 <h1><a class="anchor" id="GS_SetupCI"></a>
 CI pipeline setup</h1>
 <p >As common for many projects, the CI pipeline for the VHT Get Started repository is triggered on every code change via push and pull requests. In our example this is explicitly limited to the <em>main</em> branch only.</p>
-<p >The CI implementation relies on <a href="https://docs.github.com/en/actions">GitHub Actions</a> with <a href="../../infrastructure/html/run_ami_github.html#GitHub_hosted">GitHub-hosted Runners</a>. Program build and execution are done on <a href="../../infrastructure/html/index.html#AWS">AVH AMI</a> instance in Amazon AWS. Custom GitHub action <a href="https://github.com/ARM-software/VHT-AMI">Arm-Software/VHT-AMI</a> manages the connection between the GitHub repository and the AVH AMI instance in AWS, as well as configures the actions to be performed on the AMI.</p>
+<p >The CI implementation relies on <a href="https://docs.github.com/en/actions">GitHub Actions</a> with <a href="../../infrastructure/html/run_ami_github.html#GitHub_hosted">GitHub-hosted Runners</a>. Program build and execution are done on <a href="../../infrastructure/html/index.html#AWS">Arm Virtual Hardware AMI</a> instance in Amazon AWS. Custom GitHub action <a href="https://github.com/ARM-software/VHT-AMI">Arm-Software/VHT-AMI</a> manages the connection between the GitHub repository and the AMI instance in AWS, as well as configures the actions to be performed on the AMI.</p>
 <p >Subsections below explain the setup for the AWS and GitHub Actions.</p>
 <h2><a class="anchor" id="GS_AWS_Setup"></a>
 AWS setup</h2>
-<p >On the AWS side several items shall be setup to enable execution of example CI pipeline on AVH AMI.</p>
-<p ><b>AVH AMI subscription</b></p>
+<p >On the AWS side several items shall be setup to enable execution of example CI pipeline on Arm Virtual Hardware AMI.</p>
+<p ><b>Arm Virtual Hardware AMI subscription</b></p>
 <ul>
-<li>Enable use of AVH AMI in your AWS account with the steps described in <a href="../../infrastructure/html/index.html#Subscribe">Subscribe Arm Virtual Hardware</a>.<ul>
+<li>Enable use of Arm Virtual Hardware AMI in your AWS account with the steps described in <a href="../../infrastructure/html/index.html#Subscribe">Subscribe Arm Virtual Hardware</a>.<ul>
 <li>Note the AMI ID value as it will be needed later for <a class="el" href="GetStarted.html#GS_GitHub_Setup">GitHub Actions setup</a>.</li>
 </ul>
 </li>
 </ul>
 <p ><b>AWS resources setup</b></p>
 <ul>
-<li>Provision the AWS resources required for AVH AMI operation.<ul>
-<li>The simplest way is explained in <a href="https://github.com/spcaipers-arm/VHT-AWS-Infra-CloudFormation">AVH-AWS-Infra-CloudFormation</a> and relies on AWS CloudFormation service with the template file describing default stack configuration.<ul>
+<li>Provision the AWS resources required for using Arm Virtual Hardware AMI.<ul>
+<li>The simplest way is explained in <a href="https://github.com/spcaipers-arm/VHT-AWS-Infra-CloudFormation">Arm Virtual Hardware AWS-CloudFormation</a> and relies on AWS CloudFormation service with the template file specifying default stack configuration.<ul>
 <li>Note the parameters available in the <em>Output</em> tab of the created stack. They will be needed later for <a class="el" href="GetStarted.html#GS_GitHub_Setup">GitHub Actions setup</a>.</li>
 </ul>
 </li>
@@ -200,7 +200,7 @@ AWS setup</h2>
  By default the VHT Basic example expects a key pair with name <code>common</code> to create an EC2 instance (with line <code>ssh_key_name: common</code> in <em>basic.yml</em> file).<ul>
 <li>In AWS Management Console type <em>EC2</em> and go to the EC2 service.</li>
 <li>In the left menu find <em>Network &amp; Security</em> section and click on <em>Key Pairs</em>.</li>
-<li>Verify that the same AWS region is selected as will be used with AVH AMI later.</li>
+<li>Verify that the same AWS region is selected as will be used with Arm Virtual Hardware AMI later.</li>
 <li>If no <code>common</code> key pair exists then click on <em>Create key pair</em> button. <br  />
  <img src="basic_ec2_keypair_overview.png" alt="" class="inline" title="AWS EC2 Key Pair view"/><br  />
 </li>
@@ -227,18 +227,18 @@ GitHub Actions setup</h2>
 <tr>
 <th>Secret Name </th><th>Value for your VHT-GetStarted repository </th><th>Description  </th></tr>
 <tr>
-<td>AWS_IAM_PROFILE </td><td>The value of <em>AVHInstanceRole</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>, preceded with <code>Name=</code>. </td><td>The <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html">IAM Role</a> to be used for AWS access. The value shall be preceded with <code>Name=</code> prior to the actual profile name. For example <code>Name=myAVHRole</code>. </td></tr>
+<td>AWS_IAM_PROFILE </td><td>The value of <em>VHTInstanceRole</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>, preceded with <code>Name=</code>. </td><td>The <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html">IAM Role</a> to be used for AWS access. The value shall be preceded with <code>Name=</code> prior to the actual profile name. For example <code>Name=myVHTRole</code>. </td></tr>
 <tr>
 <td>AWS_ACCESS_KEY_ID<br  />
-AWS_ACCESS_KEY_SECRET </td><td>The values of <em>AVHUserAccessKeyId</em> and <em>AVHUserSecretAccessKey</em> respectively from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">Access key pair</a> for the AWS account (as IAM user) that shall be used by the CI workflow for AWS access. </td></tr>
+AWS_ACCESS_KEY_SECRET </td><td>The values of <em>VHTAccessKeyId</em> and <em>VHTSecretAccessKey</em> respectively from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">Access key pair</a> for the AWS account (as IAM user) that shall be used by the CI workflow for AWS access. </td></tr>
 <tr>
-<td>AWS_S3_BUCKET  </td><td>The value of <em>AVHBucketName</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td>The name of the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html">S3 storage bucket</a> to be used for data exchange between GitHub and AVH AMI. </td></tr>
+<td>AWS_S3_BUCKET_NAME  </td><td>The value of <em>VHTS3BucketName</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td>The name of the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html">S3 storage bucket</a> to be used for data exchange between GitHub and Arm Virtual Hardware AMI. </td></tr>
 <tr>
-<td>AWS_SECURITY_GROUP_ID  </td><td>The value of <em>AVHEC2SecurityGroup</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td>The id of the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html">VPC security group</a> to add the EC2 instance to. Shall have format <code>sg-xxxxxxxx</code>. </td></tr>
+<td>AWS_EC2_SECURITY_GROUP_ID  </td><td>The value of <em>VHTEC2SecurityGroup</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td>The id of the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html">VPC security group</a> to add the EC2 instance to. Shall have format <code>sg-xxxxxxxx</code>. </td></tr>
 <tr>
-<td>AWS_DEFAULT_REGION  </td><td>Use the same region as was used for <a href="#GS_AWS_Setup">AWS setup</a>. </td><td>The data center region the AVH AMI will be run on. For example <code>eu-west-1</code>. </td></tr>
+<td>AWS_REGION  </td><td>Use the same region as was used for <a href="#GS_AWS_Setup">AWS setup</a>. </td><td>The data center region the Arm Virtual Hardware AMI will be run on. For example <code>eu-west-1</code>. </td></tr>
 <tr>
-<td>AWS_AMI_ID  </td><td>Use the value provided during <a href="#GS_AWS_Setup">AVH AMI subscription</a>. </td><td>The id of the AVH AMI to be used. Shall correspond to the value provided in <em>AWS_DEFAULT_REGION</em>. Shall have format <code>ami-xxxxxxxx</code>. </td></tr>
+<td>AWS_AMI_ID  </td><td>Use the value provided during <a href="#GS_AWS_Setup">Arm Virtual Hardware AMI subscription</a>. </td><td>The id of the Arm Virtual Hardware AMI to be used. Shall correspond to the value provided in <em>AWS_REGION</em>. Shall have format <code>ami-xxxxxxxx</code>. </td></tr>
 <tr>
 <td>AWS_SUBNET_ID  </td><td>Obtain a value as described in <a href="https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#view-subnet">View your subnet</a>. </td><td>The id of the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics">VPC subnet</a> to connect the EC2 instance to. Shall have format <code>subnet-xxxxxxxx</code>. </td></tr>
 </table>
