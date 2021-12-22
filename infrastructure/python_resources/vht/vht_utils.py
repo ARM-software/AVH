@@ -3,7 +3,7 @@ import logging
 import sys
 import uuid
 
-class AvhUtils():
+class VhtUtils():
     def __init__(self):
         pass
 

@@ -1,17 +1,16 @@
 from botocore.exceptions import ClientError
 from botocore.exceptions import WaiterError
+from vht import vht_utils
 
-import vht_utils
-import vht_core
 import boto3
 import os
 import logging
 import sys
 import time
 
-class AvhCore():
+class VhtCore():
     def __init__(self):
-        self.vht_utils = vht_utils.AvhUtils()
+        self.vht_utils = vht_utils.VhtUtils()
         self.vht_utils.is_aws_credentials_present()
 
         logging.info('vht_core:Creating EC2 client...')
@@ -223,9 +222,20 @@ class AvhCore():
 
     def get_s3_ssm_command_id_key(self, instance_id, command_id, s3_keyprefix, output_type):
         """
-            Get calculated S3 SSM Command ID Key
+        Get calculated S3 SSM Command ID Output Key
 
+        Parameters
+        ----------
+        String
+            instance_id (Instance ID)
+            command_id (Command ID)
+            s3_keyprefix (S3 Key Prefix used)
+            output_type (`stderr` or `stdout`)
 
+        Return
+        ----------
+        String
+            S3 SSM Command ID Key
         """
         return "{}/{}/{}/awsrunShellScript/0.awsrunShellScript/{}".format(
             s3_keyprefix,
@@ -236,8 +246,22 @@ class AvhCore():
 
     def get_ssm_command_id_status(self, command_id):
         """
-        Doc:
-        https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ssm.html#SSM.Client.list_commands
+        Get the Status for a specific command ID and Instance ID.
+
+        Parameters
+        ----------
+        String
+            command_id (Command ID)
+
+        Return
+        ----------
+        String
+            Command ID Status
+
+        More
+        ----------
+        API Definition:
+            https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ssm.html#SSM.Client.list_commands
         """
         response = self.ssm_client.list_commands(
             CommandId=command_id
@@ -250,8 +274,23 @@ class AvhCore():
 
     def get_ssm_command_id_status_details(self, instance_id, command_id):
         """
-        Docs:
-        https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ssm.html#SSM.Client.get_command_invocation
+        Get the Status details for a specific command ID and Instance ID.
+
+        Parameters
+        ----------
+        String
+            instance_id (Instance ID)
+            command_id (Command ID)
+
+        Return
+        ----------
+        String
+            Command ID Status Details
+
+        More
+        ----------
+        API Definition:
+            https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ssm.html#SSM.Client.get_command_invocation
         """
 
         response = self.ssm_client.get_command_invocation(
@@ -262,8 +301,23 @@ class AvhCore():
 
     def get_ssm_command_id_stdout_url(self, command_id, instance_id):
         """
-        Docs:
-        https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ssm.html#SSM.Client.list_command_invocations
+        Get the stdout output URL for a specific command ID and Instance ID.
+
+        Parameters
+        ----------
+        String
+            command_id (Command ID)
+            instance_id (Instance ID)
+
+        Return
+        ----------
+        String
+            Command ID Stdout URL
+
+        More
+        ----------
+        API Definition
+            https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ssm.html#SSM.Client.list_command_invocations
         """
         response = self.ssm_client.list_command_invocations(
             CommandId=command_id,
@@ -273,8 +327,23 @@ class AvhCore():
 
     def get_ssm_command_id_stderr_url(self, command_id, instance_id):
         """
-        Docs:
-        https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ssm.html#SSM.Client.list_command_invocations
+        Get the stderr output URL for a specific command ID and Instance ID.
+
+        Parameters
+        ----------
+        String
+            command_id (Command ID)
+            instance_id (Instance ID)
+
+        Return
+        ----------
+        String
+            Command ID Stderr URL
+
+        More
+        ----------
+        API Definition
+            https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ssm.html#SSM.Client.list_command_invocations
         """
         response = self.ssm_client.list_command_invocations(
             CommandId=command_id,
@@ -284,8 +353,19 @@ class AvhCore():
 
     def upload_s3_file(self, s3_bucket_name, filename, key):
         """
-        Docs:
-        https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.upload_file
+        Upload a file to a S3 Bucket
+
+        Parameters
+        ----------
+        String
+            s3_bucket_name (S3 Bucket Name)
+            filename (Local Filename Path)
+            Key (Filepath to be stored on S3 Bucket)
+
+        More
+        ----------
+        API Definition
+            https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.upload_file
         """
 
         logging.info("vht_core:Upload File {} to S3 Bucket {}, Key {}".format(filename, s3_bucket_name, key))
@@ -298,14 +378,42 @@ class AvhCore():
                                s3_bucket_name,
                                s3_keyprefix='',
                                working_dir='/',
+                               return_type='all',
                                timeoutSeconds=600):
         """
-        # TODO: Use **kwargs
-        @param instance_id: Target instance id.
-        @param timeoutSeconds: Default 600s (10min)
-        Doc:
-        https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ssm.html#SSM.Client.send_command
-        https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-plugins.html#aws-runShellScript
+        Send SSM Shell Commands to a EC2 Instance
+
+        Parameters
+        ----------
+        String
+            instance_id (Instance ID)
+            command_list (List of commands to be executed on the instance_id)
+            s3_bucket_name (S3 Bucket where the stdout and stderr logs will be stored)
+            s3_keyprefix (Desided prefix location for the logs - Default: '')
+            working_dir (Working directory - Default: '/')
+            return_type (
+                Method return types:
+                    `all`: Return as a dict: 'CommandId', 'CommandIdStatus', 'CommandList', 'StdOut', 'StdErr' - Default
+                    `command_id`: Return only the `command_id` as a String
+            )
+            timeoutSeconds (Command Timeout in Seconds - Default: 600)
+
+        Return
+        ----------
+        Dict
+            if return_type == `all` (Default):
+                'CommandId', 'CommandIdStatus', 'CommandList', 'StdOut', 'StdErr'
+        String
+            if return_type == `command_id`:
+                command_id
+
+        More
+        ----------
+        TODO: Use **kwargs
+
+        API Definition
+            https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ssm.html#SSM.Client.send_command
+            https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-plugins.html#aws-runShellScript
         """
 
         command_id = ''
@@ -378,15 +486,33 @@ class AvhCore():
                 stderr_key
             )
 
-        return {
-            'CommandId' : command_id,
-            'CommandIdStatus' : command_id_status,
-            'CommandList' : command_list,
-            'StdOut' : stdout_str,
-            'StdErr': stderr_str
-        }
+        if return_type == 'all':
+            return {
+                'CommandId' : command_id,
+                'CommandIdStatus' : command_id_status,
+                'CommandList' : command_list,
+                'StdOut' : stdout_str,
+                'StdErr': stderr_str
+            }
+        elif return_type == 'command_id':
+            return command_id
+        else:
+            raise AttributeError("Output type '{}' invalid. See docs.".format(return_type))
 
     def start_ec2_instance(self, instance_id):
+        """
+        Start an Instance and wait it to become running and status OK
+
+        Parameters
+        ----------
+        String
+            instance_id (Instance ID)
+
+        More
+        ----------
+        API Definition
+            https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.start_instances
+        """
         logging.info("vht_core:Starting EC2 instance {}".format(instance_id))
         response = self.ec2_client.start_instances(
             InstanceIds=[
@@ -397,6 +523,19 @@ class AvhCore():
         self.wait_ec2_status_ok(instance_id)
 
     def stop_ec2_instance(self, instance_id):
+        """
+        Stop an Instance and wait it becomes stopped.
+
+        Parameters
+        ----------
+        String
+            instance_id (Instance ID)
+
+        More
+        ----------
+        API Definition
+            https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.stop_instances
+        """
         logging.info("vht_core:Stopping EC2 instance {}".format(instance_id))
         response = self.ec2_client.stop_instances(
             InstanceIds=[
@@ -406,6 +545,19 @@ class AvhCore():
         self.wait_ec2_stopped(instance_id)
 
     def wait_ec2_status_ok(self, instance_id):
+        """
+        Wait an EC2 instance to have a Status == OK.
+
+        Parameters
+        ----------
+        String
+            instance_id (Instance ID)
+
+        More
+        ----------
+        API Definition
+            https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Waiter.InstanceStatusOk
+        """
         logging.info("vht_core:Waiting until EC2 instance id {} Status Ok...".format(instance_id))
         waiter = self.ec2_client.get_waiter('instance_status_ok')
         waiter.wait(
@@ -415,6 +567,19 @@ class AvhCore():
         )
 
     def wait_ec2_running(self, instance_id):
+        """
+        Wait an EC2 instance to be running
+
+        Parameters
+        ----------
+        String
+            instance_id (Instance ID)
+
+        More
+        ----------
+        API Definition
+            https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Waiter.InstanceRunning
+        """
         logging.info("vht_core:Waiting until EC2 instance id {} is running...".format(instance_id))
         waiter = self.ec2_client.get_waiter('instance_running')
         waiter.wait(
@@ -424,19 +589,57 @@ class AvhCore():
         )
 
     def wait_ec2_stopped(self, instance_id):
+        """
+        Wait an EC2 instance to stop
+
+        Parameters
+        ----------
+        String
+            instance_id (Instance ID)
+
+        More
+        ----------
+        API Definition
+            https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Instance.wait_until_stopped
+        """
         logging.info("vht_core:Waiting until EC2 instance id {} is stopped...".format(instance_id))
         instance = boto3.resource('ec2').Instance(instance_id)
         instance.wait_until_stopped()
 
     def wait_ec2_terminated(self, instance_id):
+        """
+        Wait an EC2 instance to terminate
+
+        Parameters
+        ----------
+        String
+            instance_id (Instance ID)
+
+        More
+        ----------
+        API Definition
+            https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Instance.wait_until_terminated
+        """
         logging.info("vht_core:Waiting until EC2 instance id {} is terminated...".format(instance_id))
         instance = boto3.resource('ec2').Instance(instance_id)
         instance.wait_until_terminated()
 
     def wait_s3_object_exists(self, s3_bucket_name, key, delay=5, max_attempts=120):
         """
-        Docs:
-        https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Waiter.ObjectExists
+        Wait an S3 Object to exists
+
+        Parameters
+        ----------
+        String
+            s3_bucket_name (S3 Bucket Name)
+            key (S3 Keypath)
+            delay (Retry delay in seconds - Default: 5)
+            max_attemps (Max retry - Default: 120)
+
+        More
+        ----------
+        API Definition
+            https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Waiter.ObjectExists
         """
         waiter = self.s3_client.get_waiter('object_exists')
         waiter.wait(
@@ -451,9 +654,18 @@ class AvhCore():
     def wait_ssm_command_finished(self, instance_id, command_id, delay=5, max_attempts=120):
         """
         Wait the SSM command to reach a terminal status.
-        @param command_id: SSM Command ID
-        Docs:
-        https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ssm.html#SSM.Waiter.CommandExecuted
+        Parameters
+        ----------
+        String
+            instance_id (Instance ID)
+            command_id (Command ID)
+            delay (Retry delay in seconds - Default: 5)
+            max_attemps (Max retry - Default: 120)
+
+        More
+        ----------
+        API Definition
+            https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ssm.html#SSM.Waiter.CommandExecuted
         """
         waiter = self.ssm_client.get_waiter('command_executed')
         try:
@@ -470,6 +682,19 @@ class AvhCore():
                 logging.info("vht_core:Failed status found while wainting for command id")
 
     def terminate_ec2_instance(self, instance_id):
+        """
+        Terminate an Instance and wait it to terminated.
+
+        Parameters
+        ----------
+        String
+            instance_id (Instance ID)
+
+        More
+        ----------
+        API Definition
+            https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.terminate_instances
+        """
         logging.debug('vht_core:terminate_ec2_instance: DryRun=True to test for permission check')
         try:
             self.ec2_client.terminate_instances(

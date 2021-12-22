@@ -1,5 +1,6 @@
-import vht_core
-import vht_utils
+from vht import vht_core
+from vht import vht_utils
+
 import logging
 import os
 import sys
@@ -11,8 +12,8 @@ logging.basicConfig(format='[%(levelname)s]\t%(message)s', level = verbosity)
 logging.debug("Verbosity level is set to " + verbosity)
 
 # Instances
-core_instance = vht_core.AvhCore()
-utils_instance = vht_utils.AvhUtils()
+core_instance = vht_core.VhtCore()
+utils_instance = vht_utils.VhtUtils()
 
 ## Get environments
 # ami_id
