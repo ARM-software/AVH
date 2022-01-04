@@ -31,10 +31,9 @@ jobs:
           python setup.py sdist bdist_wheel
           twine check dist/*
       - name: Upload distribution
-        working-directory: ./infrastructure/python_resources/
         uses: actions/upload-artifact@v2
         with:
-          path: dist/*
+          path: ./infrastructure/python_resources/dist/*
 
   lint:
     name: Run PyLint checks
@@ -84,9 +83,8 @@ jobs:
           coverage run --branch -m xmlrunner -o junit discover
           coverage xml --include="./avh_cli/**"
       - name: Publish test results
-        working-directory: infrastructure/python_resources/
         uses: mikepenz/action-junit-report@v2
         with:
           check_name: "JUnit Test Report [${{ matrix.os }}, ${{ matrix.python-version }}]"
-          report_paths: junit/*.xml
+          report_paths: infrastructure/python_resources/junit/*.xml
         if: ${{ always() }}
