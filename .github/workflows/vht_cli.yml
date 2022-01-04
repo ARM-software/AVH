@@ -4,11 +4,11 @@ on:
   push:
     branches: [main, refactor_vhtcli]
     paths:
-      - 'instrastructure/python_resources/**'
+      - 'infrastructure/python_resources/**'
   pull_request:
     branches: [main, refactor_vhtcli]
     paths:
-      - 'instrastructure/python_resources/**'
+      - 'infrastructure/python_resources/**'
 jobs:
   build:
     name: Build distribution
@@ -26,12 +26,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -U setuptools twine wheel
       - name: Build distribution
-        working-directory: instrastructure/python_resources/
+        working-directory: infrastructure/python_resources/
         run: |
           python setup.py sdist bdist_wheel
           twine check dist/*
       - name: Upload distribution
-        working-directory: ./instrastructure/python_resources/
+        working-directory: ./infrastructure/python_resources/
         uses: actions/upload-artifact@v2
         with:
           path: dist/*
@@ -48,12 +48,12 @@ jobs:
         with:
           python-version: '3.8'
       - name: Install dev dependencies
-        working-directory: ./instrastructure
+        working-directory: ./infrastructure
         run: |
           python -m pip install --upgrade pip
           pip install -e .vh_cli[dev]
       - name: Run pylint
-        working-directory: ./instrastructure
+        working-directory: ./infrastructure
         run: |
           echo "::add-matcher::.github/pylint.json"
           pylint --exit-zero --rcfile=pylintrc . tests
@@ -74,17 +74,17 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dev dependencies
-        working-directory: instrastructure/python_resources/
+        working-directory: infrastructure/python_resources/
         run: |
           python -m pip install --upgrade pip
           pip install -e .vh_cli[dev]
       - name: Run tests with coverage
-        working-directory: instrastructure/python_resources/
+        working-directory: infrastructure/python_resources/
         run: |
           coverage run --branch -m xmlrunner -o junit discover
           coverage xml --include="./avh_cli/**"
       - name: Publish test results
-        working-directory: instrastructure/python_resources/
+        working-directory: infrastructure/python_resources/
         uses: mikepenz/action-junit-report@v2
         with:
           check_name: "JUnit Test Report [${{ matrix.os }}, ${{ matrix.python-version }}]"

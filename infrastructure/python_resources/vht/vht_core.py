@@ -22,6 +22,9 @@ class VhtCore():
         logging.info('vht_core:Creating S3 client...')
         self.s3_client = boto3.client('s3')
 
+        logging.info('vht_core:Creating S3 resource...')
+        self.s3_resource = boto3.resource('s3')
+
     def create_ec2_instance(self, **kwargs):
         """
         Create a new EC2 Instance
@@ -112,16 +115,14 @@ class VhtCore():
         """
 
         logging.info("vht_core:Download S3 File")
-        s3 = boto3.resource('s3')
         try:
-            s3.meta.client.download_file(s3_bucket_name, key, filename)
+            self.s3_client.download_file(s3_bucket_name, key, filename)
         except ClientError as e:
             if 'HeadObject operation: Not Found' in str(e):
                 print("Key '{}' not found on S3 Bucket Name = '{}'".format(key, s3_bucket_name))
             else:
                 print("The error {} happens for Key={} and S3_bucket_name={}".format(e, key, s3_bucket_name))
             exit(-1)
-
 
     def get_ami_id(self, vht_version):
         """
@@ -209,10 +210,9 @@ class VhtCore():
         API Definition
             https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#object
         """
-        s3 = boto3.resource('s3')
         content = ''
         try:
-            obj = s3.Object(s3_bucket_name, key)
+            obj = self.s3_resource.Object(s3_bucket_name, key)
             content = obj.get()['Body'].read().decode('utf-8')
         except self.s3_client.exceptions.NoSuchKey:
             logging.info("vht_core:Key '{}' not found on S3 bucket '{}'".format(key, s3_bucket_name))
