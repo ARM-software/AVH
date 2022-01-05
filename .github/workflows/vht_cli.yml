@@ -76,15 +76,15 @@ jobs:
         working-directory: infrastructure/python_resources/
         run: |
           python -m pip install --upgrade pip
-          pip install .
+          pip install . coverage
       - name: Run tests with coverage
         working-directory: infrastructure/python_resources/
         run: |
-          coverage run --branch -m xmlrunner -o junit discover
+          coverage run --branch -m unittest discover -v
           coverage xml --include="./vht/**"
-      - name: Publish test results
-        uses: mikepenz/action-junit-report@v2
+        env:
+          AWS_DEFAULT_REGION: eu-west-1
+      - name: Upload distribution
+        uses: actions/upload-artifact@v2
         with:
-          check_name: "JUnit Test Report [${{ matrix.os }}, ${{ matrix.python-version }}]"
-          report_paths: infrastructure/python_resources/junit/*.xml
-        if: ${{ always() }}
+          path: ./infrastructure/python_resources/coverage.xml
