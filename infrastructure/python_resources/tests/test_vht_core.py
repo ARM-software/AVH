@@ -5,7 +5,7 @@ import vht.vht_core
 import vht.vht_utils
 import unittest
 
-from dateutil.tz import tzutc
+from dateutil.tz import tzutc, tzlocal
 from vht.vht_core import VhtCore
 from unittest.mock import patch, Mock
 
@@ -14,8 +14,11 @@ from unittest.mock import patch, Mock
 # https://stackoverflow.com/questions/37143597/mocking-boto3-s3-client-method-python/37144161#37144161
 
 class TestVhtCore(unittest.TestCase):
+    """
+        VHT Core Test Cases
+    """
     def _get_vht_core_instance(self):
-        with patch.object(vht.vht_core.vht_utils.VhtUtils, 'is_aws_credentials_present', return_value=True) as mocked_method:
+        with patch.object(vht.vht_core.vht_utils.VhtUtils, 'is_aws_credentials_present', return_value=True):
             return VhtCore()
 
     def test_create_ec2_instance(self):
@@ -416,6 +419,322 @@ class TestVhtCore(unittest.TestCase):
         # asserting values
         assert core_instance.ec2_client.describe_instances.called
         assert response == 'running'
+
+    @unittest.skip('Find out how to mock s3_resource.Object.get')
+    def test_get_s3_file_content(self):
+        core_instance = self._get_vht_core_instance()
+
+        # mocking methods
+        # setting return values for the mocked methods
+        core_instance.s3_resource.Object('s3_bucket_name', 'key').get = Mock(
+            return_value="drwxr-xr-x  13 root root  4096 Apr 30  2021 var"
+        )
+
+        # running the actual method
+        response = core_instance.get_s3_file_content('s3_bucket_name', 'key')
+
+        # asserting values
+        assert core_instance.s3_resource.Object.called
+        assert response == "drwxr-xr-x  13 root root  4096 Apr 30  2021 var"
+
+    def test_get_s3_ssm_command_id_key(self):
+        core_instance = self._get_vht_core_instance()
+
+        s3_keyprefix = 'some_prefix'
+        command_id = '8f181e5d-8fec-45fa-9bfa-812e76df650c'
+        instance_id = 'i-064a8d261aea65d9e'
+        output_type = 'stdout'
+
+        response = core_instance.get_s3_ssm_command_id_key(
+            instance_id,
+            command_id,
+            s3_keyprefix,
+            output_type
+        )
+        expected_response = "{}/{}/{}/awsrunShellScript/0.awsrunShellScript/{}".format(
+            s3_keyprefix,
+            command_id,
+            instance_id,
+            output_type
+        )
+
+        assert response == expected_response
+
+    def test_get_ssm_command_id_status(self):
+        core_instance = self._get_vht_core_instance()
+
+        # mocking methods
+        core_instance.ssm_client.list_commands = Mock()
+
+        # setting return values for the mocked methods
+        core_instance.ssm_client.list_commands.return_value = {
+            'Commands': [{
+                'CommandId': '8f181e5d-8fec-45fa-9bfa-812e76df650c',
+                'DocumentName': 'AWS-RunShellScript',
+                'DocumentVersion': '$DEFAULT',
+                'Comment': '',
+                'ExpiresAfter': datetime.datetime(2022, 1, 3, 17, 1, 45, 663000, tzinfo=tzlocal()),
+                'Parameters': {
+                    'commands': ['ls -la'],
+                    'workingDirectory': ['/']
+                },
+                'InstanceIds': ['i-064a8d261aea65d9e'],
+                'Targets': [],
+                'RequestedDateTime': datetime.datetime(2022, 1, 3, 15, 51, 45, 663000, tzinfo=tzlocal()),
+                'Status': 'Success',
+                'StatusDetails': 'Success',
+                'OutputS3Region': 'eu-west-1',
+                'OutputS3BucketName': 'gh-orta-vht',
+                'OutputS3KeyPrefix': 'ssm',
+                'MaxConcurrency': '50',
+                'MaxErrors': '0',
+                'TargetCount': 1,
+                'CompletedCount': 1,
+                'ErrorCount': 0,
+                'DeliveryTimedOutCount': 0,
+                'ServiceRole': '',
+                'NotificationConfig': {
+                    'NotificationArn': '',
+                    'NotificationEvents': [],
+                    'NotificationType': ''
+                },
+                'CloudWatchOutputConfig': {
+                    'CloudWatchLogGroupName': '',
+                    'CloudWatchOutputEnabled': False
+                },
+                'TimeoutSeconds': 600
+            }],
+            'ResponseMetadata': {
+                'RequestId': '2d226bf9-efbd-461b-a381-225773ec85cd',
+                'HTTPStatusCode': 200,
+                'HTTPHeaders': {
+                    'server': 'Server',
+                    'date': 'Mon, 03 Jan 2022 14:51:47 GMT',
+                    'content-type': 'application/x-amz-json-1.1',
+                    'content-length': '847',
+                    'connection': 'keep-alive',
+                    'x-amzn-requestid': '2d226bf9-efbd-461b-a381-225773ec85cd'
+                },
+                'RetryAttempts': 0
+            }
+        }
+
+        # running the actual method
+        response = core_instance.get_ssm_command_id_status(
+            command_id='8f181e5d-8fec-45fa-9bfa-812e76df650c'
+        )
+
+        # asserting values
+        assert core_instance.ssm_client.list_commands.called
+        assert response == 'Success'
+
+    def test_get_ssm_command_id_status_details(self):
+        core_instance = self._get_vht_core_instance()
+
+        # mocking methods
+        core_instance.ssm_client.get_command_invocation = Mock()
+
+        # setting return values for the mocked methods
+        core_instance.ssm_client.get_command_invocation.return_value = {
+            'CommandId': 'da584039-585c-4fd7-b30f-fad58c42c881',
+            'InstanceId': 'i-000f2435623398464',
+            'Comment': '',
+            'DocumentName': 'AWS-RunShellScript',
+            'DocumentVersion': '$DEFAULT',
+            'PluginName': 'aws:runShellScript',
+            'ResponseCode': 0,
+            'ExecutionStartDateTime': '2022-01-05T10:35:35.383Z',
+            'ExecutionElapsedTime': 'PT0.198S',
+            'ExecutionEndDateTime': '2022-01-05T10:35:35.383Z',
+            'Status': 'Success',
+            'StatusDetails': 'Success',
+            'StandardOutputContent': 'total 80\ndrwxr-xr-x  19 root root  4096 Jan  5 10:33 .\ndrwxr-xr-x  19 root root  4096 Jan  5 10:33 ..\nlrwxrwxrwx   1 root root     7 Apr 30  2021 bin -> usr/bin\ndrwxr-xr-x   3 root root  4096 Oct 14 17:56 boot\ndrwxr-xr-x  17 root root  3200 Jan  5 10:34 dev\ndrwxr-xr-x 135 root root 12288 Jan  5 10:33 etc\ndrwxr-xr-x   3 root root  4096 Oct 14 17:53 home\nlrwxrwxrwx   1 root root     7 Apr 30  2021 lib -> usr/lib\nlrwxrwxrwx   1 root root     9 Apr 30  2021 lib32 -> usr/lib32\nlrwxrwxrwx   1 root root     9 Apr 30  2021 lib64 -> usr/lib64\nlrwxrwxrwx   1 root root    10 Apr 30  2021 libx32 -> usr/libx32\ndrwx------   2 root root 16384 Apr 30  2021 lost+found\ndrwxr-xr-x   2 root root  4096 Apr 30  2021 media\ndrwxr-xr-x   2 root root  4096 Apr 30  2021 mnt\ndrwxr-xr-x   8 root root  4096 Oct 14 18:00 opt\ndr-xr-xr-x 186 root root     0 Jan  5 10:33 proc\ndrwx------   6 root root  4096 Jan  5 10:33 root\ndrwxr-xr-x  27 root root   880 Jan  5 10:34 run\nlrwxrwxrwx   1 root root     8 Apr 30  2021 sbin -> usr/sbin\ndrwxr-xr-x   8 root root  4096 Jan  5 10:34 snap\ndrwxr-xr-x   2 root root  4096 Apr 30  2021 srv\ndr-xr-xr-x  13 root root     0 Jan  5 10:33 sys\ndrwxrwxrwt  18 root root  4096 Jan  5 10:35 tmp\ndrwxr-xr-x  15 root root  4096 Apr 30  2021 usr\ndrwxr-xr-x  13 root root  4096 Apr 30  2021 var\n',
+            'StandardOutputUrl': 'https://s3.eu-west-1.amazonaws.com/gh-orta-vht/ssm/da584039-585c-4fd7-b30f-fad58c42c881/i-000f2435623398464/awsrunShellScript/0.awsrunShellScript/stdout',
+            'StandardErrorContent': '',
+            'StandardErrorUrl': 'https://s3.eu-west-1.amazonaws.com/gh-orta-vht/ssm/da584039-585c-4fd7-b30f-fad58c42c881/i-000f2435623398464/awsrunShellScript/0.awsrunShellScript/stderr',
+            'CloudWatchOutputConfig': {
+                'CloudWatchLogGroupName': '',
+                'CloudWatchOutputEnabled': False
+            },
+            'ResponseMetadata': {
+                'RequestId': '3eea5728-2539-427a-acf7-35cc93493e2d',
+                'HTTPStatusCode': 200,
+                'HTTPHeaders': {
+                    'server': 'Server',
+                    'date': 'Wed, 05 Jan 2022 10:35:41 GMT',
+                    'content-type': 'application/x-amz-json-1.1',
+                    'content-length': '2214',
+                    'connection': 'keep-alive',
+                    'x-amzn-requestid': '3eea5728-2539-427a-acf7-35cc93493e2d'
+                },
+                'RetryAttempts': 0
+            }
+        }
+
+        # running the actual method
+        response = core_instance.get_ssm_command_id_status_details(
+            instance_id='i-064a8d261aea65d9e',
+            command_id='8f181e5d-8fec-45fa-9bfa-812e76df650c'
+        )
+
+        # asserting values
+        assert core_instance.ssm_client.get_command_invocation.called
+        assert response == 'Success'
+
+    def test_get_ssm_command_id_stdout_url(self):
+        core_instance = self._get_vht_core_instance()
+
+        # mocking methods
+        core_instance.ssm_client.list_command_invocations = Mock()
+
+        # setting return values for the mocked methods
+        core_instance.ssm_client.list_command_invocations.return_value = {
+            'CommandInvocations': [{
+                'CommandId': 'da584039-585c-4fd7-b30f-fad58c42c881',
+                'InstanceId': 'i-000f2435623398464',
+                'InstanceName': 'ip-10-252-70-185.eu-west-1.compute.internal',
+                'Comment': '',
+                'DocumentName': 'AWS-RunShellScript',
+                'DocumentVersion': '$DEFAULT',
+                'RequestedDateTime': datetime.datetime(2022, 1, 5, 11, 35, 34, 581000, tzinfo=tzlocal()),
+                'Status': 'Success',
+                'StatusDetails': 'Success',
+                'StandardOutputUrl': 'https://s3.eu-west-1.amazonaws.com/gh-orta-vht/ssm/da584039-585c-4fd7-b30f-fad58c42c881/i-000f2435623398464/awsrunShellScript/0.awsrunShellScript/stdout',
+                'StandardErrorUrl': 'https://s3.eu-west-1.amazonaws.com/gh-orta-vht/ssm/da584039-585c-4fd7-b30f-fad58c42c881/i-000f2435623398464/awsrunShellScript/0.awsrunShellScript/stderr',
+                'CommandPlugins': [],
+                'ServiceRole': '',
+                'NotificationConfig': {
+                    'NotificationArn': '',
+                    'NotificationEvents': [],
+                    'NotificationType': ''
+                },
+                'CloudWatchOutputConfig': {
+                    'CloudWatchLogGroupName': '',
+                    'CloudWatchOutputEnabled': False
+                }
+            }],
+            'ResponseMetadata': {
+                'RequestId': '7b44dfb6-410a-473e-8d85-2b0f3d421d5b',
+                'HTTPStatusCode': 200,
+                'HTTPHeaders': {
+                    'server': 'Server',
+                    'date': 'Wed, 05 Jan 2022 10:35:43 GMT',
+                    'content-type': 'application/x-amz-json-1.1',
+                    'content-length': '896',
+                    'connection': 'keep-alive',
+                    'x-amzn-requestid': '7b44dfb6-410a-473e-8d85-2b0f3d421d5b'
+                },
+                'RetryAttempts': 0
+            }
+        }
+
+        # running the actual method
+        response = core_instance.get_ssm_command_id_stdout_url(
+            instance_id='i-000f2435623398464',
+            command_id='da584039-585c-4fd7-b30f-fad58c42c881'
+        )
+
+        # asserting values
+        assert core_instance.ssm_client.list_command_invocations.called
+        assert response == 'https://s3.eu-west-1.amazonaws.com/gh-orta-vht/ssm/da584039-585c-4fd7-b30f-fad58c42c881/i-000f2435623398464/awsrunShellScript/0.awsrunShellScript/stdout'
+
+    def test_get_ssm_command_id_stderr_url(self):
+        core_instance = self._get_vht_core_instance()
+
+        # mocking methods
+        core_instance.ssm_client.list_command_invocations = Mock()
+
+        # setting return values for the mocked methods
+        core_instance.ssm_client.list_command_invocations.return_value = {
+            'CommandInvocations': [{
+                'CommandId': 'da584039-585c-4fd7-b30f-fad58c42c881',
+                'InstanceId': 'i-000f2435623398464',
+                'InstanceName': 'ip-10-252-70-185.eu-west-1.compute.internal',
+                'Comment': '',
+                'DocumentName': 'AWS-RunShellScript',
+                'DocumentVersion': '$DEFAULT',
+                'RequestedDateTime': datetime.datetime(2022, 1, 5, 11, 35, 34, 581000, tzinfo=tzlocal()),
+                'Status': 'Success',
+                'StatusDetails': 'Success',
+                'StandardOutputUrl': 'https://s3.eu-west-1.amazonaws.com/gh-orta-vht/ssm/da584039-585c-4fd7-b30f-fad58c42c881/i-000f2435623398464/awsrunShellScript/0.awsrunShellScript/stdout',
+                'StandardErrorUrl': 'https://s3.eu-west-1.amazonaws.com/gh-orta-vht/ssm/da584039-585c-4fd7-b30f-fad58c42c881/i-000f2435623398464/awsrunShellScript/0.awsrunShellScript/stderr',
+                'CommandPlugins': [],
+                'ServiceRole': '',
+                'NotificationConfig': {
+                    'NotificationArn': '',
+                    'NotificationEvents': [],
+                    'NotificationType': ''
+                },
+                'CloudWatchOutputConfig': {
+                    'CloudWatchLogGroupName': '',
+                    'CloudWatchOutputEnabled': False
+                }
+            }],
+            'ResponseMetadata': {
+                'RequestId': '7b44dfb6-410a-473e-8d85-2b0f3d421d5b',
+                'HTTPStatusCode': 200,
+                'HTTPHeaders': {
+                    'server': 'Server',
+                    'date': 'Wed, 05 Jan 2022 10:35:43 GMT',
+                    'content-type': 'application/x-amz-json-1.1',
+                    'content-length': '896',
+                    'connection': 'keep-alive',
+                    'x-amzn-requestid': '7b44dfb6-410a-473e-8d85-2b0f3d421d5b'
+                },
+                'RetryAttempts': 0
+            }
+        }
+
+        # running the actual method
+        response = core_instance.get_ssm_command_id_stderr_url(
+            instance_id='i-000f2435623398464',
+            command_id='da584039-585c-4fd7-b30f-fad58c42c881'
+        )
+
+        # asserting values
+        assert core_instance.ssm_client.list_command_invocations.called
+        assert response == 'https://s3.eu-west-1.amazonaws.com/gh-orta-vht/ssm/da584039-585c-4fd7-b30f-fad58c42c881/i-000f2435623398464/awsrunShellScript/0.awsrunShellScript/stderr'
+
+    @unittest.skip('TODO')
+    def test_send_ssm_shell_command(self):
+        pass
+
+    @unittest.skip('TODO')
+    def test_start_ec2_instance(self):
+        pass
+
+    @unittest.skip('TODO')
+    def test_stop_ec2_instance(self):
+        pass
+
+    @unittest.skip('TODO')
+    def test_wait_ec2_status_ok(self):
+        pass
+
+    @unittest.skip('TODO')
+    def test_wait_ec2_running(self):
+        pass
+
+    @unittest.skip('TODO')
+    def test_wait_ec2_stopped(self):
+        pass
+
+    @unittest.skip('TODO')
+    def test_wait_ec2_terminated(self):
+        pass
+
+    @unittest.skip('TODO')
+    def test_wait_s3_object_exists(self):
+        pass
+
+    @unittest.skip('TODO')
+    def test_wait_ssm_command_finished(self):
+        pass
+
+    @unittest.skip('TODO')
+    def test_terminate_ec2_instance(self):
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()

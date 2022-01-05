@@ -1,14 +1,14 @@
+import logging
+import time
+import boto3
 from botocore.exceptions import ClientError
 from botocore.exceptions import WaiterError
 from vht import vht_utils
 
-import boto3
-import os
-import logging
-import sys
-import time
-
 class VhtCore():
+    """
+    Core methods for VHT
+    """
     def __init__(self):
         self.vht_utils = vht_utils.VhtUtils()
         self.vht_utils.is_aws_credentials_present()
@@ -212,8 +212,7 @@ class VhtCore():
         """
         content = ''
         try:
-            obj = self.s3_resource.Object(s3_bucket_name, key)
-            content = obj.get()['Body'].read().decode('utf-8')
+            content = self.s3_resource.Object(s3_bucket_name, key).get()['Body'].read().decode('utf-8')
         except self.s3_client.exceptions.NoSuchKey:
             logging.info("vht_core:Key '{}' not found on S3 bucket '{}'".format(key, s3_bucket_name))
             return ''
@@ -297,6 +296,8 @@ class VhtCore():
             CommandId=command_id,
             InstanceId=instance_id
         )
+        logging.debug("vht_core:get_ssm_command_id_status_details:" + str(response))
+        logging.info("vht_core:The command_id {} status details is {}...".format(command_id, response['StatusDetails']))
         return response['StatusDetails']
 
     def get_ssm_command_id_stdout_url(self, command_id, instance_id):
@@ -323,6 +324,7 @@ class VhtCore():
             CommandId=command_id,
             InstanceId=instance_id
         )
+        logging.debug("vht_core:get_ssm_command_id_stdout_url:" + str(response))
         return response['CommandInvocations'][0]['StandardOutputUrl']
 
     def get_ssm_command_id_stderr_url(self, command_id, instance_id):
@@ -349,6 +351,7 @@ class VhtCore():
             CommandId=command_id,
             InstanceId=instance_id
         )
+        logging.debug("vht_core:get_ssm_command_id_stderr_url:" + str(response))
         return response['CommandInvocations'][0]['StandardErrorUrl']
 
     def upload_s3_file(self, s3_bucket_name, filename, key):
@@ -369,8 +372,7 @@ class VhtCore():
         """
 
         logging.info("vht_core:Upload File {} to S3 Bucket {}, Key {}".format(filename, s3_bucket_name, key))
-        s3 = boto3.resource('s3')
-        s3.meta.client.upload_file(filename, s3_bucket_name, key)
+        self.s3_resource.meta.client.upload_file(filename, s3_bucket_name, key)
 
     def send_ssm_shell_command(self,
                                instance_id,
@@ -445,6 +447,7 @@ class VhtCore():
             print(e)
             exit(-1)
 
+        logging.debug("vht_core:send_ssm_shell_command:" + str(response))
         command_id = response['Command']['CommandId']
         logging.info("vht_core:command_id = {}".format(command_id))
 
@@ -474,7 +477,7 @@ class VhtCore():
             stdout_key
         )
 
-        if (command_id_status != 'Success'):
+        if command_id_status != 'Success':
             stderr_key = self.get_s3_ssm_command_id_key(
                 instance_id,
                 command_id,
@@ -519,6 +522,7 @@ class VhtCore():
                 instance_id,
             ]
         )
+        logging.debug("vht_core:start_ec2_instance:" + str(response))
         self.wait_ec2_running(instance_id)
         self.wait_ec2_status_ok(instance_id)
 
@@ -542,6 +546,7 @@ class VhtCore():
                 instance_id,
             ]
         )
+        logging.debug("vht_core:stop_ec2_instance:" + str(response))
         self.wait_ec2_stopped(instance_id)
 
     def wait_ec2_status_ok(self, instance_id):
@@ -713,5 +718,6 @@ class VhtCore():
                 instance_id
             ]
         )
+        logging.debug("vht_core:terminate_ec2_instance:" + str(response))
         self.wait_ec2_terminated(instance_id)
         return response

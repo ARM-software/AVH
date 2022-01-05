@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-from vht import vht_core
-from vht import vht_utils
 import argparse
 import ast
 import json
 import logging
+from vht import vht_core
+from vht import vht_utils
 
 def main():
     # Parser
@@ -31,6 +31,15 @@ def main():
     parser.add_argument('--get-ssm-command-id-status',
                         type=str,
                         help='Get SSM Command ID status')
+    parser.add_argument('--get-ssm-command-id-status-details',
+                        nargs='*',
+                        help='Get SSM Command ID status details')
+    parser.add_argument('--get-ssm-command-id-stdout-url',
+                        nargs='*',
+                        help='Get SSM Command ID Stdout URL')
+    parser.add_argument('--get-ssm-command-id-stderr-url',
+                        nargs='*',
+                        help='Get SSM Command ID Stderr URL')
     parser.add_argument('--send-ssm-shell-command',
                         nargs='*',
                         help='Send a shell command to a instance by SSM')
@@ -203,6 +212,45 @@ def main():
 
     if args.get_ssm_command_id_status:
         print(core_instance.get_ssm_command_id_status(args.get_ssm_command_id_status))
+
+    if args.get_ssm_command_id_status_details:
+        map_args = {}
+
+        # parsing args
+        for i_args in args.get_ssm_command_id_status_details:
+            logging.debug(i_args)
+            key, value = i_args.split('=')
+            map_args[key] = value
+
+        print(core_instance.get_ssm_command_id_status_details(
+            instance_id=map_args['InstanceId'],
+            command_id=map_args['CommandId']))
+
+    if args.get_ssm_command_id_stdout_url:
+        map_args = {}
+
+        # parsing args
+        for i_args in args.get_ssm_command_id_stdout_url:
+            logging.debug(i_args)
+            key, value = i_args.split('=')
+            map_args[key] = value
+
+        print(core_instance.get_ssm_command_id_stdout_url(
+            instance_id=map_args['InstanceId'],
+            command_id=map_args['CommandId']))
+
+    if args.get_ssm_command_id_stderr_url:
+        map_args = {}
+
+        # parsing args
+        for i_args in args.get_ssm_command_id_stderr_url:
+            logging.debug(i_args)
+            key, value = i_args.split('=')
+            map_args[key] = value
+
+        print(core_instance.get_ssm_command_id_stderr_url(
+            instance_id=map_args['InstanceId'],
+            command_id=map_args['CommandId']))
 
     if args.send_ssm_shell_command:
         map_args = {}

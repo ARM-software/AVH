@@ -33,6 +33,21 @@ echo "Command ID = $command_id"
 command_id_status=$(vht_cli -v $VERBOSITY --get-ssm-command-id-status $command_id)
 echo "Command ID status = $command_id_status"
 
+command_id_status_details=$(vht_cli -v $VERBOSITY --get-ssm-command-id-status-details \
+    CommandId=$command_id \
+    InstanceId=$instance_id)
+echo "Command ID status Details = $command_id_status_details"
+
+command_id_stdout_url=$(vht_cli -v $VERBOSITY --get-ssm-command-id-stdout-url \
+    CommandId=$command_id \
+    InstanceId=$instance_id)
+echo "Command ID Stdout URL = $command_id_stdout_url"
+
+command_id_stderr_url=$(vht_cli -v $VERBOSITY --get-ssm-command-id-stderr-url \
+    CommandId=$command_id \
+    InstanceId=$instance_id)
+echo "Command ID Stderr URL = $command_id_stderr_url"
+
 stdout_s3_key=$(vht_cli -v $VERBOSITY --get-s3-ssm-command-id-key \
     InstanceId=$instance_id \
     CommandId=$command_id \
