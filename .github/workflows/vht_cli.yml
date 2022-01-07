@@ -55,7 +55,7 @@ jobs:
         working-directory: ./infrastructure/python_resources/
         run: |
           echo "::add-matcher::.github/pylint.json"
-          pylint --exit-zero --rcfile=pylintrc . tests
+          pylint --exit-zero --rcfile=pylintrc . vht
 
   tests:
     name: Unit tests

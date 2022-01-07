@@ -1,6 +1,4 @@
-import boto3
 import datetime
-import os
 import vht.vht_core
 import vht.vht_utils
 import unittest
