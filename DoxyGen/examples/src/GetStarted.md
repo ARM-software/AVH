@@ -167,11 +167,14 @@ CI pipeline gets executed automatically on every code change in the _main_ branc
 
  - Go to the GitHub web-page of the repository.
  - Go to _Actions_ tab.
-  - In _Workflows_ area you can see the list of GitHub workflows defined in the repository. In our example it is just one.
- - Select the workflow and its executions will be displayed on the page. An icon before the title of each run indicates whether CI pipeline execution was successfully or not. A failure indicates an issue in CI 
-  -  With _Run workflow_ you can manually trigger execution of this workflow on the current codebase.
+  - In _Workflows_ area you can see the list of GitHub workflows defined in the repository. In our example there is just one.
+ - Select the workflow and its runs will be displayed on the page. Immediately after copying the repository the workflow is not executed yet.
+   -  Use _Run workflow_ to manually trigger execution of this workflow on the initial codebase.<br>
     ![GitHub Actions view](images/basic_gh_actions.png)
- - Click on the title of a workflow run to analyze its execution as explained in next section.
+   - Wait until workflow execution is completed.<br>
+     In this example it shall have success status indicated with a green circle icon. This means that the CI pipeline execution was successful, but does not consider the actual test results (where one unit test is intentionally failing).<br>
+   ![GitHub Actions view](images/basic_gh_ci_default.png)
+ - Click on the title of the workflow run to analyze its execution as explained in next section.
 
 ## Analyze failures {#GS_AnalyseFailure}
 
