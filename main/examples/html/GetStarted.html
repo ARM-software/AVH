@@ -248,14 +248,18 @@ Execute CI</h1>
 <ul>
 <li>Go to the GitHub web-page of the repository.</li>
 <li>Go to <em>Actions</em> tab.<ul>
-<li>In <em>Workflows</em> area you can see the list of GitHub workflows defined in the repository. In our example it is just one.</li>
+<li>In <em>Workflows</em> area you can see the list of GitHub workflows defined in the repository. In our example there is just one.</li>
 </ul>
 </li>
-<li>Select the workflow and its executions will be displayed on the page. An icon before the title of each run indicates whether CI pipeline execution was successfully or not. A failure indicates an issue in CI<ul>
-<li>With <em>Run workflow</em> you can manually trigger execution of this workflow on the current codebase. <img src="basic_gh_actions.png" alt="" class="inline" title="GitHub Actions view"/></li>
+<li>Select the workflow and its runs will be displayed on the page. Immediately after copying the repository the workflow is not executed yet.<ul>
+<li>Use <em>Run workflow</em> to manually trigger execution of this workflow on the initial codebase.<br  />
+ <img src="basic_gh_actions.png" alt="" class="inline" title="GitHub Actions view"/></li>
+<li>Wait until workflow execution is completed.<br  />
+ In this example it shall have success status indicated with a green circle icon. This means that the CI pipeline execution was successful, but does not consider the actual test results (where one unit test is intentionally failing).<br  />
+ <img src="basic_gh_ci_default.png" alt="" class="inline" title="GitHub Actions view"/></li>
 </ul>
 </li>
-<li>Click on the title of a workflow run to analyze its execution as explained in next section.</li>
+<li>Click on the title of the workflow run to analyze its execution as explained in next section.</li>
 </ul>
 <h1><a class="anchor" id="GS_AnalyseFailure"></a>
 Analyze failures</h1>
