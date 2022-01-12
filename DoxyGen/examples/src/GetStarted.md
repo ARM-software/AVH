@@ -10,9 +10,9 @@ The VHT Basic example implements common steps in the CI workflow as shown on the
 
 ![Continuous Integration (CI) workflow](images/basic_ci_workflow.png)
 
-1. \ref GS_DevelopTest "Local development": at first, the software is developed locally using common embedded toolchain such as [Keil MDK](https://developer.arm.com/tools-and-software/embedded/keil-mdk) and with [Arm Virtual Hardware Target (VHT)](../../simulation/html/index.html) used for MCU simulation. <br>
+1. \ref GS_DevelopTest "Local development": at first, the software is developed locally using a common embedded toolchain such as [Keil MDK](https://developer.arm.com/tools-and-software/embedded/keil-mdk) and with [Arm Virtual Hardware Target (VHT)](../../simulation/html/index.html) used for MCU simulation.<br>
  A GitHub repository is used as a source code management system for synchronization, storage and version control.
-2. \ref GS_SetupCI "CI pipeline setup": a GitHub Action implements the CI pipeline that gets triggered on every code update in the repository.
+2. \ref GS_SetupCI "CI pipeline setup": a GitHub Action implements the CI pipeline that gets triggered on every code update in the target repository.
 3. \ref GS_ExecuteCI "CI execution": automated program build and testing is performed in the cloud with Arm Virtual Hardware and results are reported back to the repository.
 4. \ref GS_AnalyseFailure "Failure analysis and local debug": developer can observe the CI test results in the GitHub Actions of the repository. In case of any failures they can be reproduced and debugged locally.
 
@@ -30,9 +30,9 @@ Other necessary software items are freely available and their installation is de
 
 The VHT Basic embedded program implements a set of unit tests for validating operation of a simple function that is expected to return the sum value of two integer arguments. The example uses [Unity Framework](https://github.com/ThrowTheSwitch/Unity) for test implementation and execution, however, the demonstrated concept is universal and can be applied for a different testing framework as well.
 
-### Create project repository on GitHub
+### Create repository on GitHub
 
-Initial repository setup should follow a standard git process for either [creating a new repo] (https://docs.github.com/en/get-started/quickstart/create-a-repo) or [forking](https://docs.github.com/en/get-started/quickstart/fork-a-repo) already existing one.
+Initial project repository setup should follow a standard git process for either [creating a new repo] (https://docs.github.com/en/get-started/quickstart/create-a-repo) or [forking](https://docs.github.com/en/get-started/quickstart/fork-a-repo) already existing one.
 The VHT GetStarted repository is setup as a GitHub template repository so it is very easy to [create own repository from it](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template):
  - Open a web browser and go to the URL: [https://github.com/ARM-software/VHT-GetStarted](https://github.com/ARM-software/VHT-GetStarted)
  - Verify that you are logged in to your GitHub account.
@@ -45,9 +45,11 @@ The VHT GetStarted repository is setup as a GitHub template repository so it is 
    .
 ![Create a repository from VHT-GetStarted template](images/basic_gh_create_repo.png)
 
-### Setup local project folder on your PC
+### Setup local project on your PC
 
-Once the repository is present on GitHub, it can be easily copied onto local PC.
+**Local repository setup**
+
+If the repository is present on GitHub, it can be easily copied onto local PC.
  - Make sure Git Bash is installed on the PC. For example [git for Windows] (https://gitforwindows.org/).
  - Open the Git Bash terminal in the target directory and execute clone command as:
 
@@ -55,13 +57,13 @@ Once the repository is present on GitHub, it can be easily copied onto local PC.
 
 This copies the content of the _main_ branch to on your local drive. The _badges_ branch is present in the GitHub repository but is not required for local use.
 
-### Setup Keil MDK project
+**Project setup**
 
  - Install Keil MDK and related tools as described in [Tools installation](../../infrastructure/html/run_mdk_pro.html#mdk_vht_install).
  - In the local project repository double-click on the _basic/basic.debug.uvprojx_ file to open the project in µVision IDE.
  - Verify the project setup as explained in [Project Configuration](../../infrastructure/html/run_mdk_pro.html#mdk_project_config).
 
-### Implement tests locally
+### Implement tests
 
 The _main.c_ file in the example implements a set of unit tests validating the application function ```int my_sum(int a, int b)```. The implementation relies on the [Unity Framework](https://github.com/ThrowTheSwitch/Unity) that is added to the example as a software component with the [Unity software pack](https://github.com/MDK-Packs/Pack/tree/master/Unity). In the example, the `test_my_sum_fail` demonstrates a test failure and section \ref GS_AnalyseFailure explains how to analyze CI output for debugging such failed tests. 
 
@@ -83,7 +85,7 @@ In the VHT Basic example by default the following output shall be observed in th
 
 ![Telnet output with local execution](images/basic_telnet_default.png)
 
-## CI pipeline setup {#GS_SetupCI}
+## Setup CI pipeline {#GS_SetupCI}
 
 As common for many projects, the CI pipeline for the VHT Get Started repository is triggered on every code change via push and pull requests. In our example this is explicitly limited to the _main_ branch only.
 
@@ -171,7 +173,7 @@ CI pipeline gets executed automatically on every code change in the _main_ branc
     ![GitHub Actions view](images/basic_gh_actions.png)
  - Click on the title of a workflow run to analyze its execution as explained in next section.
 
-## Analyse failures {#GS_AnalyseFailure}
+## Analyze failures {#GS_AnalyseFailure}
 
 [GitHub Documentation](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/about-monitoring-and-troubleshooting) gives an overview about monitoring and troubleshooting options available for GitHub Actions.
 
