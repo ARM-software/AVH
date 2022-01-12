@@ -112,7 +112,6 @@ ul.hierarchy {
 }
 
 em {
-	color: #000000;
 	font-style:italic;
 }
 
@@ -392,7 +391,7 @@ div.fragment {
 
 div.line {
 	font-family: monospace;
-    font-size: 100%;
+	font-size: 100%;
 	line-height: 1.45;
 	text-wrap: unrestricted;
 	white-space: -moz-pre-wrap; /* Moz */
