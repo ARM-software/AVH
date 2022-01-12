@@ -109,7 +109,7 @@ $(document).ready(function(){initNavTree('MicroSpeech.html',''); initResizable()
 <div class="textblock"><p ><a class="anchor" id="md_src_mspeech"></a> The Micro speech program analyzes an audio input with a voice recognition model that can detect 2 keywords - <b>yes</b> and <b>no</b>. The recognized keywords are then printed into a serial interface. The voice recognition model is implemented using <a href="https://www.tensorflow.org/lite/microcontrollers">TensorFlow Lite for Microcontrollers</a>.</p>
 <p >GitHub repository <a href="https://github.com/arm-software/VHT-TFLmicrospeech"><b>github.com/arm-software/VHT-TFLmicrospeech</b></a> contains an implementation supporting Arm Virtual Hardware Targets (VHT) as well as real hardware boards.</p>
 <p >Micro speech demonstrates how to use the processor and peripheral abstraction layers for simpler software portability across different targets. The example repository contains documentation with running instructions.</p>
-<h1><a class="anchor" id="autotoc_md4"></a>
+<h1><a class="anchor" id="autotoc_md3"></a>
 Getting Started with Micro speech on Arm Virtual Hardware</h1>
 <p ><b>Table of contents</b></p>
 <ol type="1">
@@ -140,7 +140,7 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 <li><a href="#further">To go further</a></li>
 </ol>
 <p ><a class="anchor" id="prerequisites"></a> </p>
-<h2><a class="anchor" id="autotoc_md5"></a>
+<h2><a class="anchor" id="autotoc_md4"></a>
 1. Prerequisites</h2>
 <ul>
 <li>a valid <a href="https://github.com/">Github</a> account</li>
@@ -148,10 +148,10 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 <li>a valid <a href="https://aws.amazon.com/">AWS</a> account</li>
 </ul>
 <p ><a class="anchor" id="amilaunch"></a> </p>
-<h2><a class="anchor" id="autotoc_md6"></a>
+<h2><a class="anchor" id="autotoc_md5"></a>
 2. Accessing and launching the AMI</h2>
 <p ><a class="anchor" id="marketplace"></a> </p>
-<h3><a class="anchor" id="autotoc_md7"></a>
+<h3><a class="anchor" id="autotoc_md6"></a>
 2.1. Find AMI on AWS Marketplace</h3>
 <ol type="1">
 <li>Log into your <a href="https://aws.amazon.com/">AWS account</a> and select <em>AWS Marketplace Subscriptions</em> service</li>
@@ -179,7 +179,7 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 <li>Click on <em>Launch</em>. You will see a "Congratulations" message to inform you that the instance was successfully deployed. Click on the link provided "You can view this instance on EC2 Console" to check the instance status and retrieve its <em>Public IPv4 address</em>.</li>
 </ol>
 <p ><a class="anchor" id="launch"></a> </p>
-<h3><a class="anchor" id="autotoc_md8"></a>
+<h3><a class="anchor" id="autotoc_md7"></a>
 2.2. (Alternative) Launch the AMI from AWS EC2</h3>
 <ol type="1">
 <li>Log into your <a href="https://aws.amazon.com/">AWS account</a> and select <em>Elastic Compute Cloud (EC2)</em> service</li>
@@ -192,7 +192,7 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 <li>Click on <em>Review and launch</em> &gt; <em>Launch</em> to select or create a key pair (see <a href="#marketplace">section 2.4</a>). You will see a message to inform you that the instance was successfully launched. Click on the <em>View instances</em> link provided to check its status and retrieve its <em>Public IPv4 address</em>.</li>
 </ol>
 <p ><a class="anchor" id="console"></a> </p>
-<h3><a class="anchor" id="autotoc_md9"></a>
+<h3><a class="anchor" id="autotoc_md8"></a>
 2.3. Enable AMI console</h3>
 <p >To connect to the running instance, you will need its <em>Public IPv4 address</em>. If you don't have it already, you can get from the <em>EC2</em> &gt; <em>Instances</em>.</p>
 <p >Use SSH command on Linux, MacOS or <a href="https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/">Windows Powershell</a>: </p><pre class="fragment">    ssh -i &lt;key.pem&gt; ubuntu@&lt;AMI_IP_addr&gt;
@@ -215,7 +215,7 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 </ul>
 <p ><img src="putty_key.png" alt="" class="inline" title="PuTTY private key configuration"/></p>
 <p ><a class="anchor" id="codeserver"></a> </p>
-<h3><a class="anchor" id="autotoc_md10"></a>
+<h3><a class="anchor" id="autotoc_md9"></a>
 2.4. [Optional] Enable &lt;a href="https://github.com/cdr/code-server" &gt;Code Server&lt;/a&gt; (Visual Studio Code)</h3>
 <p >The Arm Virtual Hardware AMI comes with an IDE (Visual Studio Code) which can be accessed with a web browser. To access it, you will need to:</p>
 <ol type="1">
@@ -240,7 +240,7 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 <li>Launch a web browser on your local machine and open the following URL: <a href="http://localhost:8080">http://localhost:8080</a></li>
 </ol>
 <p ><a class="anchor" id="vnc"></a> </p>
-<h3><a class="anchor" id="autotoc_md11"></a>
+<h3><a class="anchor" id="autotoc_md10"></a>
 2.5. [Optional] Enable Virtual Network Computing (VNC)</h3>
 <p >VNC is a protocol to enable remote desktop. The instruction below will securely enable VNC through a SSH tunnel.</p>
 <p >In the AMI terminal:</p>
@@ -275,10 +275,10 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 </ol>
 <p ><img src="moba_vnc.png" alt="" class="inline" title="MobaXterm VNC configuration through SSH gateway"/></p>
 <p ><a class="anchor" id="buildexample"></a> </p>
-<h2><a class="anchor" id="autotoc_md12"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 3. Import and build example</h2>
 <p ><a class="anchor" id="clone"></a> </p>
-<h3><a class="anchor" id="autotoc_md13"></a>
+<h3><a class="anchor" id="autotoc_md12"></a>
 3.1. Fork and clone example</h3>
 <ol type="1">
 <li>Open a web browser and enter the following URL: <a href="https://github.com/ARM-software/VHT-TFLmicrospeech">https://github.com/ARM-software/VHT-TFLmicrospeech</a></li>
@@ -289,7 +289,7 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
  git clone https://github.com/&lt;YourGitHubName&gt;/VHT-TFLmicrospeech
 </pre> <a class="anchor" id="build"></a> </li>
 </ol>
-<h3><a class="anchor" id="autotoc_md14"></a>
+<h3><a class="anchor" id="autotoc_md13"></a>
 3.2. Build example within the AMI</h3>
 <p >In the AMI terminal:</p>
 <ol type="1">
@@ -304,7 +304,7 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 </li>
 </ol>
 <p ><a class="anchor" id="run"></a> </p>
-<h3><a class="anchor" id="autotoc_md15"></a>
+<h3><a class="anchor" id="autotoc_md14"></a>
 3.3. Run the example in place</h3>
 <p >In the AMI terminal:</p>
 <ol type="1">
@@ -347,7 +347,7 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 </pre> ​</li>
 </ol>
 <p ><a class="anchor" id="edit"></a> </p>
-<h3><a class="anchor" id="autotoc_md16"></a>
+<h3><a class="anchor" id="autotoc_md15"></a>
 3.4. Edit example</h3>
 <p >In the AMI terminal:</p>
 <ol type="1">
@@ -363,7 +363,7 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
  ./run_example.sh​
 </pre> <a class="anchor" id="push"></a> </li>
 </ol>
-<h3><a class="anchor" id="autotoc_md17"></a>
+<h3><a class="anchor" id="autotoc_md16"></a>
 3.5 Submit changes back to GitHub</h3>
 <p >In the AMI terminal</p>
 <ol type="1">
@@ -386,10 +386,10 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 </li>
 </ol>
 <p ><a class="anchor" id="actions"></a> </p>
-<h2><a class="anchor" id="autotoc_md18"></a>
+<h2><a class="anchor" id="autotoc_md17"></a>
 4. Automated CI/CD with GitHub Actions</h2>
 <p ><a class="anchor" id="confactions"></a> </p>
-<h3><a class="anchor" id="autotoc_md19"></a>
+<h3><a class="anchor" id="autotoc_md18"></a>
 4.1. Configure GitHub Actions</h3>
 <p >In your own fork on GitHub</p>
 <ol type="1">
@@ -402,7 +402,7 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 </ol>
 <p ><img src="github_createrunner.png" alt="" class="inline" title="GitHub Self-hosted runner configuration instructions"/></p>
 <p ><a class="anchor" id="runner"></a> </p>
-<h3><a class="anchor" id="autotoc_md20"></a>
+<h3><a class="anchor" id="autotoc_md19"></a>
 4.2. Setup runner on AMI</h3>
 <p >In the AMI terminal</p>
 <ol type="1">
@@ -416,7 +416,7 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 </ol>
 <p ><img src="github_idlerunner.png" alt="" class="inline" title="GitHub runner list"/></p>
 <p ><a class="anchor" id="workflow"></a> </p>
-<h3><a class="anchor" id="autotoc_md21"></a>
+<h3><a class="anchor" id="autotoc_md20"></a>
 4.3. GitHub Actions workflow</h3>
 <ol type="1">
 <li>In Github, the file .github/workflows/virtual_hardware.yml defines the list of actions to perform (e.g. code checkout, build, run test script) on the runner and when (e.g. for every push to the repo)</li>
@@ -433,7 +433,7 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 </ol>
 <p ><img src="github_actionreports.png" alt="" class="inline" title="GitHub actions reports"/></p>
 <p ><a class="anchor" id="failure"></a> </p>
-<h3><a class="anchor" id="autotoc_md22"></a>
+<h3><a class="anchor" id="autotoc_md21"></a>
 4.4. Demonstration of a failed workflow</h3>
 <ol type="1">
 <li>Change the code to be non-valid C e.g. edit <code>command_responder.cc</code> and remove the semicolon at the end of the line: <pre class="fragment"> TF_LITE_REPORT_ERROR(error_reporter, “YourName Heard %s (%d) @%dms", found_command, score, current_time)
@@ -448,7 +448,7 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 </ol>
 <p ><img src="github_actionreports_failed.png" alt="" class="inline" title="GitHub actions reports"/></p>
 <p ><a class="anchor" id="further"></a> </p>
-<h3><a class="anchor" id="autotoc_md23"></a>
+<h3><a class="anchor" id="autotoc_md22"></a>
 5. To go further</h3>
 <p >The Machine Learning Group at Arm have developed <a href="https://review.mlplatform.org/plugins/gitiles/ml/ethos-u/ml-embedded-evaluation-kit/">other examples</a> which can be run in with the Arm Virtual Hardware AMI.</p>
 <p >The instructions in the <a href="https://review.mlplatform.org/plugins/gitiles/ml/ethos-u/ml-embedded-evaluation-kit/+/HEAD/docs/quick_start.md">quick start guide</a> are easily reproducible in the AMI. You will need to enable VNC to visualize.</p>

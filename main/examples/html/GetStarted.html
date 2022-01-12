@@ -113,9 +113,9 @@ Overview</h1>
 <p >The VHT Basic example implements common steps in the CI workflow as shown on the figure below and explained in subsequent sections.</p>
 <p ><img src="basic_ci_workflow.png" alt="" class="inline" title="Continuous Integration (CI) workflow"/></p>
 <ol type="1">
-<li><a class="el" href="GetStarted.html#GS_DevelopTest">Local development</a>: at first, the software is developed locally using common embedded toolchain such as <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">Keil MDK</a> and with <a href="../../simulation/html/index.html">Arm Virtual Hardware Target (VHT)</a> used for MCU simulation. <br  />
+<li><a class="el" href="GetStarted.html#GS_DevelopTest">Local development</a>: at first, the software is developed locally using a common embedded toolchain such as <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">Keil MDK</a> and with <a href="../../simulation/html/index.html">Arm Virtual Hardware Target (VHT)</a> used for MCU simulation.<br  />
  A GitHub repository is used as a source code management system for synchronization, storage and version control.</li>
-<li><a class="el" href="GetStarted.html#GS_SetupCI">CI pipeline setup</a>: a GitHub Action implements the CI pipeline that gets triggered on every code update in the repository.</li>
+<li><a class="el" href="GetStarted.html#GS_SetupCI">CI pipeline setup</a>: a GitHub Action implements the CI pipeline that gets triggered on every code update in the target repository.</li>
 <li><a class="el" href="GetStarted.html#GS_ExecuteCI">CI execution</a>: automated program build and testing is performed in the cloud with Arm Virtual Hardware and results are reported back to the repository.</li>
 <li><a class="el" href="GetStarted.html#GS_AnalyseFailure">Failure analysis and local debug</a>: developer can observe the CI test results in the GitHub Actions of the repository. In case of any failures they can be reproduced and debugged locally.</li>
 </ol>
@@ -132,8 +132,8 @@ Prerequisites</h1>
 Develop tests</h1>
 <p >The VHT Basic embedded program implements a set of unit tests for validating operation of a simple function that is expected to return the sum value of two integer arguments. The example uses <a href="https://github.com/ThrowTheSwitch/Unity">Unity Framework</a> for test implementation and execution, however, the demonstrated concept is universal and can be applied for a different testing framework as well.</p>
 <h2><a class="anchor" id="autotoc_md0"></a>
-Create project repository on GitHub</h2>
-<p >Initial repository setup should follow a standard git process for either <a href="https://docs.github.com/en/get-started/quickstart/create-a-repo">creating a new repo</a> or <a href="https://docs.github.com/en/get-started/quickstart/fork-a-repo">forking</a> already existing one. The VHT GetStarted repository is setup as a GitHub template repository so it is very easy to <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template">create own repository from it</a>:</p><ul>
+Create repository on GitHub</h2>
+<p >Initial project repository setup should follow a standard git process for either <a href="https://docs.github.com/en/get-started/quickstart/create-a-repo">creating a new repo</a> or <a href="https://docs.github.com/en/get-started/quickstart/fork-a-repo">forking</a> already existing one. The VHT GetStarted repository is setup as a GitHub template repository so it is very easy to <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template">create own repository from it</a>:</p><ul>
 <li>Open a web browser and go to the URL: <a href="https://github.com/ARM-software/VHT-GetStarted">https://github.com/ARM-software/VHT-GetStarted</a></li>
 <li>Verify that you are logged in to your GitHub account.</li>
 <li>Click on <em>Use this template</em> button. This opens the <em>Create a new repository from VHT-GetStarted</em> page.</li>
@@ -146,22 +146,22 @@ Create project repository on GitHub</h2>
 <img src="basic_gh_create_repo.png" alt="" class="inline" title="Create a repository from VHT-GetStarted template"/></li>
 </ul>
 <h2><a class="anchor" id="autotoc_md1"></a>
-Setup local project folder on your PC</h2>
-<p >Once the repository is present on GitHub, it can be easily copied onto local PC.</p><ul>
+Setup local project on your PC</h2>
+<p ><b>Local repository setup</b></p>
+<p >If the repository is present on GitHub, it can be easily copied onto local PC.</p><ul>
 <li>Make sure Git Bash is installed on the PC. For example <a href="https://gitforwindows.org/">git for Windows</a>.</li>
 <li>Open the Git Bash terminal in the target directory and execute clone command as: <pre class="fragment"> git clone https://github.com/&lt;YourGitHubName&gt;/VHT-GetStarted
 </pre> This copies the content of the <em>main</em> branch to on your local drive. The <em>badges</em> branch is present in the GitHub repository but is not required for local use.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2"></a>
-Setup Keil MDK project</h2>
+<p ><b>Project setup</b></p>
 <ul>
 <li>Install Keil MDK and related tools as described in <a href="../../infrastructure/html/run_mdk_pro.html#mdk_vht_install">Tools installation</a>.</li>
 <li>In the local project repository double-click on the <em>basic/basic.debug.uvprojx</em> file to open the project in µVision IDE.</li>
 <li>Verify the project setup as explained in <a href="../../infrastructure/html/run_mdk_pro.html#mdk_project_config">Project Configuration</a>.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3"></a>
-Implement tests locally</h2>
-<p >The <em>main.c</em> file in the example implements a set of unit tests validating the application function <code>int my_sum(int a, int b)</code>. The implementation relies on the <a href="https://github.com/ThrowTheSwitch/Unity">Unity Framework</a> that is added to the example as a software component with the <a href="https://github.com/MDK-Packs/Pack/tree/master/Unity">Unity software pack</a>. In the example, the <code>test_my_sum_fail</code> demonstrates a test failure and section <a class="el" href="GetStarted.html#GS_AnalyseFailure">Analyse failures</a> explains how to analyze CI output for debugging such failed tests.</p>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Implement tests</h2>
+<p >The <em>main.c</em> file in the example implements a set of unit tests validating the application function <code>int my_sum(int a, int b)</code>. The implementation relies on the <a href="https://github.com/ThrowTheSwitch/Unity">Unity Framework</a> that is added to the example as a software component with the <a href="https://github.com/MDK-Packs/Pack/tree/master/Unity">Unity software pack</a>. In the example, the <code>test_my_sum_fail</code> demonstrates a test failure and section <a class="el" href="GetStarted.html#GS_AnalyseFailure">Analyze failures</a> explains how to analyze CI output for debugging such failed tests.</p>
 <p >The implementation of tests in the example can be considered as a template for adding more tests, covering other functions, or setting up unit testing in a custom project. Please refer to the documentation in <a href="https://github.com/ThrowTheSwitch/Unity">Unity GitHub</a> for further details and more complex examples.</p>
 <p ><b>Redirect stdout</b></p>
 <p >By default Unity uses <code>putchar</code> for print out. Keil MDK does not support semihosting and hence standard output needs to be redirected to become visible during debug session. <a href="https://www.keil.com/pack/doc/compiler/RetargetIO/html/index.html"><b>Redirect I/O</b></a> component enables several mechanisms for that. In our example this output gets redirected to a UART interface.</p>
@@ -172,7 +172,7 @@ Implement tests locally</h2>
 <p >In the VHT Basic example by default the following output shall be observed in the Telnet window, indicating an intentional failure in <code>test_my_sum_fail</code>:</p>
 <p ><img src="basic_telnet_default.png" alt="" class="inline" title="Telnet output with local execution"/></p>
 <h1><a class="anchor" id="GS_SetupCI"></a>
-CI pipeline setup</h1>
+Setup CI pipeline</h1>
 <p >As common for many projects, the CI pipeline for the VHT Get Started repository is triggered on every code change via push and pull requests. In our example this is explicitly limited to the <em>main</em> branch only.</p>
 <p >The CI implementation relies on <a href="https://docs.github.com/en/actions">GitHub Actions</a> with <a href="../../infrastructure/html/run_ami_github.html#GitHub_hosted">GitHub-hosted Runners</a>. Program build and execution are done on <a href="../../infrastructure/html/index.html#AWS">Arm Virtual Hardware AMI</a> instance in Amazon AWS. Custom GitHub action <a href="https://github.com/ARM-software/VHT-AMI">Arm-Software/VHT-AMI</a> manages the connection between the GitHub repository and the AMI instance in AWS, as well as configures the actions to be performed on the AMI.</p>
 <p >Subsections below explain the setup for the AWS and GitHub Actions.</p>
@@ -258,7 +258,7 @@ Execute CI</h1>
 <li>Click on the title of a workflow run to analyze its execution as explained in next section.</li>
 </ul>
 <h1><a class="anchor" id="GS_AnalyseFailure"></a>
-Analyse failures</h1>
+Analyze failures</h1>
 <p ><a href="https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/about-monitoring-and-troubleshooting">GitHub Documentation</a> gives an overview about monitoring and troubleshooting options available for GitHub Actions.</p>
 <p >Steps below guide through the analysis for VHT Basic example.</p>
 <ul>
