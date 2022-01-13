@@ -20,9 +20,9 @@ complete.
 
 ## Project Configuration {#mdk_project_config}
 
- - Open the target project in uVision IDE:
+ - Open the target project in µVision IDE:
   - either double-click on existing *uvprojx* project file,
-  - or [import a .cprj project](https://www.keil.com/support/man/docs/uv4/uv4_ui_import.htm) from uVision menu.
+  - or [import a .cprj project](https://www.keil.com/support/man/docs/uv4/uv4_ui_import.htm) from µVision menu.
  - Agree to install missing software packs when requested.
    - In some cases, to proceed with the installation you need to accept license agreement displayed in a separate dialog.
  - Return to the project window and accept to reload packs.
@@ -47,11 +47,11 @@ complete.
 
 Project build and debug on VHT can be done in the similar way as any other Keil MDK project:
 
- - Press _Rebuild_ button in uVision toolbar (or use `F7` hotkey).
- - Start the debug session from uVision toolbar (or with `Ctrl-F5`). The model executable window should pop up ( with `C:\WINDOWS\system32\cmd.exe`) but it will stay empty during the session.
+ - Press _Rebuild_ button in µVision toolbar (or use `F7` hotkey).
+ - Start the debug session from µVision toolbar (or with `Ctrl-F5`). The model executable window should pop up ( with `C:\WINDOWS\system32\cmd.exe`) but it will stay empty during the session.
  - A Telnet client will start if configured accordingly in the project. Program output should be expected there.
- - Debug the project as usual with available uVision functionality. Refer to [uVision User's Guide](https://www.keil.com/support/man/docs/uv4/) for details about user interface and debug capabilities.
+ - Debug the project as usual with available µVision functionality. Refer to [µVision User's Guide](https://www.keil.com/support/man/docs/uv4/) for details about user interface and debug capabilities.
 
 ## Project Export {#mdk_cprj_export}
 
-Universal [.cprj format](https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html) is required for building the program with Arm Virtual Hardware cloud environment. So it is important to keep the MDK project files and the _cprj_ file synchronized. For that after saving modifications in the MDK project go to the uVision menu [_Project_ - _Export_](https://www.keil.com/support/man/docs/uv4/uv4_ui_export.htm) and select _Save project to CPRJ format_.
+Universal [.cprj format](https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html) is required for building the program with Arm Virtual Hardware cloud environment. So it is important to keep the MDK project files and the _cprj_ file synchronized. For that after saving modifications in the MDK project go to the µVision menu [_Project_ - _Export_](https://www.keil.com/support/man/docs/uv4/uv4_ui_export.htm) and select _Save project to CPRJ format_.
