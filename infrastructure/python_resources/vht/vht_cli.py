@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
 import argparse
-import ast
 import json
 import logging
 from vht import vht_core
-from vht import vht_utils
 
 def main():
     # Parser

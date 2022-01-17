@@ -2,6 +2,9 @@
 disable=
     R0801, # duplicate-code
     C0114, # missing-module-docstring
+    R0201, # Method could be a function
+    E1205, # logging-too-many-args
+    W1203
 
 # A comma-separated list of package or module names from where C extensions may
 # be loaded. Extensions are loading into the active Python interpreter and may
@@ -341,7 +344,7 @@ single-line-if-stmt=no
 
 # The type of string formatting that logging methods do. `old` means using %
 # formatting, `new` is for `{}` formatting.
-logging-format-style=old
+logging-format-style=new
 
 # Logging modules to check that the string format arguments are in logging
 # function parameter format.

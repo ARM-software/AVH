@@ -54,7 +54,7 @@ class VhtCore():
         instance_id = ''
 
         logging.debug('vht_core:DryRun=True to test for permission check')
-        logging.debug('vht_core:create_ec2_instance:kwargs:{}'.format(kwargs))
+        logging.debug(f"vht_core:create_ec2_instance:kwargs:{kwargs}")
 
         try:
             self.ec2_client.run_instances(**kwargs, DryRun=True)
@@ -63,7 +63,7 @@ class VhtCore():
                 raise
 
         logging.info('vht_core:Creating EC2 instance...')
-        logging.debug('vht_core:kwargs = {}'.format(kwargs))
+        logging.debug(f"vht_core:kwargs={kwargs}")
         response = self.ec2_client.run_instances(**kwargs)
         logging.debug(response)
 
@@ -90,7 +90,7 @@ class VhtCore():
             https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.delete_object
         """
 
-        logging.info("vht_core:Delete S3 Object from S3 Bucket {}, Key {}".format(s3_bucket_name, key))
+        logging.info(f"vht_core:Delete S3 Object from S3 Bucket {s3_bucket_name}, Key {key}")
         response = self.s3_client.delete_object(
             Bucket=s3_bucket_name,
             Key=key
@@ -119,9 +119,9 @@ class VhtCore():
             self.s3_client.download_file(s3_bucket_name, key, filename)
         except ClientError as e:
             if 'HeadObject operation: Not Found' in str(e):
-                print("Key '{}' not found on S3 Bucket Name = '{}'".format(key, s3_bucket_name))
+                print(f"Key '{key}' not found on S3 Bucket Name = '{s3_bucket_name}'")
             else:
-                print("The error {} happens for Key={} and S3_bucket_name={}".format(e, key, s3_bucket_name))
+                print(f"The error {e} happens for Key={key} and S3_bucket_name={s3_bucket_name}")
             exit(-1)
 
     def get_ami_id(self, vht_version):
@@ -150,13 +150,13 @@ class VhtCore():
                 {
                     'Name': 'name',
                     'Values': [
-                        'ArmVirtualHardware-{}*'.format(vht_version),
+                        f"ArmVirtualHardware-{vht_version}*"
                     ]
                 },
             ]
         )
 
-        logging.debug("vht_core:get_vht_ami_id_by_version:{}".format(response))
+        logging.debug(f"vht_core:get_vht_ami_id_by_version:{response}")
         ami_id = response['Images'][0]['ImageId']
         return ami_id
 
@@ -185,9 +185,9 @@ class VhtCore():
             ],
         )
 
-        logging.debug("vht_core:get_ec2_instance_state: {}".format(response))
+        logging.debug(f"vht_core:get_ec2_instance_state: {response}")
         instance_state = response['Reservations'][0]['Instances'][0]['State']['Name']
-        logging.info("vht_core:The EC2 instance state is {}...".format(instance_state))
+        logging.info(f"vht_core:The EC2 instance state is {instance_state}...")
         return instance_state
 
     def get_s3_file_content(self, s3_bucket_name, key):
@@ -214,7 +214,7 @@ class VhtCore():
         try:
             content = self.s3_resource.Object(s3_bucket_name, key).get()['Body'].read().decode('utf-8')
         except self.s3_client.exceptions.NoSuchKey:
-            logging.info("vht_core:Key '{}' not found on S3 bucket '{}'".format(key, s3_bucket_name))
+            logging.info(f"vht_core:Key '{key}' not found on S3 bucket '{s3_bucket_name}'")
             return ''
 
         return content
@@ -236,12 +236,7 @@ class VhtCore():
         String
             S3 SSM Command ID Key
         """
-        return "{}/{}/{}/awsrunShellScript/0.awsrunShellScript/{}".format(
-            s3_keyprefix,
-            command_id,
-            instance_id,
-            output_type
-        )
+        return f"{s3_keyprefix}/{command_id}/{instance_id}/awsrunShellScript/0.awsrunShellScript/{output_type}"
 
     def get_ssm_command_id_status(self, command_id):
         """
@@ -266,9 +261,9 @@ class VhtCore():
             CommandId=command_id
         )
 
-        logging.debug("vht_core:get_ssm_command_id_status:" + str(response))
+        logging.debug(f"vht_core:get_ssm_command_id_status:{response}")
         command_id_status = response['Commands'][0]['Status']
-        logging.info("vht_core:The command_id {} status is {}...".format(command_id, command_id_status))
+        logging.info(f"vht_core:The command_id {command_id} status is {command_id_status}...")
         return command_id_status
 
     def get_ssm_command_id_status_details(self, instance_id, command_id):
@@ -296,8 +291,8 @@ class VhtCore():
             CommandId=command_id,
             InstanceId=instance_id
         )
-        logging.debug("vht_core:get_ssm_command_id_status_details:" + str(response))
-        logging.info("vht_core:The command_id {} status details is {}...".format(command_id, response['StatusDetails']))
+        logging.debug(f"vht_core:get_ssm_command_id_status_details:{response}")
+        logging.info(f"vht_core:The command_id {command_id} status details is {response['StatusDetails']}...")
         return response['StatusDetails']
 
     def get_ssm_command_id_stdout_url(self, command_id, instance_id):
@@ -324,7 +319,7 @@ class VhtCore():
             CommandId=command_id,
             InstanceId=instance_id
         )
-        logging.debug("vht_core:get_ssm_command_id_stdout_url:" + str(response))
+        logging.debug(f"vht_core:get_ssm_command_id_stdout_url:{response}")
         return response['CommandInvocations'][0]['StandardOutputUrl']
 
     def get_ssm_command_id_stderr_url(self, command_id, instance_id):
@@ -351,7 +346,7 @@ class VhtCore():
             CommandId=command_id,
             InstanceId=instance_id
         )
-        logging.debug("vht_core:get_ssm_command_id_stderr_url:" + str(response))
+        logging.debug(f"vht_core:get_ssm_command_id_stderr_url:{response}")
         return response['CommandInvocations'][0]['StandardErrorUrl']
 
     def upload_s3_file(self, s3_bucket_name, filename, key):
@@ -371,7 +366,7 @@ class VhtCore():
             https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.upload_file
         """
 
-        logging.info("vht_core:Upload File {} to S3 Bucket {}, Key {}".format(filename, s3_bucket_name, key))
+        logging.info(f"vht_core:Upload File {filename} to S3 Bucket {s3_bucket_name}, Key {key}")
         self.s3_resource.meta.client.upload_file(filename, s3_bucket_name, key)
 
     def send_ssm_shell_command(self,
@@ -381,7 +376,7 @@ class VhtCore():
                                s3_keyprefix='',
                                working_dir='/',
                                return_type='all',
-                               timeoutSeconds=600):
+                               timeout_seconds=600):
         """
         Send SSM Shell Commands to a EC2 Instance
 
@@ -398,7 +393,7 @@ class VhtCore():
                     `all`: Return as a dict: 'CommandId', 'CommandIdStatus', 'CommandList', 'StdOut', 'StdErr' - Default
                     `command_id`: Return only the `command_id` as a String
             )
-            timeoutSeconds (Command Timeout in Seconds - Default: 600)
+            timeout_seconds (Command Timeout in Seconds - Default: 600)
 
         Return
         ----------
@@ -441,30 +436,30 @@ class VhtCore():
                 },
                 OutputS3BucketName=s3_bucket_name,
                 OutputS3KeyPrefix=s3_keyprefix,
-                TimeoutSeconds=timeoutSeconds,
+                TimeoutSeconds=timeout_seconds,
             )
         except ClientError as e:
             print(e)
             exit(-1)
 
-        logging.debug("vht_core:send_ssm_shell_command:" + str(response))
+        logging.debug(f"vht_core:send_ssm_shell_command:{response}")
         command_id = response['Command']['CommandId']
-        logging.info("vht_core:command_id = {}".format(command_id))
+        logging.info(f"vht_core:command_id = {command_id}")
 
         # We need a little bit of time to wait for a command
         time.sleep(2)
 
-        logging.info("vht_core:Waiting command id {} to finish".format(command_id))
+        logging.info(f"vht_core:Waiting command id {command_id} to finish")
         self.wait_ssm_command_finished(
             instance_id,
             command_id
         )
 
-        logging.info("vht_core:Get command id {} status".format(command_id))
+        logging.info(f"vht_core:Get command id {command_id} status")
         command_id_status = self.get_ssm_command_id_status(
             command_id
         )
-        logging.info("vht_core:Command id status = {}".format(command_id_status))
+        logging.info(f"vht_core:Command id status = {command_id_status}")
 
         stdout_key = self.get_s3_ssm_command_id_key(
             instance_id,
@@ -500,7 +495,7 @@ class VhtCore():
         elif return_type == 'command_id':
             return command_id
         else:
-            raise AttributeError("Output type '{}' invalid. See docs.".format(return_type))
+            raise AttributeError(f"Output type '{return_type}' invalid. See docs.")
 
     def start_ec2_instance(self, instance_id):
         """
@@ -516,13 +511,13 @@ class VhtCore():
         API Definition
             https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.start_instances
         """
-        logging.info("vht_core:Starting EC2 instance {}".format(instance_id))
+        logging.info(f"vht_core:Starting EC2 instance {instance_id}")
         response = self.ec2_client.start_instances(
             InstanceIds=[
                 instance_id,
             ]
         )
-        logging.debug("vht_core:start_ec2_instance:" + str(response))
+        logging.debug(f"vht_core:start_ec2_instance:{response}")
         self.wait_ec2_running(instance_id)
         self.wait_ec2_status_ok(instance_id)
 
@@ -540,13 +535,13 @@ class VhtCore():
         API Definition
             https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.stop_instances
         """
-        logging.info("vht_core:Stopping EC2 instance {}".format(instance_id))
+        logging.info(f"vht_core:Stopping EC2 instance {instance_id}")
         response = self.ec2_client.stop_instances(
             InstanceIds=[
                 instance_id,
             ]
         )
-        logging.debug("vht_core:stop_ec2_instance:" + str(response))
+        logging.debug(f"vht_core:stop_ec2_instance:{response}")
         self.wait_ec2_stopped(instance_id)
 
     def wait_ec2_status_ok(self, instance_id):
@@ -563,7 +558,7 @@ class VhtCore():
         API Definition
             https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Waiter.InstanceStatusOk
         """
-        logging.info("vht_core:Waiting until EC2 instance id {} Status Ok...".format(instance_id))
+        logging.info(f"vht_core:Waiting until EC2 instance id {instance_id} Status Ok...")
         waiter = self.ec2_client.get_waiter('instance_status_ok')
         waiter.wait(
             InstanceIds=[
@@ -585,7 +580,7 @@ class VhtCore():
         API Definition
             https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Waiter.InstanceRunning
         """
-        logging.info("vht_core:Waiting until EC2 instance id {} is running...".format(instance_id))
+        logging.info(f"vht_core:Waiting until EC2 instance id {instance_id} is running...")
         waiter = self.ec2_client.get_waiter('instance_running')
         waiter.wait(
             InstanceIds=[
@@ -607,7 +602,7 @@ class VhtCore():
         API Definition
             https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Instance.wait_until_stopped
         """
-        logging.info("vht_core:Waiting until EC2 instance id {} is stopped...".format(instance_id))
+        logging.info(f"vht_core:Waiting until EC2 instance id {instance_id} is stopped...")
         instance = boto3.resource('ec2').Instance(instance_id)
         instance.wait_until_stopped()
 
@@ -625,7 +620,7 @@ class VhtCore():
         API Definition
             https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Instance.wait_until_terminated
         """
-        logging.info("vht_core:Waiting until EC2 instance id {} is terminated...".format(instance_id))
+        logging.info(f"vht_core:Waiting until EC2 instance id {instance_id} is terminated...")
         instance = boto3.resource('ec2').Instance(instance_id)
         instance.wait_until_terminated()
 
@@ -718,6 +713,6 @@ class VhtCore():
                 instance_id
             ]
         )
-        logging.debug("vht_core:terminate_ec2_instance:" + str(response))
+        logging.debug(f"vht_core:terminate_ec2_instance:{response}")
         self.wait_ec2_terminated(instance_id)
         return response

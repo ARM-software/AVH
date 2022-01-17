@@ -50,12 +50,12 @@ jobs:
         working-directory: ./infrastructure/python_resources/
         run: |
           python -m pip install --upgrade pip
-          pip install pylint
+          pip install pylint boto3
       - name: Run pylint
         working-directory: ./infrastructure/python_resources/
         run: |
           echo "::add-matcher::.github/pylint.json"
-          pylint --exit-zero --rcfile=pylintrc . vht
+          pylint --exit-zero --rcfile=pylintrc vht
 
   tests:
     name: Unit tests
