@@ -340,14 +340,15 @@ Example</h3>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md11"></a>
 Use Action</h3>
 <p >You can now the <a href="https://github.com/ARM-software/VHT-AMI">VHT-AMI action</a> by referencing the v1 branch as shown below:</p>
-<div class="fragment"><div class="line">uses: Arm-Software/VHT-AMI@v1</div>
-<div class="line">with:</div>
-<div class="line">  vht_in:</div>
-<div class="line">  instance_id: ${{ secrets.AWS_INSTANCE_ID }}</div>
-<div class="line">  access_key_id: ${{ secrets.AWS_INSTANCE_ID }}</div>
-<div class="line">  secret_key_id: ${{ secrets.AWS_ACCESS_KEY_SECRET }}</div>
-<div class="line">  aws_region: &quot;eu-west-1&quot;</div>
-<div class="line">  s3_bucket_name: my_bucket</div>
+<div class="fragment"><div class="line">uses: Arm-Software/VHT-AMI@v2</div>
+<div class="line">  with:</div>
+<div class="line">    vht_in: ./vht_folder</div>
+<div class="line">    ec2_instance_id: ${{ secrets.AWS_INSTANCE_ID }}</div>
+<div class="line">    s3_bucket_name: my_bucket</div>
+<div class="line">  env:</div>
+<div class="line">    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_INSTANCE_ID }}</div>
+<div class="line">    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_SECRET }}</div>
+<div class="line">    AWS_DEFAULT_REGION: &quot;eu-west-1&quot;</div>
 </div><!-- fragment --><p >The <a href="https://github.com/ARM-software/VHT-AMI">VHT-AMI action</a> is controlled using the following parameters.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -355,14 +356,28 @@ Use Action</h3>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><code>vht_in:</code>   </td><td class="markdownTableBodyLeft">Folder to the staged files. The <b>vht.yml</b> file should be provided in the root folder.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code>instance_id:</code>   </td><td class="markdownTableBodyLeft">Instance ID of the AMI stored as GitHub secret <em>secrets.AWS_INSTANCE_ID</em>.    </td></tr>
+<td class="markdownTableBodyLeft"><code>ec2_instance_id:</code>   </td><td class="markdownTableBodyLeft">EC2 Instance ID of the AMI stored as GitHub secret <em>secrets.AWS_INSTANCE_ID</em>.    </td></tr>
 <tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>ec2_instance_type:</code>   </td><td class="markdownTableBodyLeft">EC2 Instance Type that will be assign to-be-created EC2 Instance. Required when no instance id supplied.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>ec2_security_group_id:</code>   </td><td class="markdownTableBodyLeft">EC2 Security Group that will be assign a to-be-created EC2 Instance. Required when no instance id supplied.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>iam_profile:</code>   </td><td class="markdownTableBodyLeft">IAM Profile to be assigned a to-be-created EC2 Instance.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>subnet_id:</code>   </td><td class="markdownTableBodyLeft">Subnet ID that will be assign a to-be-created EC2 Instance.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>terminate_ec2_instance:</code>   </td><td class="markdownTableBodyLeft">Terminate EC2 Instance when the build is finished. Default=false    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>vht_ami_version:</code>   </td><td class="markdownTableBodyLeft">VHT AMI Version to be used. This field is overwritten if <code>vht_ami_id</code> field is present.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>vht_ami_id:</code>   </td><td class="markdownTableBodyLeft">VHT AMI ID when the EC2 instance has been created. This fields overwrites vht_ami_version.    </td></tr>
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><code>access_key_id:</code>   </td><td class="markdownTableBodyLeft">Access key to AMI stored as GitHub secret <em>secrets.AWS_ACCESS_KEY_ID</em>.    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code>secret_key_id:</code>   </td><td class="markdownTableBodyLeft">Secret key to AMI stored as GitHub secret <em>secrets.AWS_SECRET_KEY</em>.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code>aws_region:</code>   </td><td class="markdownTableBodyLeft">Name of the region where your EC2 and S3 instances are located.    </td></tr>
+<td class="markdownTableBodyLeft"><code>secret_key_id:</code>   </td><td class="markdownTableBodyLeft">Secret key to AMI stored as GitHub secret <em>secrets.AWS_SECRET_KEY</em>.    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>aws_region:</code>   </td><td class="markdownTableBodyLeft">Name of the region where your EC2 and S3 instances are located.    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><code>s3_bucket_name:</code>   </td><td class="markdownTableBodyLeft">Name of the temporary storage an S3 bucket is used.   </td></tr>
 </table>
 </div></div><!-- contents -->
