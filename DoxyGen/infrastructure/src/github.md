@@ -285,23 +285,31 @@ suite:
 You can now the [VHT-AMI action](https://github.com/ARM-software/VHT-AMI) by referencing the v1 branch as shown below:
 
 ```
-uses: Arm-Software/VHT-AMI@v1
-with:
-  vht_in:
-  instance_id: ${{ secrets.AWS_INSTANCE_ID }}
-  access_key_id: ${{ secrets.AWS_INSTANCE_ID }}
-  secret_key_id: ${{ secrets.AWS_ACCESS_KEY_SECRET }}
-  aws_region: "eu-west-1"
-  s3_bucket_name: my_bucket
+uses: Arm-Software/VHT-AMI@v2
+  with:
+    vht_in: ./vht_folder
+    ec2_instance_id: ${{ secrets.AWS_INSTANCE_ID }}
+    s3_bucket_name: my_bucket
+  env:
+    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_INSTANCE_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_SECRET }}
+    AWS_DEFAULT_REGION: "eu-west-1"
 ```
 
 The [VHT-AMI action](https://github.com/ARM-software/VHT-AMI) is controlled using the following parameters.
 
-| Keyword           |  Description
-|:------------------|:----------------------------------------------------
-| `vht_in:`         |  Folder to the staged files. The **vht.yml** file should be provided in the root folder.
-| `instance_id:`    |  Instance ID of the AMI stored as GitHub secret *secrets.AWS_INSTANCE_ID*.
-| `access_key_id:`  |  Access key to AMI stored as GitHub secret *secrets.AWS_ACCESS_KEY_ID*.
-| `secret_key_id:`  |  Secret key to AMI stored as GitHub secret *secrets.AWS_SECRET_KEY*.
-| `aws_region:`     |  Name of the region where your EC2 and S3 instances are located.
-| `s3_bucket_name:` |  Name of the temporary storage an S3 bucket is used.
+| Keyword                   |  Description
+|:--------------------------|:----------------------------------------------------
+| `vht_in:`                 |  Folder to the staged files. The **vht.yml** file should be provided in the root folder.
+| `ec2_instance_id:`        |  EC2 Instance ID of the AMI stored as GitHub secret *secrets.AWS_INSTANCE_ID*.
+| `ec2_instance_type:`      |  EC2 Instance Type that will be assign to-be-created EC2 Instance. Required when no instance id supplied.
+| `ec2_security_group_id:`  |  EC2 Security Group that will be assign a to-be-created EC2 Instance. Required when no instance id supplied.
+| `iam_profile:`            |  IAM Profile to be assigned a to-be-created EC2 Instance.
+| `subnet_id:`              |  Subnet ID that will be assign a to-be-created EC2 Instance.
+| `terminate_ec2_instance:` |  Terminate EC2 Instance when the build is finished. Default=false
+| `vht_ami_version:`        |  VHT AMI Version to be used. This field is overwritten if `vht_ami_id` field is present.
+| `vht_ami_id:`             |  VHT AMI ID when the EC2 instance has been created. This fields overwrites vht_ami_version.
+| `access_key_id:`          |  Access key to AMI stored as GitHub secret *secrets.AWS_ACCESS_KEY_ID*.
+| `secret_key_id:`          |  Secret key to AMI stored as GitHub secret *secrets.AWS_SECRET_KEY*.
+| `aws_region:`             |  Name of the region where your EC2 and S3 instances are located.
+| `s3_bucket_name:`         |  Name of the temporary storage an S3 bucket is used.
