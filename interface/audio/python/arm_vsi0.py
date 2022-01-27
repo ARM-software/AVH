@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Arm Limited. All rights reserved.
+# Copyright (c) 2021-2022 Arm Limited. All rights reserved.
 
 # Virtual Streaming Interface instance 0 Python script: Audio Input
 

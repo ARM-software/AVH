@@ -32,9 +32,7 @@ The chapter [**Examples**](../../examples/html/index.html) describes projects th
 Audio driver interface definitions for use in various audio driver functions (for example \ref AudioDrv_Configure, \ref AudioDrv_SetBuf).
 @{
 \def AUDIO_DRV_INTERFACE_RX
-Receiver interface
 \def AUDIO_DRV_INTERFACE_TX
-Transmitter interface
 @}
 
 \defgroup audio_drv_control Audio Driver Controls
@@ -44,13 +42,9 @@ Transmitter interface
 Audio driver control parameters for use in \ref AudioDrv_Control function.
 @{
 \def AUDIO_DRV_CONTROL_TX_ENABLE
-Enable transmit operation
 \def AUDIO_DRV_CONTROL_RX_ENABLE
-Enable receive operation
 \def AUDIO_DRV_CONTROL_TX_DISABLE
-Disable transmit operation
 \def AUDIO_DRV_CONTROL_RX_DISABLE
-Disable receive operation
 @}
 
 \defgroup audio_events Audio Driver Events
@@ -73,17 +67,11 @@ The Audio driver reports its events via the registered callback function \ref Au
 Following error codes can be reported:
 @{
 \def AUDIO_DRV_OK
-Operation succeeded
 \def AUDIO_DRV_ERROR
-Unspecified error
 \def AUDIO_DRV_ERROR_BUSY
-Driver is busy
 \def AUDIO_DRV_ERROR_TIMEOUT
-Timeout occurred
 \def AUDIO_DRV_ERROR_UNSUPPORTED
-Operation not supported
 \def AUDIO_DRV_ERROR_PARAMETER
-Parameter error
 @}
 
 \struct AudioDrv_Status_t

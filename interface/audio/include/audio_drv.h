@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Arm Limited. All rights reserved.
+ * Copyright (c) 2021-2022 Arm Limited. All rights reserved.
  */
 
 #ifndef __AUDIO_DRV_H
@@ -34,87 +34,68 @@ extern "C"
 #define AUDIO_DRV_ERROR_UNSUPPORTED         (-4) ///< Operation not supported
 #define AUDIO_DRV_ERROR_PARAMETER           (-5) ///< Parameter error
 
-/**
-\brief Audio Status
-*/
+
+/// Audio Status
 typedef struct {
   uint32_t tx_active        :  1;       ///< Transmitter active
   uint32_t rx_active        :  1;       ///< Receiver active
   uint32_t reserved         : 30;
 } AudioDrv_Status_t;
 
-/**
-  \fn          AudioDrv_Event_t
-  \brief       Audio Events callback function type: void (*AudioDrv_Event_t) (uint32_t event
-  \param[in]   event events notification mask
-  \return      none
-*/
+
+/// \brief       Audio Events callback function type
+/// \param[in]   event events notification mask
+/// \return      none
 typedef void (*AudioDrv_Event_t) (uint32_t event);
 
-/**
-  \fn          int32_t AudioDrv_Initialize (AudioDrv_Event_t cb_event)
-  \brief       Initialize Audio Interface.
-  \param[in]   cb_event pointer to \ref AudioDrv_Event_t
-  \return      return code
-*/
+
+/// \brief       Initialize Audio Interface.
+/// \param[in]   cb_event pointer to \ref AudioDrv_Event_t
+/// \return      return code
 int32_t AudioDrv_Initialize (AudioDrv_Event_t cb_event);
 
-/**
-  \fn          int32_t AudioDrv_Uninitialize (void)
-  \brief       De-initialize Audio Interface.
-  \return      return code
-*/
+
+/// \brief       De-initialize Audio Interface.
+/// \return      return code
 int32_t AudioDrv_Uninitialize (void);
 
-/**
-  \fn          int32_t AudioDrv_Configure (uint32_t interface, uint32_t channels, uint32_t sample_bits, uint32_t sample_rate)
-  \brief       Configure Audio Interface.
-  \param[in]   interface   audio interface
-  \param[in]   channels    number of channels
-  \param[in]   sample_bits sample number of bits (8..32)
-  \param[in]   sample_rate sample rate (samples per second)
-  \return      return code
-*/
+
+/// \brief       Configure Audio Interface.
+/// \param[in]   interface   audio interface
+/// \param[in]   channels    number of channels
+/// \param[in]   sample_bits sample number of bits (8..32)
+/// \param[in]   sample_rate sample rate (samples per second)
+/// \return      return code
 int32_t AudioDrv_Configure (uint32_t interface, uint32_t channels, uint32_t sample_bits, uint32_t sample_rate);
 
-/**
-  \fn          int32_t AudioDrv_SetBuf (uint32_t interface, void *buf, uint32_t block_num, uint32_t block_size)
-  \brief       Set Audio Interface buffer.
-  \param[in]   interface   audio interface
-  \param[in]   buf         pointer to buffer for audio data
-  \param[in]   block_num   number of blocks in buffer (must be 2^n)
-  \param[in]   block_size  block size in number of samples
-  \return      return code
-*/
+
+/// \brief       Set Audio Interface buffer.
+/// \param[in]   interface   audio interface
+/// \param[in]   buf         pointer to buffer for audio data
+/// \param[in]   block_num   number of blocks in buffer (must be 2^n)
+/// \param[in]   block_size  block size in number of samples
+/// \return      return code
 int32_t AudioDrv_SetBuf (uint32_t interface, void *buf, uint32_t block_num, uint32_t block_size);
 
-/**
-  \fn          int32_t AudioDrv_Control (uint32_t control)
-  \brief       Control Audio Interface.
-  \param[in]   control operation
-  \return      return code
-*/
+
+/// \brief       Control Audio Interface.
+/// \param[in]   control operation
+/// \return      return code
 int32_t AudioDrv_Control (uint32_t control);
 
-/**
-  \fn          uint32_t AudioDrv_GetTxCount (void)
-  \brief       Get transmitted block count.
-  \return      number of transmitted blocks
-*/
+
+/// \brief       Get transmitted block count.
+/// \return      number of transmitted blocks
 uint32_t AudioDrv_GetTxCount (void);
 
-/**
-  \fn          uint32_t AudioDrv_GetRxCount (void)
-  \brief       Get received block count.
-  \return      number of received blocks
-*/
+
+/// \brief       Get received block count.
+/// \return      number of received blocks
 uint32_t AudioDrv_GetRxCount (void);
 
-/**
-  \fn          AudioDrv_Status_t AudioDrv_GetStatus (void)
-  \brief       Get Audio Interface status.
-  \return      \ref AudioDrv_Status_t
-*/
+
+/// \brief       Get Audio Interface status.
+/// \return      \ref AudioDrv_Status_t
 AudioDrv_Status_t AudioDrv_GetStatus (void);
 
 #ifdef  __cplusplus
