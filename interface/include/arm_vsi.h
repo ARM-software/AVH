@@ -1,12 +1,10 @@
 /*
- * Copyright (c) 2021 Arm Limited. All rights reserved.
+ * Copyright (c) 2021-2022 Arm Limited. All rights reserved.
  */
 
 /*
  * Virtual Streaming Interface (VSI)
  */
-
-
 
 #ifndef __ARM_VSI_H
 #define __ARM_VSI_H
@@ -38,31 +36,33 @@ extern "C" {
 #define ARM_VSI6_IRQn   230
 #define ARM_VSI7_IRQn   231
 
-/**
-  \brief  Structure type to access the virtual streaming interface.
- */
+
+/// Structure type to access the virtual streaming interface
 typedef struct
 {
+  /// Interrupt Request (IRQ)
   struct {
     __IOM uint32_t Enable;      /*!< Offset: 0x0000 (R/W) IRQ Enable */
     __OM  uint32_t Set;         /*!< Offset: 0x0004 (-/W) IRQ Set */
     __OM  uint32_t Clear;       /*!< Offset: 0x0008 (-/W) IRQ Clear */
     __IM  uint32_t Status;      /*!< Offset: 0x000C (R/-) IRQ Status */
-  } IRQ;                        /*!< Interrupt Request (IRQ) */
+  } IRQ;
   uint32_t reserved1[60];
+  /// Time counter with 1MHz input frequency
   struct {
     __IOM uint32_t Control;     /*!< Offset: 0x0100 (R/W) Timer Control */
     __IOM uint32_t Interval;    /*!< Offset: 0x0104 (R/W) Timer Interval Value (in microseconds) */
     __IM  uint32_t Count;       /*!< Offset: 0x0108 (R/-) Timer Overflow Count */
-  } Timer;                      /*!< Time counter with 1MHz input frequency */
+  } Timer;
   uint32_t reserved2[61];
+  /// Direct Memory Access (DMA) Controller
   struct {
     __IOM uint32_t Control;     /*!< Offset: 0x0200 (R/W) DMA Control */
     __IOM uint32_t Address;     /*!< Offset: 0x0204 (R/W) DMA Memory Start Address */
     __IOM uint32_t BlockSize;   /*!< Offset: 0x0208 (R/W) DMA Block Size (in bytes, multiple of 4) */
     __IOM uint32_t BlockNum;    /*!< Offset: 0x020C (R/W) DMA Number of Blocks (must be 2^n) */
     __IM  uint32_t BlockIndex;  /*!< Offset: 0x0210 (R/-) DMA Block Index */
-  } DMA;                        /*!< Direct Memory Access (DMA) Controller */
+  } DMA;
   uint32_t reserved3[59];
   __IOM uint32_t Regs[64];      /*!< Offset: 0x0300 (R/W) User Registers */
 } ARM_VSI_Type;
