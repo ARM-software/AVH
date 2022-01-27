@@ -143,7 +143,7 @@ Data Structures</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:ga76a21d8243b1b87fb51efe30532d94b6"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vsi__audio.html#ga76a21d8243b1b87fb51efe30532d94b6">AudioDrv_Event_t</a>) (uint32_t event)</td></tr>
-<tr class="memdesc:ga76a21d8243b1b87fb51efe30532d94b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio Events callback function type: void (*AudioDrv_Event_t) (uint32_t event.  <a href="group__arm__vsi__audio.html#ga76a21d8243b1b87fb51efe30532d94b6">More...</a><br /></td></tr>
+<tr class="memdesc:ga76a21d8243b1b87fb51efe30532d94b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio Events callback function type.  <a href="group__arm__vsi__audio.html#ga76a21d8243b1b87fb51efe30532d94b6">More...</a><br /></td></tr>
 <tr class="separator:ga76a21d8243b1b87fb51efe30532d94b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -252,19 +252,19 @@ reserved: 30</td>
       </table>
 </div><div class="memdoc">
 
-<p>Audio Events callback function type: void (*AudioDrv_Event_t) (uint32_t event. </p>
-<p >Provides the typedef for the event callback function <b>AudioDrv_Event (uint32 event)</b> to be registered with <a class="el" href="group__arm__vsi__audio.html#ga3df94f2eb2478ea1229356dd7deee319">AudioDrv_Initialize</a>.</p>
-<p >The parameter <em>event</em> indicates one or more <a class="el" href="group__audio__events.html">Audio Driver Events</a> that occurred during driver operation.</p>
-<p ><b>Parameter for:</b></p><ul>
-<li><a class="el" href="group__arm__vsi__audio.html#ga3df94f2eb2478ea1229356dd7deee319">AudioDrv_Initialize</a></li>
-</ul>
+<p>Audio Events callback function type. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">event</td><td>events notification mask </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>none</dd></dl>
+<p>Provides the typedef for the event callback function <b>AudioDrv_Event (uint32 event)</b> to be registered with <a class="el" href="group__arm__vsi__audio.html#ga3df94f2eb2478ea1229356dd7deee319">AudioDrv_Initialize</a>.</p>
+<p >The parameter <em>event</em> indicates one or more <a class="el" href="group__audio__events.html">Audio Driver Events</a> that occurred during driver operation.</p>
+<p ><b>Parameter for:</b></p><ul>
+<li><a class="el" href="group__arm__vsi__audio.html#ga3df94f2eb2478ea1229356dd7deee319">AudioDrv_Initialize</a> </li>
+</ul>
 
 </div>
 </div>
@@ -286,22 +286,22 @@ reserved: 30</td>
 </div><div class="memdoc">
 
 <p>Initialize Audio Interface. </p>
-<p >The function <b>AudioDrv_Initialize</b> initializes the Audio interface over VSI peripheral. It is called when the middleware component starts operation.</p>
-<p >The function performs the following operations:</p><ul>
-<li>Initializes the required resources of the audio interface.</li>
-<li>Registers the <a class="el" href="group__arm__vsi__audio.html#ga76a21d8243b1b87fb51efe30532d94b6">AudioDrv_Event_t</a> callback function.</li>
-</ul>
-<p >The parameter <em>cb_event</em> is a pointer to the <a class="el" href="group__arm__vsi__audio.html#ga76a21d8243b1b87fb51efe30532d94b6">AudioDrv_Event_t</a> callback function; use a NULL pointer when no callback signals are required.</p>
-<p >Possible return values:</p><ul>
-<li><a class="el" href="group__audio__drv__errors.html#gac12cb06a8d6cfc11afb624b3880e1044">AUDIO_DRV_OK</a> : audio interface is successfully initialized.</li>
-</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">cb_event</td><td>pointer to <a class="el" href="group__arm__vsi__audio.html#ga76a21d8243b1b87fb51efe30532d94b6">AudioDrv_Event_t</a> </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>return code </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>return code</dd></dl>
+<p>The function <b>AudioDrv_Initialize</b> initializes the Audio interface over VSI peripheral. It is called when the middleware component starts operation.</p>
+<p >The function performs the following operations:</p><ul>
+<li>Initializes the required resources of the audio interface.</li>
+<li>Registers the <a class="el" href="group__arm__vsi__audio.html#ga76a21d8243b1b87fb51efe30532d94b6">AudioDrv_Event_t</a> callback function.</li>
+</ul>
+<p >The parameter <em>cb_event</em> is a pointer to the <a class="el" href="group__arm__vsi__audio.html#ga76a21d8243b1b87fb51efe30532d94b6">AudioDrv_Event_t</a> callback function; use a NULL pointer when no callback signals are required.</p>
+<p >Possible return values:</p><ul>
+<li><a class="el" href="group__audio__drv__errors.html#gac12cb06a8d6cfc11afb624b3880e1044">AUDIO_DRV_OK</a> : audio interface is successfully initialized. </li>
+</ul>
 
 </div>
 </div>
@@ -322,12 +322,12 @@ reserved: 30</td>
 </div><div class="memdoc">
 
 <p>De-initialize Audio Interface. </p>
-<p >The function <b>AudioDrv_Uninitialize</b> de-initializes the resources of Audio interface.</p>
+<dl class="section return"><dt>Returns</dt><dd>return code</dd></dl>
+<p>The function <b>AudioDrv_Uninitialize</b> de-initializes the resources of Audio interface.</p>
 <p >It is called when the middleware component stops operation and releases the software resources used by the interface.</p>
 <p >Possible return values:</p><ul>
-<li><a class="el" href="group__audio__drv__errors.html#gac12cb06a8d6cfc11afb624b3880e1044">AUDIO_DRV_OK</a> : audio interface is successfully de-initialized.</li>
+<li><a class="el" href="group__audio__drv__errors.html#gac12cb06a8d6cfc11afb624b3880e1044">AUDIO_DRV_OK</a> : audio interface is successfully de-initialized. </li>
 </ul>
-<dl class="section return"><dt>Returns</dt><dd>return code </dd></dl>
 
 </div>
 </div>
@@ -370,7 +370,17 @@ reserved: 30</td>
 </div><div class="memdoc">
 
 <p>Configure Audio Interface. </p>
-<p >The function <b>AudioDrv_Configure</b> configures audio interface according to specified arguments.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">interface</td><td>audio interface </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">channels</td><td>number of channels </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sample_bits</td><td>sample number of bits (8..32) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sample_rate</td><td>sample rate (samples per second) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>return code</dd></dl>
+<p>The function <b>AudioDrv_Configure</b> configures audio interface according to specified arguments.</p>
 <p ><em>interface</em> configures the audio interface either for input (<a class="el" href="group__audio__drv__interface.html#gabc3aa9d4319a122dcb68f08bf2d1d8ab">AUDIO_DRV_INTERFACE_RX</a>) or output (<a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a>).</p>
 <p ><em>channels</em>, <em>sample_bits</em>, <em>sample_rate</em> define configuration parameters.</p>
 <p >Possible return values:</p><ul>
@@ -383,18 +393,8 @@ reserved: 30</td>
 </ul>
 </li>
 <li><a class="el" href="group__audio__drv__errors.html#ga29ab542a49be2b0c1a94a0cca7574d2c">AUDIO_DRV_ERROR_UNSUPPORTED</a> : requested configuration is not supported by the driver.</li>
-<li><a class="el" href="group__audio__drv__errors.html#ga65425fdcbb4d5c8533b7355b3dfa4876">AUDIO_DRV_ERROR</a> : audio control is already enabled with <a class="el" href="group__arm__vsi__audio.html#ga907ce53168efb2f29dce946226fa52a1">AudioDrv_Control</a>.</li>
+<li><a class="el" href="group__audio__drv__errors.html#ga65425fdcbb4d5c8533b7355b3dfa4876">AUDIO_DRV_ERROR</a> : audio control is already enabled with <a class="el" href="group__arm__vsi__audio.html#ga907ce53168efb2f29dce946226fa52a1">AudioDrv_Control</a>. </li>
 </ul>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">interface</td><td>audio interface </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">channels</td><td>number of channels </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">sample_bits</td><td>sample number of bits (8..32) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">sample_rate</td><td>sample rate (samples per second) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>return code </dd></dl>
 
 </div>
 </div>
@@ -437,19 +437,6 @@ reserved: 30</td>
 </div><div class="memdoc">
 
 <p>Set Audio Interface buffer. </p>
-<p >The function <b>AudioDrv_SetBuf</b> assigns DMA buffer to the audio driver interface.</p>
-<p ><em>interface</em> specifies whether the buffer is used for input (<a class="el" href="group__audio__drv__interface.html#gabc3aa9d4319a122dcb68f08bf2d1d8ab">AUDIO_DRV_INTERFACE_RX</a>) or output (<a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a>).</p>
-<p ><em>buf</em> points to the memory buffer. <em>block_num</em> and <em>block_size</em> define buffer configuration. Note that the memory allocated for the buffer shall be at least <em>block_num*block_size</em> bytes.</p>
-<p >Possible return values:</p><ul>
-<li><a class="el" href="group__audio__drv__errors.html#gac12cb06a8d6cfc11afb624b3880e1044">AUDIO_DRV_OK</a> : buffer is set correctly.</li>
-<li><a class="el" href="group__audio__drv__errors.html#gae491b5a2b45c6f067d727efa16ab0cd6">AUDIO_DRV_ERROR_PARAMETER</a> : invalid <em>interface</em> value.</li>
-<li><a class="el" href="group__audio__drv__errors.html#ga29ab542a49be2b0c1a94a0cca7574d2c">AUDIO_DRV_ERROR_UNSUPPORTED</a> : requested buffer configuration is not supported by the driver.</li>
-<li><a class="el" href="group__audio__drv__errors.html#ga65425fdcbb4d5c8533b7355b3dfa4876">AUDIO_DRV_ERROR</a> : returned in the following cases:<ul>
-<li>audio driver is not initialized with <a class="el" href="group__arm__vsi__audio.html#ga3df94f2eb2478ea1229356dd7deee319">AudioDrv_Initialize</a></li>
-<li>audio control is already enabled with <a class="el" href="group__arm__vsi__audio.html#ga907ce53168efb2f29dce946226fa52a1">AudioDrv_Control</a></li>
-</ul>
-</li>
-</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">interface</td><td>audio interface </td></tr>
@@ -459,7 +446,20 @@ reserved: 30</td>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>return code </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>return code</dd></dl>
+<p>The function <b>AudioDrv_SetBuf</b> assigns DMA buffer to the audio driver interface.</p>
+<p ><em>interface</em> specifies whether the buffer is used for input (<a class="el" href="group__audio__drv__interface.html#gabc3aa9d4319a122dcb68f08bf2d1d8ab">AUDIO_DRV_INTERFACE_RX</a>) or output (<a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a>).</p>
+<p ><em>buf</em> points to the memory buffer. <em>block_num</em> and <em>block_size</em> define buffer configuration. Note that the memory allocated for the buffer shall be at least <em>block_num*block_size</em> bytes.</p>
+<p >Possible return values:</p><ul>
+<li><a class="el" href="group__audio__drv__errors.html#gac12cb06a8d6cfc11afb624b3880e1044">AUDIO_DRV_OK</a> : buffer is set correctly.</li>
+<li><a class="el" href="group__audio__drv__errors.html#gae491b5a2b45c6f067d727efa16ab0cd6">AUDIO_DRV_ERROR_PARAMETER</a> : invalid <em>interface</em> value.</li>
+<li><a class="el" href="group__audio__drv__errors.html#ga29ab542a49be2b0c1a94a0cca7574d2c">AUDIO_DRV_ERROR_UNSUPPORTED</a> : requested buffer configuration is not supported by the driver.</li>
+<li><a class="el" href="group__audio__drv__errors.html#ga65425fdcbb4d5c8533b7355b3dfa4876">AUDIO_DRV_ERROR</a> : returned in the following cases:<ul>
+<li>audio driver is not initialized with <a class="el" href="group__arm__vsi__audio.html#ga3df94f2eb2478ea1229356dd7deee319">AudioDrv_Initialize</a></li>
+<li>audio control is already enabled with <a class="el" href="group__arm__vsi__audio.html#ga907ce53168efb2f29dce946226fa52a1">AudioDrv_Control</a> </li>
+</ul>
+</li>
+</ul>
 
 </div>
 </div>
@@ -480,7 +480,14 @@ reserved: 30</td>
 </div><div class="memdoc">
 
 <p>Control Audio Interface. </p>
-<p >The function <b>AudioDrv_Control</b> controls the Audio interface.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">control</td><td>operation </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>return code</dd></dl>
+<p>The function <b>AudioDrv_Control</b> controls the Audio interface.</p>
 <p >The parameter <em>control</em> specifies the operation as described in the table.</p>
 <table class="cmtable">
 <tr>
@@ -494,13 +501,6 @@ reserved: 30</td>
 <tr>
 <td><a class="el" href="group__audio__drv__control.html#gaf2030e115e7ab830c9524d64ca46fafc">AUDIO_DRV_CONTROL_RX_DISABLE</a>  </td><td>3  </td><td>Disable receive operation. </td></tr>
 </table>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">control</td><td>operation </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>return code </dd></dl>
 
 </div>
 </div>
@@ -521,8 +521,8 @@ reserved: 30</td>
 </div><div class="memdoc">
 
 <p>Get transmitted block count. </p>
-<p >The function <b>AudioDrv_GetTxCount</b> returns the number of the currently transmitted data items.</p>
-<dl class="section return"><dt>Returns</dt><dd>number of transmitted blocks </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>number of transmitted blocks</dd></dl>
+<p>The function <b>AudioDrv_GetTxCount</b> returns the number of the currently transmitted data items. </p>
 
 </div>
 </div>
@@ -543,8 +543,8 @@ reserved: 30</td>
 </div><div class="memdoc">
 
 <p>Get received block count. </p>
-<p >The function <b>AudioDrv_GetRxCount</b> returns the number of the currently received data items.</p>
-<dl class="section return"><dt>Returns</dt><dd>number of received blocks </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>number of received blocks</dd></dl>
+<p>The function <b>AudioDrv_GetRxCount</b> returns the number of the currently received data items. </p>
 
 </div>
 </div>
@@ -565,8 +565,8 @@ reserved: 30</td>
 </div><div class="memdoc">
 
 <p>Get Audio Interface status. </p>
-<p >The function <b>AudioDrv_GetStatus</b> retrieves the current Audio interface status.</p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__arm__vsi__audio.html#structAudioDrv__Status__t">AudioDrv_Status_t</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__arm__vsi__audio.html#structAudioDrv__Status__t">AudioDrv_Status_t</a></dd></dl>
+<p>The function <b>AudioDrv_GetStatus</b> retrieves the current Audio interface status. </p>
 
 </div>
 </div>

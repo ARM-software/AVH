@@ -122,10 +122,13 @@ Data Structures</h2></td></tr>
 <tr class="memdesc:structARM__VSI__Type"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure type to access the virtual streaming interface.  <a href="group__arm__vsi__api.html#structARM__VSI__Type">More...</a><br /></td></tr>
 <tr class="separator:structARM__VSI__Type"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:structARM__VSI__Type_8IRQ"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type_8IRQ">ARM_VSI_Type.IRQ</a></td></tr>
+<tr class="memdesc:structARM__VSI__Type_8IRQ"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt Request (IRQ)  <a href="group__arm__vsi__api.html#structARM__VSI__Type_8IRQ">More...</a><br /></td></tr>
 <tr class="separator:structARM__VSI__Type_8IRQ"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:structARM__VSI__Type_8Timer"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type_8Timer">ARM_VSI_Type.Timer</a></td></tr>
+<tr class="memdesc:structARM__VSI__Type_8Timer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time counter with 1MHz input frequency.  <a href="group__arm__vsi__api.html#structARM__VSI__Type_8Timer">More...</a><br /></td></tr>
 <tr class="separator:structARM__VSI__Type_8Timer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:structARM__VSI__Type_8DMA"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type_8DMA">ARM_VSI_Type.DMA</a></td></tr>
+<tr class="memdesc:structARM__VSI__Type_8DMA"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direct Memory Access (DMA) Controller.  <a href="group__arm__vsi__api.html#structARM__VSI__Type_8DMA">More...</a><br /></td></tr>
 <tr class="separator:structARM__VSI__Type_8DMA"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
@@ -170,9 +173,9 @@ Data Structures</h2></td></tr>
 <div class="line">  uint32_t reserved3[59];</div>
 <div class="line">  __IOM uint32_t Regs[64];      /*!&lt; Offset: 0x0300 (R/W) User Registers */</div>
 <div class="line">} ARM_VSI_Type;</div>
-</div><!-- fragment --><p >The <a class="el" href="group__arm__vsi__api.html#a891c9036e6872ed134c185addd341b24">ARM_VSI_Type::IRQ</a> peripheral simulates an interrupt request. <b>Set</b> and <b>Clear</b> parameters have only write access and are used for triggering and clearing the interrupt. <b>Status</b> field indicates the interrupt state.</p>
-<p >The <a class="el" href="group__arm__vsi__api.html#a6e0035edd58cc6ca8c94b5f9723a0d80">ARM_VSI_Type::Timer</a> peripheral is a simple counting timer with a 1MHz input frequency based on the time domain of the Arm Fast Model instruction set simulator. The <b>Count</b> value increments when the <b>Interval</b> value elapses.</p>
-<p >The <a class="el" href="group__arm__vsi__api.html#a2adfebde5b46a4adc0318f5077f03c6d">ARM_VSI_Type::DMA</a> controller accesses a rotating memory buffer as shown in the diagram below. Each block transfer increments the <b>BlockIndex</b> value (restarts when the buffer rotates).</p>
+</div><!-- fragment --><p >The <a class="el" href="group__arm__vsi__api.html#a891c9036e6872ed134c185addd341b24" title="Interrupt Request (IRQ)">ARM_VSI_Type::IRQ</a> peripheral simulates an interrupt request. <b>Set</b> and <b>Clear</b> parameters have only write access and are used for triggering and clearing the interrupt. <b>Status</b> field indicates the interrupt state.</p>
+<p >The <a class="el" href="group__arm__vsi__api.html#a6e0035edd58cc6ca8c94b5f9723a0d80" title="Time counter with 1MHz input frequency.">ARM_VSI_Type::Timer</a> peripheral is a simple counting timer with a 1MHz input frequency based on the time domain of the Arm Fast Model instruction set simulator. The <b>Count</b> value increments when the <b>Interval</b> value elapses.</p>
+<p >The <a class="el" href="group__arm__vsi__api.html#a2adfebde5b46a4adc0318f5077f03c6d" title="Direct Memory Access (DMA) Controller.">ARM_VSI_Type::DMA</a> controller accesses a rotating memory buffer as shown in the diagram below. Each block transfer increments the <b>BlockIndex</b> value (restarts when the buffer rotates).</p>
 <div class="image">
 <img src="DMA_Buffer.png" alt=""/>
 <div class="caption">
@@ -198,8 +201,7 @@ Structure of DMA memory buffer</div></div>
 <td class="fieldname">
 IRQ</td>
 <td class="fielddoc">
-<p >Interrupt Request (IRQ)</p>
-<p >A group of registers that can enable and set/clear interrupt requests. </p>
+Interrupt Request (IRQ) <p >A group of registers that can enable and set/clear interrupt requests. </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="adaaed01be51d9b1ab577eb1f2cb6b119" name="adaaed01be51d9b1ab577eb1f2cb6b119"></a>uint32_t</td>
@@ -212,8 +214,7 @@ reserved1[60]</td>
 <td class="fieldname">
 Timer</td>
 <td class="fielddoc">
-<p >Time counter with 1MHz input frequency</p>
-<p >A simple counting timer with a 1MHz input frequency based on the time domain of the Arm Fast Model instruction set simulator.</p>
+Time counter with 1MHz input frequency. <p >A simple counting timer with a 1MHz input frequency based on the time domain of the Arm Fast Model instruction set simulator.</p>
 <p >The <b>Timer</b> peripheral has the following registers:</p><ul>
 <li><b>Control</b> the operation of the timer with the following control bits:<ul>
 <li><b>Control.0</b> 0=stop timer and timer reset, 1=start timer</li>
@@ -237,8 +238,7 @@ reserved2[61]</td>
 <td class="fieldname">
 DMA</td>
 <td class="fielddoc">
-<p >Direct Memory Access (DMA) Controller</p>
-<p >A virtual DMA controller which copies data from/to peripheral to/from memory.</p>
+Direct Memory Access (DMA) Controller. <p >A virtual DMA controller which copies data from/to peripheral to/from memory.</p>
 <p >It has the following registers:</p><ul>
 <li><b>Control</b> the operation of the DMA with the following control bits:<ul>
 <li><b>Control.0</b> 0=disable DMA and reset DMA, 1=enable DMA</li>
@@ -280,7 +280,8 @@ Regs[64]</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"></div><table class="fieldtable">
+<div class="textblock"><p >Interrupt Request (IRQ) </p>
+</div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
 <a id="a2faec1f9f8cc7f8f40d521c4dd574f49" name="a2faec1f9f8cc7f8f40d521c4dd574f49"></a>__IOM uint32_t</td>
@@ -325,7 +326,8 @@ Status</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"></div><table class="fieldtable">
+<div class="textblock"><p >Time counter with 1MHz input frequency. </p>
+</div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
 <a id="aa1595abbb4c3a326636dd178757cd6c1" name="aa1595abbb4c3a326636dd178757cd6c1"></a>__IOM uint32_t</td>
@@ -363,7 +365,8 @@ Count</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"></div><table class="fieldtable">
+<div class="textblock"><p >Direct Memory Access (DMA) Controller. </p>
+</div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
 <a id="aa1595abbb4c3a326636dd178757cd6c1" name="aa1595abbb4c3a326636dd178757cd6c1"></a>__IOM uint32_t</td>
