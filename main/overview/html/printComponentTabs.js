@@ -1,6 +1,6 @@
 var strgURL =   location.pathname;                      // path of current component
 
-// constuctor for the array of objects
+// constructor for the array of objects
 function tabElement(id, folderName, tabTxt )  {
 	this.id = id;                                       // elementID as needed in html;
 	this.folderName = folderName;                       // folder name of the component

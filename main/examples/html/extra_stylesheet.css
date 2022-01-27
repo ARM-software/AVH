@@ -1025,6 +1025,20 @@ table.markdownTable tr:nth-child(even) {
        background-color: var(--arm_light_gray3);
 }
 
+/* for hyperlinks in table head rows */
+table.markdownTable th a{
+       color: white;
+       text-decoration: underline;
+}
+
+table.markdownTable th a:visited{
+       color: white;
+}
+
+table.markdownTable th a:hover{
+       color: var(--arm_yellow);
+}
+
 /* @end */
 
 
@@ -1207,7 +1221,7 @@ dl.section dd {
 #projectlogo
 {
 	text-align: center;
-	vertical-align: center;
+	vertical-align: middle;
 	border-collapse: separate;
 }
 
@@ -1252,7 +1266,11 @@ dl.section dd {
 
 .image
 {
-        text-align: center;
+        text-align: left;
+        display: grid;
+        justify-content: start;
+        align-items: baseline;
+        justify-items: center;
 }
 
 .dotgraph
@@ -1268,6 +1286,7 @@ dl.section dd {
 .caption
 {
 	font-weight: bold;
+	font-size: 80%;
 }
 
 div.zoom

@@ -1,11 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- HTML header for doxygen 1.9.2-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>Audio via VSI</title>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Simulation: Audio via VSI</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
-<link href="extra_stylesheet.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="printComponentTabs.js"></script>
@@ -22,6 +23,8 @@
   $(document).ready(function() { init_search(); });
 /* @license-end */
 </script>
+<link href="$extra_stylesheet" rel="stylesheet" type="text/css" />
+<link href="extra_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -29,13 +32,14 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 55px;">
-  <td style="padding: 1em;"id="projectlogo"><img alt="Logo" src="arm.png"/></td>
+  <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Virtual Hardware
    &#160;<span id="projectnumber">Version 0.2 - beta</span>
    </div>
    <div id="projectbrief">Simulation Models with Virtual Interfaces for Test Automation</div>
   </td>
+  <!--END !PROJECT_NAME-->
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
           <img id="MSearchSelect" src="search/mag_sel.svg"
@@ -170,6 +174,7 @@ Functions</h2></td></tr>
 <tr class="separator:ga5d9c0749586bd5c75db54d92fa28049d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
+<p >Audio file streaming interface for Cortex-M applications to Python scripting. </p>
 <p >The VSI implements general purpose peripheral registers, interrupt control, a timer peripheral, and a DMA peripheral. The peripheral is accessed using the <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure definition in <a href="https://github.com/ARM-software/VHT/blob/main/interface/include/arm_vsi.h">arm_vsi.h</a></p>
 <p >Several implementations of the audio driver <b>with the same common audio driver API</b> are available. This allows to re-target an application from Arm Virtual Hardware to physical devices while implementing the same logical behavior:</p><ul>
 <li>for the <a class="el" href="group__arm__vsi__api.html">VSI</a> with an interface to a Python test script that streams *.wav files.</li>
@@ -205,7 +210,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"><p >Structure with information about the status of the Audio driver. The data fields encode busy flags and error flags.</p>
+<div class="textblock"><p >Audio Status. </p>
+<p >Structure with information about the status of the Audio driver. The data fields encode busy flags and error flags.</p>
 <p ><b>Returned by:</b></p><ul>
 <li><a class="el" href="group__arm__vsi__audio.html#ga5d9c0749586bd5c75db54d92fa28049d">AudioDrv_GetStatus</a> </li>
 </ul>
@@ -245,6 +251,8 @@ reserved: 30</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Audio Events callback function type: void (*AudioDrv_Event_t) (uint32_t event. </p>
 <p >Provides the typedef for the event callback function <b>AudioDrv_Event (uint32 event)</b> to be registered with <a class="el" href="group__arm__vsi__audio.html#ga3df94f2eb2478ea1229356dd7deee319">AudioDrv_Initialize</a>.</p>
 <p >The parameter <em>event</em> indicates one or more <a class="el" href="group__audio__events.html">Audio Driver Events</a> that occurred during driver operation.</p>
 <p ><b>Parameter for:</b></p><ul>
@@ -276,6 +284,8 @@ reserved: 30</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Initialize Audio Interface. </p>
 <p >The function <b>AudioDrv_Initialize</b> initializes the Audio interface over VSI peripheral. It is called when the middleware component starts operation.</p>
 <p >The function performs the following operations:</p><ul>
 <li>Initializes the required resources of the audio interface.</li>
@@ -310,6 +320,8 @@ reserved: 30</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>De-initialize Audio Interface. </p>
 <p >The function <b>AudioDrv_Uninitialize</b> de-initializes the resources of Audio interface.</p>
 <p >It is called when the middleware component stops operation and releases the software resources used by the interface.</p>
 <p >Possible return values:</p><ul>
@@ -356,6 +368,8 @@ reserved: 30</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Configure Audio Interface. </p>
 <p >The function <b>AudioDrv_Configure</b> configures audio interface according to specified arguments.</p>
 <p ><em>interface</em> configures the audio interface either for input (<a class="el" href="group__audio__drv__interface.html#gabc3aa9d4319a122dcb68f08bf2d1d8ab">AUDIO_DRV_INTERFACE_RX</a>) or output (<a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a>).</p>
 <p ><em>channels</em>, <em>sample_bits</em>, <em>sample_rate</em> define configuration parameters.</p>
@@ -421,6 +435,8 @@ reserved: 30</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Set Audio Interface buffer. </p>
 <p >The function <b>AudioDrv_SetBuf</b> assigns DMA buffer to the audio driver interface.</p>
 <p ><em>interface</em> specifies whether the buffer is used for input (<a class="el" href="group__audio__drv__interface.html#gabc3aa9d4319a122dcb68f08bf2d1d8ab">AUDIO_DRV_INTERFACE_RX</a>) or output (<a class="el" href="group__audio__drv__interface.html#ga4e7d0e17edb9300964e60db8fd9b7ce3">AUDIO_DRV_INTERFACE_TX</a>).</p>
 <p ><em>buf</em> points to the memory buffer. <em>block_num</em> and <em>block_size</em> define buffer configuration. Note that the memory allocated for the buffer shall be at least <em>block_num*block_size</em> bytes.</p>
@@ -462,6 +478,8 @@ reserved: 30</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Control Audio Interface. </p>
 <p >The function <b>AudioDrv_Control</b> controls the Audio interface.</p>
 <p >The parameter <em>control</em> specifies the operation as described in the table.</p>
 <table class="cmtable">
@@ -501,6 +519,8 @@ reserved: 30</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get transmitted block count. </p>
 <p >The function <b>AudioDrv_GetTxCount</b> returns the number of the currently transmitted data items.</p>
 <dl class="section return"><dt>Returns</dt><dd>number of transmitted blocks </dd></dl>
 
@@ -521,6 +541,8 @@ reserved: 30</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get received block count. </p>
 <p >The function <b>AudioDrv_GetRxCount</b> returns the number of the currently received data items.</p>
 <dl class="section return"><dt>Returns</dt><dd>number of received blocks </dd></dl>
 
@@ -541,6 +563,8 @@ reserved: 30</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get Audio Interface status. </p>
 <p >The function <b>AudioDrv_GetStatus</b> retrieves the current Audio interface status.</p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__arm__vsi__audio.html#structAudioDrv__Status__t">AudioDrv_Status_t</a> </dd></dl>
 
@@ -552,7 +576,7 @@ reserved: 30</td>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="footer">
-	Copyright &copy; 2021 Arm Limited (or its affiliates). All rights reserved.
+	Copyright &copy; 2021-2022 Arm Limited (or its affiliates). All rights reserved.
 	<!-- Use script below for auto-inserting date, project name, version, etc  -->
 	<!-- <script type="text/javascript">
         writeFooter.call(this);

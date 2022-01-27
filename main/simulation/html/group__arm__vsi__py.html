@@ -1,11 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- HTML header for doxygen 1.9.2-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>VSI Python interface</title>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Simulation: VSI Python interface</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
-<link href="extra_stylesheet.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="printComponentTabs.js"></script>
@@ -22,6 +23,8 @@
   $(document).ready(function() { init_search(); });
 /* @license-end */
 </script>
+<link href="$extra_stylesheet" rel="stylesheet" type="text/css" />
+<link href="extra_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -29,13 +32,14 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 55px;">
-  <td style="padding: 1em;"id="projectlogo"><img alt="Logo" src="arm.png"/></td>
+  <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Virtual Hardware
    &#160;<span id="projectnumber">Version 0.2 - beta</span>
    </div>
    <div id="projectbrief">Simulation Models with Virtual Interfaces for Test Automation</div>
   </td>
+  <!--END !PROJECT_NAME-->
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
           <img id="MSearchSelect" src="search/mag_sel.svg"
@@ -163,6 +167,7 @@ Variables</h2></td></tr>
 <tr class="separator:ga97b1cc04ec204ba7f1507498beb1d460"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
+<p >VSI python interface. </p>
 <p >The Python interface described in this section trigger on peripheral registers and events of the <a class="el" href="group__arm__vsi__api.html">VSI API</a>. Each peripheral instance has a separate dedicated Python script file with the names <b>arm_vsi0.py</b>, <b>arm_vsi1.py</b>, ..., <b>arm_vsi7.py</b>. </p>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="gac89f3b60c2bf1d7055d6133a6f666544" name="gac89f3b60c2bf1d7055d6133a6f666544"></a>
@@ -179,6 +184,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Read interrupt request (the VSI IRQ Status Register) </p>
 <dl class="section return"><dt>Returns</dt><dd>value value read (32-bit) </dd></dl>
 
 </div>
@@ -198,6 +205,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Write interrupt request (the VSI IRQ Status Register) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>value to write (32-bit) </td></tr>
@@ -233,6 +242,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Write Timer registers (the VSI Timer Registers) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">index</td><td>Timer register index (zero based) </td></tr>
@@ -269,6 +280,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Write DMA registers (the VSI DMA Registers) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">index</td><td>DMA register index (zero based) </td></tr>
@@ -295,6 +308,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Read data from peripheral for DMA P2M transfer (VSI DMA) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">size</td><td>size of data to read (in bytes, multiple of 4) </td></tr>
@@ -330,6 +345,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Write data to peripheral for DMA M2P transfer (VSI DMA) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>data to write (bytearray) </td></tr>
@@ -355,6 +372,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Read user registers (the VSI User Registers) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">index</td><td>user register index (zero based) </td></tr>
@@ -390,6 +409,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Write user registers (the VSI User Registers) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">index</td><td>user register index (zero based) </td></tr>
@@ -407,7 +428,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="footer">
-	Copyright &copy; 2021 Arm Limited (or its affiliates). All rights reserved.
+	Copyright &copy; 2021-2022 Arm Limited (or its affiliates). All rights reserved.
 	<!-- Use script below for auto-inserting date, project name, version, etc  -->
 	<!-- <script type="text/javascript">
         writeFooter.call(this);
