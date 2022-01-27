@@ -150,7 +150,7 @@ Several parameters need to be configured in the repository as [GitHub Secrets](h
 <tr><td> AWS_EC2_SECURITY_GROUP_ID </td>
     <td> The value of _VHTEC2SecurityGroupId_ from the output of [AWS resources setup](#GS_AWS_Setup).</td>
     <td> The id of the [VPC security group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) to add the EC2 instance to. Shall have format `sg-xxxxxxxx`.</td></tr>
-<tr><td> AWS_REGION </td>
+<tr><td> AWS_DEFAULT_REGION </td>
     <td> Use the same region as was used for [AWS setup](#GS_AWS_Setup).</td>
     <td> The data center region the Arm Virtual Hardware AMI will be run on. For example `eu-west-1`.</td></tr>
 <tr><td> AWS_AMI_ID </td>
