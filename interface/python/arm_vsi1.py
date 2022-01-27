@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Arm Limited. All rights reserved.
+# Copyright (c) 2021-2022 Arm Limited. All rights reserved.
 
 # Virtual Streaming Interface instance 1 Python script
 
@@ -53,6 +53,7 @@ Data = bytearray()
 
 
 ## Initialize
+#  @return None
 def init():
     logging.info("Python function init() called")
 
@@ -101,6 +102,7 @@ def wrTimer(index, value):
 
 
 ## Timer event (called at Timer Overflow)
+#  @return None
 def timerEvent():
     logging.info("Python function timerEvent() called")
 
@@ -138,6 +140,7 @@ def rdDataDMA(size):
 ## Write data to peripheral for DMA M2P transfer (VSI DMA)
 #  @param data data to write (bytearray)
 #  @param size size of data to write (in bytes, multiple of 4)
+#  @return None
 def wrDataDMA(data, size):
     global Data
     logging.info("Python function wrDataDMA() called")
