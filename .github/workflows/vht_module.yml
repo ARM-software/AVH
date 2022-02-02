@@ -1,12 +1,12 @@
-name: VHT CLI
+name: VHT Module
 on:
   workflow_dispatch:
   push:
-    branches: [main, refactor_vhtcli]
+    branches: [main]
     paths:
       - 'infrastructure/python_resources/**'
   pull_request:
-    branches: [main, refactor_vhtcli]
+    branches: [main]
     paths:
       - 'infrastructure/python_resources/**'
 jobs:
