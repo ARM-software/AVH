@@ -1,4 +1,4 @@
-vht_cli --get-ami-id 1.0.0
+vht_cli --get-ami-id 1.1.0
 vht_cli --create-ec2-instance ImageId=ami-0c5eeabe11f3a2685 InstanceType=t2.micro MaxCount=1 MinCount=1 SecurityGroupIds='['sg-04022e04e91197ce3']' SubnetId=subnet-00455495b268076f0  IamInstanceProfile="{'Name': 'Proj-s3-orta-vht-role'}"
 vht_cli --send-ssm-shell-command InstanceId=i-09cc4c3c32b5dd0b0 commandlist='ls -la'
 vht_cli --get-ssm-command-id-status 1395f9fc-8cc4-475e-9ab7-ee72c9722bae
