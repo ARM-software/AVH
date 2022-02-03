@@ -140,16 +140,16 @@ Usage Example</h1>
 <p >The content of the <em>fvp_config.txt</em> could be: </p><div class="fragment"><div class="line"># Parameters:</div>
 <div class="line"># instance.parameter=value       #(type, mode) default = &#39;def value&#39; : description : [min..max]</div>
 <div class="line">#------------------------------------------------------------------------------</div>
-<div class="line">cpu_core.core_clk.mul=32000000                                 # (int   , init-time) default = &#39;0x17d7840&#39; : Clock Rate Multiplier. This parameter is not exposed via CADI and can only be set in LISA</div>
-<div class="line">cpu_core.mps3_board.telnetterminal0.start_telnet=0             # (bool  , init-time) default = &#39;1&#39;      : Start telnet if nothing connected</div>
-<div class="line">cpu_core.mps3_board.uart0.out_file=-                           # (string, init-time) default = &#39;&#39;       : Output file to hold data written by the UART (use &#39;-&#39; to send all output to stdout)</div>
-<div class="line">cpu_core.mps3_board.visualisation.disable-visualisation=1      # (bool  , init-time) default = &#39;0&#39;      : Enable/disable visualisation</div>
+<div class="line">core_clk.mul=32000000                                 # (int   , init-time) default = &#39;0x17d7840&#39; : Clock Rate Multiplier. This parameter is not exposed via CADI and can only be set in LISA</div>
+<div class="line">mps3_board.telnetterminal0.start_telnet=0             # (bool  , init-time) default = &#39;1&#39;      : Start telnet if nothing connected</div>
+<div class="line">mps3_board.uart0.out_file=-                           # (string, init-time) default = &#39;&#39;       : Output file to hold data written by the UART (use &#39;-&#39; to send all output to stdout)</div>
+<div class="line">mps3_board.visualisation.disable-visualisation=1      # (bool  , init-time) default = &#39;0&#39;      : Enable/disable visualisation</div>
 <div class="line">#------------------------------------------------------------------------------</div>
 </div><!-- fragment --><p >Where:</p><ul>
-<li><b>cpu_core.core_clk.mul=32000000</b> specifies the virtual time, in this case 32MHz CPU clock.</li>
-<li><b>cpu_core.mps3_board.telnetterminal0.start_telnet=0</b> disables the Telnet connectivity.</li>
-<li><b>cpu_core.mps3_board.uart0.out_file=-</b> UART output is send to stdout.</li>
-<li><b>cpu_core.mps3_board.visualisation.disable-visualisation=1</b> disables the graphical user interface of the FVP. </li>
+<li><b>core_clk.mul=32000000</b> specifies the virtual time, in this case 32MHz CPU clock.</li>
+<li><b>mps3_board.telnetterminal0.start_telnet=0</b> disables the Telnet connectivity.</li>
+<li><b>mps3_board.uart0.out_file=-</b> UART output is send to stdout.</li>
+<li><b>mps3_board.visualisation.disable-visualisation=1</b> disables the graphical user interface of the FVP. </li>
 </ul>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
