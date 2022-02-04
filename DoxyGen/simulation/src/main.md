@@ -1,4 +1,4 @@
-\mainpage \prj_name Targets
+\mainpage Virtual Hardware Targets
 
 The **\prj_name Targets (VHT)** provide a functional accurate simulation of an Arm-based SoC and can be automated for scalable deployment in the CI development flow. This virtual platform can be used standalone or with development tools such as <a href="https://developer.arm.com/tools-and-software/embedded/arm-development-studio" target="_blank"><b>Arm Development Studio</b></a> or <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk" target="_blank"><b>Arm Keil MDK</b></a> with debug and trace capabilities supported as well.
 

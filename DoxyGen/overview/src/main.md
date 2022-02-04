@@ -72,7 +72,6 @@ Feature                         | Description
 :-------------------------------|:----------------
 **VSocket Interface**           | BSD socket interface that connects the application under test to networks, including public Internet.
 **VIO Interface**               | Simple interface to control I/O such as switches and LEDs via Python scripts.
-**Support in MDK-Professional** | Desktop development will be enabled in classic tooling, with priority on MDK. This complements our CI Cloud service that is already deployed.
 **Extended Target support**     | The Corstone-300 model is a Cortex-M55/Ethos-U55 simulation that allows to develop a wide range of applications. Support will be extended to many other Cortex-M processors.
 **Event Recorder CLI Tools**    | Event Recorder is currently supported in MDK. This support will be extended to off-line and command line tools.
 **More Usage Examples**         | Example projects help to get started: Audio/Video/Sensor I/O, Cloud connectivity, CI integration, Test code development is the range of examples we are working on.
