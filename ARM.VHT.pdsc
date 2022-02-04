@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.7.2">
+  <vendor>ARM</vendor>
+  <name>VHT</name>
+  <description>Arm Virtual Hardware Targets (VHT)</description>
+  <!-- <license>LICENSE</license> -->
+  <url>http://www.keil.com/pack/</url>
+
+  <releases>
+    <release version="1.0.0">
+      Initial release
+    </release>
+  </releases>
+
+  <conditions>
+    <condition id="VIO">
+      <description>Virtual I/O</description>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+    <condition id="VSocket">
+      <description>VSocket</description>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="CMSIS"  Cgroup="RTOS2"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="VIO" Cversion="1.0.0" Capiversion="0.1.0" condition="VIO">
+      <description>Virtual I/O implementation for Arm Virtual Hardware</description>
+      <files>
+        <file category="doc"     name="Documentation/simulation/html/group__arm__vio.html"/>
+        <file category="sourceC" name="interface/vio/vio_vht.c"/>
+      </files>
+    </component>
+    <component Cclass="IoT Utility" Cgroup="Socket" Csub="VSocket" Capiversion="1.2.0" Cversion="1.0.0" condition="VSocket">
+      <description>IoT Socket implementation for Arm Virtual Hardware</description>
+      <RTE_Components_h>
+        #define RTE_IoT_Socket                  /* IoT Socket */
+        #define RTE_IoT_Socket_VSocket          /* IoT Socket: VSocket */
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="Documentation/simulation/html/group__arm__vsocket.html"/>
+        <file category="sourceC" name="interface/vsocket/iot_socket.c"/>
+      </files>
+    </component>
+  </components>
+
+</package>
