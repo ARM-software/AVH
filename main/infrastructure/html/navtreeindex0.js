@@ -42,8 +42,10 @@ var NAVTREEINDEX0 =
 "run_ami_local.html#use_ssh":[2,2,0],
 "run_ami_local.html#use_vnc":[2,2,1],
 "run_mdk_pro.html":[5],
-"run_mdk_pro.html#mdk_cprj_export":[5,3],
-"run_mdk_pro.html#mdk_program_run":[5,2],
+"run_mdk_pro.html#mdk_cprj_export":[5,2],
+"run_mdk_pro.html#mdk_program_run":[5,3],
 "run_mdk_pro.html#mdk_project_config":[5,1],
-"run_mdk_pro.html#mdk_vht_install":[5,0]
+"run_mdk_pro.html#mdk_vht_debug":[5,1,1],
+"run_mdk_pro.html#mdk_vht_install":[5,0],
+"run_mdk_pro.html#mdk_vht_targets":[5,1,0]
 };

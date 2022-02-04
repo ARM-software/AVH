@@ -92,6 +92,7 @@ body, table, div, p, dl {
 ul {
 	list-style-type: disc;
 	padding-left: 2em;
+	margin-block-start: 0em;
 }
 
 li {
@@ -118,7 +119,7 @@ em {
 code {
 	font-family: monospace;
 	font-size: 85%;
-	line-height: 1.1;
+	line-height: 1.6;
 	background-color: var(--arm_light_gray2);
 	border-radius: 6px;
 	padding: 0.2em 0.4em;
@@ -271,6 +272,10 @@ div.multicol {
 	-webkit-column-count: 3;
 }
 
+p {
+	margin-block-start: 1em;
+	margin-block-end: 0.5em;
+}
 p.startli, p.startdd, p.starttd {
 	margin-top: 2px;
 }
@@ -378,6 +383,7 @@ pre.fragment {
 	padding: 0.2em 0.4em;
 	font-size: 85%;
 	line-height: 1.45;
+	margin: 0.5em 0px;
 }
 
 div.fragment {

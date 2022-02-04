@@ -25,7 +25,7 @@
 var NAVTREE =
 [
   [ "Simulation", "index.html", [
-    [ "Arm Virtual Hardware Targets", "index.html", [
+    [ "Virtual Hardware Targets", "index.html", [
       [ "Virtual Interfaces", "index.html#Virtual_Interfaces", null ],
       [ "Physical Hardware", "index.html#Physical_Hardware", null ],
       [ "Development Workflow", "index.html#Development_Workflow", null ],
