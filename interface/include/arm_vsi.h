@@ -1,5 +1,19 @@
 /*
  * Copyright (c) 2021-2022 Arm Limited. All rights reserved.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Licensed under the Apache License, Version 2.0 (the License); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 /*
@@ -24,18 +38,6 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-
-
-/* IRQ number assignment (should be moved to device header) */
-#define ARM_VSI0_IRQn   224
-#define ARM_VSI1_IRQn   225
-#define ARM_VSI2_IRQn   226
-#define ARM_VSI3_IRQn   227
-#define ARM_VSI4_IRQn   228
-#define ARM_VSI5_IRQn   229
-#define ARM_VSI6_IRQn   230
-#define ARM_VSI7_IRQn   231
-
 
 /// Structure type to access the virtual streaming interface
 typedef struct
@@ -86,39 +88,22 @@ typedef struct
 #define ARM_VSI_DMA_Direction_M2P       (1UL*ARM_VSI_DMA_Direction_Msk)         /*!< DMA Control: Direction M2P */
 
 /* Memory mapping of 8 VSI peripherals */
-#define ARM_VSI0_BASE     (0x5FF00000UL)                        /*!< VSI 0 Base Address */
-#define ARM_VSI1_BASE     (0x5FF10000UL)                        /*!< VSI 1 Base Address */
-#define ARM_VSI2_BASE     (0x5FF20000UL)                        /*!< VSI 2 Base Address */
-#define ARM_VSI3_BASE     (0x5FF30000UL)                        /*!< VSI 3 Base Address */
-#define ARM_VSI4_BASE     (0x5FF40000UL)                        /*!< VSI 4 Base Address */
-#define ARM_VSI5_BASE     (0x5FF50000UL)                        /*!< VSI 5 Base Address */
-#define ARM_VSI6_BASE     (0x5FF60000UL)                        /*!< VSI 6 Base Address */
-#define ARM_VSI7_BASE     (0x5FF70000UL)                        /*!< VSI 7 Base Address */
-#define ARM_VSI0_BASE_NS  (0x4FF00000UL)                        /*!< VSI 0 Base Address (non-secure address space) */
-#define ARM_VSI1_BASE_NS  (0x4FF10000UL)                        /*!< VSI 1 Base Address (non-secure address space) */
-#define ARM_VSI2_BASE_NS  (0x4FF20000UL)                        /*!< VSI 2 Base Address (non-secure address space) */
-#define ARM_VSI3_BASE_NS  (0x4FF30000UL)                        /*!< VSI 3 Base Address (non-secure address space) */
-#define ARM_VSI4_BASE_NS  (0x4FF40000UL)                        /*!< VSI 4 Base Address (non-secure address space) */
-#define ARM_VSI5_BASE_NS  (0x4FF50000UL)                        /*!< VSI 5 Base Address (non-secure address space) */
-#define ARM_VSI6_BASE_NS  (0x4FF60000UL)                        /*!< VSI 6 Base Address (non-secure address space) */
-#define ARM_VSI7_BASE_NS  (0x4FF70000UL)                        /*!< VSI 7 Base Address (non-secure address space) */
-#define ARM_VSI0          ((ARM_VSI_Type *)ARM_VSI0_BASE)       /*!< VSI 0 struct */
-#define ARM_VSI1          ((ARM_VSI_Type *)ARM_VSI1_BASE)       /*!< VSI 1 struct */
-#define ARM_VSI2          ((ARM_VSI_Type *)ARM_VSI2_BASE)       /*!< VSI 2 struct */
-#define ARM_VSI3          ((ARM_VSI_Type *)ARM_VSI3_BASE)       /*!< VSI 3 struct */
-#define ARM_VSI4          ((ARM_VSI_Type *)ARM_VSI4_BASE)       /*!< VSI 4 struct */
-#define ARM_VSI5          ((ARM_VSI_Type *)ARM_VSI5_BASE)       /*!< VSI 5 struct */
-#define ARM_VSI6          ((ARM_VSI_Type *)ARM_VSI6_BASE)       /*!< VSI 6 struct */
-#define ARM_VSI7          ((ARM_VSI_Type *)ARM_VSI7_BASE)       /*!< VSI 7 struct */
-#define ARM_VSI0_NS       ((ARM_VSI_Type *)ARM_VSI0_BASE_NS)    /*!< VSI 0 struct (non-secure address space) */
-#define ARM_VSI1_NS       ((ARM_VSI_Type *)ARM_VSI1_BASE_NS)    /*!< VSI 1 struct (non-secure address space) */
-#define ARM_VSI2_NS       ((ARM_VSI_Type *)ARM_VSI2_BASE_NS)    /*!< VSI 2 struct (non-secure address space) */
-#define ARM_VSI3_NS       ((ARM_VSI_Type *)ARM_VSI3_BASE_NS)    /*!< VSI 3 struct (non-secure address space) */
-#define ARM_VSI4_NS       ((ARM_VSI_Type *)ARM_VSI4_BASE_NS)    /*!< VSI 4 struct (non-secure address space) */
-#define ARM_VSI5_NS       ((ARM_VSI_Type *)ARM_VSI5_BASE_NS)    /*!< VSI 5 struct (non-secure address space) */
-#define ARM_VSI6_NS       ((ARM_VSI_Type *)ARM_VSI6_BASE_NS)    /*!< VSI 6 struct (non-secure address space) */
-#define ARM_VSI7_NS       ((ARM_VSI_Type *)ARM_VSI7_BASE_NS)    /*!< VSI 7 struct (non-secure address space) */
-
+#define ARM_VSI0_BASE           (0x4FF00000UL)                          /*!< VSI 0 Base Address */
+#define ARM_VSI1_BASE           (0x4FF10000UL)                          /*!< VSI 1 Base Address */
+#define ARM_VSI2_BASE           (0x4FF20000UL)                          /*!< VSI 2 Base Address */
+#define ARM_VSI3_BASE           (0x4FF30000UL)                          /*!< VSI 3 Base Address */
+#define ARM_VSI4_BASE           (0x4FF40000UL)                          /*!< VSI 4 Base Address */
+#define ARM_VSI5_BASE           (0x4FF50000UL)                          /*!< VSI 5 Base Address */
+#define ARM_VSI6_BASE           (0x4FF60000UL)                          /*!< VSI 6 Base Address */
+#define ARM_VSI7_BASE           (0x4FF70000UL)                          /*!< VSI 7 Base Address */
+#define ARM_VSI0                ((ARM_VSI_Type *)ARM_VSI0_BASE)         /*!< VSI 0 struct */
+#define ARM_VSI1                ((ARM_VSI_Type *)ARM_VSI1_BASE)         /*!< VSI 1 struct */
+#define ARM_VSI2                ((ARM_VSI_Type *)ARM_VSI2_BASE)         /*!< VSI 2 struct */
+#define ARM_VSI3                ((ARM_VSI_Type *)ARM_VSI3_BASE)         /*!< VSI 3 struct */
+#define ARM_VSI4                ((ARM_VSI_Type *)ARM_VSI4_BASE)         /*!< VSI 4 struct */
+#define ARM_VSI5                ((ARM_VSI_Type *)ARM_VSI5_BASE)         /*!< VSI 5 struct */
+#define ARM_VSI6                ((ARM_VSI_Type *)ARM_VSI6_BASE)         /*!< VSI 6 struct */
+#define ARM_VSI7                ((ARM_VSI_Type *)ARM_VSI7_BASE)         /*!< VSI 7 struct */
 
 #ifdef __cplusplus
 }
