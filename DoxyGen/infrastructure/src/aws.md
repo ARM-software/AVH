@@ -220,19 +220,28 @@ $ git clone https://github.com/arm-software/VHT-TFLmicrospeech.git
 
 For shared private projects your GitHub Username and Password key will be required to clone.
 
+Navigate to the example directory:
 ```
 $ cd ./VHT-TFLmicrospeech/Platform_FVP_Corstone_SSE-300_Ethos-U55
-
+```
+Install the necessary CMSIS Packs (you may need to change permissions for the script):
+```
+$ chmod 777 packlist.sh
+$ ./packlist.sh
+```
+Note that if this generated errors, you most likely have a legacy set up. Use this command to install packs instead:
+```
 $ cp_install.sh packlist
-
+```
+Build the example:
+```
 $ cbuild.sh microspeech.Example.cprj
-
+```
+When built, you can now run the example on the Virtual Hardware Target:
+```
 $ ./run_example.sh
 ```
-
-
-The output should display:
-
+The output should display similar to:
 ```
 Fast Models [11.15.14 (Jun 23 2021)]
 Copyright 2000-2021 ARM Limited.
