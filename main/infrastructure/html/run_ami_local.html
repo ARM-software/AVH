@@ -254,15 +254,13 @@ List AMI Inventory</h1>
 Running Micro Speech</h1>
 <p >Run the micro speech example. Connect to the EC2 instance using ssh as described above and then get the example, compile, and run. </p><div class="fragment"><div class="line">$ git clone https://github.com/arm-software/VHT-TFLmicrospeech.git</div>
 </div><!-- fragment --><p >For shared private projects your GitHub Username and Password key will be required to clone.</p>
-<div class="fragment"><div class="line">$ cd ./VHT-TFLmicrospeech/Platform_FVP_Corstone_SSE-300_Ethos-U55</div>
-<div class="line"> </div>
-<div class="line">$ cp_install.sh packlist</div>
-<div class="line"> </div>
-<div class="line">$ cbuild.sh microspeech.Example.cprj</div>
-<div class="line"> </div>
-<div class="line">$ ./run_example.sh</div>
-</div><!-- fragment --><p >The output should display:</p>
-<div class="fragment"><div class="line">Fast Models [11.15.14 (Jun 23 2021)]</div>
+<p >Navigate to the example directory: </p><div class="fragment"><div class="line">$ cd ./VHT-TFLmicrospeech/Platform_FVP_Corstone_SSE-300_Ethos-U55</div>
+</div><!-- fragment --><p> Install the necessary CMSIS Packs (you may need to change permissions for the script): </p><div class="fragment"><div class="line">$ chmod 777 packlist.sh</div>
+<div class="line">$ ./packlist.sh</div>
+</div><!-- fragment --><p> Note that if this generated errors, you most likely have a legacy set up. Use this command to install packs instead: </p><div class="fragment"><div class="line">$ cp_install.sh packlist</div>
+</div><!-- fragment --><p> Build the example: </p><div class="fragment"><div class="line">$ cbuild.sh microspeech.Example.cprj</div>
+</div><!-- fragment --><p> When built, you can now run the example on the Virtual Hardware Target: </p><div class="fragment"><div class="line">$ ./run_example.sh</div>
+</div><!-- fragment --><p> The output should display similar to: </p><div class="fragment"><div class="line">Fast Models [11.15.14 (Jun 23 2021)]</div>
 <div class="line">Copyright 2000-2021 ARM Limited.</div>
 <div class="line">All Rights Reserved.</div>
 <div class="line"> </div>
