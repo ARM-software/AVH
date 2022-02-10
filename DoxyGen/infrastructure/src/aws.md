@@ -131,7 +131,6 @@ Following output shall be expected by default:
 
 ```
 ubuntu@ip-10-252-70-253:~$ ./tool-inventory.sh
-Arm Compiler information:
 Product: ARM Compiler 6.16 Professional
 Component: ARM Compiler 6.16
 Tool: armclang [5dfeab00]
@@ -149,7 +148,7 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 Corstone-300 FVP information:
 
-Fast Models [11.15.24 (Aug 17 2021)]
+Fast Models [11.16.26 (Dec  9 2021)]
 Copyright 2000-2021 ARM Limited.
 All Rights Reserved.
 
@@ -158,39 +157,50 @@ Info: /OSCI/SystemC: Simulation stopped by user.
 
 
 Vela Compiler information:
-3.1.0
+3.2.0
 
 
 CMSIS build information:
-(cbuild.sh): Build Invocation 0.10.1 (C) 2021 ARM
+(cbuild.sh): Build Invocation 0.10.4 (C) 2021 ARM
+error: missing required argument <project>.cprj
 Usage:
   cbuild.sh <ProjectFile>.cprj
-  [--toolchain=<Toolchain> --outdir=<OutDir> --intdir=<IntDir> <MakefileTarget>]
+  [--toolchain=<Toolchain> --outdir=<OutDir> --intdir=<IntDir> <CMakeTarget>]
 
   <ProjectFile>.cprj      : CMSIS Project Description input file
   --toolchain=<Toolchain> : select the toolchain
   --intdir=<IntDir>       : set intermediate directory
   --outdir=<OutDir>       : set output directory
-  <MakefileTarget>        : optional makefile target name, for example 'clean'
   --quiet                 : suppress output messages except build invocations
-  --merge                 : update of config with ccmerge
   --clean                 : remove intermediate and output directories
   --update=<CprjFile>     : generate <CprjFile> for reproducing current build
   --help                  : launch documentation and exit
   --log=<LogFile>         : save output messages in a log file
   --jobs=<N>              : number of job slots for parallel execution
-  --cmake[=<BuildSystem>] : generate CMakeLists.txt and invoke cmake
-                            default <BuildSystem>=Ninja
+  --cmake[=<BuildSystem>] : select build system, default <BuildSystem>=Ninja
+  <CMakeTarget>           : optional CMake target name
 
 
 Arm Fast Models information:
 Fast Models
 
-System Canvas 11.16.14  (Sep 29 2021)
+System Canvas 11.16.24  (Nov  4 2021)
 Copyright 2000-2021 ARM Limited.
 All Rights Reserved.
 
-$PVLIB_HOME = /opt/FM/FastModelsPortfolio_11.16 (Version = 11.16.14)
+$PVLIB_HOME = /opt/FM/FastModelsPortfolio_11.16 (Version = 11.16.24)
+
+Arm Virtual Hardware Targets:
+/opt/VHT/VHT_Corstone_SSE-300_Ethos-U55
+/opt/VHT/VHT_Corstone_SSE-300_Ethos-U65
+/opt/VHT/VHT_MPS2_Cortex-M0
+/opt/VHT/VHT_MPS2_Cortex-M0plus
+/opt/VHT/VHT_MPS2_Cortex-M23
+/opt/VHT/VHT_MPS2_Cortex-M3
+/opt/VHT/VHT_MPS2_Cortex-M33
+/opt/VHT/VHT_MPS2_Cortex-M4
+/opt/VHT/VHT_MPS2_Cortex-M7
+/opt/VHT/VHT_MPS3_Corstone_SSE-300
 ```
 
 For the list of locally installed CMSIS Packs use:

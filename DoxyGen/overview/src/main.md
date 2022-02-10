@@ -36,8 +36,8 @@ Section                                                    | Description
 
 ## Verify Correctness {#Verify}
 
-**\prj_name Targets** are based on Arm simulation models that are validated with the same process as the IP. Specially it allows you to:
- - Algorithm testing with identical logical behaviour of the target device
+**Arm Virtual Hardware Targets** are based on Arm simulation models that are validated with the same process as the IP. Specially it allows you to:
+ - Perform algorithm testing with identical logical behaviour of the target device
  - Precisely repeat complex input patterns in CI/CD test environments
  - Analyse software behaviour with event annotations
 
@@ -56,7 +56,7 @@ Applying continuous integration work flows for embedded applications can be comp
 
 \image html "effort_comparison.png" "Comparison of test efforts in CI and no CI workflows"
 
-**\prj_name** simplifies the setup and use of CI workflows in embedded projects. 
+**Arm Virtual Hardware** simplifies the setup and use of CI workflows in embedded projects.
 
 For unit and integration tests virtual targets offer additional advantages over hardware, including:
  - **Speed** - no overhead for flashing the application on physical hardware. This saves time on small and fast unit tests. 
@@ -66,24 +66,20 @@ For unit and integration tests virtual targets offer additional advantages over 
 
 # Product Roadmap {#Roadmap}
 
-\prj_name is now in public beta phase. The table below shows features that we will deploy in the **next 6 months**.  During the beta phase, you may evaluate how our products help in your development processes. The feature roadmap of \prj_name gives you indication what to expect. We will release this features as they become available during the beta phase to allow product evaluation before the final release.
+Arm Virtual Hardware is now in public beta phase. The table below shows features that we will deploy in the **next 6 months**.  During the beta phase, you may evaluate how our products help in your development processes. The feature roadmap of Arm Virtual Hardware gives you indication what to expect. We will release this features as they become available during the beta phase to allow product evaluation before the final release.
 
 Feature                         | Description     
 :-------------------------------|:----------------
-**VSocket Interface**           | BSD socket interface that connects the application under test to networks, including public Internet.
-**VIO Interface**               | Simple interface to control I/O such as switches and LEDs via Python scripts.
-**Extended Target support**     | The Corstone-300 model is a Cortex-M55/Ethos-U55 simulation that allows to develop a wide range of applications. Support will be extended to many other Cortex-M processors.
 **Event Recorder CLI Tools**    | Event Recorder is currently supported in MDK. This support will be extended to off-line and command line tools.
 **More Usage Examples**         | Example projects help to get started: Audio/Video/Sensor I/O, Cloud connectivity, CI integration, Test code development is the range of examples we are working on.
 
 # Known Limitations {#Issues}
 
-The current beta version of of \prj_name has the following known issues:
+The current beta version of of Arm Virtual Hardware has the following known issues:
 
-[**VSI Interface**](../../simulation/html/group__arm__vsi.html)
-  - With TrustZone enabled, the DMA of the Cortex-M55 processor does not work in Secure mode in the address ranges of the TCM aliases (0x10000000 ITCM and 0x3000000 DTCM).
+[**Virtual Peripherals**](../../simulation/html/group__arm__cmvp.html),
+  - After processor reset virtual interfaces may not work correctly. so it is required to restart the debug/run session.
 
 # Feedback and Support {#Support}
 
-The \prj_name is supported during public beta via this [Arm forum](https://community.arm.com/support-forums/f/arm-virtual-hardware-targets-forum). Your feedback will influence our future roadmap and we try to help you promptly with your questions.
-
+Arm Virtual Hardware is supported during public beta via this [Arm forum](https://community.arm.com/support-forums/f/arm-virtual-hardware-targets-forum). Your feedback will influence our future roadmap and we try to help you promptly with your questions.

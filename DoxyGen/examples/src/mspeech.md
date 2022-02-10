@@ -405,7 +405,7 @@ In Github, go the *Runner* tab to see the runner listed and idle
 
 
 <a name="further"></a>
-### 5. To go further
+## 5. To go further
 
 The Machine Learning Group at Arm have developed [other examples](https://review.mlplatform.org/plugins/gitiles/ml/ethos-u/ml-embedded-evaluation-kit/) which can be run in with the Arm Virtual Hardware AMI.
 
