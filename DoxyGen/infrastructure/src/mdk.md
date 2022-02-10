@@ -32,21 +32,21 @@ Two important configuration areas need special attention in MDK projects for Arm
 
 Table below lists the Cortex-M cores supported with Arm VHTs, corresponding VHT device names to be used in \ref mdk_vht_targets, the CMSIS Pack with device support, as well as simulation models to be selected in \ref mdk_vht_debug.
 
-Arm Cortex-M Core | VHT Device Name     | CMSIS Pack Name           | VHT Model<sup> 1</sup>                          |   Description
+Arm Cortex-M Core | VHT Device Name     | CMSIS Pack with the VHT Device | VHT launch command in MDK<sup> 1</sup>                          |   Description
 :-----------------|:--------------------|:--------------------------|:-------------------------------------|:-------------------------------
 Cortex-M0         | CMSDK_M0_VHT      | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M0_MDK.exe |Arm VHT device with Cortex-M0 core
-Cortex-M0+        | CMSDK_M0plus_VHT  | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M0plus_MDK.exe | Arm VHT device with Cortex-M0+ core 
-Cortex-M3         | CMSDK_M3_VHT      | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M3_MDK.exe | Arm VHT device with Cortex-M3 core 
-Cortex-M4         | CMSDK_M4_VHT      | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M4_MDK.exe | Arm VHT device with Cortex-M4+ core 
+Cortex-M0+        | CMSDK_M0plus_VHT  | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M0plus_MDK.exe | Arm VHT device with Cortex-M0+ core
+Cortex-M3         | CMSDK_M3_VHT      | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M3_MDK.exe | Arm VHT device with Cortex-M3 core
+Cortex-M4         | CMSDK_M4_VHT      | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M4_MDK.exe | Arm VHT device with Cortex-M4+ core
 Cortex-M4FP       | CMSDK_M4FP_VHT    | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M4_MDK.exe | Arm VHT device with Cortex-M4 core and Floating Point Unit (FPU) support
-Cortex-M7SP       | CMSDK_M7SP_VHT    | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M7_MDK.exe | Arm VHT device with Cortex-M7 core and Single Precision FPU support 
+Cortex-M7SP       | CMSDK_M7SP_VHT    | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M7_MDK.exe | Arm VHT device with Cortex-M7 core and Single Precision FPU support
 Cortex-M7DP       | CMSDK_M7SP_VHT    | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M7_MDK.exe | Arm VHT device with Cortex-M7 core and Double Precision FPU support
 Cortex-M23        | IOTKit_CM23_VHT   | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M23_MDK.exe | Arm VHT device with Cortex-M32 core
 Cortex-M33        | IOTKit_CM33_VHT   | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M33_MDK.exe | Arm VHT device with Cortex-M33 core
 Cortex-M33FP      | IOTKit_CM33FP_VHT | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M33_MDK.exe | Arm VHT device with Cortex-M33 core and Floating Point Unit support
-Cortex-M55        | SSE-300-MPS3_VHT  | To be defined | VHT_MPS3_Corestone_SSE-300.exe<br>VHT_Corestone_SSE-300_Ethos-U55.exe<br>VHT_Corestone_SSE-300_Ethos-U65.exe| Arm VHT Corstone-300 SoC with Cortex-M55.<br>Same VHT device definition is used, but a VHT model shall be selected<br>depending on the required microNPU (none, Ethos-U55 or Ethos-65)
+Cortex-M55        | SSE-300-MPS3_VHT  | To be defined | VHT_MPS3_Corstone_SSE-300.bat<br>VHT_Corstone_SSE-300_Ethos-U55.bat<br>VHT_Corstone_SSE-300_Ethos-U65.bat| Arm VHT Corstone-300 SoC with Cortex-M55.<br>Same VHT device definition is used, but a VHT model shall be selected<br>depending on the required microNPU (none, Ethos-U55 or Ethos-65)
 
->  <sup>1</sup> The VHT Models can be found in the MDK VHT AddOn installation directory. For example,`C:/Keil_v5/ARM/VHT/`.
+>  <sup>1</sup> The VHT models can be found in the MDK VHT AddOn installation directory provided during \ref mdk_vht_install, for example,`C:/Keil_v5/ARM/VHT/`. Note that when available, a .bat script shall be used to launch a VHT model from MDK.
 
 ### Target selection {#mdk_vht_targets}
 
@@ -101,6 +101,6 @@ Universal [.cprj format](https://arm-software.github.io/CMSIS_5/Build/html/cprjF
 Project build and debug on a VHT can be done in the similar way as any other Keil MDK project:
 
  - Press _Rebuild_ button in µVision toolbar (or use `F7` hotkey).
- - Start the debug session from µVision toolbar (or with `Ctrl-F5`). The model executable window should pop up ( with `C:\WINDOWS\system32\cmd.exe`) but it will stay empty during the session.
+ - Start the debug session from µVision toolbar (or with `Ctrl-F5`). The model executable window should pop up (with `C:\WINDOWS\system32\cmd.exe`) but it will stay empty during the session.
  - If enabled in \ref mdk_vht_debug, a Telnet client will start. Program output should be expected there.
  - Debug the project as usual with available µVision functionality. Refer to [µVision User's Guide](https://www.keil.com/support/man/docs/uv4/) for details about user interface and debug capabilities.
