@@ -148,7 +148,7 @@ Test without Hardware</h2>
 <h2><a class="anchor" id="Verify"></a>
 Verify Correctness</h2>
 <p ><b>Arm Virtual Hardware Targets</b> are based on Arm simulation models that are validated with the same process as the IP. Specially it allows you to:</p><ul>
-<li>Algorithm testing with identical logical behaviour of the target device</li>
+<li>Perform algorithm testing with identical logical behaviour of the target device</li>
 <li>Precisely repeat complex input patterns in CI/CD test environments</li>
 <li>Analyse software behaviour with event annotations</li>
 </ul>
@@ -181,25 +181,19 @@ Product Roadmap</h1>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">Feature   </th><th class="markdownTableHeadLeft">Description    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><b>VSocket Interface</b>   </td><td class="markdownTableBodyLeft">BSD socket interface that connects the application under test to networks, including public Internet.    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><b>VIO Interface</b>   </td><td class="markdownTableBodyLeft">Simple interface to control I/O such as switches and LEDs via Python scripts.    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><b>Extended Target support</b>   </td><td class="markdownTableBodyLeft">The Corstone-300 model is a Cortex-M55/Ethos-U55 simulation that allows to develop a wide range of applications. Support will be extended to many other Cortex-M processors.    </td></tr>
-<tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><b>Event Recorder CLI Tools</b>   </td><td class="markdownTableBodyLeft">Event Recorder is currently supported in MDK. This support will be extended to off-line and command line tools.    </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><b>More Usage Examples</b>   </td><td class="markdownTableBodyLeft">Example projects help to get started: Audio/Video/Sensor I/O, Cloud connectivity, CI integration, Test code development is the range of examples we are working on.   </td></tr>
 </table>
 <h1><a class="anchor" id="Issues"></a>
 Known Limitations</h1>
 <p >The current beta version of of Arm Virtual Hardware has the following known issues:</p>
-<p ><a href="../../simulation/html/group__arm__vsi.html"><b>VSI Interface</b></a></p><ul>
-<li>With TrustZone enabled, the DMA of the Cortex-M55 processor does not work in Secure mode in the address ranges of the TCM aliases (0x10000000 ITCM and 0x3000000 DTCM).</li>
+<p ><a href="../../simulation/html/group__arm__cmvp.html"><b>Virtual Peripherals</b></a>,</p><ul>
+<li>After processor reset virtual interfaces may not work correctly. so it is required to restart the debug/run session.</li>
 </ul>
 <h1><a class="anchor" id="Support"></a>
 Feedback and Support</h1>
-<p >The Arm Virtual Hardware is supported during public beta via this <a href="https://community.arm.com/support-forums/f/arm-virtual-hardware-targets-forum">Arm forum</a>. Your feedback will influence our future roadmap and we try to help you promptly with your questions. </p>
+<p >Arm Virtual Hardware is supported during public beta via this <a href="https://community.arm.com/support-forums/f/arm-virtual-hardware-targets-forum">Arm forum</a>. Your feedback will influence our future roadmap and we try to help you promptly with your questions. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

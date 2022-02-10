@@ -28,7 +28,7 @@ var NAVTREEINDEX0 =
 "MicroSpeech.html#autotoc_md19":[1,0,3,1],
 "MicroSpeech.html#autotoc_md20":[1,0,3,2],
 "MicroSpeech.html#autotoc_md21":[1,0,3,3],
-"MicroSpeech.html#autotoc_md22":[1,0,3,4],
+"MicroSpeech.html#autotoc_md22":[1,0,4],
 "MicroSpeech.html#autotoc_md3":[1,0],
 "MicroSpeech.html#autotoc_md4":[1,0,0],
 "MicroSpeech.html#autotoc_md5":[1,0,1],

@@ -146,7 +146,7 @@ Project Configuration</h1>
 <p >Table below lists the Cortex-M cores supported with Arm VHTs, corresponding VHT device names to be used in <a class="el" href="run_mdk_pro.html#mdk_vht_targets">Target selection</a>, the CMSIS Pack with device support, as well as simulation models to be selected in <a class="el" href="run_mdk_pro.html#mdk_vht_debug">VHT run and debug configuration</a>.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">Arm Cortex-M Core   </th><th class="markdownTableHeadLeft">VHT Device Name   </th><th class="markdownTableHeadLeft">CMSIS Pack Name   </th><th class="markdownTableHeadLeft">VHT Model<sup> 1</sup>   </th><th class="markdownTableHeadLeft">Description    </th></tr>
+<th class="markdownTableHeadLeft">Arm Cortex-M Core   </th><th class="markdownTableHeadLeft">VHT Device Name   </th><th class="markdownTableHeadLeft">CMSIS Pack with the VHT Device   </th><th class="markdownTableHeadLeft">VHT launch command in MDK<sup> 1</sup>   </th><th class="markdownTableHeadLeft">Description    </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">Cortex-M0   </td><td class="markdownTableBodyLeft">CMSDK_M0_VHT   </td><td class="markdownTableBodyLeft">Keil.V2M-MPS2_CMx_BSP from v1.8.0   </td><td class="markdownTableBodyLeft">VHT_MPS2_Cortex-M0_MDK.exe   </td><td class="markdownTableBodyLeft">Arm VHT device with Cortex-M0 core    </td></tr>
 <tr class="markdownTableRowEven">
@@ -168,14 +168,14 @@ Project Configuration</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">Cortex-M33FP   </td><td class="markdownTableBodyLeft">IOTKit_CM33FP_VHT   </td><td class="markdownTableBodyLeft">Keil.V2M-MPS2_IOTKit_BSP from v1.5.0   </td><td class="markdownTableBodyLeft">VHT_MPS2_Cortex-M33_MDK.exe   </td><td class="markdownTableBodyLeft">Arm VHT device with Cortex-M33 core and Floating Point Unit support    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">Cortex-M55   </td><td class="markdownTableBodyLeft">SSE-300-MPS3_VHT   </td><td class="markdownTableBodyLeft">To be defined   </td><td class="markdownTableBodyLeft">VHT_MPS3_Corestone_SSE-300.exe<br  />
-VHT_Corestone_SSE-300_Ethos-U55.exe<br  />
-VHT_Corestone_SSE-300_Ethos-U65.exe   </td><td class="markdownTableBodyLeft">Arm VHT Corstone-300 SoC with Cortex-M55.<br  />
+<td class="markdownTableBodyLeft">Cortex-M55   </td><td class="markdownTableBodyLeft">SSE-300-MPS3_VHT   </td><td class="markdownTableBodyLeft">To be defined   </td><td class="markdownTableBodyLeft">VHT_MPS3_Corstone_SSE-300.bat<br  />
+VHT_Corstone_SSE-300_Ethos-U55.bat<br  />
+VHT_Corstone_SSE-300_Ethos-U65.bat   </td><td class="markdownTableBodyLeft">Arm VHT Corstone-300 SoC with Cortex-M55.<br  />
 Same VHT device definition is used, but a VHT model shall be selected<br  />
 depending on the required microNPU (none, Ethos-U55 or Ethos-65)   </td></tr>
 </table>
 <blockquote class="doxtable">
-<p ><sup>1</sup> The VHT Models can be found in the MDK VHT AddOn installation directory. For example,<code>C:/Keil_v5/ARM/VHT/</code>. </p>
+<p ><sup>1</sup> The VHT models can be found in the MDK VHT AddOn installation directory provided during <a class="el" href="run_mdk_pro.html#mdk_vht_install">Tools Installation</a>, for example,<code>C:/Keil_v5/ARM/VHT/</code>. Note that when available, a .bat script shall be used to launch a VHT model from MDK. </p>
 </blockquote>
 <h2><a class="anchor" id="mdk_vht_targets"></a>
 Target selection</h2>
@@ -234,7 +234,7 @@ Program Build and Debug</h1>
 <p >Project build and debug on a VHT can be done in the similar way as any other Keil MDK project:</p>
 <ul>
 <li>Press <em>Rebuild</em> button in µVision toolbar (or use <code>F7</code> hotkey).</li>
-<li>Start the debug session from µVision toolbar (or with <code>Ctrl-F5</code>). The model executable window should pop up ( with <code>C:\WINDOWS\system32\cmd.exe</code>) but it will stay empty during the session.</li>
+<li>Start the debug session from µVision toolbar (or with <code>Ctrl-F5</code>). The model executable window should pop up (with <code>C:\WINDOWS\system32\cmd.exe</code>) but it will stay empty during the session.</li>
 <li>If enabled in <a class="el" href="run_mdk_pro.html#mdk_vht_debug">VHT run and debug configuration</a>, a Telnet client will start. Program output should be expected there.</li>
 <li>Debug the project as usual with available µVision functionality. Refer to <a href="https://www.keil.com/support/man/docs/uv4/">µVision User's Guide</a> for details about user interface and debug capabilities. </li>
 </ul>

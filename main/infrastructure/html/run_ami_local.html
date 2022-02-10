@@ -180,7 +180,6 @@ List AMI Inventory</h1>
 <div class="fragment"><div class="line">$ ./tool-inventory.sh</div>
 </div><!-- fragment --><p >Following output shall be expected by default:</p>
 <div class="fragment"><div class="line">ubuntu@ip-10-252-70-253:~$ ./tool-inventory.sh</div>
-<div class="line">Arm Compiler information:</div>
 <div class="line">Product: ARM Compiler 6.16 Professional</div>
 <div class="line">Component: ARM Compiler 6.16</div>
 <div class="line">Tool: armclang [5dfeab00]</div>
@@ -198,7 +197,7 @@ List AMI Inventory</h1>
 <div class="line"> </div>
 <div class="line">Corstone-300 FVP information:</div>
 <div class="line"> </div>
-<div class="line">Fast Models [11.15.24 (Aug 17 2021)]</div>
+<div class="line">Fast Models [11.16.26 (Dec  9 2021)]</div>
 <div class="line">Copyright 2000-2021 ARM Limited.</div>
 <div class="line">All Rights Reserved.</div>
 <div class="line"> </div>
@@ -207,39 +206,50 @@ List AMI Inventory</h1>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line">Vela Compiler information:</div>
-<div class="line">3.1.0</div>
+<div class="line">3.2.0</div>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line">CMSIS build information:</div>
-<div class="line">(cbuild.sh): Build Invocation 0.10.1 (C) 2021 ARM</div>
+<div class="line">(cbuild.sh): Build Invocation 0.10.4 (C) 2021 ARM</div>
+<div class="line">error: missing required argument &lt;project&gt;.cprj</div>
 <div class="line">Usage:</div>
 <div class="line">  cbuild.sh &lt;ProjectFile&gt;.cprj</div>
-<div class="line">  [--toolchain=&lt;Toolchain&gt; --outdir=&lt;OutDir&gt; --intdir=&lt;IntDir&gt; &lt;MakefileTarget&gt;]</div>
+<div class="line">  [--toolchain=&lt;Toolchain&gt; --outdir=&lt;OutDir&gt; --intdir=&lt;IntDir&gt; &lt;CMakeTarget&gt;]</div>
 <div class="line"> </div>
 <div class="line">  &lt;ProjectFile&gt;.cprj      : CMSIS Project Description input file</div>
 <div class="line">  --toolchain=&lt;Toolchain&gt; : select the toolchain</div>
 <div class="line">  --intdir=&lt;IntDir&gt;       : set intermediate directory</div>
 <div class="line">  --outdir=&lt;OutDir&gt;       : set output directory</div>
-<div class="line">  &lt;MakefileTarget&gt;        : optional makefile target name, for example &#39;clean&#39;</div>
 <div class="line">  --quiet                 : suppress output messages except build invocations</div>
-<div class="line">  --merge                 : update of config with ccmerge</div>
 <div class="line">  --clean                 : remove intermediate and output directories</div>
 <div class="line">  --update=&lt;CprjFile&gt;     : generate &lt;CprjFile&gt; for reproducing current build</div>
 <div class="line">  --help                  : launch documentation and exit</div>
 <div class="line">  --log=&lt;LogFile&gt;         : save output messages in a log file</div>
 <div class="line">  --jobs=&lt;N&gt;              : number of job slots for parallel execution</div>
-<div class="line">  --cmake[=&lt;BuildSystem&gt;] : generate CMakeLists.txt and invoke cmake</div>
-<div class="line">                            default &lt;BuildSystem&gt;=Ninja</div>
+<div class="line">  --cmake[=&lt;BuildSystem&gt;] : select build system, default &lt;BuildSystem&gt;=Ninja</div>
+<div class="line">  &lt;CMakeTarget&gt;           : optional CMake target name</div>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line">Arm Fast Models information:</div>
 <div class="line">Fast Models</div>
 <div class="line"> </div>
-<div class="line">System Canvas 11.16.14  (Sep 29 2021)</div>
+<div class="line">System Canvas 11.16.24  (Nov  4 2021)</div>
 <div class="line">Copyright 2000-2021 ARM Limited.</div>
 <div class="line">All Rights Reserved.</div>
 <div class="line"> </div>
-<div class="line">$PVLIB_HOME = /opt/FM/FastModelsPortfolio_11.16 (Version = 11.16.14)</div>
+<div class="line">$PVLIB_HOME = /opt/FM/FastModelsPortfolio_11.16 (Version = 11.16.24)</div>
+<div class="line"> </div>
+<div class="line">Arm Virtual Hardware Targets:</div>
+<div class="line">/opt/VHT/VHT_Corstone_SSE-300_Ethos-U55</div>
+<div class="line">/opt/VHT/VHT_Corstone_SSE-300_Ethos-U65</div>
+<div class="line">/opt/VHT/VHT_MPS2_Cortex-M0</div>
+<div class="line">/opt/VHT/VHT_MPS2_Cortex-M0plus</div>
+<div class="line">/opt/VHT/VHT_MPS2_Cortex-M23</div>
+<div class="line">/opt/VHT/VHT_MPS2_Cortex-M3</div>
+<div class="line">/opt/VHT/VHT_MPS2_Cortex-M33</div>
+<div class="line">/opt/VHT/VHT_MPS2_Cortex-M4</div>
+<div class="line">/opt/VHT/VHT_MPS2_Cortex-M7</div>
+<div class="line">/opt/VHT/VHT_MPS3_Corstone_SSE-300</div>
 </div><!-- fragment --><p >For the list of locally installed CMSIS Packs use:</p>
 <div class="fragment"><div class="line">$ cp_list.sh</div>
 </div><!-- fragment --><p >For example, default output on a new AMI instance would be:</p>

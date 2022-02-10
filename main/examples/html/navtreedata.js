@@ -61,9 +61,9 @@ var NAVTREE =
           [ "4.1. Configure GitHub Actions", "MicroSpeech.html#autotoc_md18", null ],
           [ "4.2. Setup runner on AMI", "MicroSpeech.html#autotoc_md19", null ],
           [ "4.3. GitHub Actions workflow", "MicroSpeech.html#autotoc_md20", null ],
-          [ "4.4. Demonstration of a failed workflow", "MicroSpeech.html#autotoc_md21", null ],
-          [ "5. To go further", "MicroSpeech.html#autotoc_md22", null ]
-        ] ]
+          [ "4.4. Demonstration of a failed workflow", "MicroSpeech.html#autotoc_md21", null ]
+        ] ],
+        [ "5. To go further", "MicroSpeech.html#autotoc_md22", null ]
       ] ]
     ] ],
     [ "ATS-Keyword Example", "ATS-Keyword.html", [

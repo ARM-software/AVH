@@ -110,26 +110,42 @@ $(document).ready(function(){initNavTree('Using.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Using Arm Virtual Hardware Targets </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >This section describes how to use the <b>Arm Virtual Hardware Targets (VHT)</b>. <br  />
-</p>
-<p >The VHT simulation models are based on the <a href="https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms">Arm Fast Models Fix Virtual Platforms</a> with extensions for <a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a>. The table below shows the available models:</p>
+<div class="textblock"><p >This section describes how to use the <b>Arm Virtual Hardware Targets (VHT)</b>.</p>
+<p >The VHT simulation models are based on the <a href="https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms">Arm Fast Models Fixed Virtual Platforms</a> with extensions for <a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a>. The table below shows the available models:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">VHT Simulation Models   </th><th class="markdownTableHeadLeft">Processors   </th><th class="markdownTableHeadLeft">Overview Description    </th></tr>
+<th class="markdownTableHeadLeft">VHT Simulation Models   </th><th class="markdownTableHeadLeft">Processor Core   </th><th class="markdownTableHeadLeft">Overview Description    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">VHT-Corstone-300   </td><td class="markdownTableBodyLeft">Cortex-M55, Ethos-U55   </td><td class="markdownTableBodyLeft"><a href="./Corstone_SSE-300_Ethos-U55_FVP_MPS3_Technical_Overview.pdf">Corstone-300 FVP Technical Overview (PDF)</a>   </td></tr>
+<td class="markdownTableBodyLeft">VHT_MPS2_Cortex-M0   </td><td class="markdownTableBodyLeft">Cortex-M0   </td><td class="markdownTableBodyLeft"><a href="https://developer.arm.com/documentation/dai0382">ARM Cortex-M0 SMM on V2M-MPS2, (AppNote AN382)</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">VHT_MPS2_Cortex-M0plus   </td><td class="markdownTableBodyLeft">Cortex-M0plus   </td><td class="markdownTableBodyLeft"><a href="https://developer.arm.com/documentation/dai0383">ARM Cortex-M0+ SMM on V2M-MPS2 (AppNote AN383)</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">VHT_MPS2_Cortex-M3   </td><td class="markdownTableBodyLeft">Cortex-M3   </td><td class="markdownTableBodyLeft"><a href="https://developer.arm.com/documentation/dai0385">ARM Cortex-M3 SMM on V2M-MPS2 (AppNote AN385)</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">VHT_MPS2_Cortex-M4   </td><td class="markdownTableBodyLeft">Cortex-M4   </td><td class="markdownTableBodyLeft"><a href="https://developer.arm.com/documentation/dai0386">ARM Cortex-M4 SMM on V2M-MPS2 (AppNote AN386)</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">VHT_MPS2_Cortex-M7   </td><td class="markdownTableBodyLeft">Cortex-M7   </td><td class="markdownTableBodyLeft"><a href="https://developer.arm.com/documentation/dai0386">ARM Cortex-M7 SMM on V2M-MPS2 (AppNote AN399)</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">VHT_MPS2_Cortex-M23   </td><td class="markdownTableBodyLeft">Cortex-M23   </td><td class="markdownTableBodyLeft"><a href="https://developer.arm.com/documentation/dai0519">ARM Cortex-M23 IoT Subsystem for V2M-MPS2+ (AppNote AN519)</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">VHT_MPS2_Cortex-M33   </td><td class="markdownTableBodyLeft">Cortex-M33   </td><td class="markdownTableBodyLeft"><a href="https://developer.arm.com/documentation/dai0505">ARM Cortex-M33 IoT Subsystem for V2M-MPS2+ (AppNote AN505)</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">VHT_MPS3_Corstone_SSE-300   </td><td class="markdownTableBodyLeft">Cortex-M55   </td><td class="markdownTableBodyLeft"><a href="./Corstone_SSE-300_Ethos-U55_FVP_MPS3_Technical_Overview.pdf">Corstone-300 FVP Technical Overview (PDF)</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">VHT_Corstone_SSE-300_Ethos-U55   </td><td class="markdownTableBodyLeft">Cortex-M55, Ethos-U55   </td><td class="markdownTableBodyLeft"><a href="./Corstone_SSE-300_Ethos-U55_FVP_MPS3_Technical_Overview.pdf">Corstone-300 FVP Technical Overview (PDF)</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">VHT_Corstone_SSE-300_Ethos-U65   </td><td class="markdownTableBodyLeft">Cortex-M55, Ethos-U65   </td><td class="markdownTableBodyLeft"><a href="./Corstone_SSE-300_Ethos-U55_FVP_MPS3_Technical_Overview.pdf">Corstone-300 FVP Technical Overview (PDF)</a>   </td></tr>
 </table>
-<dl class="section note"><dt>Note</dt><dd>ON ROADMAP: Extensions that capture Event Recorder annotations are in development. </dd>
-<dd>
-ON ROADMAP: VHT simulation models for other Cortex-M processors.</dd></dl>
+<p >VHT models can be executed in Linux environment by using their model names, for example <code>VHT_Corestone_SSE-300_Ethos-U55</code>, and on Windows platform the models are provided as executables files, for example <code>VHT_Corestone_SSE-300_Ethos-U55.exe</code>.</p>
 <h1><a class="anchor" id="Options"></a>
 Command Line Options</h1>
-<p >The command line options can be listed using the -help command. For example:</p>
-<div class="fragment"><div class="line">VHT-Corstone-300.exe -help</div>
+<p >The command line options can be listed using the -help command. For example in Linux environment:</p>
+<div class="fragment"><div class="line">VHT_Corestone_SSE-300_Ethos-U55 -help</div>
 </div><!-- fragment --><p >The VHT simulation models can be configured using the option <em>-f FILE</em> that specifies a <em>config-file</em>. The available <em>config-file</em> options can be listed with the option <em>-l</em>.</p>
 <h1><a class="anchor" id="Example"></a>
 Usage Example</h1>
-<div class="fragment"><div class="line">VHT-Corstone-300.exe -V &quot;..\VSI\audio\python&quot; -f fvp_config.txt -a Objects\microspeech.axf --stat --cyclelimit 768000000</div>
+<p >Below is an example of running a program on the VHT model for Corstone-300 with Ethos-U55 in Linux environment:</p>
+<div class="fragment"><div class="line">VHT_Corstone_SSE-300_Ethos-U55 -V &quot;..\VSI\audio\python&quot; -f vht_config.txt -a Objects\microspeech.axf --stat --cyclelimit 768000000</div>
 </div><!-- fragment --><p >Where:</p><ul>
 <li><b>-V</b> specifies that path to the Python scripts for <a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a>.</li>
 <li><b>-f</b> specifies the <em>config-file</em> for the VHT simulation model.</li>
@@ -137,7 +153,7 @@ Usage Example</h1>
 <li><b>&ndash;stat</b> instructs to print run statistics on simulation exit.</li>
 <li><b>&ndash;cyclelimit</b> specifies a cycle limit where the simulation terminates.</li>
 </ul>
-<p >The content of the <em>fvp_config.txt</em> could be: </p><div class="fragment"><div class="line"># Parameters:</div>
+<p >The content of the <em>vht_config.txt</em> could be: </p><div class="fragment"><div class="line"># Parameters:</div>
 <div class="line"># instance.parameter=value       #(type, mode) default = &#39;def value&#39; : description : [min..max]</div>
 <div class="line">#------------------------------------------------------------------------------</div>
 <div class="line">core_clk.mul=32000000                                 # (int   , init-time) default = &#39;0x17d7840&#39; : Clock Rate Multiplier. This parameter is not exposed via CADI and can only be set in LISA</div>
@@ -149,7 +165,7 @@ Usage Example</h1>
 <li><b>core_clk.mul=32000000</b> specifies the virtual time, in this case 32MHz CPU clock.</li>
 <li><b>mps3_board.telnetterminal0.start_telnet=0</b> disables the Telnet connectivity.</li>
 <li><b>mps3_board.uart0.out_file=-</b> UART output is send to stdout.</li>
-<li><b>mps3_board.visualisation.disable-visualisation=1</b> disables the graphical user interface of the FVP. </li>
+<li><b>mps3_board.visualisation.disable-visualisation=1</b> disables the graphical user interface of the VHT. </li>
 </ul>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
