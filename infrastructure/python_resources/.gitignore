@@ -3,3 +3,4 @@ out.tar
 build/
 dist/
 *egg*
+.tox/
