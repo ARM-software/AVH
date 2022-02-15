@@ -44,15 +44,15 @@ typedef struct
 {
   /// Signal Output
   struct {
-    __IOM uint32_t mask;        /*!< Offset: 0x0000 (R/W) Bit Mask */
-    __OM  uint32_t signal;      /*!< Offset: 0x0004 (-/W) Signal Value */
+    __IOM uint32_t mask;        /*!< Bit Mask. Offset: 0x0000 (R/W)  */
+    __OM  uint32_t signal;      /*!< Signal Value. Offset: 0x0004 (-/W)  */
   } SignalOut;
   /// Signal Input
   struct {
-    __IOM uint32_t mask;        /*!< Offset: 0x0008 (R/W) Bit Mask */
-    __IM  uint32_t signal;      /*!< Offset: 0x000C (R/-) Signal Value */
+    __IOM uint32_t mask;        /*!< Bit Mask. Offset: 0x0008 (R/W) */
+    __IM  uint32_t signal;      /*!< Signal Value. Offset: 0x000C (R/-) */
   } SignalIn;
-  __IOM int32_t Value[64];      /*!< Offset: 0x0010 (R/W) Value (32-bit) */
+  __IOM int32_t Value[64];      /*!< Value (32-bit). Offset: 0x0010 (R/W) */
 } ARM_VIO_Type;
 
 /* Memory mapping of VIO peripheral */

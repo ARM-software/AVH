@@ -876,6 +876,8 @@ INPUT                  = ./src/main.md \
                          ./src/Ref_vio.txt \
                          ./src/Ref_vsi.txt \
                          ../../interface/include/arm_vsi.h \
+                         ../../interface/include/arm_vio.h \
+                         ../../interface/include/arm_vsocket.h \
                          ./src/Ref_vsi_api.txt \
                          ./src/Ref_vsi_py.txt \
                          ../../interface/python/arm_vsi0.py \
@@ -1005,7 +1007,8 @@ EXCLUDE_SYMBOLS        =
 # that contain example code fragments that are included (see the \include
 # command).
 
-EXAMPLE_PATH           = ../../interface/python/
+EXAMPLE_PATH           = ../../interface/python/ \
+                         ../../interface/include/
 
 # If the value of the EXAMPLE_PATH tag contains directories, you can use the
 # EXAMPLE_PATTERNS tag to specify one or more wildcard pattern (like *.cpp and
