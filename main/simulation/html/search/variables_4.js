@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['verbosity_0',['verbosity',['../group__arm__vsi__py.html#ga97b1cc04ec204ba7f1507498beb1d460',1,'arm_vsi0']]]
+  ['signalin_0',['SignalIn',['../structARM__VIO__Type.html#a5b1e28d41d8772f3c5b5f56c1c5f1013',1,'ARM_VIO_Type']]],
+  ['signalout_1',['SignalOut',['../structARM__VIO__Type.html#a4eb68d7bb0f572f998df56c3d2bdd82a',1,'ARM_VIO_Type']]]
 ];

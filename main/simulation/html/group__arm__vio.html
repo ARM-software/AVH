@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Simulation: Virtual I/O (VIO)</title>
+<title>Simulation: Virtual Input/Output (VIO)</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -107,16 +107,108 @@ $(document).ready(function(){initNavTree('group__arm__vio.html',''); initResizab
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Virtual I/O (VIO)<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a></div></div></div>
+  <div class="headertitle"><div class="title">Virtual Input/Output (VIO)<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Controls simple I/O such as LED and switches.  
 </p>
 <p >Controls simple I/O such as LED and switches. </p>
-<p >The <b>Virtual I/O Interface (VIO)</b> connects a <a href="https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html"><b>CMSIS-Driver VIO</b></a> to Python and allows test scripts that stimulate simple I/O such as switches and LEDs.</p>
-<p >Its support will become available in future releases according to the <a href="../../overview/html/index.html#Roadmap">Product Roadmap</a>. </p>
-</div><!-- contents -->
+<p >The <b>Virtual I/O Interface (VIO)</b> implements the <a href="https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html"><b>CMSIS-Driver VIO</b></a> for Arm Virtual Hardware Targets. It consists of the following files:</p>
+<ul>
+<li><a class="el" href="group__arm__vio.html#vio_header">arm_vio.h</a>: defines platform-specific memory mapping to VIO access structure. It is provided as part of device support files.</li>
+<li><b><a href="https://github.com/ARM-software/VHT/tree/main/interface/vio/vio_vht.c">vio_vht.c</a></b>: implements CMSIS-Driver VIO variant for Arm Virtual Hardware based on the mapping defined in <em>arm_vsi.h</em>. It is provided as part of VHT pack.</li>
+</ul>
+<h1><a class="anchor" id="vio_setup"></a>
+Setup</h1>
+<ul>
+<li>Select Virtual Hardware device as the target in the project. See in <a class="el" href="Using.html">Using Arm Virtual Hardware Targets</a>.</li>
+<li>Install VHT pack and add to the project the <em>CMSIS-Driver:VIO:VHT</em> component that contains <em>vio_vht.c</em> file.</li>
+</ul>
+<h1><a class="anchor" id="vio_example"></a>
+Usage example</h1>
+<p >After <a class="el" href="group__arm__vio.html#vio_setup">VIO setup</a> in the project, the interface can be fully used as described in <a href="https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html#details">CMSIS-Driver VIO documentation</a>.</p>
+<p >For example to control virtual LEDs:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;cmsis_vio.h&quot;</span>                  <span class="comment">// ::CMSIS Driver:VIO</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main (<span class="keywordtype">void</span>) {</div>
+<div class="line"> </div>
+<div class="line">  vioInit();</div>
+<div class="line">  vioSetSignal(vioLED0, vioLEDon);</div>
+<div class="line">  <span class="comment">// ...</span></div>
+<div class="line">  vioSetSignal(vioLED0, vioLEDoff);</div>
+<div class="line">}</div>
+</div><!-- fragment --><h1><a class="anchor" id="vio_header"></a>
+Template header file</h1>
+<p >Below is a reference header file arm_vio.h that defines <a class="el" href="group__arm__vio.html">Virtual Input/Output (VIO)</a> mapping.</p>
+<p >The actual implementation can vary depending on the target architecture and is typically provided with the device support files for the target VHTs.</p>
+<div class="fragment"><div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> * Copyright (c) 2021-2022 Arm Limited. All rights reserved.</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * Licensed under the Apache License, Version 2.0 (the License); you may</span></div>
+<div class="line"><span class="comment"> * not use this file except in compliance with the License.</span></div>
+<div class="line"><span class="comment"> * You may obtain a copy of the License at</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * www.apache.org/licenses/LICENSE-2.0</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * Unless required by applicable law or agreed to in writing, software</span></div>
+<div class="line"><span class="comment"> * distributed under the License is distributed on an AS IS BASIS, WITHOUT</span></div>
+<div class="line"><span class="comment"> * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></div>
+<div class="line"><span class="comment"> * See the License for the specific language governing permissions and</span></div>
+<div class="line"><span class="comment"> * limitations under the License.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> * Virtual Input/Output (VIO)</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#ifndef __ARM_VIO_H</span></div>
+<div class="line"><span class="preprocessor">#define __ARM_VIO_H</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#ifndef __IM</span></div>
+<div class="line"><span class="preprocessor">#define __IM  volatile const    </span><span class="comment">/*! Defines &#39;read only&#39; structure member permissions */</span><span class="preprocessor"></span></div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="preprocessor">#ifndef __OM</span></div>
+<div class="line"><span class="preprocessor">#define __OM  volatile          </span><span class="comment">/*! Defines &#39;write only&#39; structure member permissions */</span><span class="preprocessor"></span></div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="preprocessor">#ifndef __IOM</span></div>
+<div class="line"><span class="preprocessor">#define __IOM volatile          </span><span class="comment">/*! Defines &#39;read/write&#39; structure member permissions */</span><span class="preprocessor"></span></div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/// Structure type to access the virtual input/output.</span></div>
+<div class="line"><span class="comment"></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line">{<span class="comment"></span></div>
+<div class="line"><span class="comment">  /// Signal Output</span></div>
+<div class="line"><span class="comment"></span>  <span class="keyword">struct </span>{</div>
+<div class="line">    __IOM uint32_t mask;        <span class="comment">/*!&lt; Bit Mask. Offset: 0x0000 (R/W)  */</span></div>
+<div class="line">    __OM  uint32_t signal;      <span class="comment">/*!&lt; Signal Value. Offset: 0x0004 (-/W)  */</span></div>
+<div class="line">  } SignalOut;<span class="comment"></span></div>
+<div class="line"><span class="comment">  /// Signal Input</span></div>
+<div class="line"><span class="comment"></span>  <span class="keyword">struct </span>{</div>
+<div class="line">    __IOM uint32_t mask;        <span class="comment">/*!&lt; Bit Mask. Offset: 0x0008 (R/W) */</span></div>
+<div class="line">    __IM  uint32_t signal;      <span class="comment">/*!&lt; Signal Value. Offset: 0x000C (R/-) */</span></div>
+<div class="line">  } SignalIn;</div>
+<div class="line">  __IOM int32_t Value[64];      <span class="comment">/*!&lt; Value (32-bit). Offset: 0x0010 (R/W) */</span></div>
+<div class="line">} <a class="code hl_struct" href="structARM__VIO__Type.html" title="Structure type to access the virtual input/output.">ARM_VIO_Type</a>;</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/* Memory mapping of VIO peripheral */</span></div>
+<div class="line"><span class="preprocessor">#define ARM_VIO_BASE            (0x4FEF0000UL)                          </span><span class="comment">/*!&lt; VIO Base Address */</span><span class="preprocessor"></span></div>
+<div class="line"><span class="preprocessor">#define ARM_VIO                 ((ARM_VIO_Type *)ARM_VIO_BASE)          </span><span class="comment">/*!&lt; VIO struct */</span><span class="preprocessor"></span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line">}</div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#endif </span><span class="comment">/* __ARM_VIO_H */</span><span class="preprocessor"></span></div>
+</div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
