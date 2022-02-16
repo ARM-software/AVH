@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Arm Limited. All rights reserved.
+ * Copyright (c) 2018-2022 Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -46,6 +46,7 @@ int32_t iotSocketCreate (int32_t af, int32_t type, int32_t protocol) {
   __DSB();
 
   ARM_VSOCKET->vSocketCreateIO = &io;
+  __DSB();
 
   if (io.ret_val >= 0) {
     sock_attr[io.ret_val].ionbio  = 0U;
@@ -66,6 +67,7 @@ int32_t iotSocketBind (int32_t socket, const uint8_t *ip, uint32_t ip_len, uint1
   __DSB();
 
   ARM_VSOCKET->vSocketBindIO = &io;
+  __DSB();
 
   return io.ret_val;
 }
@@ -79,6 +81,7 @@ int32_t iotSocketListen (int32_t socket, int32_t backlog) {
   __DSB();
 
   ARM_VSOCKET->vSocketListenIO = &io;
+  __DSB();
 
   return io.ret_val;
 }
@@ -99,6 +102,7 @@ int32_t iotSocketAccept (int32_t socket, uint8_t *ip, uint32_t *ip_len, uint16_t
 
   if (sock_attr[socket].ionbio) {
     ARM_VSOCKET->vSocketAcceptIO = &io;
+    __DSB();
     if (io.ret_val >= 0) {
       sock_attr[io.ret_val].ionbio  = 1U;
       sock_attr[io.ret_val].to_msec = sock_attr[socket].to_msec;
@@ -109,6 +113,7 @@ int32_t iotSocketAccept (int32_t socket, uint8_t *ip, uint32_t *ip_len, uint16_t
   // Simulate a blocking call
   for (;;) {
     ARM_VSOCKET->vSocketAcceptIO = &io;
+    __DSB();
     if (io.ret_val != IOT_SOCKET_EAGAIN) {
       break;
     }
@@ -138,12 +143,14 @@ int32_t iotSocketConnect (int32_t socket, const uint8_t *ip, uint32_t ip_len, ui
 
   if (sock_attr[socket].ionbio) {
     ARM_VSOCKET->vSocketConnectIO = &io;
+    __DSB();
     return io.ret_val;
   }
 
   // Simulate a blocking call
   for (;;) {
     ARM_VSOCKET->vSocketConnectIO = &io;
+    __DSB();
     if ((io.ret_val != IOT_SOCKET_EINPROGRESS) && (io.ret_val != IOT_SOCKET_EALREADY)) {
       break;
     }
@@ -172,6 +179,7 @@ int32_t iotSocketRecv (int32_t socket, void *buf, uint32_t len) {
 
   if (sock_attr[socket].ionbio) {
     ARM_VSOCKET->vSocketRecvIO = &io;
+    __DSB();
     return io.ret_val;
   }
 
@@ -179,6 +187,7 @@ int32_t iotSocketRecv (int32_t socket, void *buf, uint32_t len) {
   delay = (sock_attr[socket].to_msec + 9U) / 10U;
   for ( ; delay != 0U; delay--) {
     ARM_VSOCKET->vSocketRecvIO = &io;
+    __DSB();
     if ((io.ret_val == 0) && (len != 0U)) {
       io.ret_val = IOT_SOCKET_EAGAIN;
     }
@@ -211,6 +220,7 @@ int32_t iotSocketRecvFrom (int32_t socket, void *buf, uint32_t len, uint8_t *ip,
 
   if (sock_attr[socket].ionbio) {
     ARM_VSOCKET->vSocketRecvFromIO = &io;
+    __DSB();
     return io.ret_val;
   }
 
@@ -218,6 +228,7 @@ int32_t iotSocketRecvFrom (int32_t socket, void *buf, uint32_t len, uint8_t *ip,
   delay = (sock_attr[socket].to_msec + 9U) / 10U;
   for ( ; delay != 0U; delay--) {
     ARM_VSOCKET->vSocketRecvFromIO = &io;
+    __DSB();
     if ((io.ret_val == 0) && (len != 0U)) {
       io.ret_val = IOT_SOCKET_EAGAIN;
     }
@@ -241,6 +252,7 @@ int32_t iotSocketSend (int32_t socket, const void *buf, uint32_t len) {
   __DSB();
 
   ARM_VSOCKET->vSocketSendIO = &io;
+  __DSB();
 
   return io.ret_val;
 }
@@ -258,6 +270,7 @@ int32_t iotSocketSendTo (int32_t socket, const void *buf, uint32_t len, const ui
   __DSB();
 
   ARM_VSOCKET->vSocketSendToIO = &io;
+  __DSB();
 
   return io.ret_val;
 }
@@ -273,6 +286,7 @@ int32_t iotSocketGetSockName (int32_t socket, uint8_t *ip, uint32_t *ip_len, uin
   __DSB();
 
   ARM_VSOCKET->vSocketGetSockNameIO = &io;
+  __DSB();
 
   return io.ret_val;
 }
@@ -288,6 +302,7 @@ int32_t iotSocketGetPeerName (int32_t socket, uint8_t *ip, uint32_t *ip_len, uin
   __DSB();
 
   ARM_VSOCKET->vSocketGetPeerNameIO = &io;
+  __DSB();
 
   return io.ret_val;
 }
@@ -319,6 +334,7 @@ int32_t iotSocketGetOpt (int32_t socket, int32_t opt_id, void *opt_val, uint32_t
   __DSB();
 
   ARM_VSOCKET->vSocketGetOptIO = &io;
+  __DSB();
 
   return io.ret_val;
 }
@@ -357,6 +373,7 @@ int32_t iotSocketSetOpt (int32_t socket, int32_t opt_id, const void *opt_val, ui
   __DSB();
 
   ARM_VSOCKET->vSocketSetOptIO = &io;
+  __DSB();
 
   return io.ret_val;
 }
@@ -369,6 +386,8 @@ int32_t iotSocketClose (int32_t socket) {
   __DSB();
 
   ARM_VSOCKET->vSocketCloseIO = &io;
+  __DSB();
+
   if (io.ret_val == 0) {
     memset(&sock_attr[socket], 0, sizeof(sock_attr[0]));
   }
@@ -391,6 +410,7 @@ int32_t iotSocketGetHostByName (const char *name, int32_t af, uint8_t *ip, uint3
   // Simulate a blocking call
   for (;;) {
     ARM_VSOCKET->vSocketGetHostByNameIO = &io;
+    __DSB();
     if (io.ret_val != IOT_SOCKET_EAGAIN) {
       break;
     }
