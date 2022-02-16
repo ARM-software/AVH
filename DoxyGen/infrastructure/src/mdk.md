@@ -32,19 +32,20 @@ Two important configuration areas need special attention in MDK projects for Arm
 
 Table below lists the Cortex-M cores supported with Arm VHTs, corresponding VHT device names to be used in \ref mdk_vht_targets, the CMSIS Pack with device support, as well as simulation models to be selected in \ref mdk_vht_debug.
 
-Arm Cortex-M Core | VHT Device Name     | CMSIS Pack with the VHT Device | VHT launch command in MDK<sup> 1</sup>                          |   Description
-:-----------------|:--------------------|:--------------------------|:-------------------------------------|:-------------------------------
-Cortex-M0         | CMSDK_M0_VHT      | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M0_MDK.exe |Arm VHT device with Cortex-M0 core
-Cortex-M0+        | CMSDK_M0plus_VHT  | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M0plus_MDK.exe | Arm VHT device with Cortex-M0+ core
-Cortex-M3         | CMSDK_M3_VHT      | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M3_MDK.exe | Arm VHT device with Cortex-M3 core
-Cortex-M4         | CMSDK_M4_VHT      | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M4_MDK.exe | Arm VHT device with Cortex-M4+ core
-Cortex-M4FP       | CMSDK_M4FP_VHT    | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M4_MDK.exe | Arm VHT device with Cortex-M4 core and Floating Point Unit (FPU) support
-Cortex-M7SP       | CMSDK_M7SP_VHT    | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M7_MDK.exe | Arm VHT device with Cortex-M7 core and Single Precision FPU support
-Cortex-M7DP       | CMSDK_M7SP_VHT    | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M7_MDK.exe | Arm VHT device with Cortex-M7 core and Double Precision FPU support
-Cortex-M23        | IOTKit_CM23_VHT   | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M23_MDK.exe | Arm VHT device with Cortex-M32 core
-Cortex-M33        | IOTKit_CM33_VHT   | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M33_MDK.exe | Arm VHT device with Cortex-M33 core
-Cortex-M33FP      | IOTKit_CM33FP_VHT | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M33_MDK.exe | Arm VHT device with Cortex-M33 core and Floating Point Unit support
-Cortex-M55        | SSE-300-MPS3_VHT  | To be defined | VHT_MPS3_Corstone_SSE-300.bat<br>VHT_Corstone_SSE-300_Ethos-U55.bat<br>VHT_Corstone_SSE-300_Ethos-U65.bat| Arm VHT Corstone-300 SoC with Cortex-M55.<br>Same VHT device definition is used, but a VHT model shall be selected<br>depending on the required microNPU (none, Ethos-U55 or Ethos-65)
+Arm Cortex-M Core | VHT Device Name     | CMSIS Pack with the VHT Device        | VHT launch command in MDK<sup> 1</sup> |   Description
+:-----------------|:--------------------|:--------------------------------------|:---------------------------------------|:-------------------------------
+Cortex-M0         | CMSDK_CM0_VHT       | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M0_MDK.exe     | Arm VHT device with Cortex-M0 core
+Cortex-M0+        | CMSDK_CM0plus_VHT   | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M0plus_MDK.exe | Arm VHT device with Cortex-M0+ core
+Cortex-M3         | CMSDK_CM3_VHT       | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M3_MDK.exe     | Arm VHT device with Cortex-M3 core
+Cortex-M4         | CMSDK_CM4_VHT       | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M4_MDK.exe     | Arm VHT device with Cortex-M4 core
+Cortex-M4, FP     | CMSDK_CM4_FP_VHT    | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M4_MDK.exe     | Arm VHT device with Cortex-M4 core and Floating Point Unit (FPU) support
+Cortex-M7         | CMSDK_CM7_VHT       | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M7_MDK.exe     | Arm VHT device with Cortex-M7 core
+Cortex-M7, FP(SP) | CMSDK_CM7_SP_VHT    | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M7_MDK.exe     | Arm VHT device with Cortex-M7 core and Single Precision FPU support
+Cortex-M7, FP(DP) | CMSDK_CM7_DP_VHT    | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M7_MDK.exe     | Arm VHT device with Cortex-M7 core and Double Precision FPU support
+Cortex-M23        | IOTKit_CM23_VHT     | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M23_MDK.exe    | Arm VHT device with Cortex-M23 core
+Cortex-M33        | IOTKit_CM33_VHT     | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M33_MDK.exe    | Arm VHT device with Cortex-M33 core
+Cortex-M33, FP    | IOTKit_CM33_FP_VHT  | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M33_MDK.exe    | Arm VHT device with Cortex-M33 core and Floating Point Unit (FPU) support
+Cortex-M55        | SSE-300-MPS3_VHT    | To be defined                         | VHT_MPS3_Corstone_SSE-300.bat<br>VHT_Corstone_SSE-300_Ethos-U55.bat<br>VHT_Corstone_SSE-300_Ethos-U65.bat| Arm VHT Corstone-300 SoC with Cortex-M55.<br>Same VHT device definition is used, but a VHT model shall be selected<br>depending on the required microNPU (none, Ethos-U55 or Ethos-U65)
 
 >  <sup>1</sup> The VHT models can be found in the MDK VHT AddOn installation directory provided during \ref mdk_vht_install, for example,`C:/Keil_v5/ARM/VHT/`. Note that when available, a .bat script shall be used to launch a VHT model from MDK.
 
