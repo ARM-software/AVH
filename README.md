@@ -23,7 +23,7 @@ Examples       | Description
 [GetStarted](https://github.com/ARM-software/VHT-GetStarted)                       | Example and project template for unit testing that shows CI and desktop development flows.
 [TFL Micro Speech](https://github.com/arm-software/VHT-TFLmicrospeech)             | Example project that shows the [**Arm VHT VSI interface**](https://arm-software.github.io/VHT/main/simulation/html/group__arm__vsi.html) with Audio input.
 [AWS MQTT Demo](https://github.com/arm-software/VHT_AWS_MQTT_Demo)                 | Example project that utilizes [**IP connectivity via VSocket Interface**](https://arm-software.github.io/VHT/main/simulation/html/group__arm__vsocket.html) to connect to a cloud service.
-[System Modeling](https://github.com/arm-software/VHT_SystemModeling)              | Example project that connects to a [**Modelica simulation**](https://modelica.org/) of a room acoustic. 
+[System Modeling](https://github.com/arm-software/VHT-SystemModeling)              | Example project that connects to a [**Modelica simulation**](https://modelica.org/) of a room acoustic. 
 [RTOS Validation](https://github.com/ARM-software/VHT-RTOS2_Validation)            | CI test example that shows validation of CMSIS-RTOS2 compliant real-time operating systems.
 
 
