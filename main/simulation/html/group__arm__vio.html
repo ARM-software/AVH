@@ -114,16 +114,23 @@ $(document).ready(function(){initNavTree('group__arm__vio.html',''); initResizab
 <p>Controls simple I/O such as LED and switches.  
 </p>
 <p >Controls simple I/O such as LED and switches. </p>
-<p >The <b>Virtual I/O Interface (VIO)</b> implements the <a href="https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html"><b>CMSIS-Driver VIO</b></a> for Arm Virtual Hardware Targets. It consists of the following files:</p>
+<p >The <b>Virtual I/O Interface (VIO)</b> implements the <a href="https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html"><b>CMSIS-Driver VIO</b></a> for Arm Virtual Hardware Targets.</p>
+<p >It consists of the following parts:</p>
 <ul>
-<li><a class="el" href="group__arm__vio.html#vio_header">arm_vio.h</a>: defines platform-specific memory mapping to VIO access structure. It is provided as part of device support files.</li>
-<li><b><a href="https://github.com/ARM-software/VHT/tree/main/interface/vio/vio_vht.c">vio_vht.c</a></b>: implements CMSIS-Driver VIO variant for Arm Virtual Hardware based on the mapping defined in <em>arm_vsi.h</em>. It is provided as part of VHT pack.</li>
+<li><a class="el" href="group__arm__vio.html#vio_header">arm_vio.h</a>: defines platform-specific memory mapping to VIO access structure. It is provided as part of device support files. See in <a class="el" href="Using.html">Using Arm Virtual Hardware Targets</a>.</li>
+<li><b><a href="https://github.com/ARM-software/VHT/tree/main/interface/vio/vio_vht.c">./interface/vio/vio_vht.c</a></b>: implements CMSIS-Driver VIO variant for Arm Virtual Hardware based on the VIO structure defined in <em>arm_vio.h</em>. It is provided as part of the VHT pack.</li>
 </ul>
 <h1><a class="anchor" id="vio_setup"></a>
 Setup</h1>
+<p >Instructions below cover specifically VIO setup in a project on Arm Virtual Hardware Target.</p>
 <ul>
-<li>Select Virtual Hardware device as the target in the project. See in <a class="el" href="Using.html">Using Arm Virtual Hardware Targets</a>.</li>
-<li>Install VHT pack and add to the project the <em>CMSIS-Driver:VIO:VHT</em> component that contains <em>vio_vht.c</em> file.</li>
+<li>Install following software packs in your development environment, if not available yet:<ul>
+<li>ARM::CMSIS pack for access to CMSIS-Driver VIO API header (<em>cmsis_vio.h</em>)</li>
+<li>Pack with target device support for access to <em>arm_vio.h</em></li>
+<li>Arm VHT pack for access to <em>vio_vht.c</em>.</li>
+</ul>
+The packs can be found on <a href="https://developer.arm.com/tools-and-software/embedded/cmsis/cmsis-packs">CMSIS Packs page</a>.</li>
+<li>Add to the project the <em>CMSIS-Driver:VIO (API)</em> component that contains <em>vio_vht.c</em> file.</li>
 </ul>
 <h1><a class="anchor" id="vio_example"></a>
 Usage example</h1>
@@ -208,7 +215,7 @@ Template header file</h1>
 <div class="line"><span class="preprocessor">#endif</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#endif </span><span class="comment">/* __ARM_VIO_H */</span><span class="preprocessor"></span></div>
-</div><!-- fragment --></div><!-- contents -->
+</div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

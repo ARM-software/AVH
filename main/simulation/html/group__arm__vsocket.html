@@ -111,12 +111,359 @@ $(document).ready(function(){initNavTree('group__arm__vsocket.html',''); initRes
 </div><!--header-->
 <div class="contents">
 
-<p>IP network connectivity to Host computer.  
+<p>IP network connectivity via host system.  
 </p>
-<p >IP network connectivity to Host computer. </p>
-<p >The <b>Virtual Socket Interface (VSocket)</b> connects the user application to <a href="https://en.wikipedia.org/wiki/Berkeley_sockets"><b>BSD sockets</b></a> on the Host computer for IP network connectivity.</p>
-<p >Its support will become available in future releases according to the <a href="../../overview/html/index.html#Roadmap">Product Roadmap</a>. </p>
-</div><!-- contents -->
+<p >IP network connectivity via host system. </p>
+<p >The <b>Virtual Socket Interface (VSocket)</b> provides IP connectivity to the user application by connecting it to <a href="https://en.wikipedia.org/wiki/Berkeley_sockets"><b>BSD sockets</b></a> on the Host system.</p>
+<p >VSocket implements a variant of the <a href="https://github.com/MDK-Packs/IoT_Socket">IoT Socket</a> and consists of the following parts:</p>
+<ul>
+<li><a class="el" href="group__arm__vsocket.html#vsocket_header">arm_vsocket.h</a>: defines platform-specific memory mapping to VSocket access structure. It is provided as part of device support files. See in <a class="el" href="Using.html">Using Arm Virtual Hardware Targets</a>.</li>
+<li><b><a href="https://github.com/ARM-software/VHT/tree/main/interface/vsocket/iot_socket.c">./interface/vsocket/iot_socket.c</a></b>: implements IoT Socket variant for Arm Virtual Hardware based on the structures defined in <em>arm_vsocket.h</em>. It is provided as part of the Arm VHT pack.</li>
+</ul>
+<h1><a class="anchor" id="vsocket_setup"></a>
+Setup</h1>
+<p >Instructions below cover specifically VSocket setup in a project on Arm Virtual Hardware Target.</p>
+<ul>
+<li>Verify that following packs are installed in your development environment:<ul>
+<li>ARM::CMSIS pack for CMSIS-RTOS2 API and Keil RTX5 RTOS.</li>
+<li>Pack with target device support for access to <em>arm_vsocket.h</em>.</li>
+<li><a href="https://github.com/MDK-Packs/IoT_Socket">MDK-Packs::IoT Socket pack</a> for access to API header (<em>iot_socket.h</em>).</li>
+<li>Arm VHT pack for access to <em>iot_socket.c</em> implementation.</li>
+</ul>
+The packs can be found on <a href="https://developer.arm.com/tools-and-software/embedded/cmsis/cmsis-packs">CMSIS Packs page</a>.</li>
+<li>Following components shall be selected as part of the project:<ul>
+<li><em>CMSIS:RTOS2 (API):Keil RTX5</em> for RTOS2 API used in the VSocket implementation</li>
+<li><em>IoT Utility:Socket (API):VSocket</em> component that provides <em>iot_socket.c</em> file.</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="vsocket_model"></a>
+Model Configuration</h2>
+<p >Network parameters of the Virtual Hardware model such as SubNet and MAC address, shall be configured according to the values of the host system.</p>
+<p >For example for Corstone-300 system:</p>
+<div class="fragment"><div class="line"><span class="preprocessor"># Parameters:</span></div>
+<div class="line"><span class="preprocessor"># instance.parameter=value       #(type, mode) default = &#39;def value&#39; : description : [min..max]</span></div>
+<div class="line"><span class="preprocessor">#------------------------------------------------------------------------------</span></div>
+<div class="line">mps3_board.hostbridge.interfaceName=                  # (string, <a class="code hl_function" href="group__arm__vsi__py.html#ga15a63c7123ecb9407ecfc8f3d422dab7" title="Initialize.">init</a>-time) <span class="keywordflow">default</span> = <span class="stringliteral">&#39;&#39;</span>       : Host Interface</div>
+<div class="line">mps3_board.hostbridge.userNetPorts=                   # (<span class="keywordtype">string</span>, <a class="code hl_function" href="group__arm__vsi__py.html#ga15a63c7123ecb9407ecfc8f3d422dab7" title="Initialize.">init</a>-time) <span class="keywordflow">default</span> = <span class="stringliteral">&#39;&#39;</span>       : Listening ports to expose in user-mode networking</div>
+<div class="line">mps3_board.hostbridge.userNetSubnet=172.20.51.0/24    # (string, <a class="code hl_function" href="group__arm__vsi__py.html#ga15a63c7123ecb9407ecfc8f3d422dab7" title="Initialize.">init</a>-time) <span class="keywordflow">default</span> = <span class="stringliteral">&#39;172.20.51.0/24&#39;</span> : Virtual subnet <span class="keywordflow">for</span> user-mode networking</div>
+<div class="line">mps3_board.hostbridge.userNetworking=1                # (<span class="keywordtype">bool</span>  , <a class="code hl_function" href="group__arm__vsi__py.html#ga15a63c7123ecb9407ecfc8f3d422dab7" title="Initialize.">init</a>-time) <span class="keywordflow">default</span> = <span class="charliteral">&#39;0&#39;</span>      : Enable user-mode networking</div>
+<div class="line">mps3_board.smsc_91c111.enabled=1                      # (bool  , <a class="code hl_function" href="group__arm__vsi__py.html#ga15a63c7123ecb9407ecfc8f3d422dab7" title="Initialize.">init</a>-time) <span class="keywordflow">default</span> = <span class="charliteral">&#39;0&#39;</span>      : Host interface connection enabled</div>
+<div class="line">mps3_board.smsc_91c111.mac_address=00:02:f7:ef:6e:bf  # (<span class="keywordtype">string</span>, <a class="code hl_function" href="group__arm__vsi__py.html#ga15a63c7123ecb9407ecfc8f3d422dab7" title="Initialize.">init</a>-time) <span class="keywordflow">default</span> = <span class="stringliteral">&#39;00:02:f7:ef:6e:bf&#39;</span> : Host/model MAC address</div>
+<div class="line"><span class="preprocessor">#------------------------------------------------------------------------------</span></div>
+</div><!-- fragment --><p >See <a class="el" href="Using.html">Using Arm Virtual Hardware Targets</a> for details about model configuration.</p>
+<h1><a class="anchor" id="vsocket_example"></a>
+Usage example</h1>
+<p >After <a class="el" href="group__arm__vsocket.html#vsocket_setup">VSocket setup</a> in the project, the interface can be fully used as described in <a href="https://mdk-packs.github.io/IoT_Socket/html/index.html">IoT Socket documentation</a>.</p>
+<p >For example:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;iot_socket.h&quot;</span>                  <span class="comment">// ::IoT Utility:Socket (API)</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> message[] = { <span class="stringliteral">&quot;The quick brown fox jumps over the lazy dog.&quot;</span> };</div>
+<div class="line">  </div>
+<div class="line"><span class="keywordtype">void</span> Echo_Client_Thread (<span class="keywordtype">void</span> *arg) {</div>
+<div class="line">  uint8_t ip[4] = { 192U, 168U, 0U, 100U };</div>
+<div class="line">  int32_t sock, res;</div>
+<div class="line">  <span class="keywordtype">char</span> dbuf[120];</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">while</span> (1) {</div>
+<div class="line">    sock = iotSocketCreate (IOT_SOCKET_AF_INET, IOT_SOCKET_SOCK_STREAM, IOT_SOCKET_IPPROTO_TCP);</div>
+<div class="line"> </div>
+<div class="line">    res = iotSocketConnect (sock, (uint8_t *)ip, <span class="keyword">sizeof</span>(ip), 7U);</div>
+<div class="line">    <span class="keywordflow">if</span> (res == 0) {</div>
+<div class="line">      iotSocketSend (sock, message, <span class="keyword">sizeof</span>(message));</div>
+<div class="line">      res = iotSocketRecv (sock, dbuf, <span class="keyword">sizeof</span>(dbuf));</div>
+<div class="line">      <span class="keywordflow">if</span> (res &lt; 0) {</div>
+<div class="line">        <span class="keywordflow">break</span>;               <span class="comment">// Error occured</span></div>
+<div class="line">      }</div>
+<div class="line">      <span class="keywordflow">if</span> (res &gt; 0) {</div>
+<div class="line">        <span class="keywordflow">if</span> (memcmp (dbuf, message, res) != 0) {</div>
+<div class="line">          <span class="comment">// error handling, message is not the same as sent</span></div>
+<div class="line">        }</div>
+<div class="line">      }</div>
+<div class="line">    }</div>
+<div class="line">    iotSocketClose (sock);</div>
+<div class="line">    osDelay (1000U);</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --><h1><a class="anchor" id="vsocket_header"></a>
+Template header file</h1>
+<p >Below is a reference header file <em>arm_vsocket.h</em> that defines <a class="el" href="group__arm__vsocket.html">Virtual Socket Interface (VSocket)</a> structures and memory mappings required for implementation of VSocket variant.</p>
+<p >The pending on the target architecture and is typically provided with the device support files for the target VHTs.</p>
+<div class="fragment"><div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> * Copyright (c) 2021-2022 Arm Limited. All rights reserved.</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * Licensed under the Apache License, Version 2.0 (the License); you may</span></div>
+<div class="line"><span class="comment"> * not use this file except in compliance with the License.</span></div>
+<div class="line"><span class="comment"> * You may obtain a copy of the License at</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * www.apache.org/licenses/LICENSE-2.0</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * Unless required by applicable law or agreed to in writing, software</span></div>
+<div class="line"><span class="comment"> * distributed under the License is distributed on an AS IS BASIS, WITHOUT</span></div>
+<div class="line"><span class="comment"> * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></div>
+<div class="line"><span class="comment"> * See the License for the specific language governing permissions and</span></div>
+<div class="line"><span class="comment"> * limitations under the License.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> * Virtual Socket (VSocket) - IoT Socket</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#ifndef __ARM_VSOCKET_H</span></div>
+<div class="line"><span class="preprocessor">#define __ARM_VSOCKET_H</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#ifdef  __cplusplus</span></div>
+<div class="line"><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/**** VSocket function identifiers ****/</span></div>
+<div class="line"><span class="preprocessor">#define VSOCKET_CREATE              1   </span><span class="comment">///&lt; iotSocketCreate</span></div>
+<div class="line"><span class="preprocessor">#define VSOCKET_BIND                2   </span><span class="comment">///&lt; iotSocketBind</span></div>
+<div class="line"><span class="preprocessor">#define VSOCKET_LISTEN              3   </span><span class="comment">///&lt; iotSocketListen</span></div>
+<div class="line"><span class="preprocessor">#define VSOCKET_ACCEPT              4   </span><span class="comment">///&lt; iotSocketAccept</span></div>
+<div class="line"><span class="preprocessor">#define VSOCKET_CONNECT             5   </span><span class="comment">///&lt; iotSocketConnect</span></div>
+<div class="line"><span class="preprocessor">#define VSOCKET_RECV                6   </span><span class="comment">///&lt; iotSocketRecv</span></div>
+<div class="line"><span class="preprocessor">#define VSOCKET_RECV_FROM           7   </span><span class="comment">///&lt; iotSocketRecvFrom</span></div>
+<div class="line"><span class="preprocessor">#define VSOCKET_SEND                8   </span><span class="comment">///&lt; iotSocketSend</span></div>
+<div class="line"><span class="preprocessor">#define VSOCKET_SEND_TO             9   </span><span class="comment">///&lt; iotSocketSendTo</span></div>
+<div class="line"><span class="preprocessor">#define VSOCKET_GET_SOCK_NAME       10  </span><span class="comment">///&lt; iotSocketGetSockName</span></div>
+<div class="line"><span class="preprocessor">#define VSOCKET_GET_PEER_NAME       11  </span><span class="comment">///&lt; iotSocketGetPeerName</span></div>
+<div class="line"><span class="preprocessor">#define VSOCKET_GET_OPT             12  </span><span class="comment">///&lt; iotSocketGetOpt</span></div>
+<div class="line"><span class="preprocessor">#define VSOCKET_SET_OPT             13  </span><span class="comment">///&lt; iotSocketSetOpt</span></div>
+<div class="line"><span class="preprocessor">#define VSOCKET_CLOSE               14  </span><span class="comment">///&lt; iotSocketClose</span></div>
+<div class="line"><span class="preprocessor">#define VSOCKET_GET_HOST_BY_NAME    15  </span><span class="comment">///&lt; iotSocketGetHostByName</span></div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment">  \brief  I/O structure for iotSocketCreate.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">  int32_t           ret_val;    <span class="comment">/*!&lt; return value */</span></div>
+<div class="line">  <span class="keyword">struct </span>{</div>
+<div class="line">    int32_t         af;         <span class="comment">/*!&lt; address family */</span></div>
+<div class="line">    int32_t         type;       <span class="comment">/*!&lt; socket type */</span></div>
+<div class="line">    int32_t         protocol;   <span class="comment">/*!&lt; socket protocol */</span></div>
+<div class="line">  } param;                      <span class="comment">/*!&lt; parameters */</span></div>
+<div class="line">} <a class="code hl_struct" href="structvSocketCreateIO__t.html" title="I/O structure for iotSocketCreate.">vSocketCreateIO_t</a>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment">  \brief  I/O structure for iotSocketBind.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">  int32_t           ret_val;    <span class="comment">/*!&lt; return value */</span></div>
+<div class="line">  <span class="keyword">struct </span>{</div>
+<div class="line">    int32_t         socket;     <span class="comment">/*!&lt; socket identification number */</span></div>
+<div class="line">    <span class="keyword">const</span> uint8_t * ip;         <span class="comment">/*!&lt; pointer to local IP address */</span></div>
+<div class="line">    uint32_t        ip_len;     <span class="comment">/*!&lt; length of &#39;ip&#39; address in bytes */</span></div>
+<div class="line">    uint16_t        port;       <span class="comment">/*!&lt; local port number */</span></div>
+<div class="line">    uint16_t        padding;</div>
+<div class="line">  } param;                      <span class="comment">/*!&lt; parameters */</span></div>
+<div class="line">} <a class="code hl_struct" href="structvSocketBindIO__t.html" title="I/O structure for iotSocketBind.">vSocketBindIO_t</a>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment">  \brief  I/O structure for iotSocketListen.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">  int32_t           ret_val;    <span class="comment">/*!&lt; return value */</span></div>
+<div class="line">  <span class="keyword">struct </span>{</div>
+<div class="line">    int32_t         socket;     <span class="comment">/*!&lt; socket identification number */</span></div>
+<div class="line">    int32_t         backlog;    <span class="comment">/*!&lt; number of connection requests that can be queued */</span></div>
+<div class="line">  } param;                      <span class="comment">/*!&lt; parameters */</span></div>
+<div class="line">} <a class="code hl_struct" href="structvSocketListenIO__t.html" title="I/O structure for iotSocketListen.">vSocketListenIO_t</a>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment">  \brief  I/O structure for iotSocketAccept.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">  int32_t           ret_val;    <span class="comment">/*!&lt; return value */</span></div>
+<div class="line">  <span class="keyword">struct </span>{</div>
+<div class="line">    int32_t         socket;     <span class="comment">/*!&lt; socket identification number */</span></div>
+<div class="line">    uint8_t  *      ip;         <span class="comment">/*!&lt; pointer to buffer where address of connecting socket shall be returned (NULL for none) */</span></div>
+<div class="line">    uint32_t *      ip_len;     <span class="comment">/*!&lt; pointer to length of &#39;ip&#39; (or NULL if &#39;ip&#39; is NULL) */</span></div>
+<div class="line">    uint16_t *      port;       <span class="comment">/*!&lt; pointer to buffer where port of connecting socket shall be returned (NULL for none) */</span></div>
+<div class="line">  } param;                      <span class="comment">/*!&lt; parameters */</span></div>
+<div class="line">} <a class="code hl_struct" href="structvSocketAcceptIO__t.html" title="I/O structure for iotSocketAccept.">vSocketAcceptIO_t</a>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment">  \brief  I/O structure for iotSocketConnect.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">  int32_t           ret_val;    <span class="comment">/*!&lt; return value */</span></div>
+<div class="line">  <span class="keyword">struct </span>{</div>
+<div class="line">    int32_t         socket;     <span class="comment">/*!&lt; socket identification number */</span></div>
+<div class="line">    <span class="keyword">const</span> uint8_t * ip;         <span class="comment">/*!&lt; pointer to remote IP address */</span></div>
+<div class="line">    uint32_t        ip_len;     <span class="comment">/*!&lt; length of &#39;ip&#39; address in bytes */</span></div>
+<div class="line">    uint16_t        port;       <span class="comment">/*!&lt; remote port number */</span></div>
+<div class="line">    uint16_t        padding;</div>
+<div class="line">  } param;                      <span class="comment">/*!&lt; parameters */</span></div>
+<div class="line">} <a class="code hl_struct" href="structvSocketConnectIO__t.html" title="I/O structure for iotSocketConnect.">vSocketConnectIO_t</a>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment">  \brief  I/O structure for iotSocketRecv.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">  int32_t           ret_val;    <span class="comment">/*!&lt; return value */</span></div>
+<div class="line">  <span class="keyword">struct </span>{</div>
+<div class="line">    int32_t         socket;     <span class="comment">/*!&lt; socket identification number */</span></div>
+<div class="line">    <span class="keywordtype">void</span> *          buf;        <span class="comment">/*!&lt; pointer to buffer where data should be stored */</span></div>
+<div class="line">    uint32_t        len;        <span class="comment">/*!&lt; length of buffer (in bytes) */</span></div>
+<div class="line">  } param;                      <span class="comment">/*!&lt; parameters */</span></div>
+<div class="line">} <a class="code hl_struct" href="structvSocketRecvIO__t.html" title="I/O structure for iotSocketRecv.">vSocketRecvIO_t</a>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment">  \brief  I/O structure for iotSocketRecvFrom.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">  int32_t           ret_val;    <span class="comment">/*!&lt; return value */</span></div>
+<div class="line">  <span class="keyword">struct </span>{</div>
+<div class="line">    int32_t         socket;     <span class="comment">/*!&lt; socket identification number */</span></div>
+<div class="line">    <span class="keywordtype">void</span> *          buf;        <span class="comment">/*!&lt; pointer to buffer where data should be stored */</span></div>
+<div class="line">    uint32_t        len;        <span class="comment">/*!&lt; length of buffer (in bytes) */</span></div>
+<div class="line">    uint8_t  *      ip;         <span class="comment">/*!&lt; pointer to buffer where remote source address shall be returned (NULL for none) */</span></div>
+<div class="line">    uint32_t *      ip_len;     <span class="comment">/*!&lt; pointer to length of &#39;ip&#39; (or NULL if &#39;ip&#39; is NULL) */</span></div>
+<div class="line">    uint16_t *      port;       <span class="comment">/*!&lt; pointer to buffer where remote source port shall be returned (NULL for none) */</span></div>
+<div class="line">  } param;                      <span class="comment">/*!&lt; parameters */</span></div>
+<div class="line">} <a class="code hl_struct" href="structvSocketRecvFromIO__t.html" title="I/O structure for iotSocketRecvFrom.">vSocketRecvFromIO_t</a>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment">  \brief  I/O structure for iotSocketSend.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">  int32_t           ret_val;    <span class="comment">/*!&lt; return value */</span></div>
+<div class="line">  <span class="keyword">struct </span>{</div>
+<div class="line">    int32_t         socket;     <span class="comment">/*!&lt; socket identification number */</span></div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">void</span> *    buf;        <span class="comment">/*!&lt; pointer to buffer containing data to send */</span></div>
+<div class="line">    uint32_t        len;        <span class="comment">/*!&lt; length of data (in bytes) */</span></div>
+<div class="line">  } param;                      <span class="comment">/*!&lt; parameters */</span></div>
+<div class="line">} <a class="code hl_struct" href="structvSocketSendIO__t.html" title="I/O structure for iotSocketSend.">vSocketSendIO_t</a>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment">  \brief  I/O structure for iotSocketSendTo.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">  int32_t           ret_val;    <span class="comment">/*!&lt; return value */</span></div>
+<div class="line">  <span class="keyword">struct </span>{</div>
+<div class="line">    int32_t         socket;     <span class="comment">/*!&lt; socket identification number */</span></div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">void</span> *    buf;        <span class="comment">/*!&lt; pointer to buffer containing data to send */</span></div>
+<div class="line">    uint32_t        len;        <span class="comment">/*!&lt; length of data (in bytes) */</span></div>
+<div class="line">    <span class="keyword">const</span> uint8_t * ip;         <span class="comment">/*!&lt; pointer to remote destination IP address */</span></div>
+<div class="line">    uint32_t        ip_len;     <span class="comment">/*!&lt; length of &#39;ip&#39; address in bytes */</span></div>
+<div class="line">    uint16_t        port;       <span class="comment">/*!&lt; remote destination port number */</span></div>
+<div class="line">    uint16_t        padding;</div>
+<div class="line">  } param;                      <span class="comment">/*!&lt; parameters */</span></div>
+<div class="line">} <a class="code hl_struct" href="structvSocketSendToIO__t.html" title="I/O structure for iotSocketSendTo.">vSocketSendToIO_t</a>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment">  \brief  I/O structure for iotSocketGetSockName.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">  int32_t           ret_val;    <span class="comment">/*!&lt; return value */</span></div>
+<div class="line">  <span class="keyword">struct </span>{</div>
+<div class="line">    int32_t         socket;     <span class="comment">/*!&lt; socket identification number */</span></div>
+<div class="line">    uint8_t  *      ip;         <span class="comment">/*!&lt; pointer to buffer where local address shall be returned (NULL for none) */</span></div>
+<div class="line">    uint32_t *      ip_len;     <span class="comment">/*!&lt; pointer to length of &#39;ip&#39; (or NULL if &#39;ip&#39; is NULL) */</span></div>
+<div class="line">    uint16_t *      port;       <span class="comment">/*!&lt; pointer to buffer where local port shall be returned (NULL for none) */</span></div>
+<div class="line">  } param;                      <span class="comment">/*!&lt; parameters */</span></div>
+<div class="line">} <a class="code hl_struct" href="structvSocketGetSockNameIO__t.html" title="I/O structure for iotSocketGetSockName.">vSocketGetSockNameIO_t</a>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment">  \brief  I/O structure for iotSocketGetPeerName.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">  int32_t           ret_val;    <span class="comment">/*!&lt; return value */</span></div>
+<div class="line">  <span class="keyword">struct </span>{</div>
+<div class="line">    int32_t         socket;     <span class="comment">/*!&lt; socket identification number */</span></div>
+<div class="line">    uint8_t  *      ip;         <span class="comment">/*!&lt; pointer to buffer where remote address shall be returned (NULL for none) */</span></div>
+<div class="line">    uint32_t *      ip_len;     <span class="comment">/*!&lt; pointer to length of &#39;ip&#39; (or NULL if &#39;ip&#39; is NULL) */</span></div>
+<div class="line">    uint16_t *      port;       <span class="comment">/*!&lt; pointer to buffer where remote port shall be returned (NULL for none) */</span></div>
+<div class="line">  } param;                      <span class="comment">/*!&lt; parameters */</span></div>
+<div class="line">} <a class="code hl_struct" href="structvSocketGetPeerNameIO__t.html" title="I/O structure for iotSocketGetPeerName.">vSocketGetPeerNameIO_t</a>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment">  \brief  I/O structure for iotSocketGetOpt.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">  int32_t           ret_val;    <span class="comment">/*!&lt; return value */</span></div>
+<div class="line">  <span class="keyword">struct </span>{</div>
+<div class="line">    int32_t         socket;     <span class="comment">/*!&lt; socket identification number */</span></div>
+<div class="line">    int32_t         opt_id;     <span class="comment">/*!&lt; option identifier */</span></div>
+<div class="line">    <span class="keywordtype">void</span>     *      opt_val;    <span class="comment">/*!&lt; pointer to the buffer that will receive the option value */</span></div>
+<div class="line">    uint32_t *      opt_len;    <span class="comment">/*!&lt; pointer to length of the option value */</span></div>
+<div class="line">  } param;                      <span class="comment">/*!&lt; parameters */</span></div>
+<div class="line">} <a class="code hl_struct" href="structvSocketGetOptIO__t.html" title="I/O structure for iotSocketGetOpt.">vSocketGetOptIO_t</a>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment">  \brief  I/O structure for iotSocketSetOpt.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">  int32_t           ret_val;    <span class="comment">/*!&lt; return value */</span></div>
+<div class="line">  <span class="keyword">struct </span>{</div>
+<div class="line">    int32_t         socket;     <span class="comment">/*!&lt; socket identification number */</span></div>
+<div class="line">    int32_t         opt_id;     <span class="comment">/*!&lt; option identifier */</span></div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">void</span> *    opt_val;    <span class="comment">/*!&lt; pointer to the option value */</span></div>
+<div class="line">    uint32_t        opt_len;    <span class="comment">/*!&lt; length of the option value in bytes */</span></div>
+<div class="line">  } param;                      <span class="comment">/*!&lt; parameters */</span></div>
+<div class="line">} <a class="code hl_struct" href="structvSocketSetOptIO__t.html" title="I/O structure for iotSocketSetOpt.">vSocketSetOptIO_t</a>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment">  \brief  I/O structure for iotSocketClose.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">  int32_t           ret_val;    <span class="comment">/*!&lt; return value */</span></div>
+<div class="line">  <span class="keyword">struct </span>{</div>
+<div class="line">    int32_t         socket;     <span class="comment">/*!&lt; socket identification number */</span></div>
+<div class="line">  } param;                      <span class="comment">/*!&lt; parameters */</span></div>
+<div class="line">} <a class="code hl_struct" href="structvSocketCloseIO__t.html" title="I/O structure for iotSocketClose.">vSocketCloseIO_t</a>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment">  \brief  I/O structure for iotSocketGetHostByName.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">  int32_t           ret_val;    <span class="comment">/*!&lt; return value */</span></div>
+<div class="line">  <span class="keyword">struct </span>{</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span> *    name;       <span class="comment">/*!&lt; host name */</span></div>
+<div class="line">    uint32_t        len;        <span class="comment">/*!&lt; length of host name */</span></div>
+<div class="line">    int32_t         af;         <span class="comment">/*!&lt; address family */</span></div>
+<div class="line">    uint8_t  *      ip;         <span class="comment">/*!&lt; pointer to buffer where resolved IP address shall be returned */</span></div>
+<div class="line">    uint32_t *      ip_len;     <span class="comment">/*!&lt; pointer to length of &#39;ip&#39; */</span></div>
+<div class="line">  } param;                      <span class="comment">/*!&lt; parameters */</span></div>
+<div class="line">} <a class="code hl_struct" href="structvSocketGetHostByNameIO__t.html" title="I/O structure for iotSocketGetHostByName.">vSocketGetHostByNameIO_t</a>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment">  \brief  Structure type to access the VSocket.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line">{</div>
+<div class="line">  <span class="keyword">volatile</span> uint32_t                   reserved;</div>
+<div class="line">  <span class="keyword">volatile</span> <a class="code hl_struct" href="structvSocketCreateIO__t.html" title="I/O structure for iotSocketCreate.">vSocketCreateIO_t</a>        * vSocketCreateIO;</div>
+<div class="line">  <span class="keyword">volatile</span> <a class="code hl_struct" href="structvSocketBindIO__t.html" title="I/O structure for iotSocketBind.">vSocketBindIO_t</a>          * vSocketBindIO;</div>
+<div class="line">  <span class="keyword">volatile</span> <a class="code hl_struct" href="structvSocketListenIO__t.html" title="I/O structure for iotSocketListen.">vSocketListenIO_t</a>        * vSocketListenIO;</div>
+<div class="line">  <span class="keyword">volatile</span> <a class="code hl_struct" href="structvSocketAcceptIO__t.html" title="I/O structure for iotSocketAccept.">vSocketAcceptIO_t</a>        * vSocketAcceptIO;</div>
+<div class="line">  <span class="keyword">volatile</span> <a class="code hl_struct" href="structvSocketConnectIO__t.html" title="I/O structure for iotSocketConnect.">vSocketConnectIO_t</a>       * vSocketConnectIO;</div>
+<div class="line">  <span class="keyword">volatile</span> <a class="code hl_struct" href="structvSocketRecvIO__t.html" title="I/O structure for iotSocketRecv.">vSocketRecvIO_t</a>          * vSocketRecvIO;</div>
+<div class="line">  <span class="keyword">volatile</span> <a class="code hl_struct" href="structvSocketRecvFromIO__t.html" title="I/O structure for iotSocketRecvFrom.">vSocketRecvFromIO_t</a>      * vSocketRecvFromIO;</div>
+<div class="line">  <span class="keyword">volatile</span> <a class="code hl_struct" href="structvSocketSendIO__t.html" title="I/O structure for iotSocketSend.">vSocketSendIO_t</a>          * vSocketSendIO;</div>
+<div class="line">  <span class="keyword">volatile</span> <a class="code hl_struct" href="structvSocketSendToIO__t.html" title="I/O structure for iotSocketSendTo.">vSocketSendToIO_t</a>        * vSocketSendToIO;</div>
+<div class="line">  <span class="keyword">volatile</span> <a class="code hl_struct" href="structvSocketGetSockNameIO__t.html" title="I/O structure for iotSocketGetSockName.">vSocketGetSockNameIO_t</a>   * vSocketGetSockNameIO;</div>
+<div class="line">  <span class="keyword">volatile</span> <a class="code hl_struct" href="structvSocketGetPeerNameIO__t.html" title="I/O structure for iotSocketGetPeerName.">vSocketGetPeerNameIO_t</a>   * vSocketGetPeerNameIO;</div>
+<div class="line">  <span class="keyword">volatile</span> <a class="code hl_struct" href="structvSocketGetOptIO__t.html" title="I/O structure for iotSocketGetOpt.">vSocketGetOptIO_t</a>        * vSocketGetOptIO;</div>
+<div class="line">  <span class="keyword">volatile</span> <a class="code hl_struct" href="structvSocketSetOptIO__t.html" title="I/O structure for iotSocketSetOpt.">vSocketSetOptIO_t</a>        * vSocketSetOptIO;</div>
+<div class="line">  <span class="keyword">volatile</span> <a class="code hl_struct" href="structvSocketCloseIO__t.html" title="I/O structure for iotSocketClose.">vSocketCloseIO_t</a>         * vSocketCloseIO;</div>
+<div class="line">  <span class="keyword">volatile</span> <a class="code hl_struct" href="structvSocketGetHostByNameIO__t.html" title="I/O structure for iotSocketGetHostByName.">vSocketGetHostByNameIO_t</a> * vSocketGetHostByNameIO;</div>
+<div class="line">} <a class="code hl_struct" href="structARM__VSocket__Type.html" title="Structure type to access the VSocket.">ARM_VSocket_Type</a>;</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Memory mapping of VSocket peripheral</span></div>
+<div class="line"><span class="preprocessor">#define ARM_VSOCKET_BASE        (0x4FEE0000UL)                          </span><span class="comment">/*!&lt; VSocket Base Address */</span><span class="preprocessor"></span></div>
+<div class="line"><span class="preprocessor">#define ARM_VSOCKET             ((ARM_VSocket_Type *)ARM_VSOCKET_BASE)  </span><span class="comment">/*!&lt; VSocket struct */</span><span class="preprocessor"></span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#ifdef  __cplusplus</span></div>
+<div class="line">}</div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#endif </span><span class="comment">/* __ARM_VSOCKET_H */</span><span class="preprocessor"></span></div>
+</div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
