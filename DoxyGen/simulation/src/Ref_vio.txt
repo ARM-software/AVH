@@ -12,19 +12,27 @@ The **Virtual Interfaces** are memory-mapped implementations of  that simulate a
 \brief Controls simple I/O such as LED and switches
 \details
 
-The **Virtual I/O Interface (VIO)** implements the [**CMSIS-Driver VIO**](https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html) for Arm Virtual Hardware Targets. It consists of the following files:
+The **Virtual I/O Interface (VIO)** implements the [**CMSIS-Driver VIO**](https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html) for Arm Virtual Hardware Targets. 
 
-- \ref vio_header "arm_vio.h": defines platform-specific memory mapping to VIO access structure. It is provided as part of device support files.
+It consists of the following parts:
 
-- **[vio_vht.c](https://github.com/ARM-software/VHT/tree/main/interface/vio/vio_vht.c)**: implements CMSIS-Driver VIO variant for Arm Virtual Hardware based on the mapping defined in *arm_vsi.h*. It is provided as part of VHT pack.
+- \ref vio_header "arm_vio.h": defines platform-specific memory mapping to VIO access structure. It is provided as part of device support files. See in \ref Using.
 
+- **[./interface/vio/vio_vht.c](https://github.com/ARM-software/VHT/tree/main/interface/vio/vio_vht.c)**: implements CMSIS-Driver VIO variant for Arm Virtual Hardware based on the VIO structure defined in *arm_vio.h*. It is provided as part of the VHT pack.
 
-\section vio_setup Setup
+# Setup {#vio_setup}
 
- - Select Virtual Hardware device as the target in the project. See in \ref Using.
- - Install VHT pack and add to the project the *CMSIS-Driver:VIO:VHT* component that contains *vio_vht.c* file.
+Instructions below cover specifically VIO setup in a project on Arm Virtual Hardware Target.
 
-\section vio_example Usage example
+- Install following software packs in your development environment, if not available yet:
+ - ARM::CMSIS pack for access to CMSIS-Driver VIO API header (*cmsis_vio.h*)
+ - Pack with target device support for access to *arm_vio.h*
+ - Arm VHT pack for access to *vio_vht.c*.
+ .
+The packs can be found on [CMSIS Packs page](https://developer.arm.com/tools-and-software/embedded/cmsis/cmsis-packs).
+- Add to the project the *CMSIS-Driver:VIO (API)* component that contains *vio_vht.c* file.
+
+# Usage example {#vio_example}
 
 After \ref vio_setup "VIO setup" in the project, the interface can be fully used as described in [CMSIS-Driver VIO documentation](
 https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html#details).
@@ -44,7 +52,7 @@ int main (void) {
 \endcode
 
 
-\section vio_header Template header file
+# Template header file {#vio_header}
 
 Below is a reference header file arm_vio.h that defines \ref arm_vio mapping.
 
@@ -52,71 +60,4 @@ The actual implementation can vary depending on the target architecture and is t
 
 \include arm_vio.h
 
-\if 0
-\defgroup arm_vio_api VIO API
-\ingroup arm_vio
-\brief Virtual Input/Output (VIO) API
-\details
-TBD
-
-@{
-
-\def ARM_VIO
-\details tbd
-
-\struct ARM_VIO_Type
-\details
-The \ref ARM_VIO_Type structure provides access to the VIO peripheral registers.
-
-@}
-
-\var ARM_VIO_Type::SignalOut
-\details
-Structure for using with vioSetSignal function.
-
-\b Example:
-
-\code
-#include <arm_vio.h>
-#include <cmsis_vio.h>
-
-ARM_VIO->SignalOut.mask = 
-ARM_VIO->SignalOut.signal = 
-
-vioSetSignal(ARM_VIO->SignalIn);
-
-\var ARM_VIO_Type::SignalIn
-\details
-Structure for using with vioGetSignal function.
-
-\b Example:
-
-\code
-#include <arm_vio.h>
-#include <cmsis_vio.h>
-
-ARM_VIO->SignalIn.mask = 
-ARM_VIO->SignalIn.signal = 
-
-vioGetSignal(ARM_VIO->SignalIn);
-
-\endcode
-
-\var ARM_VIO_Type::Value
-\details
-tbd
-
-
-\defgroup vio_header Template header file
-\ingroup arm_vio
-\details
-
-Below is a reference header file arm_vio.h that defines \ref arm_vio.
-
-The actual implementation can vary depending on the target architecture and is typically provided with the device support files for the target VHTs.
-
-\include arm_vio.h
-\endif
-
 */
-
