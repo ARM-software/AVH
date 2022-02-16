@@ -6,8 +6,8 @@ The VHT simulation models are based on the [Arm Fast Models Fixed Virtual Platfo
 
 VHT Simulation Models          | Processor Core        | Overview Description
 :------------------------------|:----------------------|:----------------------------------------
-VHT_MPS2_Cortex-M0             | Cortex-M0             | [ARM Cortex-M0 SMM on V2M-MPS2, (AppNote AN382)](https://developer.arm.com/documentation/dai0382)
-VHT_MPS2_Cortex-M0plus         | Cortex-M0plus         | [ARM Cortex-M0+ SMM on V2M-MPS2 (AppNote AN383)](https://developer.arm.com/documentation/dai0383)
+VHT_MPS2_Cortex-M0             | Cortex-M0             | [ARM Cortex-M0 SMM on V2M-MPS2 (AppNote AN382)](https://developer.arm.com/documentation/dai0382)
+VHT_MPS2_Cortex-M0plus         | Cortex-M0+            | [ARM Cortex-M0+ SMM on V2M-MPS2 (AppNote AN383)](https://developer.arm.com/documentation/dai0383)
 VHT_MPS2_Cortex-M3             | Cortex-M3             | [ARM Cortex-M3 SMM on V2M-MPS2 (AppNote AN385)](https://developer.arm.com/documentation/dai0385)
 VHT_MPS2_Cortex-M4             | Cortex-M4             | [ARM Cortex-M4 SMM on V2M-MPS2 (AppNote AN386)](https://developer.arm.com/documentation/dai0386)
 VHT_MPS2_Cortex-M7             | Cortex-M7             | [ARM Cortex-M7 SMM on V2M-MPS2 (AppNote AN399)](https://developer.arm.com/documentation/dai0386)
@@ -24,7 +24,7 @@ VHT models can be executed in Linux environment by using their model names, for 
 The command line options can be listed using the -help command. For example in Linux environment:
 
 ```
-VHT_Corestone_SSE-300_Ethos-U55 -help
+VHT_Corstone_SSE-300_Ethos-U55 -help
 ```
 
 The VHT simulation models can be configured using the option *-f FILE* that specifies a *config-file*. The available *config-file* options can be listed with the option *-l*.

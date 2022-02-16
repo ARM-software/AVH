@@ -77,8 +77,8 @@ Feature                         | Description
 
 The current beta version of of Arm Virtual Hardware has the following known issues:
 
-[**Virtual Peripherals**](../../simulation/html/group__arm__cmvp.html),
-  - After processor reset virtual interfaces may not work correctly. so it is required to restart the debug/run session.
+[**Virtual Peripherals**](../../simulation/html/group__arm__cmvp.html):
+  - After processor reset virtual interfaces may not work correctly. So it is required to restart the debug/run session.
 
 # Feedback and Support {#Support}
 
