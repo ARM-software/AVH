@@ -12,9 +12,19 @@ Resource       | Description
 [Marketing Overview](https://www.arm.com/virtual-hardware)                                            | Gives you a top-level marketing message.
 [Documentation](https://arm-software.github.io/VHT/main/overview/html/index.html)                     | Is a comprehensive documentation about **Arm Virtual Hardware**.
 [AWS Marketplace](https://aws.amazon.com/marketplace/search/results?searchTerms=Arm+Virtual+Hardware) | **Arm Virtual Hardware** is available via a Cloud Service
-[Product Roadmap](https://arm-software.github.io/VHT/main/overview/html/index.html#Roadmap)           | Lists the features that we will deploy in the next 6 months.
 [Support Forum](https://community.arm.com/support-forums/f/arm-virtual-hardware-targets-forum)        | **Arm Virtual Hardware** is supported via a forum. Your feedback will influence future roadmap.
-[TFL Micro Speech](https://github.com/arm-software/VHT-TFLmicrospeech)             | This example project shows the [**Arm VHT VSI interface**](https://arm-software.github.io/VHT/main/simulation/html/group__arm__vsi.html) with Audio input.
+[Python module for CI](https://github.com/ARM-software/VHT-AMI)                                       | Python interface for the **Arm Virtual Hardware Service on AWS** for CI testing.
+[Keil MDK Support](https://www.keil.com/pr/article/1298.htm)                                          | **Arm Virtual Hardware** is provided to users of the MDK-Professional edition at no extra cost.
+
+The following example projects show the usage of **Arm Virtual Hardware**.
+
+Examples       | Description
+:--------------|:--------------------------------------------------
+[GetStarted](https://github.com/ARM-software/VHT-GetStarted)                       | Example and project template for unit testing that shows CI and desktop development flows.
+[TFL Micro Speech](https://github.com/arm-software/VHT-TFLmicrospeech)             | Example project that shows the [**Arm VHT VSI interface**](https://arm-software.github.io/VHT/main/simulation/html/group__arm__vsi.html) with Audio input.
+[AWS MQTT Demo](https://github.com/arm-software/VHT_AWS_MQTT_Demo)                 | Example project that utilizes [**IP connectivity via VSocket Interface**](https://arm-software.github.io/VHT/main/simulation/html/group__arm__vsocket.html) to connect to a cloud service.
+[System Modeling](https://github.com/arm-software/VHT-SystemModeling)              | Example project that connects to a [**Modelica simulation**](https://modelica.org/) of a room acoustic. 
+[RTOS Validation](https://github.com/ARM-software/VHT-RTOS2_Validation)            | CI test example that shows validation of CMSIS-RTOS2 compliant real-time operating systems.
 
 
 ## Directory Structure
@@ -28,4 +38,4 @@ Directory      | Description
 Doxygen        | Doxygen [documentation](https://arm-software.github.io/VHT/main/overview/html/index.html) of **Arm Virtual Hardware**. 
 Documentation  | Temporary output directory for the [documentation](https://arm-software.github.io/VHT/main/overview/html/index.html).
 
-Copyright (C) 2021, Arm Ltd.
+Copyright (C) 2021, 2022, Arm Ltd.
