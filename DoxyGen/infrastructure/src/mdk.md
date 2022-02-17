@@ -14,7 +14,7 @@ This section explains how Virtual Hardware Targets can be used with [Keil MDK](h
   ![Download MDK VHT AddOn](images/mdk_vht_addon_download.png)
  - Install the MDK VHT AddOn:
   - Double-click on the AddOn installer file and follow the installation steps.
-   - As *Destination Folder* it is recommended to use the Keil MDK installation directory (for example `C:/Keil_v5/`). Many example projects are configured to use this path by default.
+   - As *Destination Folder* it is recommended to use the Keil MDK installation directory (for example `C:/Keil_v5/`).
   - After installation is completed, check that the destination folder now contains _ARM/VHT/_ directory, for example `C:/Keil_v5/ARM/VHT/`.
  - [*Optional*] Enable Telnet Client on Windows 10. This will allow to observe UART output from the VHT during debug.
    - Open _Start_ > _Settings_.
@@ -87,7 +87,7 @@ To configure execution and debug of an MDK project on Arm Virtual Hardware Targe
    - `$K` [key sequence](https://www.keil.com/support/man/docs/uv4/uv4_ut_keysequence.htm) can be used for shortening the Keil MDK installation path (for example intead of `C:\Keil_v5\`).
   - *Arguments*: shall contain [FVP command-line options](https://developer.arm.com/documentation/100966/1116/Getting-Started-with-Fixed-Virtual-Platforms/FVP-command-line-options) to be used with the model execution.
    - In the example above an option for starting a Telnet client is added to be able to see the redirected UART output during debug session.
-  - *Target*: shall contain `cpu0` when using VHT.
+  - *Target*: specifies the CPU to be used. Click the *Browse* button (...) and select the simulation target.
   - *Configuration File*: points to the file with model configuration parameters (passed to the model executable with `-f` option).
   .
 .
