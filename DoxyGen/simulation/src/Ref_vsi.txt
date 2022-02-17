@@ -26,7 +26,7 @@ File                             | Description
 
 A read or write access to a VSI peripheral via its \ref arm_vsi_api "API" triggers execution of a corresponding function in the Python script that implements the \ref arm_vsi_py "VSI Python interface" instance. The concept is shown on the figure below.
 
-\image html "uml_graph.png" "Using VSI peripheral"
+\image html "using_vsi_uml.png" "Using VSI peripheral"
 
 */
 

@@ -1,0 +1,51 @@
+@startuml
+skinparam Shadowing False
+skinparam NoteBorderColor #White
+skinparam NoteBackgroundColor #White
+skinparam ParticipantFontColor #White
+skinparam ParticipantBorderColor Grey
+skinparam ParticipantBorderThickness 1
+skinparam ParticipantFontStyle Bold
+
+skinparam ArrowColor #DimGrey
+
+!define green_clr #70A000
+!define blue_clr #0091BD
+!define brown_clr #BF5000
+
+skinparam sequence {
+LifeLineBorderThickness 1
+LifeLineBorderColor #Grey
+}
+
+participant CortexM as "Cortex-M\nSoftware" green_clr
+participant VIOper as "VIO\nPeripheral" blue_clr
+participant VIOpy as "VIO Python\nScript" brown_clr
+
+activate CortexM green_clr
+CortexM -> VIOper : Initialize VIO Driver
+activate VIOper blue_clr
+note right: Initialize VIO peripheral
+deactivate VIOper
+
+CortexM -> VIOper : Set output A
+activate VIOper blue_clr
+VIOper -> VIOpy : Write VIO register for A
+activate VIOpy brown_clr
+note right: Capture output A
+deactivate VIOpy
+deactivate VIOper
+...
+
+CortexM -> VIOper: Read input B
+activate VIOper blue_clr
+VIOper -> VIOpy: Read VIO register for B
+note right: Load input B
+activate VIOpy brown_clr
+VIOpy -->> VIOper: return value
+deactivate VIOpy
+VIOper -->> CortexM: return value
+
+deactivate VIOper
+deactivate CortexM
+@enduml

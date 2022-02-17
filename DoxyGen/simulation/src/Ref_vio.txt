@@ -26,7 +26,7 @@ File                                | Description
 
 A read or write access to a VIO peripheral via its \ref arm_vio_api "API" triggers execution of a corresponding function in the Python script that implements the \ref arm_vio_py "VIO Python interface" instance. The concept is shown on the figure below.
 
-\image html "using_vio_graph.png" "Using VIO peripheral"
+\image html "using_vio_uml.png" "Using VIO peripheral"
 
 \defgroup arm_vio_api VIO API
 \ingroup arm_vio
@@ -92,7 +92,7 @@ Structure for input signal.
 
 \var ARM_VIO_Type::Value
 \details
-Index array for digital values
+Index array for digital I/O values.
 
 \defgroup arm_vio_py VIO Python interface
 \ingroup arm_vio

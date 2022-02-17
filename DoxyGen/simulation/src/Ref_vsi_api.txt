@@ -12,12 +12,26 @@ The VSI peripheral is accessed using the \ref ARM_VSI_Type structure that define
   - DMA peripheral with block buffer handling
   - 64 user registers to implement bespoke functionality (i.e. for Audio, Video, or Sensor streaming)
 
-Upto 8 VSI peripheral instances can be mapped into the memory of a Cortex-M system. For example for instance 0:
+8 VSI peripheral instances are mapped into the memory of a Cortex-M system:
 
 \code
-#define ARM_VSI0_BASE   (0x4FF00000UL)                       /*!< VSI 0 Base Address */
-#define ARM_VSI0        ((ARM_VSI_Type *)ARM_VSI0_BASE)      /*!< VSI 0 struct */
-
+/* Memory mapping of 8 VSI peripherals */
+#define ARM_VSI0_BASE           (0x4FF00000UL)                          /*!< VSI 0 Base Address */
+#define ARM_VSI1_BASE           (0x4FF10000UL)                          /*!< VSI 1 Base Address */
+#define ARM_VSI2_BASE           (0x4FF20000UL)                          /*!< VSI 2 Base Address */
+#define ARM_VSI3_BASE           (0x4FF30000UL)                          /*!< VSI 3 Base Address */
+#define ARM_VSI4_BASE           (0x4FF40000UL)                          /*!< VSI 4 Base Address */
+#define ARM_VSI5_BASE           (0x4FF50000UL)                          /*!< VSI 5 Base Address */
+#define ARM_VSI6_BASE           (0x4FF60000UL)                          /*!< VSI 6 Base Address */
+#define ARM_VSI7_BASE           (0x4FF70000UL)                          /*!< VSI 7 Base Address */
+#define ARM_VSI0                ((ARM_VSI_Type *)ARM_VSI0_BASE)         /*!< VSI 0 struct */
+#define ARM_VSI1                ((ARM_VSI_Type *)ARM_VSI1_BASE)         /*!< VSI 1 struct */
+#define ARM_VSI2                ((ARM_VSI_Type *)ARM_VSI2_BASE)         /*!< VSI 2 struct */
+#define ARM_VSI3                ((ARM_VSI_Type *)ARM_VSI3_BASE)         /*!< VSI 3 struct */
+#define ARM_VSI4                ((ARM_VSI_Type *)ARM_VSI4_BASE)         /*!< VSI 4 struct */
+#define ARM_VSI5                ((ARM_VSI_Type *)ARM_VSI5_BASE)         /*!< VSI 5 struct */
+#define ARM_VSI6                ((ARM_VSI_Type *)ARM_VSI6_BASE)         /*!< VSI 6 struct */
+#define ARM_VSI7                ((ARM_VSI_Type *)ARM_VSI7_BASE)         /*!< VSI 7 struct */
 \endcode
 
 The \ref ARM_VSI_Type structure is defined in *arm_vsi.h* file as follows:
@@ -69,6 +83,23 @@ The ARM_VSI_Type::DMA controller accesses a rotating memory buffer as shown in t
 
 
 @{
+
+\def ARM_VSI0_BASE
+\def ARM_VSI1_BASE
+\def ARM_VSI2_BASE
+\def ARM_VSI3_BASE
+\def ARM_VSI4_BASE
+\def ARM_VSI5_BASE
+\def ARM_VSI6_BASE
+\def ARM_VSI7_BASE
+\def ARM_VSI0
+\def ARM_VSI1
+\def ARM_VSI2
+\def ARM_VSI3
+\def ARM_VSI4
+\def ARM_VSI5
+\def ARM_VSI6
+\def ARM_VSI7
 
 \struct ARM_VSI_Type
 \details
