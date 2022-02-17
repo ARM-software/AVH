@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['arm_5fvio_5ftype_0',['ARM_VIO_Type',['../structARM__VIO__Type.html',1,'']]],
-  ['arm_5fvio_5ftype_2esignalin_1',['ARM_VIO_Type.SignalIn',['../structARM__VIO__Type_8SignalIn.html',1,'']]],
-  ['arm_5fvio_5ftype_2esignalout_2',['ARM_VIO_Type.SignalOut',['../structARM__VIO__Type_8SignalOut.html',1,'']]],
+  ['arm_5fvio_5ftype_0',['ARM_VIO_Type',['../group__arm__vio__api.html#structARM__VIO__Type',1,'']]],
+  ['arm_5fvio_5ftype_2esignalin_1',['ARM_VIO_Type.SignalIn',['../group__arm__vio__api.html#structARM__VIO__Type_8SignalIn',1,'']]],
+  ['arm_5fvio_5ftype_2esignalout_2',['ARM_VIO_Type.SignalOut',['../group__arm__vio__api.html#structARM__VIO__Type_8SignalOut',1,'']]],
   ['arm_5fvsi_5ftype_3',['ARM_VSI_Type',['../group__arm__vsi__api.html#structARM__VSI__Type',1,'']]],
   ['arm_5fvsi_5ftype_2edma_4',['ARM_VSI_Type.DMA',['../group__arm__vsi__api.html#structARM__VSI__Type_8DMA',1,'']]],
   ['arm_5fvsi_5ftype_2eirq_5',['ARM_VSI_Type.IRQ',['../group__arm__vsi__api.html#structARM__VSI__Type_8IRQ',1,'']]],

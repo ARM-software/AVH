@@ -133,46 +133,49 @@ Data Structures</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
 <p >Data streaming interface for Cortex-M applications to Python scripting. </p>
-<p >The VSI peripheral is accessed using the <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure that provides register interface for the following components:</p><ul>
+<p >The VSI peripheral is accessed using the <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure that defines registers for the following components:</p><ul>
 <li>Interrupt control</li>
 <li>Timer peripheral with 1MHz input clock</li>
 <li>DMA peripheral with block buffer handling</li>
 <li>64 user registers to implement bespoke functionality (i.e. for Audio, Video, or Sensor streaming)</li>
 </ul>
-<p >There are 8 VSI peripheral instances mapped into the memory of the Cortex-M system. These are accessed via these defines: </p><div class="fragment"><div class="line">#define ARM_VSI0        ((ARM_VSI_Type *)ARM_VSI0_BASE)      /*!&lt; VSI 0 struct */</div>
-<div class="line">#define ARM_VSI1        ((ARM_VSI_Type *)ARM_VSI1_BASE)      /*!&lt; VSI 1 struct */</div>
-<div class="line">#define ARM_VSI2        ((ARM_VSI_Type *)ARM_VSI2_BASE)      /*!&lt; VSI 2 struct */</div>
-<div class="line">#define ARM_VSI3        ((ARM_VSI_Type *)ARM_VSI3_BASE)      /*!&lt; VSI 3 struct */</div>
-<div class="line">#define ARM_VSI4        ((ARM_VSI_Type *)ARM_VSI4_BASE)      /*!&lt; VSI 4 struct */</div>
-<div class="line">#define ARM_VSI5        ((ARM_VSI_Type *)ARM_VSI5_BASE)      /*!&lt; VSI 5 struct */</div>
-<div class="line">#define ARM_VSI6        ((ARM_VSI_Type *)ARM_VSI6_BASE)      /*!&lt; VSI 6 struct */</div>
-<div class="line">#define ARM_VSI7        ((ARM_VSI_Type *)ARM_VSI7_BASE)      /*!&lt; VSI 7 struct */</div>
-</div><!-- fragment --><p >The <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure is defined in arm_vsi.h file as follows:</p>
-<div class="fragment"><div class="line">typedef struct</div>
-<div class="line">{</div>
-<div class="line">  struct {</div>
-<div class="line">    __IOM uint32_t Enable;      /*!&lt; Offset: 0x0000 (R/W) IRQ Enable */</div>
-<div class="line">    __OM  uint32_t Set;         /*!&lt; Offset: 0x0004 (-/W) IRQ Set */</div>
-<div class="line">    __OM  uint32_t Clear;       /*!&lt; Offset: 0x0008 (-/W) IRQ Clear */</div>
-<div class="line">    __IM  uint32_t Status;      /*!&lt; Offset: 0x000C (R/-) IRQ Status */</div>
-<div class="line">  } IRQ;                        /*!&lt; Interrupt Request (IRQ) */</div>
+<p >Upto 8 VSI peripheral instances can be mapped into the memory of a Cortex-M system. For example for instance 0:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#define ARM_VSI0_BASE   (0x4FF00000UL)                       </span><span class="comment">/*!&lt; VSI 0 Base Address */</span><span class="preprocessor"></span></div>
+<div class="line"><span class="preprocessor">#define ARM_VSI0        ((ARM_VSI_Type *)ARM_VSI0_BASE)      </span><span class="comment">/*!&lt; VSI 0 struct */</span><span class="preprocessor"></span></div>
+</div><!-- fragment --><p >The <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure is defined in <em>arm_vsi.h</em> file as follows:</p>
+<div class="fragment"><div class="line"><span class="comment">/// Structure type to access the virtual streaming interface</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line">{<span class="comment"></span></div>
+<div class="line"><span class="comment">  /// Interrupt Request (IRQ)</span></div>
+<div class="line"><span class="comment"></span>  <span class="keyword">struct </span>{</div>
+<div class="line">    __IOM uint32_t Enable;      <span class="comment">/*!&lt; (R/W) IRQ Enable */</span></div>
+<div class="line">    __OM  uint32_t Set;         <span class="comment">/*!&lt; (-/W) IRQ Set */</span></div>
+<div class="line">    __OM  uint32_t Clear;       <span class="comment">/*!&lt; (-/W) IRQ Clear */</span></div>
+<div class="line">    __IM  uint32_t Status;      <span class="comment">/*!&lt; (R/-) IRQ Status */</span></div>
+<div class="line">  } IRQ;</div>
 <div class="line">  uint32_t reserved1[60];</div>
-<div class="line">  struct {</div>
-<div class="line">    __IOM uint32_t Control;     /*!&lt; Offset: 0x0100 (R/W) Timer Control */</div>
-<div class="line">    __IOM uint32_t Interval;    /*!&lt; Offset: 0x0104 (R/W) Timer Interval Value (in microseconds) */</div>
-<div class="line">    __IM  uint32_t Count;       /*!&lt; Offset: 0x0108 (R/-) Timer Overflow Count */</div>
-<div class="line">  } Timer;                      /*!&lt; Time counter with 1MHz input frequency */</div>
+<div class="line"> <span class="comment"></span></div>
+<div class="line"><span class="comment">  /// Time counter with 1MHz input frequency</span></div>
+<div class="line"><span class="comment"></span>  <span class="keyword">struct </span>{</div>
+<div class="line">    __IOM uint32_t Control;     <span class="comment">/*!&lt; (R/W) Timer Control */</span></div>
+<div class="line">    __IOM uint32_t Interval;    <span class="comment">/*!&lt; (R/W) Timer Interval Value (in microseconds) */</span></div>
+<div class="line">    __IM  uint32_t Count;       <span class="comment">/*!&lt; (R/-) Timer Overflow Count */</span></div>
+<div class="line">  } Timer;</div>
 <div class="line">  uint32_t reserved2[61];</div>
-<div class="line">  struct {</div>
-<div class="line">    __IOM uint32_t Control;     /*!&lt; Offset: 0x0200 (R/W) DMA Control */</div>
-<div class="line">    __IOM uint32_t Address;     /*!&lt; Offset: 0x0204 (R/W) DMA Memory Start Address */</div>
-<div class="line">    __IOM uint32_t BlockSize;   /*!&lt; Offset: 0x0208 (R/W) DMA Block Size (in bytes, multiple of 4) */</div>
-<div class="line">    __IOM uint32_t BlockNum;    /*!&lt; Offset: 0x020C (R/W) DMA Number of Blocks (must be 2^n) */</div>
-<div class="line">    __IM  uint32_t BlockIndex;  /*!&lt; Offset: 0x0210 (R/-) DMA Block Index */</div>
-<div class="line">  } DMA;                        /*!&lt; Direct Memory Access (DMA) Controller */</div>
+<div class="line"> <span class="comment"></span></div>
+<div class="line"><span class="comment">  /// Direct Memory Access (DMA) Controller</span></div>
+<div class="line"><span class="comment"></span>  <span class="keyword">struct </span>{</div>
+<div class="line">    __IOM uint32_t Control;     <span class="comment">/*!&lt; (R/W) DMA Control */</span></div>
+<div class="line">    __IOM uint32_t Address;     <span class="comment">/*!&lt; (R/W) DMA Memory Start Address */</span></div>
+<div class="line">    __IOM uint32_t BlockSize;   <span class="comment">/*!&lt; (R/W) DMA Block Size (in bytes, multiple of 4) */</span></div>
+<div class="line">    __IOM uint32_t BlockNum;    <span class="comment">/*!&lt; (R/W) DMA Number of Blocks (must be 2^n) */</span></div>
+<div class="line">    __IM  uint32_t BlockIndex;  <span class="comment">/*!&lt; (R/-) DMA Block Index */</span></div>
+<div class="line">  } DMA;</div>
 <div class="line">  uint32_t reserved3[59];</div>
-<div class="line">  __IOM uint32_t Regs[64];      /*!&lt; Offset: 0x0300 (R/W) User Registers */</div>
-<div class="line">} ARM_VSI_Type;</div>
+<div class="line"> </div>
+<div class="line">  __IOM uint32_t Regs[64];      <span class="comment">/*!&lt; (R/W) User Registers */</span></div>
+<div class="line"> </div>
+<div class="line">} <a class="code hl_struct" href="group__arm__vsi__api.html#structARM__VSI__Type" title="Structure type to access the virtual streaming interface.">ARM_VSI_Type</a>;</div>
 </div><!-- fragment --><p >The <a class="el" href="group__arm__vsi__api.html#a891c9036e6872ed134c185addd341b24" title="Interrupt Request (IRQ)">ARM_VSI_Type::IRQ</a> peripheral simulates an interrupt request. <b>Set</b> and <b>Clear</b> parameters have only write access and are used for triggering and clearing the interrupt. <b>Status</b> field indicates the interrupt state.</p>
 <p >The <a class="el" href="group__arm__vsi__api.html#a6e0035edd58cc6ca8c94b5f9723a0d80" title="Time counter with 1MHz input frequency.">ARM_VSI_Type::Timer</a> peripheral is a simple counting timer with a 1MHz input frequency based on the time domain of the Arm Fast Model instruction set simulator. The <b>Count</b> value increments when the <b>Interval</b> value elapses.</p>
 <p >The <a class="el" href="group__arm__vsi__api.html#a2adfebde5b46a4adc0318f5077f03c6d" title="Direct Memory Access (DMA) Controller.">ARM_VSI_Type::DMA</a> controller accesses a rotating memory buffer as shown in the diagram below. Each block transfer increments the <b>BlockIndex</b> value (restarts when the buffer rotates).</p>
@@ -262,7 +265,7 @@ reserved3[59]</td>
 <td class="fieldname">
 Regs[64]</td>
 <td class="fielddoc">
-<p >Offset: 0x0300 (R/W) User Registers</p>
+<p >(R/W) User Registers</p>
 <p >Array of registers that allows to implement peripheral specific operations. </p>
 </td></tr>
 </table>
@@ -288,28 +291,28 @@ Regs[64]</td>
 <td class="fieldname">
 Enable</td>
 <td class="fielddoc">
-<p >Offset: 0x0000 (R/W) IRQ Enable </p>
+<p >(R/W) IRQ Enable </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a5d5b78699e57104f2fa03bbdf7b9197b" name="a5d5b78699e57104f2fa03bbdf7b9197b"></a>__OM uint32_t</td>
 <td class="fieldname">
 Set</td>
 <td class="fielddoc">
-<p >Offset: 0x0004 (-/W) IRQ Set </p>
+<p >(-/W) IRQ Set </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="adc30bc0c7914db5918da4263fce93ad2" name="adc30bc0c7914db5918da4263fce93ad2"></a>__OM uint32_t</td>
 <td class="fieldname">
 Clear</td>
 <td class="fielddoc">
-<p >Offset: 0x0008 (-/W) IRQ Clear </p>
+<p >(-/W) IRQ Clear </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="aec53a8c4f07baed5d8825072c89799be" name="aec53a8c4f07baed5d8825072c89799be"></a>__IM uint32_t</td>
 <td class="fieldname">
 Status</td>
 <td class="fielddoc">
-<p >Offset: 0x000C (R/-) IRQ Status </p>
+<p >(R/-) IRQ Status </p>
 </td></tr>
 </table>
 
@@ -334,21 +337,21 @@ Status</td>
 <td class="fieldname">
 Control</td>
 <td class="fielddoc">
-<p >Offset: 0x0100 (R/W) Timer Control </p>
+<p >(R/W) Timer Control </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="ad16dd01adf735ed9b87eebff5fc39ce5" name="ad16dd01adf735ed9b87eebff5fc39ce5"></a>__IOM uint32_t</td>
 <td class="fieldname">
 Interval</td>
 <td class="fielddoc">
-<p >Offset: 0x0104 (R/W) Timer Interval Value (in microseconds) </p>
+<p >(R/W) Timer Interval Value (in microseconds) </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="ae93f994f01c537c4e2f7d8528c3eb5e9" name="ae93f994f01c537c4e2f7d8528c3eb5e9"></a>__IM uint32_t</td>
 <td class="fieldname">
 Count</td>
 <td class="fielddoc">
-<p >Offset: 0x0108 (R/-) Timer Overflow Count </p>
+<p >(R/-) Timer Overflow Count </p>
 </td></tr>
 </table>
 
@@ -373,35 +376,35 @@ Count</td>
 <td class="fieldname">
 Control</td>
 <td class="fielddoc">
-<p >Offset: 0x0200 (R/W) DMA Control </p>
+<p >(R/W) DMA Control </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="add7bf230fde8d4836917806aff6a6b27" name="add7bf230fde8d4836917806aff6a6b27"></a>__IOM uint32_t</td>
 <td class="fieldname">
 Address</td>
 <td class="fielddoc">
-<p >Offset: 0x0204 (R/W) DMA Memory Start Address </p>
+<p >(R/W) DMA Memory Start Address </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a18d721bf398e589932630551a08d2b1a" name="a18d721bf398e589932630551a08d2b1a"></a>__IOM uint32_t</td>
 <td class="fieldname">
 BlockSize</td>
 <td class="fielddoc">
-<p >Offset: 0x0208 (R/W) DMA Block Size (in bytes, multiple of 4) </p>
+<p >(R/W) DMA Block Size (in bytes, multiple of 4) </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="ad24b082591fff65e08958c0fcb18eaea" name="ad24b082591fff65e08958c0fcb18eaea"></a>__IOM uint32_t</td>
 <td class="fieldname">
 BlockNum</td>
 <td class="fielddoc">
-<p >Offset: 0x020C (R/W) DMA Number of Blocks (must be 2^n) </p>
+<p >(R/W) DMA Number of Blocks (must be 2^n) </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a6ea0de6fb5c3cd10e657992dba5b80d3" name="a6ea0de6fb5c3cd10e657992dba5b80d3"></a>__IM uint32_t</td>
 <td class="fieldname">
 BlockIndex</td>
 <td class="fielddoc">
-<p >Offset: 0x0210 (R/-) DMA Block Index </p>
+<p >(R/-) DMA Block Index </p>
 </td></tr>
 </table>
 
