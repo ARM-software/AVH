@@ -44,29 +44,29 @@ typedef struct
 {
   /// Interrupt Request (IRQ)
   struct {
-    __IOM uint32_t Enable;      /*!< Offset: 0x0000 (R/W) IRQ Enable */
-    __OM  uint32_t Set;         /*!< Offset: 0x0004 (-/W) IRQ Set */
-    __OM  uint32_t Clear;       /*!< Offset: 0x0008 (-/W) IRQ Clear */
-    __IM  uint32_t Status;      /*!< Offset: 0x000C (R/-) IRQ Status */
+    __IOM uint32_t Enable;      /*!< (R/W) IRQ Enable */
+    __OM  uint32_t Set;         /*!< (-/W) IRQ Set */
+    __OM  uint32_t Clear;       /*!< (-/W) IRQ Clear */
+    __IM  uint32_t Status;      /*!< (R/-) IRQ Status */
   } IRQ;
   uint32_t reserved1[60];
   /// Time counter with 1MHz input frequency
   struct {
-    __IOM uint32_t Control;     /*!< Offset: 0x0100 (R/W) Timer Control */
-    __IOM uint32_t Interval;    /*!< Offset: 0x0104 (R/W) Timer Interval Value (in microseconds) */
-    __IM  uint32_t Count;       /*!< Offset: 0x0108 (R/-) Timer Overflow Count */
+    __IOM uint32_t Control;     /*!< (R/W) Timer Control */
+    __IOM uint32_t Interval;    /*!< (R/W) Timer Interval Value (in microseconds) */
+    __IM  uint32_t Count;       /*!< (R/-) Timer Overflow Count */
   } Timer;
   uint32_t reserved2[61];
   /// Direct Memory Access (DMA) Controller
   struct {
-    __IOM uint32_t Control;     /*!< Offset: 0x0200 (R/W) DMA Control */
-    __IOM uint32_t Address;     /*!< Offset: 0x0204 (R/W) DMA Memory Start Address */
-    __IOM uint32_t BlockSize;   /*!< Offset: 0x0208 (R/W) DMA Block Size (in bytes, multiple of 4) */
-    __IOM uint32_t BlockNum;    /*!< Offset: 0x020C (R/W) DMA Number of Blocks (must be 2^n) */
-    __IM  uint32_t BlockIndex;  /*!< Offset: 0x0210 (R/-) DMA Block Index */
+    __IOM uint32_t Control;     /*!< (R/W) DMA Control */
+    __IOM uint32_t Address;     /*!< (R/W) DMA Memory Start Address */
+    __IOM uint32_t BlockSize;   /*!< (R/W) DMA Block Size (in bytes, multiple of 4) */
+    __IOM uint32_t BlockNum;    /*!< (R/W) DMA Number of Blocks (must be 2^n) */
+    __IM  uint32_t BlockIndex;  /*!< (R/-) DMA Block Index */
   } DMA;
   uint32_t reserved3[59];
-  __IOM uint32_t Regs[64];      /*!< Offset: 0x0300 (R/W) User Registers */
+  __IOM uint32_t Regs[64];      /*!< (R/W) User Registers */
 } ARM_VSI_Type;
 
 /* VSI Timer Control Definitions for Timer.Control register */

@@ -12,52 +12,93 @@ The **Virtual Interfaces** are memory-mapped implementations of  that simulate a
 \brief Controls simple I/O such as LED and switches
 \details
 
-The **Virtual I/O Interface (VIO)** implements the [**CMSIS-Driver VIO**](https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html) for Arm Virtual Hardware Targets. 
+The **Virtual Input/Output Interface (VIO)** implements a register-based peripheral for simple digital I/Os. It can be used to simulate control of such items as LEDs, switches, digital signals and others. Figure below demonstrates the concept.
 
-It consists of the following parts:
+\image html ./images/vio_structure.png
 
-- \ref vio_header "arm_vio.h": defines platform-specific memory mapping to VIO access structure. It is provided as part of device support files. See in \ref Using.
+The following files define the access to the VIO peripheral.
 
-- **[./interface/vio/vio_vht.c](https://github.com/ARM-software/VHT/tree/main/interface/vio/vio_vht.c)**: implements CMSIS-Driver VIO variant for Arm Virtual Hardware based on the VIO structure defined in *arm_vio.h*. It is provided as part of the VHT pack.
+File                                | Description
+:-----------------------------------|:-----------------------------------
+[./interface/include/arm_vio.h](https://github.com/ARM-software/VHT/blob/main/interface/include/arm_vio.h)       | \ref arm_vio_api "VIO API" header file
+[./interface/python/arm_vio.py](https://github.com/ARM-software/VHT/blob/main/interface/python/arm_vio.py)       | \ref arm_vio_py "VIO Python interface" script template
+[./interface/vio/vio_vht.c](https://github.com/ARM-software/VHT/blob/main/interface/vio/vio_vht.c)           | Implementation of CMSIS-Driver VIO for Arm Virtual Hardware Target
 
-# Setup {#vio_setup}
+A read or write access to a VIO peripheral via its \ref arm_vio_api "API" triggers execution of a corresponding function in the Python script that implements the \ref arm_vio_py "VIO Python interface" instance. The concept is shown on the figure below.
 
-Instructions below cover specifically VIO setup in a project on Arm Virtual Hardware Target.
+\image html "using_vio_graph.png" "Using VIO peripheral"
 
-- Install following software packs in your development environment, if not available yet:
- - ARM::CMSIS pack for access to CMSIS-Driver VIO API header (*cmsis_vio.h*)
- - Pack with target device support for access to *arm_vio.h*
- - Arm VHT pack for access to *vio_vht.c*.
- .
-The packs can be found on [CMSIS Packs page](https://developer.arm.com/tools-and-software/embedded/cmsis/cmsis-packs).
-- Add to the project the *CMSIS-Driver:VIO (API)* component that contains *vio_vht.c* file.
+\defgroup arm_vio_api VIO API
+\ingroup arm_vio
+\brief Virtual Input/Output (VIO) API
+\details
 
-# Usage example {#vio_example}
+The VIO peripheral is accessed using the \ref ARM_VIO_Type structure that defines registers for the following components:
+  - Signal output, for example for LED simulation
+  - Signal input, for example for buttons
+  - Value registers for digital sensors and controls
 
-After \ref vio_setup "VIO setup" in the project, the interface can be fully used as described in [CMSIS-Driver VIO documentation](
-https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html#details).
-
-For example to control virtual LEDs:
+One VIO peripheral instances is mapped into the memory of a Cortex-M system, for example:
 
 \code
-#include "cmsis_vio.h"                  // ::CMSIS Driver:VIO
- 
-int main (void) {
- 
-  vioInit();
-  vioSetSignal(vioLED0, vioLEDon);
-  // ...
-  vioSetSignal(vioLED0, vioLEDoff);
-}
+/* Memory mapping of VIO peripheral */
+#define ARM_VIO_BASE            (0x4FEF0000UL)                          /*!< VIO Base Address */
+#define ARM_VIO                 ((ARM_VIO_Type *)ARM_VIO_BASE)          /*!< VIO struct */
+
 \endcode
 
+The \ref ARM_VIO_Type structure is defined in *arm_vio.h* file as follows:
 
-# Template header file {#vio_header}
+\code
+/// Structure type to access the virtual input/output.
+typedef struct
+{
+  /// Signal Output
+  struct {
+    __IOM uint32_t mask;        /*!< (R/W) Bit Mask */
+    __OM  uint32_t signal;      /*!< (-/W) Signal Value */
+  } SignalOut;
+ 
+  /// Signal Input
+  struct {
+    __IOM uint32_t mask;        /*!< (R/W) Bit Mask */
+    __IM  uint32_t signal;      /*!< (R/-) Signal Value */
+  } SignalIn;
+ 
+  __IOM int32_t Value[64];      /*!< (R/W) Value (32-bit) */
+ 
+} ARM_VIO_Type;
+\endcode
 
-Below is a reference header file arm_vio.h that defines \ref arm_vio mapping.
+@{
 
-The actual implementation can vary depending on the target architecture and is typically provided with the device support files for the target VHTs.
+\def ARM_VIO_BASE
+\def ARM_VIO
 
-\include arm_vio.h
+\struct ARM_VIO_Type
+\details
+The \ref ARM_VIO_Type structure provides access to the VIO peripheral registers.
+
+@}
+
+\var ARM_VIO_Type::SignalOut
+\details
+Structure for output signal.
+
+
+\var ARM_VIO_Type::SignalIn
+\details
+Structure for input signal.
+
+\var ARM_VIO_Type::Value
+\details
+Index array for digital values
+
+\defgroup arm_vio_py VIO Python interface
+\ingroup arm_vio
+\brief      VIO python interface.
+\details
+
+The Python interface described in this section triggers on peripheral register access of the \ref arm_vio_api.
 
 */

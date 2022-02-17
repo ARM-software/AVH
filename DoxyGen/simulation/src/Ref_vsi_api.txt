@@ -6,51 +6,55 @@
 \brief Data streaming interface for Cortex-M applications to Python scripting
 \details
 
-The VSI peripheral is accessed using the \ref ARM_VSI_Type structure that provides register interface for the following components:
+The VSI peripheral is accessed using the \ref ARM_VSI_Type structure that defines registers for the following components:
   - Interrupt control
   - Timer peripheral with 1MHz input clock
   - DMA peripheral with block buffer handling
   - 64 user registers to implement bespoke functionality (i.e. for Audio, Video, or Sensor streaming)
 
-There are 8 VSI peripheral instances mapped into the memory of the Cortex-M system. These are accessed via these defines:
-\code{.unparsed}
+Upto 8 VSI peripheral instances can be mapped into the memory of a Cortex-M system. For example for instance 0:
+
+\code
+#define ARM_VSI0_BASE   (0x4FF00000UL)                       /*!< VSI 0 Base Address */
 #define ARM_VSI0        ((ARM_VSI_Type *)ARM_VSI0_BASE)      /*!< VSI 0 struct */
-#define ARM_VSI1        ((ARM_VSI_Type *)ARM_VSI1_BASE)      /*!< VSI 1 struct */
-#define ARM_VSI2        ((ARM_VSI_Type *)ARM_VSI2_BASE)      /*!< VSI 2 struct */
-#define ARM_VSI3        ((ARM_VSI_Type *)ARM_VSI3_BASE)      /*!< VSI 3 struct */
-#define ARM_VSI4        ((ARM_VSI_Type *)ARM_VSI4_BASE)      /*!< VSI 4 struct */
-#define ARM_VSI5        ((ARM_VSI_Type *)ARM_VSI5_BASE)      /*!< VSI 5 struct */
-#define ARM_VSI6        ((ARM_VSI_Type *)ARM_VSI6_BASE)      /*!< VSI 6 struct */
-#define ARM_VSI7        ((ARM_VSI_Type *)ARM_VSI7_BASE)      /*!< VSI 7 struct */
+
 \endcode
 
-The \ref ARM_VSI_Type structure is defined in arm_vsi.h file as follows:
+The \ref ARM_VSI_Type structure is defined in *arm_vsi.h* file as follows:
 
-\code{.unparsed}
+\code
+/// Structure type to access the virtual streaming interface
 typedef struct
 {
+  /// Interrupt Request (IRQ)
   struct {
-    __IOM uint32_t Enable;      /*!< Offset: 0x0000 (R/W) IRQ Enable */
-    __OM  uint32_t Set;         /*!< Offset: 0x0004 (-/W) IRQ Set */
-    __OM  uint32_t Clear;       /*!< Offset: 0x0008 (-/W) IRQ Clear */
-    __IM  uint32_t Status;      /*!< Offset: 0x000C (R/-) IRQ Status */
-  } IRQ;                        /*!< Interrupt Request (IRQ) */
+    __IOM uint32_t Enable;      /*!< (R/W) IRQ Enable */
+    __OM  uint32_t Set;         /*!< (-/W) IRQ Set */
+    __OM  uint32_t Clear;       /*!< (-/W) IRQ Clear */
+    __IM  uint32_t Status;      /*!< (R/-) IRQ Status */
+  } IRQ;
   uint32_t reserved1[60];
+ 
+  /// Time counter with 1MHz input frequency
   struct {
-    __IOM uint32_t Control;     /*!< Offset: 0x0100 (R/W) Timer Control */
-    __IOM uint32_t Interval;    /*!< Offset: 0x0104 (R/W) Timer Interval Value (in microseconds) */
-    __IM  uint32_t Count;       /*!< Offset: 0x0108 (R/-) Timer Overflow Count */
-  } Timer;                      /*!< Time counter with 1MHz input frequency */
+    __IOM uint32_t Control;     /*!< (R/W) Timer Control */
+    __IOM uint32_t Interval;    /*!< (R/W) Timer Interval Value (in microseconds) */
+    __IM  uint32_t Count;       /*!< (R/-) Timer Overflow Count */
+  } Timer;
   uint32_t reserved2[61];
+ 
+  /// Direct Memory Access (DMA) Controller
   struct {
-    __IOM uint32_t Control;     /*!< Offset: 0x0200 (R/W) DMA Control */
-    __IOM uint32_t Address;     /*!< Offset: 0x0204 (R/W) DMA Memory Start Address */
-    __IOM uint32_t BlockSize;   /*!< Offset: 0x0208 (R/W) DMA Block Size (in bytes, multiple of 4) */
-    __IOM uint32_t BlockNum;    /*!< Offset: 0x020C (R/W) DMA Number of Blocks (must be 2^n) */
-    __IM  uint32_t BlockIndex;  /*!< Offset: 0x0210 (R/-) DMA Block Index */
-  } DMA;                        /*!< Direct Memory Access (DMA) Controller */
+    __IOM uint32_t Control;     /*!< (R/W) DMA Control */
+    __IOM uint32_t Address;     /*!< (R/W) DMA Memory Start Address */
+    __IOM uint32_t BlockSize;   /*!< (R/W) DMA Block Size (in bytes, multiple of 4) */
+    __IOM uint32_t BlockNum;    /*!< (R/W) DMA Number of Blocks (must be 2^n) */
+    __IM  uint32_t BlockIndex;  /*!< (R/-) DMA Block Index */
+  } DMA;
   uint32_t reserved3[59];
-  __IOM uint32_t Regs[64];      /*!< Offset: 0x0300 (R/W) User Registers */
+ 
+  __IOM uint32_t Regs[64];      /*!< (R/W) User Registers */
+ 
 } ARM_VSI_Type;
 \endcode
 
@@ -72,6 +76,7 @@ The \ref ARM_VSI_Type structure provides access to the VSI peripheral registers.
 The peripheral provides the following registers:
 
 @}
+
 
 \var ARM_VSI_Type::Regs
 \details
@@ -109,5 +114,5 @@ It has the following registers:
   - **BlockNum** number of blocks before the memory buffer rotates, next DMA transfer uses start address.
   - **BlockIndex** counts the total number of blocks transferred. It gets set to 0 when DMA is enabled and also when buffer rotates.
  
-*/
 
+*/
