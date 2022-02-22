@@ -23,7 +23,6 @@ def version_from_git_tag():
         return f"{match.group(1)}+git{match.group(10)}.{match.group(11)}"
     return match.group(1)
 
-
 setup(
     name='vht',
     version='0.1.0',
@@ -41,7 +40,7 @@ setup(
         ]
     },
     entry_points={
-        'console_scripts': ['vht_cli=vht.vht_cli:main'],
+        'console_scripts': ['vht_cli=vht.vht_cli:main']
     },
     scripts=['vht/vht_cli.py'],
     python_requires='>=3.8',

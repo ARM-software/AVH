@@ -1,6 +1,8 @@
 # VHT python resources
 
-Python resources which interact with VHT and AWS resources (initially). The main goal is to provide CIs and the end-user tools a way to easily implement VHT-related tasks.
+Python module and CLI which interact with VHT. The main goal is to provide CIs and the end-user tools to easily manipulate VHT tasks.
+The VHTClient() (from vht.py file) provides the front-end APIs.
+For now, only `aws` backend is implemented.
 
 There are two main Python components:
 * `VHT Python module` which can be imported into your Python code to create / manage / terminate VHT Instances
@@ -11,14 +13,11 @@ There are two main Python components:
 * Go to `infrastructure/python_resources` folder
 * `pip install .`
 
-## How to import VHT module
+## How to run VHT module
 ```
-from vht import vht_core
-from vht import vht_utils
+from vht import vht
 
-# Instances
-core_instance = vht_core.VhtCore()
-utils_instance = vht_utils.VhtUtils()
+vht.VHTClient("aws").run()
 ```
 
 ## How to control log verbosity
@@ -40,13 +39,16 @@ vht_cli -v 'INFO' --get-ami-id '1.0.0'
 
 ## Folder content
 ### tests
-Tests for the VHT Python Module
+Tests for the VHT Python Module. Running unittests locally (please install tox `pip install tox`):
+```
+tox -c tox_unittest.ini
+```
 
 ### vht
 VHT python packages which includes:
-* `vht_cli`: VHT Command Line Interface tool
-* `vht_core`: Python Module which wraps AWS calls and provide methods to quickly and easily create/delete/interact with VHT intances in AWS
-* `vht_utils`: Helper methods for `vht_cli`
+* `vht_cli.py`: VHT Command Line Interface tool
+* `aws.py`: AWS backend that provides methods to quickly and easily create/delete/interact with VHT intances in AWS
+* `vht.py`: Front end class which exposes all methods available for the user.
 
 ## Examples using VHT Python Module
 * [Jenkins](https://github.com/ARM-software/VHT-GetStarted/blob/main/.jenkins/Using-VHT-Module/pipeline/Jenkinsfile)

@@ -3,329 +3,109 @@
 import argparse
 import json
 import logging
-from vht import vht_core
+from vht import vht
 
 def main():
     # Parser
     parser = argparse.ArgumentParser()
-    parser.add_argument('--create-ec2-instance',
-                        nargs='*',
-                        help='Create a ARM Virtual Hardware Instance')
-    parser.add_argument('--download-s3-file',
-                        nargs='*',
-                        help='Download an S3 file')
-    parser.add_argument('--get-ami-id',
+    parser.add_argument('--create_instance',
+                        action='store_true',
+                        help='Create a new VHT instance')
+    parser.add_argument('--delete_file_from_cloud',
                         type=str,
-                        help='Get the VHT AMI ID for your AWS region')
-    parser.add_argument('--get-ec2-instance-state',
-                        type=str,
-                        help='Get the EC2 instance state')
-    parser.add_argument('--get-s3-file-content',
+                        nargs=1,
+                        help='Delete a file from cloud')
+    parser.add_argument('--download_file_from_cloud',
+                        nargs=2,
+                        help='Download a file from clould')
+    parser.add_argument('--get_image_id',
+                        action='store_true',
+                        help='Get the image id')
+    parser.add_argument('--get_instance_state',
+                        action='store_true',
+                        help='Get instance state')
+    parser.add_argument('--get_process_vht_commands',
+                        action='store_true',
+                        help='Get process VHT commands to be executed on the instance')
+    parser.add_argument('--run',
+                        action='store_true',
+                        help='Run VHT commands to the instance with default values')
+    parser.add_argument('--send_remote_command',
                         nargs='*',
-                        help='Get the S3 file content')
-    parser.add_argument('--get-s3-ssm-command-id-key',
+                        help='Send/Execute remote commands to a instance')
+    parser.add_argument('--send_remote_command_batch',
                         nargs='*',
-                        help='Get the S3 Key from a SSM Output')
-    parser.add_argument('--get-ssm-command-id-status',
-                        type=str,
-                        help='Get SSM Command ID status')
-    parser.add_argument('--get-ssm-command-id-status-details',
-                        nargs='*',
-                        help='Get SSM Command ID status details')
-    parser.add_argument('--get-ssm-command-id-stdout-url',
-                        nargs='*',
-                        help='Get SSM Command ID Stdout URL')
-    parser.add_argument('--get-ssm-command-id-stderr-url',
-                        nargs='*',
-                        help='Get SSM Command ID Stderr URL')
-    parser.add_argument('--send-ssm-shell-command',
-                        nargs='*',
-                        help='Send a shell command to a instance by SSM')
-    parser.add_argument('--start-ec2-instance',
-                        type=str,
-                        help='Start the EC2 instance')
-    parser.add_argument('--stop-ec2-instance',
-                        type=str,
-                        help='Stop the EC2 instance')
-    parser.add_argument('--terminate-ec2-instance',
-                        type=str,
-                        help='Terminate the EC2 instance')
-    parser.add_argument('--wait-ssm-command-finished',
-                        nargs="*",
-                        help='Wait until a SSM command is finished')
+                        help='Send/Execute multiple remote commands to a instance')
+    parser.add_argument('--start_instance',
+                        action='store_true',
+                        help='Start instance (if instance_id info is provided)')
+    parser.add_argument('--stop_instance',
+                        action='store_true',
+                        help='Stop instance')
+    parser.add_argument('--terminate_instance',
+                        action='store_true',
+                        help='Terminate instance')
+    parser.add_argument('--teardown',
+                        action='store_true',
+                        help='Terminate (if flag enabled) or stop instance')
+    parser.add_argument('--upload_file_to_cloud',
+                        nargs=2,
+                        help='Terminate (if flag enabled) or stop instance')
     parser.add_argument('-v', '--verbosity',
                         type=str,
                         choices=['DEBUG', 'INFO', 'WARNING', 'ERROR'],
-                        help='Set the output verbosity DEBUG, INFO, WARNING, ERROR')
+                        help='Set the output verbosity DEBUG, INFO, WARNING, ERROR. Default: `INFO`')
+    parser.add_argument('-b', '--backend',
+                        type=str,
+                        choices=['aws'],
+                        default='aws',
+                        help='Select your aws. Default: `aws`')
     parser.parse_args()
     args = parser.parse_args()
-
-    ########### BEGIN VARIABLES ###################################################
-    # Set verbosity level
     if args.verbosity:
         verbosity = args.verbosity
         level = { "DEBUG": 10, "INFO": 20, "WARNING" : 30, "ERROR" : 40 }
         logging.basicConfig(format='[%(levelname)s]\t%(message)s', level = verbosity)
         logging.debug("Verbosity level is set to " + verbosity)
 
+    # vht_instance using args.backend
+    vht_client = vht.VHTClient(args.backend)
 
-    def process_kwargs_cli(args):
-        logging.debug(args.arg_name)
-        map_args = {}
-        for i_args in args.create_ec2_instance:
-            logging.debug(i_args)
-            key, value = i_args.split('=')
-            logging.debug(type(value))
-
-            # convert a string to a list
-            if value[0] == '[':
-                value = value.strip('[]').split(', ')
-            # convert a string to a dict
-            elif value[0] == '{':
-                json_acceptable_string = value.replace("'", "\"")
-                value = json.loads(json_acceptable_string)
-                isinstance(value, dict)
-            # convert a string to a number
-            elif value.isdigit():
-                value = int(value)
-
-            logging.debug(type(value))
-            map_args[key] = value
-
-        logging.debug("map = {}".format(map_args))
-
-    ########### END VARIABLES #####################################################
-
-    # core_instance = vht_core.VhtCore(s3_bucket_name, s3_keyprefix)
-    core_instance = vht_core.VhtCore()
-
-    if args.create_ec2_instance:
-        # TODO: Add support to create tags. Complicated parsing.
-        logging.info("Creating instance...")
-        logging.debug(args.create_ec2_instance)
-        map_args = {}
-        for i_args in args.create_ec2_instance:
-            logging.debug(i_args)
-            key, value = i_args.split('=')
-            logging.debug(type(value))
-
-            # convert a string to a list
-            if value[0] == '[':
-                value = value.strip('[]').split(', ')
-            # convert a string to a dict
-            elif value[0] == '{':
-                json_acceptable_string = value.replace("'", "\"")
-                value = json.loads(json_acceptable_string)
-                isinstance(value, dict)
-            # convert a string to a number
-            elif value.isdigit():
-                value = int(value)
-
-            logging.debug(type(value))
-            map_args[key] = value
-
-        logging.debug("map = {}".format(map_args))
-        print(core_instance.create_ec2_instance(**map_args))
-
-    if args.download_s3_file:
-        map_args = {}
-        for i_args in args.download_s3_file:
-            logging.debug(i_args)
-            key, value = i_args.split('=')
-            logging.debug(type(value))
-
-            # convert a string to a list
-            if value[0] == '[':
-                value = value.strip('[]').split(', ')
-            # convert a string to a dict
-            elif value[0] == '{':
-                json_acceptable_string = value.replace("'", "\"")
-                value = json.loads(json_acceptable_string)
-                isinstance(value, dict)
-            # convert a string to a number
-            elif value.isdigit():
-                value = int(value)
-
-            logging.debug(type(value))
-            map_args[key] = value
-
-        core_instance.download_s3_file(map_args['s3BucketName'], map_args['key'], map_args['filename'])
-
-    if args.get_ami_id:
-        print(core_instance.get_ami_id(args.get_ami_id))
-
-    if args.get_ec2_instance_state:
-        print(core_instance.get_ec2_instance_state(args.get_ec2_instance_state))
-
-    if args.get_s3_file_content:
-        map_args = {}
-        for i_args in args.get_s3_file_content:
-            logging.debug(i_args)
-            key, value = i_args.split('=')
-            logging.debug(type(value))
-
-            # convert a string to a list
-            if value[0] == '[':
-                value = value.strip('[]').split(', ')
-            # convert a string to a dict
-            elif value[0] == '{':
-                json_acceptable_string = value.replace("'", "\"")
-                value = json.loads(json_acceptable_string)
-                isinstance(value, dict)
-            # convert a string to a number
-            elif value.isdigit():
-                value = int(value)
-
-            logging.debug(type(value))
-            map_args[key] = value
-
-        print(core_instance.get_s3_file_content(map_args['s3BucketName'], map_args['key']))
-
-    if args.get_s3_ssm_command_id_key:
-        map_args = {}
-        for i_args in args.get_s3_ssm_command_id_key:
-            logging.debug(i_args)
-            key, value = i_args.split('=')
-            logging.debug(type(value))
-
-            # convert a string to a list
-            if value[0] == '[':
-                value = value.strip('[]').split(', ')
-            # convert a string to a dict
-            elif value[0] == '{':
-                json_acceptable_string = value.replace("'", "\"")
-                value = json.loads(json_acceptable_string)
-                isinstance(value, dict)
-            # convert a string to a number
-            elif value.isdigit():
-                value = int(value)
-
-            logging.debug(type(value))
-            map_args[key] = value
-
-        print(core_instance.get_s3_ssm_command_id_key(map_args['InstanceId'],
-                                                    map_args['CommandId'],
-                                                    map_args['s3KeyPrefix'],
-                                                    map_args['OutputType']))
-
-    if args.get_ssm_command_id_status:
-        print(core_instance.get_ssm_command_id_status(args.get_ssm_command_id_status))
-
-    if args.get_ssm_command_id_status_details:
-        map_args = {}
-
-        # parsing args
-        for i_args in args.get_ssm_command_id_status_details:
-            logging.debug(i_args)
-            key, value = i_args.split('=')
-            map_args[key] = value
-
-        print(core_instance.get_ssm_command_id_status_details(
-            instance_id=map_args['InstanceId'],
-            command_id=map_args['CommandId']))
-
-    if args.get_ssm_command_id_stdout_url:
-        map_args = {}
-
-        # parsing args
-        for i_args in args.get_ssm_command_id_stdout_url:
-            logging.debug(i_args)
-            key, value = i_args.split('=')
-            map_args[key] = value
-
-        print(core_instance.get_ssm_command_id_stdout_url(
-            instance_id=map_args['InstanceId'],
-            command_id=map_args['CommandId']))
-
-    if args.get_ssm_command_id_stderr_url:
-        map_args = {}
-
-        # parsing args
-        for i_args in args.get_ssm_command_id_stderr_url:
-            logging.debug(i_args)
-            key, value = i_args.split('=')
-            map_args[key] = value
-
-        print(core_instance.get_ssm_command_id_stderr_url(
-            instance_id=map_args['InstanceId'],
-            command_id=map_args['CommandId']))
-
-    if args.send_ssm_shell_command:
-        map_args = {}
-        for i_args in args.send_ssm_shell_command:
-            logging.debug(i_args)
-            key, value = i_args.split('=')
-            logging.debug(type(value))
-
-            # convert a string to a list
-            if value[0] == '[':
-                value = value.strip('[]').split(', ')
-            # convert a string to a dict
-            elif value[0] == '{':
-                json_acceptable_string = value.replace("'", "\"")
-                value = json.loads(json_acceptable_string)
-                isinstance(value, dict)
-            # convert a string to a number
-            elif value.isdigit():
-                value = int(value)
-
-            logging.debug(type(value))
-            map_args[key] = value
-
-            # print(map_args.keys())
-            if 'workingDir' not in map_args.keys():
-                map_args['workingDir'] = '/'
-            if 'outputType' not in map_args.keys():
-                map_args['outputType'] = 'command_id'
-            if 'timeoutSeconds' not in map_args.keys():
-                map_args['timeoutSeconds'] = 600
-
-        print(core_instance.send_ssm_shell_command(map_args['InstanceId'],
-                                                map_args['commandList'],
-                                                map_args['s3BucketName'],
-                                                map_args['s3KeyPrefix'],
-                                                map_args['workingDir'],
-                                                map_args['outputType'],
-                                                map_args['timeoutSeconds']))
-
-    if args.start_ec2_instance:
-        core_instance.start_ec2_instance(args.start_ec2_instance)
-
-    if args.stop_ec2_instance:
-        core_instance.stop_ec2_instance(args.stop_ec2_instance)
-
-    if args.terminate_ec2_instance:
-        core_instance.terminate_ec2_instance(args.terminate_ec2_instance)
-
-    if args.wait_ssm_command_finished:
-        map_args = {}
-        for i_args in args.wait_ssm_command_finished:
-            logging.debug(i_args)
-            key, value = i_args.split('=')
-            logging.debug(type(value))
-
-            # convert a string to a list
-            if value[0] == '[':
-                value = value.strip('[]').split(', ')
-            # convert a string to a dict
-            elif value[0] == '{':
-                json_acceptable_string = value.replace("'", "\"")
-                value = json.loads(json_acceptable_string)
-                isinstance(value, dict)
-            # convert a string to a number
-            elif value.isdigit():
-                value = int(value)
-
-            logging.debug(type(value))
-            map_args[key] = value
-
-            # print(map_args.keys())
-            if 'delay' not in map_args.keys():
-                map_args['delay'] = 5
-            if 'max_attempts' not in map_args.keys():
-                map_args['max_attempts'] = 120
-
-        core_instance.wait_ssm_command_finished(map_args['InstanceId'], map_args['CommandId'])
+    if args.create_instance:
+        print(vht_client.create_instance())
+    if args.delete_file_from_cloud:
+        key = args.delete_file_from_cloud[0]
+        vht_client.delete_file_from_cloud(key)
+    if args.download_file_from_cloud:
+        filename = args.download_file_from_cloud[0]
+        key = args.download_file_from_cloud[1]
+        vht_client.download_file_from_cloud(filename, key)
+    if args.get_image_id:
+        print(vht_client.get_image_id())
+    if args.get_instance_state:
+        print(vht_client.get_instance_state())
+    if args.get_process_vht_commands:
+        print(vht_client.get_process_vht_commands())
+    if args.run:
+        vht_client.run()
+    if args.send_remote_command:
+        # TODO
+        pass
+    if args.send_remote_command_batch:
+        # TODO
+        pass
+    if args.start_instance:
+        vht_client.start_instance()
+    if args.stop_instance:
+        vht_client.stop_instance()
+    if args.terminate_instance:
+        vht_client.terminate_instance()
+    if args.teardown:
+        vht_client.teardown()
+    if args.upload_file_to_cloud:
+        filename = args.upload_file_to_cloud[0]
+        key = args.upload_file_to_cloud[1]
+        vht_client.upload_file_to_cloud(filename, key)
 
 if __name__ == '__main__':
     main()
