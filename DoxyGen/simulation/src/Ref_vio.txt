@@ -38,7 +38,7 @@ The VIO peripheral is accessed using the \ref ARM_VIO_Type structure that define
   - Signal input, for example for buttons
   - Value registers for digital sensors and controls
 
-One VIO peripheral instances is mapped into the memory of a Cortex-M system, for example:
+One VIO peripheral instance is mapped into the memory of a Cortex-M system, for example:
 
 \code
 /* Memory mapping of VIO peripheral */
@@ -77,7 +77,7 @@ typedef struct
 
 \struct ARM_VIO_Type
 \details
-The \ref ARM_VIO_Type structure provides access to the VIO peripheral registers.
+The **ARM_VIO_Type** structure provides access to the VIO peripheral registers.
 
 @}
 

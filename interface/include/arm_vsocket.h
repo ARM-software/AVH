@@ -51,11 +51,12 @@ extern "C" {
  */
 typedef struct {
   int32_t           ret_val;    /*!< return value */
+  /// arguments for iotSocketCreate
   struct {
     int32_t         af;         /*!< address family */
     int32_t         type;       /*!< socket type */
     int32_t         protocol;   /*!< socket protocol */
-  } param;                      /*!< parameters */
+  } param;
 } vSocketCreateIO_t;
 
 /**
@@ -63,13 +64,14 @@ typedef struct {
  */
 typedef struct {
   int32_t           ret_val;    /*!< return value */
+  /// arguments for iotSocketBind
   struct {
     int32_t         socket;     /*!< socket identification number */
     const uint8_t * ip;         /*!< pointer to local IP address */
     uint32_t        ip_len;     /*!< length of 'ip' address in bytes */
     uint16_t        port;       /*!< local port number */
     uint16_t        padding;
-  } param;                      /*!< parameters */
+  } param;
 } vSocketBindIO_t;
 
 /**
@@ -77,10 +79,11 @@ typedef struct {
  */
 typedef struct {
   int32_t           ret_val;    /*!< return value */
+  /// arguments for iotSocketListen
   struct {
     int32_t         socket;     /*!< socket identification number */
     int32_t         backlog;    /*!< number of connection requests that can be queued */
-  } param;                      /*!< parameters */
+  } param;
 } vSocketListenIO_t;
 
 /**
@@ -88,12 +91,13 @@ typedef struct {
  */
 typedef struct {
   int32_t           ret_val;    /*!< return value */
+  /// arguments for iotSocketAccept
   struct {
     int32_t         socket;     /*!< socket identification number */
     uint8_t  *      ip;         /*!< pointer to buffer where address of connecting socket shall be returned (NULL for none) */
     uint32_t *      ip_len;     /*!< pointer to length of 'ip' (or NULL if 'ip' is NULL) */
     uint16_t *      port;       /*!< pointer to buffer where port of connecting socket shall be returned (NULL for none) */
-  } param;                      /*!< parameters */
+  } param;
 } vSocketAcceptIO_t;
 
 /**
@@ -101,13 +105,14 @@ typedef struct {
  */
 typedef struct {
   int32_t           ret_val;    /*!< return value */
+  /// arguments for iotSocketConnect
   struct {
     int32_t         socket;     /*!< socket identification number */
     const uint8_t * ip;         /*!< pointer to remote IP address */
     uint32_t        ip_len;     /*!< length of 'ip' address in bytes */
     uint16_t        port;       /*!< remote port number */
     uint16_t        padding;
-  } param;                      /*!< parameters */
+  } param;
 } vSocketConnectIO_t;
 
 /**
@@ -115,11 +120,12 @@ typedef struct {
  */
 typedef struct {
   int32_t           ret_val;    /*!< return value */
+  /// arguments for iotSocketRecv
   struct {
     int32_t         socket;     /*!< socket identification number */
     void *          buf;        /*!< pointer to buffer where data should be stored */
     uint32_t        len;        /*!< length of buffer (in bytes) */
-  } param;                      /*!< parameters */
+  } param;
 } vSocketRecvIO_t;
 
 /**
@@ -127,6 +133,7 @@ typedef struct {
  */
 typedef struct {
   int32_t           ret_val;    /*!< return value */
+  /// arguments for iotSocketRecvFrom
   struct {
     int32_t         socket;     /*!< socket identification number */
     void *          buf;        /*!< pointer to buffer where data should be stored */
@@ -134,7 +141,7 @@ typedef struct {
     uint8_t  *      ip;         /*!< pointer to buffer where remote source address shall be returned (NULL for none) */
     uint32_t *      ip_len;     /*!< pointer to length of 'ip' (or NULL if 'ip' is NULL) */
     uint16_t *      port;       /*!< pointer to buffer where remote source port shall be returned (NULL for none) */
-  } param;                      /*!< parameters */
+  } param;
 } vSocketRecvFromIO_t;
 
 /**
@@ -142,11 +149,12 @@ typedef struct {
  */
 typedef struct {
   int32_t           ret_val;    /*!< return value */
+  /// arguments for iotSocketSend
   struct {
     int32_t         socket;     /*!< socket identification number */
     const void *    buf;        /*!< pointer to buffer containing data to send */
     uint32_t        len;        /*!< length of data (in bytes) */
-  } param;                      /*!< parameters */
+  } param;
 } vSocketSendIO_t;
 
 /**
@@ -154,6 +162,7 @@ typedef struct {
  */
 typedef struct {
   int32_t           ret_val;    /*!< return value */
+  /// arguments for iotSocketSendTo
   struct {
     int32_t         socket;     /*!< socket identification number */
     const void *    buf;        /*!< pointer to buffer containing data to send */
@@ -162,7 +171,7 @@ typedef struct {
     uint32_t        ip_len;     /*!< length of 'ip' address in bytes */
     uint16_t        port;       /*!< remote destination port number */
     uint16_t        padding;
-  } param;                      /*!< parameters */
+  } param;
 } vSocketSendToIO_t;
 
 /**
@@ -170,12 +179,13 @@ typedef struct {
  */
 typedef struct {
   int32_t           ret_val;    /*!< return value */
+  /// arguments for iotSocketGetSockName
   struct {
     int32_t         socket;     /*!< socket identification number */
     uint8_t  *      ip;         /*!< pointer to buffer where local address shall be returned (NULL for none) */
     uint32_t *      ip_len;     /*!< pointer to length of 'ip' (or NULL if 'ip' is NULL) */
     uint16_t *      port;       /*!< pointer to buffer where local port shall be returned (NULL for none) */
-  } param;                      /*!< parameters */
+  } param;
 } vSocketGetSockNameIO_t;
 
 /**
@@ -183,12 +193,13 @@ typedef struct {
  */
 typedef struct {
   int32_t           ret_val;    /*!< return value */
+  /// arguments for iotSocketGetPeerName
   struct {
     int32_t         socket;     /*!< socket identification number */
     uint8_t  *      ip;         /*!< pointer to buffer where remote address shall be returned (NULL for none) */
     uint32_t *      ip_len;     /*!< pointer to length of 'ip' (or NULL if 'ip' is NULL) */
     uint16_t *      port;       /*!< pointer to buffer where remote port shall be returned (NULL for none) */
-  } param;                      /*!< parameters */
+  } param;
 } vSocketGetPeerNameIO_t;
 
 /**
@@ -196,12 +207,13 @@ typedef struct {
  */
 typedef struct {
   int32_t           ret_val;    /*!< return value */
+  /// arguments for iotSocketGetOpt
   struct {
     int32_t         socket;     /*!< socket identification number */
     int32_t         opt_id;     /*!< option identifier */
     void     *      opt_val;    /*!< pointer to the buffer that will receive the option value */
     uint32_t *      opt_len;    /*!< pointer to length of the option value */
-  } param;                      /*!< parameters */
+  } param;
 } vSocketGetOptIO_t;
 
 /**
@@ -209,12 +221,13 @@ typedef struct {
  */
 typedef struct {
   int32_t           ret_val;    /*!< return value */
+  /// arguments for iotSocketSetOpt
   struct {
     int32_t         socket;     /*!< socket identification number */
     int32_t         opt_id;     /*!< option identifier */
     const void *    opt_val;    /*!< pointer to the option value */
     uint32_t        opt_len;    /*!< length of the option value in bytes */
-  } param;                      /*!< parameters */
+  } param;
 } vSocketSetOptIO_t;
 
 /**
@@ -222,9 +235,10 @@ typedef struct {
  */
 typedef struct {
   int32_t           ret_val;    /*!< return value */
+  /// arguments for iotSocketClose
   struct {
     int32_t         socket;     /*!< socket identification number */
-  } param;                      /*!< parameters */
+  } param;
 } vSocketCloseIO_t;
 
 /**
@@ -232,13 +246,14 @@ typedef struct {
  */
 typedef struct {
   int32_t           ret_val;    /*!< return value */
+  /// arguments for iotSocketGetHostByName
   struct {
     const char *    name;       /*!< host name */
     uint32_t        len;        /*!< length of host name */
     int32_t         af;         /*!< address family */
     uint8_t  *      ip;         /*!< pointer to buffer where resolved IP address shall be returned */
     uint32_t *      ip_len;     /*!< pointer to length of 'ip' */
-  } param;                      /*!< parameters */
+  } param;
 } vSocketGetHostByNameIO_t;
 
 /**
@@ -247,21 +262,21 @@ typedef struct {
 typedef struct
 {
   volatile uint32_t                   reserved;
-  volatile vSocketCreateIO_t        * vSocketCreateIO;
-  volatile vSocketBindIO_t          * vSocketBindIO;
-  volatile vSocketListenIO_t        * vSocketListenIO;
-  volatile vSocketAcceptIO_t        * vSocketAcceptIO;
-  volatile vSocketConnectIO_t       * vSocketConnectIO;
-  volatile vSocketRecvIO_t          * vSocketRecvIO;
-  volatile vSocketRecvFromIO_t      * vSocketRecvFromIO;
-  volatile vSocketSendIO_t          * vSocketSendIO;
-  volatile vSocketSendToIO_t        * vSocketSendToIO;
-  volatile vSocketGetSockNameIO_t   * vSocketGetSockNameIO;
-  volatile vSocketGetPeerNameIO_t   * vSocketGetPeerNameIO;
-  volatile vSocketGetOptIO_t        * vSocketGetOptIO;
-  volatile vSocketSetOptIO_t        * vSocketSetOptIO;
-  volatile vSocketCloseIO_t         * vSocketCloseIO;
-  volatile vSocketGetHostByNameIO_t * vSocketGetHostByNameIO;
+  volatile vSocketCreateIO_t        * vSocketCreateIO;       /*!< Structure for socket create */
+  volatile vSocketBindIO_t          * vSocketBindIO;         /*!< Structure for socket bind */
+  volatile vSocketListenIO_t        * vSocketListenIO;       /*!< Structure for socket listen */
+  volatile vSocketAcceptIO_t        * vSocketAcceptIO;       /*!< Structure for socket accept */
+  volatile vSocketConnectIO_t       * vSocketConnectIO;      /*!< Structure for socket connect */
+  volatile vSocketRecvIO_t          * vSocketRecvIO;         /*!< Structure for socket receive */
+  volatile vSocketRecvFromIO_t      * vSocketRecvFromIO;     /*!< Structure for socket receive from */
+  volatile vSocketSendIO_t          * vSocketSendIO;         /*!< Structure for socket send */
+  volatile vSocketSendToIO_t        * vSocketSendToIO;       /*!< Structure for socket send to */
+  volatile vSocketGetSockNameIO_t   * vSocketGetSockNameIO;  /*!< Structure for get socket name */
+  volatile vSocketGetPeerNameIO_t   * vSocketGetPeerNameIO;  /*!< Structure for get peer name */
+  volatile vSocketGetOptIO_t        * vSocketGetOptIO;       /*!< Structure for socket get options */
+  volatile vSocketSetOptIO_t        * vSocketSetOptIO;       /*!< Structure for socket set options */
+  volatile vSocketCloseIO_t         * vSocketCloseIO;        /*!< Structure for socket close */
+  volatile vSocketGetHostByNameIO_t * vSocketGetHostByNameIO; /*!< Structure for socket get host by name */
 } ARM_VSocket_Type;
 
 // Memory mapping of VSocket peripheral

@@ -883,7 +883,7 @@ INPUT                  = ./src/main.md \
                          ../../interface/python/arm_vsi0.py \
                          ../../interface/python/arm_vio.py \
                          ./src/Ref_vsocket.txt \
-                         ./src/Ref_vsi_cases.txt \
+                         ./src/peripheral_use_cases.txt \
                          ./src/audio_drv.txt \
                          ../../interface/audio/include/audio_drv.h \
 

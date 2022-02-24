@@ -7,94 +7,98 @@
 \brief IP network connectivity via host system
 \details
 
-The **Virtual Socket Interface (VSocket)** provides IP connectivity to the user application by connecting it to [**BSD sockets**](https://en.wikipedia.org/wiki/Berkeley_sockets) on the Host system. 
+The **Virtual Socket Interface (VSocket)** provides IP connectivity to the user application by connecting it to [**BSD sockets**](https://en.wikipedia.org/wiki/Berkeley_sockets) on the Host system. Figure below demonstrates the concept.
 
-VSocket implements a variant of the [IoT Socket](https://github.com/MDK-Packs/IoT_Socket) and consists of the following parts:
+\image html ./images/vsocket_structure.png
 
-- \ref vsocket_header "arm_vsocket.h": defines platform-specific memory mapping to VSocket access structure. It is provided as part of device support files. See in \ref Using.
+VSocket implements a variant of the  and consists of the following parts:
 
-- **[./interface/vsocket/iot_socket.c](https://github.com/ARM-software/VHT/tree/main/interface/vsocket/iot_socket.c)**: implements IoT Socket variant for Arm Virtual Hardware based on the structures defined in *arm_vsocket.h*. It is provided as part of the Arm VHT pack.
+The following files define the access to the VSocket peripheral.
 
-# Setup{#vsocket_setup}
+File                                | Description
+:-----------------------------------|:-----------------------------------
+[./interface/include/arm_vsocket.h](https://github.com/ARM-software/VHT/blob/main/interface/include/arm_vsocket.h)       | \ref arm_vsocket_api "VSocket API" header file
+[./interface/vsocket/iot_socket.c](https://github.com/ARM-software/VHT/blob/main/interface/vsocket/iot_socket.c)           | Implementation of [IoT Socket](https://github.com/MDK-Packs/IoT_Socket) variant for Arm Virtual Hardware
 
-Instructions below cover specifically VSocket setup in a project on Arm Virtual Hardware Target.
+\defgroup arm_vsocket_api VSocket API
+\ingroup arm_vsocket
+\brief Virtual Socket (VSocket) API
+\details
 
-- Verify that following packs are installed in your development environment:
- - ARM::CMSIS pack for CMSIS-RTOS2 API and Keil RTX5 RTOS.
- - Pack with target device support for access to *arm_vsocket.h*.
- - [MDK-Packs::IoT Socket pack](https://github.com/MDK-Packs/IoT_Socket) for access to API header (*iot_socket.h*).
- - Arm VHT pack for access to *iot_socket.c* implementation.
- .
-The packs can be found on [CMSIS Packs page](https://developer.arm.com/tools-and-software/embedded/cmsis/cmsis-packs).
-- Following components shall be selected as part of the project:
-  - *CMSIS:RTOS2 (API):Keil RTX5* for RTOS2 API used in the VSocket implementation
-  - *IoT Utility:Socket (API):VSocket* component that provides *iot_socket.c* file.
-
-\subsection vsocket_model Model Configuration
-
-Network parameters of the Virtual Hardware model such as SubNet and MAC address, shall be configured according to the values of the host system.
-
-For example for Corstone-300 system:
+The VSocket peripheral is accessed using the \ref ARM_VSocket_Type structure that is mapped into the memory of a Cortex-M system, for example:
 
 \code
-# Parameters:
-# instance.parameter=value       #(type, mode) default = 'def value' : description : [min..max]
-#------------------------------------------------------------------------------
-mps3_board.hostbridge.interfaceName=                  # (string, init-time) default = ''       : Host Interface
-mps3_board.hostbridge.userNetPorts=                   # (string, init-time) default = ''       : Listening ports to expose in user-mode networking
-mps3_board.hostbridge.userNetSubnet=172.20.51.0/24    # (string, init-time) default = '172.20.51.0/24' : Virtual subnet for user-mode networking
-mps3_board.hostbridge.userNetworking=1                # (bool  , init-time) default = '0'      : Enable user-mode networking
-mps3_board.smsc_91c111.enabled=1                      # (bool  , init-time) default = '0'      : Host interface connection enabled
-mps3_board.smsc_91c111.mac_address=00:02:f7:ef:6e:bf  # (string, init-time) default = '00:02:f7:ef:6e:bf' : Host/model MAC address
-#------------------------------------------------------------------------------
+// Memory mapping of VSocket peripheral
+#define ARM_VSOCKET_BASE        (0x4FEE0000UL)                          /*!< VSocket Base Address */
+#define ARM_VSOCKET             ((ARM_VSocket_Type *)ARM_VSOCKET_BASE)  /*!< VSocket struct */
 \endcode
 
-See \ref Using for details about model configuration.
-
-# Usage example{#vsocket_example}
-
-After \ref vsocket_setup "VSocket setup" in the project, the interface can be fully used as described in [IoT Socket documentation](
-https://mdk-packs.github.io/IoT_Socket/html/index.html).
-
-For example:
+The \ref ARM_VSocket_Type structure is defined in *arm_vsocket.h* file as follows:
 
 \code
-#include "iot_socket.h"                  // ::IoT Utility:Socket (API)
-static const char message[] = { "The quick brown fox jumps over the lazy dog." };
-  
-void Echo_Client_Thread (void *arg) {
-  uint8_t ip[4] = { 192U, 168U, 0U, 100U };
-  int32_t sock, res;
-  char dbuf[120];
- 
-  while (1) {
-    sock = iotSocketCreate (IOT_SOCKET_AF_INET, IOT_SOCKET_SOCK_STREAM, IOT_SOCKET_IPPROTO_TCP);
- 
-    res = iotSocketConnect (sock, (uint8_t *)ip, sizeof(ip), 7U);
-    if (res == 0) {
-      iotSocketSend (sock, message, sizeof(message));
-      res = iotSocketRecv (sock, dbuf, sizeof(dbuf));
-      if (res < 0) {
-        break;               // Error occured
-      }
-      if (res > 0) {
-        if (memcmp (dbuf, message, res) != 0) {
-          // error handling, message is not the same as sent
-        }
-      }
-    }
-    iotSocketClose (sock);
-    osDelay (1000U);
-  }
-}
+/// Structure type to access the VSocket
+typedef struct
+{
+  volatile uint32_t                   reserved;
+  volatile vSocketCreateIO_t        * vSocketCreateIO;
+  volatile vSocketBindIO_t          * vSocketBindIO;
+  volatile vSocketListenIO_t        * vSocketListenIO;
+  volatile vSocketAcceptIO_t        * vSocketAcceptIO;
+  volatile vSocketConnectIO_t       * vSocketConnectIO;
+  volatile vSocketRecvIO_t          * vSocketRecvIO;
+  volatile vSocketRecvFromIO_t      * vSocketRecvFromIO;
+  volatile vSocketSendIO_t          * vSocketSendIO;
+  volatile vSocketSendToIO_t        * vSocketSendToIO;
+  volatile vSocketGetSockNameIO_t   * vSocketGetSockNameIO;
+  volatile vSocketGetPeerNameIO_t   * vSocketGetPeerNameIO;
+  volatile vSocketGetOptIO_t        * vSocketGetOptIO;
+  volatile vSocketSetOptIO_t        * vSocketSetOptIO;
+  volatile vSocketCloseIO_t         * vSocketCloseIO;
+  volatile vSocketGetHostByNameIO_t * vSocketGetHostByNameIO;
+} ARM_VSocket_Type;
 \endcode
 
-# Template header file{#vsocket_header}
+@{
 
-Below is a reference header file *arm_vsocket.h* that defines \ref arm_vsocket structures and memory mappings required for implementation of VSocket variant.
+\def ARM_VSOCKET_BASE
+\def ARM_VSOCKET
 
-The pending on the target architecture and is typically provided with the device support files for the target VHTs.
+\struct ARM_VSocket_Type
+\details
+The **ARM_VSocket_Type** structure provides access to the VSocket peripheral registers
 
-\include arm_vsocket.h
+\struct vSocketCreateIO_t
+
+\struct vSocketBindIO_t
+
+\struct vSocketListenIO_t
+
+\struct vSocketAcceptIO_t
+
+\struct vSocketConnectIO_t
+
+
+\struct vSocketRecvIO_t
+
+\struct vSocketRecvFromIO_t
+
+\struct vSocketSendIO_t
+
+\struct vSocketSendToIO_t
+
+\struct vSocketGetSockNameIO_t
+
+\struct vSocketGetPeerNameIO_t
+
+\struct vSocketGetOptIO_t
+
+\struct vSocketSetOptIO_t
+
+\struct vSocketCloseIO_t
+
+\struct vSocketGetHostByNameIO_t
+
+@}
+
 
 */
