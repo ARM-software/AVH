@@ -33,6 +33,7 @@ var NAVTREE =
         [ "Evaluate Performance", "index.html#Evaluate", null ],
         [ "Continuous Testing", "index.html#CI", null ]
       ] ],
+      [ "Release History", "index.html#History", null ],
       [ "Product Roadmap", "index.html#Roadmap", null ],
       [ "Known Limitations", "index.html#Issues", null ],
       [ "Feedback and Support", "index.html#Support", null ]
