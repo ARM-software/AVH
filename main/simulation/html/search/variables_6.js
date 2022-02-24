@@ -1,5 +1,20 @@
 var searchData=
 [
   ['value_0',['Value',['../group__arm__vio__api.html#a1410e716fef703dbc126e07a09764df0',1,'ARM_VIO_Type']]],
-  ['verbosity_1',['verbosity',['../group__arm__vsi__py.html#ga97b1cc04ec204ba7f1507498beb1d460',1,'arm_vsi0.verbosity()'],['../group__arm__vio__py.html#ga97b1cc04ec204ba7f1507498beb1d460',1,'arm_vio.verbosity()']]]
+  ['verbosity_1',['verbosity',['../group__arm__vio__py.html#ga97b1cc04ec204ba7f1507498beb1d460',1,'arm_vio.verbosity()'],['../group__arm__vsi__py.html#ga97b1cc04ec204ba7f1507498beb1d460',1,'arm_vsi0.verbosity()']]],
+  ['vsocketacceptio_2',['vSocketAcceptIO',['../group__arm__vsocket__api.html#a94f437993f25408c12e907e0630e3500',1,'ARM_VSocket_Type']]],
+  ['vsocketbindio_3',['vSocketBindIO',['../group__arm__vsocket__api.html#a083a6b6c10f0184c93d21513e614e6af',1,'ARM_VSocket_Type']]],
+  ['vsocketcloseio_4',['vSocketCloseIO',['../group__arm__vsocket__api.html#a251bda48e65298dbde08608e3698d51b',1,'ARM_VSocket_Type']]],
+  ['vsocketconnectio_5',['vSocketConnectIO',['../group__arm__vsocket__api.html#a03e1a515673725df3ad77d39737e4d6b',1,'ARM_VSocket_Type']]],
+  ['vsocketcreateio_6',['vSocketCreateIO',['../group__arm__vsocket__api.html#a1991e1092c56d7194f60cdf99c69e940',1,'ARM_VSocket_Type']]],
+  ['vsocketgethostbynameio_7',['vSocketGetHostByNameIO',['../group__arm__vsocket__api.html#a48454533212e1740d085050197012ed6',1,'ARM_VSocket_Type']]],
+  ['vsocketgetoptio_8',['vSocketGetOptIO',['../group__arm__vsocket__api.html#a486cf4f2a1d417189950fdd310167e8f',1,'ARM_VSocket_Type']]],
+  ['vsocketgetpeernameio_9',['vSocketGetPeerNameIO',['../group__arm__vsocket__api.html#a27af6f173df2054df57e6670c3fd3e60',1,'ARM_VSocket_Type']]],
+  ['vsocketgetsocknameio_10',['vSocketGetSockNameIO',['../group__arm__vsocket__api.html#a23bf17d018739899c9ae189c8c422e76',1,'ARM_VSocket_Type']]],
+  ['vsocketlistenio_11',['vSocketListenIO',['../group__arm__vsocket__api.html#ad1c89053b1037d66f252aae8fb3f7804',1,'ARM_VSocket_Type']]],
+  ['vsocketrecvfromio_12',['vSocketRecvFromIO',['../group__arm__vsocket__api.html#aaa8c2ea3e8067c76c2de4b165dac0a38',1,'ARM_VSocket_Type']]],
+  ['vsocketrecvio_13',['vSocketRecvIO',['../group__arm__vsocket__api.html#a3519ee87a12084cbbc2eb660accd3b75',1,'ARM_VSocket_Type']]],
+  ['vsocketsendio_14',['vSocketSendIO',['../group__arm__vsocket__api.html#adfa2f4ff4e709c1f344f6ff12fee5078',1,'ARM_VSocket_Type']]],
+  ['vsocketsendtoio_15',['vSocketSendToIO',['../group__arm__vsocket__api.html#abf8d1f188af0eef83f22e1a9dc69e851',1,'ARM_VSocket_Type']]],
+  ['vsocketsetoptio_16',['vSocketSetOptIO',['../group__arm__vsocket__api.html#adabd782c3620e4cc73c2c5d950a55e8a',1,'ARM_VSocket_Type']]]
 ];

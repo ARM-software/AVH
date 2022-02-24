@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Simulation: vSocketCloseIO_t Struct Reference</title>
+<title>Simulation: Using VIO</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",'Search','.html');
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('structvSocketCloseIO__t.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('group__arm__vio__cases.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -107,66 +107,45 @@ $(document).ready(function(){initNavTree('structvSocketCloseIO__t.html',''); ini
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#pub-attribs">Data Fields</a>  </div>
-  <div class="headertitle"><div class="title">vSocketCloseIO_t Struct Reference</div></div>
+  <div class="headertitle"><div class="title">Using VIO<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a> &raquo; <a class="el" href="group__arm__vio.html">Virtual Input/Output (VIO)</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>I/O structure for iotSocketClose.  
- <a href="structvSocketCloseIO__t.html#details">More...</a></p>
-
-<p><code>#include &lt;arm_vsocket.h&gt;</code></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Data Fields</h2></td></tr>
-<tr class="memitem:af1738ffd2f5def68f66fd7c246a604bf"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvSocketCloseIO__t.html#af1738ffd2f5def68f66fd7c246a604bf">ret_val</a></td></tr>
-<tr class="separator:af1738ffd2f5def68f66fd7c246a604bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a271186edf92d76709d28eae6894107e3"><td class="memItemLeft" >struct {</td></tr>
-<tr class="memitem:acb77197db9b98c6ae0097eab762e7a08"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvSocketCloseIO__t.html#acb77197db9b98c6ae0097eab762e7a08">socket</a></td></tr>
-<tr class="separator:acb77197db9b98c6ae0097eab762e7a08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a271186edf92d76709d28eae6894107e3"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvSocketCloseIO__t.html#a271186edf92d76709d28eae6894107e3">param</a></td></tr>
-<tr class="separator:a271186edf92d76709d28eae6894107e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Description</h2>
-<div class="textblock"><p >I/O structure for iotSocketClose. </p>
-</div><h2 class="groupheader">Field Documentation</h2>
-<a id="af1738ffd2f5def68f66fd7c246a604bf" name="af1738ffd2f5def68f66fd7c246a604bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1738ffd2f5def68f66fd7c246a604bf">&#9670;&nbsp;</a></span>ret_val</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32_t ret_val</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >return value </p>
-
-</div>
-</div>
-<a id="a271186edf92d76709d28eae6894107e3" name="a271186edf92d76709d28eae6894107e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a271186edf92d76709d28eae6894107e3">&#9670;&nbsp;</a></span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct  { ... }  param</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >parameters </p>
-
-</div>
-</div>
-</div><!-- contents -->
+<p>Using Virtual I/O Interface (VIO)  
+</p>
+<p >Using Virtual I/O Interface (VIO) </p>
+<p ><a class="el" href="group__arm__vio__api.html">VIO API</a> provides a general purpose implementation for simple I/O peripherals. This chapter shows how VIO can be applied in a specific use case.</p>
+<p ><b><a href="https://github.com/ARM-software/VHT/tree/main/interface/vio/vio_vht.c">./interface/vio/vio_vht.c</a></b>: implements <a href="https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html"><b>CMSIS-Driver VIO</b></a> for Arm Virtual Hardware based on the <a class="el" href="group__arm__vio__api.html#structARM__VIO__Type">ARM_VIO_Type</a> structure and its mapping defined in <em>arm_vio.h</em>.</p>
+<h1><a class="anchor" id="vio_setup"></a>
+Setup</h1>
+<p >Instructions below cover specifically setup for using CMSIS-Driver VIO in a project on Arm Virtual Hardware Target.</p>
+<ul>
+<li>Install following software packs in your development environment, if not available yet:<ul>
+<li>ARM::CMSIS pack for access to CMSIS-Driver VIO API header (<em>cmsis_vio.h</em>)</li>
+<li>Pack with target device support for access to <a class="el" href="group__arm__vio__api.html">VIO API</a> (<em>arm_vio.h</em>)</li>
+<li>Arm VHT pack for access to implementation of CMSIS-Driver VIO (<em>vio_vht.c</em>)</li>
+</ul>
+The packs can be found on <a href="https://developer.arm.com/tools-and-software/embedded/cmsis/cmsis-packs">CMSIS Packs page</a>.</li>
+<li>Add to the project the <em>CMSIS-Driver:VIO (API):VIO</em> component that contains <em>vio_vht.c</em> file.</li>
+</ul>
+<h1><a class="anchor" id="vio_example"></a>
+Usage example</h1>
+<p >After VIO is setup in the project, the interface can be fully used as described in <a href="https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html#details">CMSIS-Driver VIO documentation</a>.</p>
+<p >For example to control virtual LEDs:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;cmsis_vio.h&quot;</span>                  <span class="comment">// ::CMSIS Driver:VIO</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main (<span class="keywordtype">void</span>) {</div>
+<div class="line"> </div>
+<div class="line">  vioInit();</div>
+<div class="line">  vioSetSignal(vioLED0, vioLEDon);</div>
+<div class="line">  <span class="comment">// ...</span></div>
+<div class="line">  vioSetSignal(vioLED0, vioLEDoff);</div>
+<div class="line">}</div>
+</div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="structvSocketCloseIO__t.html">vSocketCloseIO_t</a></li>
     <li class="footer">
 	Copyright &copy; 2021-2022 Arm Limited (or its affiliates). All rights reserved.
 	<!-- Use script below for auto-inserting date, project name, version, etc  -->
