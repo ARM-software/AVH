@@ -64,9 +64,32 @@ For unit and integration tests virtual targets offer additional advantages over 
  - **Maintenance** – unlike physical hardware, virtual platforms do not overheat, wear out from overuse, break from misuse, or use physical space and resources. 
  - **Upgrades** – virtual platforms can be adapted and re-configured to match corresponding changes to the underlying hardware platform that is under development. These types of changes can be costly or impossible with physical hardware.
 
+# Release History {#History}
+
+<table>
+<tr>
+<th>Version</th>
+<th>Changes</th>
+</tr>
+<tr>
+<td>0.2-beta (Feb 2022)</td>
+<td>Added features:
+ - [**Extended Target support**](../../simulation/html/Using.html): additional Cortex-M processors are supported: Cortex-M0/M0+/M3/M4/M7/M23/M33.
+ - [**Support in MDK-Professional**](../../infrastructure/html/run_mdk_pro.html): enables desktop development in classic tooling.
+ - [**VIO Interface**](../../simulation/html/group__arm__vio.html): simple interface to control I/O such as switches and LEDs via Python scripts.
+ - [**VSocket Interface**](../../simulation/html/group__arm__vsocket.html): BSD socket interface that connects the application under test to networks, including public Internet.
+ - [**Get-Started example**](../../examples/html/GetStarted.html): added simple example demonstrating how to setup a Continuous Integration (CI) workflow using Arm Virtual Hardware.
+</td>
+</tr>
+<tr>
+<td>0.1-beta (Nov 2021)</td>
+<td>Initial release</td>
+</tr>
+</table>
+
 # Product Roadmap {#Roadmap}
 
-Arm Virtual Hardware is now in public beta phase. The table below shows features that we will deploy in the **next 6 months**.  During the beta phase, you may evaluate how our products help in your development processes. The feature roadmap of Arm Virtual Hardware gives you indication what to expect. We will release this features as they become available during the beta phase to allow product evaluation before the final release.
+Arm Virtual Hardware is now in public beta phase. The table below shows features that we will deploy in the **next 3 months**.  During the beta phase, you may evaluate how our products help in your development processes. The feature roadmap of Arm Virtual Hardware gives you indication what to expect. We will release this features as they become available during the beta phase to allow product evaluation before the final release.
 
 Feature                         | Description     
 :-------------------------------|:----------------
