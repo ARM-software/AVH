@@ -93,7 +93,7 @@ https://mdk-packs.github.io/IoT_Socket/html/index.html). For example:
 \code
 #include "iot_socket.h"                  // ::IoT Utility:Socket (API)
 static const char message[] = { "The quick brown fox jumps over the lazy dog." };
-  
+ 
 void Echo_Client_Thread (void *arg) {
   uint8_t ip[4] = { 192U, 168U, 0U, 100U };
   int32_t sock, res;
@@ -104,19 +104,21 @@ void Echo_Client_Thread (void *arg) {
  
     res = iotSocketConnect (sock, (uint8_t *)ip, sizeof(ip), 7U);
     if (res == 0) {
-      iotSocketSend (sock, message, sizeof(message));
-      res = iotSocketRecv (sock, dbuf, sizeof(dbuf));
-      if (res < 0) {
-        break;               // Error occured
-      }
-      if (res > 0) {
-        if (memcmp (dbuf, message, res) != 0) {
-          // error handling, message is not the same as sent
+      while (1) {
+        iotSocketSend (sock, message, sizeof(message));
+        res = iotSocketRecv (sock, dbuf, sizeof(dbuf));
+        if (res < 0) {
+          break;               // Receive error
         }
+        if (res > 0) {
+          if (memcmp (dbuf, message, res) != 0) {
+            break;             // Message error, echoed message is not the same
+          }
+        }
+        osDelay (1000U);
       }
     }
     iotSocketClose (sock);
-    osDelay (1000U);
   }
 }
 \endcode
