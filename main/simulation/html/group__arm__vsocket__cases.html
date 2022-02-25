@@ -139,7 +139,7 @@ Usage example</h1>
 <p >After VSocket is setup in the project the interface can be fully used as described in <a href="https://mdk-packs.github.io/IoT_Socket/html/index.html">IoT Socket documentation</a>. For example:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;iot_socket.h&quot;</span>                  <span class="comment">// ::IoT Utility:Socket (API)</span></div>
 <div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> message[] = { <span class="stringliteral">&quot;The quick brown fox jumps over the lazy dog.&quot;</span> };</div>
-<div class="line">  </div>
+<div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> Echo_Client_Thread (<span class="keywordtype">void</span> *arg) {</div>
 <div class="line">  uint8_t ip[4] = { 192U, 168U, 0U, 100U };</div>
 <div class="line">  int32_t sock, res;</div>
@@ -150,19 +150,21 @@ Usage example</h1>
 <div class="line"> </div>
 <div class="line">    res = iotSocketConnect (sock, (uint8_t *)ip, <span class="keyword">sizeof</span>(ip), 7U);</div>
 <div class="line">    <span class="keywordflow">if</span> (res == 0) {</div>
-<div class="line">      iotSocketSend (sock, message, <span class="keyword">sizeof</span>(message));</div>
-<div class="line">      res = iotSocketRecv (sock, dbuf, <span class="keyword">sizeof</span>(dbuf));</div>
-<div class="line">      <span class="keywordflow">if</span> (res &lt; 0) {</div>
-<div class="line">        <span class="keywordflow">break</span>;               <span class="comment">// Error occured</span></div>
-<div class="line">      }</div>
-<div class="line">      <span class="keywordflow">if</span> (res &gt; 0) {</div>
-<div class="line">        <span class="keywordflow">if</span> (memcmp (dbuf, message, res) != 0) {</div>
-<div class="line">          <span class="comment">// error handling, message is not the same as sent</span></div>
+<div class="line">      <span class="keywordflow">while</span> (1) {</div>
+<div class="line">        iotSocketSend (sock, message, <span class="keyword">sizeof</span>(message));</div>
+<div class="line">        res = iotSocketRecv (sock, dbuf, <span class="keyword">sizeof</span>(dbuf));</div>
+<div class="line">        <span class="keywordflow">if</span> (res &lt; 0) {</div>
+<div class="line">          <span class="keywordflow">break</span>;               <span class="comment">// Receive error</span></div>
 <div class="line">        }</div>
+<div class="line">        <span class="keywordflow">if</span> (res &gt; 0) {</div>
+<div class="line">          <span class="keywordflow">if</span> (memcmp (dbuf, message, res) != 0) {</div>
+<div class="line">            <span class="keywordflow">break</span>;             <span class="comment">// Message error, echoed message is not the same</span></div>
+<div class="line">          }</div>
+<div class="line">        }</div>
+<div class="line">        osDelay (1000U);</div>
 <div class="line">      }</div>
 <div class="line">    }</div>
 <div class="line">    iotSocketClose (sock);</div>
-<div class="line">    osDelay (1000U);</div>
 <div class="line">  }</div>
 <div class="line">}</div>
 </div><!-- fragment --> </div><!-- contents -->
