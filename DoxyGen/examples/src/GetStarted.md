@@ -1,12 +1,12 @@
 # Get Started Example {#GetStarted}
 
-VHT Basic example demonstrates how to setup a Continuous Integration (CI) workflow for testing and debugging embedded applications using Arm Virtual Hardware. The project is maintained in the GitHub repository [**github.com/ARM-software/VHT-GetStarted**](https://github.com/ARM-software/VHT-GetStarted/) that also contains detailed description of the example.
+VHT GetStarted example demonstrates how to setup a Continuous Integration (CI) workflow for testing and debugging embedded applications using Arm Virtual Hardware. The project is maintained in the GitHub repository [**github.com/ARM-software/VHT-GetStarted**](https://github.com/ARM-software/VHT-GetStarted/) that also contains detailed description of the example.
 
 This chapter provides step-by-step guide through the CI workflow operation and its setup.
 
 ## Overview {#GS_Overview}
 
-The VHT Basic example implements common steps in the CI workflow as shown on the figure below and explained in subsequent sections.
+The VHT GetStarted example implements common steps in the CI workflow as shown on the figure below and explained in subsequent sections.
 
 ![Continuous Integration (CI) workflow](images/basic_ci_workflow.png)
 
@@ -24,16 +24,16 @@ Following is required to reproduce operation of the example project:
 * an [AWS](https://aws.amazon.com/) account
 * a Windows PC with administrator rights
 
-Other necessary software items are freely available and their installation is described in the related steps.
+Other necessary software items are available free-of-charge and their installation is described in the related steps.
 
 ## Develop tests {#GS_DevelopTest}
 
-The VHT Basic embedded program implements a set of unit tests for validating operation of a simple function that is expected to return the sum value of two integer arguments. The example uses [Unity Framework](https://github.com/ThrowTheSwitch/Unity) for test implementation and execution, however, the demonstrated concept is universal and can be applied for a different testing framework as well.
+The VHT GetStarted embedded program implements a set of unit tests for validating operation of a simple function that is expected to return the sum value of two integer arguments. The example uses [Unity Framework](https://github.com/ThrowTheSwitch/Unity) for test implementation and execution, however, the demonstrated concept is universal and can be applied to a different testing framework as well.
 
 ### Create repository on GitHub
 
-Initial project repository setup should follow a standard git process for either [creating a new repo] (https://docs.github.com/en/get-started/quickstart/create-a-repo) or [forking](https://docs.github.com/en/get-started/quickstart/fork-a-repo) already existing one.
-The VHT GetStarted repository is setup as a GitHub template repository so it is very easy to [create own repository from it](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template):
+Initial project repository setup should follow a standard git process for either [creating a new repo] (https://docs.github.com/en/get-started/quickstart/create-a-repo) or [forking](https://docs.github.com/en/get-started/quickstart/fork-a-repo) an existing one.
+The VHT GetStarted repository is set up as a GitHub template repository so it is very easy to [create own repository from it](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template):
  - Open a web browser and go to the URL: [https://github.com/ARM-software/VHT-GetStarted](https://github.com/ARM-software/VHT-GetStarted)
  - Verify that you are logged in to your GitHub account.
  - Click on *Use this template* button. This opens the _Create a new repository from VHT-GetStarted_ page.
@@ -71,17 +71,17 @@ The implementation of tests in the example can be considered as a template for a
 
 **Redirect stdout**
 
-By default Unity uses `putchar` for print out. Keil MDK does not support semihosting and hence standard output needs to be redirected to become visible during debug session. [**Redirect I/O**](https://www.keil.com/pack/doc/compiler/RetargetIO/html/index.html) component enables several mechanisms for that. In our example this output gets redirected to a UART interface.
+By default Unity uses `putchar` for print out. Keil MDK does not support semihosting and hence standard output needs to be redirected to become visible during debug session. [**Redirect I/O**](https://www.keil.com/pack/doc/compiler/RetargetIO/html/index.html) component enables several mechanisms for that. In our example stdout output gets redirected to a UART interface.
 
 **Export project to CPRJ format**
 
-The VHT Basic project is also described in _basic.debug.cprj_ file using universal [.cprj format](https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html) that gets used in command-line CI environments. For correct workflow operation it is important to keep the MDK project files and the _basic.debug.cprj_ file synchronized. For that after saving modifications in the MDK project go to the µVision menu [_Project_ - _Export_](https://www.keil.com/support/man/docs/uv4/uv4_ui_export.htm) and select _Save project to CPRJ format_.
+The VHT GetStarted example is also described in _basic.debug.cprj_ file using universal [.cprj format](https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html) that gets used in command-line CI environments. For correct workflow operation it is important to keep the MDK project files and the _basic.debug.cprj_ file synchronized. For that after saving modifications in the MDK project go to the µVision menu [_Project_ - _Export_](https://www.keil.com/support/man/docs/uv4/uv4_ui_export.htm) and select _Save project to CPRJ format_.
 
 **Build and Run the example in Keil MDK**
 
 Build and execute the program in Keil MDK in the same way as any other project. Refer to [Program Build and Debug](../../infrastructure/html/run_mdk_pro.html#mdk_program_run) for additional description.
 
-In the VHT Basic example by default the following output shall be observed in the Telnet window, indicating an intentional failure in `test_my_sum_fail`:
+The GetStarted example is configured to open a local Telnet console automatically when the debug session starts. By default the following output shall be observed there, indicating an intentional failure in `test_my_sum_fail`:
 
 ![Telnet output with local execution](images/basic_telnet_default.png)
 
@@ -89,7 +89,7 @@ In the VHT Basic example by default the following output shall be observed in th
 
 As common for many projects, the CI pipeline for the VHT Get Started repository is triggered on every code change via push and pull requests. In our example this is explicitly limited to the _main_ branch only.
 
-The CI implementation relies on [GitHub Actions](https://docs.github.com/en/actions) with [GitHub-hosted Runners](../../infrastructure/html/run_ami_github.html#GitHub_hosted). Program build and execution are done on [Arm Virtual Hardware AMI](../../infrastructure/html/index.html#AWS) instance in Amazon AWS. Custom GitHub action [Arm-Software/VHT-AMI](https://github.com/ARM-software/VHT-AMI) manages the connection between the GitHub repository and the AMI instance in AWS, as well as configures the actions to be performed on the AMI.
+The CI implementation in this example relies on [GitHub Actions](https://docs.github.com/en/actions) with [GitHub-hosted Runners](../../infrastructure/html/run_ami_github.html#GitHub_hosted). Program build and execution are done on [Arm Virtual Hardware AMI](../../infrastructure/html/index.html#AWS) instance in Amazon AWS. Custom GitHub action [Arm-Software/VHT-AMI](https://github.com/ARM-software/VHT-AMI) manages the connection between the GitHub repository and the AMI instance in AWS, as well as configures the actions to be performed on the AMI.
 
 Subsections below explain the setup for the AWS and GitHub Actions.
 
@@ -109,7 +109,7 @@ On the AWS side several items shall be setup to enable execution of example CI p
    - Note the parameters available in the _Output_ tab of the created stack. They will be needed later for \ref GS_GitHub_Setup.
   - Alternatively, for a more customized setup see [GitHub-hosted Runners](../../infrastructure/html/run_ami_github.html#GitHub_hosted).
  - Ensure that a Key Pair is available for use with EC2.<br>
-   By default the VHT Basic example expects a key pair with name `common` to create an EC2 instance (with line `ssh_key_name: common` in _basic.yml_ file).
+   By default the VHT GetStarted example expects a key pair with name `common` to create an EC2 instance (with line `ssh_key_name: common` in _basic.yml_ file).
   - In AWS Management Console type _EC2_ and go to the EC2 service.
   - In the left menu find _Network & Security_ section and click on _Key Pairs_.
   - Verify that the same AWS region is selected as will be used with Arm Virtual Hardware AMI later.
@@ -125,14 +125,14 @@ On the AWS side several items shall be setup to enable execution of example CI p
 
 Section [GitHub-hosted Runners](../../infrastructure/html/run_ami_github.html#GitHub_hosted) introduces the concept and explains it in details.
 
-The GitHub Action is implemented in the [./.github/workflows/basic.yml](https://github.com/ARM-software/VHT-GetStarted/blob/main/.github/workflows/basic.yml) file using corresponding [YAML syntax for GitHub workflows](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions). 
+The GitHub Action in this example is implemented in the [./.github/workflows/basic.yml](https://github.com/ARM-software/VHT-GetStarted/blob/main/.github/workflows/basic.yml) file using corresponding [YAML syntax for GitHub workflows](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions). 
 
 todo: describe the workflow setup
 
 **Add GitHub Secrets**
 
 Several parameters need to be configured in the repository as [GitHub Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) to enable communication with your AWS account. For that:
- - Go to the GitHub web-page of your repository.
+ - Go to the GitHub webpage of your repository.
  - Go to *Settings* tab and in the list on the left side select _Secrets_.
  - Use button _New repository secret_ and add one by one following secrets:
  .
@@ -165,14 +165,14 @@ Several parameters need to be configured in the repository as [GitHub Secrets](h
 
 CI pipeline gets executed automatically on every code change in the _main_ branch and execution results can be observed on the repository GitHub page.
 
- - Go to the GitHub web-page of the repository.
+ - Go to the GitHub webpage of the repository.
  - Go to _Actions_ tab.
-  - In _Workflows_ area you can see the list of GitHub workflows defined in the repository. In our example there is just one.
- - Select the workflow and its runs will be displayed on the page. Immediately after copying the repository the workflow is not executed yet.
+  - In _Workflows_ area you can see the list of GitHub workflows defined in the repository. In our example there is just one defined by *./.github/workflows/basic.yml* file in the repository.
+ - Select the workflow and its runs will be displayed on the page. Note that right after copying the repository the list is empty because no workflows are executed yet.
    -  Use _Run workflow_ to manually trigger execution of this workflow on the initial codebase.<br>
     ![GitHub Actions view](images/basic_gh_actions.png)
    - Wait until workflow execution is completed.<br>
-     In this example it shall have success status indicated with a green circle icon. This means that the CI pipeline execution was successful, but does not consider the actual test results (where one unit test is intentionally failing).<br>
+     In this example it shall have success status indicated with a green circle icon. This only means that the CI pipeline execution was successful, but the actual test results are not considered (where one unit test is intentionally failing).<br>
    ![GitHub Actions view](images/basic_gh_ci_default.png)
  - Click on the title of the workflow run to analyze its execution as explained in next section.
 
@@ -180,14 +180,14 @@ CI pipeline gets executed automatically on every code change in the _main_ branc
 
 [GitHub Documentation](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/about-monitoring-and-troubleshooting) gives an overview about monitoring and troubleshooting options available for GitHub Actions.
 
-Steps below guide through the analysis for VHT Basic example.
+Steps below guide through the analysis for VHT GetStarted example.
 
 - Observe the three CI jobs executed in the selected CI workflow as shown in the _Jobs_ area on the left side.
   - **ci_test** job executes the CI pipeline without doing any analysis of unit test results. It is considered as successful (green circle) when the CI pipeline was executed fully to the end.
   - **badge** job generates [GitHub badges](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge) for the _README.md_ file to make the CI workflow status easily visible. The _badge_ job is shown as successful when badge generation worked correctly.
   - **Test results** job analyses actual results of the unit test execution in the CI. Green checkmark indicates that all executed tests pass.
   .
-  By default it appears as follows:<br>
+  By default the execution result of three CI jobs defined in this GetStarted example appears as follows:<br>
 ![GitHub Actions workflow jobs ](images/basic_gh_workflow_jobs_default.png)
 - In the _Artifacts_ area click on _results_ to download an archive file with additional details about the test run. It contains:
   - <i>basic.axf</i> binary image that was built and tested in the CI run.
@@ -198,13 +198,13 @@ Steps below guide through the analysis for VHT Basic example.
 ![GitHub Actions workflow log example](images/basic_gh_ci_test_log.png)
 
 - Click on _Test results_ job that analyses the results of the executed tests. 
-It can be seen that in default setup 1 out of 4 tests fails. Specific location (_check on line 48 in main.c_) and the reason (_Expected 2 Was 0_) for the failure are shown as well.<br>
+It can be seen that in default setup 1 out of 4 tests fails. The specific location (_check on line 48 in main.c_) and the reason (_Expected 2 Was 0_) for the failure are shown as well.<br>
 ![GitHub Actions test results view](images/basic_gh_test_results_view.png)
 
-This allows to find the failure quickly. In our example it is a trivial one, introduced on purpose in the original code.
-- Return to the VHT Basic project in Keil MDK on your PC.
+This allows to find the failure quickly. In our example it is a trivial one, introduced on purpose in the example code.
+- Return to the VHT GetStarted project in Keil MDK on your PC.
 - Open _main.c_ file.
-- In line 48 replace the incorrectly expected value `2` with the correct `0`:
+- In line 48 replace the incorrect value `2` with the correct `0`:
 
         TEST_ASSERT_EQUAL_INT(0, sum);
 
@@ -218,5 +218,5 @@ This allows to find the failure quickly. In our example it is a trivial one, int
         git push
 
 - Go to GitHub Actions page of your repository.
-- Observe that the CI workflow was automatically started with the code change. After sometime it gets completed and now the _Test results_ job shall indicate that were no test failures.<br>
+- Observe that the CI workflow was automatically started with the code change. When it gets completed the _Test results_ job shall indicate that there were no test failures.<br>
 ![GitHub Actions test results view](images/basic_gh_test_results_success.png)
