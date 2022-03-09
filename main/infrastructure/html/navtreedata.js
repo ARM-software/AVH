@@ -60,6 +60,24 @@ var NAVTREE =
         ] ]
       ] ]
     ] ],
+    [ "Run AMI with Jenkins", "run_ami_jenkins.html", [
+      [ "Using AVH AMI as a Jenkins node", "run_ami_jenkins.html#avh_jenkins_node", [
+        [ "Implementation example", "run_ami_jenkins.html#autotoc_md12", null ],
+        [ "Dependencies", "run_ami_jenkins.html#autotoc_md13", [
+          [ "AWS Account", "run_ami_jenkins.html#autotoc_md14", null ],
+          [ "Jenkins plugins", "run_ami_jenkins.html#autotoc_md15", null ],
+          [ "Jenkins credentials", "run_ami_jenkins.html#autotoc_md16", null ]
+        ] ]
+      ] ],
+      [ "Using VHT Python Module", "run_ami_jenkins.html#avh_module_jenkins", [
+        [ "Implementation example", "run_ami_jenkins.html#autotoc_md17", null ],
+        [ "Dependencies", "run_ami_jenkins.html#autotoc_md18", [
+          [ "AWS Account", "run_ami_jenkins.html#autotoc_md19", null ],
+          [ "Jenkins plugins", "run_ami_jenkins.html#autotoc_md20", null ],
+          [ "Jenkins credentials", "run_ami_jenkins.html#autotoc_md21", null ]
+        ] ]
+      ] ]
+    ] ],
     [ "Debug with Arm Development Studio", "debug_ds.html", [
       [ "Tools Installation and set up", "debug_ds.html#ds_setup", null ],
       [ "Start Virtual Hardware Target", "debug_ds.html#ds_vht_start", null ],
