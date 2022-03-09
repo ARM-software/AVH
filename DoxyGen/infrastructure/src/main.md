@@ -30,6 +30,7 @@ The **AMI** provides a lot of flexibility and gives you the option to integrate 
 
   - \subpage run_ami_local allows to use the AMI from a local computer.
   - \subpage run_ami_github explains how to integrate the **\prj_name AWS AMI** in GitHub action workflows.
+  - \subpage run_ami_jenkins explains how to integrate the **\prj_name AWS AMI** using Jenkins workflows.
 
 ## Local Tool Installation {#Local}
 
