@@ -176,16 +176,16 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
 <p >Audio file streaming interface for Cortex-M applications to Python scripting. </p>
 <p >The VSI implements general purpose peripheral registers, interrupt control, a timer peripheral, and a DMA peripheral. The peripheral is accessed using the <a class="el" href="group__arm__vsi__api.html#structARM__VSI__Type">ARM_VSI_Type</a> structure definition in <a href="https://github.com/ARM-software/VHT/blob/main/interface/include/arm_vsi.h">arm_vsi.h</a></p>
-<p >Several implementations of the audio driver <b>with the same common audio driver API</b> are available. This allows to re-target an application from Arm Virtual Hardware to physical devices while implementing the same logical behavior:</p><ul>
+<p >Several implementations of the audio driver with the same common audio driver API are available. This allows to re-target an application from Arm Virtual Hardware to physical devices while implementing the same logical behavior:</p><ul>
 <li>for the <a class="el" href="group__arm__vsi__api.html">VSI</a> with an interface to a Python test script that streams *.wav files.</li>
 <li>for NXP IMXRT1064 and IMXRT1050 evaluation boards that use microphone as audio input.</li>
 </ul>
-<p >The implementations are done with the following files:</p>
+<p >The implementations are done with the following items:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">File   </th><th class="markdownTableHeadLeft">Description    </th></tr>
+<th class="markdownTableHeadLeft">Item   </th><th class="markdownTableHeadLeft">Description    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><a href="https://github.com/arm-software/VHT/blob/main/interface/audio/include/audio_drv.h">./interface/audio/include/audio_drv.h</a>   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__audio.html">Audio Driver API</a> header file    </td></tr>
+<td class="markdownTableBodyLeft"><a href="https://github.com/arm-software/VHT/blob/main/interface/audio/include/audio_drv.h">./interface/audio/include/audio_drv.h</a>   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__audio.html">Audio Driver API</a> header file. Used by implementations on Arm Virtual Hardware and real HW boards.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><a href="https://github.com/arm-software/VHT/blob/main/interface/audio/driver/audio_drv.c">./interface/audio/driver/audio_drv.c</a>   </td><td class="markdownTableBodyLeft">Audio driver implementation for Arm Virtual Hardware based on <a class="el" href="group__arm__vsi__api.html">VSI</a>    </td></tr>
 <tr class="markdownTableRowOdd">
@@ -193,11 +193,11 @@ Functions</h2></td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><a href="https://github.com/arm-software/VHT/blob/main/interface/audio/python/arm_vsi1.py">./interface/audio/python/arm_vsi1.py</a>   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a> Python script for audio output interface based on <a class="el" href="group__arm__vsi__py.html">VSI Python interface</a>    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><a href="https://github.com/arm-software/VHT/blob/main/interface/audio/python/arm_vsi1.py">./examples/micro_speech/Platform_MIMXRT10504-EVKB/Driver_Audio/</a>   </td><td class="markdownTableBodyLeft">Audio driver implementation for NXP IMXRT1050-EVKB. See <a href="https://github.com/ARM-software/VHT-TFLmicrospeech/tree/main/Platform_IMXRT1050-EVKB/Driver_Audio">VHT-TFL microspeech GitHub repo</a>    </td></tr>
+<td class="markdownTableBodyLeft">Audio driver for NXP IMXRT1050-EVKB board   </td><td class="markdownTableBodyLeft">Audio driver implementation for NXP IMXRT1050-EVKB. See <a href="https://github.com/ARM-software/VHT-TFLmicrospeech/tree/main/Platform_IMXRT1050-EVKB/Driver_Audio">VHT-TFL microspeech GitHub repo</a>    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><a href="https://github.com/ARM-software/VHT-TFLmicrospeech/tree/main/Platform_MIMXRT1064-EVK/Driver_Audio">./examples/micro_speech/Platform_MIMXRT1064-EVK/Driver_Audio/</a>   </td><td class="markdownTableBodyLeft">Audio driver implementation for NXP MIMXRT1064-EVK. See <a href="https://github.com/arm-software/VHT-TFLmicrospeech">VHT-TFL microspeech GitHub repo</a>   </td></tr>
+<td class="markdownTableBodyLeft">Audio driver for NXP MIMXRT1064-EVK board   </td><td class="markdownTableBodyLeft">Audio driver implementation for NXP MIMXRT1064-EVK. See <a href="https://github.com/ARM-software/VHT-TFLmicrospeech/tree/main/Platform_MIMXRT1064-EVK/Driver_Audio">VHT-TFL microspeech GitHub repo</a>   </td></tr>
 </table>
-<p >The chapter <a href="../../examples/html/index.html"><b>Examples</b></a> describes projects that demonstrate use of this audio driver API in both the Arm VHT test environment and on the physical evaluation boards. </p>
+<p >The chapter <a href="../../examples/html/MicroSpeech.html"><b>Micro Speech Example</b></a> describes an example projects that demonstrate use of this audio driver API in both the AVH test environment and on the physical evaluation boards. </p>
 <hr/><h2 class="groupheader">Data Structure Documentation</h2>
 <a name="structAudioDrv__Status__t" id="structAudioDrv__Status__t"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#structAudioDrv__Status__t">&#9670;&nbsp;</a></span>AudioDrv_Status_t</h2>

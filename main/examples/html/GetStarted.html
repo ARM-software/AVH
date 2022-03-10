@@ -169,12 +169,13 @@ Implement tests</h2>
 <p >The implementation of tests in the example can be considered as a template for adding more tests, covering other functions, or setting up unit testing in a custom project. Please refer to the documentation in <a href="https://github.com/ThrowTheSwitch/Unity">Unity GitHub</a> for further details and more complex examples.</p>
 <p ><b>Redirect stdout</b></p>
 <p >By default Unity uses <code>putchar</code> for print out. Keil MDK does not support semihosting and hence standard output needs to be redirected to become visible during debug session. <a href="https://www.keil.com/pack/doc/compiler/RetargetIO/html/index.html"><b>Redirect I/O</b></a> component enables several mechanisms for that. In our example stdout output gets redirected to a UART interface.</p>
-<p ><b>Export project to CPRJ format</b></p>
-<p >The VHT GetStarted example is also described in <em>basic.debug.cprj</em> file using universal <a href="https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html">.cprj format</a> that gets used in command-line CI environments. For correct workflow operation it is important to keep the MDK project files and the <em>basic.debug.cprj</em> file synchronized. For that after saving modifications in the MDK project go to the µVision menu <a href="https://www.keil.com/support/man/docs/uv4/uv4_ui_export.htm"><em>Project</em> - <em>Export</em></a> and select <em>Save project to CPRJ format</em>.</p>
 <p ><b>Build and Run the example in Keil MDK</b></p>
 <p >Build and execute the program in Keil MDK in the same way as any other project. Refer to <a href="../../infrastructure/html/run_mdk_pro.html#mdk_program_run">Program Build and Debug</a> for additional description.</p>
 <p >The GetStarted example is configured to open a local Telnet console automatically when the debug session starts. By default the following output shall be observed there, indicating an intentional failure in <code>test_my_sum_fail</code>:</p>
 <p ><img src="basic_telnet_default.png" alt="" class="inline" title="Telnet output with local execution"/></p>
+<p ><b>Export project to CPRJ format</b></p>
+<p >The GetStarted example is also described in <em>basic.debug.cprj</em> file using universal <a href="https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html">.cprj format</a> that gets used in command-line CI environments.</p>
+<p >For correct workflow operation it is important to keep the MDK project <em>uvprojx</em> file and the <em>cprj</em> file synchronized. For that after saving modifications in the MDK project go to the µVision menu <a href="https://www.keil.com/support/man/docs/uv4/uv4_ui_export.htm"><em>Project</em> - <em>Export</em></a> and select <em>Save project to CPRJ format</em>.</p>
 <h1><a class="anchor" id="GS_SetupCI"></a>
 Setup CI pipeline</h1>
 <p >As common for many projects, the CI pipeline for the VHT Get Started repository is triggered on every code change via push and pull requests. In our example this is explicitly limited to the <em>main</em> branch only.</p>
