@@ -69,7 +69,7 @@ var NAVTREE =
           [ "Jenkins credentials", "run_ami_jenkins.html#autotoc_md16", null ]
         ] ]
       ] ],
-      [ "Using VHT Python Module", "run_ami_jenkins.html#avh_module_jenkins", [
+      [ "Using python module", "run_ami_jenkins.html#avh_module_jenkins", [
         [ "Implementation example", "run_ami_jenkins.html#autotoc_md17", null ],
         [ "Dependencies", "run_ami_jenkins.html#autotoc_md18", [
           [ "AWS Account", "run_ami_jenkins.html#autotoc_md19", null ],
