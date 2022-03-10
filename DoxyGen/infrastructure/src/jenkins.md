@@ -26,7 +26,7 @@ The example implementation is available in [.jenkins/VHT-as-Jenkins-Node/](https
 Following resources are required on the AWS side:
 
 - \ref Subscribe "Subscription" to Arm Virtual Hardware AMI.
-- IAM User with Access Keys for the AWS Account. IAM setup can be found at [plugins.jenkins.io/ec2/#plugin-content-iam-setup](https://plugins.jenkins.io/ec2/#plugin-content-iam-setup).
+- IAM User with Access Keys for the AWS Account. IAM setup can be found at [plugins.jenkins.io/ec2/\#plugin-content-iam-setup](https://plugins.jenkins.io/ec2/#plugin-content-iam-setup).
 - EC2 Security Group with Ingress SSH port allowed.
 - SSH Keys to communicate with the EC2 instance as Jenkins Node.
 - Subnet Id needs to be informed with EC2 instance.
@@ -65,7 +65,7 @@ Following resources are required on the AWS side:
 - IAM Instance Profile to be associated with the VHT EC2 instances.
 - S3 Bucket to store temporary files.
 - EC2 Security Group with Ingress SSH port allowed.
-- [Optional] SSH Key if you would like to debug on EC2.
+- [*Optional*] SSH Key if you would like to debug on EC2.
 - Subnet Id needs to be informed with EC2 instance.
 
 An AWS CloudFormation template file can be used to create the required AWS resources for AVH AMI. Refer to   [./infrastructure/cloudformation/](https://github.com/ARM-software/VHT-GetStarted/tree/main/infrastructure/cloudformation) folder in the GetStarted example.
@@ -80,4 +80,4 @@ Following Jenkins plugins are used by the example implementation:
 #### Jenkins credentials
 Following Jenkins credentials need to be configured:
 - AWS Credential for IAM User (`AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`)
-- [Optional] AWS SSH Private Key to be associated with the EC2 instance.
+- [*Optional*] AWS SSH Private Key to be associated with the EC2 instance.

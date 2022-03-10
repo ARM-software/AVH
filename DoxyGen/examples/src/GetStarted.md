@@ -73,10 +73,6 @@ The implementation of tests in the example can be considered as a template for a
 
 By default Unity uses `putchar` for print out. Keil MDK does not support semihosting and hence standard output needs to be redirected to become visible during debug session. [**Redirect I/O**](https://www.keil.com/pack/doc/compiler/RetargetIO/html/index.html) component enables several mechanisms for that. In our example stdout output gets redirected to a UART interface.
 
-**Export project to CPRJ format**
-
-The VHT GetStarted example is also described in _basic.debug.cprj_ file using universal [.cprj format](https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html) that gets used in command-line CI environments. For correct workflow operation it is important to keep the MDK project files and the _basic.debug.cprj_ file synchronized. For that after saving modifications in the MDK project go to the µVision menu [_Project_ - _Export_](https://www.keil.com/support/man/docs/uv4/uv4_ui_export.htm) and select _Save project to CPRJ format_.
-
 **Build and Run the example in Keil MDK**
 
 Build and execute the program in Keil MDK in the same way as any other project. Refer to [Program Build and Debug](../../infrastructure/html/run_mdk_pro.html#mdk_program_run) for additional description.
@@ -84,6 +80,12 @@ Build and execute the program in Keil MDK in the same way as any other project. 
 The GetStarted example is configured to open a local Telnet console automatically when the debug session starts. By default the following output shall be observed there, indicating an intentional failure in `test_my_sum_fail`:
 
 ![Telnet output with local execution](images/basic_telnet_default.png)
+
+**Export project to CPRJ format**
+
+The GetStarted example is also described in _basic.debug.cprj_ file using universal [.cprj format](https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html) that gets used in command-line CI environments.
+
+For correct workflow operation it is important to keep the MDK project *uvprojx* file and the *cprj* file synchronized. For that after saving modifications in the MDK project go to the µVision menu [_Project_ - _Export_](https://www.keil.com/support/man/docs/uv4/uv4_ui_export.htm) and select _Save project to CPRJ format_.
 
 ## Setup CI pipeline {#GS_SetupCI}
 
