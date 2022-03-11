@@ -34,7 +34,7 @@ The VHT simulation models can be configured using the option *-f FILE* that spec
 Below is an example of running a program on the VHT model for Corstone-300 with Ethos-U55 in Linux environment:
 
 ```
-VHT_Corstone_SSE-300_Ethos-U55 -V "..\VSI\audio\python" -f vht_config.txt -a Objects\microspeech.axf --stat --cyclelimit 768000000
+VHT_Corstone_SSE-300_Ethos-U55 -V "..\VSI\audio\python" -f vht_config.txt -a Objects\microspeech.axf --stat --simlimit 24
 ```
 
 Where:
@@ -42,7 +42,7 @@ Where:
   - **-f** specifies the *config-file* for the VHT simulation model.
   - **-a** specifies the application to load.
   - **--stat** instructs to print run statistics on simulation exit.
-  - **--cyclelimit** specifies a cycle limit where the simulation terminates.
+  - **--simlimit** specifies the maximum number of seconds to simulate.
 
 The content of the *vht_config.txt* could be:
 ```
