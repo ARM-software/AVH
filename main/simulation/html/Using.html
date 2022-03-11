@@ -145,13 +145,13 @@ Command Line Options</h1>
 <h1><a class="anchor" id="Example"></a>
 Usage Example</h1>
 <p >Below is an example of running a program on the VHT model for Corstone-300 with Ethos-U55 in Linux environment:</p>
-<div class="fragment"><div class="line">VHT_Corstone_SSE-300_Ethos-U55 -V &quot;..\VSI\audio\python&quot; -f vht_config.txt -a Objects\microspeech.axf --stat --cyclelimit 768000000</div>
+<div class="fragment"><div class="line">VHT_Corstone_SSE-300_Ethos-U55 -V &quot;..\VSI\audio\python&quot; -f vht_config.txt -a Objects\microspeech.axf --stat --simlimit 24</div>
 </div><!-- fragment --><p >Where:</p><ul>
 <li><b>-V</b> specifies that path to the Python scripts for <a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a>.</li>
 <li><b>-f</b> specifies the <em>config-file</em> for the VHT simulation model.</li>
 <li><b>-a</b> specifies the application to load.</li>
 <li><b>&ndash;stat</b> instructs to print run statistics on simulation exit.</li>
-<li><b>&ndash;cyclelimit</b> specifies a cycle limit where the simulation terminates.</li>
+<li><b>&ndash;simlimit</b> specifies the maximum number of seconds to simulate.</li>
 </ul>
 <p >The content of the <em>vht_config.txt</em> could be: </p><div class="fragment"><div class="line"># Parameters:</div>
 <div class="line"># instance.parameter=value       #(type, mode) default = &#39;def value&#39; : description : [min..max]</div>
