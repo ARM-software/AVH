@@ -232,18 +232,16 @@ GitHub Actions setup</h2>
 <tr>
 <th>Secret Name </th><th>Value for your VHT-GetStarted repository </th><th>Description  </th></tr>
 <tr>
-<td>AWS_IAM_PROFILE </td><td>The value of <em>VHTIAMProfile</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>, preceded with <code>Name=</code>. </td><td>The <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html">IAM Instance Profile</a> to be used for AWS access. The value shall be preceded with <code>Name=</code> prior to the actual profile name. For example <code>Name=myVHTRole</code>. </td></tr>
+<td>AWS_IAM_PROFILE </td><td>The value of <em>VHTIAMProfile</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td>The <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html">IAM Instance Profile</a> to be used for AWS access. </td></tr>
 <tr>
 <td>AWS_ACCESS_KEY_ID<br  />
-AWS_ACCESS_KEY_SECRET </td><td>The values of <em>VHTAccessKeyId</em> and <em>VHTSecretAccessKey</em> respectively from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">Access key pair</a> for the AWS account (as IAM user) that shall be used by the CI workflow for AWS access. </td></tr>
+AWS_SECRET_ACCESS_KEY </td><td>The values of <em>VHTAccessKeyId</em> and <em>VHTSecretAccessKey</em> respectively from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">Access key pair</a> for the AWS account (as IAM user) that shall be used by the CI workflow for AWS access. </td></tr>
 <tr>
 <td>AWS_S3_BUCKET_NAME  </td><td>The value of <em>VHTS3BucketName</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td>The name of the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html">S3 storage bucket</a> to be used for data exchange between GitHub and Arm Virtual Hardware AMI. </td></tr>
 <tr>
 <td>AWS_EC2_SECURITY_GROUP_ID  </td><td>The value of <em>VHTEC2SecurityGroupId</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td>The id of the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html">VPC security group</a> to add the EC2 instance to. Shall have format <code>sg-xxxxxxxx</code>. </td></tr>
 <tr>
 <td>AWS_DEFAULT_REGION  </td><td>Use the same region as was used for <a href="#GS_AWS_Setup">AWS setup</a>. </td><td>The data center region the Arm Virtual Hardware AMI will be run on. For example <code>eu-west-1</code>. </td></tr>
-<tr>
-<td>AWS_AMI_ID  </td><td>Use the value provided during <a href="#GS_AWS_Setup">Arm Virtual Hardware AMI subscription</a>. </td><td>The id of the Arm Virtual Hardware AMI to be used. Shall correspond to the value provided in <em>AWS_REGION</em> and has format <code>ami-xxxxxxxx</code>. </td></tr>
 <tr>
 <td>AWS_SUBNET_ID  </td><td>Obtain a value as described in <a href="https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#view-subnet">View your subnet</a>. </td><td>The id of the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics">VPC subnet</a> to connect the EC2 instance to. Shall have format <code>subnet-xxxxxxxx</code>. </td></tr>
 </table>
