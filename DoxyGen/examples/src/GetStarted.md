@@ -141,9 +141,9 @@ Several parameters need to be configured in the repository as [GitHub Secrets](h
 <table>
 <tr><th> Secret Name </th><th> Value for your VHT-GetStarted repository </th><th> Description </th></tr>
 <tr><td> AWS_IAM_PROFILE</td>
-    <td> The value of _VHTIAMProfile_ from the output of [AWS resources setup](#GS_AWS_Setup), preceded with `Name=`.</td>
-    <td> The [IAM Instance Profile](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html) to be used for AWS access. The value shall be preceded with `Name=` prior to the actual profile name. For example `Name=myVHTRole`.</td></tr>
-<tr><td> AWS_ACCESS_KEY_ID<br>AWS_ACCESS_KEY_SECRET</td>
+    <td> The value of _VHTIAMProfile_ from the output of [AWS resources setup](#GS_AWS_Setup).</td>
+    <td> The [IAM Instance Profile](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html) to be used for AWS access.</td></tr>
+<tr><td> AWS_ACCESS_KEY_ID<br>AWS_SECRET_ACCESS_KEY</td>
     <td> The values of _VHTAccessKeyId_ and _VHTSecretAccessKey_ respectively from the output of [AWS resources setup](#GS_AWS_Setup).</td>
     <td> [Access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) for the AWS account (as IAM user) that shall be used by the CI workflow for AWS access.</td></tr>
 <tr><td> AWS_S3_BUCKET_NAME </td>
@@ -155,9 +155,6 @@ Several parameters need to be configured in the repository as [GitHub Secrets](h
 <tr><td> AWS_DEFAULT_REGION </td>
     <td> Use the same region as was used for [AWS setup](#GS_AWS_Setup).</td>
     <td> The data center region the Arm Virtual Hardware AMI will be run on. For example `eu-west-1`.</td></tr>
-<tr><td> AWS_AMI_ID </td>
-    <td> Use the value provided during [Arm Virtual Hardware AMI subscription](#GS_AWS_Setup).</td>
-    <td> The id of the Arm Virtual Hardware AMI to be used. Shall correspond to the value provided in _AWS_REGION_ and has format `ami-xxxxxxxx`.</td></tr>
 <tr><td> AWS_SUBNET_ID </td>
     <td> Obtain a value as described in [View your subnet](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#view-subnet).</td>
     <td> The id of the [VPC subnet](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics) to connect the EC2 instance to. Shall have format `subnet-xxxxxxxx`.</td></tr>

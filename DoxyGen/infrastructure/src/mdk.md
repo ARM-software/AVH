@@ -45,7 +45,7 @@ Cortex-M7, FP(DP) | CMSDK_CM7_DP_VHT    | Keil.V2M-MPS2_CMx_BSP from v1.8.0     
 Cortex-M23        | IOTKit_CM23_VHT     | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M23_MDK.exe    | Arm VHT device with Cortex-M23 core
 Cortex-M33        | IOTKit_CM33_VHT     | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M33_MDK.exe    | Arm VHT device with Cortex-M33 core
 Cortex-M33, FP    | IOTKit_CM33_FP_VHT  | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M33_MDK.exe    | Arm VHT device with Cortex-M33 core and Floating Point Unit (FPU) support
-Cortex-M55        | SSE-300-MPS3_VHT    | To be defined                         | VHT_MPS3_Corstone_SSE-300.bat<br>VHT_Corstone_SSE-300_Ethos-U55.bat<br>VHT_Corstone_SSE-300_Ethos-U65.bat| Arm VHT Corstone-300 SoC with Cortex-M55.<br>Same VHT device definition is used, but a VHT model shall be selected<br>depending on the required microNPU (none, Ethos-U55 or Ethos-U65)
+Cortex-M55        | SSE-300-MPS3        | ARM.V2M_MPS3_SSE_300_BSP.1.2.0        | VHT_MPS3_Corstone_SSE-300.bat<br>VHT_Corstone_SSE-300_Ethos-U55.bat<br>VHT_Corstone_SSE-300_Ethos-U65.bat| Arm VHT Corstone-300 SoC with Cortex-M55.<br>Same VHT device definition is used, but a VHT model shall be selected<br>depending on the required microNPU (none, Ethos-U55 or Ethos-U65)
 
 >  <sup>1</sup> The VHT models can be found in the MDK VHT AddOn installation directory provided during \ref mdk_vht_install, for example,`C:/Keil_v5/ARM/VHT/`. Note that when available, a .bat script shall be used to launch a VHT model from MDK.
 
