@@ -110,7 +110,7 @@ $(document).ready(function(){initNavTree('run_ami_github.html',''); initResizabl
   <div class="headertitle"><div class="title">Run AMI with GitHub Actions </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md_src_github"></a> GitHub Actions help you automate tasks within your software development life cycle. GitHub Actions are event-driven, meaning that you can run a series of commands after a specified event has occurred. For example, every time someone commits a push or creates a pull request for a repository, you can automatically run the Arm VHT Services that execute automated build or test scripts. Refer to <a href="https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions">Introduction to GitHub Actions</a> for information about the components of GitHub Actions.</p>
+<div class="textblock"><p ><a class="anchor" id="md_src_github"></a> GitHub Actions help you automate tasks within your software development life cycle. GitHub Actions are event-driven, meaning that you can run a series of commands after a specified event has occurred. For example, every time someone commits a push or creates a pull request for a repository, you can automatically run the Arm Virtual Hardware Services that execute automated build or test scripts. Refer to <a href="https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions">Introduction to GitHub Actions</a> for information about the components of GitHub Actions.</p>
 <p >There are several different ways to execute GitHub Actions:</p><ul>
 <li><a href="#self_hosted"><b>Self-hosted GitHub runners</b></a> where the complete GitHub Action is executed on an AWS EC2 Linux instance.</li>
 <li><a href="#GitHub_hosted"><b>GitHub-hosted runners</b></a> where only a part of the GitHub Action (for example testing) is executed on an AWS EC2 Linux instance.</li>
@@ -129,9 +129,9 @@ Setup Github</h2>
 <p >From your github repository on github.com, go to Settings &gt; Actions &gt; Runners &gt; New self-hosted runner. Make sure you have selected "Operating System: Linux x86" and follow the instructions of <a href="#self-hosted2">Setup AWS EC2 Instance</a>.</p>
 <h2><a class="anchor" id="self-hosted2"></a>
 Setup AWS EC2 Instance</h2>
-<p >Before you start with the following steps, make sure you created an EC2 instance on your AWS account. For instructions, see: <a href="https://arm-software.github.io/VHT/main/infrastructure/html/run_ami_local.html#Launch_EC2">Launch through EC2</a>.</p>
+<p >Before you start with the following steps, make sure you created an EC2 instance on your AWS account. For instructions, see: <a href="https://arm-software.github.io/AVH/main/infrastructure/html/run_ami_local.html#Launch_EC2">Launch through EC2</a>.</p>
 <ol type="1">
-<li>Open an SSH connection as described on: <a href="https://arm-software.github.io/VHT/main/infrastructure/html/run_ami_local.html#connect">Connect to the EC2 instance</a></li>
+<li>Open an SSH connection as described on: <a href="https://arm-software.github.io/AVH/main/infrastructure/html/run_ami_local.html#connect">Connect to the EC2 instance</a></li>
 </ol>
 <p >Follow these steps on SSH:</p>
 <ol type="1">
@@ -234,7 +234,7 @@ Create user roles on AWS IAM</h2>
 <p >More information on the AWS documentation: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html">Create IAM Role For Service</a></p>
 <h2><a class="anchor" id="github_hosted2"></a>
 Setup AWS EC2 Instance</h2>
-<p >Make sure you created an EC2 instance on your AWS account. For instructions, see: <a href="https://arm-software.github.io/VHT/main/infrastructure/html/run_ami_local.html#Launch_EC2">Launch through EC2</a>. Once created you need to make notes of the Instance ID, for later reference. You can stop the machine once it has reached running state. The plugin will start the machine on demand.</p>
+<p >Make sure you created an EC2 instance on your AWS account. For instructions, see: <a href="https://arm-software.github.io/AVH/main/infrastructure/html/run_ami_local.html#Launch_EC2">Launch through EC2</a>. Once created you need to make notes of the Instance ID, for later reference. You can stop the machine once it has reached running state. The plugin will start the machine on demand.</p>
 <p >The IAM role created in the previous step, can either be specified on launch or it is added from the EC2 management. Attach it anytime using Actions - Security - Modify IAM role from the menu.</p>
 <h2><a class="anchor" id="github_hosted3"></a>
 Setup AWS S3 Instance</h2>
@@ -247,12 +247,12 @@ Add Github Secrets</h2>
 <p >More information on github documentation: <a href="https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository">Creating encrypted secrets for a repository</a></p>
 <h2><a class="anchor" id="github_hosted5"></a>
 Add Github Action</h2>
-<p >The basic idea of creating a github-hosted CI flow is to run steps on the github VM instance - except build and execution of test cases. The test suite contains of a collection of files that are required on the VHT instance on AWS and a yaml-based inventory file, that includes instructions. This file is called <b>vht.yml</b>. It will mark the root of a folder used to stage a test suite on the Github VM.</p>
-<p >A complete example workflow is found in the example hosted on: <a href="https://github.com/ARM-software/VHT-TFLmicrospeech">https://github.com/ARM-software/VHT-TFLmicrospeech</a></p>
+<p >The basic idea of creating a github-hosted CI flow is to run steps on the github VM instance - except build and execution of test cases. The test suite contains of a collection of files that are required on the AVH instance on AWS and a yaml-based inventory file, that includes instructions. This file is called <b>vht.yml</b>. It will mark the root of a folder used to stage a test suite on the Github VM.</p>
+<p >A complete example workflow is found in the example hosted on: <a href="https://github.com/ARM-software/AVH-TFLmicrospeech">https://github.com/ARM-software/AVH-TFLmicrospeech</a></p>
 <h3><a class="anchor" id="autotoc_md8"></a>
 Prepare the testsuite</h3>
 <p >Steps before the actual execution should copy every file required to staging folder. It will then be passed in the vht_in parameter. File and path references in the vht.yml should be relative to the root of this folder, where also the vht.yml needs to be placed.</p>
-<p >Refer to <a href="https://github.com/ARM-software/VHT-TFLmicrospeech/blob/main/.github/workflows/virtual_hardware_gh.yml">https://github.com/ARM-software/VHT-TFLmicrospeech/blob/main/.github/workflows/virtual_hardware_gh.yml</a> for some detailed example.</p>
+<p >Refer to <a href="https://github.com/ARM-software/AVH-TFLmicrospeech/blob/main/.github/workflows/virtual_hardware_gh.yml">https://github.com/ARM-software/AVH-TFLmicrospeech/blob/main/.github/workflows/virtual_hardware_gh.yml</a> for some detailed example.</p>
 <h3><a class="anchor" id="autotoc_md9"></a>
 The vht.yml</h3>
 <p >The <b>vht.yml</b> file describes the content of the test suite, assets, build and test run instructions. It is located in the root of the folder specified in vht_in. Its format is YAML (<a href="https://yaml.org/spec/">https://yaml.org/spec/</a>) with the following structure:</p>
@@ -284,9 +284,9 @@ The vht.yml</h3>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><code>name:</code>   </td><td class="markdownTableBodyLeft">Name of the test suite    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code>model:</code>   </td><td class="markdownTableBodyLeft">Executable name of the <a href="../../simulation/html/Using.html">VHT simulation model</a> used.    </td></tr>
+<td class="markdownTableBodyLeft"><code>model:</code>   </td><td class="markdownTableBodyLeft">Executable name of the <a href="../../simulation/html/Using.html">AVH simulation model</a> used.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code>configuration:</code>   </td><td class="markdownTableBodyLeft">Configuration file for the <a href="../../simulation/html/Using.html">VHT simulation model</a>.    </td></tr>
+<td class="markdownTableBodyLeft"><code>configuration:</code>   </td><td class="markdownTableBodyLeft">Configuration file for the <a href="../../simulation/html/Using.html">AVH simulation model</a>.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><code>pre:</code>   </td><td class="markdownTableBodyLeft">Execute command on shell before executing any <code>builds:</code> or <code>tests:</code>.    </td></tr>
 <tr class="markdownTableRowOdd">
@@ -310,9 +310,9 @@ The vht.yml</h3>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><code>"&lt;value&gt;":</code>   </td><td class="markdownTableBodyLeft">Name of the test declaration.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code>executable:</code>   </td><td class="markdownTableBodyLeft">Executable file in ELF format to be executed on the <a href="../../simulation/html/Using.html">VHT simulation model</a>.    </td></tr>
+<td class="markdownTableBodyLeft"><code>executable:</code>   </td><td class="markdownTableBodyLeft">Executable file in ELF format to be executed on the <a href="../../simulation/html/Using.html">AVH simulation model</a>.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code>arguments:</code>   </td><td class="markdownTableBodyLeft">Additional arguments passed to the <a href="../../simulation/html/Using.html">VHT simulation model</a>.    </td></tr>
+<td class="markdownTableBodyLeft"><code>arguments:</code>   </td><td class="markdownTableBodyLeft">Additional arguments passed to the <a href="../../simulation/html/Using.html">AVH simulation model</a>.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><code>timeout:</code>   </td><td class="markdownTableBodyLeft">Optional timeout for test execution.    </td></tr>
 <tr class="markdownTableRowOdd">

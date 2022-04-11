@@ -113,16 +113,17 @@ $(document).ready(function(){initNavTree('run_ami_jenkins.html',''); initResizab
 <div class="textblock"><p ><a class="anchor" id="md_src_jenkins"></a> Use of Arm Virtual Hardware (AVH) AMI can be integrated into <a href="https://www.jenkins.io/">Jenkins pipelines</a> for automating software builds and tests.</p>
 <p >Two approaches can be followed to create and control instances of the AVH AMIs with Jenkins:</p><ul>
 <li><a class="el" href="run_ami_jenkins.html#avh_jenkins_node">Using AVH AMI as a Jenkins node</a> : a classic approach with a Jenkins node created in AWS.</li>
-<li><a class="el" href="run_ami_jenkins.html#avh_module_jenkins">Using python module</a> : a simplified way with Jenkins as a thin wrapper on top of python module.</li>
+<li><a class="el" href="run_ami_jenkins.html#avh_module_jenkins">Using AVH Client</a> : a simplified way with Jenkins as a thin wrapper on top of avhclient python module.</li>
 </ul>
-<p >Example implementations of both approaches are provided in <a href="https://github.com/ARM-software/VHT-GetStarted/">GetStarted example</a> and explained in this chapter.</p>
+<p >Example implementations of both approaches are provided in <a href="https://github.com/ARM-software/AVH-GetStarted/">GetStarted example</a> and explained in this chapter.</p>
+<dl class="section note"><dt>Note</dt><dd>Refer to <a class="el" href="index.html#mainpage">Infrastructure</a> for others ways to use the Arm Virtual Hardware.</dd></dl>
 <h1><a class="anchor" id="avh_jenkins_node"></a>
 Using AVH AMI as a Jenkins node</h1>
 <p >This is a common way to implement Jenkins pipelines on AWS.</p>
 <p >A Jenkins Controller uses Amazon EC2 plugin to create an EC2 instance as a Jenkins node from an AVH AMI. Then the Jenkins node gets connected by SSH to the Jenkins Controller and the Jenkins commands are executed directly on the EC2 instance.</p>
 <h2><a class="anchor" id="autotoc_md12"></a>
 Implementation example</h2>
-<p >The example implementation is available in <a href="https://github.com/ARM-software/VHT-GetStarted/tree/main/.jenkins/VHT-as-Jenkins-Node/">.jenkins/VHT-as-Jenkins-Node/</a> and consists of the following items:</p>
+<p >The example implementation is available in <a href="https://github.com/ARM-software/AVH-GetStarted/tree/main/.jenkins/AVH-as-Jenkins-Node/">.jenkins/AVH-as-Jenkins-Node/</a> and consists of the following items:</p>
 <ul>
 <li><code>configuration-as-code/</code> provides an example of Amazon EC2 plugin code.</li>
 <li><code>jobDSL/</code> contains Jenkins configuration as code to create the AVH Jenkins Job.</li>
@@ -140,7 +141,7 @@ AWS Account</h3>
 <li>SSH Keys to communicate with the EC2 instance as Jenkins Node.</li>
 <li>Subnet Id needs to be informed with EC2 instance.</li>
 </ul>
-<p >An AWS Cloudformation template file can be used to create most of the required AWS Resources for AVH AMI, please refer to <a href="https://github.com/ARM-software/VHT-GetStarted/tree/main/infrastructure/cloudformation">./infrastructure/cloudformation/</a> folder in the GetStarted example.</p>
+<p >An AWS Cloudformation template file can be used to create most of the required AWS Resources for AVH AMI, please refer to <a href="https://github.com/ARM-software/AVH-GetStarted/tree/main/infrastructure/cloudformation">./infrastructure/cloudformation/</a> folder in the GetStarted example.</p>
 <h3><a class="anchor" id="autotoc_md15"></a>
 Jenkins plugins</h3>
 <p >Following Jenkins plugins are used by the example implementation:</p>
@@ -155,12 +156,12 @@ Jenkins credentials</h3>
 <li>AWS SSH Private Key to be associated with the EC2 instance.</li>
 </ul>
 <h1><a class="anchor" id="avh_module_jenkins"></a>
-Using python module</h1>
-<p >In this approach, a special <a href="https://github.com/ARM-software/VHT/tree/main/infrastructure/python_resources">VHT python module</a> drives the communication with the AVH AMI. The Jenkins pipeline is just a light-weight front end that uses the VHT Python module, and the actual work is done by an EC2 instance created and controlled with the commands from the VHT Python module built on top of AWS SDK.</p>
+Using AVH Client</h1>
+<p >In this approach, a python module <a href="https://github.com/ARM-software/avhclient"><em>avhclient</em></a> drives the communication with the AVH AMI. The Jenkins pipeline is just a light-weight front end that uses the VHT Python module, and the actual work is done by an EC2 instance created and controlled with the commands from the VHT Python module built on top of AWS SDK.</p>
 <p >This approach is simpler to implement but the capabilities are limited by the functionality of the VHT Python module.</p>
 <h2><a class="anchor" id="autotoc_md17"></a>
 Implementation example</h2>
-<p >The example implementation using VHT Python module is available in <a href="https://github.com/ARM-software/VHT-GetStarted/tree/main/.jenkins/Using-VHT-Module">.jenkins/Using-VHT-Module/</a> and consists of the following items:</p>
+<p >The example implementation using VHT Python module is available in <a href="https://github.com/ARM-software/AVH-GetStarted/tree/main/.jenkins/Using-AVH-Module">.jenkins/Using-AVH-Module/</a> and consists of the following items:</p>
 <ul>
 <li><code>jobDSL/</code> contains Jenkins configuration as code to create the AVH Jenkins Job.</li>
 <li><code>pipeline/</code> implements an example pipeline for running AVH AMI using VHT Python Module.</li>
@@ -179,7 +180,7 @@ AWS Account</h3>
 <li>[<em>Optional</em>] SSH Key if you would like to debug on EC2.</li>
 <li>Subnet Id needs to be informed with EC2 instance.</li>
 </ul>
-<p >An AWS CloudFormation template file can be used to create the required AWS resources for AVH AMI. Refer to <a href="https://github.com/ARM-software/VHT-GetStarted/tree/main/infrastructure/cloudformation">./infrastructure/cloudformation/</a> folder in the GetStarted example.</p>
+<p >An AWS CloudFormation template file can be used to create the required AWS resources for AVH AMI. Refer to <a href="https://github.com/ARM-software/AVH-GetStarted/tree/main/infrastructure/cloudformation">./infrastructure/cloudformation/</a> folder in the GetStarted example.</p>
 <h3><a class="anchor" id="autotoc_md20"></a>
 Jenkins plugins</h3>
 <p >Following Jenkins plugins are used by the example implementation:</p>

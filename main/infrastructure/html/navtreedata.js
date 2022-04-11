@@ -30,16 +30,18 @@ var NAVTREE =
       [ "Use AMI", "index.html#autotoc_md0", null ]
     ] ],
     [ "Local Tool Installation", "index.html#Local", null ],
-    [ "Run AMI on Local Host", "run_ami_local.html", [
-      [ "Launch from Website", "run_ami_local.html#Launch_website", null ],
-      [ "Launch trough EC2", "run_ami_local.html#Launch_EC2", null ],
+    [ "Run AMI from a Local Host", "run_ami_local.html", [
+      [ "Launch AMI Instance", "run_ami_local.html#Launch_ami", [
+        [ "Launch from Website", "run_ami_local.html#Launch_website", null ],
+        [ "Launch trough EC2", "run_ami_local.html#Launch_EC2", null ]
+      ] ],
       [ "Connect to the EC2 Instance", "run_ami_local.html#connect", [
         [ "Using SSH", "run_ami_local.html#use_ssh", null ],
         [ "Using VNC", "run_ami_local.html#use_vnc", null ],
         [ "Using Code Server", "run_ami_local.html#use_code_server", null ]
       ] ],
       [ "List AMI Inventory", "run_ami_local.html#inventory", null ],
-      [ "Running Micro Speech", "run_ami_local.html#run_example", null ]
+      [ "Run projects", "run_ami_local.html#run_example", null ]
     ] ],
     [ "Run AMI with GitHub Actions", "run_ami_github.html", [
       [ "Self-hosted GitHub Runners", "run_ami_github.html#self_hosted", [
@@ -69,7 +71,7 @@ var NAVTREE =
           [ "Jenkins credentials", "run_ami_jenkins.html#autotoc_md16", null ]
         ] ]
       ] ],
-      [ "Using python module", "run_ami_jenkins.html#avh_module_jenkins", [
+      [ "Using AVH Client", "run_ami_jenkins.html#avh_module_jenkins", [
         [ "Implementation example", "run_ami_jenkins.html#autotoc_md17", null ],
         [ "Dependencies", "run_ami_jenkins.html#autotoc_md18", [
           [ "AWS Account", "run_ami_jenkins.html#autotoc_md19", null ],
@@ -92,13 +94,13 @@ var NAVTREE =
       [ "Project Export", "run_mdk_pro.html#mdk_cprj_export", null ],
       [ "Program Build and Debug", "run_mdk_pro.html#mdk_program_run", null ]
     ] ],
-    [ "VHT CLI Script", "md_src_vht_doc.html", [
-      [ "Requirements", "md_src_vht_doc.html#autotoc_md2", null ],
-      [ "Usage", "md_src_vht_doc.html#autotoc_md3", null ],
-      [ "Usage examples", "md_src_vht_doc.html#autotoc_md4", [
-        [ "Instance start wihout specifying any key", "md_src_vht_doc.html#autotoc_md5", null ],
-        [ "Connecting to the instance", "md_src_vht_doc.html#autotoc_md6", null ],
-        [ "Instance stop", "md_src_vht_doc.html#autotoc_md7", null ]
+    [ "AVH CLI Script", "md_src_avh_doc.html", [
+      [ "Requirements", "md_src_avh_doc.html#autotoc_md2", null ],
+      [ "Usage", "md_src_avh_doc.html#autotoc_md3", null ],
+      [ "Usage examples", "md_src_avh_doc.html#autotoc_md4", [
+        [ "Instance start wihout specifying any key", "md_src_avh_doc.html#autotoc_md5", null ],
+        [ "Connecting to the instance", "md_src_avh_doc.html#autotoc_md6", null ],
+        [ "Instance stop", "md_src_avh_doc.html#autotoc_md7", null ]
       ] ]
     ] ]
   ] ]

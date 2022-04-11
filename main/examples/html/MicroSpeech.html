@@ -111,7 +111,7 @@ $(document).ready(function(){initNavTree('MicroSpeech.html',''); initResizable()
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p ><a class="anchor" id="md_src_mspeech"></a> The Micro speech program analyzes an audio input with a voice recognition model that can detect 2 keywords - <b>yes</b> and <b>no</b>. The recognized keywords are then printed into a serial interface. The voice recognition model is implemented using <a href="https://www.tensorflow.org/lite/microcontrollers">TensorFlow Lite for Microcontrollers</a>.</p>
-<p >GitHub repository <a href="https://github.com/arm-software/VHT-TFLmicrospeech"><b>github.com/arm-software/VHT-TFLmicrospeech</b></a> contains an implementation supporting Arm Virtual Hardware Targets (VHT) as well as real hardware boards.</p>
+<p >GitHub repository <a href="https://github.com/arm-software/AVH-TFLmicrospeech"><b>github.com/arm-software/AVH-TFLmicrospeech</b></a> contains an implementation supporting Arm Virtual Hardware Targets (VHT) as well as real hardware boards.</p>
 <p >Micro speech demonstrates how to use the processor and peripheral abstraction layers for simpler software portability across different targets. The example repository contains documentation with running instructions.</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Getting Started with Micro speech on Arm Virtual Hardware</h1>
@@ -285,12 +285,12 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 <h3><a class="anchor" id="autotoc_md12"></a>
 3.1. Fork and clone example</h3>
 <ol type="1">
-<li>Open a web browser and enter the following URL: <a href="https://github.com/ARM-software/VHT-TFLmicrospeech">https://github.com/ARM-software/VHT-TFLmicrospeech</a></li>
+<li>Open a web browser and enter the following URL: <a href="https://github.com/ARM-software/AVH-TFLmicrospeech">https://github.com/ARM-software/AVH-TFLmicrospeech</a></li>
 <li>Log in to your github account and click on <em>Fork</em> (upper right)</li>
 <li>In the AMI terminal: <pre class="fragment"> git config --global user.name YourGitHubName​
  git config --global user.email Your.Email@domain.com​
  git config --list​
- git clone https://github.com/&lt;YourGitHubName&gt;/VHT-TFLmicrospeech
+ git clone https://github.com/&lt;YourGitHubName&gt;/AVH-TFLmicrospeech
 </pre> <a class="anchor" id="build"></a> </li>
 </ol>
 <h3><a class="anchor" id="autotoc_md13"></a>
@@ -298,7 +298,7 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 <p >In the AMI terminal:</p>
 <ol type="1">
 <li><p class="startli">Navigate to build folder​</p>
-<p class="startli"><code>cd VHT-TFLmicrospeech/Platform_FVP_Corstone_SSE-300_Ethos-U55​</code></p>
+<p class="startli"><code>cd AVH-TFLmicrospeech/Platform_FVP_Corstone_SSE-300_Ethos-U55​</code></p>
 </li>
 <li><p class="startli">Use <a href="https://arm-software.github.io/CMSIS_5/Build/html/cp_install.html">cp_install</a> utility (do once) to install the necessary <a href="https://developer.arm.com/tools-and-software/embedded/cmsis">CMSIS</a> Packs​ dependencies</p>
 <p class="startli"><code>cp_install.sh packlist​</code></p>
@@ -386,7 +386,7 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 <li>Generate and copy the token to provide</li>
 </ul>
 <p class="startli">In your own fork on Github, observe the change registered</p>
-<p class="startli"><code><a href="https://github.com/">https://github.com/</a>&lt;YourGitHubName&gt;/VHT-TFLmicrospeech​/blob/main/micro_speech/src/command_responder.cc​</code></p>
+<p class="startli"><code><a href="https://github.com/">https://github.com/</a>&lt;YourGitHubName&gt;/AVH-TFLmicrospeech​/blob/main/micro_speech/src/command_responder.cc​</code></p>
 </li>
 </ol>
 <p ><a class="anchor" id="actions"></a> </p>
@@ -424,7 +424,7 @@ Getting Started with Micro speech on Arm Virtual Hardware</h1>
 4.3. GitHub Actions workflow</h3>
 <ol type="1">
 <li>In Github, the file .github/workflows/virtual_hardware.yml defines the list of actions to perform (e.g. code checkout, build, run test script) on the runner and when (e.g. for every push to the repo)</li>
-<li><b>In a new AMI terminal</b>, revert your change in command_responder.cc and push to the repo <pre class="fragment"> cd VHT-TFLmicrospeech/micro_speech/src
+<li><b>In a new AMI terminal</b>, revert your change in command_responder.cc and push to the repo <pre class="fragment"> cd AVH-TFLmicrospeech/micro_speech/src
  git add .
  git commit -m "Original message"
  git push

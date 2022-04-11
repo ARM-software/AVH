@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Infrastructure: Run AMI on Local Host</title>
+<title>Infrastructure: Run AMI from a Local Host</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -107,27 +107,38 @@ $(document).ready(function(){initNavTree('run_ami_local.html',''); initResizable
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Run AMI on Local Host </div></div>
+  <div class="headertitle"><div class="title">Run AMI from a Local Host </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md_src_aws"></a> This section describes how to run the <b>AMI with Arm Virtual Hardware</b> on a local host computer and assumes that have setup the <a class="el" href="index.html#AWS">AWS Marketplace</a>.</p>
-<dl class="section note"><dt>Note</dt><dd>Refer to <a class="el" href="index.html#mainpage">Infrastructure</a> for others ways to use the Arm Virtual Hardware.</dd></dl>
-<p>There are two was to launch the AMI:</p><ul>
+<div class="textblock"><p ><a class="anchor" id="md_src_aws"></a> This section describes how to control the <b>AMI with Arm Virtual Hardware</b> from a local host computer. It assumes that AWS account is <a class="el" href="index.html#Subscribe">subscribed to Arm Virtual Hardware</a>.</p>
+<p >The execution is</p><ul>
+<li><a class="el" href="run_ami_local.html#Launch_ami">Launch AMI Instance</a> explains how to create an AMI instance with Arm Virtual Hardware. Two approaches are described:<ul>
 <li><a class="el" href="run_ami_local.html#Launch_website">Launch from Website</a> gives direct access.</li>
 <li><a class="el" href="run_ami_local.html#Launch_EC2">Launch trough EC2</a> gives you more control over the EC2 instance and is more flexible.</li>
 </ul>
-<p >Once the AMI is launched you may <a class="el" href="run_ami_local.html#connect">Connect to the EC2 Instance</a>.</p>
-<dl class="section note"><dt>Note</dt><dd>Terminate the AMI instance once it is no longer required.</dd></dl>
-<h1><a class="anchor" id="Launch_website"></a>
-Launch from Website</h1>
+</li>
+<li><a class="el" href="run_ami_local.html#connect">Connect to the EC2 Instance</a> Once the AMI is launched you may</li>
+<li><a class="el" href="run_ami_local.html#connect">Connect to the EC2 Instance</a> Once the AMI is launched you may</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>Terminate the AMI instance once it is no longer required.</dd>
+<dd>
+Refer to <a class="el" href="index.html#mainpage">Infrastructure</a> for others ways to use the Arm Virtual Hardware.</dd></dl>
+<h1><a class="anchor" id="Launch_ami"></a>
+Launch AMI Instance</h1>
+<p >An AMI instance with Arm Virtual Hardware can be created (launched) in two ways explained below:</p><ul>
+<li><a class="el" href="run_ami_local.html#Launch_website">Launch from Website</a> gives direct access to the AMI.</li>
+<li><a class="el" href="run_ami_local.html#Launch_EC2">Launch trough EC2</a> gives you more control over the EC2 instance and is more flexible.</li>
+</ul>
+<h2><a class="anchor" id="Launch_website"></a>
+Launch from Website</h2>
 <p >Before you can launch from a Website you should create a <b>VPC</b> and a <b>key pair</b>.</p>
 <p >Choose the following settings:</p><ul>
-<li><b>EC2 Instance Type:</b> <em>t3.medium</em> is sufficient to run Arm Virtual Hardware. An instance with more resources may improve performance.</li>
+<li><b>EC2 Instance Type:</b> <em>t3.medium</em> is sufficient to run Arm Virtual Hardware, but an instance with more resources may improve performance.</li>
 <li><b>VPC Settings:</b> select the VPC settings for the EC2 instance.</li>
 <li><b>Key Pair Settings:</b> select your key.</li>
 </ul>
-<h1><a class="anchor" id="Launch_EC2"></a>
-Launch trough EC2</h1>
+<h2><a class="anchor" id="Launch_EC2"></a>
+Launch trough EC2</h2>
 <p >The following steps launch the <b>Arm Virtual Hardware AMI</b> from the AWS Console:</p>
 <ol type="1">
 <li><b>Choose AMI:</b> Select the <b>Arm Virtual Hardware</b> and click <b>Launch</b> (skip this step when you launch from marketplace).</li>
@@ -143,7 +154,7 @@ Launch trough EC2</h1>
 <p ><img src="select_existing_key.png" alt="" class="inline" title="Select key pair"/></p>
 <h1><a class="anchor" id="connect"></a>
 Connect to the EC2 Instance</h1>
-<p >There are multiple ways to connect to the Amazon EC2 Linux instance that runs Arm VHT. For more information refer to:</p><ul>
+<p >There are multiple ways to connect to the Amazon EC2 Linux instance that runs Arm Virtual Hardware. For more information refer to:</p><ul>
 <li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html?icmpid=docs_ec2_console">Connect to your Linux instance</a></li>
 </ul>
 <h2><a class="anchor" id="use_ssh"></a>
@@ -159,7 +170,7 @@ Using SSH</h2>
 <p >You can review this details also under the AWS EC2 Management Console under <b>EC2 - Instances - &lt;select instance&gt; - Connect</b> and then select the tab <b>SSH Client</b>.</p>
 <h2><a class="anchor" id="use_vnc"></a>
 Using VNC</h2>
-<p >Some applications may require a display. <a href="https://de.wikipedia.org/wiki/Virtual_Network_Computing">Virtual Network Computing</a> (VNC) is available in the Arm VHT AMI and can be used as a remote desktop.</p>
+<p >Some applications may require a display. <a href="https://de.wikipedia.org/wiki/Virtual_Network_Computing">Virtual Network Computing</a> (VNC) is available in the Arm Virtual Hardware AMI and can be used as a remote desktop.</p>
 <p >First, setup VNC password. </p><div class="fragment"><div class="line">$ vncpasswd 0 i - </div>
 </div><!-- fragment --><p> When prompted, enter a password. A read-only password is not required.</p>
 <p >To start VNC every time the machine is rebooted enable it to start on boot: </p><div class="fragment"><div class="line">$ sudo systemctl enable vncserver@1.service</div>
@@ -261,10 +272,10 @@ List AMI Inventory</h1>
 <div class="line">ARM.V2M_MPS2_SSE_300_BSP.1.0.0.pack</div>
 <div class="line">ARM.CMSIS.5.7.0.pack</div>
 </div><!-- fragment --><h1><a class="anchor" id="run_example"></a>
-Running Micro Speech</h1>
-<p >Run the micro speech example. Connect to the EC2 instance using ssh as described above and then get the example, compile, and run. </p><div class="fragment"><div class="line">$ git clone https://github.com/arm-software/VHT-TFLmicrospeech.git</div>
+Run projects</h1>
+<p >Run the micro speech example. Connect to the EC2 instance using ssh as described above and then get the example, compile, and run. </p><div class="fragment"><div class="line">$ git clone https://github.com/arm-software/AVH-TFLmicrospeech.git</div>
 </div><!-- fragment --><p >For shared private projects your GitHub Username and Password key will be required to clone.</p>
-<p >Navigate to the example directory: </p><div class="fragment"><div class="line">$ cd ./VHT-TFLmicrospeech/Platform_FVP_Corstone_SSE-300_Ethos-U55</div>
+<p >Navigate to the example directory: </p><div class="fragment"><div class="line">$ cd ./AVH-TFLmicrospeech/Platform_FVP_Corstone_SSE-300_Ethos-U55</div>
 </div><!-- fragment --><p> Install the necessary CMSIS Packs (you may need to change permissions for the script): </p><div class="fragment"><div class="line">$ chmod 777 packlist.sh</div>
 <div class="line">$ ./packlist.sh</div>
 </div><!-- fragment --><p> Note that if this generated errors, you most likely have a legacy set up. Use this command to install packs instead: </p><div class="fragment"><div class="line">$ cp_install.sh packlist</div>
