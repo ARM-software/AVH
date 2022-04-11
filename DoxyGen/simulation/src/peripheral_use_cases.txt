@@ -11,7 +11,7 @@
 
 \ref arm_vio_api provides a general purpose implementation for simple I/O peripherals. This chapter shows how VIO can be applied in a specific use case.
 
-__[./interface/vio/vio_vht.c](https://github.com/ARM-software/VHT/tree/main/interface/vio/vio_vht.c)__: implements [**CMSIS-Driver VIO**](https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html) for Arm Virtual Hardware based on the \ref ARM_VIO_Type structure and its mapping defined in *arm_vio.h*.
+__[./interface/vio/vio_vht.c](https://github.com/ARM-software/AVH/tree/main/interface/vio/vio_vht.c)__: implements [**CMSIS-Driver VIO**](https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html) for Arm Virtual Hardware based on the \ref ARM_VIO_Type structure and its mapping defined in *arm_vio.h*.
 
 # Setup {#vio_setup}
 
@@ -69,7 +69,7 @@ int main (void) {
 
 \ref arm_vsocket_api provides a general purpose implementation for socket peripheral. This chapter shows how VSocket can be applied in specific use case.
 
-__[./interface/vsocket/iot_socket.c](https://github.com/ARM-software/VHT/tree/main/interface/vsocket/iot_socket.c)__: implements the [IoT Socket](https://github.com/MDK-Packs/IoT_Socket) variant for Arm Virtual Hardware based on the \ref ARM_VSocket_Type structure and its mapping defined in *arm_vsocket.h*.
+__[./interface/vsocket/iot_socket.c](https://github.com/ARM-software/AVH/tree/main/interface/vsocket/iot_socket.c)__: implements the [IoT Socket](https://github.com/MDK-Packs/IoT_Socket) variant for Arm Virtual Hardware based on the \ref ARM_VSocket_Type structure and its mapping defined in *arm_vsocket.h*.
 
 # Setup {#vsocket_setup}
 

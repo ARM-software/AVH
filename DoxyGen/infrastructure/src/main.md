@@ -1,13 +1,13 @@
 # Infrastructure {#mainpage}
 
-The [**\prj_name Targets**](../../simulation/html/index.html) can be accessed via:
+The [**Arm Virtual Targets**](../../simulation/html/index.html) can be accessed via:
 
   - \ref AWS : access to a ready-to-use image on a Cloud Service for CI/CD and MLOps workflow automation.
   - \ref Local : development of test cases and analyzing test failures on a desktop development system.
 
 ## AWS Marketplace {#AWS}
 
-Arm provides on **AWS Marketplace** a ready-to-use [**Amazon Machine Image (AMI)**](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) with **\prj_name Targets**, various compilers, other tools, and resources. The tools are executed in a Linux Virtual Machine and allows you to use the \prj_name environment in various different environments.
+Arm provides on **AWS Marketplace** a ready-to-use [**Amazon Machine Image (AMI)**](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) with **Arm Virtual Hardware Targets**, various compilers, other tools, and resources. The tools are executed in a Linux Virtual Machine and allows you to use the Arm Virtual Hardware environment in various different environments.
 
 The following AWS tutorials help you to get started:
 

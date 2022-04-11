@@ -17,8 +17,8 @@ The following files define the access to the VSocket peripheral.
 
 File                                | Description
 :-----------------------------------|:-----------------------------------
-[./interface/include/arm_vsocket.h](https://github.com/ARM-software/VHT/blob/main/interface/include/arm_vsocket.h)       | \ref arm_vsocket_api "VSocket API" header file
-[./interface/vsocket/iot_socket.c](https://github.com/ARM-software/VHT/blob/main/interface/vsocket/iot_socket.c)           | Implementation of [IoT Socket](https://github.com/MDK-Packs/IoT_Socket) variant for Arm Virtual Hardware
+[./interface/include/arm_vsocket.h](https://github.com/ARM-software/AVH/blob/main/interface/include/arm_vsocket.h)       | \ref arm_vsocket_api "VSocket API" header file
+[./interface/vsocket/iot_socket.c](https://github.com/ARM-software/AVH/blob/main/interface/vsocket/iot_socket.c)           | Implementation of [IoT Socket](https://github.com/MDK-Packs/IoT_Socket) variant for Arm Virtual Hardware
 
 \defgroup arm_vsocket_api VSocket API
 \ingroup arm_vsocket

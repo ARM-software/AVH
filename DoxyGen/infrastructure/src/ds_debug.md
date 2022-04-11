@@ -6,7 +6,7 @@ This section explains how Virtual Hardware Targets can be used [Arm Development 
 
 - [Download](https://developer.arm.com/tools-and-software/embedded/arm-development-studio/downloads) and install the latest Arm Development Studio. If necessary, you can generate an evaluation license from _Help > Arm License Manager_.
 
-- Use SSH port forwarding to forward the port to be used for debug server (default is `7100`) on your virtual target to your localhost. See similar instructions [here](https://arm-software.github.io/VHT/main/infrastructure/html/run_ami_local.html#use_vnc).
+- Use SSH port forwarding to forward the port to be used for debug server (default is `7100`) on your virtual target to your localhost. See similar instructions [here](https://arm-software.github.io/AVH/main/infrastructure/html/run_ami_local.html#use_vnc).
 
 ## Start Virtual Hardware Target {#ds_vht_start}
 

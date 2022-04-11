@@ -9,7 +9,7 @@ There are two main Python components:
 * `VHT CLI` is a command-line interface for VHT Python Module
 
 ## How to Install
-* Clone this repo `git clone https://github.com/ARM-software/VHT.git`
+* Clone this repo `git clone https://github.com/ARM-software/AVH.git`
 * Go to `infrastructure/python_resources` folder
 * `pip install .`
 
@@ -51,9 +51,9 @@ VHT python packages which includes:
 * `vht.py`: Front end class which exposes all methods available for the user.
 
 ## Examples using VHT Python Module
-* [Jenkins](https://github.com/ARM-software/VHT-GetStarted/blob/main/.jenkins/Using-VHT-Module/pipeline/Jenkinsfile)
+* [Jenkins](https://github.com/ARM-software/AVH-GetStarted/blob/main/.jenkins/Using-AVH-Module/pipeline/Jenkinsfile)
 * [GitHub Action](https://github.com/ARM-software/VHT-AMI/blob/master/vht_github_action.py)
 
 ## Examples using VHT CLI
-* [tests/examples](https://github.com/ARM-software/VHT/blob/main/infrastructure/python_resources/tests/examples)
-* [tests/test_vht_cli.sh](https://github.com/ARM-software/VHT/blob/main/infrastructure/python_resources/tests/test_vht_cli.sh)
+* [tests/examples](https://github.com/ARM-software/AVH/blob/main/infrastructure/python_resources/tests/examples)
+* [tests/test_vht_cli.sh](https://github.com/ARM-software/AVH/blob/main/infrastructure/python_resources/tests/test_vht_cli.sh)

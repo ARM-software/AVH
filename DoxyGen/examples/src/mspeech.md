@@ -2,7 +2,7 @@
 
 The Micro speech program analyzes an audio input with a voice recognition model that can detect 2 keywords - **yes** and **no**. The recognized keywords are then printed into a serial interface. The voice recognition model is implemented using [TensorFlow Lite for Microcontrollers](https://www.tensorflow.org/lite/microcontrollers).
 
-GitHub repository [**github.com/arm-software/VHT-TFLmicrospeech**](https://github.com/arm-software/VHT-TFLmicrospeech) contains an implementation supporting Arm Virtual Hardware Targets (VHT) as well as real hardware boards.
+GitHub repository [**github.com/arm-software/AVH-TFLmicrospeech**](https://github.com/arm-software/AVH-TFLmicrospeech) contains an implementation supporting Arm Virtual Hardware Targets (VHT) as well as real hardware boards.
 
 Micro speech demonstrates how to use the processor and peripheral abstraction layers for simpler software portability across different targets. The example repository contains documentation with running instructions.
 
@@ -186,14 +186,14 @@ On your local machine:
 <a name="clone"></a>
 ### 3.1. Fork and clone example
 
-1. Open a web browser and enter the following URL: [https://github.com/ARM-software/VHT-TFLmicrospeech](https://github.com/ARM-software/VHT-TFLmicrospeech)
+1. Open a web browser and enter the following URL: [https://github.com/ARM-software/AVH-TFLmicrospeech](https://github.com/ARM-software/AVH-TFLmicrospeech)
 2. Log in to your github account and click on *Fork* (upper right)
 3. In the AMI terminal:
 
         git config --global user.name YourGitHubName​
         git config --global user.email Your.Email@domain.com​
         git config --list​
-        git clone https://github.com/<YourGitHubName>/VHT-TFLmicrospeech
+        git clone https://github.com/<YourGitHubName>/AVH-TFLmicrospeech
 
 <a name="build"></a>
 ### 3.2. Build example within the AMI
@@ -202,7 +202,7 @@ In the AMI terminal:
 
 1. Navigate to build folder​
 
-    `cd VHT-TFLmicrospeech/Platform_FVP_Corstone_SSE-300_Ethos-U55​`
+    `cd AVH-TFLmicrospeech/Platform_FVP_Corstone_SSE-300_Ethos-U55​`
 
 2. Use [cp_install](https://arm-software.github.io/CMSIS_5/Build/html/cp_install.html) utility (do once) to install the necessary [CMSIS](https://developer.arm.com/tools-and-software/embedded/cmsis) Packs​ dependencies
 
@@ -320,7 +320,7 @@ In the AMI terminal
 
     In your own fork on Github, observe the change registered
 
-    `https://github.com/<YourGitHubName>/VHT-TFLmicrospeech​/blob/main/micro_speech/src/command_responder.cc​`
+    `https://github.com/<YourGitHubName>/AVH-TFLmicrospeech​/blob/main/micro_speech/src/command_responder.cc​`
 
 <a name="actions"></a>
 ## 4. Automated CI/CD with GitHub Actions
@@ -366,7 +366,7 @@ In Github, go the *Runner* tab to see the runner listed and idle
 
 2. **In a new AMI terminal**, revert your change in command_responder.cc and push to the repo
 
-        cd VHT-TFLmicrospeech/micro_speech/src
+        cd AVH-TFLmicrospeech/micro_speech/src
         git add .
         git commit -m "Original message"
         git push

@@ -1,16 +1,16 @@
 # Get Started Example {#GetStarted}
 
-VHT GetStarted example demonstrates how to setup a Continuous Integration (CI) workflow for testing and debugging embedded applications using Arm Virtual Hardware. The project is maintained in the GitHub repository [**github.com/ARM-software/VHT-GetStarted**](https://github.com/ARM-software/VHT-GetStarted/) that also contains detailed description of the example.
+GetStarted example demonstrates how to setup a Continuous Integration (CI) workflow for testing and debugging embedded applications using Arm Virtual Hardware (AVH). The project is maintained in the GitHub repository [**github.com/ARM-software/AVH-GetStarted**](https://github.com/ARM-software/AVH-GetStarted/) that also contains detailed description of the example.
 
 This chapter provides step-by-step guide through the CI workflow operation and its setup.
 
 ## Overview {#GS_Overview}
 
-The VHT GetStarted example implements common steps in the CI workflow as shown on the figure below and explained in subsequent sections.
+The AVH GetStarted example implements common steps in the CI workflow as shown on the figure below and explained in subsequent sections.
 
 ![Continuous Integration (CI) workflow](images/basic_ci_workflow.png)
 
-1. \ref GS_DevelopTest "Local development": at first, the software is developed locally using a common embedded toolchain such as [Keil MDK](https://developer.arm.com/tools-and-software/embedded/keil-mdk) and with [Arm Virtual Hardware Target (VHT)](../../simulation/html/index.html) used for MCU simulation.<br>
+1. \ref GS_DevelopTest "Local development": at first, the software is developed locally using a common embedded toolchain such as [Keil MDK](https://developer.arm.com/tools-and-software/embedded/keil-mdk) and with [Arm Virtual Hardware Target ](../../simulation/html/index.html) used for MCU simulation.<br>
  A GitHub repository is used as a source code management system for synchronization, storage and version control.
 2. \ref GS_SetupCI "CI pipeline setup": a GitHub Action implements the CI pipeline that gets triggered on every code update in the target repository.
 3. \ref GS_ExecuteCI "CI execution": automated program build and testing is performed in the cloud with Arm Virtual Hardware and results are reported back to the repository.
@@ -28,22 +28,22 @@ Other necessary software items are available free-of-charge and their installati
 
 ## Develop tests {#GS_DevelopTest}
 
-The VHT GetStarted embedded program implements a set of unit tests for validating operation of a simple function that is expected to return the sum value of two integer arguments. The example uses [Unity Framework](https://github.com/ThrowTheSwitch/Unity) for test implementation and execution, however, the demonstrated concept is universal and can be applied to a different testing framework as well.
+The AVH GetStarted embedded program implements a set of unit tests for validating operation of a simple function that is expected to return the sum value of two integer arguments. The example uses [Unity Framework](https://github.com/ThrowTheSwitch/Unity) for test implementation and execution, however, the demonstrated concept is universal and can be applied to a different testing framework as well.
 
 ### Create repository on GitHub
 
 Initial project repository setup should follow a standard git process for either [creating a new repo] (https://docs.github.com/en/get-started/quickstart/create-a-repo) or [forking](https://docs.github.com/en/get-started/quickstart/fork-a-repo) an existing one.
-The VHT GetStarted repository is set up as a GitHub template repository so it is very easy to [create own repository from it](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template):
- - Open a web browser and go to the URL: [https://github.com/ARM-software/VHT-GetStarted](https://github.com/ARM-software/VHT-GetStarted)
+The AVH GetStarted repository is set up as a GitHub template repository so it is very easy to [create own repository from it](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template):
+ - Open a web browser and go to the URL: [https://github.com/ARM-software/AVH-GetStarted](https://github.com/ARM-software/AVH-GetStarted)
  - Verify that you are logged in to your GitHub account.
- - Click on *Use this template* button. This opens the _Create a new repository from VHT-GetStarted_ page.
- - In *Repository name* field provide the name for the new repository to be created under your account. For simplicity just reuse the original name `VHT-GetStarted`.
+ - Click on *Use this template* button. This opens the _Create a new repository from AVH-GetStarted_ page.
+ - In *Repository name* field provide the name for the new repository to be created under your account. For simplicity just reuse the original name `AVH-GetStarted`.
  - Select whether you want the new repository to be Public or Private. This does not impact example operation, but be aware of limited quotas for automation in private repositories depending on your [GitHub account plan](https://github.com/pricing).
  - Check *Include all branches*. This is important for getting GitHub badges working correctly in your target repo.
  - Click on *Create repository from template*.
-   - The example repo gets copied into `` `https://github.com/<YourGitHubName>/VHT-GetStarted` `` repository, where ```<YourGitHubName>``` corresponds your GitHub user name.
+   - The example repo gets copied into `` `https://github.com/<YourGitHubName>/AVH-GetStarted` `` repository, where ```<YourGitHubName>``` corresponds your GitHub user name.
    .
-![Create a repository from VHT-GetStarted template](images/basic_gh_create_repo.png)
+![Create a repository from AVH-GetStarted template](images/basic_gh_create_repo.png)
 
 ### Setup local project on your PC
 
@@ -53,7 +53,7 @@ If the repository is present on GitHub, it can be easily copied onto local PC.
  - Make sure Git Bash is installed on the PC. For example [git for Windows] (https://gitforwindows.org/).
  - Open the Git Bash terminal in the target directory and execute clone command as:
 
-        git clone https://github.com/<YourGitHubName>/VHT-GetStarted
+        git clone https://github.com/<YourGitHubName>/AVH-GetStarted
 
 This copies the content of the _main_ branch to on your local drive. The _badges_ branch is present in the GitHub repository but is not required for local use.
 
@@ -89,7 +89,7 @@ For correct workflow operation it is important to keep the MDK project *uvprojx*
 
 ## Setup CI pipeline {#GS_SetupCI}
 
-As common for many projects, the CI pipeline for the VHT Get Started repository is triggered on every code change via push and pull requests. In our example this is explicitly limited to the _main_ branch only.
+As common for many projects, the CI pipeline for the AVH Get Started repository is triggered on every code change via push and pull requests. In our example this is explicitly limited to the _main_ branch only.
 
 The CI implementation in this example relies on [GitHub Actions](https://docs.github.com/en/actions) with [GitHub-hosted Runners](../../infrastructure/html/run_ami_github.html#GitHub_hosted). Program build and execution are done on [Arm Virtual Hardware AMI](../../infrastructure/html/index.html#AWS) instance in Amazon AWS. Custom GitHub action [Arm-Software/VHT-AMI](https://github.com/ARM-software/VHT-AMI) manages the connection between the GitHub repository and the AMI instance in AWS, as well as configures the actions to be performed on the AMI.
 
@@ -111,7 +111,7 @@ On the AWS side several items shall be setup to enable execution of example CI p
    - Note the parameters available in the _Output_ tab of the created stack. They will be needed later for \ref GS_GitHub_Setup.
   - Alternatively, for a more customized setup see [GitHub-hosted Runners](../../infrastructure/html/run_ami_github.html#GitHub_hosted).
  - Ensure that a Key Pair is available for use with EC2.<br>
-   By default the VHT GetStarted example expects a key pair with name `common` to create an EC2 instance (with line `ssh_key_name: common` in _basic.yml_ file).
+   By default the AVH GetStarted example expects a key pair with name `common` to create an EC2 instance (with line `ssh_key_name: common` in _basic.yml_ file).
   - In AWS Management Console type _EC2_ and go to the EC2 service.
   - In the left menu find _Network & Security_ section and click on _Key Pairs_.
   - Verify that the same AWS region is selected as will be used with Arm Virtual Hardware AMI later.
@@ -127,7 +127,7 @@ On the AWS side several items shall be setup to enable execution of example CI p
 
 Section [GitHub-hosted Runners](../../infrastructure/html/run_ami_github.html#GitHub_hosted) introduces the concept and explains it in details.
 
-The GitHub Action in this example is implemented in the [./.github/workflows/basic.yml](https://github.com/ARM-software/VHT-GetStarted/blob/main/.github/workflows/basic.yml) file using corresponding [YAML syntax for GitHub workflows](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions). 
+The GitHub Action in this example is implemented in the [./.github/workflows/basic.yml](https://github.com/ARM-software/AVH-GetStarted/blob/main/.github/workflows/basic.yml) file using corresponding [YAML syntax for GitHub workflows](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions). 
 
 todo: describe the workflow setup
 
@@ -139,7 +139,7 @@ Several parameters need to be configured in the repository as [GitHub Secrets](h
  - Use button _New repository secret_ and add one by one following secrets:
  .
 <table>
-<tr><th> Secret Name </th><th> Value for your VHT-GetStarted repository </th><th> Description </th></tr>
+<tr><th> Secret Name </th><th> Value for your AVH-GetStarted repository </th><th> Description </th></tr>
 <tr><td> AWS_IAM_PROFILE</td>
     <td> The value of _VHTIAMProfile_ from the output of [AWS resources setup](#GS_AWS_Setup).</td>
     <td> The [IAM Instance Profile](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html) to be used for AWS access.</td></tr>
@@ -179,7 +179,7 @@ CI pipeline gets executed automatically on every code change in the _main_ branc
 
 [GitHub Documentation](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/about-monitoring-and-troubleshooting) gives an overview about monitoring and troubleshooting options available for GitHub Actions.
 
-Steps below guide through the analysis for VHT GetStarted example.
+Steps below guide through the analysis for AVH GetStarted example.
 
 - Observe the three CI jobs executed in the selected CI workflow as shown in the _Jobs_ area on the left side.
   - **ci_test** job executes the CI pipeline without doing any analysis of unit test results. It is considered as successful (green circle) when the CI pipeline was executed fully to the end.
@@ -201,7 +201,7 @@ It can be seen that in default setup 1 out of 4 tests fails. The specific locati
 ![GitHub Actions test results view](images/basic_gh_test_results_view.png)
 
 This allows to find the failure quickly. In our example it is a trivial one, introduced on purpose in the example code.
-- Return to the VHT GetStarted project in Keil MDK on your PC.
+- Return to the AVH GetStarted project in Keil MDK on your PC.
 - Open _main.c_ file.
 - In line 48 replace the incorrect value `2` with the correct `0`:
 

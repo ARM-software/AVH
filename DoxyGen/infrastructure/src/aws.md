@@ -1,30 +1,36 @@
-# Run AMI on Local Host {#run_ami_local}
+# Run AMI from a Local Host {#run_ami_local}
 
-This section describes how to run the **AMI with \prj_name** on a local host computer and assumes that have setup the \ref AWS.
+This section describes how to control the **AMI with Arm Virtual Hardware** from a local host computer. It assumes that AWS account is \ref Subscribe "subscribed to Arm Virtual Hardware".
 
-\note
-   Refer to \ref mainpage "Infrastructure" for others ways to use the \prj_name.
-
-There are two was to launch the AMI:
+The execution is 
+- \ref Launch_ami explains how to create an AMI instance with Arm Virtual Hardware. Two approaches are described:
   - \ref Launch_website gives direct access. 
   - \ref Launch_EC2 gives you more control over the EC2 instance and is more flexible.
-  
-Once the AMI is launched you may \ref connect.
+- \ref connect Once the AMI is launched you may 
+- \ref connect Once the AMI is launched you may 
 
 \note
   Terminate the AMI instance once it is no longer required.
 
-## Launch from Website {#Launch_website}
+\note
+   Refer to \ref mainpage "Infrastructure" for others ways to use the Arm Virtual Hardware.
+
+## Launch AMI Instance {#Launch_ami}
+
+An AMI instance with Arm Virtual Hardware can be created (launched) in two ways explained below:
+  - \ref Launch_website gives direct access to the AMI.
+  - \ref Launch_EC2 gives you more control over the EC2 instance and is more flexible.
+
+### Launch from Website {#Launch_website}
 
 Before you can launch from a Website you should create a **VPC** and a **key pair**. 
 
 Choose the following settings:
-  - **EC2 Instance Type:** *t3.medium* is sufficient to run \prj_name. An instance with more resources may improve performance.
+  - **EC2 Instance Type:** *t3.medium* is sufficient to run Arm Virtual Hardware, but an instance with more resources may improve performance.
   - **VPC Settings:** select the VPC settings for the EC2 instance.
   - **Key Pair Settings:** select your key.
   
-  
-## Launch trough EC2 {#Launch_EC2}
+### Launch trough EC2 {#Launch_EC2}
 
 The following steps launch the **\prj_name AMI** from the AWS Console:
 
@@ -55,7 +61,7 @@ You may then select an existing key pair or create a new key pair. When an exist
 
 # Connect to the EC2 Instance {#connect}
 
-There are multiple ways to connect to the Amazon EC2 Linux instance that runs Arm VHT. For more information refer to:
+There are multiple ways to connect to the Amazon EC2 Linux instance that runs Arm Virtual Hardware. For more information refer to:
   - [Connect to your Linux instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html?icmpid=docs_ec2_console)
 
 ## Using SSH {#use_ssh}
@@ -75,7 +81,7 @@ You can review this details also under the AWS EC2 Management Console under **EC
 
 ## Using VNC {#use_vnc}
 
-Some applications may require a display. [Virtual Network Computing](https://de.wikipedia.org/wiki/Virtual_Network_Computing) (VNC) is available in the Arm VHT AMI and can be used as a remote desktop.
+Some applications may require a display. [Virtual Network Computing](https://de.wikipedia.org/wiki/Virtual_Network_Computing) (VNC) is available in the Arm Virtual Hardware AMI and can be used as a remote desktop.
 
 First, setup VNC password.
 ```
@@ -221,18 +227,18 @@ ARM.V2M_MPS2_SSE_300_BSP.1.0.0.pack
 ARM.CMSIS.5.7.0.pack
 ```
 
-# Running Micro Speech  {#run_example}
+# Run projects {#run_example}
 
 Run the micro speech example. Connect to the EC2 instance using ssh as described above and then get the example, compile, and run.
 ```
-$ git clone https://github.com/arm-software/VHT-TFLmicrospeech.git
+$ git clone https://github.com/arm-software/AVH-TFLmicrospeech.git
 ```
 
 For shared private projects your GitHub Username and Password key will be required to clone.
 
 Navigate to the example directory:
 ```
-$ cd ./VHT-TFLmicrospeech/Platform_FVP_Corstone_SSE-300_Ethos-U55
+$ cd ./AVH-TFLmicrospeech/Platform_FVP_Corstone_SSE-300_Ethos-U55
 ```
 Install the necessary CMSIS Packs (you may need to change permissions for the script):
 ```

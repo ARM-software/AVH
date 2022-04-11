@@ -1,16 +1,20 @@
 \mainpage Introduction
 
-**\prj_name** provides simulation models, software tooling, and infrastructure that can be integrated into [**CI/CD**](https://en.wikipedia.org/wiki/CI/CD) and [**MLOps**](https://en.wikipedia.org/wiki/MLOps) development flows. **\prj_name** supports the software development cycle of embedded, IoT, and ML applications and provides essential components for effective test and validation environments. **\prj_name** is flexible and can run any [**RTOS**](https://en.wikipedia.org/wiki/Real-time_operating_system) that is designed for Cortex-M or bare metal code that interacts with the processor. **\prj_name** offers a comprehensive tool integration along with resources for software developers and can therefore run complex applications and software integration tests. A potential workload could be a [**sensor-fusion**](https://en.wikipedia.org/wiki/Sensor_fusion) Machine Learning (ML) application that connects to the Internet via an IoT operating system.
+**Arm Virtual Hardware (AVH)** provides simulation models, software tooling, and infrastructure that can be integrated into [**CI/CD**](https://en.wikipedia.org/wiki/CI/CD) and [**MLOps**](https://en.wikipedia.org/wiki/MLOps) development flows. 
 
-**\prj_name** consists of the following components:
+AVH supports the software development cycle of embedded, IoT, and ML applications and provides essential components for effective test and validation environments. Arm Virtual Hardware is flexible and can run any [**RTOS**](https://en.wikipedia.org/wiki/Real-time_operating_system) that is designed for Cortex-M or bare metal code that interacts with the processor. 
 
-  - **\prj_name Targets (VHT)** are precise [**simulation models**](https://en.wikipedia.org/wiki/Simulation) of Cortex-M device sub-systems and are designed for complex software verification and testing. It allows [**simulation-based test automation**](https://en.wikipedia.org/wiki/Test_automation) of various software workloads, including unit tests, integration tests, and fault injection. 
+Arm Virtual Hardware offers a comprehensive tool integration along with resources for software developers and can therefore run complex applications and software integration tests. A potential workload could be a [**sensor-fusion**](https://en.wikipedia.org/wiki/Sensor_fusion) Machine Learning (ML) application that connects to the Internet via an IoT operating system.
 
-  - **\prj_name Services** provide a cloud-native infra-structure for software test and validation. These \prj_name services can be integrated into various **CI/CD** and **MLOps** environments that range from GitHub to on-premise IT infrastructure. The Arm VHT services will be available via the AWS Marketplace (and later also via other Cloud Service providers).
+**Arm Virtual Hardware** consists of the following components:
+
+  - **Arm Virutal Hardware Targets** are precise [**simulation models**](https://en.wikipedia.org/wiki/Simulation) of Cortex-M device sub-systems and are designed for complex software verification and testing. It allows [**simulation-based test automation**](https://en.wikipedia.org/wiki/Test_automation) of various software workloads, including unit tests, integration tests, and fault injection. 
+
+  - **Arm Virtual Hardware Services** provide a cloud-native infra-structure for software test and validation. These \prj_name services can be integrated into various **CI/CD** and **MLOps** environments that range from GitHub to on-premise IT infrastructure. The Arm Virtual Hardware services will be available via the AWS Marketplace (and later also via other Cloud Service providers).
  
-  - **\prj_name Developer Resources** gives you access to interface drivers that map to virtual targets and physical hardware along with Python scripts for I/O simulation. The documentation explains how to integrate Arm VHT into typical **CI/CD** environments. Usage examples show typical usage cases and range from audio processing, ML algorithm testing, up to IoT applications that interface to Cloud Service providers.
+  - **Arm Virtual Hardware Developer Resources** gives you access to interface drivers that map to virtual targets and physical hardware along with Python scripts for I/O simulation. The documentation explains how to integrate Arm Virtual Hardware Targets into typical **CI/CD** environments. Usage examples show typical usage cases and range from audio processing, ML algorithm testing, up to IoT applications that interface to Cloud Service providers.
   
-  - **Software Development Environments** with Arm VHT integration are also available. \prj_name is an integral part of the Keil MDK Professional Edition that is a comprehensive software tool suite for creating Cortex-M-based applications and related validation and test processes. In future, the next-generation Keil Studio will also integrate \prj_name.
+  - **Software Development Environments** with Arm Virtual Hardware Targets integration are also available. \prj_name is an integral part of the Keil MDK Professional Edition that is a comprehensive software tool suite for creating Cortex-M-based applications and related validation and test processes. In future, the next-generation Keil Studio will also integrate \prj_name.
 
 \image html "vht_overview.png" "\prj_name - Components"
 
@@ -19,17 +23,17 @@
 
 Section                                                    | Description
 :----------------------------------------------------------|:--------------------
-[**Overview**](index.html)                                 | Introduces **\prj_name** along with the top-level structure.
-[**Simulation**](../../simulation/html/index.html)         | Explains the **\prj_name Targets (VHT)** along with the simulation technology and the virtual interfaces.
-[**Infrastructure**](../../infrastructure/html/index.html) | Describes how to setup development work flows with **\prj_name**.
-[**Examples**](../../examples/html/index.html)             | Guides you through the examples demonstrating how to use **\prj_name**.
+[**Overview**](index.html)                                 | Introduces **Arm Virtual Hardware** along with the top-level structure.
+[**Simulation**](../../simulation/html/index.html)         | Explains the **Arm Virtual Hardware Targets ** along with the simulation technology and the virtual interfaces.
+[**Infrastructure**](../../infrastructure/html/index.html) | Describes how to setup development work flows with **Arm Virtual Hardware**.
+[**Examples**](../../examples/html/index.html)             | Guides you through the examples demonstrating how to use **Arm Virtual Hardware**.
 
 
 # User Benefits {#User_Benefits}
 
 ## Test without Hardware {#No_Hardware}
 
-**\prj_name** allows to verify your code without the need for physical hardware which provides a robust test environment that enables:
+AVH allows to verify your code without the need for physical hardware which provides a robust test environment that enables:
  - Early software development for faster time-to-market
  - Select optimal target device once the software workload is analysed
  - Re-target applications to production hardware with driver abstractions

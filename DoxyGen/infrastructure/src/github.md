@@ -1,7 +1,7 @@
 
 # Run AMI with GitHub Actions {#run_ami_github}
 
-GitHub Actions help you automate tasks within your software development life cycle. GitHub Actions are event-driven, meaning that you can run a series of commands after a specified event has occurred.  For example, every time someone commits a push or creates a pull request for a repository, you can automatically run the Arm VHT Services that execute automated build or test scripts. Refer to [Introduction to GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions) for information about the components of GitHub Actions.
+GitHub Actions help you automate tasks within your software development life cycle. GitHub Actions are event-driven, meaning that you can run a series of commands after a specified event has occurred.  For example, every time someone commits a push or creates a pull request for a repository, you can automatically run the Arm Virtual Hardware Services that execute automated build or test scripts. Refer to [Introduction to GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions) for information about the components of GitHub Actions.
 
 There are several different ways to execute GitHub Actions:
   - [**Self-hosted GitHub runners**](#self_hosted) where the complete GitHub Action is executed on an AWS EC2 Linux instance.
@@ -23,9 +23,9 @@ From your github repository on github.com, go to Settings > Actions > Runners > 
 
 
 ## Setup AWS EC2 Instance {#self-hosted2}
-Before you start with the following steps, make sure you created an EC2 instance on your AWS account. For instructions, see: [Launch through EC2](https://arm-software.github.io/VHT/main/infrastructure/html/run_ami_local.html#Launch_EC2).
+Before you start with the following steps, make sure you created an EC2 instance on your AWS account. For instructions, see: [Launch through EC2](https://arm-software.github.io/AVH/main/infrastructure/html/run_ami_local.html#Launch_EC2).
 
-  1. Open an SSH connection as described on: [Connect to the EC2 instance](https://arm-software.github.io/VHT/main/infrastructure/html/run_ami_local.html#connect)
+  1. Open an SSH connection as described on: [Connect to the EC2 instance](https://arm-software.github.io/AVH/main/infrastructure/html/run_ami_local.html#connect)
   
   Follow these steps on SSH:
 
@@ -164,7 +164,7 @@ More information on the AWS documentation: [Create IAM Role For Service](https:/
 
 
 ## Setup AWS EC2 Instance {#github_hosted2}
-Make sure you created an EC2 instance on your AWS account. For instructions, see: [Launch through EC2](https://arm-software.github.io/VHT/main/infrastructure/html/run_ami_local.html#Launch_EC2).
+Make sure you created an EC2 instance on your AWS account. For instructions, see: [Launch through EC2](https://arm-software.github.io/AVH/main/infrastructure/html/run_ami_local.html#Launch_EC2).
 Once created you need to make notes of the Instance ID, for later reference. You can stop the machine once it has reached running state. The plugin will start the machine on demand.
 
 The IAM role created in the previous step, can either be specified on launch or it is added from the EC2 management. Attach it anytime using Actions - Security - Modify IAM role from the menu.
@@ -190,15 +190,15 @@ More information on github documentation: [Creating encrypted secrets for a repo
 
 ## Add Github Action {#github_hosted5}
 
-The basic idea of creating a github-hosted CI flow is to run steps on the github VM instance - except build and execution of test cases. The test suite contains of a collection of files that are required on the VHT instance on AWS and a yaml-based inventory file, that includes instructions. This file is called **vht.yml**. It will mark the root of a folder used to stage a test suite on the Github VM. 
+The basic idea of creating a github-hosted CI flow is to run steps on the github VM instance - except build and execution of test cases. The test suite contains of a collection of files that are required on the AVH instance on AWS and a yaml-based inventory file, that includes instructions. This file is called **vht.yml**. It will mark the root of a folder used to stage a test suite on the Github VM. 
 
-A complete example workflow is found in the example hosted on: https://github.com/ARM-software/VHT-TFLmicrospeech
+A complete example workflow is found in the example hosted on: https://github.com/ARM-software/AVH-TFLmicrospeech
 
 ### Prepare the testsuite
 
 Steps before the actual execution should copy every file required to staging folder. It will then be passed in the vht_in parameter. File and path references in the vht.yml should be relative to the root of this folder, where also the vht.yml needs to be placed.
 
-Refer to https://github.com/ARM-software/VHT-TFLmicrospeech/blob/main/.github/workflows/virtual_hardware_gh.yml for some detailed example.
+Refer to https://github.com/ARM-software/AVH-TFLmicrospeech/blob/main/.github/workflows/virtual_hardware_gh.yml for some detailed example.
 
 ### The vht.yml
 
@@ -233,8 +233,8 @@ The following tables describe the different sections of the **vht.yml** file.
 | suite:         |  Starts the declaration of a test suite
 |:-----------------|:---------------------------------------------------
 | `name:`          |  Name of the test suite
-| `model:`         |  Executable name of the [VHT simulation model](../../simulation/html/Using.html) used.
-| `configuration:` |  Configuration file for the [VHT simulation model](../../simulation/html/Using.html).
+| `model:`         |  Executable name of the [AVH simulation model](../../simulation/html/Using.html) used.
+| `configuration:` |  Configuration file for the [AVH simulation model](../../simulation/html/Using.html).
 | `pre:`           |  Execute command on shell before executing any `builds:` or `tests:`.
 | `post:`          |  Execute command on shell after executing any `builds:` or `tests:`.
 
@@ -250,8 +250,8 @@ The following tables describe the different sections of the **vht.yml** file.
 | tests:         |  Starts a list of test declarations.
 |:-----------------|:---------------------------------------------------
 | `"<value>":`     |  Name of the test declaration.
-| `executable:`    |  Executable file in ELF format to be executed on the [VHT simulation model](../../simulation/html/Using.html).
-| `arguments:`     |  Additional arguments passed to the [VHT simulation model](../../simulation/html/Using.html).
+| `executable:`    |  Executable file in ELF format to be executed on the [AVH simulation model](../../simulation/html/Using.html).
+| `arguments:`     |  Additional arguments passed to the [AVH simulation model](../../simulation/html/Using.html).
 | `timeout:`       |  Optional timeout for test execution.
 | `pre:`           |  Execute command on shell before starting the `executable:`.
 | `post:`          |  Execute command on shell after completing the `executable:`.

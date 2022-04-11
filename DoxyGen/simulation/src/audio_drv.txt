@@ -4,7 +4,7 @@
 \brief Audio file streaming interface for Cortex-M applications to Python scripting
 \details
 The VSI implements general purpose peripheral registers, interrupt control, a timer peripheral, and a DMA peripheral.
-The peripheral is accessed using the \ref ARM_VSI_Type structure definition in [arm_vsi.h](https://github.com/ARM-software/VHT/blob/main/interface/include/arm_vsi.h)
+The peripheral is accessed using the \ref ARM_VSI_Type structure definition in [arm_vsi.h](https://github.com/ARM-software/AVH/blob/main/interface/include/arm_vsi.h)
 
 Several implementations of the audio driver with the same common audio driver API are available. This allows to re-target an application from Arm Virtual Hardware to physical devices while implementing the same logical behavior:
   - for the \ref arm_vsi_api "VSI" with an interface to a Python test script that streams *.wav files.
@@ -14,12 +14,12 @@ The implementations are done with the following items:
 
 Item                                                                       | Description
 :------------------------------------------------------------------------------------|:-----------------------------------
-[./interface/audio/include/audio_drv.h](https://github.com/arm-software/VHT/blob/main/interface/audio/include/audio_drv.h)    | \ref arm_vsi_audio "Audio Driver API" header file. Used by implementations on Arm Virtual Hardware and real HW boards.
-[./interface/audio/driver/audio_drv.c](https://github.com/arm-software/VHT/blob/main/interface/audio/driver/audio_drv.c)      | Audio driver implementation for Arm Virtual Hardware based on \ref arm_vsi_api "VSI"
-[./interface/audio/python/arm_vsi0.py](https://github.com/arm-software/VHT/blob/main/interface/audio/python/arm_vsi0.py)      | \ref arm_vsi_audio "Audio via VSI"  Python script for audio input interface based on \ref arm_vsi_py "VSI Python interface" 
-[./interface/audio/python/arm_vsi1.py](https://github.com/arm-software/VHT/blob/main/interface/audio/python/arm_vsi1.py)                              | \ref arm_vsi_audio "Audio via VSI"  Python script for audio output interface based on \ref arm_vsi_py "VSI Python interface" 
-Audio driver for NXP IMXRT1050-EVKB board | Audio driver implementation for NXP IMXRT1050-EVKB. See [VHT-TFL microspeech GitHub repo](https://github.com/ARM-software/VHT-TFLmicrospeech/tree/main/Platform_IMXRT1050-EVKB/Driver_Audio)
-Audio driver for NXP MIMXRT1064-EVK board | Audio driver implementation for NXP MIMXRT1064-EVK. See [VHT-TFL microspeech GitHub repo](https://github.com/ARM-software/VHT-TFLmicrospeech/tree/main/Platform_MIMXRT1064-EVK/Driver_Audio)
+[./interface/audio/include/audio_drv.h](https://github.com/arm-software/AVH/blob/main/interface/audio/include/audio_drv.h)    | \ref arm_vsi_audio "Audio Driver API" header file. Used by implementations on Arm Virtual Hardware and real HW boards.
+[./interface/audio/driver/audio_drv.c](https://github.com/arm-software/AVH/blob/main/interface/audio/driver/audio_drv.c)      | Audio driver implementation for Arm Virtual Hardware based on \ref arm_vsi_api "VSI"
+[./interface/audio/python/arm_vsi0.py](https://github.com/arm-software/AVH/blob/main/interface/audio/python/arm_vsi0.py)      | \ref arm_vsi_audio "Audio via VSI"  Python script for audio input interface based on \ref arm_vsi_py "VSI Python interface" 
+[./interface/audio/python/arm_vsi1.py](https://github.com/arm-software/AVH/blob/main/interface/audio/python/arm_vsi1.py)                              | \ref arm_vsi_audio "Audio via VSI"  Python script for audio output interface based on \ref arm_vsi_py "VSI Python interface" 
+Audio driver for NXP IMXRT1050-EVKB board | Audio driver implementation for NXP IMXRT1050-EVKB. See [AVH-TFLmicrospeech GitHub repo](https://github.com/ARM-software/AVH-TFLmicrospeech/tree/main/Platform_IMXRT1050-EVKB/Driver_Audio)
+Audio driver for NXP MIMXRT1064-EVK board | Audio driver implementation for NXP MIMXRT1064-EVK. See [AVH-TFLmicrospeech GitHub repo](https://github.com/ARM-software/AVH-TFLmicrospeech/tree/main/Platform_MIMXRT1064-EVK/Driver_Audio)
 
 The chapter [**Micro Speech Example**](../../examples/html/MicroSpeech.html) describes an example projects that demonstrate use of this audio driver API in both the AVH test environment and on the physical evaluation boards.
 

@@ -4,9 +4,12 @@ Use of Arm Virtual Hardware (AVH) AMI can be integrated into [Jenkins pipelines]
 
 Two approaches can be followed to create and control instances of the AVH AMIs with Jenkins:
 - \ref avh_jenkins_node : a classic approach with a Jenkins node created in AWS.
-- \ref avh_module_jenkins : a simplified way with Jenkins as a thin wrapper on top of python module.
+- \ref avh_module_jenkins : a simplified way with Jenkins as a thin wrapper on top of avhclient python module.
 
-Example implementations of both approaches are provided in [GetStarted example](https://github.com/ARM-software/VHT-GetStarted/) and explained in this chapter.
+Example implementations of both approaches are provided in [GetStarted example](https://github.com/ARM-software/AVH-GetStarted/) and explained in this chapter.
+
+\note
+   Refer to \ref mainpage "Infrastructure" for others ways to use the Arm Virtual Hardware.
 
 ## Using AVH AMI as a Jenkins node {#avh_jenkins_node}
 This is a common way to implement Jenkins pipelines on AWS.
@@ -14,7 +17,7 @@ This is a common way to implement Jenkins pipelines on AWS.
 A Jenkins Controller uses Amazon EC2 plugin to create an EC2 instance as a Jenkins node from an AVH AMI. Then the Jenkins node gets connected by SSH to the Jenkins Controller and the Jenkins commands are executed directly on the EC2 instance.
 
 ### Implementation example
-The example implementation is available in [.jenkins/VHT-as-Jenkins-Node/](https://github.com/ARM-software/VHT-GetStarted/tree/main/.jenkins/VHT-as-Jenkins-Node/) and consists of the following items:
+The example implementation is available in [.jenkins/AVH-as-Jenkins-Node/](https://github.com/ARM-software/AVH-GetStarted/tree/main/.jenkins/AVH-as-Jenkins-Node/) and consists of the following items:
 
 - `configuration-as-code/` provides an example of Amazon EC2 plugin code.
 - `jobDSL/`  contains Jenkins configuration as code to create the AVH Jenkins Job.
@@ -31,7 +34,7 @@ Following resources are required on the AWS side:
 - SSH Keys to communicate with the EC2 instance as Jenkins Node.
 - Subnet Id needs to be informed with EC2 instance.
 
-An AWS Cloudformation template file can be used to create most of the required AWS Resources for AVH AMI, please refer to [./infrastructure/cloudformation/](https://github.com/ARM-software/VHT-GetStarted/tree/main/infrastructure/cloudformation) folder in the GetStarted example.
+An AWS Cloudformation template file can be used to create most of the required AWS Resources for AVH AMI, please refer to [./infrastructure/cloudformation/](https://github.com/ARM-software/AVH-GetStarted/tree/main/infrastructure/cloudformation) folder in the GetStarted example.
 
 #### Jenkins plugins
 Following Jenkins plugins are used by the example implementation:
@@ -44,13 +47,13 @@ Following Jenkins credentials need to be configured:
 - AWS Credential for IAM User (`AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`)
 - AWS SSH Private Key to be associated with the EC2 instance.
 
-## Using python module {#avh_module_jenkins}
-In this approach, a special [VHT python module](https://github.com/ARM-software/VHT/tree/main/infrastructure/python_resources) drives the communication with the AVH AMI. The Jenkins pipeline is just a light-weight front end that uses the VHT Python module, and the actual work is done by an EC2 instance created and controlled with the commands from the VHT Python module built on top of AWS SDK.
+## Using AVH Client {#avh_module_jenkins}
+In this approach, a python module [*avhclient*](https://github.com/ARM-software/avhclient) drives the communication with the AVH AMI. The Jenkins pipeline is just a light-weight front end that uses the VHT Python module, and the actual work is done by an EC2 instance created and controlled with the commands from the VHT Python module built on top of AWS SDK.
 
 This approach is simpler to implement but the capabilities are limited by the functionality of the VHT Python module.
 
 ### Implementation example
-The example implementation using VHT Python module is available in [.jenkins/Using-VHT-Module/](https://github.com/ARM-software/VHT-GetStarted/tree/main/.jenkins/Using-VHT-Module) and consists of the following items:
+The example implementation using VHT Python module is available in [.jenkins/Using-AVH-Module/](https://github.com/ARM-software/AVH-GetStarted/tree/main/.jenkins/Using-AVH-Module) and consists of the following items:
 
 - `jobDSL/`  contains Jenkins configuration as code to create the AVH Jenkins Job.
 - `pipeline/`  implements an example pipeline for running AVH AMI using VHT Python Module.
@@ -68,7 +71,7 @@ Following resources are required on the AWS side:
 - [*Optional*] SSH Key if you would like to debug on EC2.
 - Subnet Id needs to be informed with EC2 instance.
 
-An AWS CloudFormation template file can be used to create the required AWS resources for AVH AMI. Refer to   [./infrastructure/cloudformation/](https://github.com/ARM-software/VHT-GetStarted/tree/main/infrastructure/cloudformation) folder in the GetStarted example.
+An AWS CloudFormation template file can be used to create the required AWS resources for AVH AMI. Refer to   [./infrastructure/cloudformation/](https://github.com/ARM-software/AVH-GetStarted/tree/main/infrastructure/cloudformation) folder in the GetStarted example.
 
 #### Jenkins plugins
 Following Jenkins plugins are used by the example implementation:
