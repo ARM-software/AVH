@@ -13,7 +13,7 @@ Eight VSI instances are available and may be used in parallel for simultaneous m
 
 Examples demonstrate the \ref arm_vsi_audio "Audio" streaming as shown in the diagram below.
 
-\image html ./images/Example-Structure.png "Arm VHT CoreStone-300 for Linux and Windows"
+\image html ./images/Example-Structure.png "AVH CoreStone-300 for Linux and Windows"
 
 The VSI implements general purpose peripheral registers, an interrupt peripheral, a timer peripheral, and a DMA peripheral. The following files define the access to the VSI peripherals.
 

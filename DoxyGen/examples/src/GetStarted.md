@@ -107,7 +107,7 @@ On the AWS side several items shall be setup to enable execution of example CI p
 **AWS resources setup**
 
  - Provision the AWS resources required for using Arm Virtual Hardware AMI.
-  - The simplest way is explained in [Arm Virtual Hardware AWS-CloudFormation](https://github.com/spcaipers-arm/VHT-AWS-Infra-CloudFormation) and relies on AWS CloudFormation service with the template file specifying default stack configuration.
+  - The simplest way is explained in [Arm Virtual Hardware AWS-CloudFormation](https://github.com/ARM-software/AVH-GetStarted/tree/main/infrastructure/cloudformation) and relies on AWS CloudFormation service with the template file specifying default stack configuration.
    - Note the parameters available in the _Output_ tab of the created stack. They will be needed later for \ref GS_GitHub_Setup.
   - Alternatively, for a more customized setup see [GitHub-hosted Runners](../../infrastructure/html/run_ami_github.html#GitHub_hosted).
  - Ensure that a Key Pair is available for use with EC2.<br>
@@ -128,8 +128,6 @@ On the AWS side several items shall be setup to enable execution of example CI p
 Section [GitHub-hosted Runners](../../infrastructure/html/run_ami_github.html#GitHub_hosted) introduces the concept and explains it in details.
 
 The GitHub Action in this example is implemented in the [./.github/workflows/basic.yml](https://github.com/ARM-software/AVH-GetStarted/blob/main/.github/workflows/basic.yml) file using corresponding [YAML syntax for GitHub workflows](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions). 
-
-todo: describe the workflow setup
 
 **Add GitHub Secrets**
 

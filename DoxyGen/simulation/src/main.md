@@ -1,15 +1,15 @@
 \mainpage Virtual Hardware Targets
 
-The **\prj_name Targets (VHT)** provide a functional accurate simulation of an Arm-based SoC and can be automated for scalable deployment in the CI development flow. This virtual platform can be used standalone or with development tools such as <a href="https://developer.arm.com/tools-and-software/embedded/arm-development-studio" target="_blank"><b>Arm Development Studio</b></a> or <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk" target="_blank"><b>Arm Keil MDK</b></a> with debug and trace capabilities supported as well.
+The **Arm Virtual Hardware (AVH) Targets** provide a functional accurate simulation of an Arm-based SoC and can be automated for scalable deployment in the CI development flow. This virtual platform can be used standalone or with development tools such as <a href="https://developer.arm.com/tools-and-software/embedded/arm-development-studio" target="_blank"><b>Arm Development Studio</b></a> or <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk" target="_blank"><b>Arm Keil MDK</b></a> with debug and trace capabilities supported as well.
 
-The **\prj_name Targets** are based on the Arm Fast Model technology and are extended FVP models that add virtual interfaces for peripheral emulation.  In addition Arm VHT provides concepts to re-target applications from simulation models to physical hardware which simplifies to combine unit/integration tests with the final system integration.
+The **AVH Targets** are based on the Arm Fast Model technology and are extended FVP models that add virtual interfaces for peripheral emulation.  In addition AVH provides concepts to re-target applications from simulation models to physical hardware which simplifies to combine unit/integration tests with the final system integration.
 
 
 # Virtual Interfaces {#Virtual_Interfaces}
 
-The **\prj_name Targets** implement various Virtual Interfaces that can be used to stimulate the application under test.
+The AVH processors implement various Virtual Interfaces that can be used to stimulate the application under test.
 
-![Arm VHT Virtual Interfaces](./images/Virtual_Interfaces.png "Arm VHT with Virtual Interfaces")
+![AVH Virtual Interfaces](./images/Virtual_Interfaces.png "AVH processors with Virtual Interfaces")
 
   - The \ref arm_vio interface controls simple I/O such as LED and switches.
   - The \ref arm_vsi provides up to 8 instances for data streaming.
@@ -25,7 +25,7 @@ In addition the **Event Recorder Capturing** provides an interface for the [Even
 
 To simplify re-targeting from **\prj_name Targets** to final production hardware, the examples implement the concept of software layers. As the next generation tooling will provide native support for program layers, it makes it easy to work on a combination of simulated and physical hardware. The picture below examplifies this concept.
 
-![Arm VHT Re-target to Hardware](./images/Simulation2Hardware.png "Re-target from Simulation to Hardware")
+![AVH Re-target to Hardware](./images/Simulation2Hardware.png "Re-target from Simulation to Hardware")
 
 
 # Development Workflow {#Development_Workflow}

@@ -91,7 +91,7 @@ Make sure that the EC2 instance is up and in running state, for the github runne
 # GitHub-hosted Runners {#GitHub_hosted}
 
 The following steps explain how to use **GitHub-hosted runners** with [AWS Marketplace: \prj_name](https://aws.amazon.com/marketplace/pp/prodview-urbpq7yo5va7g).
-The github-hosted runner will run the action on an github-hosted VM instance. The [VHT-AMI action](https://github.com/ARM-software/VHT-AMI) controls the remote execution of *builds* and *tests* on Arm Virtual Hardware. The plugin manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an \ref AWS "Arm VHT AMI". It also provides run-control of the EC2 instance itself, starting and stopping on demand.
+The github-hosted runner will run the action on an github-hosted VM instance. The [VHT-AMI action](https://github.com/ARM-software/VHT-AMI) controls the remote execution of *builds* and *tests* on Arm Virtual Hardware. The plugin manages connection, upload and execution of a test suite on Amazon EC2 Linux instance that runs an \ref AWS "AVH AMI". It also provides run-control of the EC2 instance itself, starting and stopping on demand.
 
 ![VHT GitHub action](./images/GitHub-GH-AWS.png "VHT GitHub action for AMI integration")
 
@@ -190,9 +190,9 @@ More information on github documentation: [Creating encrypted secrets for a repo
 
 ## Add Github Action {#github_hosted5}
 
-The basic idea of creating a github-hosted CI flow is to run steps on the github VM instance - except build and execution of test cases. The test suite contains of a collection of files that are required on the AVH instance on AWS and a yaml-based inventory file, that includes instructions. This file is called **vht.yml**. It will mark the root of a folder used to stage a test suite on the Github VM. 
+The basic idea of creating a github-hosted CI flow is to run steps on the github VM instance - except build and execution of test cases. The test suite contains of a collection of files that are required on the AVH instance on AWS and a yaml-based inventory file, that includes instructions. This file is called **vht.yml**. It will mark the root of a folder used to stage a test suite on the GitHub VM. 
 
-A complete example workflow is found in the example hosted on: https://github.com/ARM-software/AVH-TFLmicrospeech
+A complete example workflow is found in the example hosted on: https://github.com/ARM-software/AVH-TFLmicrospeech.
 
 ### Prepare the testsuite
 

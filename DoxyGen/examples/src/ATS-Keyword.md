@@ -6,8 +6,8 @@ todo add overview description of example
 
 todo describe or provide links
 
-## Run on Virtual Hardware {#VHT}
+## Run on Virtual Hardware {#AVH}
 
-todo explain execution on VHT
+todo explain execution on Arm Virtual Hardware (AVH) CPUs
 
 

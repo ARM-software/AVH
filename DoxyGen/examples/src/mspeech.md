@@ -2,7 +2,7 @@
 
 The Micro speech program analyzes an audio input with a voice recognition model that can detect 2 keywords - **yes** and **no**. The recognized keywords are then printed into a serial interface. The voice recognition model is implemented using [TensorFlow Lite for Microcontrollers](https://www.tensorflow.org/lite/microcontrollers).
 
-GitHub repository [**github.com/arm-software/AVH-TFLmicrospeech**](https://github.com/arm-software/AVH-TFLmicrospeech) contains an implementation supporting Arm Virtual Hardware Targets (VHT) as well as real hardware boards.
+GitHub repository [**github.com/arm-software/AVH-TFLmicrospeech**](https://github.com/arm-software/AVH-TFLmicrospeech) contains an implementation supporting Arm Virtual Hardware (AVH) CPUs as well as real hardware boards.
 
 Micro speech demonstrates how to use the processor and peripheral abstraction layers for simpler software portability across different targets. The example repository contains documentation with running instructions.
 

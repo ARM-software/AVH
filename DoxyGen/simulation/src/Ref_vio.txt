@@ -2,7 +2,7 @@
 //  ==== Virtual Interfaces ====
 /**
 \defgroup   arm_cmvp Virtual Peripherals
-\brief      Virtual Interfaces on VHT
+\brief      Virtual Interfaces on Arm Virtual Hardware CPUs
 \details
 
 The **Virtual Interfaces** are memory-mapped implementations of  that simulate a user application application running on a virtual Cortex processor.

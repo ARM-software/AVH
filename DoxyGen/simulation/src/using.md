@@ -1,10 +1,10 @@
 \page Using Using Arm Virtual Hardware Targets
 
-This section describes how to use the **Arm Virtual Hardware Targets (VHT)**.
+This section describes how to use the **Arm Virtual Hardware (AVH) Targets**.
 
-The VHT simulation models are based on the [Arm Fast Models Fixed Virtual Platforms](https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms) with extensions for \ref arm_cmvp. The table below shows the available models:
+The AVH simulation models are based on the [Arm Fast Models Fixed Virtual Platforms](https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms) with extensions for \ref arm_cmvp. The table below shows the available models:
 
-VHT Simulation Models          | Processor Core        | Overview Description
+AVH Simulation Models          | Processor Core        | Overview Description
 :------------------------------|:----------------------|:----------------------------------------
 VHT_MPS2_Cortex-M0             | Cortex-M0             | [ARM Cortex-M0 SMM on V2M-MPS2 (AppNote AN382)](https://developer.arm.com/documentation/dai0382)
 VHT_MPS2_Cortex-M0plus         | Cortex-M0+            | [ARM Cortex-M0+ SMM on V2M-MPS2 (AppNote AN383)](https://developer.arm.com/documentation/dai0383)
@@ -17,7 +17,7 @@ VHT_MPS3_Corstone_SSE-300      | Cortex-M55            | [Corstone-300 FVP Techn
 VHT_Corstone_SSE-300_Ethos-U55 | Cortex-M55, Ethos-U55 | [Corstone-300 FVP Technical Overview (PDF)](./Corstone_SSE-300_Ethos-U55_FVP_MPS3_Technical_Overview.pdf)
 VHT_Corstone_SSE-300_Ethos-U65 | Cortex-M55, Ethos-U65 | [Corstone-300 FVP Technical Overview (PDF)](./Corstone_SSE-300_Ethos-U55_FVP_MPS3_Technical_Overview.pdf)
 
-VHT models can be executed in Linux environment by using their model names, for example `VHT_Corestone_SSE-300_Ethos-U55`, and on Windows platform the models are provided as executables files, for example `VHT_Corestone_SSE-300_Ethos-U55.exe`.
+AVH models can be executed in Linux environment by using their model names, for example `VHT_Corestone_SSE-300_Ethos-U55`, and on Windows platform the models are provided as executables files, for example `VHT_Corestone_SSE-300_Ethos-U55.exe`.
 
 # Command Line Options {#Options}
 
@@ -27,11 +27,11 @@ The command line options can be listed using the -help command. For example in L
 VHT_Corstone_SSE-300_Ethos-U55 -help
 ```
 
-The VHT simulation models can be configured using the option *-f FILE* that specifies a *config-file*. The available *config-file* options can be listed with the option *-l*.
+The AVH simulation models can be configured using the option *-f FILE* that specifies a *config-file*. The available *config-file* options can be listed with the option *-l*.
 
 # Usage Example {#Example}
 
-Below is an example of running a program on the VHT model for Corstone-300 with Ethos-U55 in Linux environment:
+Below is an example of running a program on the AVH model for Corstone-300 with Ethos-U55 in Linux environment:
 
 ```
 VHT_Corstone_SSE-300_Ethos-U55 -V "..\VSI\audio\python" -f vht_config.txt -a Objects\microspeech.axf --stat --simlimit 24
@@ -39,7 +39,7 @@ VHT_Corstone_SSE-300_Ethos-U55 -V "..\VSI\audio\python" -f vht_config.txt -a Obj
 
 Where:
   - **-V** specifies that path to the Python scripts for \ref arm_cmvp.
-  - **-f** specifies the *config-file* for the VHT simulation model.
+  - **-f** specifies the *config-file* for the AVH simulation model.
   - **-a** specifies the application to load.
   - **--stat** instructs to print run statistics on simulation exit.
   - **--simlimit** specifies the maximum number of seconds to simulate.
@@ -60,4 +60,4 @@ Where:
  - **core_clk.mul=32000000** specifies the virtual time, in this case 32MHz CPU clock.
  - **mps3_board.telnetterminal0.start_telnet=0** disables the Telnet connectivity.
  - **mps3_board.uart0.out_file=-** UART output is send to stdout.
- - **mps3_board.visualisation.disable-visualisation=1** disables the graphical user interface of the VHT.
+ - **mps3_board.visualisation.disable-visualisation=1** disables the graphical user interface of the AVH.
