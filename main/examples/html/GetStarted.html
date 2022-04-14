@@ -194,7 +194,7 @@ AWS setup</h2>
 <p ><b>AWS resources setup</b></p>
 <ul>
 <li>Provision the AWS resources required for using Arm Virtual Hardware AMI.<ul>
-<li>The simplest way is explained in <a href="https://github.com/spcaipers-arm/VHT-AWS-Infra-CloudFormation">Arm Virtual Hardware AWS-CloudFormation</a> and relies on AWS CloudFormation service with the template file specifying default stack configuration.<ul>
+<li>The simplest way is explained in <a href="https://github.com/ARM-software/AVH-GetStarted/tree/main/infrastructure/cloudformation">Arm Virtual Hardware AWS-CloudFormation</a> and relies on AWS CloudFormation service with the template file specifying default stack configuration.<ul>
 <li>Note the parameters available in the <em>Output</em> tab of the created stack. They will be needed later for <a class="el" href="GetStarted.html#GS_GitHub_Setup">GitHub Actions setup</a>.</li>
 </ul>
 </li>
@@ -221,7 +221,6 @@ AWS setup</h2>
 GitHub Actions setup</h2>
 <p >Section <a href="../../infrastructure/html/run_ami_github.html#GitHub_hosted">GitHub-hosted Runners</a> introduces the concept and explains it in details.</p>
 <p >The GitHub Action in this example is implemented in the <a href="https://github.com/ARM-software/AVH-GetStarted/blob/main/.github/workflows/basic.yml">./.github/workflows/basic.yml</a> file using corresponding <a href="https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions">YAML syntax for GitHub workflows</a>.</p>
-<p >todo: describe the workflow setup</p>
 <p ><b>Add GitHub Secrets</b></p>
 <p >Several parameters need to be configured in the repository as <a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets">GitHub Secrets</a> to enable communication with your AWS account. For that:</p><ul>
 <li>Go to the GitHub webpage of your repository.</li>

@@ -110,11 +110,11 @@ $(document).ready(function(){initNavTree('Using.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Using Arm Virtual Hardware Targets </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >This section describes how to use the <b>Arm Virtual Hardware Targets (VHT)</b>.</p>
-<p >The VHT simulation models are based on the <a href="https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms">Arm Fast Models Fixed Virtual Platforms</a> with extensions for <a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a>. The table below shows the available models:</p>
+<div class="textblock"><p >This section describes how to use the <b>Arm Virtual Hardware (AVH) Targets</b>.</p>
+<p >The AVH simulation models are based on the <a href="https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms">Arm Fast Models Fixed Virtual Platforms</a> with extensions for <a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a>. The table below shows the available models:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">VHT Simulation Models   </th><th class="markdownTableHeadLeft">Processor Core   </th><th class="markdownTableHeadLeft">Overview Description    </th></tr>
+<th class="markdownTableHeadLeft">AVH Simulation Models   </th><th class="markdownTableHeadLeft">Processor Core   </th><th class="markdownTableHeadLeft">Overview Description    </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">VHT_MPS2_Cortex-M0   </td><td class="markdownTableBodyLeft">Cortex-M0   </td><td class="markdownTableBodyLeft"><a href="https://developer.arm.com/documentation/dai0382">ARM Cortex-M0 SMM on V2M-MPS2 (AppNote AN382)</a>    </td></tr>
 <tr class="markdownTableRowEven">
@@ -136,19 +136,19 @@ $(document).ready(function(){initNavTree('Using.html',''); initResizable(); });
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">VHT_Corstone_SSE-300_Ethos-U65   </td><td class="markdownTableBodyLeft">Cortex-M55, Ethos-U65   </td><td class="markdownTableBodyLeft"><a href="./Corstone_SSE-300_Ethos-U55_FVP_MPS3_Technical_Overview.pdf">Corstone-300 FVP Technical Overview (PDF)</a>   </td></tr>
 </table>
-<p >VHT models can be executed in Linux environment by using their model names, for example <code>VHT_Corestone_SSE-300_Ethos-U55</code>, and on Windows platform the models are provided as executables files, for example <code>VHT_Corestone_SSE-300_Ethos-U55.exe</code>.</p>
+<p >AVH models can be executed in Linux environment by using their model names, for example <code>VHT_Corestone_SSE-300_Ethos-U55</code>, and on Windows platform the models are provided as executables files, for example <code>VHT_Corestone_SSE-300_Ethos-U55.exe</code>.</p>
 <h1><a class="anchor" id="Options"></a>
 Command Line Options</h1>
 <p >The command line options can be listed using the -help command. For example in Linux environment:</p>
 <div class="fragment"><div class="line">VHT_Corstone_SSE-300_Ethos-U55 -help</div>
-</div><!-- fragment --><p >The VHT simulation models can be configured using the option <em>-f FILE</em> that specifies a <em>config-file</em>. The available <em>config-file</em> options can be listed with the option <em>-l</em>.</p>
+</div><!-- fragment --><p >The AVH simulation models can be configured using the option <em>-f FILE</em> that specifies a <em>config-file</em>. The available <em>config-file</em> options can be listed with the option <em>-l</em>.</p>
 <h1><a class="anchor" id="Example"></a>
 Usage Example</h1>
-<p >Below is an example of running a program on the VHT model for Corstone-300 with Ethos-U55 in Linux environment:</p>
+<p >Below is an example of running a program on the AVH model for Corstone-300 with Ethos-U55 in Linux environment:</p>
 <div class="fragment"><div class="line">VHT_Corstone_SSE-300_Ethos-U55 -V &quot;..\VSI\audio\python&quot; -f vht_config.txt -a Objects\microspeech.axf --stat --simlimit 24</div>
 </div><!-- fragment --><p >Where:</p><ul>
 <li><b>-V</b> specifies that path to the Python scripts for <a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a>.</li>
-<li><b>-f</b> specifies the <em>config-file</em> for the VHT simulation model.</li>
+<li><b>-f</b> specifies the <em>config-file</em> for the AVH simulation model.</li>
 <li><b>-a</b> specifies the application to load.</li>
 <li><b>&ndash;stat</b> instructs to print run statistics on simulation exit.</li>
 <li><b>&ndash;simlimit</b> specifies the maximum number of seconds to simulate.</li>
@@ -165,7 +165,7 @@ Usage Example</h1>
 <li><b>core_clk.mul=32000000</b> specifies the virtual time, in this case 32MHz CPU clock.</li>
 <li><b>mps3_board.telnetterminal0.start_telnet=0</b> disables the Telnet connectivity.</li>
 <li><b>mps3_board.uart0.out_file=-</b> UART output is send to stdout.</li>
-<li><b>mps3_board.visualisation.disable-visualisation=1</b> disables the graphical user interface of the VHT. </li>
+<li><b>mps3_board.visualisation.disable-visualisation=1</b> disables the graphical user interface of the AVH. </li>
 </ul>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

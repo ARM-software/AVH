@@ -68,7 +68,7 @@ var NAVTREE =
     ] ],
     [ "ATS-Keyword Example", "ATS-Keyword.html", [
       [ "Build Application", "ATS-Keyword.html#Build", null ],
-      [ "Run on Virtual Hardware", "ATS-Keyword.html#VHT", null ]
+      [ "Run on Virtual Hardware", "ATS-Keyword.html#AVH", null ]
     ] ]
   ] ]
 ];

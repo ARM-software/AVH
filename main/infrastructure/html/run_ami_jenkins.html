@@ -113,7 +113,7 @@ $(document).ready(function(){initNavTree('run_ami_jenkins.html',''); initResizab
 <div class="textblock"><p ><a class="anchor" id="md_src_jenkins"></a> Use of Arm Virtual Hardware (AVH) AMI can be integrated into <a href="https://www.jenkins.io/">Jenkins pipelines</a> for automating software builds and tests.</p>
 <p >Two approaches can be followed to create and control instances of the AVH AMIs with Jenkins:</p><ul>
 <li><a class="el" href="run_ami_jenkins.html#avh_jenkins_node">Using AVH AMI as a Jenkins node</a> : a classic approach with a Jenkins node created in AWS.</li>
-<li><a class="el" href="run_ami_jenkins.html#avh_module_jenkins">Using AVH Client</a> : a simplified way with Jenkins as a thin wrapper on top of avhclient python module.</li>
+<li><a class="el" href="run_ami_jenkins.html#avh_module_jenkins">Using AVH Client</a> : a simplified way with Jenkins as a thin wrapper on top of AVH Client python module.</li>
 </ul>
 <p >Example implementations of both approaches are provided in <a href="https://github.com/ARM-software/AVH-GetStarted/">GetStarted example</a> and explained in this chapter.</p>
 <dl class="section note"><dt>Note</dt><dd>Refer to <a class="el" href="index.html#mainpage">Infrastructure</a> for others ways to use the Arm Virtual Hardware.</dd></dl>
@@ -157,14 +157,14 @@ Jenkins credentials</h3>
 </ul>
 <h1><a class="anchor" id="avh_module_jenkins"></a>
 Using AVH Client</h1>
-<p >In this approach, a python module <a href="https://github.com/ARM-software/avhclient"><em>avhclient</em></a> drives the communication with the AVH AMI. The Jenkins pipeline is just a light-weight front end that uses the VHT Python module, and the actual work is done by an EC2 instance created and controlled with the commands from the VHT Python module built on top of AWS SDK.</p>
-<p >This approach is simpler to implement but the capabilities are limited by the functionality of the VHT Python module.</p>
+<p >In this approach, a python module <a href="https://github.com/ARM-software/avhclient"><em>avhclient</em></a> drives the communication with the AVH AMI. The Jenkins pipeline is just a light-weight front end that uses the AVH Client module, and the actual work is done by an EC2 instance created and controlled with the commands from the avhclient built on top of AWS SDK.</p>
+<p >This approach is simpler to implement but the capabilities are limited by the functionality of the avhclient.</p>
 <h2><a class="anchor" id="autotoc_md17"></a>
 Implementation example</h2>
-<p >The example implementation using VHT Python module is available in <a href="https://github.com/ARM-software/AVH-GetStarted/tree/main/.jenkins/Using-AVH-Module">.jenkins/Using-AVH-Module/</a> and consists of the following items:</p>
+<p >The example implementation using Jenkins with avhclient is available in <a href="https://github.com/ARM-software/AVH-GetStarted/tree/main/.jenkins/Using-AVH-Module">.jenkins/Using-AVH-Module/</a> and consists of the following items:</p>
 <ul>
 <li><code>jobDSL/</code> contains Jenkins configuration as code to create the AVH Jenkins Job.</li>
-<li><code>pipeline/</code> implements an example pipeline for running AVH AMI using VHT Python Module.</li>
+<li><code>pipeline/</code> implements an example pipeline for running AVH AMI using avhclient Python Module.</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md18"></a>
 Dependencies</h2>
@@ -174,7 +174,7 @@ AWS Account</h3>
 <ul>
 <li><a class="el" href="index.html#Subscribe">Subscription</a> to Arm Virtual Hardware AMI.</li>
 <li>IAM User with Access Keys for the AWS Account.</li>
-<li>IAM Instance Profile to be associated with the VHT EC2 instances.</li>
+<li>IAM Instance Profile to be associated with the AVH EC2 instances.</li>
 <li>S3 Bucket to store temporary files.</li>
 <li>EC2 Security Group with Ingress SSH port allowed.</li>
 <li>[<em>Optional</em>] SSH Key if you would like to debug on EC2.</li>
