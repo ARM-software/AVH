@@ -85,7 +85,7 @@ Some applications may require a display. [Virtual Network Computing](https://de.
 
 First, setup VNC password.
 ```
-$ vncpasswd 0 i - 
+$ vncpasswd
 ```
 When prompted, enter a password. A read-only password is not required.
 
