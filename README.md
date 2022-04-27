@@ -2,7 +2,7 @@
 
 This repository gives you access to interface drivers that map to virtual targets and physical hardware along with Python scripts for I/O simulation. The [documentation](https://arm-software.github.io/AVH/main/overview/html/index.html) explains how to integrate Arm Virtual Hardware Targets into typical CI/CD environments. Usage examples show typical usage cases and range from audio processing, ML algorithm testing, up to IoT applications that interface to Cloud Service providers.
 
-**Arm Virtual Hardware** is now in public beta phase, is currently provided free of charge, and may be used only for evaluation. You may, for example, evaluate the development processes in CI/CD, MLOps and DevOps workflows which require automated testing.
+**Arm Virtual Hardware (AVH)** is now in public beta phase, is currently provided free of charge, and may be used only for evaluation. You may, for example, evaluate the development processes in CI/CD, MLOps and DevOps workflows which require automated testing.
 
 
 ## Resources
@@ -29,7 +29,7 @@ Examples       | Description
 
 ## Directory Structure
 
-The content of this repository are the Developer Resources for **Arm Virtual Hardware**. 
+The content of this repository are the Developer Resources for **Arm Virtual Hardware (AVH)**. 
 
 Directory      | Description
 :--------------|:--------------------------------------------------
