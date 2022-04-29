@@ -873,7 +873,6 @@ WARN_LOGFILE           =
 
 INPUT                  = ./src/main.md  \
                          ./src/aws.md  \
-                         ./src/avh_doc.md \
                          ./src/github.md \
                          ./src/ds_debug.md \
                          ./src/mdk.md \

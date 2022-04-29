@@ -16,7 +16,7 @@ Arm Virtual Hardware offers a comprehensive tool integration along with resource
   
   - **Software Development Environments** with Arm Virtual Hardware Targets integration are also available. \prj_name is an integral part of the Keil MDK Professional Edition that is a comprehensive software tool suite for creating Cortex-M-based applications and related validation and test processes. In future, the next-generation Keil Studio will also integrate \prj_name.
 
-\image html "vht_overview.png" "\prj_name - Components"
+\image html "vht_overview.png" "Arm Virtual Hardware - Components"
 
 
 # Documentation Structure {#Sections}
@@ -24,7 +24,7 @@ Arm Virtual Hardware offers a comprehensive tool integration along with resource
 Section                                                    | Description
 :----------------------------------------------------------|:--------------------
 [**Overview**](index.html)                                 | Introduces **Arm Virtual Hardware** along with the top-level structure.
-[**Simulation**](../../simulation/html/index.html)         | Explains the **Arm Virtual Hardware Targets ** along with the simulation technology and the virtual interfaces.
+[**Simulation**](../../simulation/html/index.html)         | Explains the **Arm Virtual Hardware Targets** along with the simulation technology and the virtual interfaces.
 [**Infrastructure**](../../infrastructure/html/index.html) | Describes how to setup development work flows with **Arm Virtual Hardware**.
 [**Examples**](../../examples/html/index.html)             | Guides you through the examples demonstrating how to use **Arm Virtual Hardware**.
 
@@ -49,7 +49,7 @@ AVH allows to verify your code without the need for physical hardware which prov
 
 Software algorithms for Digital Signal Processing (DSP) or Machine Learning (ML) frequently require significant CPU resources and need to be optimized for the target hardware. Comparing performance of such "load heavy" algorithms requires that they can be automatically executed with different configurations parameters but using identical input. 
 
-**\prj_name Services** allows users to test their programs at scale with reproducible input patterns and so validate and optimize application performance which allows you to:
+**Arm Virtual Hardware Services** allows users to test their programs at scale with reproducible input patterns and so validate and optimize application performance which allows you to:
  - Compare speed of different implementations of an algorithm
  - Identify timing issues during system integration
  - Optimize resources (i.e. data buffers) towards application requirements
