@@ -121,7 +121,7 @@ $(document).ready(function(){initNavTree('run_ami_jenkins.html',''); initResizab
 Using AVH AMI as a Jenkins node</h1>
 <p >This is a common way to implement Jenkins pipelines on AWS.</p>
 <p >A Jenkins Controller uses Amazon EC2 plugin to create an EC2 instance as a Jenkins node from an AVH AMI. Then the Jenkins node gets connected by SSH to the Jenkins Controller and the Jenkins commands are executed directly on the EC2 instance.</p>
-<h2><a class="anchor" id="autotoc_md12"></a>
+<h2><a class="anchor" id="autotoc_md5"></a>
 Implementation example</h2>
 <p >The example implementation is available in <a href="https://github.com/ARM-software/AVH-GetStarted/tree/main/.jenkins/AVH-as-Jenkins-Node/">.jenkins/AVH-as-Jenkins-Node/</a> and consists of the following items:</p>
 <ul>
@@ -129,9 +129,9 @@ Implementation example</h2>
 <li><code>jobDSL/</code> contains Jenkins configuration as code to create the AVH Jenkins Job.</li>
 <li><code>pipeline/</code> implements an example pipeline for running AVH AMI as Jenkins Node.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md13"></a>
+<h2><a class="anchor" id="autotoc_md6"></a>
 Dependencies</h2>
-<h3><a class="anchor" id="autotoc_md14"></a>
+<h3><a class="anchor" id="autotoc_md7"></a>
 AWS Account</h3>
 <p >Following resources are required on the AWS side:</p>
 <ul>
@@ -142,14 +142,14 @@ AWS Account</h3>
 <li>Subnet Id needs to be informed with EC2 instance.</li>
 </ul>
 <p >An AWS Cloudformation template file can be used to create most of the required AWS Resources for AVH AMI, please refer to <a href="https://github.com/ARM-software/AVH-GetStarted/tree/main/infrastructure/cloudformation">./infrastructure/cloudformation/</a> folder in the GetStarted example.</p>
-<h3><a class="anchor" id="autotoc_md15"></a>
+<h3><a class="anchor" id="autotoc_md8"></a>
 Jenkins plugins</h3>
 <p >Following Jenkins plugins are used by the example implementation:</p>
 <ul>
 <li><a href="https://plugins.jenkins.io/ec2/">Amazon EC2</a> - Tested on v1.57</li>
 <li><a href="https://plugins.jenkins.io/job-dsl/">JobDSL - needed if the JobDSL code is used</a> - Tested on v1.77</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md16"></a>
+<h3><a class="anchor" id="autotoc_md9"></a>
 Jenkins credentials</h3>
 <p >Following Jenkins credentials need to be configured:</p><ul>
 <li>AWS Credential for IAM User (<code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code>)</li>
@@ -159,16 +159,16 @@ Jenkins credentials</h3>
 Using AVH Client</h1>
 <p >In this approach, a python module <a href="https://github.com/ARM-software/avhclient"><em>avhclient</em></a> drives the communication with the AVH AMI. The Jenkins pipeline is just a light-weight front end that uses the AVH Client module, and the actual work is done by an EC2 instance created and controlled with the commands from the avhclient built on top of AWS SDK.</p>
 <p >This approach is simpler to implement but the capabilities are limited by the functionality of the avhclient.</p>
-<h2><a class="anchor" id="autotoc_md17"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 Implementation example</h2>
 <p >The example implementation using Jenkins with avhclient is available in <a href="https://github.com/ARM-software/AVH-GetStarted/tree/main/.jenkins/Using-AVH-Module">.jenkins/Using-AVH-Module/</a> and consists of the following items:</p>
 <ul>
 <li><code>jobDSL/</code> contains Jenkins configuration as code to create the AVH Jenkins Job.</li>
 <li><code>pipeline/</code> implements an example pipeline for running AVH AMI using avhclient Python Module.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md18"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 Dependencies</h2>
-<h3><a class="anchor" id="autotoc_md19"></a>
+<h3><a class="anchor" id="autotoc_md12"></a>
 AWS Account</h3>
 <p >Following resources are required on the AWS side:</p>
 <ul>
@@ -181,7 +181,7 @@ AWS Account</h3>
 <li>Subnet Id needs to be informed with EC2 instance.</li>
 </ul>
 <p >An AWS CloudFormation template file can be used to create the required AWS resources for AVH AMI. Refer to <a href="https://github.com/ARM-software/AVH-GetStarted/tree/main/infrastructure/cloudformation">./infrastructure/cloudformation/</a> folder in the GetStarted example.</p>
-<h3><a class="anchor" id="autotoc_md20"></a>
+<h3><a class="anchor" id="autotoc_md13"></a>
 Jenkins plugins</h3>
 <p >Following Jenkins plugins are used by the example implementation:</p>
 <ul>
@@ -189,7 +189,7 @@ Jenkins plugins</h3>
 <li><a href="https://plugins.jenkins.io/pyenv-pipeline/">Pyenv-pipeline</a> - Tested on v2.1.2</li>
 <li><a href="https://plugins.jenkins.io/job-dsl/">JobDSL - needed if the JobDSL code is used</a> - Tested on v1.77</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md21"></a>
+<h3><a class="anchor" id="autotoc_md14"></a>
 Jenkins credentials</h3>
 <p >Following Jenkins credentials need to be configured:</p><ul>
 <li>AWS Credential for IAM User (<code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code>)</li>

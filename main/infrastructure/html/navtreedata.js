@@ -55,28 +55,28 @@ var NAVTREE =
         [ "Setup AWS S3 Instance", "run_ami_github.html#github_hosted3", null ],
         [ "Add Github Secrets", "run_ami_github.html#github_hosted4", null ],
         [ "Add Github Action", "run_ami_github.html#github_hosted5", [
-          [ "Prepare the testsuite", "run_ami_github.html#autotoc_md8", null ],
-          [ "The vht.yml", "run_ami_github.html#autotoc_md9", null ],
-          [ "Example", "run_ami_github.html#autotoc_md10", null ],
-          [ "Use Action", "run_ami_github.html#autotoc_md11", null ]
+          [ "Prepare the testsuite", "run_ami_github.html#autotoc_md1", null ],
+          [ "The vht.yml", "run_ami_github.html#autotoc_md2", null ],
+          [ "Example", "run_ami_github.html#autotoc_md3", null ],
+          [ "Use Action", "run_ami_github.html#autotoc_md4", null ]
         ] ]
       ] ]
     ] ],
     [ "Run AMI with Jenkins", "run_ami_jenkins.html", [
       [ "Using AVH AMI as a Jenkins node", "run_ami_jenkins.html#avh_jenkins_node", [
-        [ "Implementation example", "run_ami_jenkins.html#autotoc_md12", null ],
-        [ "Dependencies", "run_ami_jenkins.html#autotoc_md13", [
-          [ "AWS Account", "run_ami_jenkins.html#autotoc_md14", null ],
-          [ "Jenkins plugins", "run_ami_jenkins.html#autotoc_md15", null ],
-          [ "Jenkins credentials", "run_ami_jenkins.html#autotoc_md16", null ]
+        [ "Implementation example", "run_ami_jenkins.html#autotoc_md5", null ],
+        [ "Dependencies", "run_ami_jenkins.html#autotoc_md6", [
+          [ "AWS Account", "run_ami_jenkins.html#autotoc_md7", null ],
+          [ "Jenkins plugins", "run_ami_jenkins.html#autotoc_md8", null ],
+          [ "Jenkins credentials", "run_ami_jenkins.html#autotoc_md9", null ]
         ] ]
       ] ],
       [ "Using AVH Client", "run_ami_jenkins.html#avh_module_jenkins", [
-        [ "Implementation example", "run_ami_jenkins.html#autotoc_md17", null ],
-        [ "Dependencies", "run_ami_jenkins.html#autotoc_md18", [
-          [ "AWS Account", "run_ami_jenkins.html#autotoc_md19", null ],
-          [ "Jenkins plugins", "run_ami_jenkins.html#autotoc_md20", null ],
-          [ "Jenkins credentials", "run_ami_jenkins.html#autotoc_md21", null ]
+        [ "Implementation example", "run_ami_jenkins.html#autotoc_md10", null ],
+        [ "Dependencies", "run_ami_jenkins.html#autotoc_md11", [
+          [ "AWS Account", "run_ami_jenkins.html#autotoc_md12", null ],
+          [ "Jenkins plugins", "run_ami_jenkins.html#autotoc_md13", null ],
+          [ "Jenkins credentials", "run_ami_jenkins.html#autotoc_md14", null ]
         ] ]
       ] ]
     ] ],
@@ -93,15 +93,6 @@ var NAVTREE =
       ] ],
       [ "Project Export", "run_mdk_pro.html#mdk_cprj_export", null ],
       [ "Program Build and Debug", "run_mdk_pro.html#mdk_program_run", null ]
-    ] ],
-    [ "AVH CLI Script", "md_src_avh_doc.html", [
-      [ "Requirements", "md_src_avh_doc.html#autotoc_md2", null ],
-      [ "Usage", "md_src_avh_doc.html#autotoc_md3", null ],
-      [ "Usage examples", "md_src_avh_doc.html#autotoc_md4", [
-        [ "Instance start wihout specifying any key", "md_src_avh_doc.html#autotoc_md5", null ],
-        [ "Connecting to the instance", "md_src_avh_doc.html#autotoc_md6", null ],
-        [ "Instance stop", "md_src_avh_doc.html#autotoc_md7", null ]
-      ] ]
     ] ]
   ] ]
 ];
