@@ -874,9 +874,10 @@ WARN_LOGFILE           =
 INPUT                  = ./src/main.md  \
                          ./src/aws.md  \
                          ./src/github.md \
-                         ./src/ds_debug.md \
+                         ./src/jenkins.md \
                          ./src/mdk.md \
-                         ./src/jenkins.md
+                         ./src/ds_debug.md \
+
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses

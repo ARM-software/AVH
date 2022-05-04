@@ -60,7 +60,8 @@ This copies the content of the _main_ branch to on your local drive. The _badges
 **Project setup**
 
  - Install Keil MDK and related tools as described in [Tools installation](../../infrastructure/html/run_mdk_pro.html#mdk_vht_install).
- - In the local project repository double-click on the _basic/basic.debug.uvprojx_ file to open the project in µVision IDE.
+ - In the local project repository double-click on the _basic/basic.debug.cprj_ file to get the project imported into µVision IDE.
+   - Alternatively you can start µVision IDE and import the basic.debug.cprj project via the [_Project_ - _Import_](https://developer.arm.com/documentation/101407/latest/User-Interface/Project-Menu-and-Commands/Export-Menu) menu.
  - Verify the project setup as explained in [Project Configuration](../../infrastructure/html/run_mdk_pro.html#mdk_project_config).
 
 ### Implement tests
@@ -85,7 +86,7 @@ The GetStarted example is configured to open a local Telnet console automaticall
 
 The GetStarted example is also described in _basic.debug.cprj_ file using universal [.cprj format](https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html) that gets used in command-line CI environments.
 
-For correct workflow operation it is important to keep the MDK project *uvprojx* file and the *cprj* file synchronized. For that after saving modifications in the MDK project go to the µVision menu [_Project_ - _Export_](https://www.keil.com/support/man/docs/uv4/uv4_ui_export.htm) and select _Save project to CPRJ format_.
+For correct workflow operation it is important to keep the MDK project *uvprojx* file and the *cprj* file synchronized. For that after saving modifications in the MDK project go to the µVision menu [_Project_ - _Export_](https://developer.arm.com/documentation/101407/latest/User-Interface/Project-Menu-and-Commands/Export-Menu) and select _Save project to CPRJ format_.
 
 ## Setup CI pipeline {#GS_SetupCI}
 
