@@ -160,7 +160,10 @@ Setup local project on your PC</h2>
 <p ><b>Project setup</b></p>
 <ul>
 <li>Install Keil MDK and related tools as described in <a href="../../infrastructure/html/run_mdk_pro.html#mdk_vht_install">Tools installation</a>.</li>
-<li>In the local project repository double-click on the <em>basic/basic.debug.uvprojx</em> file to open the project in µVision IDE.</li>
+<li>In the local project repository double-click on the <em>basic/basic.debug.cprj</em> file to get the project imported into µVision IDE.<ul>
+<li>Alternatively you can start µVision IDE and import the basic.debug.cprj project via the <a href="https://developer.arm.com/documentation/101407/latest/User-Interface/Project-Menu-and-Commands/Export-Menu"><em>Project</em> - <em>Import</em></a> menu.</li>
+</ul>
+</li>
 <li>Verify the project setup as explained in <a href="../../infrastructure/html/run_mdk_pro.html#mdk_project_config">Project Configuration</a>.</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md2"></a>
@@ -175,7 +178,7 @@ Implement tests</h2>
 <p ><img src="basic_telnet_default.png" alt="" class="inline" title="Telnet output with local execution"/></p>
 <p ><b>Export project to CPRJ format</b></p>
 <p >The GetStarted example is also described in <em>basic.debug.cprj</em> file using universal <a href="https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html">.cprj format</a> that gets used in command-line CI environments.</p>
-<p >For correct workflow operation it is important to keep the MDK project <em>uvprojx</em> file and the <em>cprj</em> file synchronized. For that after saving modifications in the MDK project go to the µVision menu <a href="https://www.keil.com/support/man/docs/uv4/uv4_ui_export.htm"><em>Project</em> - <em>Export</em></a> and select <em>Save project to CPRJ format</em>.</p>
+<p >For correct workflow operation it is important to keep the MDK project <em>uvprojx</em> file and the <em>cprj</em> file synchronized. For that after saving modifications in the MDK project go to the µVision menu <a href="https://developer.arm.com/documentation/101407/latest/User-Interface/Project-Menu-and-Commands/Export-Menu"><em>Project</em> - <em>Export</em></a> and select <em>Save project to CPRJ format</em>.</p>
 <h1><a class="anchor" id="GS_SetupCI"></a>
 Setup CI pipeline</h1>
 <p >As common for many projects, the CI pipeline for the AVH Get Started repository is triggered on every code change via push and pull requests. In our example this is explicitly limited to the <em>main</em> branch only.</p>

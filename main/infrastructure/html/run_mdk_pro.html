@@ -114,22 +114,8 @@ $(document).ready(function(){initNavTree('run_mdk_pro.html',''); initResizable()
 <h1><a class="anchor" id="mdk_vht_install"></a>
 Tools Installation</h1>
 <ul>
-<li><a href="https://www.keil.com/demo/eval/arm.htm">Download Keil MDK</a> and install it on your Windows PC, if not present yet.</li>
-<li>Ensure that <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk/buy">MDK-Professional Edition</a> is activated in MDK as this is required for running AVH models. If MDK-Professional license is not available, you can <a href="https://www.keil.com/support/man/docs/license/license_eval.htm">request an evaluation license</a>.</li>
-<li>Download the MDK AddOn with the Arm Virtual Hardware Targets:<ul>
-<li>Go to <a href="https://www.keil.com/update/sw/mdk/5.36">https://www.keil.com/update/sw/mdk/5.36</a></li>
-<li>Fill in the form on the page and click Submit button. Note that you need to provide the LIC/PSN of your MDK-Professional license.</li>
-<li>Click on the <em>MDK_ADDON_VHT_CORTEX-M_BETA1.EXE</em> link and save the AddOn installer file to your PC.</li>
-</ul>
-<img src="mdk_vht_addon_download.png" alt="" class="inline" title="Download MDK VHT AddOn"/></li>
-<li>Install the MDK VHT AddOn:<ul>
-<li>Double-click on the AddOn installer file and follow the installation steps.<ul>
-<li>As <em>Destination Folder</em> it is recommended to use the Keil MDK installation directory (for example <code>C:/Keil_v5/</code>).</li>
-</ul>
-</li>
-<li>After installation is completed, check that the destination folder now contains <em>ARM/VHT/</em> directory, for example <code>C:/Keil_v5/ARM/VHT/</code>.</li>
-</ul>
-</li>
+<li><a href="https://www.keil.com/demo/eval/arm.htm">Download Keil MDK</a> v5.37 or above and install it on your Windows PC, if not present yet.</li>
+<li>Ensure that <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk/buy">MDK-Professional Edition</a> is activated in MDK as this is required for running AVH models. If MDK-Professional license is not available, you can <a href="https://developer.arm.com/documentation/101454/latest/License-Management/MDK-Professional-Evaluation">request an evaluation license</a>.</li>
 <li>[<em>Optional</em>] Enable Telnet Client on Windows 10. This will allow to observe UART output from the AVH device during debug.<ul>
 <li>Open <em>Start</em> &gt; <em>Settings</em>.</li>
 <li>In the search box, type <em>Turn Windows features on or off</em> and click on the suggested item. The <em>Windows Features</em> dialog opens.</li>
@@ -143,10 +129,10 @@ Project Configuration</h1>
 <li><a class="el" href="run_mdk_pro.html#mdk_vht_targets">Target selection</a> in the project. This is required for new projects or when changing the target device in an existing project.</li>
 <li><a class="el" href="run_mdk_pro.html#mdk_vht_debug">Run and debug configuration</a> in the project. This step is typically needed for setting up any project, but with reference examples brief verification of the default settings can be sufficient.</li>
 </ul>
-<p >Table below lists the Cortex-M cores supported with Arm Virtual Hardware, corresponding device names to be used in <a class="el" href="run_mdk_pro.html#mdk_vht_targets">Target selection</a>, the CMSIS Pack with device support, as well as simulation models to be selected in <a class="el" href="run_mdk_pro.html#mdk_vht_debug">Run and debug configuration</a>.</p>
+<p >Table below lists the Cortex-M cores supported with Arm Virtual Hardware, corresponding device names, the CMSIS Pack with device support, as well as simulation models provided with MDK.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">Arm Cortex-M core   </th><th class="markdownTableHeadLeft">AVH Device name   </th><th class="markdownTableHeadLeft">CMSIS Pack with device definition   </th><th class="markdownTableHeadLeft">Launch command in MDK<sup> 1</sup>   </th><th class="markdownTableHeadLeft">Description    </th></tr>
+<th class="markdownTableHeadLeft">Arm Cortex-M core   </th><th class="markdownTableHeadLeft">AVH Device name   </th><th class="markdownTableHeadLeft">CMSIS Pack with device definition   </th><th class="markdownTableHeadLeft">Virtual Hardware model in MDK<sup> 1</sup>   </th><th class="markdownTableHeadLeft">Description    </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">Cortex-M0   </td><td class="markdownTableBodyLeft">CMSDK_CM0_VHT   </td><td class="markdownTableBodyLeft">Keil.V2M-MPS2_CMx_BSP from v1.8.0   </td><td class="markdownTableBodyLeft">VHT_MPS2_Cortex-M0_MDK.exe   </td><td class="markdownTableBodyLeft">CPU with Cortex-M0 core    </td></tr>
 <tr class="markdownTableRowEven">
@@ -170,25 +156,28 @@ Project Configuration</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">Cortex-M33, FP   </td><td class="markdownTableBodyLeft">IOTKit_CM33_FP_VHT   </td><td class="markdownTableBodyLeft">Keil.V2M-MPS2_IOTKit_BSP from v1.5.0   </td><td class="markdownTableBodyLeft">VHT_MPS2_Cortex-M33_MDK.exe   </td><td class="markdownTableBodyLeft">CPU with Cortex-M33 core and Floating Point Unit (FPU) support    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft">Cortex-M55   </td><td class="markdownTableBodyLeft">SSE-300-MPS3   </td><td class="markdownTableBodyLeft">ARM.V2M_MPS3_SSE_300_BSP.1.2.0   </td><td class="markdownTableBodyLeft">VHT_MPS3_Corstone_SSE-300.bat<br  />
-VHT_Corstone_SSE-300_Ethos-U55.bat<br  />
-VHT_Corstone_SSE-300_Ethos-U65.bat   </td><td class="markdownTableBodyLeft">Corstone-300 SoC with Cortex-M55.<br  />
+<td class="markdownTableBodyLeft">Cortex-M55   </td><td class="markdownTableBodyLeft">SSE-300-MPS3   </td><td class="markdownTableBodyLeft">ARM.V2M_MPS3_SSE_300_BSP from v1.2.0   </td><td class="markdownTableBodyLeft">VHT_MPS3_Corstone_SSE-300.exe<br  />
+VHT_Corstone_SSE-300_Ethos-U55.exe<br  />
+VHT_Corstone_SSE-300_Ethos-U65.exe   </td><td class="markdownTableBodyLeft">Corstone-300 SoC with Cortex-M55.<br  />
 Same device definition is used, but a model shall be selected<br  />
-depending on the required microNPU (none, Ethos-U55 or Ethos-U65)   </td></tr>
+depending on the required microNPU (none, Ethos-U55 or Ethos-U65)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">Cortex-M85   </td><td class="markdownTableBodyLeft">SSE-310-MPS3   </td><td class="markdownTableBodyLeft">not available yet   </td><td class="markdownTableBodyLeft">VHT_Corstone_SSE-310.exe   </td><td class="markdownTableBodyLeft">CPU with Cortex-M85 core   </td></tr>
 </table>
 <blockquote class="doxtable">
-<p ><sup>1</sup> The AVH models can be found in the MDK VHT AddOn installation directory provided during <a class="el" href="run_mdk_pro.html#mdk_vht_install">Tools Installation</a>, for example,<code>C:/Keil_v5/ARM/VHT/</code>. Note that when available, a .bat script shall be used to launch a model from MDK. </p>
+<p ><sup>1</sup> The Virtual Hardware Targets can be found in the <code>/ARM/VHT/</code> folder in the MDK installation directory as used for <a class="el" href="run_mdk_pro.html#mdk_vht_install">Tools Installation</a>, for example,<code>C:/Keil_v5/ARM/VHT/</code>. </p>
 </blockquote>
 <h2><a class="anchor" id="mdk_vht_targets"></a>
 Target selection</h2>
 <p >AVH device support is implemented with the same CMSIS principles as used for real hardware targets and explained in <a href="https://arm-software.github.io/CMSIS_5/Pack/html/index.html">CMSIS Pack</a> and <a href="https://arm-software.github.io/CMSIS_5/Core/html/index.html">CMSIS-Core(M)</a>.</p>
-<p >When opening an existing MDK project you will be asked if any missing packs required by the project shall be installed. If you agree to that, also the necessary pack with device definition for the target device used in the project will be automatically installed.</p>
+<p >When opening an existing MDK project or importing it from a .cprj file you will be asked if any missing packs required by the project shall be installed. If you agree to that, also the necessary pack with device definition for the target device used in the project will be automatically installed.</p>
 <p >When creating a new project or when changing the target in an existing project you need to select an AVH target as follows:</p><ul>
 <li>Install the CMSIS pack with target device definition, if not present yet:<ul>
-<li>Start <a href="https://www.keil.com/support/man/docs/uv4/uv4_ca_packinstaller.htm"><em>Pack Installer</em></a> utility.</li>
+<li>Start <a href="https://developer.arm.com/documentation/101407/latest/Creating-Applications/Software-Components/Pack-Installer"><em>Pack Installer</em></a> utility.</li>
 <li>In <em>Devices</em> tab expand <em>ARM</em> section and select the target Cortex-M core.</li>
-<li>In the <a href="https://www.keil.com/support/man/docs/uv4/uv4_ca_packinst_packs.htm"><em>Packs</em> tab</a> under <em>Device Specific</em> category select the target CMSIS pack that implements the required AVH device according to the table in <a class="el" href="run_mdk_pro.html#mdk_project_config">Project Configuration</a>.</li>
-<li>Press <em>Install</em> or <em>Update</em> button in the pack row to the latest version installed. For example for Arm Cortex-M4: <img src="mdk_vht_device_pack.png" alt="" class="inline" title="Select AVH device as a target"/></li>
+<li>In the <a href="https://developer.arm.com/documentation/101407/latest/Creating-Applications/Software-Components/Pack-Installer/Packs-Dialog"><em>Packs</em> tab</a> under <em>Device Specific</em> category select the target CMSIS pack that implements the required AVH device according to the table in <a class="el" href="run_mdk_pro.html#mdk_project_config">Project Configuration</a>.</li>
+<li>Press <em>Install</em> or <em>Update</em> button in the Action field to get the latest version installed. For example for Arm Cortex-M4:<br  />
+ <img src="mdk_vht_device_pack.png" alt="" class="inline" title="Select AVH device as a target"/></li>
 <li>Observe the button status changed to <em>Up to date</em> and return to the project in µVision.</li>
 </ul>
 </li>
@@ -208,29 +197,23 @@ Run and debug configuration</h2>
 <ul>
 <li>Open <em>Options for Target...</em> dialog and navigate to the <em>Debug</em> tab.</li>
 <li>In <em>Use:</em> drop-down menu select the <em>Models Debugger</em>. <br  />
-The exact selection varies slightly depending on the target device core: <em>Models Cortex-M Debugger</em> for Cortex-M0/M0+/M3/M4/M7 devices and <em>Models ARMv8-M Debugger</em> for Cortex-M23/M33/M55. <br  />
-For example for Corstone-300:<br  />
+The exact name varies slightly depending on the target device core: <em>Models Cortex-M Debugger</em> for Cortex-M0/M0+/M3/M4/M7 devices and <em>Models ARMv8-M Debugger</em> for Cortex-M23/M33/M55/M85. <br  />
+For example for Corstone-300 with a Cortex-M55 core:<br  />
  <img src="uv4_model_debug.png" alt="" class="inline" title="Models ARMv8-M Debugger"/></li>
-<li>Click on the <em>Settings</em> button. This opens corresponding <em>Models Target Driver Setup_ dialog</em>. A correct configuration for Corestone-300 can be as follows:<br  />
- <img src="vht_uv4_setup_basic.png" alt="" class="inline" title="AVH model configuration in AVH GetStarted example"/> <br  />
+<li>Click on the <em>Settings</em> button. This opens corresponding <em>Models Target Driver Setup_ dialog</em>. <br  />
 Following fields are important to fill:<ul>
-<li><em>Command</em>: shall contain the path to the AVH model executable file that corresponds to the selected AVH device. See table in <a class="el" href="run_mdk_pro.html#mdk_project_config">Project Configuration</a>.<ul>
-<li><code>$K</code> <a href="https://www.keil.com/support/man/docs/uv4/uv4_ut_keysequence.htm">key sequence</a> can be used for shortening the Keil MDK installation path (for example intead of <code>C:\Keil_v5\</code>).</li>
-</ul>
-</li>
-<li><em>Arguments</em>: shall contain <a href="https://developer.arm.com/documentation/100966/1116/Getting-Started-with-Fixed-Virtual-Platforms/FVP-command-line-options">FVP command-line options</a> to be used with the model execution.<ul>
-<li>In the example above an option for starting a Telnet client is added to be able to see the redirected UART output during debug session.</li>
-</ul>
-</li>
-<li><em>Target</em>: specifies the CPU to be used. Click the <em>Browse</em> button (...) and select the simulation target.</li>
+<li><em>Command</em>: shall contain the path to the AVH model executable file that corresponds to the selected AVH device. See table in <a class="el" href="run_mdk_pro.html#mdk_project_config">Project Configuration</a>.</li>
+<li><em>Arguments</em>: can be used to specify additional <a href="https://developer.arm.com/documentation/100966/1116/Getting-Started-with-Fixed-Virtual-Platforms/FVP-command-line-options">FVP command-line options</a> to be used with the model execution.</li>
+<li><em>Target</em>: specifies the CPU to be used for execution. Click the <em>Browse</em> button (...) and select the target CPU available on the target.</li>
 <li><em>Configuration File</em>: points to the file with model configuration parameters (passed to the model executable with <code>-f</code> option).</li>
 </ul>
-</li>
+A correct configuration for Corestone-300 can be as follows:<br  />
+ <img src="vht_uv4_setup_basic.png" alt="" class="inline" title="AVH model configuration in AVH GetStarted example"/></li>
 </ul>
-<p ><a href="https://www.keil.com/support/man/docs/fstmdls/fstmdls_debug_cfg.htm">Fast Models Debug Driver Configuration</a> explains the configuration dialog in details.</p>
+<p ><a href="https://developer.arm.com/documentation/101452/latest/Debug-Driver-Configuration">Fast Models Debug Driver Configuration</a> explains the configuration dialog in details.</p>
 <h1><a class="anchor" id="mdk_cprj_export"></a>
 Project Export</h1>
-<p >Universal <a href="https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html">.cprj format</a> is required for building the program with Arm Virtual Hardware cloud environment. So it is important to keep the MDK project files and the <em>cprj</em> file synchronized. For that after saving modifications in the MDK project go to the µVision menu <a href="https://www.keil.com/support/man/docs/uv4/uv4_ui_export.htm"><em>Project</em> - <em>Export</em></a> and select <em>Save project to CPRJ format</em>.</p>
+<p >Universal <a href="https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html">.cprj format</a> is required for building the program with Arm Virtual Hardware cloud environment. So it is important to keep the MDK project files and the <em>cprj</em> file synchronized. For that after saving modifications in the MDK project go to the µVision menu <a href="https://developer.arm.com/documentation/101407/latest/User-Interface/Project-Menu-and-Commands/Export-Menu"><em>Project</em> - <em>Export</em></a> and select <em>Save project to CPRJ format</em>.</p>
 <h1><a class="anchor" id="mdk_program_run"></a>
 Program Build and Debug</h1>
 <p >Project build and debug on an AVH device can be done in the similar way as any other Keil MDK project:</p>
@@ -238,7 +221,7 @@ Program Build and Debug</h1>
 <li>Press <em>Rebuild</em> button in µVision toolbar (or use <code>F7</code> hotkey).</li>
 <li>Start the debug session from µVision toolbar (or with <code>Ctrl-F5</code>). The model executable window should pop up (with <code>C:\WINDOWS\system32\cmd.exe</code>) but it will stay empty during the session.</li>
 <li>If enabled in <a class="el" href="run_mdk_pro.html#mdk_vht_debug">Run and debug configuration</a>, a Telnet client will start. Program output should be expected there.</li>
-<li>Debug the project as usual with available µVision functionality. Refer to <a href="https://www.keil.com/support/man/docs/uv4/">µVision User's Guide</a> for details about user interface and debug capabilities. </li>
+<li>Debug the project as usual with available µVision functionality. Refer to <a href="https://developer.arm.com/documentation/101407">µVision User's Guide</a> for details about user interface and debug capabilities. </li>
 </ul>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
