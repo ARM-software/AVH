@@ -16,7 +16,7 @@ VHT_MPS2_Cortex-M33            | Cortex-M33            | [ARM Cortex-M33 IoT Sub
 VHT_MPS3_Corstone_SSE-300      | Cortex-M55            | [Corstone-300 FVP Technical Overview (PDF)](./Corstone_SSE-300_Ethos-U55_FVP_MPS3_Technical_Overview.pdf)
 VHT_Corstone_SSE-300_Ethos-U55 | Cortex-M55, Ethos-U55 | [Corstone-300 FVP Technical Overview (PDF)](./Corstone_SSE-300_Ethos-U55_FVP_MPS3_Technical_Overview.pdf)
 VHT_Corstone_SSE-300_Ethos-U65 | Cortex-M55, Ethos-U65 | [Corstone-300 FVP Technical Overview (PDF)](./Corstone_SSE-300_Ethos-U55_FVP_MPS3_Technical_Overview.pdf)
-VHT_Corstone_SSE-310           | Cortex-M85, Ethos-U55 | [Corstone-310 Overview](https://developer.arm.com/Processors/Corstone-310)
+VHT_Corstone_SSE-310           | Cortex-M85, Ethos-U55 | [Corstone-310 FVP Technical Overview (PDF)](./Corstone_SSE-310_FVP_Technical_Overview.pdf)
 FVP_Corstone-1000              | Cortex-A35, Cortex-M0+, Cortex-M3 | [Arm Corstone-1000 for MPS3 (AppNote AN550)](https://developer.arm.com/documentation/dai0550/)
 
 Simulation models can be executed in Linux environment by using their model names, for example `VHT_Corestone_SSE-300_Ethos-U55`, and on Windows platform the models are provided as executables files, for example `VHT_Corestone_SSE-300_Ethos-U55.exe`.
