@@ -35,7 +35,7 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Virtual Hardware
-   &#160;<span id="projectnumber">Version 0.2 - beta</span>
+   &#160;<span id="projectnumber">Version 0.3 - beta</span>
    </div>
    <div id="projectbrief">Product Overview</div>
   </td>
@@ -116,7 +116,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <p ><b>Arm Virtual Hardware</b> consists of the following components:</p>
 <ul>
 <li><b>Arm Virutal Hardware Targets</b> are precise <a href="https://en.wikipedia.org/wiki/Simulation"><b>simulation models</b></a> of Cortex-M device sub-systems and are designed for complex software verification and testing. It allows <a href="https://en.wikipedia.org/wiki/Test_automation"><b>simulation-based test automation</b></a> of various software workloads, including unit tests, integration tests, and fault injection.</li>
-<li><b>Arm Virtual Hardware Services</b> provide a cloud-native infra-structure for software test and validation. These Arm Virtual Hardware services can be integrated into various <b>CI/CD</b> and <b>MLOps</b> environments that range from GitHub to on-premise IT infrastructure. The Arm Virtual Hardware services will be available via the AWS Marketplace (and later also via other Cloud Service providers).</li>
+<li><b>Arm Virtual Hardware Services</b> provide a cloud-native infrastructure for software test and validation. These services can be integrated into various <b>CI/CD</b> and <b>MLOps</b> environments that range from GitHub to on-premise IT infrastructure. The Arm Virtual Hardware services are available via the AWS Marketplace (and later also via other Cloud Service providers).</li>
 <li><b>Arm Virtual Hardware Developer Resources</b> gives you access to interface drivers that map to virtual targets and physical hardware along with Python scripts for I/O simulation. The documentation explains how to integrate Arm Virtual Hardware Targets into typical <b>CI/CD</b> environments. Usage examples show typical usage cases and range from audio processing, ML algorithm testing, up to IoT applications that interface to Cloud Service providers.</li>
 <li><b>Software Development Environments</b> with Arm Virtual Hardware Targets integration are also available. Arm Virtual Hardware is an integral part of the Keil MDK Professional Edition that is a comprehensive software tool suite for creating Cortex-M-based applications and related validation and test processes. In future, the next-generation Keil Studio will also integrate Arm Virtual Hardware.</li>
 </ul>
@@ -181,6 +181,15 @@ Release History</h1>
 <table class="doxtable">
 <tr>
 <th>Version </th><th>Changes  </th></tr>
+<tr>
+<td>0.3-beta (Apr 2022) </td><td>Added features:<ul>
+<li><a href="../../simulation/html/Using.html"><b>Corstone-310 and Corstone-1000</b></a>: added new virtual hardware targets.</li>
+<li><a href="../../infrastructure/html/run_ami_jenkins.html"><b>Integration with Jenkins</b></a>: example of AVH AMI usage in Jenkins CI pipelines.</li>
+<li><a href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_use.html#er_semihosting"><b>Event Recorder Semihosting Support</b></a>: allows to generate Event Recorder logs in AVH AMI environment.</li>
+<li><a href="https://github.com/ARM-software/AVH-AWS_MQTT_Demo"><b>AWS MQTT Example</b></a>: IoT application with MQTT connectivity to AWS cloud service.</li>
+<li><a href="https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword"><b>ATS-Keyword Example</b></a>: keyword detection application based on <a href="https://github.com/ARM-software/ATS-Keyword/">Arm Total Solutions for IoT</a>.   </li>
+</ul>
+</td></tr>
 <tr>
 <td>0.2-beta (Feb 2022) </td><td>Added features:<ul>
 <li><a href="../../simulation/html/Using.html"><b>Extended Target support</b></a>: additional Cortex-M processors are supported: Cortex-M0/M0+/M3/M4/M7/M23/M33.</li>

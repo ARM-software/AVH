@@ -35,7 +35,7 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Virtual Hardware
-   &#160;<span id="projectnumber">Version 0.2 - beta</span>
+   &#160;<span id="projectnumber">Version 0.3 - beta</span>
    </div>
    <div id="projectbrief">Examples Projects and GitHub Repositories</div>
   </td>
@@ -182,14 +182,14 @@ Implement tests</h2>
 <h1><a class="anchor" id="GS_SetupCI"></a>
 Setup CI pipeline</h1>
 <p >As common for many projects, the CI pipeline for the AVH Get Started repository is triggered on every code change via push and pull requests. In our example this is explicitly limited to the <em>main</em> branch only.</p>
-<p >The CI implementation in this example relies on <a href="https://docs.github.com/en/actions">GitHub Actions</a> with <a href="../../infrastructure/html/run_ami_github.html#GitHub_hosted">GitHub-hosted Runners</a>. Program build and execution are done on <a href="../../infrastructure/html/index.html#AWS">Arm Virtual Hardware AMI</a> instance in Amazon AWS. Custom GitHub action <a href="https://github.com/ARM-software/VHT-AMI">Arm-Software/VHT-AMI</a> manages the connection between the GitHub repository and the AMI instance in AWS, as well as configures the actions to be performed on the AMI.</p>
+<p >The CI implementation in this example relies on <a href="https://docs.github.com/en/actions">GitHub Actions</a> with <a href="../../infrastructure/html/run_ami_github.html#GitHub_hosted">GitHub-hosted Runners</a>. Program build and execution are done on <a href="../../infrastructure/html/AWS.html">Arm Virtual Hardware AMI</a> instance in Amazon AWS. Custom GitHub action <a href="https://github.com/ARM-software/VHT-AMI">Arm-Software/VHT-AMI</a> manages the connection between the GitHub repository and the AMI instance in AWS, as well as configures the actions to be performed on the AMI.</p>
 <p >Subsections below explain the setup for the AWS and GitHub Actions.</p>
 <h2><a class="anchor" id="GS_AWS_Setup"></a>
 AWS setup</h2>
 <p >On the AWS side several items shall be setup to enable execution of example CI pipeline on Arm Virtual Hardware AMI.</p>
 <p ><b>Arm Virtual Hardware AMI subscription</b></p>
 <ul>
-<li>Enable use of Arm Virtual Hardware AMI in your AWS account with the steps described in <a href="../../infrastructure/html/index.html#Subscribe">Subscribe Arm Virtual Hardware</a>.<ul>
+<li>Enable use of Arm Virtual Hardware AMI in your AWS account with the steps described in <a href="../../infrastructure/html/AWS.html#Subscribe">Subscribe Arm Virtual Hardware</a>.<ul>
 <li>Note the AMI ID value as it will be needed later for <a class="el" href="GetStarted.html#GS_GitHub_Setup">GitHub Actions setup</a>.</li>
 </ul>
 </li>

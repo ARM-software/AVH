@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Infrastructure: Run AMI from a Local Host</title>
+<title>Infrastructure: Run AMI from AWS Console</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -35,7 +35,7 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Virtual Hardware
-   &#160;<span id="projectnumber">Version 0.2 - beta</span>
+   &#160;<span id="projectnumber">Version 0.3 - beta</span>
    </div>
    <div id="projectbrief">Infrastructure Service and Tool Integration</div>
   </td>
@@ -107,59 +107,60 @@ $(document).ready(function(){initNavTree('run_ami_local.html',''); initResizable
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Run AMI from a Local Host </div></div>
+  <div class="headertitle"><div class="title">Run AMI from AWS Console </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md_src_aws"></a> This section describes how to control the <b>AMI with Arm Virtual Hardware</b> from a local host computer. It assumes that AWS account is <a class="el" href="index.html#Subscribe">subscribed to Arm Virtual Hardware</a>.</p>
-<p >The execution is</p><ul>
-<li><a class="el" href="run_ami_local.html#Launch_ami">Launch AMI Instance</a> explains how to create an AMI instance with Arm Virtual Hardware. Two approaches are described:<ul>
-<li><a class="el" href="run_ami_local.html#Launch_website">Launch from Website</a> gives direct access.</li>
-<li><a class="el" href="run_ami_local.html#Launch_EC2">Launch trough EC2</a> gives you more control over the EC2 instance and is more flexible.</li>
+<div class="textblock"><p ><a href="https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/learn-whats-new.html">AWS Management Console</a> allows you to control AWS services from a browser window and so provides a simple way to manually setup and use Arm Virtual Hardware AMI.</p>
+<p >The key steps in this operation flow are:</p><ul>
+<li><a class="el" href="run_ami_local.html#Launch_ami">Launch AMI Instance</a> .</li>
+<li><a class="el" href="run_ami_local.html#connect_ami">Connect to the AMI Instance</a> .</li>
+<li><a class="el" href="run_ami_local.html#run_example">Run projects</a> using launched AMI instance.</li>
+<li>Terminate the AMI instance once it is no longer required.</li>
 </ul>
-</li>
-<li><a class="el" href="run_ami_local.html#connect">Connect to the EC2 Instance</a> Once the AMI is launched you may</li>
-<li><a class="el" href="run_ami_local.html#connect">Connect to the EC2 Instance</a> Once the AMI is launched you may</li>
-</ul>
-<dl class="section note"><dt>Note</dt><dd>Terminate the AMI instance once it is no longer required.</dd>
-<dd>
-Refer to <a class="el" href="index.html#mainpage">Infrastructure</a> for others ways to use the Arm Virtual Hardware.</dd></dl>
 <h1><a class="anchor" id="Launch_ami"></a>
 Launch AMI Instance</h1>
-<p >An AMI instance with Arm Virtual Hardware can be created (launched) in two ways explained below:</p><ul>
-<li><a class="el" href="run_ami_local.html#Launch_website">Launch from Website</a> gives direct access to the AMI.</li>
-<li><a class="el" href="run_ami_local.html#Launch_EC2">Launch trough EC2</a> gives you more control over the EC2 instance and is more flexible.</li>
+<p >An instance of Arm Virtual Hardware AMI can be easily created in AWS Management Console as follows:</p><ul>
+<li>Login to the <a href="https://console.aws.amazon.com/">AWS Management Console</a>, search for <b>AWS Marketplace Subscriptions</b> and navigate to the corresponding service.</li>
+<li>Find <b>Arm Virtual Hardware</b> already listed in your AWS Marketplace Subscriptions.<ul>
+<li>If AVH subsription is not shown, verify that your AWS account is correctly <a class="el" href="AWS.html#Subscribe">subscribed to Arm Virtual Hardware</a>.</li>
 </ul>
-<h2><a class="anchor" id="Launch_website"></a>
-Launch from Website</h2>
-<p >Before you can launch from a Website you should create a <b>VPC</b> and a <b>key pair</b>.</p>
-<p >Choose the following settings:</p><ul>
-<li><b>EC2 Instance Type:</b> <em>t3.medium</em> is sufficient to run Arm Virtual Hardware, but an instance with more resources may improve performance.</li>
-<li><b>VPC Settings:</b> select the VPC settings for the EC2 instance.</li>
-<li><b>Key Pair Settings:</b> select your key.</li>
-</ul>
-<h2><a class="anchor" id="Launch_EC2"></a>
-Launch trough EC2</h2>
-<p >The following steps launch the <b>Arm Virtual Hardware AMI</b> from the AWS Console:</p>
-<ol type="1">
-<li><b>Choose AMI:</b> Select the <b>Arm Virtual Hardware</b> and click <b>Launch</b> (skip this step when you launch from marketplace).</li>
-<li><b>Choose an Instance Type:</b> Select <em>t3.medium</em> (2 vCPUs, 4 GiB memory) is recommended. An instance with more resources may improve performance.</li>
-<li><b>Configure Instance Details:</b> Under Network select a VPC. Note: a public IP address is required for SSH access. <br  />
 </li>
-<li><b>Add Storage:</b> The default storage 24 GiB is sufficient for most applications. Optionally, this can be increased if needed.</li>
-<li><b>Add Tags:</b> This is optional, however adding the <b>Key=Name</b> with a meaningful <b>Value</b> helps you to identify the EC2 instance.</li>
-<li><b>Configure Security Group:</b> Set Type: SSH, Protocol: TCP, Port Range: 22, Source: My IP (or Anywhere) to allow access from your IP address.</li>
-<li><b>Review Instance Launch:</b> allows you to verify the setup. Then click <b>Launch</b></li>
-</ol>
-<p >You may then select an existing key pair or create a new key pair. When an existing key pair is selected, confirm in the dialog the check box <em>I acknowledge...</em>. To finally start, click <b>Launch Instances</b>.</p>
-<p ><img src="select_existing_key.png" alt="" class="inline" title="Select key pair"/></p>
-<h1><a class="anchor" id="connect"></a>
-Connect to the EC2 Instance</h1>
-<p >There are multiple ways to connect to the Amazon EC2 Linux instance that runs Arm Virtual Hardware. For more information refer to:</p><ul>
-<li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html?icmpid=docs_ec2_console">Connect to your Linux instance</a></li>
+<li>Click on <b>Launch new instance</b> for the Arm Virtual Hardware subscription.</li>
+<li>Select the initial parameters, especially important is the AWS region. Note that this page gives you access to the <b>Ami Id</b>.</li>
+<li>Click on <b>Continue to launch through EC2</b> and proceed to the launch instance wizard.</li>
+<li>Configure the instance parameters. Mandatory options are explained below but many other parameters can be also defined here:<ul>
+<li><b>Instance Type</b>: select EC2 instance type for running AVH AMI. <em>t3.medium</em> (2 vCPUs, 4 GiB memory) is recommended, but an instance with more resources may improve performance.</li>
+<li><b>Key Pair</b>: select an existing key pair or create a new one. This is required to be able to connect to the AMI instance remotely.</li>
+<li><b>Network Settings</b>: verify that VPC Id is specified here. Keep SSH connection enabled.</li>
+<li><b>Configure Storage</b>: by default 24 GiB of storage is assoticated with the AMI instance and is sufficient for most applications. However, you can specify the storage parameters here if needed.</li>
+<li>Review the parameters and click <b>Launch Instance</b> to create the AVH AMI instance.</li>
+<li>You should receive notification that instance was succesfully created.</li>
+<li>Navigate to the EC2 service and find newly launched AVH AMI instance listed there and in having "Running" state.</li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="connect_ami"></a>
+Connect to the AMI Instance</h1>
+<p >There are multiple ways to connect to the AMI instance that runs Arm Virtual Hardware. For full details refer AWS User Guide <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html">Connect to your Linux instance</a>.</p>
+<p >In this section two mechanisms are described:</p>
+<ul>
+<li><a class="el" href="run_ami_local.html#use_browser">Connect from browser</a> explains the simplest way to access the AMI directly from a browser window.</li>
+<li><a class="el" href="run_ami_local.html#use_ssh">Connect Using SSH</a> allows you to establish remote connection to the AMI using Secure Shell protocol.</li>
+</ul>
+<h2><a class="anchor" id="use_browser"></a>
+Connect from browser</h2>
+<p >For simple interaction with the AVH AMI you can run EC2 Instance Connect web-application in your browser directly from the AWS Management Console.</p>
+<ul>
+<li>Go to <b>EC2 - Instances</b></li>
+<li>Select a running AVH AMI instance.</li>
+<li>Click <b>Connect</b> (or alternatively use menu <b>Actions - Connect</b>)</li>
+<li>Verify that <b>EC2 Instance Connect</b> tab is selected.</li>
+<li>Specify <b>ubuntu</b> in the User Name and press <b>Connect</b>.</li>
+<li>AMI Linux console opens in a new browser tab.</li>
 </ul>
 <h2><a class="anchor" id="use_ssh"></a>
-Using SSH</h2>
-<p >The connect via the Secure Shell (SSH) client of your computer, use the following command:</p>
+Connect using SSH</h2>
+<p >To connect via the Secure Shell (SSH) client of your computer, run the following command in the terminal window:</p>
 <div class="fragment"><div class="line">$ ssh  -i &lt;path&gt;/your_key.pem ubuntu@&lt;Public IPv4 DNS&gt;</div>
 </div><!-- fragment --><p> <b>Where:</b></p><ul>
 <li><b>ssh</b> is the SSH command</li>
@@ -167,113 +168,13 @@ Using SSH</h2>
 <li><b>ubuntu</b> is the user name of the Amazon EC2 Ubuntu Linux instance.</li>
 <li><b>&lt;Public IPv4 DNS&gt;</b> is the public address typically in the format: ec2-*nn*-*nn*-*nn*-*nn*.compute-1.amazonaws.com</li>
 </ul>
-<p >You can review this details also under the AWS EC2 Management Console under <b>EC2 - Instances - &lt;select instance&gt; - Connect</b> and then select the tab <b>SSH Client</b>.</p>
-<h2><a class="anchor" id="use_vnc"></a>
-Using VNC</h2>
-<p >Some applications may require a display. <a href="https://de.wikipedia.org/wiki/Virtual_Network_Computing">Virtual Network Computing</a> (VNC) is available in the Arm Virtual Hardware AMI and can be used as a remote desktop.</p>
-<p >First, setup VNC password. </p><div class="fragment"><div class="line">$ vncpasswd 0 i - </div>
-</div><!-- fragment --><p> When prompted, enter a password. A read-only password is not required.</p>
-<p >To start VNC every time the machine is rebooted enable it to start on boot: </p><div class="fragment"><div class="line">$ sudo systemctl enable vncserver@1.service</div>
-</div><!-- fragment --><p> To start VNC now (1 time, without rebooting) use: </p><div class="fragment"><div class="line">$ sudo systemctl start vncserver@1.service</div>
-</div><!-- fragment --><p> To disable VNC from running on future machine restarts run: </p><div class="fragment"><div class="line">$ sudo systemctl disable vncserver@1.service</div>
-</div><!-- fragment --><p> To stop VNC now use: </p><div class="fragment"><div class="line">$ sudo systemctl stop vncserver@1.service</div>
-</div><!-- fragment --><p> If VNC is running on the EC2 instance a VNC client can be used to connect. The easiest way to connect is by forwarding the VNC port using ssh. With this technique no additional ports need to be opened in the EC2 security group.</p>
-<p >To connect use SSH port forwarding to avoid opening any other ports in the AWS security group </p><div class="fragment"><div class="line">$ ssh -i /path/to/aws.pem -L 5901:localhost:5901 ubuntu@@&lt;EC2-IP-addr&gt;</div>
-</div><!-- fragment --><p >Open a VNC viewer, such as TigerVNC. Enter the VNC server as localhost:5901 and click Connect. It should ask for the previously set password and then present a remote desktop.</p>
-<p ><img src="Connect_VNC.png" alt="" class="inline" title="Connect VNC Viewer"/></p>
-<h2><a class="anchor" id="use_code_server"></a>
-Using Code Server</h2>
-<p >Code Server is automatically running on the AMI on port 8080. To connect use port forwarding to ssh into the EC2 instance. </p><div class="fragment"><div class="line">$ ssh -i /path/to/aws.pem -L 8080:localhost:8080 ubuntu@@&lt;EC2-IP-addr&gt;</div>
-</div><!-- fragment --><p> Using a local browser connect to <a href="http://localhost:8080">http://localhost:8080</a> and you should see Visual Studio Code appear in the browser.</p>
-<h1><a class="anchor" id="inventory"></a>
-List AMI Inventory</h1>
-<p >To obtain the list of tools installed in the AMI instance use:</p>
-<div class="fragment"><div class="line">$ ./tool-inventory.sh</div>
-</div><!-- fragment --><p >Following output shall be expected by default:</p>
-<div class="fragment"><div class="line">ubuntu@ip-10-252-70-253:~$ ./tool-inventory.sh</div>
-<div class="line">Product: ARM Compiler 6.16 Professional</div>
-<div class="line">Component: ARM Compiler 6.16</div>
-<div class="line">Tool: armclang [5dfeab00]</div>
-<div class="line"> </div>
-<div class="line">Target: arm-arm-none-eabi</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">GNU Compiler information:</div>
-<div class="line">arm-none-eabi-gcc (GNU Arm Embedded Toolchain 10-2020-q4-major) 10.2.1 20201103 (release)</div>
-<div class="line">Copyright (C) 2020 Free Software Foundation, Inc.</div>
-<div class="line">This is free software; see the source for copying conditions.  There is NO</div>
-<div class="line">warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">Corstone-300 FVP information:</div>
-<div class="line"> </div>
-<div class="line">Fast Models [11.16.26 (Dec  9 2021)]</div>
-<div class="line">Copyright 2000-2021 ARM Limited.</div>
-<div class="line">All Rights Reserved.</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">Info: /OSCI/SystemC: Simulation stopped by user.</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">Vela Compiler information:</div>
-<div class="line">3.2.0</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">CMSIS build information:</div>
-<div class="line">(cbuild.sh): Build Invocation 0.10.4 (C) 2021 ARM</div>
-<div class="line">error: missing required argument &lt;project&gt;.cprj</div>
-<div class="line">Usage:</div>
-<div class="line">  cbuild.sh &lt;ProjectFile&gt;.cprj</div>
-<div class="line">  [--toolchain=&lt;Toolchain&gt; --outdir=&lt;OutDir&gt; --intdir=&lt;IntDir&gt; &lt;CMakeTarget&gt;]</div>
-<div class="line"> </div>
-<div class="line">  &lt;ProjectFile&gt;.cprj      : CMSIS Project Description input file</div>
-<div class="line">  --toolchain=&lt;Toolchain&gt; : select the toolchain</div>
-<div class="line">  --intdir=&lt;IntDir&gt;       : set intermediate directory</div>
-<div class="line">  --outdir=&lt;OutDir&gt;       : set output directory</div>
-<div class="line">  --quiet                 : suppress output messages except build invocations</div>
-<div class="line">  --clean                 : remove intermediate and output directories</div>
-<div class="line">  --update=&lt;CprjFile&gt;     : generate &lt;CprjFile&gt; for reproducing current build</div>
-<div class="line">  --help                  : launch documentation and exit</div>
-<div class="line">  --log=&lt;LogFile&gt;         : save output messages in a log file</div>
-<div class="line">  --jobs=&lt;N&gt;              : number of job slots for parallel execution</div>
-<div class="line">  --cmake[=&lt;BuildSystem&gt;] : select build system, default &lt;BuildSystem&gt;=Ninja</div>
-<div class="line">  &lt;CMakeTarget&gt;           : optional CMake target name</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">Arm Fast Models information:</div>
-<div class="line">Fast Models</div>
-<div class="line"> </div>
-<div class="line">System Canvas 11.16.24  (Nov  4 2021)</div>
-<div class="line">Copyright 2000-2021 ARM Limited.</div>
-<div class="line">All Rights Reserved.</div>
-<div class="line"> </div>
-<div class="line">$PVLIB_HOME = /opt/FM/FastModelsPortfolio_11.16 (Version = 11.16.24)</div>
-<div class="line"> </div>
-<div class="line">Arm Virtual Hardware Targets:</div>
-<div class="line">/opt/VHT/VHT_Corstone_SSE-300_Ethos-U55</div>
-<div class="line">/opt/VHT/VHT_Corstone_SSE-300_Ethos-U65</div>
-<div class="line">/opt/VHT/VHT_MPS2_Cortex-M0</div>
-<div class="line">/opt/VHT/VHT_MPS2_Cortex-M0plus</div>
-<div class="line">/opt/VHT/VHT_MPS2_Cortex-M23</div>
-<div class="line">/opt/VHT/VHT_MPS2_Cortex-M3</div>
-<div class="line">/opt/VHT/VHT_MPS2_Cortex-M33</div>
-<div class="line">/opt/VHT/VHT_MPS2_Cortex-M4</div>
-<div class="line">/opt/VHT/VHT_MPS2_Cortex-M7</div>
-<div class="line">/opt/VHT/VHT_MPS3_Corstone_SSE-300</div>
-</div><!-- fragment --><p >For the list of locally installed CMSIS Packs use:</p>
-<div class="fragment"><div class="line">$ cp_list.sh</div>
-</div><!-- fragment --><p >For example, default output on a new AMI instance would be:</p>
-<div class="fragment"><div class="line">ubuntu@ip-10-252-70-253:~$ cp_list.sh</div>
-<div class="line">Software packs are installed at: /home/ubuntu/packs</div>
-<div class="line"> </div>
-<div class="line">Currently installed software packs:</div>
-<div class="line"> </div>
-<div class="line">ARM.V2M_MPS2_SSE_300_BSP.1.0.0.pack</div>
-<div class="line">ARM.CMSIS.5.7.0.pack</div>
-</div><!-- fragment --><h1><a class="anchor" id="run_example"></a>
+<p >In AWS Management Console you can find the instructions with SSH parameters for a specific AMI instance. Go to <b>EC2 - Instances</b>, select your instance, press <b>Connect</b> and then select the tab <b>SSH client</b>.</p>
+<p >Find more details in AWS help <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html">Connect to your Linux instance using SSH</a>.</p>
+<h1><a class="anchor" id="run_example"></a>
 Run projects</h1>
-<p >Run the micro speech example. Connect to the EC2 instance using ssh as described above and then get the example, compile, and run. </p><div class="fragment"><div class="line">$ git clone https://github.com/arm-software/AVH-TFLmicrospeech.git</div>
+<p >After <a class="el" href="run_ami_local.html#connect_ami">connecting to the AVH AMI instance</a> you can copy, compile and run applications on Arm Virtual Hardware Targets. This section shows how this can be done using the <a href="../../examples/html/MicroSpeech.html">Micro speech example</a>.</p>
+<p >Copy the example code to the AMI. Since the project is available on GitHub just execute in the AMI command line:</p>
+<div class="fragment"><div class="line">$ git clone https://github.com/arm-software/AVH-TFLmicrospeech.git</div>
 </div><!-- fragment --><p >For shared private projects your GitHub Username and Password key will be required to clone.</p>
 <p >Navigate to the example directory: </p><div class="fragment"><div class="line">$ cd ./AVH-TFLmicrospeech/Platform_FVP_Corstone_SSE-300_Ethos-U55</div>
 </div><!-- fragment --><p> Install the necessary CMSIS Packs (you may need to change permissions for the script): </p><div class="fragment"><div class="line">$ chmod 777 packlist.sh</div>

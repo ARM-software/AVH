@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Infrastructure: Infrastructure</title>
+<title>Infrastructure: Overview</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -35,7 +35,7 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Virtual Hardware
-   &#160;<span id="projectnumber">Version 0.2 - beta</span>
+   &#160;<span id="projectnumber">Version 0.3 - beta</span>
    </div>
    <div id="projectbrief">Infrastructure Service and Tool Integration</div>
   </td>
@@ -107,47 +107,11 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Infrastructure </div></div>
+  <div class="headertitle"><div class="title">Overview </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="mainpage"></a> The <a href="../../simulation/html/index.html"><b>Arm Virtual Targets</b></a> can be accessed via:</p>
-<ul>
-<li><a class="el" href="index.html#AWS">AWS Marketplace</a> : access to a ready-to-use image on a Cloud Service for CI/CD and MLOps workflow automation.</li>
-<li><a class="el" href="index.html#Local">Local Tool Installation</a> : development of test cases and analyzing test failures on a desktop development system.</li>
-</ul>
-<h1><a class="anchor" id="AWS"></a>
-AWS Marketplace</h1>
-<p >Arm provides on <b>AWS Marketplace</b> a ready-to-use <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html"><b>Amazon Machine Image (AMI)</b></a> with <b>Arm Virtual Hardware Targets</b>, various compilers, other tools, and resources. The tools are executed in a Linux Virtual Machine and allows you to use the Arm Virtual Hardware environment in various different environments.</p>
-<p >The following AWS tutorials help you to get started:</p>
-<ul>
-<li><a href="https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/">How do I create and activate a new AWS account?</a></li>
-<li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html">Tutorial: Get started with Amazon EC2 Linux instances</a></li>
-</ul>
-<h2><a class="anchor" id="Subscribe"></a>
-Subscribe Arm Virtual Hardware</h2>
-<p >Before you can use the <b>AMI with Arm Virtual Hardware Targets</b> you should have a AWS account. The following steps describe how to subscribe to the AWS Service for Arm Virtual Hardware:</p><ul>
-<li>Open <a href="https://aws.amazon.com/marketplace/search/results?x=24&amp;y=20&amp;searchTerms=Arm+Virtual+Hardware">AWS Marketplace</a> and search for <b>Arm Virtual Hardware</b>.</li>
-<li>Click on <b>Arm Virtual Hardware</b> to open the product page.</li>
-<li>Click on <b>Continue to Subscribe</b> to active the product.</li>
-<li>Click on <b>Configure this software</b> and select the parameters. Note that this page gives you access to the <b>Ami Id</b>.</li>
-<li>Click on <b>Continue to Launch</b> to active the <b>Arm Virtual Hardware</b>. You have various ways to use the AMI as described in the next section. <br  />
-</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md0"></a>
-Use AMI</h2>
-<p >The <b>AMI</b> provides a lot of flexibility and gives you the option to integrate <b>Arm Virtual Hardware</b> various CI/CD DevOps environments that range from on-premise IT to Cloud-native infrastructure. The following sections give you some flavors of possible integrations:</p>
-<ul>
-<li><a class="el" href="run_ami_local.html">Run AMI from a Local Host</a> allows to use the AMI from a local computer.</li>
-<li><a class="el" href="run_ami_github.html">Run AMI with GitHub Actions</a> explains how to integrate the <b>Arm Virtual Hardware AWS AMI</b> in GitHub action workflows.</li>
-<li><a class="el" href="run_ami_jenkins.html">Run AMI with Jenkins</a> explains how to integrate the <b>Arm Virtual Hardware AWS AMI</b> using Jenkins workflows.</li>
-</ul>
-<h1><a class="anchor" id="Local"></a>
-Local Tool Installation</h1>
-<p >Tools on a local PC can be used together with Arm Virtual Hardware for developing and debugging embedded applications.</p>
-<ul>
-<li><a class="el" href="debug_ds.html">Debug with Arm Development Studio</a> explains how to connect to Arm Virtual Hardware AMI from a local PC and debug the program with Arm DS.</li>
-<li><a class="el" href="run_mdk_pro.html">Run with MDK-Professional</a> explains how to use Keil MDK for developing and debugging a program with <a href="../../simulation/html/index.html">Arm Virtual Hardware Targets</a> running on a local PC. </li>
-</ul>
+<div class="textblock"><p ><a class="anchor" id="mainpage"></a> <b>Arm Virtual Hardware</b> (AVH) provides a cloud-native infrastructure with <a href="../../simulation/html/index.html">virtual hardware targets</a> and necessary software tooling . It integrates well into various CI/CD and MLOps workflows ranging from GitHub to on-premise IT infrastructure. Section <a class="el" href="AWS.html">Arm Virtual Hardware on AWS</a> explains in details the AVH service, its setup as well as integration with common CI workflows. Development of embedded projects and program debug in local enviromnemt is supported as explained in <a class="el" href="Local.html">AVH with local toolchains</a>.</p>
+<p ><img src="create_debug_test.png" alt="" class="inline" title="Create, debug, and test"/> </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

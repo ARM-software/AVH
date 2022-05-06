@@ -25,81 +25,15 @@
 var NAVTREE =
 [
   [ "Infrastructure", "index.html", [
-    [ "AWS Marketplace", "index.html#AWS", [
-      [ "Subscribe Arm Virtual Hardware", "index.html#Subscribe", null ],
-      [ "Use AMI", "index.html#autotoc_md0", null ]
-    ] ],
-    [ "Local Tool Installation", "index.html#Local", null ],
-    [ "Run AMI from a Local Host", "run_ami_local.html", [
-      [ "Launch AMI Instance", "run_ami_local.html#Launch_ami", [
-        [ "Launch from Website", "run_ami_local.html#Launch_website", null ],
-        [ "Launch trough EC2", "run_ami_local.html#Launch_EC2", null ]
-      ] ],
-      [ "Connect to the EC2 Instance", "run_ami_local.html#connect", [
-        [ "Using SSH", "run_ami_local.html#use_ssh", null ],
-        [ "Using VNC", "run_ami_local.html#use_vnc", null ],
-        [ "Using Code Server", "run_ami_local.html#use_code_server", null ]
-      ] ],
-      [ "List AMI Inventory", "run_ami_local.html#inventory", null ],
-      [ "Run projects", "run_ami_local.html#run_example", null ]
-    ] ],
-    [ "Run AMI with GitHub Actions", "run_ami_github.html", [
-      [ "Self-hosted GitHub Runners", "run_ami_github.html#self_hosted", [
-        [ "Setup Github", "run_ami_github.html#self-hosted1", null ],
-        [ "Setup AWS EC2 Instance", "run_ami_github.html#self-hosted2", null ],
-        [ "Add GitHub Action", "run_ami_github.html#self_hosted3", null ]
-      ] ],
-      [ "GitHub-hosted Runners", "run_ami_github.html#GitHub_hosted", [
-        [ "Create user roles on AWS IAM", "run_ami_github.html#github_hosted1", null ],
-        [ "Setup AWS EC2 Instance", "run_ami_github.html#github_hosted2", null ],
-        [ "Setup AWS S3 Instance", "run_ami_github.html#github_hosted3", null ],
-        [ "Add Github Secrets", "run_ami_github.html#github_hosted4", null ],
-        [ "Add Github Action", "run_ami_github.html#github_hosted5", [
-          [ "Prepare the testsuite", "run_ami_github.html#autotoc_md1", null ],
-          [ "The vht.yml", "run_ami_github.html#autotoc_md2", null ],
-          [ "Example", "run_ami_github.html#autotoc_md3", null ],
-          [ "Use Action", "run_ami_github.html#autotoc_md4", null ]
-        ] ]
-      ] ]
-    ] ],
-    [ "Run AMI with Jenkins", "run_ami_jenkins.html", [
-      [ "Using AVH AMI as a Jenkins node", "run_ami_jenkins.html#avh_jenkins_node", [
-        [ "Implementation example", "run_ami_jenkins.html#autotoc_md5", null ],
-        [ "Dependencies", "run_ami_jenkins.html#autotoc_md6", [
-          [ "AWS Account", "run_ami_jenkins.html#autotoc_md7", null ],
-          [ "Jenkins plugins", "run_ami_jenkins.html#autotoc_md8", null ],
-          [ "Jenkins credentials", "run_ami_jenkins.html#autotoc_md9", null ]
-        ] ]
-      ] ],
-      [ "Using AVH Client", "run_ami_jenkins.html#avh_module_jenkins", [
-        [ "Implementation example", "run_ami_jenkins.html#autotoc_md10", null ],
-        [ "Dependencies", "run_ami_jenkins.html#autotoc_md11", [
-          [ "AWS Account", "run_ami_jenkins.html#autotoc_md12", null ],
-          [ "Jenkins plugins", "run_ami_jenkins.html#autotoc_md13", null ],
-          [ "Jenkins credentials", "run_ami_jenkins.html#autotoc_md14", null ]
-        ] ]
-      ] ]
-    ] ],
-    [ "Debug with Arm Development Studio", "debug_ds.html", [
-      [ "Tools Installation and set up", "debug_ds.html#ds_setup", null ],
-      [ "Start Virtual Hardware Target", "debug_ds.html#ds_vht_start", null ],
-      [ "Connect to Target in Arm DS", "debug_ds.html#ds_connect", null ]
-    ] ],
-    [ "Run with MDK-Professional", "run_mdk_pro.html", [
-      [ "Tools Installation", "run_mdk_pro.html#mdk_vht_install", null ],
-      [ "Project Configuration", "run_mdk_pro.html#mdk_project_config", [
-        [ "Target selection", "run_mdk_pro.html#mdk_vht_targets", null ],
-        [ "Run and debug configuration", "run_mdk_pro.html#mdk_vht_debug", null ]
-      ] ],
-      [ "Project Export", "run_mdk_pro.html#mdk_cprj_export", null ],
-      [ "Program Build and Debug", "run_mdk_pro.html#mdk_program_run", null ]
-    ] ]
+    [ "Overview", "index.html", null ],
+    [ "Arm Virtual Hardware on AWS", "AWS.html", "AWS" ],
+    [ "AVH with local toolchains", "Local.html", "Local" ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"debug_ds.html"
+"AWS.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

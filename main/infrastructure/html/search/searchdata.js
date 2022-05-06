@@ -1,7 +1,7 @@
 var indexSectionsWithContent =
 {
-  0: "dir",
-  1: "dir"
+  0: "ador",
+  1: "ador"
 };
 
 var indexSectionNames =
