@@ -49,8 +49,7 @@ An instance of Arm Virtual Hardware AMI can be easily created in AWS Management 
 
 ## Connect to the AMI Instance {#connect_ami}
 
-There are multiple ways to connect to the AMI instance that runs Arm Virtual Hardware. For full details refer AWS User Guide:
-  - [Connect to your Linux instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html).
+There are multiple ways to connect to the AMI instance that runs Arm Virtual Hardware. For full details refer AWS User Guide [Connect to your Linux instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html).
 
 In this section two mechanisms are described:
 
@@ -64,7 +63,7 @@ For simple interaction with the AVH AMI you can run EC2 Instance Connect web-app
 
  - Go to **EC2 - Instances**
  - Select a running AVH AMI instance.
- - Click **Connect** (or alternatively **Actions - Connect**)
+ - Click **Connect** (or alternatively use menu **Actions - Connect**)
  - Verify that **EC2 Instance Connect** tab is selected.
  - Specify **ubuntu** in the User Name and press **Connect**.
  - AMI Linux console opens in a new browser tab.
