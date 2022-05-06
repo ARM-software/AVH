@@ -10,7 +10,7 @@ Arm Virtual Hardware offers a comprehensive tool integration along with resource
 
   - **Arm Virutal Hardware Targets** are precise [**simulation models**](https://en.wikipedia.org/wiki/Simulation) of Cortex-M device sub-systems and are designed for complex software verification and testing. It allows [**simulation-based test automation**](https://en.wikipedia.org/wiki/Test_automation) of various software workloads, including unit tests, integration tests, and fault injection. 
 
-  - **Arm Virtual Hardware Services** provide a cloud-native infra-structure for software test and validation. These \prj_name services can be integrated into various **CI/CD** and **MLOps** environments that range from GitHub to on-premise IT infrastructure. The Arm Virtual Hardware services will be available via the AWS Marketplace (and later also via other Cloud Service providers).
+  - **Arm Virtual Hardware Services** provide a cloud-native infrastructure for software test and validation. These services can be integrated into various **CI/CD** and **MLOps** environments that range from GitHub to on-premise IT infrastructure. The Arm Virtual Hardware services are available via the AWS Marketplace (and later also via other Cloud Service providers).
  
   - **Arm Virtual Hardware Developer Resources** gives you access to interface drivers that map to virtual targets and physical hardware along with Python scripts for I/O simulation. The documentation explains how to integrate Arm Virtual Hardware Targets into typical **CI/CD** environments. Usage examples show typical usage cases and range from audio processing, ML algorithm testing, up to IoT applications that interface to Cloud Service providers.
   
@@ -74,6 +74,16 @@ For unit and integration tests virtual targets offer additional advantages over 
 <tr>
 <th>Version</th>
 <th>Changes</th>
+</tr>
+<tr>
+<td>0.3-beta (Apr 2022)</td>
+<td>Added features:
+ - [**Corstone-310 and Corstone-1000**](../../simulation/html/Using.html): added new virtual hardware targets.
+ - [**Integration with Jenkins**](../../infrastructure/html/run_ami_jenkins.html): example of AVH AMI usage in Jenkins CI pipelines.
+ - [**Event Recorder Semihosting Support**](https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_use.html#er_semihosting): allows to generate Event Recorder logs in AVH AMI environment.
+ - [**AWS MQTT Example**](https://github.com/ARM-software/AVH-AWS_MQTT_Demo): IoT application with MQTT connectivity to AWS cloud service.
+ - [**ATS-Keyword Example**](https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword): keyword detection application based on [Arm Total Solutions for IoT](https://github.com/ARM-software/ATS-Keyword/).
+</td>
 </tr>
 <tr>
 <td>0.2-beta (Feb 2022)</td>

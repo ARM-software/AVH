@@ -1,5 +1,11 @@
 
-# Run with MDK-Professional {#run_mdk_pro}
+# AVH with local toolchains {#Local}
+
+You can use Arm Virtual Hardware targets with embedded projects locally on your machine.
+  - \subpage run_mdk_pro explains how to use Keil MDK for developing and debugging a program with [Arm Virtual Hardware Targets](../../simulation/html/index.html) running on a local PC.
+  - \subpage debug_ds explains how to connect to Arm Virtual Hardware AMI from a local PC and debug the program with Arm DS.
+
+\page run_mdk_pro Run with MDK-Professional
 
 This section explains how Arm Virtual Hardware (AVH) processors can be used with [Keil MDK](https://developer.arm.com/tools-and-software/embedded/keil-mdk) tools for developing and debugging embedded applications on a local computer.
 
