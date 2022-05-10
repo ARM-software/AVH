@@ -204,9 +204,9 @@ In the AMI terminal:
 
     `cd AVH-TFLmicrospeech/Platform_FVP_Corstone_SSE-300_Ethos-U55​`
 
-2. Use [cp_install](https://arm-software.github.io/CMSIS_5/Build/html/cp_install.html) utility (do once) to install the necessary [CMSIS](https://developer.arm.com/tools-and-software/embedded/cmsis) Packs​ dependencies
+2. Use [cpackget](https://github.com/Open-CMSIS-Pack/cpackget) utility (do once) to install the necessary [CMSIS](https://developer.arm.com/tools-and-software/embedded/cmsis) Packs​ dependencies. A script is provided for convenience:
 
-    `cp_install.sh packlist​`
+    `packlist.sh​`
 
 3. Use (cbuild)[https://arm-software.github.io/CMSIS_5/Build/html/index.html] to build the software project​ (this should take about a minute)
 
