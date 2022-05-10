@@ -31,17 +31,17 @@ Table below lists the Cortex-M cores supported with Arm Virtual Hardware, corres
 
 Arm Cortex-M core | AVH Device name     | CMSIS Pack with device definition     | Virtual Hardware model in MDK<sup> 1</sup> |   Description
 :-----------------|:--------------------|:--------------------------------------|:-----------------------------------|:-------------------------------
-Cortex-M0         | CMSDK_CM0_VHT       | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M0_MDK.exe         | CPU with Cortex-M0 core
-Cortex-M0+        | CMSDK_CM0plus_VHT   | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M0plus_MDK.exe     | CPU with Cortex-M0+ core
-Cortex-M3         | CMSDK_CM3_VHT       | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M3_MDK.exe         | CPU with Cortex-M3 core
-Cortex-M4         | CMSDK_CM4_VHT       | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M4_MDK.exe         | CPU with Cortex-M4 core
-Cortex-M4, FP     | CMSDK_CM4_FP_VHT    | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M4_MDK.exe         | CPU with Cortex-M4 core and Floating Point Unit (FPU) support
-Cortex-M7         | CMSDK_CM7_VHT       | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M7_MDK.exe         | CPU with Cortex-M7 core
-Cortex-M7, FP(SP) | CMSDK_CM7_SP_VHT    | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M7_MDK.exe         | CPU with Cortex-M7 core and Single Precision FPU support
-Cortex-M7, FP(DP) | CMSDK_CM7_DP_VHT    | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M7_MDK.exe         | CPU with Cortex-M7 core and Double Precision FPU support
-Cortex-M23        | IOTKit_CM23_VHT     | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M23_MDK.exe        | CPU with Cortex-M23 core
-Cortex-M33        | IOTKit_CM33_VHT     | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M33_MDK.exe        | CPU with Cortex-M33 core
-Cortex-M33, FP    | IOTKit_CM33_FP_VHT  | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M33_MDK.exe        | CPU with Cortex-M33 core and Floating Point Unit (FPU) support
+Cortex-M0         | CMSDK_CM0_VHT       | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M0.exe         | CPU with Cortex-M0 core
+Cortex-M0+        | CMSDK_CM0plus_VHT   | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M0plus.exe     | CPU with Cortex-M0+ core
+Cortex-M3         | CMSDK_CM3_VHT       | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M3.exe         | CPU with Cortex-M3 core
+Cortex-M4         | CMSDK_CM4_VHT       | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M4.exe         | CPU with Cortex-M4 core
+Cortex-M4, FP     | CMSDK_CM4_FP_VHT    | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M4.exe         | CPU with Cortex-M4 core and Floating Point Unit (FPU) support
+Cortex-M7         | CMSDK_CM7_VHT       | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M7.exe         | CPU with Cortex-M7 core
+Cortex-M7, FP(SP) | CMSDK_CM7_SP_VHT    | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M7.exe         | CPU with Cortex-M7 core and Single Precision FPU support
+Cortex-M7, FP(DP) | CMSDK_CM7_DP_VHT    | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M7.exe         | CPU with Cortex-M7 core and Double Precision FPU support
+Cortex-M23        | IOTKit_CM23_VHT     | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M23.exe        | CPU with Cortex-M23 core
+Cortex-M33        | IOTKit_CM33_VHT     | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M33.exe        | CPU with Cortex-M33 core
+Cortex-M33, FP    | IOTKit_CM33_FP_VHT  | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  | VHT_MPS2_Cortex-M33.exe        | CPU with Cortex-M33 core and Floating Point Unit (FPU) support
 Cortex-M55        | SSE-300-MPS3        | ARM.V2M_MPS3_SSE_300_BSP from v1.2.0  | VHT_MPS3_Corstone_SSE-300.exe<br>VHT_Corstone_SSE-300_Ethos-U55.exe<br>VHT_Corstone_SSE-300_Ethos-U65.exe| Corstone-300 SoC with Cortex-M55.<br>Same  device definition is used, but a model shall be selected<br>depending on the required microNPU (none, Ethos-U55 or Ethos-U65)
 Cortex-M85        | SSE-310-MPS3        |  not available yet                    | VHT_Corstone_SSE-310.exe           | CPU with Cortex-M85 core
 
