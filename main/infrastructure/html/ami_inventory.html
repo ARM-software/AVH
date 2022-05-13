@@ -35,7 +35,7 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Virtual Hardware
-   &#160;<span id="projectnumber">Version 0.3 - beta</span>
+   &#160;<span id="projectnumber">Version 1.2.2 - beta</span>
    </div>
    <div id="projectbrief">Infrastructure Service and Tool Integration</div>
   </td>
@@ -111,10 +111,103 @@ $(document).ready(function(){initNavTree('ami_inventory.html',''); initResizable
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p ><a class="anchor" id="md_src_ami_inventory"></a> Sections below list the resources preinstalled on the corresponding version of Arm Virtual Hardware AMI. It is also possible to <a href="#inventory">obtain the current AMI Inventory</a> on a running AMI instance.</p><ul>
+<li><a href="#ami_inventory_122">AMI v1.2.2</a></li>
 <li><a href="#ami_inventory_121">AMI v1.2.1</a></li>
 <li><a href="#ami_inventory_120">AMI v1.2.0</a></li>
 </ul>
-<h1><a class="anchor" id="ami_inventory_121"></a>
+<h1><a class="anchor" id="ami_inventory_122"></a>
+AMI v1.2.2</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Item   </th><th class="markdownTableHeadNone">Version<sup>1</sup>    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>HOST OS</b>   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">&emsp;Ubuntu   </td><td class="markdownTableBodyNone">x86_64 v20.04.1    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>COMPILERS</b>   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">&emsp;Arm Compiler   </td><td class="markdownTableBodyNone">6.18    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">&emsp;GCC Compiler   </td><td class="markdownTableBodyNone">11.2    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">&emsp;Vela   </td><td class="markdownTableBodyNone">3.3.0    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>VIRTUAL HARDWARE TARGETS</b>   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">&emsp;VHT_MPS2_Cortex-M0   </td><td class="markdownTableBodyNone">11.17.40 (U)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">&emsp;VHT_MPS2_Cortex-M0plus   </td><td class="markdownTableBodyNone">11.17.40 (U)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">&emsp;VHT_MPS2_Cortex-M3   </td><td class="markdownTableBodyNone">11.17.40 (U)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">&emsp;VHT_MPS2_Cortex-M4   </td><td class="markdownTableBodyNone">11.17.40 (U)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">&emsp;VHT_MPS2_Cortex-M7   </td><td class="markdownTableBodyNone">11.17.40 (U)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">&emsp;VHT_MPS2_Cortex-M23   </td><td class="markdownTableBodyNone">11.17.40 (U)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">&emsp;VHT_MPS2_Cortex-M33   </td><td class="markdownTableBodyNone">11.17.40 (U)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">&emsp;VHT_Corstone_SSE-300   </td><td class="markdownTableBodyNone">11.17.40 (U)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">&emsp;VHT_Corstone_SSE-300_Ethos-U55   </td><td class="markdownTableBodyNone">11.17.40 (U)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">&emsp;VHT_Corstone_SSE-300_Ethos-U65   </td><td class="markdownTableBodyNone">11.17.40 (U)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">&emsp;VHT_Corstone_SSE-310   </td><td class="markdownTableBodyNone">11.17.40 (U)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>FIXED VIRTUAL PLATFORM (FVP)</b>   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">&emsp;FVP_Corstone-1000   </td><td class="markdownTableBodyNone">11.17.35    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>CORSTONE 1000 SOFTWARE</b>   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">&emsp;Bootloader + TF   </td><td class="markdownTableBodyNone">CORSTONE1000-2022.04.07    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">&emsp;OpenSuSE   </td><td class="markdownTableBodyNone">Snapshot20220331    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>CMSIS PACKS</b>   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">&emsp;ARM.CMSIS.pack   </td><td class="markdownTableBodyNone">5.9.0    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">&emsp;ARM.V2M_MPS3_SSE_300_BSP.pack   </td><td class="markdownTableBodyNone">1.2.0    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">&emsp;Keil.ARM_Compiler.pack   </td><td class="markdownTableBodyNone">1.7.1    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>OTHER</b>   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">&emsp;CMSIS-Build   </td><td class="markdownTableBodyNone">0.10.6   </td></tr>
+</table>
+<blockquote class="doxtable">
+<p ><sup>1</sup> If an item is different from the previous AMI version this is indicated in parenthesis () as follows:<br  />
+ </p><ul>
+<li>
+(N): Item is newly introduced to this AMI.<br  />
+ </li>
+<li>
+(U): Item version is updated from the previous AMI version.</li>
+</ul>
+</blockquote>
+<p><b>Environment setup</b></p>
+<p >Following setup is additionally performed for the bash terminal session in the <code>.bash_rc</code> file:</p>
+<div class="fragment"><div class="line">`echo &quot;==== Arm Virtual Hardware AMI ====&quot;</div>
+<div class="line">export PATH=$PATH:/opt/armcompiler/bin</div>
+<div class="line">export PATH=$PATH:/opt/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin</div>
+<div class="line">alias FVP_Corstone-1000=/opt/FVP_Corstone_1000/models/Linux64_GCC-9.3/FVP_Corstone-1000</div>
+<div class="line">export CMSIS_PACK_ROOT=/home/ubuntu/packs</div>
+<div class="line">echo &quot;CMSIS packs are installed at $CMSIS_PACK_ROOT&quot;</div>
+<div class="line">export CMSIS_COMPILER_ROOT=/opt/cbuild/etc</div>
+<div class="line">export CMSIS_BUILD_ROOT=/opt/cbuild/bin</div>
+<div class="line">export PATH=/opt/cbuild/bin:$PATH</div>
+<div class="line">export ARMLMD_LICENSE_FILE=/opt/data.dat</div>
+<div class="line">export PATH=$PATH:/opt/VHT</div>
+<div class="line">export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/VHT</div>
+<div class="line">export ARMCOMPILER6_CLANGOPT=-Wno-license-management</div>
+<div class="line">export ARMCOMPILER6_LINKOPT=--diag_suppress=9931</div>
+<div class="line">export ARMCOMPILER6_FROMELFOPT=--diag_suppress=9931</div>
+<div class="line">export ARMCOMPILER6_ASMOPT=--diag_suppress=9931</div>
+</div><!-- fragment --><h1><a class="anchor" id="ami_inventory_121"></a>
 AMI v1.2.1</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -172,7 +265,7 @@ AMI v1.2.1</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">&emsp;ARM.V2M_MPS3_SSE_300_BSP.pack   </td><td class="markdownTableBodyNone">1.2.0    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">&emsp;Keil.ARM_Compiler.pack   </td><td class="markdownTableBodyNone">1.7.2 (U)    </td></tr>
+<td class="markdownTableBodyNone">&emsp;Keil.ARM_Compiler.pack   </td><td class="markdownTableBodyNone">1.7.1    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><b>OTHER</b>   </td><td class="markdownTableBodyNone"></td></tr>
 <tr class="markdownTableRowOdd">

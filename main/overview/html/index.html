@@ -35,7 +35,7 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Virtual Hardware
-   &#160;<span id="projectnumber">Version 0.3 - beta</span>
+   &#160;<span id="projectnumber">Version 1.2.2 - beta</span>
    </div>
    <div id="projectbrief">Product Overview</div>
   </td>
@@ -182,11 +182,18 @@ Release History</h1>
 <tr>
 <th>Version </th><th>Changes  </th></tr>
 <tr>
+<td>1.2.2-beta (May 2022) </td><td>Changes:<ul>
+<li>New versioning scheme to match the AMI version (see <a href="../../infrastructure/html/ami_inventory.html">AMI Inventory</a>).</li>
+<li><a href="https://github.com/ARM-software/CMSIS-RTOS2_Validation"><b>CMSIS-RTOS2 Validation</b></a>: Advanced test suite for validating CMSIS-RTOS2 implementations on supported Cortex-M cores runs using AVH.</li>
+<li>Corstone-310 VHT fixes: NPU access fix as well as a parameter for the flash region size allowing it to be a maximum of 64MB.   </li>
+</ul>
+</td></tr>
+<tr>
 <td>0.3-beta (Apr 2022) </td><td>Added features:<ul>
 <li><a href="../../simulation/html/Using.html"><b>Corstone-310 and Corstone-1000</b></a>: added new virtual hardware targets.</li>
 <li><a href="../../infrastructure/html/run_ami_jenkins.html"><b>Integration with Jenkins</b></a>: example of AVH AMI usage in Jenkins CI pipelines.</li>
 <li><a href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_use.html#er_semihosting"><b>Event Recorder Semihosting Support</b></a>: allows to generate Event Recorder logs in AVH AMI environment.</li>
-<li><a href="https://github.com/ARM-software/AVH-AWS_MQTT_Demo"><b>AWS MQTT Example</b></a>: IoT application with MQTT connectivity to AWS cloud service.</li>
+<li><a href="../../examples/html/aws_mqtt.html"><b>AWS MQTT Example</b></a>: IoT application with MQTT connectivity to AWS cloud service.</li>
 <li><a href="https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword"><b>ATS-Keyword Example</b></a>: keyword detection application based on <a href="https://github.com/ARM-software/ATS-Keyword/">Arm Total Solutions for IoT</a>.   </li>
 </ul>
 </td></tr>

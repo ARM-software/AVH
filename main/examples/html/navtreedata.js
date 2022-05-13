@@ -69,6 +69,17 @@ var NAVTREE =
     [ "ATS-Keyword Example", "ATS-Keyword.html", [
       [ "Build Application", "ATS-Keyword.html#Build", null ],
       [ "Run on Virtual Hardware", "ATS-Keyword.html#AVH", null ]
+    ] ],
+    [ "AWS MQTT Example", "aws_mqtt.html", [
+      [ "Overview", "aws_mqtt.html#aws_mqtt_overview", null ],
+      [ "Prerequisites", "aws_mqtt.html#aws_mqtt_prerequisites", null ],
+      [ "Device commissioning", "aws_mqtt.html#autotoc_md23", [
+        [ "Create AWS IoT Thing", "aws_mqtt.html#aws_iot_thing", null ],
+        [ "Commission parameters to device", "aws_mqtt.html#aws_iot_params", null ]
+      ] ],
+      [ "Setup of CI Test", "aws_mqtt.html#autotoc_md24", [
+        [ "GitHub Secrets", "aws_mqtt.html#aws_mqtt_gh_secrets", null ]
+      ] ]
     ] ]
   ] ]
 ];
