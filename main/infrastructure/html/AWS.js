@@ -1,6 +1,7 @@
 var AWS =
 [
     [ "Subscribe to Arm Virtual Hardware", "AWS.html#Subscribe", null ],
+    [ "System Requirements", "AWS.html#Requirements", null ],
     [ "AMI Inventory", "ami_inventory.html", [
       [ "AMI v1.2.1", "ami_inventory.html#ami_inventory_121", null ],
       [ "AMI v1.2.0", "ami_inventory.html#ami_inventory_120", null ],
