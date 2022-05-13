@@ -164,10 +164,20 @@ Connect using SSH</h2>
 <div class="fragment"><div class="line">$ ssh  -i &lt;path&gt;/your_key.pem ubuntu@&lt;Public IPv4 DNS&gt;</div>
 </div><!-- fragment --><p> <b>Where:</b></p><ul>
 <li><b>ssh</b> is the SSH command</li>
-<li>option <b>-i</b> specifies the location of the AWS private key file that has the file extension *.pem.</li>
+<li>option <b>-i</b> specifies the location of the AWS private key file that has the file extension *.pem. Shall correspond to the key pair registered with the AMI instance in <a class="el" href="run_ami_local.html#Launch_ami">Launch AMI Instance</a>.</li>
 <li><b>ubuntu</b> is the user name of the Amazon EC2 Ubuntu Linux instance.</li>
-<li><b>&lt;Public IPv4 DNS&gt;</b> is the public address typically in the format: ec2-*nn*-*nn*-*nn*-*nn*.compute-1.amazonaws.com</li>
+<li><b>&lt;Public IPv4 DNS&gt;</b> is the public address typically in the format: ec2-*nn*-*nn*-*nn*-*nn*.compute-1.amazonaws.com .</li>
 </ul>
+<p >Note that the <b>ubuntu</b> user by default has no password, because this is not allowed in AWS Marketplace. So initial connection requires authentication via private key file. After logging in, you can enable password authentications as follows:</p><ul>
+<li>Enable password login: <div class="fragment"><div class="line">$ sudo sed -i &#39;/PasswordAuthentication no/c\PasswordAuthentication yes&#39; /etc/ssh/sshd_config</div>
+<div class="line">$ sudo service ssh restart</div>
+</div><!-- fragment --></li>
+<li>Set the password value, for example as <em>mypassword</em>: <div class="fragment"><div class="line">$ echo &quot;ubuntu:mypassword&quot; | sudo chpasswd</div>
+</div><!-- fragment --></li>
+</ul>
+<p >Now you can login using password authentication:</p>
+<div class="fragment"><div class="line">$ ssh ubuntu@&lt;Public IPv4 DNS&gt;</div>
+</div><!-- fragment --><p >and will be requested to enter the password created above (<em>mypassword</em> in this example).</p>
 <p >In AWS Management Console you can find the instructions with SSH parameters for a specific AMI instance. Go to <b>EC2 - Instances</b>, select your instance, press <b>Connect</b> and then select the tab <b>SSH client</b>.</p>
 <p >Find more details in AWS help <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html">Connect to your Linux instance using SSH</a>.</p>
 <h1><a class="anchor" id="run_example"></a>
