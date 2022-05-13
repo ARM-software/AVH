@@ -83,9 +83,28 @@ $ ssh  -i <path>/your_key.pem ubuntu@<Public IPv4 DNS>
 ```
 **Where:**
  - **ssh** is the SSH command
- - option **-i** specifies the location of the AWS private key file that has the file extension \*.pem.
+ - option **-i** specifies the location of the AWS private key file that has the file extension \*.pem. Shall correspond to the key pair registered with the AMI instance in \ref Launch_ami.
  - **ubuntu** is the user name of the Amazon EC2 Ubuntu Linux instance.
- - <b>\<Public IPv4 DNS\></b> is the public address typically in the format: ec2-*nn*-*nn*-*nn*-*nn*.compute-1.amazonaws.com
+ - <b>\<Public IPv4 DNS\></b> is the public address typically in the format: ec2-*nn*-*nn*-*nn*-*nn*.compute-1.amazonaws.com .
+
+Note that the **ubuntu** user by default has no password, because this is not allowed in AWS Marketplace. So initial connection requires authentication via private key file. After logging in, you can enable password authentications as follows:
+ - Enable password login:
+```
+$ sudo sed -i '/PasswordAuthentication no/c\PasswordAuthentication yes' /etc/ssh/sshd_config
+$ sudo service ssh restart
+```
+ - Set the password value, for example as *mypassword*:
+```
+$ echo "ubuntu:mypassword" | sudo chpasswd
+```
+
+Now you can login using password authentication:
+
+```
+$ ssh ubuntu@<Public IPv4 DNS>
+```
+
+and will be requested to enter the password created above (*mypassword* in this example).
 
 In AWS Management Console you can find the instructions with SSH parameters for a specific AMI instance. Go to **EC2 - Instances**, select your instance, press  **Connect** and then select the tab **SSH client**.
 
