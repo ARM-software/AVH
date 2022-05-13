@@ -76,12 +76,20 @@ For unit and integration tests virtual targets offer additional advantages over 
 <th>Changes</th>
 </tr>
 <tr>
+<td>1.2.2-beta (May 2022)</td>
+<td>Changes:
+ - New versioning scheme to match the AMI version (see [AMI Inventory](../../infrastructure/html/ami_inventory.html)).
+ - [**CMSIS-RTOS2 Validation**](https://github.com/ARM-software/CMSIS-RTOS2_Validation): Advanced test suite for validating CMSIS-RTOS2 implementations on supported Cortex-M cores runs using AVH.
+ - Corstone-310 VHT fixes: NPU access fix as well as a parameter for the flash region size allowing it to be a maximum of 64MB.
+</td>
+</tr>
+<tr>
 <td>0.3-beta (Apr 2022)</td>
 <td>Added features:
  - [**Corstone-310 and Corstone-1000**](../../simulation/html/Using.html): added new virtual hardware targets.
  - [**Integration with Jenkins**](../../infrastructure/html/run_ami_jenkins.html): example of AVH AMI usage in Jenkins CI pipelines.
  - [**Event Recorder Semihosting Support**](https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_use.html#er_semihosting): allows to generate Event Recorder logs in AVH AMI environment.
- - [**AWS MQTT Example**](https://github.com/ARM-software/AVH-AWS_MQTT_Demo): IoT application with MQTT connectivity to AWS cloud service.
+ - [**AWS MQTT Example**](../../examples/html/aws_mqtt.html): IoT application with MQTT connectivity to AWS cloud service.
  - [**ATS-Keyword Example**](https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword): keyword detection application based on [Arm Total Solutions for IoT](https://github.com/ARM-software/ATS-Keyword/).
 </td>
 </tr>
