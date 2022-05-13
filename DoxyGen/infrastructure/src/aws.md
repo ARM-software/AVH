@@ -19,6 +19,12 @@ From your AWS account subscribe to Arm Virtual Hardware as follows:
 
 With the AVH Subscription you can now create and use AVH AMI instances.
 
+## System Requirements {#Requirements}
+
+**EC2 Instance type**
+
+At least *t2.micro* instance type is required to run AVH AMI, while *t3.medium* is a recommended option. An instance with more resources may improve the performance.
+
 \page run_ami_local Run AMI from AWS Console
 
 [AWS Management Console](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/learn-whats-new.html) allows you to control AWS services from a browser window and so provides a simple way to manually setup and use Arm Virtual Hardware AMI.
@@ -39,7 +45,7 @@ An instance of Arm Virtual Hardware AMI can be easily created in AWS Management 
   - Select the initial parameters, especially important is the AWS region. Note that this page gives you access to the **Ami Id**.
   - Click on **Continue to launch through EC2** and proceed to the launch instance wizard.
   - Configure the instance parameters. Mandatory options are explained below but many other parameters can be also defined here:
-   - **Instance Type**: select EC2 instance type for running AVH AMI. *t3.medium* (2 vCPUs, 4 GiB memory) is recommended, but an instance with more resources may improve performance.
+   - **Instance Type**: select EC2 instance type for running AVH AMI. See \ref Requirements for information.
    - **Key Pair**: select an existing key pair or create a new one. This is required to be able to connect to the AMI instance remotely.
    - **Network Settings**: verify that VPC Id is specified here. Keep SSH connection enabled.
    - **Configure Storage**: by default 24 GiB of storage is assoticated with the AMI instance and is sufficient for most applications. However, you can specify the storage parameters here if needed.
