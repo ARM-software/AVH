@@ -92,7 +92,7 @@ For correct workflow operation it is important to keep the MDK project *uvprojx*
 
 As common for many projects, the CI pipeline for the AVH Get Started repository is triggered on every code change via push and pull requests. In our example this is explicitly limited to the _main_ branch only.
 
-The CI implementation in this example relies on [GitHub Actions](https://docs.github.com/en/actions) with [GitHub-hosted Runners](../../infrastructure/html/run_ami_github.html#GitHub_hosted). Program build and execution are done on [Arm Virtual Hardware AMI](../../infrastructure/html/AWS.html) instance in Amazon AWS. Custom GitHub action [Arm-Software/VHT-AMI](https://github.com/ARM-software/VHT-AMI) manages the connection between the GitHub repository and the AMI instance in AWS, as well as configures the actions to be performed on the AMI.
+The CI implementation in this example is implemented with [GitHub Actions](../../infrastructure/html/run_ami_github.html). [AVH Client](../../infrastructure/html/avhclient.html) manages the connection between the GitHub repository and the Arm Virtual Hardware AMI instance in AWS, and configures the actions to be performed on the AMI, such as program build and execution.
 
 Subsections below explain the setup for the AWS and GitHub Actions.
 
@@ -126,7 +126,7 @@ On the AWS side several items shall be setup to enable execution of example CI p
 
 ### GitHub Actions setup {#GS_GitHub_Setup}
 
-Section [GitHub-hosted Runners](../../infrastructure/html/run_ami_github.html#GitHub_hosted) introduces the concept and explains it in details.
+Section [Run AMI with GitHub Actions](../../infrastructure/html/run_ami_github.html) introduces the concept and explains it in details.
 
 The GitHub Action in this example is implemented in the [./.github/workflows/basic.yml](https://github.com/ARM-software/AVH-GetStarted/blob/main/.github/workflows/basic.yml) file using corresponding [YAML syntax for GitHub workflows](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions). 
 

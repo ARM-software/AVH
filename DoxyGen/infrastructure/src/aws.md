@@ -74,6 +74,8 @@ For simple interaction with the AVH AMI you can run EC2 Instance Connect web-app
  - Specify **ubuntu** in the User Name and press **Connect**.
  - AMI Linux console opens in a new browser tab.
 
+![AVH Connect to AMI](./images/ec2_instance_connect.png "Connect to AVH AMI from browser")
+
 ### Connect using SSH {#use_ssh}
 
 To connect via the Secure Shell (SSH) client of your computer, run the following command in the terminal window:
