@@ -27,7 +27,16 @@ var NAVTREE =
   [ "Infrastructure", "index.html", [
     [ "Overview", "index.html", null ],
     [ "Arm Virtual Hardware on AWS", "AWS.html", "AWS" ],
-    [ "AVH with local toolchains", "Local.html", "Local" ]
+    [ "AVH with local toolchains", "Local.html", "Local" ],
+    [ "AVH Client", "avhclient.html", [
+      [ "Installation", "avhclient.html#avhclient_install", null ],
+      [ "Supported backends", "avhclient.html#avhclient_backends", null ],
+      [ "AWS backend setup", "avhclient.html#avhclient_setup_aws", [
+        [ "CloudFormation template", "avhclient.html#avhclient_setup_cloudformation", null ],
+        [ "IAM Requirements", "avhclient.html#avhclient_setup_iam", null ]
+      ] ],
+      [ "AVH YML file", "avhclient.html#avhclient_yml", null ]
+    ] ]
   ] ]
 ];
 
