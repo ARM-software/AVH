@@ -128,7 +128,7 @@ On the AWS side several items shall be setup to enable execution of example CI p
 
 Section [Run AMI with GitHub Actions](../../infrastructure/html/run_ami_github.html) introduces the concept and explains it in details.
 
-The GitHub Action in this example is implemented in the [./.github/workflows/basic.yml](https://github.com/ARM-software/AVH-GetStarted/blob/main/.github/workflows/basic.yml) file using corresponding [YAML syntax for GitHub workflows](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions). 
+The GitHub Action in this example is implemented in the [./.github/workflows/basic.yml](https://github.com/ARM-software/AVH-GetStarted/blob/main/.github/workflows/basic.yml) file using corresponding [YAML syntax for GitHub workflows](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions).
 
 **Add GitHub Secrets**
 
@@ -140,16 +140,16 @@ Several parameters need to be configured in the repository as [GitHub Secrets](h
 <table>
 <tr><th> Secret Name </th><th> Value for your AVH-GetStarted repository </th><th> Description </th></tr>
 <tr><td> AWS_IAM_PROFILE</td>
-    <td> The value of _VHTIAMProfile_ from the output of [AWS resources setup](#GS_AWS_Setup).</td>
+    <td> The value of _AVHIAMProfile_ from the output of [AWS resources setup](#GS_AWS_Setup).</td>
     <td> The [IAM Instance Profile](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html) to be used for AWS access.</td></tr>
 <tr><td> AWS_ACCESS_KEY_ID<br>AWS_SECRET_ACCESS_KEY</td>
-    <td> The values of _VHTAccessKeyId_ and _VHTSecretAccessKey_ respectively from the output of [AWS resources setup](#GS_AWS_Setup).</td>
+    <td> The values of _AVHAccessKeyId_ and _AVHSecretAccessKey_ respectively from the output of [AWS resources setup](#GS_AWS_Setup).</td>
     <td> [Access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) for the AWS account (as IAM user) that shall be used by the CI workflow for AWS access.</td></tr>
 <tr><td> AWS_S3_BUCKET_NAME </td>
-    <td> The value of _VHTS3BucketName_ from the output of [AWS resources setup](#GS_AWS_Setup).</td>
+    <td> The value of _AVHS3BucketName_ from the output of [AWS resources setup](#GS_AWS_Setup).</td>
     <td> The name of the [S3 storage bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html) to be used for data exchange between GitHub and Arm Virtual Hardware AMI.</td></tr>
-<tr><td> AWS_EC2_SECURITY_GROUP_ID </td>
-    <td> The value of _VHTEC2SecurityGroupId_ from the output of [AWS resources setup](#GS_AWS_Setup).</td>
+<tr><td> AWS_SECURITY_GROUP_ID </td>
+    <td> The value of _AVHEC2SecurityGroupId_ from the output of [AWS resources setup](#GS_AWS_Setup).</td>
     <td> The id of the [VPC security group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) to add the EC2 instance to. Shall have format `sg-xxxxxxxx`.</td></tr>
 <tr><td> AWS_DEFAULT_REGION </td>
     <td> Use the same region as was used for [AWS setup](#GS_AWS_Setup).</td>
