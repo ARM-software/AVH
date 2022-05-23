@@ -234,14 +234,14 @@ GitHub Actions setup</h2>
 <tr>
 <th>Secret Name </th><th>Value for your AVH-GetStarted repository </th><th>Description  </th></tr>
 <tr>
-<td>AWS_IAM_PROFILE </td><td>The value of <em>VHTIAMProfile</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td>The <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html">IAM Instance Profile</a> to be used for AWS access. </td></tr>
+<td>AWS_IAM_PROFILE </td><td>The value of <em>AVHIAMProfile</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td>The <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html">IAM Instance Profile</a> to be used for AWS access. </td></tr>
 <tr>
 <td>AWS_ACCESS_KEY_ID<br  />
-AWS_SECRET_ACCESS_KEY </td><td>The values of <em>VHTAccessKeyId</em> and <em>VHTSecretAccessKey</em> respectively from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">Access key pair</a> for the AWS account (as IAM user) that shall be used by the CI workflow for AWS access. </td></tr>
+AWS_SECRET_ACCESS_KEY </td><td>The values of <em>AVHAccessKeyId</em> and <em>AVHSecretAccessKey</em> respectively from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">Access key pair</a> for the AWS account (as IAM user) that shall be used by the CI workflow for AWS access. </td></tr>
 <tr>
-<td>AWS_S3_BUCKET_NAME  </td><td>The value of <em>VHTS3BucketName</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td>The name of the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html">S3 storage bucket</a> to be used for data exchange between GitHub and Arm Virtual Hardware AMI. </td></tr>
+<td>AWS_S3_BUCKET_NAME  </td><td>The value of <em>AVHS3BucketName</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td>The name of the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html">S3 storage bucket</a> to be used for data exchange between GitHub and Arm Virtual Hardware AMI. </td></tr>
 <tr>
-<td>AWS_EC2_SECURITY_GROUP_ID  </td><td>The value of <em>VHTEC2SecurityGroupId</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td>The id of the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html">VPC security group</a> to add the EC2 instance to. Shall have format <code>sg-xxxxxxxx</code>. </td></tr>
+<td>AWS_SECURITY_GROUP_ID  </td><td>The value of <em>AVHEC2SecurityGroupId</em> from the output of <a href="#GS_AWS_Setup">AWS resources setup</a>. </td><td>The id of the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html">VPC security group</a> to add the EC2 instance to. Shall have format <code>sg-xxxxxxxx</code>. </td></tr>
 <tr>
 <td>AWS_DEFAULT_REGION  </td><td>Use the same region as was used for <a href="#GS_AWS_Setup">AWS setup</a>. </td><td>The data center region the Arm Virtual Hardware AMI will be run on. For example <code>eu-west-1</code>. </td></tr>
 <tr>
