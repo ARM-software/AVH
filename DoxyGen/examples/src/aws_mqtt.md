@@ -24,14 +24,14 @@ In order to communicate with the AWS IoT service the embedded application needs 
 
 ### Create AWS IoT Thing {#aws_iot_thing}
 
-The communication and security parameters can be obtained from an AWS IoT Thing. Steps below explain how to create it for this example, while AWS tutorial [Create AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/create-iot-resources.html) provides general overview and additional references.
+The communication and security parameters can be obtained from [AWS IoT Core](https://aws.amazon.com/iot-core/) service. Steps below explain the process for this example and AWS tutorial [Create AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/create-iot-resources.html) provides general overview and additional references.
 
-In AWS create an **IoT Thing** for your device as follows:
+Create an AWS **IoT Thing** for your device as follows:
 
 - From your AWS Management Console browse to the **AWS IoT Core** service.
 - In the left navigation pane, choose **Manage**, and then choose **Things**.
 - On the Things page click **Create things** button, choose **Create a single thing** and proceed further.
-- In the thing properties provide a name for your thing (for example “MyThing”), keep other parameters at default and then choose Next. You will need to add the name later to your embedded code.
+- In the thing properties provide a name for your thing (for example *MyThing*), keep other parameters at default and then choose **Next**. Later you will need to provision the same name to the embedded code.
 - Choose to Auto-generate a certificate for your thing.
 - When offered to attach policies to certificate, click **Create policy** to open corresponding page in a separate browser tab. There:
   - Enter a name for the policy (for example “MyThingPolicy”).
@@ -40,14 +40,14 @@ In AWS create an **IoT Thing** for your device as follows:
     - **iot:Publish**
     - **iot:Subscribe**
     - **iot:Receive**
-  - In the **Policy resource** set **\*** for all statements.
+  - In the **Policy resource** set * for all statements.
   - Click on **Create** and observe the new policy appeared in the list.
 - Return to the browser tab where offered to attach policies to certifate and observe the created. There:
   - Select the policy to be attached to the certificate.
   - Click **Create thing**.
   - Download the certicate, public and private keys by choosing the **Download** links for each.
 - Make a note of your Device data endpoint.
-  - In the navigation pane of the AWS IoT console, choose **Settings** and there find the  **Device data endpoint** such as a3xyzzyx.iot.us-east-2.amazonaws.com to have it ready for later.
+  - In the navigation pane of the AWS IoT console, choose **Settings** and there find the  **Device data endpoint** such as *a3xyzzyx.iot.us-east-2.amazonaws.com* to have it ready for later.
 
 Now you have all information required for connecting your device to the AWS IoT Cloud.
 
@@ -76,7 +76,7 @@ Note that when running the example on Arm Virtual Hardware using GitHub Actions,
 
 ## Setup of CI Test
 
-To build and run this application program with a CI workflow on GitHub the following steps are required. For details refer to [Run AMI with GitHub Actions - GetHub-hosted Runners](https://arm-software.github.io/AVH/main/infrastructure/html/run_ami_github.html#GitHub_hosted).
+To build and run this application program with a GitHub Actions workflow the following steps are required. For details refer to [Run AMI with GitHub Actions](https://arm-software.github.io/AVH/main/infrastructure/html/run_ami_github.html).
 
 1. **Amazon Web Service (AWS) account** with:
     - Amazon EC2 (elastic cloud) access
@@ -96,7 +96,7 @@ The following (secret) configuration values need to be added to the repositories
 Secret Name                    | Description
 :------------------------------|:--------------------
 **AWS Access**                 | **Settings and credentials required to acces AWS EC2 and S3 services**
-`AWS_IAM_PROFILE`              | The [IAM Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) to be used for AWS access. The value shall be preceded with `Name=` prior to the actual profile name. For example `Name=myAVHRole`.
+`AWS_IAM_PROFILE`              | The [IAM Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) to be used for AWS access.
 `AWS_ACCESS_KEY_ID`<br>`AWS_SECRET_ACCESS_KEY`      | [Access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) for the AWS account (as IAM user) that shall be used by the CI workflow for AWS access.
 `AWS_S3_BUCKET_NAME`           | The name of the S3 storage bucket to be used for data exchange between GitHub and AWS AMI.
 `AWS_DEFAULT_REGION`           | The data center region the AVH AMI will be run on. For example `eu-west-1`.

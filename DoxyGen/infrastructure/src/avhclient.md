@@ -3,7 +3,7 @@
 
 **Arm Virtual Hardware Client (avhclient)** is a python module for deploying projects on Arm Virtual Hardware from a command-line interface (CLI). The implementation is maintained by Arm in the GitHub repository [**github.com/ARM-software/avhclient**](https://github.com/ARM-software/avhclient).
 
-When using AVH client you can have uniform implementation for CI operations in various environments including local execution. Reference examples are provided for the following use cases:
+When using avhclient you can have uniform implementation for CI operations in various environments including local execution. Reference examples are provided for the following use cases:
 
 - \ref run_ami_jenkins "Jenkins CI pipelines"
 - \ref run_ami_github "GitHub-Actions workflows"
@@ -21,44 +21,48 @@ pip install git+https://github.com/ARM-software/avhclient.git@main
 AVH Client can control different backends with Arm Virtual Hardware Targets. The backend shall be specified with `-b` option preceding the actual AVH Client command. Following options are currently available:
 
 - `aws`(default) - interacts with \ref AWS "Arm Virtual Hardware instance on AWS".
+  - avhclient can create/start AVH EC2 instances from AVH AMIs, prepare the instance, upload files to the instance, execute commands and run the program, download the results back and cleanup the instance.
 - `local` - operates with AVH Targets installed locally.
 
 ## AWS backend setup {#avhclient_setup_aws}
 
-AVH Client accesses AWS services via [Boto3 AWS SDK](https://github.com/boto/boto3) and for that requires a set of parameters that can be provided in following ways:
-- Provided as argument in the command line when executing avhclient.
+AVH Client basic usage
+
+AVH Client accesses AWS services via [Boto3 AWS SDK](https://github.com/boto/boto3) and for that requires a set of parameters which can be provided in following ways:
+- Provided as arguments in the command line when executing avhclient.
 - Defined as environmental parameters when avhclient is running.
 - Specified in the \ref avhclient_yml as aws backend property.
 
 
-| Enviromental Parameter| aws backend property | Description
+| Enviromental Parameter| aws backend property | Description<sup>1</sup>
 |:----------------------|:---------------------|:------------------------------
-| **AWS Credentials**<sup>1</sup>  | &emsp;    | It is necessary to expose avhclient with the AWS user credentials (IAM User is recommended, see \ref avhclient_setup_iam)
+| **AWS Credentials**<sup>2</sup>  | &emsp;    | **It is necessary to expose avhclient with the AWS user credentials** (IAM User is recommended, see \ref avhclient_setup_iam)
 | AWS_ACCESS_KEY_ID     | -                    | (M) Key Id of the [access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) for the AWS account (as IAM user) that shall be used for AWS access.
-| AWS_SECRET_ACCESS_KEY |-                     | (M) Key value of the [access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) for the AWS account (as IAM user) that shall be used for AWS access.
-| AWS_SESSION_TOKEN     |-                     | Session token.
+| AWS_SECRET_ACCESS_KEY | -                    | (M) Key value of the [access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) for the AWS account (as IAM user) that shall be used for AWS access.
+| AWS_SESSION_TOKEN     | -                    | Session token, if applicable.
 |                       |&emsp;                |&emsp;
 |**AWS Parameters**     |&emsp;                |&emsp;
-| AWS_AMI_ID            | `ami-id`             | (O) The id of already available \ref AWS "AVH AMI instance" to use. If not specified then a new AVH AMI instance will be created. Default is ''.
-| AWS_AMI_VERSION       | `ami-version`        | (O) Version of AVH AMI to use for new instance. If not specified the latest available version will be used.
-| AWS_IAM_PROFILE       | `iam-profile`        | (M) The [IAM Instance Profile](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html) associated with the AVH AMI.
+| AWS_AMI_ID            | `ami-id`             | (O) The id of already available \ref AWS "EC2 instance with AVH AMI" that shall be used. If not specified then a new AVH EC2 instance will be created. Default is ''.
+| AWS_AMI_VERSION       | `ami-version`        | (O) Version of AVH AMI to use for new EC2 instance. If not specified the latest available version will be used.
+| AWS_IAM_PROFILE       | `iam-profile`        | (M) The [IAM Instance Profile](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html) associated with the AVH EC2 instance granting it access to required AWS resources. Default is ''.
 | AWS_DEFAULT_REGION    | `default-region`     | (O) The data center region for running new AVH AMI. Default is `eu-west-1`.
 | AWS_INSTANCE_NAME     | `instance-name`      | (O) The name for the EC2 instance that will be created with AVH AMI.
-| AWS_INSTANCE_TYPE     | `instance-name`      | (O) The EC2 instance type to be used when creating the AVH AMI instance. Default is `t2.micro`. See \ref Requirements.
+| AWS_INSTANCE_TYPE     | `instance-name`      | (O) The EC2 instance type to be used when creating the EC2 instance with AVH AMI. Default is `c5.large`. See \ref Requirements.
 | AWS_SECURITY_GROUP_ID | `security-group-id ` | (N) The id of the [VPC security group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) that the AVH AMI instance shall be added to. Shall have format `sg-xxxxxxxx`.
-| AWS_SUBNET_ID         | `subnet-id`          | (N) The id of the [VPC subnet](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics) that the AVH AMI instance shall connect to. Shall have format `subnet-xxxxxxxx`.
-| AWS_S3_BUCKET_NAME    | `s3-bucket-name`     | (N) The name of the [S3 storage bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html) to be used for data storage on Arm Virtual Hardware AMI.
-| AWS_KEEP_EC2_INSTANCES| `keep-ec2-instance`  | (O) If set to `False`, then EC2 instance will be terminated after avhclient completes its execution. If `True`, the instance will not be terminated. Default is `False`.
-| AWS_KEY_NAME          | `key-name`           | (O) The name of an [access key pair](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) to be used as EC2 SSH key. If provided, corresponding key pair shall be available in AWS. If not provided, then no SSH connection will be possible. Default is ''.
+| AWS_SUBNET_ID         | `subnet-id`          | (N) The id of the [VPC subnet](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics) that the AVH AMI instance shall use. Shall have format `subnet-xxxxxxxx`.
+| AWS_S3_BUCKET_NAME    | `s3-bucket-name`     | (N) The name of the [S3 storage bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html) to be used for temporary data storage used by Arm Virtual Hardware AMI. Not used for long-term data.
+| AWS_KEEP_EC2_INSTANCES| `keep-ec2-instance`  | (O) If set to `False`, then EC2 instance will be terminated after avhclient completes its execution. If `True`, the instance will only be stopped. Default is `False`.
+| AWS_KEY_NAME          | `key-name`           | (O) The name of a [security key pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) to be used for SSH access to the new AVH EC2 instance. If provided, corresponding key pair shall be available in AWS. If not provided, then no SSH connection will be possible. Default is ''.
 | AWS_INSTANCE_ID       | `instance-id`        | (N) The id of an EC2 instance that shall be used for running AVH AMI. If defined, then AWS_AMI_ID is ignored. Default is ''.
 | AWS_EFS_DNS_NAME      | `efs-dns-name`       | (O) If set, the avhclient will try to mount Elastic File System (EFS) during the cloud-init phase. The only scenario supported for now is using Packs. Default is ''.
 | AWS_EFS_PACKS_DIR     | `efs-packs-dir`      | (O) Sets the mount path relative to /home/ubuntu folder. Default folder is `packs` and if it exists locally it will be then replaced by the EFS mount. Only used when AWS_EFS_DNS_NAME is set.
 
-> (M) Mandatory parameter. Execution will fail if not provided.<br/>
-> (O) Optional parameter. Execution should proceed with default value as well.<br/>
-> (N) Mandatory parameter when creating a new AMI instance (AWS_AMI_ID and AWS_INSTANCE_ID aren't set) <br/>
+> <sup>1</sup> Following abbreviations indicate if a parameter is mandatory or optional:<br/>
+> &emsp;(M) Mandatory parameter. Execution will fail if not provided.<br/>
+> &emsp;(O) Optional parameter. Execution could proceed with default value as well.<br/>
+> &emsp;(N) Mandatory parameter when creating a new AMI instance (AWS_AMI_ID and AWS_INSTANCE_ID aren't set) <br/>
 
-> <sup>1</sup>You can either export your AWS credentials in the enviroment  or create an AWS credential file on ~/.aws/credentials (Linux & Mac) or %USERPROFILE%.awscredentials (Windows):
+> <sup>2</sup>You can either export your AWS credentials in the enviroment  or create an AWS credential file on ~/.aws/credentials (Linux & Mac) or %USERPROFILE%.awscredentials (Windows):
 > 
 > ```
 > [default]
@@ -104,9 +108,9 @@ avhclient operation with AWS backend requires certain Identity and Access Manage
 
 **IAM User**
 
-The IAM User that is used by avhclient for AWS access (see *AWS credentials* in \ref avhclient_setup_aws) shall have shall have following [IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_id-based):
+The IAM User that is used by avhclient for AWS access (see *AWS credentials* in \ref avhclient_setup_aws) shall have following [IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_id-based):
 
-- AVHPassRole,- a customer-managed policy tha you need to create in your AWS account specifically for using avhclient:
+- AVHPassRole,- a customer-managed policy that you need to create in your AWS account specifically for using avhclient:
 ```
 AVHPassrole:
   Type: 'AWS::IAM::Policy'
