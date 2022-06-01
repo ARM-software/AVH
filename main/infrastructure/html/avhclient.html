@@ -111,7 +111,7 @@ $(document).ready(function(){initNavTree('avhclient.html',''); initResizable(); 
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p ><a class="anchor" id="md_src_avhclient"></a> <b>Arm Virtual Hardware Client (avhclient)</b> is a python module for deploying projects on Arm Virtual Hardware from a command-line interface (CLI). The implementation is maintained by Arm in the GitHub repository <a href="https://github.com/ARM-software/avhclient"><b>github.com/ARM-software/avhclient</b></a>.</p>
-<p >When using AVH client you can have uniform implementation for CI operations in various environments including local execution. Reference examples are provided for the following use cases:</p>
+<p >When using avhclient you can have uniform implementation for CI operations in various environments including local execution. Reference examples are provided for the following use cases:</p>
 <ul>
 <li><a class="el" href="run_ami_jenkins.html">Jenkins CI pipelines</a></li>
 <li><a class="el" href="run_ami_github.html">GitHub-Actions workflows</a></li>
@@ -124,53 +124,57 @@ Installation</h1>
 Supported backends</h1>
 <p >AVH Client can control different backends with Arm Virtual Hardware Targets. The backend shall be specified with <code>-b</code> option preceding the actual AVH Client command. Following options are currently available:</p>
 <ul>
-<li><code>aws</code>(default) - interacts with <a class="el" href="AWS.html">Arm Virtual Hardware instance on AWS</a>.</li>
+<li><code>aws</code>(default) - interacts with <a class="el" href="AWS.html">Arm Virtual Hardware instance on AWS</a>.<ul>
+<li>avhclient can create/start AVH EC2 instances from AVH AMIs, prepare the instance, upload files to the instance, execute commands and run the program, download the results back and cleanup the instance.</li>
+</ul>
+</li>
 <li><code>local</code> - operates with AVH Targets installed locally.</li>
 </ul>
 <h1><a class="anchor" id="avhclient_setup_aws"></a>
 AWS backend setup</h1>
-<p >AVH Client accesses AWS services via <a href="https://github.com/boto/boto3">Boto3 AWS SDK</a> and for that requires a set of parameters that can be provided in following ways:</p><ul>
-<li>Provided as argument in the command line when executing avhclient.</li>
+<p >AVH Client basic usage</p>
+<p >AVH Client accesses AWS services via <a href="https://github.com/boto/boto3">Boto3 AWS SDK</a> and for that requires a set of parameters which can be provided in following ways:</p><ul>
+<li>Provided as arguments in the command line when executing avhclient.</li>
 <li>Defined as environmental parameters when avhclient is running.</li>
 <li>Specified in the <a class="el" href="avhclient.html#avhclient_yml">AVH YML file</a> as aws backend property.</li>
 </ul>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">Enviromental Parameter   </th><th class="markdownTableHeadLeft">aws backend property   </th><th class="markdownTableHeadLeft">Description    </th></tr>
+<th class="markdownTableHeadLeft">Enviromental Parameter   </th><th class="markdownTableHeadLeft">aws backend property   </th><th class="markdownTableHeadLeft">Description<sup>1</sup>    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><b>AWS Credentials</b><sup>1</sup>   </td><td class="markdownTableBodyLeft">&emsp;   </td><td class="markdownTableBodyLeft">It is necessary to expose avhclient with the AWS user credentials (IAM User is recommended, see <a class="el" href="avhclient.html#avhclient_setup_iam">IAM Requirements</a>)    </td></tr>
+<td class="markdownTableBodyLeft"><b>AWS Credentials</b><sup>2</sup>   </td><td class="markdownTableBodyLeft">&emsp;   </td><td class="markdownTableBodyLeft"><b>It is necessary to expose avhclient with the AWS user credentials</b> (IAM User is recommended, see <a class="el" href="avhclient.html#avhclient_setup_iam">IAM Requirements</a>)    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">AWS_ACCESS_KEY_ID   </td><td class="markdownTableBodyLeft">-   </td><td class="markdownTableBodyLeft">(M) Key Id of the <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">access key pair</a> for the AWS account (as IAM user) that shall be used for AWS access.    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">AWS_SECRET_ACCESS_KEY   </td><td class="markdownTableBodyLeft">-   </td><td class="markdownTableBodyLeft">(M) Key value of the <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">access key pair</a> for the AWS account (as IAM user) that shall be used for AWS access.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft">AWS_SESSION_TOKEN   </td><td class="markdownTableBodyLeft">-   </td><td class="markdownTableBodyLeft">Session token.    </td></tr>
+<td class="markdownTableBodyLeft">AWS_SESSION_TOKEN   </td><td class="markdownTableBodyLeft">-   </td><td class="markdownTableBodyLeft">Session token, if applicable.    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"></td><td class="markdownTableBodyLeft">&emsp;   </td><td class="markdownTableBodyLeft">&emsp;    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><b>AWS Parameters</b>   </td><td class="markdownTableBodyLeft">&emsp;   </td><td class="markdownTableBodyLeft">&emsp;    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">AWS_AMI_ID   </td><td class="markdownTableBodyLeft"><code>ami-id</code>   </td><td class="markdownTableBodyLeft">(O) The id of already available <a class="el" href="AWS.html">AVH AMI instance</a> to use. If not specified then a new AVH AMI instance will be created. Default is ''.    </td></tr>
+<td class="markdownTableBodyLeft">AWS_AMI_ID   </td><td class="markdownTableBodyLeft"><code>ami-id</code>   </td><td class="markdownTableBodyLeft">(O) The id of already available <a class="el" href="AWS.html">EC2 instance with AVH AMI</a> that shall be used. If not specified then a new AVH EC2 instance will be created. Default is ''.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft">AWS_AMI_VERSION   </td><td class="markdownTableBodyLeft"><code>ami-version</code>   </td><td class="markdownTableBodyLeft">(O) Version of AVH AMI to use for new instance. If not specified the latest available version will be used.    </td></tr>
+<td class="markdownTableBodyLeft">AWS_AMI_VERSION   </td><td class="markdownTableBodyLeft"><code>ami-version</code>   </td><td class="markdownTableBodyLeft">(O) Version of AVH AMI to use for new EC2 instance. If not specified the latest available version will be used.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">AWS_IAM_PROFILE   </td><td class="markdownTableBodyLeft"><code>iam-profile</code>   </td><td class="markdownTableBodyLeft">(M) The <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html">IAM Instance Profile</a> associated with the AVH AMI.    </td></tr>
+<td class="markdownTableBodyLeft">AWS_IAM_PROFILE   </td><td class="markdownTableBodyLeft"><code>iam-profile</code>   </td><td class="markdownTableBodyLeft">(M) The <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html">IAM Instance Profile</a> associated with the AVH EC2 instance granting it access to required AWS resources. Default is ''.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">AWS_DEFAULT_REGION   </td><td class="markdownTableBodyLeft"><code>default-region</code>   </td><td class="markdownTableBodyLeft">(O) The data center region for running new AVH AMI. Default is <code>eu-west-1</code>.    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">AWS_INSTANCE_NAME   </td><td class="markdownTableBodyLeft"><code>instance-name</code>   </td><td class="markdownTableBodyLeft">(O) The name for the EC2 instance that will be created with AVH AMI.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft">AWS_INSTANCE_TYPE   </td><td class="markdownTableBodyLeft"><code>instance-name</code>   </td><td class="markdownTableBodyLeft">(O) The EC2 instance type to be used when creating the AVH AMI instance. Default is <code>t2.micro</code>. See <a class="el" href="AWS.html#Requirements">System Requirements</a>.    </td></tr>
+<td class="markdownTableBodyLeft">AWS_INSTANCE_TYPE   </td><td class="markdownTableBodyLeft"><code>instance-name</code>   </td><td class="markdownTableBodyLeft">(O) The EC2 instance type to be used when creating the EC2 instance with AVH AMI. Default is <code>c5.large</code>. See <a class="el" href="AWS.html#Requirements">System Requirements</a>.    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">AWS_SECURITY_GROUP_ID   </td><td class="markdownTableBodyLeft"><code>security-group-id</code>   </td><td class="markdownTableBodyLeft">(N) The id of the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html">VPC security group</a> that the AVH AMI instance shall be added to. Shall have format <code>sg-xxxxxxxx</code>.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft">AWS_SUBNET_ID   </td><td class="markdownTableBodyLeft"><code>subnet-id</code>   </td><td class="markdownTableBodyLeft">(N) The id of the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics">VPC subnet</a> that the AVH AMI instance shall connect to. Shall have format <code>subnet-xxxxxxxx</code>.    </td></tr>
+<td class="markdownTableBodyLeft">AWS_SUBNET_ID   </td><td class="markdownTableBodyLeft"><code>subnet-id</code>   </td><td class="markdownTableBodyLeft">(N) The id of the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics">VPC subnet</a> that the AVH AMI instance shall use. Shall have format <code>subnet-xxxxxxxx</code>.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">AWS_S3_BUCKET_NAME   </td><td class="markdownTableBodyLeft"><code>s3-bucket-name</code>   </td><td class="markdownTableBodyLeft">(N) The name of the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html">S3 storage bucket</a> to be used for data storage on Arm Virtual Hardware AMI.    </td></tr>
+<td class="markdownTableBodyLeft">AWS_S3_BUCKET_NAME   </td><td class="markdownTableBodyLeft"><code>s3-bucket-name</code>   </td><td class="markdownTableBodyLeft">(N) The name of the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html">S3 storage bucket</a> to be used for temporary data storage used by Arm Virtual Hardware AMI. Not used for long-term data.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft">AWS_KEEP_EC2_INSTANCES   </td><td class="markdownTableBodyLeft"><code>keep-ec2-instance</code>   </td><td class="markdownTableBodyLeft">(O) If set to <code>False</code>, then EC2 instance will be terminated after avhclient completes its execution. If <code>True</code>, the instance will not be terminated. Default is <code>False</code>.    </td></tr>
+<td class="markdownTableBodyLeft">AWS_KEEP_EC2_INSTANCES   </td><td class="markdownTableBodyLeft"><code>keep-ec2-instance</code>   </td><td class="markdownTableBodyLeft">(O) If set to <code>False</code>, then EC2 instance will be terminated after avhclient completes its execution. If <code>True</code>, the instance will only be stopped. Default is <code>False</code>.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">AWS_KEY_NAME   </td><td class="markdownTableBodyLeft"><code>key-name</code>   </td><td class="markdownTableBodyLeft">(O) The name of an <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">access key pair</a> to be used as EC2 SSH key. If provided, corresponding key pair shall be available in AWS. If not provided, then no SSH connection will be possible. Default is ''.    </td></tr>
+<td class="markdownTableBodyLeft">AWS_KEY_NAME   </td><td class="markdownTableBodyLeft"><code>key-name</code>   </td><td class="markdownTableBodyLeft">(O) The name of a <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">security key pair</a> to be used for SSH access to the new AVH EC2 instance. If provided, corresponding key pair shall be available in AWS. If not provided, then no SSH connection will be possible. Default is ''.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">AWS_INSTANCE_ID   </td><td class="markdownTableBodyLeft"><code>instance-id</code>   </td><td class="markdownTableBodyLeft">(N) The id of an EC2 instance that shall be used for running AVH AMI. If defined, then AWS_AMI_ID is ignored. Default is ''.    </td></tr>
 <tr class="markdownTableRowOdd">
@@ -179,13 +183,14 @@ AWS backend setup</h1>
 <td class="markdownTableBodyLeft">AWS_EFS_PACKS_DIR   </td><td class="markdownTableBodyLeft"><code>efs-packs-dir</code>   </td><td class="markdownTableBodyLeft">(O) Sets the mount path relative to /home/ubuntu folder. Default folder is <code>packs</code> and if it exists locally it will be then replaced by the EFS mount. Only used when AWS_EFS_DNS_NAME is set.   </td></tr>
 </table>
 <blockquote class="doxtable">
-<p >(M) Mandatory parameter. Execution will fail if not provided.<br  />
- (O) Optional parameter. Execution should proceed with default value as well.<br  />
- (N) Mandatory parameter when creating a new AMI instance (AWS_AMI_ID and AWS_INSTANCE_ID aren't set) <br  />
+<p ><sup>1</sup> Following abbreviations indicate if a parameter is mandatory or optional:<br  />
+ &emsp;(M) Mandatory parameter. Execution will fail if not provided.<br  />
+ &emsp;(O) Optional parameter. Execution could proceed with default value as well.<br  />
+ &emsp;(N) Mandatory parameter when creating a new AMI instance (AWS_AMI_ID and AWS_INSTANCE_ID aren't set) <br  />
  </p>
 </blockquote>
 <blockquote class="doxtable">
-<p ><sup>1</sup>You can either export your AWS credentials in the enviroment or create an AWS credential file on ~/.aws/credentials (Linux &amp; Mac) or USERPROFILE%.awscredentials (Windows):</p>
+<p ><sup>2</sup>You can either export your AWS credentials in the enviroment or create an AWS credential file on ~/.aws/credentials (Linux &amp; Mac) or USERPROFILE%.awscredentials (Windows):</p>
 <div class="fragment"><div class="line">[default]</div>
 <div class="line">aws_access_key_id=YOUR_AWS_ACCESS_KEY_ID</div>
 <div class="line">aws_secret_access_key=YOUR_AWS_SECRET_ACCESS_KEY</div>
@@ -215,9 +220,9 @@ CloudFormation template</h2>
 IAM Requirements</h2>
 <p >avhclient operation with AWS backend requires certain Identity and Access Management (IAM) configurations as explained below.</p>
 <p ><b>IAM User</b></p>
-<p >The IAM User that is used by avhclient for AWS access (see <em>AWS credentials</em> in <a class="el" href="avhclient.html#avhclient_setup_aws">AWS backend setup</a>) shall have shall have following <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_id-based">IAM Policies</a>:</p>
+<p >The IAM User that is used by avhclient for AWS access (see <em>AWS credentials</em> in <a class="el" href="avhclient.html#avhclient_setup_aws">AWS backend setup</a>) shall have following <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_id-based">IAM Policies</a>:</p>
 <ul>
-<li>AVHPassRole,- a customer-managed policy tha you need to create in your AWS account specifically for using avhclient: <div class="fragment"><div class="line">AVHPassrole:</div>
+<li>AVHPassRole,- a customer-managed policy that you need to create in your AWS account specifically for using avhclient: <div class="fragment"><div class="line">AVHPassrole:</div>
 <div class="line">  Type: &#39;AWS::IAM::Policy&#39;</div>
 <div class="line">  Properties:</div>
 <div class="line">    PolicyName: AVHPassRole</div>

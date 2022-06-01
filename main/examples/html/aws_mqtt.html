@@ -127,13 +127,13 @@ Device commissioning</h1>
 <p >In order to communicate with the AWS IoT service the embedded application needs to be commissioned with proper connection and security parameters that match the configuration in the cloud service. <a class="el" href="aws_mqtt.html#aws_iot_thing">Create AWS IoT Thing</a> describes how to setup necessary endpoint in the AWS and <a class="el" href="aws_mqtt.html#aws_iot_params">Commission parameters to device</a> explains how to apply the parameters in the embedded code.</p>
 <h2><a class="anchor" id="aws_iot_thing"></a>
 Create AWS IoT Thing</h2>
-<p >The communication and security parameters can be obtained from an AWS IoT Thing. Steps below explain how to create it for this example, while AWS tutorial <a href="https://docs.aws.amazon.com/iot/latest/developerguide/create-iot-resources.html">Create AWS IoT</a> provides general overview and additional references.</p>
-<p >In AWS create an <b>IoT Thing</b> for your device as follows:</p>
+<p >The communication and security parameters can be obtained from <a href="https://aws.amazon.com/iot-core/">AWS IoT Core</a> service. Steps below explain the process for this example and AWS tutorial <a href="https://docs.aws.amazon.com/iot/latest/developerguide/create-iot-resources.html">Create AWS IoT</a> provides general overview and additional references.</p>
+<p >Create an AWS <b>IoT Thing</b> for your device as follows:</p>
 <ul>
 <li>From your AWS Management Console browse to the <b>AWS IoT Core</b> service.</li>
 <li>In the left navigation pane, choose <b>Manage</b>, and then choose <b>Things</b>.</li>
 <li>On the Things page click <b>Create things</b> button, choose <b>Create a single thing</b> and proceed further.</li>
-<li>In the thing properties provide a name for your thing (for example “MyThing”), keep other parameters at default and then choose Next. You will need to add the name later to your embedded code.</li>
+<li>In the thing properties provide a name for your thing (for example <em>MyThing</em>), keep other parameters at default and then choose <b>Next</b>. Later you will need to provision the same name to the embedded code.</li>
 <li>Choose to Auto-generate a certificate for your thing.</li>
 <li>When offered to attach policies to certificate, click <b>Create policy</b> to open corresponding page in a separate browser tab. There:<ul>
 <li>Enter a name for the policy (for example “MyThingPolicy”).</li>
@@ -144,7 +144,7 @@ Create AWS IoT Thing</h2>
 <li><b>iot:Receive</b></li>
 </ul>
 </li>
-<li>In the <b>Policy resource</b> set ***** for all statements.</li>
+<li>In the <b>Policy resource</b> set * for all statements.</li>
 <li>Click on <b>Create</b> and observe the new policy appeared in the list.</li>
 </ul>
 </li>
@@ -155,7 +155,7 @@ Create AWS IoT Thing</h2>
 </ul>
 </li>
 <li>Make a note of your Device data endpoint.<ul>
-<li>In the navigation pane of the AWS IoT console, choose <b>Settings</b> and there find the <b>Device data endpoint</b> such as a3xyzzyx.iot.us-east-2.amazonaws.com to have it ready for later.</li>
+<li>In the navigation pane of the AWS IoT console, choose <b>Settings</b> and there find the <b>Device data endpoint</b> such as <em>a3xyzzyx.iot.us-east-2.amazonaws.com</em> to have it ready for later.</li>
 </ul>
 </li>
 </ul>
@@ -191,7 +191,7 @@ Commission parameters to device</h2>
 <p >Note that when running the example on Arm Virtual Hardware using GitHub Actions, corresponding definitions (non-WiFi) are automatically updated in the code with values stored in <a class="el" href="aws_mqtt.html#aws_mqtt_gh_secrets">GitHub Secrets</a>.</p>
 <h1><a class="anchor" id="autotoc_md24"></a>
 Setup of CI Test</h1>
-<p >To build and run this application program with a CI workflow on GitHub the following steps are required. For details refer to <a href="https://arm-software.github.io/AVH/main/infrastructure/html/run_ami_github.html#GitHub_hosted">Run AMI with GitHub Actions - GetHub-hosted Runners</a>.</p>
+<p >To build and run this application program with a GitHub Actions workflow the following steps are required. For details refer to <a href="https://arm-software.github.io/AVH/main/infrastructure/html/run_ami_github.html">Run AMI with GitHub Actions</a>.</p>
 <ol type="1">
 <li><b>Amazon Web Service (AWS) account</b> with:<ul>
 <li>Amazon EC2 (elastic cloud) access</li>
@@ -216,7 +216,7 @@ GitHub Secrets</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><b>AWS Access</b>   </td><td class="markdownTableBodyLeft"><b>Settings and credentials required to acces AWS EC2 and S3 services</b>    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code>AWS_IAM_PROFILE</code>   </td><td class="markdownTableBodyLeft">The <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html">IAM Role</a> to be used for AWS access. The value shall be preceded with <code>Name=</code> prior to the actual profile name. For example <code>Name=myAVHRole</code>.    </td></tr>
+<td class="markdownTableBodyLeft"><code>AWS_IAM_PROFILE</code>   </td><td class="markdownTableBodyLeft">The <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html">IAM Role</a> to be used for AWS access.    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><code>AWS_ACCESS_KEY_ID</code><br  />
 <code>AWS_SECRET_ACCESS_KEY</code>   </td><td class="markdownTableBodyLeft"><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">Access key pair</a> for the AWS account (as IAM user) that shall be used by the CI workflow for AWS access.    </td></tr>
