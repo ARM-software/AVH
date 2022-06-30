@@ -23,7 +23,7 @@ With the AVH Subscription you can now create and use AVH AMI instances.
 
 **EC2 Instance type**
 
-At least *t2.micro* instance type is required to run AVH AMI, while *t3.medium* is a recommended option. An instance with more resources may improve the performance.
+*c5.large* instance type is recommended to run AVH AMI. A different instance type can be also used to improve the performance.
 
 \page run_ami_local Run AMI from AWS Console
 
