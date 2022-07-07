@@ -4,9 +4,14 @@ This section explains how Virtual Hardware Targets can be used [Arm Development 
 
 ## Tools Installation and set up {#ds_setup}
 
-- [Download](https://developer.arm.com/tools-and-software/embedded/arm-development-studio/downloads) and install the latest Arm Development Studio. If necessary, you can generate an evaluation license from _Help > Arm License Manager_.
+[Download](https://developer.arm.com/tools-and-software/embedded/arm-development-studio/downloads) and install the latest Arm Development Studio. If necessary, you can generate an evaluation license from _Help > Arm License Manager_.
 
-- Use SSH port forwarding to forward the port to be used for debug server (default is `7100`) on your virtual target to your localhost. See similar instructions [here](https://arm-software.github.io/AVH/main/infrastructure/html/run_ami_local.html#use_vnc).
+Use SSH port forwarding to forward the port to be used for debug server (default is `7100`) on your virtual target to your localhost.
+```
+ssh -i <key.pem> -N -L 7100:localhost:7100 ubuntu@<AMI_IP_addr>
+```
+
+The `-N` option holds the SSH tunnel connection and does not allow to execute other remote commands. This is useful when only forwarding ports.
 
 ## Start Virtual Hardware Target {#ds_vht_start}
 
@@ -18,13 +23,15 @@ This section explains how Virtual Hardware Targets can be used [Arm Development 
 | `--iris-port <PORT>`  |         |
 | `--print-port-number` | `-p`    |
 
+Use `--help` for a full description of these options.
+
 **Example**
 
 ```
-VHT-Corstone-300.exe <other launching options> -I -A --iris-port 7100 -p
+VHT_Corstone_SSE-300_Ethos-U55 <other launching options> -I -A --iris-port 7100 -p
 ```
 
-This will start the debug server with remote connection enabled on port 7100.
+This will start the debug server with remote connection enabled on port `7100`.
 
 ## Connect to Target in Arm DS {#ds_connect}
 
