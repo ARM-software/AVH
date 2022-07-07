@@ -6,7 +6,7 @@ This section explains how Virtual Hardware Targets can be used [Arm Development 
 
 [Download](https://developer.arm.com/tools-and-software/embedded/arm-development-studio/downloads) and install the latest Arm Development Studio. If necessary, you can generate an evaluation license from _Help > Arm License Manager_.
 
-Use SSH port forwarding to forward the port to be used for debug server (default is `7100`) on your virtual target to your localhost.\
+Use SSH port forwarding to forward the port to be used for debug server (default is `7100`) on your virtual target to your localhost.
 ```
 ssh -i <key.pem> -N -L 7100:localhost:7100 ubuntu@<AMI_IP_addr>
 ```
