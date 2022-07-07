@@ -225,7 +225,34 @@ Run projects</h1>
 <div class="line">Performance index                       : 0.05</div>
 <div class="line">cpu_core.cpu0                           :  10.03 MIPS (  4000000000 Inst)</div>
 <div class="line">----------------------------------------------------------------------------</div>
-</div><!-- fragment --> </div></div><!-- contents -->
+</div><!-- fragment --> <h1><a class="anchor" id="other"></a>
+Other connections</h1>
+<h2><a class="anchor" id="code-server"></a>
+Enable &lt;a href="https://github.com/cdr/code-server" &gt;Code Server&lt;/a&gt; (Visual Studio Code)</h2>
+<p >The Arm Virtual Hardware AMI comes with an IDE (Visual Studio Code) which can be accessed with a web browser. To access it, you will need to start a SSH tunnel to the instance and forward port <code>8080</code>.</p>
+<p >On Linux, MacOS or Windows Powershell: </p><div class="fragment"><div class="line">ssh -i &lt;key.pem&gt; -N -L 8080:localhost:8080 ubuntu@&lt;AMI_IP_addr&gt;</div>
+</div><!-- fragment --><p >The <code>-N</code> option holds the SSH tunnel connection and does not allow to execute other remote commands. This is useful when only forwarding ports.</p>
+<p >You can then access the IDE via a web browser on your local machine at <a href="http://localhost:8080">http://localhost:8080</a></p>
+<h2><a class="anchor" id="vnc"></a>
+Enable Virtual Network Computing (VNC)</h2>
+<p >VNC is a protocol to enable remote desktop. The instructions below will securely enable VNC through a SSH tunnel.</p>
+<p >In the AMI terminal:</p>
+<ul>
+<li>Enable and set VNC password (You do not need to enter a view-only password when prompted) <div class="fragment"><div class="line">vncpasswd</div>
+</div><!-- fragment --></li>
+<li>To start the VNC server for the session <div class="fragment"><div class="line">sudo systemctl start vncserver@1.service</div>
+</div><!-- fragment --></li>
+<li>To restart the VNC server after reboot <div class="fragment"><div class="line">sudo systemctl enable vncserver@1.service</div>
+</div><!-- fragment --></li>
+</ul>
+<p >On your local machine:</p>
+<ul>
+<li>Forward port <code>5901</code> on local machine. On Linux, MacOS or Windows Powershell: <div class="fragment"><div class="line">ssh -I &lt;key.pem&gt; -N –L 5901:localhost:5901 ubuntu@&lt;AMI_IP_addr&gt;</div>
+</div><!-- fragment --></li>
+</ul>
+<p >The <code>-N</code> option holds the SSH tunnel connection and does not allow to execute other remote commands. This is useful when only forwarding ports.</p>
+<p >Connect your VNC client (e.g. <a href="https://remmina.org">Remmina</a>, <a href="https://tigervnc.org">TigerVNC</a>) to port <code>5901</code>. You will be prompted for the VNC password. </p>
+</div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->

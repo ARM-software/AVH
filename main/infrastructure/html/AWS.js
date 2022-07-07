@@ -14,7 +14,11 @@ var AWS =
         [ "Connect from browser", "run_ami_local.html#use_browser", null ],
         [ "Connect using SSH", "run_ami_local.html#use_ssh", null ]
       ] ],
-      [ "Run projects", "run_ami_local.html#run_example", null ]
+      [ "Run projects", "run_ami_local.html#run_example", null ],
+      [ "Other connections", "run_ami_local.html#other", [
+        [ "Enable <a href=\"https://github.com/cdr/code-server\" >Code Server</a> (Visual Studio Code)", "run_ami_local.html#code-server", null ],
+        [ "Enable Virtual Network Computing (VNC)", "run_ami_local.html#vnc", null ]
+      ] ]
     ] ],
     [ "Run AMI with Jenkins", "run_ami_jenkins.html", [
       [ "Using AVH AMI as a Jenkins node", "run_ami_jenkins.html#avh_jenkins_node", [

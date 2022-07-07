@@ -113,10 +113,9 @@ $(document).ready(function(){initNavTree('debug_ds.html',''); initResizable(); }
 <div class="textblock"><p ><a class="anchor" id="md_src_ds_debug"></a> This section explains how Virtual Hardware Targets can be used <a href="https://developer.arm.com/tools-and-software/embedded/arm-development-studio">Arm Development Studio</a> for debugging your embedded application on a local computer.</p>
 <h1><a class="anchor" id="ds_setup"></a>
 Tools Installation and set up</h1>
-<ul>
-<li><a href="https://developer.arm.com/tools-and-software/embedded/arm-development-studio/downloads">Download</a> and install the latest Arm Development Studio. If necessary, you can generate an evaluation license from <em>Help &gt; Arm License Manager</em>.</li>
-<li>Use SSH port forwarding to forward the port to be used for debug server (default is <code>7100</code>) on your virtual target to your localhost. See similar instructions <a href="https://arm-software.github.io/AVH/main/infrastructure/html/run_ami_local.html#use_vnc">here</a>.</li>
-</ul>
+<p ><a href="https://developer.arm.com/tools-and-software/embedded/arm-development-studio/downloads">Download</a> and install the latest Arm Development Studio. If necessary, you can generate an evaluation license from <em>Help &gt; Arm License Manager</em>.</p>
+<p >Use SSH port forwarding to forward the port to be used for debug server (default is <code>7100</code>) on your virtual target to your localhost. </p><div class="fragment"><div class="line">ssh -i &lt;key.pem&gt; -N -L 7100:localhost:7100 ubuntu@&lt;AMI_IP_addr&gt;</div>
+</div><!-- fragment --><p >The <code>-N</code> option holds the SSH tunnel connection and does not allow to execute other remote commands. This is useful when only forwarding ports.</p>
 <h1><a class="anchor" id="ds_vht_start"></a>
 Start Virtual Hardware Target</h1>
 <ul>
@@ -134,9 +133,10 @@ Start Virtual Hardware Target</h1>
 </table>
 </li>
 </ul>
+<p >Use <code>--help</code> for a full description of these options.</p>
 <p ><b>Example</b></p>
-<div class="fragment"><div class="line">VHT-Corstone-300.exe &lt;other launching options&gt; -I -A --iris-port 7100 -p</div>
-</div><!-- fragment --><p >This will start the debug server with remote connection enabled on port 7100.</p>
+<div class="fragment"><div class="line">VHT_Corstone_SSE-300_Ethos-U55 &lt;other launching options&gt; -I -A --iris-port 7100 -p</div>
+</div><!-- fragment --><p >This will start the debug server with remote connection enabled on port <code>7100</code>.</p>
 <h1><a class="anchor" id="ds_connect"></a>
 Connect to Target in Arm DS</h1>
 <ul>
