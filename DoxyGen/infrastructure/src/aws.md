@@ -182,9 +182,9 @@ cpu_core.cpu0                           :  10.03 MIPS (  4000000000 Inst)
 ```
 ## Other connections {#other}
 
-### Enable [Code Server](https://github.com/cdr/code-server) (Visual Studio Code) {#code-server}
+### Enable Code Server (Visual Studio Code) {#code-server}
 
-The Arm Virtual Hardware AMI comes with an IDE (Visual Studio Code) which can be accessed with a web browser. To access it, you will need to start a SSH tunnel to the instance and forward port `8080`.
+The Arm Virtual Hardware AMI comes with [Code Server](https://github.com/cdr/code-server), enabling access to [Visual Studio Code](https://github.com/Microsoft/vscode) with a web browser. To access it, you will need to start a SSH tunnel to the instance and forward port `8080`.
 
 On Linux, MacOS or Windows Powershell:
 ```
