@@ -186,7 +186,7 @@ cpu_core.cpu0                           :  10.03 MIPS (  4000000000 Inst)
 
 The Arm Virtual Hardware AMI comes with an IDE (Visual Studio Code) which can be accessed with a web browser. To access it, you will need to start a SSH tunnel to the instance and forward port `8080`.
 
-On Linux, MacOS or Windows Powershell:\
+On Linux, MacOS or Windows Powershell:
 ```
   ssh -i <key.pem> -N -L 8080:localhost:8080 ubuntu@<AMI_IP_addr>
 ```
@@ -201,24 +201,24 @@ VNC is a protocol to enable remote desktop. The instructions below will securely
 
 In the AMI terminal:
 
-- Enable and set VNC password (You do not need to enter a view-only password when prompted)\
+- Enable and set VNC password (You do not need to enter a view-only password when prompted)
 ```
   vncpasswd
 ```
 
-- To start the VNC server for the session\
+- To start the VNC server for the session
 ```
   sudo systemctl start vncserver@1.service
 ```
 
-- To restart the VNC server after reboot\
+- To restart the VNC server after reboot
 ```
   sudo systemctl enable vncserver@1.service
 ```
 
 On your local machine:
 
-- Forward port `5901` on local machine. On Linux, MacOS or Windows Powershell:\
+- Forward port `5901` on local machine. On Linux, MacOS or Windows Powershell:
 ```
   ssh -I <key.pem> -N –L 5901:localhost:5901 ubuntu@<AMI_IP_addr>
 ```
