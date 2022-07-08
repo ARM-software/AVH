@@ -228,8 +228,8 @@ Run projects</h1>
 </div><!-- fragment --> <h1><a class="anchor" id="other"></a>
 Other connections</h1>
 <h2><a class="anchor" id="code-server"></a>
-Enable &lt;a href="https://github.com/cdr/code-server" &gt;Code Server&lt;/a&gt; (Visual Studio Code)</h2>
-<p >The Arm Virtual Hardware AMI comes with an IDE (Visual Studio Code) which can be accessed with a web browser. To access it, you will need to start a SSH tunnel to the instance and forward port <code>8080</code>.</p>
+Enable Code Server (Visual Studio Code)</h2>
+<p >The Arm Virtual Hardware AMI comes with <a href="https://github.com/cdr/code-server">Code Server</a>, enabling access to <a href="https://github.com/Microsoft/vscode">Visual Studio Code</a> with a web browser. To access it, you will need to start a SSH tunnel to the instance and forward port <code>8080</code>.</p>
 <p >On Linux, MacOS or Windows Powershell: </p><div class="fragment"><div class="line">ssh -i &lt;key.pem&gt; -N -L 8080:localhost:8080 ubuntu@&lt;AMI_IP_addr&gt;</div>
 </div><!-- fragment --><p >The <code>-N</code> option holds the SSH tunnel connection and does not allow to execute other remote commands. This is useful when only forwarding ports.</p>
 <p >You can then access the IDE via a web browser on your local machine at <a href="http://localhost:8080">http://localhost:8080</a></p>
