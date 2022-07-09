@@ -35,7 +35,7 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Virtual Hardware
-   &#160;<span id="projectnumber">Version 1.2.2 - beta</span>
+   &#160;<span id="projectnumber">Version 1.2.3 - beta</span>
    </div>
    <div id="projectbrief">Infrastructure Service and Tool Integration</div>
   </td>
@@ -132,10 +132,9 @@ Supported backends</h1>
 </ul>
 <h1><a class="anchor" id="avhclient_setup_aws"></a>
 AWS backend setup</h1>
-<p >AVH Client basic usage</p>
-<p >AVH Client accesses AWS services via <a href="https://github.com/boto/boto3">Boto3 AWS SDK</a> and for that requires a set of parameters which can be provided in following ways:</p><ul>
-<li>Provided as arguments in the command line when executing avhclient.</li>
-<li>Defined as environmental parameters when avhclient is running.</li>
+<p >AVH Client accesses AWS services via <a href="https://github.com/boto/boto3">Boto3 AWS SDK</a> and for that requires a set of parameters which can be provided in different ways:</p><ul>
+<li>Added as options in the command line when executing avhclient.</li>
+<li>Defined as environmental parameters where avhclient is running.</li>
 <li>Specified in the <a class="el" href="avhclient.html#avhclient_yml">AVH YML file</a> as aws backend property.</li>
 </ul>
 <table class="markdownTable">
@@ -170,7 +169,7 @@ AWS backend setup</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">AWS_SUBNET_ID   </td><td class="markdownTableBodyLeft"><code>subnet-id</code>   </td><td class="markdownTableBodyLeft">(N) The id of the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics">VPC subnet</a> that the AVH AMI instance shall use. Shall have format <code>subnet-xxxxxxxx</code>.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">AWS_S3_BUCKET_NAME   </td><td class="markdownTableBodyLeft"><code>s3-bucket-name</code>   </td><td class="markdownTableBodyLeft">(N) The name of the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html">S3 storage bucket</a> to be used for temporary data storage used by Arm Virtual Hardware AMI. Not used for long-term data.    </td></tr>
+<td class="markdownTableBodyLeft">AWS_S3_BUCKET_NAME   </td><td class="markdownTableBodyLeft"><code>s3-bucket-name</code>   </td><td class="markdownTableBodyLeft">(N) The name of the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html">S3 storage bucket</a> to be used for temporary data storage by Arm Virtual Hardware. Not used for long-term data.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">AWS_KEEP_EC2_INSTANCES   </td><td class="markdownTableBodyLeft"><code>keep-ec2-instance</code>   </td><td class="markdownTableBodyLeft">(O) If set to <code>False</code>, then EC2 instance will be terminated after avhclient completes its execution. If <code>True</code>, the instance will only be stopped. Default is <code>False</code>.    </td></tr>
 <tr class="markdownTableRowOdd">

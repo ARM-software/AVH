@@ -35,7 +35,7 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Virtual Hardware
-   &#160;<span id="projectnumber">Version 1.2.2 - beta</span>
+   &#160;<span id="projectnumber">Version 1.2.3 - beta</span>
    </div>
    <div id="projectbrief">Product Overview</div>
   </td>
@@ -178,11 +178,17 @@ Comparison of test efforts in CI and no CI workflows</div></div>
 </ul>
 <h1><a class="anchor" id="History"></a>
 Release History</h1>
+<p >For details of the AVH AMI content see <a href="../../infrastructure/html/ami_inventory.html">AMI Inventory</a>.</p>
 <table class="doxtable">
 <tr>
 <th>Version </th><th>Changes  </th></tr>
 <tr>
-<td>1.2.2-beta (May 2022) </td><td>Changes:<ul>
+<td>1.2.3-beta (July 9, 2022) </td><td>Changes:<ul>
+<li>Enabled timing annotations in VHTs by default (<a href="https://developer.arm.com/documentation/100965/1117/Timing-Annotation/Enabling-and-disabling-timing-annotation">FASTSIM_DISABLE_TA</a> is set to 0). If disabled (FASTSIM_DISABLE_TA set to 1) VSI streams data too quickly and prevents normal execution of [ATS-Keyword Example] Enables correct execution of <a href="https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword">ATS-Keyword Example</a>.   </li>
+</ul>
+</td></tr>
+<tr>
+<td>1.2.2-beta (May 10, 2022) </td><td>Changes:<ul>
 <li>New versioning scheme to match the AMI version (see <a href="../../infrastructure/html/ami_inventory.html">AMI Inventory</a>).</li>
 <li><a href="https://github.com/ARM-software/CMSIS-RTOS2_Validation"><b>CMSIS-RTOS2 Validation</b></a>: Advanced test suite for validating CMSIS-RTOS2 implementations on supported Cortex-M cores runs using AVH.</li>
 <li>Corstone-310 VHT fixes: NPU access fix as well as a parameter for the flash region size allowing it to be a maximum of 64MB.   </li>
