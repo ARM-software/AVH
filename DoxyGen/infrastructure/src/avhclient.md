@@ -26,11 +26,9 @@ AVH Client can control different backends with Arm Virtual Hardware Targets. The
 
 ## AWS backend setup {#avhclient_setup_aws}
 
-AVH Client basic usage
-
-AVH Client accesses AWS services via [Boto3 AWS SDK](https://github.com/boto/boto3) and for that requires a set of parameters which can be provided in following ways:
-- Provided as arguments in the command line when executing avhclient.
-- Defined as environmental parameters when avhclient is running.
+AVH Client accesses AWS services via [Boto3 AWS SDK](https://github.com/boto/boto3) and for that requires a set of parameters which can be provided in different ways:
+- Added as options in the command line when executing avhclient.
+- Defined as environmental parameters where avhclient is running.
 - Specified in the \ref avhclient_yml as aws backend property.
 
 
@@ -50,7 +48,7 @@ AVH Client accesses AWS services via [Boto3 AWS SDK](https://github.com/boto/bot
 | AWS_INSTANCE_TYPE     | `instance-name`      | (O) The EC2 instance type to be used when creating the EC2 instance with AVH AMI. Default is `c5.large`. See \ref Requirements.
 | AWS_SECURITY_GROUP_ID | `security-group-id ` | (N) The id of the [VPC security group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) that the AVH AMI instance shall be added to. Shall have format `sg-xxxxxxxx`.
 | AWS_SUBNET_ID         | `subnet-id`          | (N) The id of the [VPC subnet](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics) that the AVH AMI instance shall use. Shall have format `subnet-xxxxxxxx`.
-| AWS_S3_BUCKET_NAME    | `s3-bucket-name`     | (N) The name of the [S3 storage bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html) to be used for temporary data storage used by Arm Virtual Hardware AMI. Not used for long-term data.
+| AWS_S3_BUCKET_NAME    | `s3-bucket-name`     | (N) The name of the [S3 storage bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html) to be used for temporary data storage by Arm Virtual Hardware. Not used for long-term data.
 | AWS_KEEP_EC2_INSTANCES| `keep-ec2-instance`  | (O) If set to `False`, then EC2 instance will be terminated after avhclient completes its execution. If `True`, the instance will only be stopped. Default is `False`.
 | AWS_KEY_NAME          | `key-name`           | (O) The name of a [security key pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) to be used for SSH access to the new AVH EC2 instance. If provided, corresponding key pair shall be available in AWS. If not provided, then no SSH connection will be possible. Default is ''.
 | AWS_INSTANCE_ID       | `instance-id`        | (N) The id of an EC2 instance that shall be used for running AVH AMI. If defined, then AWS_AMI_ID is ignored. Default is ''.
