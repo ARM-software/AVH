@@ -70,13 +70,21 @@ For unit and integration tests virtual targets offer additional advantages over 
 
 # Release History {#History}
 
+For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html/ami_inventory.html).
+
 <table>
 <tr>
 <th>Version</th>
 <th>Changes</th>
 </tr>
 <tr>
-<td>1.2.2-beta (May 2022)</td>
+<td>1.2.3-beta (July 9, 2022)</td>
+<td>Changes:
+ - Enabled timing annotations in VHTs by default ([FASTSIM_DISABLE_TA](https://developer.arm.com/documentation/100965/1117/Timing-Annotation/Enabling-and-disabling-timing-annotation) is set to 0). If disabled (FASTSIM_DISABLE_TA set to 1) VSI streams data too quickly and prevents normal execution of [ATS-Keyword Example] Enables correct execution of [ATS-Keyword Example](https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword).
+</td>
+</tr>
+<tr>
+<td>1.2.2-beta (May 10, 2022)</td>
 <td>Changes:
  - New versioning scheme to match the AMI version (see [AMI Inventory](../../infrastructure/html/ami_inventory.html)).
  - [**CMSIS-RTOS2 Validation**](https://github.com/ARM-software/CMSIS-RTOS2_Validation): Advanced test suite for validating CMSIS-RTOS2 implementations on supported Cortex-M cores runs using AVH.

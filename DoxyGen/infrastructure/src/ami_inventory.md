@@ -1,9 +1,71 @@
 # AMI Inventory {#ami_inventory}
 
 Sections below list the resources preinstalled on the corresponding version of Arm Virtual Hardware AMI. It is also possible to [obtain the current AMI Inventory](#inventory) on a running AMI instance.
+ - [AMI v1.2.3](#ami_inventory_123)
  - [AMI v1.2.2](#ami_inventory_122)
  - [AMI v1.2.1](#ami_inventory_121)
  - [AMI v1.2.0](#ami_inventory_120)
+
+## AMI v1.2.3 {#ami_inventory_123}
+
+|  Item                                | Version<sup>1</sup>|
+|--------------------------------------|-------------------|
+|**HOST OS**                           |                   |
+| &emsp;Ubuntu                         | x86_64 v20.04.1   |
+|**COMPILERS**                         |                   |
+| &emsp;Arm Compiler                   | 6.18              |
+| &emsp;GCC Compiler                   | 11.2              |
+| &emsp;Vela                           | 3.3.0             |
+|**VIRTUAL HARDWARE TARGETS**          |                   |
+| &emsp;VHT_MPS2_Cortex-M0             | 11.17.44 (U)      |
+| &emsp;VHT_MPS2_Cortex-M0plus         | 11.17.44 (U)      |
+| &emsp;VHT_MPS2_Cortex-M3             | 11.17.44 (U)      |
+| &emsp;VHT_MPS2_Cortex-M4             | 11.17.44 (U)      |
+| &emsp;VHT_MPS2_Cortex-M7             | 11.17.44 (U)      |
+| &emsp;VHT_MPS2_Cortex-M23            | 11.17.44 (U)      |
+| &emsp;VHT_MPS2_Cortex-M33            | 11.17.44 (U)      |
+| &emsp;VHT_Corstone_SSE-300           | 11.17.44 (U)      |
+| &emsp;VHT_Corstone_SSE-300_Ethos-U55 | 11.17.44 (U)      |
+| &emsp;VHT_Corstone_SSE-300_Ethos-U65 | 11.17.44 (U)      |
+| &emsp;VHT_Corstone_SSE-310           | 11.17.44 (U)      |
+|**FIXED VIRTUAL PLATFORM (FVP)**      |                   |
+| &emsp;FVP_Corstone-1000              | 11.17.35          |
+|**CORSTONE 1000 SOFTWARE**            |                   |
+| &emsp;Bootloader + TF                | CORSTONE1000-2022.04.07 |
+| &emsp;OpenSuSE                       | Snapshot20220331  |
+| **CMSIS PACKS**                      |                   |
+| &emsp;ARM.CMSIS.pack                 | 5.9.0             |
+| &emsp;ARM.V2M_MPS3_SSE_300_BSP.pack  | 1.2.0             |
+| &emsp;Keil.ARM_Compiler.pack         | 1.7.1             |
+| **OTHER**                            |                   |
+| &emsp;CMSIS-Build                    | 0.10.6            |
+
+>  <sup>1</sup> If an item is different from the previous AMI version this is indicated in parenthesis () as follows:<br/>
+> <ul><li>(N): Item is newly introduced to this AMI.</li><br/>
+> <li>(U): Item version is updated from the previous AMI version.</li></ul>
+
+**Environment setup**
+
+Following setup is additionally performed for the bash terminal session in the `.bash_rc` file:
+
+```
+`echo "==== Arm Virtual Hardware AMI ===="
+export PATH=$PATH:/opt/armcompiler/bin
+export PATH=$PATH:/opt/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin
+alias FVP_Corstone-1000=/opt/FVP_Corstone_1000/models/Linux64_GCC-9.3/FVP_Corstone-1000
+export CMSIS_PACK_ROOT=/home/ubuntu/packs
+echo "CMSIS packs are installed at $CMSIS_PACK_ROOT"
+export CMSIS_COMPILER_ROOT=/opt/cbuild/etc
+export CMSIS_BUILD_ROOT=/opt/cbuild/bin
+export PATH=/opt/cbuild/bin:$PATH
+export ARMLMD_LICENSE_FILE=/opt/data.dat
+export PATH=$PATH:/opt/VHT
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/VHT
+export ARMCOMPILER6_CLANGOPT=-Wno-license-management
+export ARMCOMPILER6_LINKOPT=--diag_suppress=9931
+export ARMCOMPILER6_FROMELFOPT=--diag_suppress=9931
+export ARMCOMPILER6_ASMOPT=--diag_suppress=9931
+```
 
 ## AMI v1.2.2 {#ami_inventory_122}
 
