@@ -1,8 +1,6 @@
 var NAVTREEINDEX0 =
 {
-"ATS-Keyword.html":[2],
-"ATS-Keyword.html#AVH":[2,1],
-"ATS-Keyword.html#Build":[2,0],
+"ATS-Keyword.html":[3],
 "GetStarted.html":[0],
 "GetStarted.html#GS_AWS_Setup":[0,3,0],
 "GetStarted.html#GS_AnalyseFailure":[0,5],
@@ -36,14 +34,14 @@ var NAVTREEINDEX0 =
 "MicroSpeech.html#autotoc_md7":[1,0,1,1],
 "MicroSpeech.html#autotoc_md8":[1,0,1,2],
 "MicroSpeech.html#autotoc_md9":[1,0,1,3],
-"aws_mqtt.html":[3],
-"aws_mqtt.html#autotoc_md23":[3,2],
-"aws_mqtt.html#autotoc_md24":[3,3],
-"aws_mqtt.html#aws_iot_params":[3,2,1],
-"aws_mqtt.html#aws_iot_thing":[3,2,0],
-"aws_mqtt.html#aws_mqtt_gh_secrets":[3,3,0],
-"aws_mqtt.html#aws_mqtt_overview":[3,0],
-"aws_mqtt.html#aws_mqtt_prerequisites":[3,1],
+"aws_mqtt.html":[2],
+"aws_mqtt.html#autotoc_md23":[2,2],
+"aws_mqtt.html#autotoc_md24":[2,3],
+"aws_mqtt.html#aws_iot_params":[2,2,1],
+"aws_mqtt.html#aws_iot_thing":[2,2,0],
+"aws_mqtt.html#aws_mqtt_gh_secrets":[2,3,0],
+"aws_mqtt.html#aws_mqtt_overview":[2,0],
+"aws_mqtt.html#aws_mqtt_prerequisites":[2,1],
 "index.html":[],
 "pages.html":[]
 };

@@ -110,13 +110,9 @@ $(document).ready(function(){initNavTree('ATS-Keyword.html',''); initResizable()
   <div class="headertitle"><div class="title">ATS-Keyword Example </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md_src_ATS_Keyword"></a> todo add overview description of example</p>
-<h1><a class="anchor" id="Build"></a>
-Build Application</h1>
-<p >todo describe or provide links</p>
-<h1><a class="anchor" id="AVH"></a>
-Run on Virtual Hardware</h1>
-<p >todo explain execution on Arm Virtual Hardware (AVH) CPUs </p>
+<div class="textblock"><p ><a class="anchor" id="md_src_ATS_Keyword"></a> The Arm Total Solution keyword detection application (ATS-Keyword) detects keywords in the audio input using Machine-Learning model DS-CNN and publishes recognized keywords to <a href="https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html">AWS IoT Service</a> in the cloud.</p>
+<p >The audio data to process are injected at run time from using the <a href="../../simulation/html/group__arm__vsi__audio.html">virtual audio streaming interface</a>. Additionally the AWS IoT service is used for OTA firmware updates. These firmware updates are securely applied using <a href="https://tf-m-user-guide.trustedfirmware.org/">Trusted Firmware-M</a>.</p>
+<p >For more information, refer to the example descriptions in the <a href="https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword">ATS-Keyword GitHub repository</a>. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
