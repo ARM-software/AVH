@@ -1,13 +1,8 @@
 # ATS-Keyword Example {#ATS-Keyword}
 
-todo add overview description of example
+The Arm Total Solution keyword detection application (ATS-Keyword) detects keywords in the audio input using Machine-Learning model DS-CNN and publishes recognized keywords to [AWS IoT Service](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) in the cloud.
 
-## Build Application {#Build}
+The audio data to process are injected at run time from using the [virtual audio streaming interface](../../simulation/html/group__arm__vsi__audio.html). Additionally the AWS IoT service is used for OTA firmware updates. These firmware updates are securely applied using [Trusted Firmware-M](https://tf-m-user-guide.trustedfirmware.org/).
 
-todo describe or provide links
-
-## Run on Virtual Hardware {#AVH}
-
-todo explain execution on Arm Virtual Hardware (AVH) CPUs
-
+For more information, refer to the example descriptions in the [ATS-Keyword GitHub repository] (https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword).
 
