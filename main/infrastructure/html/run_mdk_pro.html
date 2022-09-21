@@ -205,12 +205,15 @@ Following fields are important to fill:<ul>
 <li><em>Command</em>: shall contain the path to the AVH model executable file that corresponds to the selected AVH device. See table in <a class="el" href="run_mdk_pro.html#mdk_project_config">Project Configuration</a>.</li>
 <li><em>Arguments</em>: can be used to specify additional <a href="https://developer.arm.com/documentation/100966/1116/Getting-Started-with-Fixed-Virtual-Platforms/FVP-command-line-options">FVP command-line options</a> to be used with the model execution.</li>
 <li><em>Target</em>: specifies the CPU to be used for execution. Click the <em>Browse</em> button (...) and select the target CPU available on the target.</li>
-<li><em>Configuration File</em>: points to the file with model configuration parameters (passed to the model executable with <code>-f</code> option).</li>
-</ul>
-A correct configuration for Corestone-300 can be as follows:<br  />
+<li><em>Configuration File</em>: points to the file with model configuration parameters (passed to the model executable with <code>-f</code> option). A correct configuration for Corestone-300 can be as follows:<br  />
  <img src="vht_uv4_setup_basic.png" alt="" class="inline" title="AVH model configuration in AVH GetStarted example"/></li>
 </ul>
-<p ><a href="https://developer.arm.com/documentation/101452/latest/Debug-Driver-Configuration">Fast Models Debug Driver Configuration</a> explains the configuration dialog in details.</p>
+<a href="https://developer.arm.com/documentation/101452/latest/Debug-Driver-Configuration">Fast Models Debug Driver Configuration</a> explains the configuration dialog in details.</li>
+</ul>
+<ul>
+<li>Back in the <em>Debug</em> tab, in the <em>Initilization File</em> field, use the ... button to provide a path to a file that assigns <code>CORE_CLK</code> to the same value as specified for the <code>core_clk.mul</code> parameter in the model configuration file. This ensures that the timing for MDK displays is correctly calculated in synch with the simulation. <em>Edit</em> button can be used to view and modify the file in the µVision editor. Figure below shows the example configuration and content of the files used, <em>mdk_config.txt</em> and <em>vht-mdk.ini</em>:<br  />
+ <img src="mdk_vht_core_clk.png" alt="" class="inline" title="MDK Core Clock configuration"/></li>
+</ul>
 <h1><a class="anchor" id="mdk_cprj_export"></a>
 Project Export</h1>
 <p >Universal <a href="https://arm-software.github.io/CMSIS_5/Build/html/cprjFormat_pg.html">.cprj format</a> is required for building the program with Arm Virtual Hardware cloud environment. So it is important to keep the MDK project files and the <em>cprj</em> file synchronized. For that after saving modifications in the MDK project go to the µVision menu <a href="https://developer.arm.com/documentation/101407/latest/User-Interface/Project-Menu-and-Commands/Export-Menu"><em>Project</em> - <em>Export</em></a> and select <em>Save project to CPRJ format</em>.</p>

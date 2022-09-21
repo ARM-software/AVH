@@ -32,8 +32,11 @@ var NAVTREE =
       [ "Development Challenges", "index.html#Development_Challanges", null ]
     ] ],
     [ "Using Arm Virtual Hardware Targets", "Using.html", [
+      [ "Execution", "Using.html#Execution", null ],
       [ "Command Line Options", "Using.html#Options", null ],
-      [ "Usage Example", "Using.html#Example", null ]
+      [ "Usage Examples", "Using.html#Example", [
+        [ "Execution stop", "Using.html#autotoc_md0", null ]
+      ] ]
     ] ],
     [ "Reference", "modules.html", "modules" ]
   ] ]
@@ -42,7 +45,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Using.html",
-"index.html#Physical_Hardware"
+"index.html#Development_Challanges"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
