@@ -84,11 +84,14 @@ Perform the following steps to configure execution and debug of an MDK project o
   - *Arguments*: can be used to specify additional [FVP command-line options](https://developer.arm.com/documentation/100966/1116/Getting-Started-with-Fixed-Virtual-Platforms/FVP-command-line-options) to be used with the model execution.
   - *Target*: specifies the CPU to be used for execution. Click the *Browse* button (...) and select the target CPU available on the target.
   - *Configuration File*: points to the file with model configuration parameters (passed to the model executable with `-f` option).
-  .
    A correct configuration for Corestone-300 can be as follows:<br>
     ![AVH model configuration in AVH GetStarted example](images/vht_uv4_setup_basic.png)
-.
+  .
 [Fast Models Debug Driver Configuration](https://developer.arm.com/documentation/101452/latest/Debug-Driver-Configuration) explains the configuration dialog in details.
+ .
+ - Back in the  _Debug_ tab, in the *Initilization File* field, use the ... button to provide a path to a file that assigns `CORE_CLK` to the same value as specified for the `core_clk.mul` parameter in the model configuration file. This ensures that the timing for MDK displays is correctly calculated in synch with the simulation. *Edit* button can be used to view and modify the file in the µVision editor. Figure below shows the example configuration and content of the files used, *mdk_config.txt* and *vht-mdk.ini*:<br/>
+  ![MDK Core Clock configuration](images/mdk_vht_core_clk.png)
+.
 
 ## Project Export {#mdk_cprj_export}
 
