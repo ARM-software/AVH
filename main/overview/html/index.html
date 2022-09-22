@@ -35,7 +35,7 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Virtual Hardware
-   &#160;<span id="projectnumber">Version 1.2.3 - beta</span>
+   &#160;<span id="projectnumber">Version 1.3.0 - beta</span>
    </div>
    <div id="projectbrief">Product Overview</div>
   </td>
@@ -136,7 +136,7 @@ Documentation Structure</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><a href="../../infrastructure/html/index.html"><b>Infrastructure</b></a>   </td><td class="markdownTableBodyLeft">Describes how to setup development work flows with <b>Arm Virtual Hardware</b>.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><a href="../../examples/html/index.html"><b>Examples</b></a>   </td><td class="markdownTableBodyLeft">Guides you through the examples demonstrating how to use <b>Arm Virtual Hardware</b>.   </td></tr>
+<td class="markdownTableBodyLeft"><a href="../../examples/html/index.html"><b>Examples</b></a>   </td><td class="markdownTableBodyLeft">Guides through the examples that demonstrate how to use <b>Arm Virtual Hardware</b>.   </td></tr>
 </table>
 <h1><a class="anchor" id="User_Benefits"></a>
 User Benefits</h1>
@@ -183,12 +183,23 @@ Release History</h1>
 <tr>
 <th>Version </th><th>Changes  </th></tr>
 <tr>
-<td>1.2.3-beta (July 9, 2022) </td><td>Changes:<ul>
+<td>1.3.0-beta (September 22, 2022) </td><td><ul>
+<li>Corstone SSE-300 VHT device is supported with <a href="https://www.keil.arm.com/boards/arm-v2m-mps3-sse-300-fvp-610bb98/"><b>Keil Studio Cloud</b></a>.</li>
+<li>Provided <a href="https://github.com/ARM-software/CMSIS-View/tree/main/tools/eventlist"><b>eventlist utility</b></a> to process Event Recorder logs obtained with AVH targets.</li>
+<li>Added AVH model VHT_Corstone_SSE-310_Ethos-U65 to the AMI, see <a href="../../simulation/html/Using.html">Using Arm Virtual Hardware Targets</a>.</li>
+<li>Added installation of <a href="https://github.com/Open-CMSIS-Pack/CMSIS-Toolbox"><b>CMSIS-Toolbox v1.0.0</b></a> to the AMI, that also includes CMSIS-Build for command-line project builds.</li>
+<li>Updated <a href="../../examples/html/index.html"><b>examples</b></a> to use dynamic credentials (IAM Role) in the GitHub CI workflow, removing the need for storing AWS credentials in GitHub Secrets.</li>
+<li>Removed preinstalled Bootloader and OpenSuSE software for Corstone-1000.</li>
+<li>Removed preinstalled CMSIS Packs.   </li>
+</ul>
+</td></tr>
+<tr>
+<td>1.2.3-beta (July 9, 2022) </td><td><ul>
 <li>Enabled timing annotations in VHTs by default (<a href="https://developer.arm.com/documentation/100965/1117/Timing-Annotation/Enabling-and-disabling-timing-annotation">FASTSIM_DISABLE_TA</a> is set to 0). If disabled (FASTSIM_DISABLE_TA set to 1) VSI streams data too quickly and prevents normal execution of <a href="https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword">ATS-Keyword Example</a>.   </li>
 </ul>
 </td></tr>
 <tr>
-<td>1.2.2-beta (May 10, 2022) </td><td>Changes:<ul>
+<td>1.2.2-beta (May 10, 2022) </td><td><ul>
 <li>New versioning scheme to match the AMI version (see <a href="../../infrastructure/html/ami_inventory.html">AMI Inventory</a>).</li>
 <li><a href="https://github.com/ARM-software/CMSIS-RTOS2_Validation"><b>CMSIS-RTOS2 Validation</b></a>: Advanced test suite for validating CMSIS-RTOS2 implementations on supported Cortex-M cores runs using AVH.</li>
 <li>Corstone-310 VHT fixes: NPU access fix as well as a parameter for the flash region size allowing it to be a maximum of 64MB.   </li>
@@ -214,17 +225,6 @@ Release History</h1>
 </td></tr>
 <tr>
 <td>0.1-beta (Nov 2021) </td><td>Initial release  </td></tr>
-</table>
-<h1><a class="anchor" id="Roadmap"></a>
-Product Roadmap</h1>
-<p >Arm Virtual Hardware is now in public beta phase. The table below shows features that we will deploy in the <b>next 3 months</b>. During the beta phase, you may evaluate how our products help in your development processes. The feature roadmap of Arm Virtual Hardware gives you indication what to expect. We will release this features as they become available during the beta phase to allow product evaluation before the final release.</p>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">Feature   </th><th class="markdownTableHeadLeft">Description    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><b>Event Recorder CLI Tools</b>   </td><td class="markdownTableBodyLeft">Event Recorder is currently supported in MDK. This support will be extended to off-line and command line tools.    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><b>More Usage Examples</b>   </td><td class="markdownTableBodyLeft">Example projects help to get started: Audio/Video/Sensor I/O, Cloud connectivity, CI integration, Test code development is the range of examples we are working on.   </td></tr>
 </table>
 <h1><a class="anchor" id="Issues"></a>
 Known Limitations</h1>
