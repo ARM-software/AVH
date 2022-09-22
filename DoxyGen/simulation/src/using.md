@@ -92,5 +92,3 @@ And then to trigger the shutdown, a EOT (ASCII 4) symbol can be transmitted to t
     osDelay (1000);
   }
 ```
-
-

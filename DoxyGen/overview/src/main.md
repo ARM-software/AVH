@@ -26,8 +26,7 @@ Section                                                    | Description
 [**Overview**](index.html)                                 | Introduces **Arm Virtual Hardware** along with the top-level structure.
 [**Simulation**](../../simulation/html/index.html)         | Explains the **Arm Virtual Hardware Targets** along with the simulation technology and the virtual interfaces.
 [**Infrastructure**](../../infrastructure/html/index.html) | Describes how to setup development work flows with **Arm Virtual Hardware**.
-[**Examples**](../../examples/html/index.html)             | Guides you through the examples demonstrating how to use **Arm Virtual Hardware**.
-
+[**Examples**](../../examples/html/index.html)             | Guides through the examples that demonstrate how to use **Arm Virtual Hardware**.
 
 # User Benefits {#User_Benefits}
 
@@ -78,14 +77,26 @@ For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html
 <th>Changes</th>
 </tr>
 <tr>
+<td>1.3.0-beta (September 22, 2022)</td>
+<td>
+ - Corstone SSE-300 VHT device is supported with [**Keil Studio Cloud**](https://www.keil.arm.com/boards/arm-v2m-mps3-sse-300-fvp-610bb98/).
+ - Provided [**eventlist utility**](https://github.com/ARM-software/CMSIS-View/tree/main/tools/eventlist) to process Event Recorder logs obtained with AVH targets.
+ - Added AVH model VHT_Corstone_SSE-310_Ethos-U65 to the AMI, see [Using Arm Virtual Hardware Targets](../../simulation/html/Using.html).
+ - Added installation of [**CMSIS-Toolbox v1.0.0**](https://github.com/Open-CMSIS-Pack/CMSIS-Toolbox) to the AMI, that also includes CMSIS-Build for command-line project builds.
+ - Updated [**examples**](../../examples/html/index.html) to use dynamic credentials (IAM Role) in the GitHub CI workflow, removing the need for storing AWS credentials in GitHub Secrets.
+ - Removed preinstalled Bootloader and OpenSuSE software for Corstone-1000.
+ - Removed preinstalled CMSIS Packs.
+</td>
+</tr>
+<tr>
 <td>1.2.3-beta (July 9, 2022)</td>
-<td>Changes:
+<td>
  - Enabled timing annotations in VHTs by default ([FASTSIM_DISABLE_TA](https://developer.arm.com/documentation/100965/1117/Timing-Annotation/Enabling-and-disabling-timing-annotation) is set to 0). If disabled (FASTSIM_DISABLE_TA set to 1) VSI streams data too quickly and prevents normal execution of [ATS-Keyword Example] (https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword).
 </td>
 </tr>
 <tr>
 <td>1.2.2-beta (May 10, 2022)</td>
-<td>Changes:
+<td>
  - New versioning scheme to match the AMI version (see [AMI Inventory](../../infrastructure/html/ami_inventory.html)).
  - [**CMSIS-RTOS2 Validation**](https://github.com/ARM-software/CMSIS-RTOS2_Validation): Advanced test suite for validating CMSIS-RTOS2 implementations on supported Cortex-M cores runs using AVH.
  - Corstone-310 VHT fixes: NPU access fix as well as a parameter for the flash region size allowing it to be a maximum of 64MB.
@@ -116,15 +127,6 @@ For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html
 <td>Initial release</td>
 </tr>
 </table>
-
-# Product Roadmap {#Roadmap}
-
-Arm Virtual Hardware is now in public beta phase. The table below shows features that we will deploy in the **next 3 months**.  During the beta phase, you may evaluate how our products help in your development processes. The feature roadmap of Arm Virtual Hardware gives you indication what to expect. We will release this features as they become available during the beta phase to allow product evaluation before the final release.
-
-Feature                         | Description     
-:-------------------------------|:----------------
-**Event Recorder CLI Tools**    | Event Recorder is currently supported in MDK. This support will be extended to off-line and command line tools.
-**More Usage Examples**         | Example projects help to get started: Audio/Video/Sensor I/O, Cloud connectivity, CI integration, Test code development is the range of examples we are working on.
 
 # Known Limitations {#Issues}
 
