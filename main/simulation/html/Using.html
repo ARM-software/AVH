@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Simulation: Using Arm Virtual Hardware Targets</title>
+<title>Simulation: Using Arm Fixed Virtual Platforms</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -107,14 +107,14 @@ $(document).ready(function(){initNavTree('Using.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Using Arm Virtual Hardware Targets </div></div>
+  <div class="headertitle"><div class="title">Using Arm Fixed Virtual Platforms </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >This section describes how to use the <b>Arm Virtual Hardware (AVH) Targets</b>.</p>
-<p >The AVH simulation models are based on the <a href="https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms">Arm Fast Models Fixed Virtual Platforms</a> with extensions for <a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a>. The table below shows the available models:</p>
+<div class="textblock"><p >This section describes how to use the <b>Arm Fixed Virtual Platforms (FVPs)</b>.</p>
+<p >The FVP simulation models in AVH context correspond to the <a href="https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms">Arm Fast Models Fixed Virtual Platforms</a> with extensions for <a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a>. The table below shows the available models:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">AVH Simulation Models   </th><th class="markdownTableHeadLeft">Processor Core   </th><th class="markdownTableHeadLeft">Overview Description    </th></tr>
+<th class="markdownTableHeadLeft">FVP Simulation Model   </th><th class="markdownTableHeadLeft">Processor Core   </th><th class="markdownTableHeadLeft">Overview Description    </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">VHT_MPS2_Cortex-M0   </td><td class="markdownTableBodyLeft">Cortex-M0   </td><td class="markdownTableBodyLeft"><a href="https://developer.arm.com/documentation/dai0382">ARM Cortex-M0 SMM on V2M-MPS2 (AppNote AN382)</a>    </td></tr>
 <tr class="markdownTableRowEven">
@@ -140,7 +140,7 @@ $(document).ready(function(){initNavTree('Using.html',''); initResizable(); });
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">VHT_Corstone_SSE-310_Ethos-U65   </td><td class="markdownTableBodyLeft">Cortex-M85, Ethos-U65   </td><td class="markdownTableBodyLeft"><a href="./Corstone_SSE-310_FVP_Technical_Overview.pdf">Corstone-310 FVP Technical Overview (PDF)</a>, <a href="https://developer.arm.com/documentation/100966/1118/Arm--Corstone-SSE-310-FVP/Corstone-SSE-310-FVP-memory-map-overview">Memory map overview</a>   </td></tr>
 </table>
-<p >Additionally following simulation models are provided without support of Virtual Peripherals:</p>
+<p >Additionally following FVP models are provided without support of Virtual Peripherals:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">Simulation Model   </th><th class="markdownTableHeadLeft">Processor Core   </th><th class="markdownTableHeadLeft">Overview Description    </th></tr>
@@ -149,12 +149,12 @@ $(document).ready(function(){initNavTree('Using.html',''); initResizable(); });
 </table>
 <h1><a class="anchor" id="Execution"></a>
 Execution</h1>
-<p >Simulation models can be executed in Linux environment by using their model names, for example <code>VHT_Corestone_SSE-300_Ethos-U55</code>, and on Windows platform the models are provided as executables files, for example <code>VHT_Corestone_SSE-300_Ethos-U55.exe</code>. See <a class="el" href="Using.html#Example">Usage Examples</a>.</p>
+<p >FVP models can be executed in Linux environment by using their model names, for example <code>VHT_Corestone_SSE-300_Ethos-U55</code>, and on Windows platform the models are provided as executables files, for example <code>VHT_Corestone_SSE-300_Ethos-U55.exe</code>. See <a class="el" href="Using.html#Example">Usage Examples</a>.</p>
 <h1><a class="anchor" id="Options"></a>
 Command Line Options</h1>
 <p >The command line options can be listed using the -help command. For example in Linux environment:</p>
 <div class="fragment"><div class="line">VHT_Corstone_SSE-300_Ethos-U55 -help</div>
-</div><!-- fragment --><p >The AVH simulation models can be configured using the option <em>-f FILE</em> that specifies a <em>config-file</em>. The available <em>config-file</em> options can be listed with the option <em>-l</em>.</p>
+</div><!-- fragment --><p >The FVP models can be configured using the option <em>-f FILE</em> that specifies a <em>config-file</em>. The available <em>config-file</em> options can be listed with the option <em>-l</em>.</p>
 <h1><a class="anchor" id="Example"></a>
 Usage Examples</h1>
 <p >Below is an example of running a program on the AVH model for Corstone-300 with Ethos-U55 in Linux environment:</p>
@@ -183,7 +183,7 @@ Usage Examples</h1>
 <h2><a class="anchor" id="autotoc_md0"></a>
 Execution stop</h2>
 <p >Embedded applications typically run with an infinite loop that ensures continuous program execution. But for executing regression tests as part of Continuous Integration (CI) workflows it is often required that program execution is stopped after a test is completed, so that the next test can be started.</p>
-<p >AVH simulation models provide <code>shutdown_on_eot</code> parameter that enables simple implementation of such program exit. The parameter should be set in the model configuration file (<em>vht_config.txt</em> explained above), for example for VHT_Corstone_SSE-300:</p>
+<p >FVP models have <code>shutdown_on_eot</code> parameter that enables simple implementation of such program exit. The parameter should be set in the model configuration file (<em>vht_config.txt</em> explained above), for example for VHT_Corstone_SSE-300:</p>
 <div class="fragment"><div class="line">mps3_board.uart0.shutdown_on_eot=1   # (bool, init-time) default = &#39;0&#39; : Shutdown simulation when a EOT (ASCII 4) char is transmitted (useful for regression tests when semihosting is not available)</div>
 </div><!-- fragment --><p >And then to trigger the shutdown, a EOT (ASCII 4) symbol can be transmitted to the corresponding serial interface from the program. The code below demonstrates an example, where the execution is stopped after target execution count is achieved. In this implementation the STDIO is assumed to be retargeted to the UART0:</p>
 <div class="fragment"><div class="line">while (1)  {</div>

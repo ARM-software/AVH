@@ -11,7 +11,7 @@ var Local =
     ] ],
     [ "Debug with Arm Development Studio", "debug_ds.html", [
       [ "Tools Installation and set up", "debug_ds.html#ds_setup", null ],
-      [ "Start Virtual Hardware Target", "debug_ds.html#ds_vht_start", null ],
+      [ "Start program on the remote FVP model", "debug_ds.html#ds_vht_start", null ],
       [ "Connect to Target in Arm DS", "debug_ds.html#ds_connect", null ]
     ] ]
 ];

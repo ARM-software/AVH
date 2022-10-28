@@ -25,13 +25,13 @@
 var NAVTREE =
 [
   [ "Simulation", "index.html", [
-    [ "Virtual Hardware Targets", "index.html", [
+    [ "Overview", "index.html", [
       [ "Virtual Interfaces", "index.html#Virtual_Interfaces", null ],
       [ "Physical Hardware", "index.html#Physical_Hardware", null ],
       [ "Development Workflow", "index.html#Development_Workflow", null ],
       [ "Development Challenges", "index.html#Development_Challanges", null ]
     ] ],
-    [ "Using Arm Virtual Hardware Targets", "Using.html", [
+    [ "Using Arm Fixed Virtual Platforms", "Using.html", [
       [ "Execution", "Using.html#Execution", null ],
       [ "Command Line Options", "Using.html#Options", null ],
       [ "Usage Examples", "Using.html#Example", [

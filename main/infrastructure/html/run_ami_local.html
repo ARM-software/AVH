@@ -183,7 +183,7 @@ Connect using SSH</h2>
 <p >Find more details in AWS help <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html">Connect to your Linux instance using SSH</a>.</p>
 <h1><a class="anchor" id="run_example"></a>
 Run projects</h1>
-<p >After <a class="el" href="run_ami_local.html#connect_ami">connecting to the AVH AMI instance</a> you can copy, compile and run applications on Arm Virtual Hardware Targets. This section shows how this can be done using the <a href="../../examples/html/MicroSpeech.html">Micro speech example</a>.</p>
+<p >After <a class="el" href="run_ami_local.html#connect_ami">connecting to the AVH AMI instance</a> you can copy, compile and run applications on Arm Fixed Virtual Platforms. This section shows how this can be done using the <a href="../../examples/html/MicroSpeech.html">Micro speech example</a>.</p>
 <p >Copy the example code to the AMI. Since the project is available on GitHub just execute in the AMI command line:</p>
 <div class="fragment"><div class="line">$ git clone https://github.com/arm-software/AVH-TFLmicrospeech.git</div>
 </div><!-- fragment --><p >For shared private projects your GitHub Username and Password key will be required to clone.</p>
@@ -192,7 +192,7 @@ Run projects</h1>
 <div class="line">$ ./packlist.sh</div>
 </div><!-- fragment --><p> Note that if this generated errors, you most likely have a legacy set up. Use this command to install packs instead: </p><div class="fragment"><div class="line">$ cp_install.sh packlist</div>
 </div><!-- fragment --><p> Build the example: </p><div class="fragment"><div class="line">$ cbuild.sh microspeech.Example.cprj</div>
-</div><!-- fragment --><p> When built, you can now run the example on the Virtual Hardware Target: </p><div class="fragment"><div class="line">$ ./run_example.sh</div>
+</div><!-- fragment --><p> When built, you can now run the example on the FVP: </p><div class="fragment"><div class="line">$ ./run_example.sh</div>
 </div><!-- fragment --><p> The output should display similar to: </p><div class="fragment"><div class="line">Fast Models [11.15.14 (Jun 23 2021)]</div>
 <div class="line">Copyright 2000-2021 ARM Limited.</div>
 <div class="line">All Rights Reserved.</div>

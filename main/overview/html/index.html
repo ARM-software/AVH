@@ -115,10 +115,10 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <p >Arm Virtual Hardware offers a comprehensive tool integration along with resources for software developers and can therefore run complex applications and software integration tests. A potential workload could be a <a href="https://en.wikipedia.org/wiki/Sensor_fusion"><b>sensor-fusion</b></a> Machine Learning (ML) application that connects to the Internet via an IoT operating system.</p>
 <p ><b>Arm Virtual Hardware</b> consists of the following components:</p>
 <ul>
-<li><b>Arm Virutal Hardware Targets</b> are precise <a href="https://en.wikipedia.org/wiki/Simulation"><b>simulation models</b></a> of Cortex-M device sub-systems and are designed for complex software verification and testing. It allows <a href="https://en.wikipedia.org/wiki/Test_automation"><b>simulation-based test automation</b></a> of various software workloads, including unit tests, integration tests, and fault injection.</li>
+<li><b>Arm Fixed Virtual Platforms (FVPs)</b> are precise <a href="https://en.wikipedia.org/wiki/Simulation"><b>simulation models</b></a> of Cortex-M device sub-systems and are designed for complex software verification and testing. This allows <a href="https://en.wikipedia.org/wiki/Test_automation"><b>simulation-based test automation</b></a> of various software workloads, including unit tests, integration tests, and fault injection.</li>
 <li><b>Arm Virtual Hardware Services</b> provide a cloud-native infrastructure for software test and validation. These services can be integrated into various <b>CI/CD</b> and <b>MLOps</b> environments that range from GitHub to on-premise IT infrastructure. The Arm Virtual Hardware services are available via the AWS Marketplace (and later also via other Cloud Service providers).</li>
-<li><b>Arm Virtual Hardware Developer Resources</b> gives you access to interface drivers that map to virtual targets and physical hardware along with Python scripts for I/O simulation. The documentation explains how to integrate Arm Virtual Hardware Targets into typical <b>CI/CD</b> environments. Usage examples show typical usage cases and range from audio processing, ML algorithm testing, up to IoT applications that interface to Cloud Service providers.</li>
-<li><b>Software Development Environments</b> with Arm Virtual Hardware Targets integration are also available. Arm Virtual Hardware is an integral part of the Keil MDK Professional Edition that is a comprehensive software tool suite for creating Cortex-M-based applications and related validation and test processes. In future, the next-generation Keil Studio will also integrate Arm Virtual Hardware.</li>
+<li><b>Arm Virtual Hardware Developer Resources</b> gives you access to interface drivers that map to virtual targets and physical hardware along with Python scripts for I/O simulation. The documentation explains how to integrate Arm Virtual Hardware into typical <b>CI/CD</b> environments. Usage examples show typical usage cases and range from audio processing, ML algorithm testing, up to IoT applications that interface to Cloud Service providers.</li>
+<li><b>Software Development Environments</b> can be used with Arm Virtual Hardware. So, Arm Fixed Virtual Platforms are an integral part of the Keil MDK Professional Edition that is a comprehensive software tool suite for creating Cortex-M-based applications and related validation and test processes. Other IDEs and debuggers can be used to connect remotely to Arm Virtual Hardware services.</li>
 </ul>
 <div class="image">
 <img src="vht_overview.png" alt=""/>
@@ -132,9 +132,9 @@ Documentation Structure</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><a href="index.html"><b>Overview</b></a>   </td><td class="markdownTableBodyLeft">Introduces <b>Arm Virtual Hardware</b> along with the top-level structure.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><a href="../../simulation/html/index.html"><b>Simulation</b></a>   </td><td class="markdownTableBodyLeft">Explains the <b>Arm Virtual Hardware Targets</b> along with the simulation technology and the virtual interfaces.    </td></tr>
+<td class="markdownTableBodyLeft"><a href="../../simulation/html/index.html"><b>Simulation</b></a>   </td><td class="markdownTableBodyLeft">Explains the simulation technology and the virtual interfaces.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><a href="../../infrastructure/html/index.html"><b>Infrastructure</b></a>   </td><td class="markdownTableBodyLeft">Describes how to setup development work flows with <b>Arm Virtual Hardware</b>.    </td></tr>
+<td class="markdownTableBodyLeft"><a href="../../infrastructure/html/index.html"><b>Infrastructure</b></a>   </td><td class="markdownTableBodyLeft">Describes how to setup development workflows with <b>Arm Virtual Hardware</b>, locally and in the cloud.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><a href="../../examples/html/index.html"><b>Examples</b></a>   </td><td class="markdownTableBodyLeft">Guides through the examples that demonstrate how to use <b>Arm Virtual Hardware</b>.   </td></tr>
 </table>
@@ -149,7 +149,7 @@ Test without Hardware</h2>
 </ul>
 <h2><a class="anchor" id="Verify"></a>
 Verify Correctness</h2>
-<p ><b>Arm Virtual Hardware Targets</b> are based on Arm simulation models that are validated with the same process as the IP. Specially it allows you to:</p><ul>
+<p ><b>Arm Fixed Virtual Platforms (FVPs)</b> are Arm simulation models validated with the same process as the CPU IP. Specially it allows you to:</p><ul>
 <li>Perform algorithm testing with identical logical behaviour of the target device</li>
 <li>Precisely repeat complex input patterns in CI/CD test environments</li>
 <li>Analyse software behaviour with event annotations</li>
@@ -184,9 +184,9 @@ Release History</h1>
 <th>Version </th><th>Changes  </th></tr>
 <tr>
 <td>1.3.0-beta (September 22, 2022) </td><td><ul>
-<li>Corstone SSE-300 VHT device is supported with <a href="https://www.keil.arm.com/boards/arm-v2m-mps3-sse-300-fvp-610bb98/"><b>Keil Studio Cloud</b></a>.</li>
+<li>Arm Corstone SSE-300 model is supported with <a href="https://www.keil.arm.com/boards/arm-v2m-mps3-sse-300-fvp-610bb98/"><b>Keil Studio Cloud</b></a>.</li>
 <li>Provided <a href="https://github.com/ARM-software/CMSIS-View/tree/main/tools/eventlist"><b>eventlist utility</b></a> to process Event Recorder logs obtained with AVH targets.</li>
-<li>Added AVH model VHT_Corstone_SSE-310_Ethos-U65 to the AMI, see <a href="../../simulation/html/Using.html">Using Arm Virtual Hardware Targets</a>.</li>
+<li>Added new FVP model - VHT_Corstone_SSE-310_Ethos-U65 to the AMI, see <a href="../../simulation/html/Using.html">Using Arm Fixed Virtual Platforms</a>.</li>
 <li>Added installation of <a href="https://github.com/Open-CMSIS-Pack/CMSIS-Toolbox"><b>CMSIS-Toolbox v1.0.0</b></a> to the AMI, that also includes CMSIS-Build for command-line project builds.</li>
 <li>Updated <a href="../../examples/html/index.html"><b>examples</b></a> to use dynamic credentials (IAM Role) in the GitHub CI workflow, removing the need for storing AWS credentials in GitHub Secrets.</li>
 <li>Removed preinstalled Bootloader and OpenSuSE software for Corstone-1000.</li>
@@ -195,19 +195,19 @@ Release History</h1>
 </td></tr>
 <tr>
 <td>1.2.3-beta (July 9, 2022) </td><td><ul>
-<li>Enabled timing annotations in VHTs by default (<a href="https://developer.arm.com/documentation/100965/1117/Timing-Annotation/Enabling-and-disabling-timing-annotation">FASTSIM_DISABLE_TA</a> is set to 0). If disabled (FASTSIM_DISABLE_TA set to 1) VSI streams data too quickly and prevents normal execution of <a href="https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword">ATS-Keyword Example</a>.   </li>
+<li>Enabled timing annotations in FVPs by default (<a href="https://developer.arm.com/documentation/100965/1117/Timing-Annotation/Enabling-and-disabling-timing-annotation">FASTSIM_DISABLE_TA</a> is set to 0). If disabled (FASTSIM_DISABLE_TA set to 1) VSI streams data too quickly and prevents normal execution of <a href="https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword">ATS-Keyword Example</a>.   </li>
 </ul>
 </td></tr>
 <tr>
 <td>1.2.2-beta (May 10, 2022) </td><td><ul>
 <li>New versioning scheme to match the AMI version (see <a href="../../infrastructure/html/ami_inventory.html">AMI Inventory</a>).</li>
 <li><a href="https://github.com/ARM-software/CMSIS-RTOS2_Validation"><b>CMSIS-RTOS2 Validation</b></a>: Advanced test suite for validating CMSIS-RTOS2 implementations on supported Cortex-M cores runs using AVH.</li>
-<li>Corstone-310 VHT fixes: NPU access fix as well as a parameter for the flash region size allowing it to be a maximum of 64MB.   </li>
+<li>Corstone-310 model fixes: NPU access fix as well as a parameter for the flash region size allowing it to be a maximum of 64MB.   </li>
 </ul>
 </td></tr>
 <tr>
 <td>0.3-beta (Apr 2022) </td><td>Added features:<ul>
-<li><a href="../../simulation/html/Using.html"><b>Corstone-310 and Corstone-1000</b></a>: added new virtual hardware targets.</li>
+<li><a href="../../simulation/html/Using.html"><b>Corstone-310 and Corstone-1000</b></a>: added new simulation models.</li>
 <li><a href="../../infrastructure/html/run_ami_jenkins.html"><b>Integration with Jenkins</b></a>: example of AVH AMI usage in Jenkins CI pipelines.</li>
 <li><a href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_use.html#er_semihosting"><b>Event Recorder Semihosting Support</b></a>: allows to generate Event Recorder logs in AVH AMI environment.</li>
 <li><a href="../../examples/html/aws_mqtt.html"><b>AWS MQTT Example</b></a>: IoT application with MQTT connectivity to AWS cloud service.</li>
@@ -234,7 +234,7 @@ Known Limitations</h1>
 </ul>
 <h1><a class="anchor" id="Support"></a>
 Feedback and Support</h1>
-<p >Arm Virtual Hardware is supported during public beta via this <a href="https://community.arm.com/support-forums/f/arm-virtual-hardware-targets-forum">Arm forum</a>. Your feedback will influence our future roadmap and we try to help you promptly with your questions. </p>
+<p >Arm Virtual Hardware is supported during public beta via this <a href="https://community.arm.com/support-forums/f/arm-virtual-hardware-forum">Arm forum</a>. Your feedback will influence our future roadmap and we try to help you promptly with your questions. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

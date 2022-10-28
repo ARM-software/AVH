@@ -122,7 +122,7 @@ Installation</h1>
 <div class="fragment"><div class="line">pip install git+https://github.com/ARM-software/avhclient.git@main</div>
 </div><!-- fragment --><h1><a class="anchor" id="avhclient_backends"></a>
 Supported backends</h1>
-<p >AVH Client can control different backends with Arm Virtual Hardware Targets. The backend shall be specified with <code>-b</code> option preceding the actual AVH Client command. Following options are currently available:</p>
+<p >AVH Client can control different backends with Arm FVP models. The backend shall be specified with <code>-b</code> option preceding the actual AVH Client command. Following options are currently available:</p>
 <ul>
 <li><code>aws</code>(default) - interacts with <a class="el" href="AWS.html">Arm Virtual Hardware instance on AWS</a>.<ul>
 <li>avhclient can create/start AVH EC2 instances from AVH AMIs, prepare the instance, upload files to the instance, execute commands and run the program, download the results back and cleanup the instance.</li>
@@ -260,7 +260,7 @@ IAM Requirements</h2>
 <p >More information on the AWS documentation: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html">Create IAM Role For Service</a></p>
 <h1><a class="anchor" id="avhclient_yml"></a>
 AVH YML file</h1>
-<p >avhclient <code>execute</code> command requires a file in <a href="https://yaml.org/spec/">YML format</a> that describes details of individual steps to be executed on Arm Virtual Hardware targets. The fields available in the file syntax are explained below:</p>
+<p >avhclient <code>execute</code> command requires a file in <a href="https://yaml.org/spec/">YML format</a> that describes details of individual steps to be executed on Arm FVP models. The fields available in the file syntax are explained below:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">Field   </th><th class="markdownTableHeadLeft">Description    </th></tr>

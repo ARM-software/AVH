@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Simulation: Virtual Hardware Targets</title>
+<title>Simulation: Overview</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -107,14 +107,13 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Virtual Hardware Targets </div></div>
+  <div class="headertitle"><div class="title">Overview </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >The <b>Arm Virtual Hardware (AVH) Targets</b> provide a functional accurate simulation of an Arm-based SoC and can be automated for scalable deployment in the CI development flow. This virtual platform can be used standalone or with development tools such as <a href="https://developer.arm.com/tools-and-software/embedded/arm-development-studio" target="_blank"><b>Arm Development Studio</b></a> or <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk" target="_blank"><b>Arm Keil MDK</b></a> with debug and trace capabilities supported as well.</p>
-<p >The <b>AVH Targets</b> are based on the Arm Fast Model technology and are extended FVP models that add virtual interfaces for peripheral emulation. In addition AVH provides concepts to re-target applications from simulation models to physical hardware which simplifies to combine unit/integration tests with the final system integration.</p>
+<div class="textblock"><p >The <b>Arm Fixed Virtual Platforms (FVP)</b> provide a functional accurate simulation of an Arm-based SoC and can be automated for scalable deployment in the CI development flow. This virtual platform can be used standalone or with development tools such as <a href="https://developer.arm.com/tools-and-software/embedded/arm-development-studio" target="_blank"><b>Arm Development Studio</b></a> or <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk" target="_blank"><b>Arm Keil MDK</b></a> with debug and trace capabilities supported as well.</p>
 <h1><a class="anchor" id="Virtual_Interfaces"></a>
 Virtual Interfaces</h1>
-<p >The AVH processors implement various Virtual Interfaces that can be used to stimulate the application under test.</p>
+<p >The virtual platforms implement various Virtual Interfaces that can be used to stimulate the application under test.</p>
 <p ><img src="Virtual_Interfaces.png" alt="" class="inline" title="AVH Virtual Interfaces"/></p>
 <ul>
 <li>The <a class="el" href="group__arm__vio.html">Virtual Input/Output (VIO)</a> interface controls simple I/O such as LED and switches.</li>
@@ -126,7 +125,7 @@ Virtual Interfaces</h1>
 <h1><a class="anchor" id="Physical_Hardware"></a>
 Physical Hardware</h1>
 <p ><a href="https://en.wikipedia.org/wiki/Modular_programming"><b>Modular programming</b></a> recommends to separate the functionality of a program into independent, interchangeable modules that use defined interfaces that abstract the hardware functionality. This design concept simplifies code re-use and allows to implement <b>Virtual Drivers</b> and <b>Hardware Drivers</b> that expose the same API and implement the same logical behavior. If built correctly, it overcomes many issues that are typically found in monolithic software and enables a staged <a href="https://en.wikipedia.org/wiki/Software_testing">software validation</a> with multiple test levels such as unit, integration, and system testing.</p>
-<p >To simplify re-targeting from <b>Arm Virtual Hardware Targets</b> to final production hardware, the examples implement the concept of software layers. As the next generation tooling will provide native support for program layers, it makes it easy to work on a combination of simulated and physical hardware. The picture below examplifies this concept.</p>
+<p >To simplify re-targeting from FVP simulation models to final production hardware, the examples implement the concept of software layers. As the next generation tooling will provide native support for program layers, it makes it easy to work on a combination of simulated and physical hardware. The picture below examplifies this concept.</p>
 <p ><img src="Simulation2Hardware.png" alt="" class="inline" title="AVH Re-target to Hardware"/></p>
 <h1><a class="anchor" id="Development_Workflow"></a>
 Development Workflow</h1>
@@ -135,7 +134,7 @@ Development Workflow</h1>
 <p >This workflow mandates that a set of test cases are developed. For test case development and failure analysis, it is currently recommended to use desktop tools such as <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">Keil MDK</a>. However, over time the more flexible <a href="https://www.keil.arm.com/">Keil Studio</a> will enable a hybrid work-style that allows to use cloud-native or desktop development workflows.</p>
 <h1><a class="anchor" id="Development_Challanges"></a>
 Development Challenges</h1>
-<p >Naturally, the <b>Arm Virtual Hardware Targets</b> cannot simulate the exact behavior of every Arm Cortex processor-based microcontroller that is available today. However, the simulated targets overcome many challenges that users are facing with physical hardware. The <b>Arm Virtual Hardware Targets</b> make CI/CD economic for embedded applications and enable modern DevOps workflows that benefit from test automation. <br  />
+<p >Naturally, the Fixed Virtual Platforms cannot simulate the exact behavior of every Arm Cortex processor-based microcontroller that is available today. However, the simulated targets overcome many challenges that users are facing with physical hardware. The FVPs make CI/CD economic for embedded applications and enable modern DevOps workflows that benefit from test automation. <br  />
 </p>
 <table class="markdownTable">
 <tr class="markdownTableHead">

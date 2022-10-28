@@ -110,7 +110,7 @@ $(document).ready(function(){initNavTree('run_mdk_pro.html',''); initResizable()
   <div class="headertitle"><div class="title">Run with MDK-Professional </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >This section explains how Arm Virtual Hardware (AVH) processors can be used with <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">Keil MDK</a> tools for developing and debugging embedded applications on a local computer.</p>
+<div class="textblock"><p >This section explains how Arm Fixed Virtual Platforms (FVP) can be used with <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">Keil MDK</a> tools for developing and debugging embedded applications on a local computer.</p>
 <h1><a class="anchor" id="mdk_vht_install"></a>
 Tools Installation</h1>
 <ul>
@@ -125,9 +125,9 @@ Tools Installation</h1>
 </ul>
 <h1><a class="anchor" id="mdk_project_config"></a>
 Project Configuration</h1>
-<p >Two important configuration areas need special attention in MDK projects for Arm Virtual Hardware CPUs:</p><ul>
+<p >Two important configuration areas need special attention in MDK projects for Arm FVPs:</p><ul>
 <li><a class="el" href="run_mdk_pro.html#mdk_vht_targets">Target selection</a> in the project. This is required for new projects or when changing the target device in an existing project.</li>
-<li><a class="el" href="run_mdk_pro.html#mdk_vht_debug">Run and debug configuration</a> in the project. This step is typically needed for setting up any project, but with reference examples brief verification of the default settings can be sufficient.</li>
+<li><a class="el" href="run_mdk_pro.html#mdk_vht_debug">Run and debug configuration</a> in the project. This step is typically needed for setting up any project, but with reference AVH examples brief verification of the default settings can be sufficient.</li>
 </ul>
 <p >Table below lists the Cortex-M cores supported with Arm Virtual Hardware, corresponding device names, the CMSIS Pack with device support, as well as simulation models provided with MDK.</p>
 <table class="markdownTable">
@@ -165,7 +165,7 @@ depending on the required microNPU (none, Ethos-U55 or Ethos-U65)    </td></tr>
 <td class="markdownTableBodyLeft">Cortex-M85   </td><td class="markdownTableBodyLeft">SSE-310-MPS3   </td><td class="markdownTableBodyLeft">not available yet   </td><td class="markdownTableBodyLeft">VHT_Corstone_SSE-310.exe   </td><td class="markdownTableBodyLeft">CPU with Cortex-M85 core   </td></tr>
 </table>
 <blockquote class="doxtable">
-<p ><sup>1</sup> The Virtual Hardware Targets can be found in the <code>/ARM/VHT/</code> folder in the MDK installation directory as used for <a class="el" href="run_mdk_pro.html#mdk_vht_install">Tools Installation</a>, for example,<code>C:/Keil_v5/ARM/VHT/</code>. </p>
+<p ><sup>1</sup> The Fixed Virtual Platforms can be found in the <code>/ARM/VHT/</code> folder in the MDK installation directory as used for <a class="el" href="run_mdk_pro.html#mdk_vht_install">Tools Installation</a>, for example,<code>C:/Keil_v5/ARM/VHT/</code>. </p>
 </blockquote>
 <h2><a class="anchor" id="mdk_vht_targets"></a>
 Target selection</h2>
