@@ -17,7 +17,7 @@ Sections below list the resources preinstalled on the corresponding version of A
 | &emsp;Arm Compiler                   | 6.18              |
 | &emsp;GCC Compiler                   | 11.2              |
 | &emsp;Vela                           | 3.3.0             |
-|**VIRTUAL HARDWARE TARGETS**          |                   |
+|**FVP MODELS**                        |                   |
 | &emsp;VHT_MPS2_Cortex-M0             | 11.18.29 (U)      |
 | &emsp;VHT_MPS2_Cortex-M0plus         | 11.18.29 (U)      |
 | &emsp;VHT_MPS2_Cortex-M3             | 11.18.29 (U)      |
@@ -30,7 +30,6 @@ Sections below list the resources preinstalled on the corresponding version of A
 | &emsp;VHT_Corstone_SSE-300_Ethos-U65 | 11.18.29 (U)      |
 | &emsp;VHT_Corstone_SSE-310           | 11.18.29 (U)      |
 | &emsp;VHT_Corstone_SSE-310_Ethos-U65 | 11.18.29 (N)      |
-|**FIXED VIRTUAL PLATFORM (FVP)**      |                   |
 | &emsp;FVP_Corstone-1000              | 11.17.35          |
 | **OTHER**                            |                   |
 | &emsp;CMSIS-Toolbox                  | 1.0.0             |
@@ -72,7 +71,7 @@ export ARMCOMPILER6_ASMOPT=--diag_suppress=9931
 | &emsp;Arm Compiler                   | 6.18              |
 | &emsp;GCC Compiler                   | 11.2              |
 | &emsp;Vela                           | 3.3.0             |
-|**VIRTUAL HARDWARE TARGETS**          |                   |
+|**FVP MODELS**                        |                   |
 | &emsp;VHT_MPS2_Cortex-M0             | 11.17.44 (U)      |
 | &emsp;VHT_MPS2_Cortex-M0plus         | 11.17.44 (U)      |
 | &emsp;VHT_MPS2_Cortex-M3             | 11.17.44 (U)      |
@@ -84,7 +83,6 @@ export ARMCOMPILER6_ASMOPT=--diag_suppress=9931
 | &emsp;VHT_Corstone_SSE-300_Ethos-U55 | 11.17.44 (U)      |
 | &emsp;VHT_Corstone_SSE-300_Ethos-U65 | 11.17.44 (U)      |
 | &emsp;VHT_Corstone_SSE-310           | 11.17.44 (U)      |
-|**FIXED VIRTUAL PLATFORM (FVP)**      |                   |
 | &emsp;FVP_Corstone-1000              | 11.17.35          |
 |**CORSTONE 1000 SOFTWARE**            |                   |
 | &emsp;Bootloader + TF                | CORSTONE1000-2022.04.07 |
@@ -133,7 +131,7 @@ export ARMCOMPILER6_ASMOPT=--diag_suppress=9931
 | &emsp;Arm Compiler                   | 6.18              |
 | &emsp;GCC Compiler                   | 11.2              |
 | &emsp;Vela                           | 3.3.0             |
-|**VIRTUAL HARDWARE TARGETS**          |                   |
+|**FVP MODELS**                        |                   |
 | &emsp;VHT_MPS2_Cortex-M0             | 11.17.40 (U)      |
 | &emsp;VHT_MPS2_Cortex-M0plus         | 11.17.40 (U)      |
 | &emsp;VHT_MPS2_Cortex-M3             | 11.17.40 (U)      |
@@ -145,7 +143,6 @@ export ARMCOMPILER6_ASMOPT=--diag_suppress=9931
 | &emsp;VHT_Corstone_SSE-300_Ethos-U55 | 11.17.40 (U)      |
 | &emsp;VHT_Corstone_SSE-300_Ethos-U65 | 11.17.40 (U)      |
 | &emsp;VHT_Corstone_SSE-310           | 11.17.40 (U)      |
-|**FIXED VIRTUAL PLATFORM (FVP)**      |                   |
 | &emsp;FVP_Corstone-1000              | 11.17.35          |
 |**CORSTONE 1000 SOFTWARE**            |                   |
 | &emsp;Bootloader + TF                | CORSTONE1000-2022.04.07 |
@@ -194,7 +191,7 @@ export ARMCOMPILER6_ASMOPT=--diag_suppress=9931
 | &emsp;Arm Compiler                   | 6.18              |
 | &emsp;GCC Compiler                   | 11.2              |
 | &emsp;Vela                           | 3.3.0             |
-|**VIRTUAL HARDWARE TARGETS**          |                   |
+|**FVP MODELS**                        |                   |
 | &emsp;VHT_MPS2_Cortex-M0             | 11.17.38          |
 | &emsp;VHT_MPS2_Cortex-M0plus         | 11.17.38          |
 | &emsp;VHT_MPS2_Cortex-M3             | 11.17.38          |
@@ -206,7 +203,6 @@ export ARMCOMPILER6_ASMOPT=--diag_suppress=9931
 | &emsp;VHT_Corstone_SSE-300_Ethos-U55 | 11.17.38          |
 | &emsp;VHT_Corstone_SSE-300_Ethos-U65 | 11.17.38          |
 | &emsp;VHT_Corstone_SSE-310           | 11.17.38          |
-|**FIXED VIRTUAL PLATFORM (FVP)**      |                   |
 | &emsp;FVP_Corstone-1000              | 11.17.35          |
 |**CORSTONE 1000 SOFTWARE**            |                   |
 | &emsp;Bootloader + TF                | CORSTONE1000-2022.04.07 |
@@ -255,7 +251,7 @@ export ARMCOMPILER6_ASMOPT=--diag_suppress=9931
 | &emsp;Arm Compiler                   | 6.18 (U)          |
 | &emsp;GCC Compiler                   | 11.2              |
 | &emsp;Vela                           | 3.3.0             |
-|**VIRTUAL HARDWARE TARGETS**          |                   |
+|**FVP MODELS**                        |                   |
 | &emsp;VHT_MPS2_Cortex-M0             | 11.17.38 (U)      |
 | &emsp;VHT_MPS2_Cortex-M0plus         | 11.17.38 (U)      |
 | &emsp;VHT_MPS2_Cortex-M3             | 11.17.38 (U)      |
@@ -267,7 +263,6 @@ export ARMCOMPILER6_ASMOPT=--diag_suppress=9931
 | &emsp;VHT_Corstone_SSE-300_Ethos-U55 | 11.17.38 (U)      |
 | &emsp;VHT_Corstone_SSE-300_Ethos-U65 | 11.17.38 (U)      |
 | &emsp;VHT_Corstone_SSE-310           | 11.17.38 (N)      |
-|**FIXED VIRTUAL PLATFORM (FVP)**      |                   |
 | &emsp;FVP_Corstone-1000              | 11.17.35 (N)      |
 |**CORSTONE 1000 SOFTWARE**            |                   |
 | &emsp;Bootloader + TF                | CORSTONE1000-2022.04.07 (N)|

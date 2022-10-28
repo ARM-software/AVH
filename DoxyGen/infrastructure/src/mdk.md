@@ -1,13 +1,13 @@
 
 # AVH with local toolchains {#Local}
 
-You can use Arm Virtual Hardware targets with embedded projects locally on your machine.
-  - \subpage run_mdk_pro explains how to use Keil MDK for developing and debugging a program with [Arm Virtual Hardware Targets](../../simulation/html/index.html) running on a local PC.
+You can use Arm Virtual Hardware with embedded projects locally on your machine.
+  - \subpage run_mdk_pro explains how to use Keil MDK for developing and debugging a program with [Arm Fixed Virtual Platforms](../../simulation/html/index.html) running on a local PC.
   - \subpage debug_ds explains how to connect to Arm Virtual Hardware AMI from a local PC and debug the program with Arm DS.
 
 \page run_mdk_pro Run with MDK-Professional
 
-This section explains how Arm Virtual Hardware (AVH) processors can be used with [Keil MDK](https://developer.arm.com/tools-and-software/embedded/keil-mdk) tools for developing and debugging embedded applications on a local computer.
+This section explains how Arm Fixed Virtual Platforms (FVP) can be used with [Keil MDK](https://developer.arm.com/tools-and-software/embedded/keil-mdk) tools for developing and debugging embedded applications on a local computer.
 
 ## Tools Installation {#mdk_vht_install}
 
@@ -23,9 +23,9 @@ complete.
 
 ## Project Configuration {#mdk_project_config}
 
-Two important configuration areas need special attention in MDK projects for Arm Virtual Hardware CPUs:
+Two important configuration areas need special attention in MDK projects for Arm FVPs:
  - \ref mdk_vht_targets in the project. This is required for new projects or when changing the target device in an existing project.
- - \ref mdk_vht_debug in the project. This step is typically needed for setting up any project, but with reference examples brief verification of the default settings can be sufficient.
+ - \ref mdk_vht_debug in the project. This step is typically needed for setting up any project, but with reference AVH examples brief verification of the default settings can be sufficient.
 
 Table below lists the Cortex-M cores supported with Arm Virtual Hardware, corresponding device names, the CMSIS Pack with device support, as well as simulation models provided with MDK.
 
@@ -45,7 +45,7 @@ Cortex-M33, FP    | IOTKit_CM33_FP_VHT  | Keil.V2M-MPS2_IOTKit_BSP from v1.5.0  
 Cortex-M55        | SSE-300-MPS3        | ARM.V2M_MPS3_SSE_300_BSP from v1.2.0  | VHT_MPS3_Corstone_SSE-300.exe<br>VHT_Corstone_SSE-300_Ethos-U55.exe<br>VHT_Corstone_SSE-300_Ethos-U65.exe| Corstone-300 SoC with Cortex-M55.<br>Same  device definition is used, but a model shall be selected<br>depending on the required microNPU (none, Ethos-U55 or Ethos-U65)
 Cortex-M85        | SSE-310-MPS3        |  not available yet                    | VHT_Corstone_SSE-310.exe           | CPU with Cortex-M85 core
 
->  <sup>1</sup> The Virtual Hardware Targets can be found in the `/ARM/VHT/` folder in the MDK installation directory as used for \ref mdk_vht_install, for example,`C:/Keil_v5/ARM/VHT/`.
+>  <sup>1</sup> The Fixed Virtual Platforms can be found in the `/ARM/VHT/` folder in the MDK installation directory as used for \ref mdk_vht_install, for example,`C:/Keil_v5/ARM/VHT/`.
 
 ### Target selection {#mdk_vht_targets}
 

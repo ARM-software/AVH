@@ -10,7 +10,7 @@ The AVH GetStarted example implements common steps in the CI workflow as shown o
 
 ![Continuous Integration (CI) workflow](images/basic_ci_workflow.png)
 
-1. \ref GS_DevelopTest "Local development": at first, the software is developed locally using a common embedded toolchain such as [Keil MDK](https://developer.arm.com/tools-and-software/embedded/keil-mdk) and with [Arm Virtual Hardware Target ](../../simulation/html/index.html) used for MCU simulation.<br>
+1. \ref GS_DevelopTest "Local development": at first, the software is developed locally using a common embedded toolchain such as [Keil MDK](https://developer.arm.com/tools-and-software/embedded/keil-mdk) and with [Arm Fixed Virtual Platforms](../../simulation/html/index.html) used for MCU simulation.<br>
  A GitHub repository is used as a source code management system for synchronization, storage and version control.
 2. \ref GS_SetupCI "CI pipeline setup": a GitHub Action implements the CI pipeline that gets triggered on every code update in the target repository.
 3. \ref GS_ExecuteCI "CI execution": automated program build and testing is performed in the cloud with Arm Virtual Hardware and results are reported back to the repository.

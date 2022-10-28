@@ -1,10 +1,10 @@
 # AWS MQTT Example {#aws_mqtt}
 
-This example is based on [AWS coreMQTT mutual authentication demo](https://docs.aws.amazon.com/freertos/latest/userguide/mqtt-demo-ma.html) and demonstrates how to use cloud-connectivity on Arm Virtual Hardware (AVH) targets via [VSocket interface](../../simulation/html/group__arm__vsocket.html), and how to verify such communication with Continuous Integration (CI) workflows. The project is maintained in the GitHub repository [**github.com/ARM-software/AVH-AWS_MQTT_Demo**](https://github.com/ARM-software/AVH-AWS_MQTT_Demo) that also contains additional description of the example.
+This example is based on [AWS coreMQTT mutual authentication demo](https://docs.aws.amazon.com/freertos/latest/userguide/mqtt-demo-ma.html) and demonstrates how to use cloud-connectivity on Arm Virtual Hardware (AVH) via [VSocket interface](../../simulation/html/group__arm__vsocket.html), and how to verify such communication with Continuous Integration (CI) workflows. The project is maintained in the GitHub repository [**github.com/ARM-software/AVH-AWS_MQTT_Demo**](https://github.com/ARM-software/AVH-AWS_MQTT_Demo) that also contains additional description of the example.
 
 ## Overview {#aws_mqtt_overview}
 
-The AWS MQTT Example application connects to [AWS MQTT broker](https://docs.aws.amazon.com/en_en/iot/latest/developerguide/mqtt.html) using TLS with mutual authentication between the client and the server. As a network interface either Ethernet or WiFi can be used on hardware boards, or VSocket on Virtual Hardware Targets. The application subscribes to MQTT topics and publishes messages that can be observed in AWS IoT MQTT client.
+The AWS MQTT Example application connects to [AWS MQTT broker](https://docs.aws.amazon.com/en_en/iot/latest/developerguide/mqtt.html) using TLS with mutual authentication between the client and the server. As a network interface either Ethernet or WiFi can be used on hardware boards, or VSocket on Arm FVP models. The application subscribes to MQTT topics and publishes messages that can be observed in AWS IoT MQTT client.
 
 Automated test execution is managed with GitHub Actions and gets triggered on
 every code change in the repository. The program gets built and run on [Arm

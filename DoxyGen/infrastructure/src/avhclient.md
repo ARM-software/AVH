@@ -18,7 +18,7 @@ pip install git+https://github.com/ARM-software/avhclient.git@main
 
 ## Supported backends {#avhclient_backends}
 
-AVH Client can control different backends with Arm Virtual Hardware Targets. The backend shall be specified with `-b` option preceding the actual AVH Client command. Following options are currently available:
+AVH Client can control different backends with Arm FVP models. The backend shall be specified with `-b` option preceding the actual AVH Client command. Following options are currently available:
 
 - `aws`(default) - interacts with \ref AWS "Arm Virtual Hardware instance on AWS".
   - avhclient can create/start AVH EC2 instances from AVH AMIs, prepare the instance, upload files to the instance, execute commands and run the program, download the results back and cleanup the instance.
@@ -152,7 +152,7 @@ More information on the AWS documentation: [Create IAM Role For Service](https:/
 
 ## AVH YML file {#avhclient_yml}
 
-avhclient `execute` command requires a file in [YML format](https://yaml.org/spec/) that describes details of individual steps to be executed on Arm Virtual Hardware targets. The fields available in the file syntax are explained below:
+avhclient `execute` command requires a file in [YML format](https://yaml.org/spec/) that describes details of individual steps to be executed on Arm FVP models. The fields available in the file syntax are explained below:
 
 | Field            |  Description
 |:-----------------|:---------------------------------------------------

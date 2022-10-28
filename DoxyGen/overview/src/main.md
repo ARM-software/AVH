@@ -8,13 +8,13 @@ Arm Virtual Hardware offers a comprehensive tool integration along with resource
 
 **Arm Virtual Hardware** consists of the following components:
 
-  - **Arm Virutal Hardware Targets** are precise [**simulation models**](https://en.wikipedia.org/wiki/Simulation) of Cortex-M device sub-systems and are designed for complex software verification and testing. It allows [**simulation-based test automation**](https://en.wikipedia.org/wiki/Test_automation) of various software workloads, including unit tests, integration tests, and fault injection. 
+  - **Arm Fixed Virtual Platforms (FVPs)** are precise [**simulation models**](https://en.wikipedia.org/wiki/Simulation) of Cortex-M device sub-systems and are designed for complex software verification and testing. This allows [**simulation-based test automation**](https://en.wikipedia.org/wiki/Test_automation) of various software workloads, including unit tests, integration tests, and fault injection.
 
   - **Arm Virtual Hardware Services** provide a cloud-native infrastructure for software test and validation. These services can be integrated into various **CI/CD** and **MLOps** environments that range from GitHub to on-premise IT infrastructure. The Arm Virtual Hardware services are available via the AWS Marketplace (and later also via other Cloud Service providers).
  
-  - **Arm Virtual Hardware Developer Resources** gives you access to interface drivers that map to virtual targets and physical hardware along with Python scripts for I/O simulation. The documentation explains how to integrate Arm Virtual Hardware Targets into typical **CI/CD** environments. Usage examples show typical usage cases and range from audio processing, ML algorithm testing, up to IoT applications that interface to Cloud Service providers.
+  - **Arm Virtual Hardware Developer Resources** gives you access to interface drivers that map to virtual targets and physical hardware along with Python scripts for I/O simulation. The documentation explains how to integrate Arm Virtual Hardware into typical **CI/CD** environments. Usage examples show typical usage cases and range from audio processing, ML algorithm testing, up to IoT applications that interface to Cloud Service providers.
   
-  - **Software Development Environments** with Arm Virtual Hardware Targets integration are also available. \prj_name is an integral part of the Keil MDK Professional Edition that is a comprehensive software tool suite for creating Cortex-M-based applications and related validation and test processes. In future, the next-generation Keil Studio will also integrate \prj_name.
+  - **Software Development Environments** can be used with Arm Virtual Hardware. So, Arm Fixed Virtual Platforms are an integral part of the Keil MDK Professional Edition that is a comprehensive software tool suite for creating Cortex-M-based applications and related validation and test processes. Other IDEs and debuggers can be used to connect remotely to Arm Virtual Hardware services.
 
 \image html "vht_overview.png" "Arm Virtual Hardware - Components"
 
@@ -24,8 +24,8 @@ Arm Virtual Hardware offers a comprehensive tool integration along with resource
 Section                                                    | Description
 :----------------------------------------------------------|:--------------------
 [**Overview**](index.html)                                 | Introduces **Arm Virtual Hardware** along with the top-level structure.
-[**Simulation**](../../simulation/html/index.html)         | Explains the **Arm Virtual Hardware Targets** along with the simulation technology and the virtual interfaces.
-[**Infrastructure**](../../infrastructure/html/index.html) | Describes how to setup development work flows with **Arm Virtual Hardware**.
+[**Simulation**](../../simulation/html/index.html)         | Explains the simulation technology and the virtual interfaces.
+[**Infrastructure**](../../infrastructure/html/index.html) | Describes how to setup development workflows with **Arm Virtual Hardware**, locally and in the cloud.
 [**Examples**](../../examples/html/index.html)             | Guides through the examples that demonstrate how to use **Arm Virtual Hardware**.
 
 # User Benefits {#User_Benefits}
@@ -39,7 +39,7 @@ AVH allows to verify your code without the need for physical hardware which prov
 
 ## Verify Correctness {#Verify}
 
-**Arm Virtual Hardware Targets** are based on Arm simulation models that are validated with the same process as the IP. Specially it allows you to:
+**Arm Fixed Virtual Platforms (FVPs)** are Arm simulation models validated with the same process as the CPU IP. Specially it allows you to:
  - Perform algorithm testing with identical logical behaviour of the target device
  - Precisely repeat complex input patterns in CI/CD test environments
  - Analyse software behaviour with event annotations
@@ -79,9 +79,9 @@ For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html
 <tr>
 <td>1.3.0-beta (September 22, 2022)</td>
 <td>
- - Corstone SSE-300 VHT device is supported with [**Keil Studio Cloud**](https://www.keil.arm.com/boards/arm-v2m-mps3-sse-300-fvp-610bb98/).
+ - Arm Corstone SSE-300 model is supported with [**Keil Studio Cloud**](https://www.keil.arm.com/boards/arm-v2m-mps3-sse-300-fvp-610bb98/).
  - Provided [**eventlist utility**](https://github.com/ARM-software/CMSIS-View/tree/main/tools/eventlist) to process Event Recorder logs obtained with AVH targets.
- - Added AVH model VHT_Corstone_SSE-310_Ethos-U65 to the AMI, see [Using Arm Virtual Hardware Targets](../../simulation/html/Using.html).
+ - Added new FVP model - VHT_Corstone_SSE-310_Ethos-U65 to the AMI, see [Using Arm Fixed Virtual Platforms](../../simulation/html/Using.html).
  - Added installation of [**CMSIS-Toolbox v1.0.0**](https://github.com/Open-CMSIS-Pack/CMSIS-Toolbox) to the AMI, that also includes CMSIS-Build for command-line project builds.
  - Updated [**examples**](../../examples/html/index.html) to use dynamic credentials (IAM Role) in the GitHub CI workflow, removing the need for storing AWS credentials in GitHub Secrets.
  - Removed preinstalled Bootloader and OpenSuSE software for Corstone-1000.
@@ -91,7 +91,7 @@ For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html
 <tr>
 <td>1.2.3-beta (July 9, 2022)</td>
 <td>
- - Enabled timing annotations in VHTs by default ([FASTSIM_DISABLE_TA](https://developer.arm.com/documentation/100965/1117/Timing-Annotation/Enabling-and-disabling-timing-annotation) is set to 0). If disabled (FASTSIM_DISABLE_TA set to 1) VSI streams data too quickly and prevents normal execution of [ATS-Keyword Example] (https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword).
+ - Enabled timing annotations in FVPs by default ([FASTSIM_DISABLE_TA](https://developer.arm.com/documentation/100965/1117/Timing-Annotation/Enabling-and-disabling-timing-annotation) is set to 0). If disabled (FASTSIM_DISABLE_TA set to 1) VSI streams data too quickly and prevents normal execution of [ATS-Keyword Example] (https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword).
 </td>
 </tr>
 <tr>
@@ -99,13 +99,13 @@ For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html
 <td>
  - New versioning scheme to match the AMI version (see [AMI Inventory](../../infrastructure/html/ami_inventory.html)).
  - [**CMSIS-RTOS2 Validation**](https://github.com/ARM-software/CMSIS-RTOS2_Validation): Advanced test suite for validating CMSIS-RTOS2 implementations on supported Cortex-M cores runs using AVH.
- - Corstone-310 VHT fixes: NPU access fix as well as a parameter for the flash region size allowing it to be a maximum of 64MB.
+ - Corstone-310 model fixes: NPU access fix as well as a parameter for the flash region size allowing it to be a maximum of 64MB.
 </td>
 </tr>
 <tr>
 <td>0.3-beta (Apr 2022)</td>
 <td>Added features:
- - [**Corstone-310 and Corstone-1000**](../../simulation/html/Using.html): added new virtual hardware targets.
+ - [**Corstone-310 and Corstone-1000**](../../simulation/html/Using.html): added new simulation models.
  - [**Integration with Jenkins**](../../infrastructure/html/run_ami_jenkins.html): example of AVH AMI usage in Jenkins CI pipelines.
  - [**Event Recorder Semihosting Support**](https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_use.html#er_semihosting): allows to generate Event Recorder logs in AVH AMI environment.
  - [**AWS MQTT Example**](../../examples/html/aws_mqtt.html): IoT application with MQTT connectivity to AWS cloud service.
@@ -137,4 +137,4 @@ The current beta version of of Arm Virtual Hardware has the following known issu
 
 # Feedback and Support {#Support}
 
-Arm Virtual Hardware is supported during public beta via this [Arm forum](https://community.arm.com/support-forums/f/arm-virtual-hardware-targets-forum). Your feedback will influence our future roadmap and we try to help you promptly with your questions.
+Arm Virtual Hardware is supported during public beta via this [Arm forum](https://community.arm.com/support-forums/f/arm-virtual-hardware-forum). Your feedback will influence our future roadmap and we try to help you promptly with your questions.
