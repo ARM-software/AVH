@@ -29,7 +29,7 @@ Two important configuration areas need special attention in MDK projects for Arm
 
 Table below lists the Cortex-M cores supported with Arm Virtual Hardware, corresponding device names, the CMSIS Pack with device support, as well as simulation models provided with MDK.
 
-Arm Cortex-M core | AVH Device name     | CMSIS Pack with device definition     | Virtual Hardware model in MDK<sup> 1</sup> |   Description
+Arm Cortex-M core | AVH Device name     | CMSIS Pack with device definition     | FVP model in MDK<sup> 1</sup> |   Description
 :-----------------|:--------------------|:--------------------------------------|:-----------------------------------|:-------------------------------
 Cortex-M0         | CMSDK_CM0_VHT       | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M0.exe         | CPU with Cortex-M0 core
 Cortex-M0+        | CMSDK_CM0plus_VHT   | Keil.V2M-MPS2_CMx_BSP from v1.8.0     | VHT_MPS2_Cortex-M0plus.exe     | CPU with Cortex-M0+ core

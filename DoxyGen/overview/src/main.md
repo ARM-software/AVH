@@ -77,7 +77,7 @@ For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html
 <th>Changes</th>
 </tr>
 <tr>
-<td>1.3.0-beta (September 22, 2022)</td>
+<td>1.3.0-beta (Sept 22, 2022)</td>
 <td>
  - Arm Corstone SSE-300 model is supported with [**Keil Studio Cloud**](https://www.keil.arm.com/boards/arm-v2m-mps3-sse-300-fvp-610bb98/).
  - Provided [**eventlist utility**](https://github.com/ARM-software/CMSIS-View/tree/main/tools/eventlist) to process Event Recorder logs obtained with AVH targets.
@@ -91,7 +91,7 @@ For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html
 <tr>
 <td>1.2.3-beta (July 9, 2022)</td>
 <td>
- - Enabled timing annotations in FVPs by default ([FASTSIM_DISABLE_TA](https://developer.arm.com/documentation/100965/1117/Timing-Annotation/Enabling-and-disabling-timing-annotation) is set to 0). If disabled (FASTSIM_DISABLE_TA set to 1) VSI streams data too quickly and prevents normal execution of [ATS-Keyword Example] (https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword).
+ - Enabled timing annotations in FVPs by default ([FASTSIM_DISABLE_TA](https://developer.arm.com/documentation/100965/1117/Timing-Annotation/Enabling-and-disabling-timing-annotation) is set to 0). If disabled (FASTSIM_DISABLE_TA set to 1), VSI streams data too quickly and prevents normal execution of [ATS-Keyword Example] (https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword).
 </td>
 </tr>
 <tr>
