@@ -15,7 +15,7 @@ __[./interface/vio/vio_vht.c](https://github.com/ARM-software/AVH/tree/main/inte
 
 # Setup {#vio_setup}
 
-Instructions below cover specifically setup for using CMSIS-Driver VIO in a project on Arm Virtual Hardware Target.
+Instructions below cover specifically setup for using CMSIS-Driver VIO in a project on Arm Fixed Virtual Platfom (FVP) as a target.
 
 - Install following software packs in your development environment, if not available yet:
  - ARM::CMSIS pack for access to CMSIS-Driver VIO API header (*cmsis_vio.h*)
@@ -73,7 +73,7 @@ __[./interface/vsocket/iot_socket.c](https://github.com/ARM-software/AVH/tree/ma
 
 # Setup {#vsocket_setup}
 
-Instructions below cover specifically setup for using IoT Socket API in a project on Arm Virtual Hardware Target.
+Instructions below cover specifically setup for using IoT Socket API in a project using Arm Fixed Virtual Platform (FVP) as a target.
 
  - Verify that following packs are installed in your development environment:
   - ARM::CMSIS pack for access to CMSIS-RTOS2 API used by VSocket implementation.

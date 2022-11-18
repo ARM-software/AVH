@@ -22,7 +22,7 @@ AVH Client can control different backends with Arm FVP models. The backend shall
 
 - `aws`(default) - interacts with \ref AWS "Arm Virtual Hardware instance on AWS".
   - avhclient can create/start AVH EC2 instances from AVH AMIs, prepare the instance, upload files to the instance, execute commands and run the program, download the results back and cleanup the instance.
-- `local` - operates with AVH Targets installed locally.
+- `local` - operates with FVP targets installed locally.
 
 ## AWS backend setup {#avhclient_setup_aws}
 

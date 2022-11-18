@@ -53,7 +53,7 @@ AVH device support is implemented with the same CMSIS principles as used for rea
 
 When opening an existing MDK project or importing it from a .cprj file you will be asked if any missing packs required by the project shall be installed. If you agree to that, also the necessary pack with device definition for the target device used in the project will be automatically installed.
 
-When creating a new project or when changing the target in an existing project you need to select an AVH target as follows:
+When creating a new project or when changing the target in an existing project you need to select an FVP target as follows:
  - Install the CMSIS pack with target device definition, if not present yet:
   - Start [*Pack Installer*](https://developer.arm.com/documentation/101407/latest/Creating-Applications/Software-Components/Pack-Installer) utility.
   - In *Devices* tab expand *ARM* section and select the target Cortex-M core.
