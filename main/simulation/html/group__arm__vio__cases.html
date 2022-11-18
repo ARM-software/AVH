@@ -123,10 +123,10 @@ Setup</h1>
 <li>Install following software packs in your development environment, if not available yet:<ul>
 <li>ARM::CMSIS pack for access to CMSIS-Driver VIO API header (<em>cmsis_vio.h</em>)</li>
 <li>Pack with target device support for access to <a class="el" href="group__arm__vio__api.html">VIO API</a> (<em>arm_vio.h</em>)</li>
-<li>Arm VHT pack for access to implementation of CMSIS-Driver VIO (<em>vio_vht.c</em>)</li>
 </ul>
 The packs can be found on <a href="https://developer.arm.com/tools-and-software/embedded/cmsis/cmsis-packs">CMSIS Packs page</a>.</li>
-<li>Add to the project the <em>CMSIS-Driver:VIO (API):VIO</em> component that contains <em>vio_vht.c</em> file.</li>
+<li>Add to the project the <em>CMSIS-Driver:VIO (API):Custom</em> component that provides access to <em>cmsis_vio.c</em> file.</li>
+<li>Copy <b><a href="https://github.com/ARM-software/AVH/tree/main/interface/vio/vio_vht.c">./interface/vio/vio_vht.c</a></b> file to your local project folder and add it to the project.</li>
 </ul>
 <h1><a class="anchor" id="vio_example"></a>
 Usage example</h1>
