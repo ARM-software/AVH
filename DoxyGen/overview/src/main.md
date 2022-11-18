@@ -91,7 +91,7 @@ For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html
 <tr>
 <td>1.2.3-beta (July 9, 2022)</td>
 <td>
- - Enabled timing annotations in FVPs by default ([FASTSIM_DISABLE_TA](https://developer.arm.com/documentation/100965/1117/Timing-Annotation/Enabling-and-disabling-timing-annotation) is set to 0). If disabled (FASTSIM_DISABLE_TA set to 1), VSI streams data too quickly and prevents normal execution of [ATS-Keyword Example] (https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword).
+ - Enabled timing annotations in FVPs by default ([FASTSIM_DISABLE_TA](https://developer.arm.com/documentation/100965/1117/Timing-Annotation/Enabling-and-disabling-timing-annotation) is set to 0).<br/>If disabled (FASTSIM_DISABLE_TA set to 1), VSI streams data too quickly and prevents normal execution of [ATS-Keyword Example] (https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword).
 </td>
 </tr>
 <tr>
