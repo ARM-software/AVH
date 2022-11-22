@@ -1,11 +1,11 @@
 /******************************************************************************
  * @file     vio_vht.c
- * @brief    Virtual I/O implementation for VHT
+ * @brief    Virtual I/O implementation for Arm FVPs
  * @version  V1.0.0
  * @date     1. December 2021
  ******************************************************************************/
 /*
- * Copyright (c) 2019-2021 Arm Limited. All rights reserved.
+ * Copyright (c) 2019-2022 Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
