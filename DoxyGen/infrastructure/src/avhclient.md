@@ -192,7 +192,7 @@ upload:
   - main.c
   - requirements.txt
   - retarget_stdio.c
-  - vht_config.txt
+  - fvp_config.txt
   - README.md
 steps:
   - run: |

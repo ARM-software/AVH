@@ -44,7 +44,7 @@ The FVP models can be configured using the option *-f FILE* that specifies a *co
 Below is an example of running a program on the AVH model for Corstone-300 with Ethos-U55 in Linux environment:
 
 ```
-VHT_Corstone_SSE-300_Ethos-U55 -V "..\VSI\audio\python" -f vht_config.txt -a Objects\microspeech.axf --stat --simlimit 24
+VHT_Corstone_SSE-300_Ethos-U55 -V "..\VSI\audio\python" -f fvp_config.txt -a Objects\microspeech.axf --stat --simlimit 24
 ```
 
 Where:
@@ -54,7 +54,7 @@ Where:
   - **--stat** instructs to print run statistics on simulation exit.
   - **--simlimit** specifies the maximum number of seconds to simulate.
 
-The content of the *vht_config.txt* could be:
+The content of the *fvp_config.txt* could be:
 ```
 # Parameters:
 # instance.parameter=value       #(type, mode) default = 'def value' : description : [min..max]
@@ -76,7 +76,7 @@ Where:
 
 Embedded applications typically run with an infinite loop that ensures continuous program execution. But for executing regression tests as part of Continuous Integration (CI) workflows it is often required that program execution is stopped after a test is completed, so that the next test can be started.
 
-FVP models have `shutdown_on_eot` parameter that enables simple implementation of such program exit. The parameter should be set in the model configuration file (*vht_config.txt* explained above), for example for VHT_Corstone_SSE-300:
+FVP models have `shutdown_on_eot` parameter that enables simple implementation of such program exit. The parameter should be set in the model configuration file (*fvp_config.txt* explained above), for example for VHT_Corstone_SSE-300:
 
 ```
 mps3_board.uart0.shutdown_on_eot=1   # (bool, init-time) default = '0' : Shutdown simulation when a EOT (ASCII 4) char is transmitted (useful for regression tests when semihosting is not available)
