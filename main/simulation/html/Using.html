@@ -158,7 +158,7 @@ Command Line Options</h1>
 <h1><a class="anchor" id="Example"></a>
 Usage Examples</h1>
 <p >Below is an example of running a program on the AVH model for Corstone-300 with Ethos-U55 in Linux environment:</p>
-<div class="fragment"><div class="line">VHT_Corstone_SSE-300_Ethos-U55 -V &quot;..\VSI\audio\python&quot; -f vht_config.txt -a Objects\microspeech.axf --stat --simlimit 24</div>
+<div class="fragment"><div class="line">VHT_Corstone_SSE-300_Ethos-U55 -V &quot;..\VSI\audio\python&quot; -f fvp_config.txt -a Objects\microspeech.axf --stat --simlimit 24</div>
 </div><!-- fragment --><p >Where:</p><ul>
 <li><b>-V</b> specifies that path to the Python scripts for <a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a>.</li>
 <li><b>-f</b> specifies the <em>config-file</em> for the AVH simulation model.</li>
@@ -166,7 +166,7 @@ Usage Examples</h1>
 <li><b>&ndash;stat</b> instructs to print run statistics on simulation exit.</li>
 <li><b>&ndash;simlimit</b> specifies the maximum number of seconds to simulate.</li>
 </ul>
-<p >The content of the <em>vht_config.txt</em> could be: </p><div class="fragment"><div class="line"># Parameters:</div>
+<p >The content of the <em>fvp_config.txt</em> could be: </p><div class="fragment"><div class="line"># Parameters:</div>
 <div class="line"># instance.parameter=value       #(type, mode) default = &#39;def value&#39; : description : [min..max]</div>
 <div class="line">#------------------------------------------------------------------------------</div>
 <div class="line">core_clk.mul=32000000                                 # (int   , init-time) default = &#39;0x17d7840&#39; : Clock Rate Multiplier. This parameter is not exposed via CADI and can only be set in LISA</div>
@@ -183,7 +183,7 @@ Usage Examples</h1>
 <h2><a class="anchor" id="autotoc_md0"></a>
 Execution stop</h2>
 <p >Embedded applications typically run with an infinite loop that ensures continuous program execution. But for executing regression tests as part of Continuous Integration (CI) workflows it is often required that program execution is stopped after a test is completed, so that the next test can be started.</p>
-<p >FVP models have <code>shutdown_on_eot</code> parameter that enables simple implementation of such program exit. The parameter should be set in the model configuration file (<em>vht_config.txt</em> explained above), for example for VHT_Corstone_SSE-300:</p>
+<p >FVP models have <code>shutdown_on_eot</code> parameter that enables simple implementation of such program exit. The parameter should be set in the model configuration file (<em>fvp_config.txt</em> explained above), for example for VHT_Corstone_SSE-300:</p>
 <div class="fragment"><div class="line">mps3_board.uart0.shutdown_on_eot=1   # (bool, init-time) default = &#39;0&#39; : Shutdown simulation when a EOT (ASCII 4) char is transmitted (useful for regression tests when semihosting is not available)</div>
 </div><!-- fragment --><p >And then to trigger the shutdown, a EOT (ASCII 4) symbol can be transmitted to the corresponding serial interface from the program. The code below demonstrates an example, where the execution is stopped after target execution count is achieved. In this implementation the STDIO is assumed to be retargeted to the UART0:</p>
 <div class="fragment"><div class="line">while (1)  {</div>
