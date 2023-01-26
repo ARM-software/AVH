@@ -1,11 +1,16 @@
 # AMI Inventory {#ami_inventory}
 
 Sections below list the resources preinstalled on the corresponding version of Arm Virtual Hardware AMI. It is also possible to [obtain the current AMI Inventory](#inventory) on a running AMI instance.
+ - [AMI v1.3.1](#ami_inventory_131)
  - [AMI v1.3.0](#ami_inventory_130)
  - [AMI v1.2.3](#ami_inventory_123)
  - [AMI v1.2.2](#ami_inventory_122)
  - [AMI v1.2.1](#ami_inventory_121)
  - [AMI v1.2.0](#ami_inventory_120)
+
+## AMI v1.3.1 {#ami_inventory_131}
+
+The inventory is identical to [AMI v1.3.0](#ami_inventory_130) and only licensing files for Arm tools are updated.
 
 ## AMI v1.3.0 {#ami_inventory_130}
 

@@ -77,6 +77,13 @@ For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html
 <th>Changes</th>
 </tr>
 <tr>
+<td>1.3.1-beta (Jan 26, 2023)</td>
+<td>
+ - License validity period for installed Arm tools is extended.
+ - EULA for AVH AMI is updated on AWS marketplace.
+</td>
+</tr>
+<tr>
 <td>1.3.0-beta (Sept 22, 2022)</td>
 <td>
  - Arm Corstone SSE-300 model is supported with [**Keil Studio Cloud**](https://www.keil.arm.com/boards/arm-v2m-mps3-sse-300-fvp-610bb98/).
