@@ -3,19 +3,28 @@
 /**
 \defgroup arm_vsi Virtual Streaming Interface (VSI)
 \ingroup arm_cmvp
-\brief Data streaming interface for Cortex-M applications
+\brief Data streaming interface
 \details
 
-The Virtual Streaming Interface (VSI) is a flexible peripheral that allows to implement a wide range of use cases. 
-It can be used to simulate data streaming such as audio, video and various sensors frequently found in Machine-Learning applications.
-Eight VSI instances are available and may be used in parallel for simultaneous multi-channel streaming inputs and outputs.
+The **Virtual Streaming Interface (VSI)** is a flexible memory-mapped peripheral available in Arm Fixed Virtual Platforms (FVPs). It can be used to simulate data streaming interfaces such as audio, video and various sensors often found in IoT and Machine-Learning applications.
+The VSI is provided in 8 independent instances that can be used in parallel for multi-channel input/ouput interfaces.
 
+Figure below illustrates the concept behind the VSI on Arm FVPs.
 
-Examples demonstrate the \ref arm_vsi_audio "Audio" streaming as shown in the diagram below.
+\image html ./images/vsi_structure.png "Using the Virtual Streaming Interface (VSI)"
 
-\image html ./images/Example-Structure.png "AVH CoreStone-300 for Linux and Windows"
+- On the application firmware side a peripheral driver uses the \ref arm_vsi_api "VSI registers" in the FVP model to simulate peripheral operation for a target use case.
+By relying on common driver APIs the same application-level code can be reused for FVPs and real hardware targets.
 
-The VSI implements general purpose peripheral registers, an interrupt peripheral, a timer peripheral, and a DMA peripheral. The following files define the access to the VSI peripherals.
+- Read/write accesses to the VSI peripheral registers in the FVP trigger execution of corresponding callback functions in 
+the \ref arm_vsi_py "VSI Python scripts" that implement peripheral behavior in the target scenario.
+
+- An FVP model can be run on a Windows or Linux host and executes the target firmware application image.
+The path to the VSI python scripts shall be provided to the FVP using the command-line option `-V`, or `--v_path`, see \ref Example.
+
+Section \ref arm_vsi_cases explains in details the reference implementations of VSI-based peripherals. Specifically \ref arm_vsi_audio implementing audio streaming input from a local audio wave file.
+
+Access to the VSI peripherals is defined in the following files:
 
 File                             | Description
 :--------------------------------|:-----------------------------------
@@ -24,9 +33,9 @@ File                             | Description
   :                              |   :
 ./interface/python/arm_vsi7.py   | \ref arm_vsi_py "VSI Python interface" script template for instance 7
 
-A read or write access to a VSI peripheral via its \ref arm_vsi_api "API" triggers execution of a corresponding function in the Python script that implements the \ref arm_vsi_py "VSI Python interface" instance. The concept is shown on the figure below.
+An example flow for using the VSI peripheral is shown on the figure below:
 
-\image html "using_vsi_uml.png" "Using VSI peripheral"
+\image html "using_vsi_uml.png" "Example flow for using the VSI peripheral"
 
 */
 

@@ -54,7 +54,11 @@ int main (void) {
 \brief      Use Cases for Virtual Streaming Interface (VSI)
 \details
 
-\ref arm_vsi_api provides a general purpose implementation for data streaming peripherals. This chapter shows how VSI can be applied in specific use cases.
+\ref arm_vsi is a general purpose peripheral for implementing data streaming support on Arm FVPs.
+
+\ref arm_vsi_audio implements VSI-based audio data streaming with local audio wave file and so simulates audio I/O peripheral in the system.
+
+Other examples for VSI peripherals will be added in future as well.
 
 */
 

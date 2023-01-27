@@ -1,18 +1,26 @@
 /*=======0=========1=========2=========3=========4=========5=========6=========7=========8=========9=========0=========1====*/
 //  ==== Virtual Interfaces ====
 /**
-\defgroup   arm_cmvp Virtual Peripherals
-\brief      Virtual Interfaces on Arm Fixed Virtual Platforms
+\defgroup   arm_cmvp Virtual Interfaces
+\brief      Virtual Interfaces on Arm Fixed Virtual Platforms (FVPs)
 \details
 
-The **Virtual Interfaces** are memory-mapped implementations of  that simulate a user application application running on a virtual Cortex processor.
+The **Virtual Interfaces** in Arm FVPs implement various CPU peripherals that allow to use external resources for stimulating the firmware application. Following interfaces are available and explained in details in corresponding sections:
+
+  - The \ref arm_vio interface controls simple binary state I/O such as LED and switches.
+  - The \ref arm_vsi provides up to 8 channels for data streaming.
+  - The \ref arm_vsocket connects the user application to [**BSD sockets**](https://en.wikipedia.org/wiki/Berkeley_sockets) on the Host computer for IP network connectivity.
+
+Both \ref arm_vio "VIO" and \ref arm_vsi "VSI" connect to Python and enable flexible scripting for test automation.
+
+![AVH Virtual Interfaces](./images/Virtual_Interfaces.png "FVPs with Virtual Interfaces")
 
 \defgroup arm_vio Virtual Input/Output (VIO)
 \ingroup arm_cmvp
 \brief Controls simple I/O such as LED and switches
 \details
 
-The **Virtual Input/Output Interface (VIO)** implements a register-based peripheral for simple digital I/Os. It can be used to simulate control of such items as LEDs, switches, digital signals and others. Figure below demonstrates the concept.
+The **Virtual Input/Output Interface (VIO)** implements a register-based peripheral for simple digital I/Os. It can be used to simulate control of such items as LEDs, switches, digital signals and others . Figure below demonstrates the concept.
 
 \image html ./images/vio_structure.png
 
@@ -101,6 +109,6 @@ Index array for digital I/O values.
 
 The Python interface described in this section triggers on peripheral register access of the \ref arm_vio_api.
 
-The path to the python script implementing the interface shall be provided to the target in \ref Options "-V command line option".
+The path to the python script implementing the interface shall be provided to the target in command line option \ref Options "-V or --v_path".
 
 */

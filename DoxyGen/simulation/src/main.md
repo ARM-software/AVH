@@ -9,7 +9,7 @@ The virtual platforms implement various Virtual Interfaces that can be used to s
 ![AVH Virtual Interfaces](./images/Virtual_Interfaces.png "FVPs with Virtual Interfaces")
 
   - The \ref arm_vio interface controls simple I/O such as LED and switches.
-  - The \ref arm_vsi provides up to 8 instances for data streaming.
+  - The \ref arm_vsi provides up to 8 channels for data streaming.
   - The \ref arm_vsocket connects the user application to [**BSD sockets**](https://en.wikipedia.org/wiki/Berkeley_sockets) on the Host computer for IP network connectivity.
 
 Both \ref arm_vio "VIO" and \ref arm_vsi "VSI" connect to Python and enable flexible scripting for test automation. Eight VSI interfaces are available and may be used in parallel to stream simultaneous multi-channel inputs and outputs. The interfaces are tailored for simulation, but can also map to physical target hardware.

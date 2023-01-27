@@ -3,7 +3,7 @@
 /**
 \defgroup arm_vsi_api VSI API
 \ingroup arm_vsi
-\brief Data streaming interface for Cortex-M applications to Python scripting
+\brief Virtual Streaming Interface API for application firmware
 \details
 
 The VSI peripheral is accessed using the \ref ARM_VSI_Type structure that defines registers for the following components:

@@ -1,95 +1,39 @@
 /**
 \addtogroup arm_vsi_audio Audio via VSI
 \ingroup arm_vsi_cases
-\brief Audio file streaming interface for Cortex-M applications to Python scripting
+\brief Audio file streaming interface
 \details
-The VSI implements general purpose peripheral registers, interrupt control, a timer peripheral, and a DMA peripheral.
-The peripheral is accessed using the \ref ARM_VSI_Type structure definition in [arm_vsi.h](https://github.com/ARM-software/AVH/blob/main/interface/include/arm_vsi.h)
 
-Several implementations of the audio driver with the same common audio driver API are available. This allows to re-target an application from Arm Virtual Hardware to physical devices while implementing the same logical behavior:
-  - for the \ref arm_vsi_api "VSI" with an interface to a Python test script that streams *.wav files.
-  - for NXP IMXRT1064 and IMXRT1050 evaluation boards that use microphone as audio input.
+Audio streaming use case is implemented for Arm FVPs based on the general-purpose \ref arm_vsi.
 
-The implementations are done with the following items:
+The use of common audio driver API simplifies re-targeting of the application code between virtual and physical devices.
+Currently audio driver implementations and examples are available for the following platforms:
+  - Arm FVPs using \ref arm_vsi_api "VSI" with an interface to a Python test script that streams local *.wav file.
+  - NXP IMXRT1064 and IMXRT1050 evaluation boards that use microphone for audio input.
+  .
+and support for other hardware platforms can be added following the same concept.
+
+[**Micro Speech Example**](../../examples/html/MicroSpeech.html) project demonstrates use of this audio driver in both the AVH test environment and on the physical evaluation boards.
+
+The table below references the files that implement the audio peripheral:
 
 Item                                                                       | Description
-:------------------------------------------------------------------------------------|:-----------------------------------
+:--------------------------------------------------------------------------|:------------------------------------------------------
 [./interface/audio/include/audio_drv.h](https://github.com/arm-software/AVH/blob/main/interface/audio/include/audio_drv.h)    | \ref arm_vsi_audio "Audio Driver API" header file. Used by implementations on Arm Virtual Hardware and real HW boards.
 [./interface/audio/driver/audio_drv.c](https://github.com/arm-software/AVH/blob/main/interface/audio/driver/audio_drv.c)      | Audio driver implementation for Arm Virtual Hardware based on \ref arm_vsi_api "VSI"
 [./interface/audio/python/arm_vsi0.py](https://github.com/arm-software/AVH/blob/main/interface/audio/python/arm_vsi0.py)      | \ref arm_vsi_audio "Audio via VSI"  Python script for audio input interface based on \ref arm_vsi_py "VSI Python interface" 
-[./interface/audio/python/arm_vsi1.py](https://github.com/arm-software/AVH/blob/main/interface/audio/python/arm_vsi1.py)                              | \ref arm_vsi_audio "Audio via VSI"  Python script for audio output interface based on \ref arm_vsi_py "VSI Python interface" 
+[./interface/audio/python/arm_vsi1.py](https://github.com/arm-software/AVH/blob/main/interface/audio/python/arm_vsi1.py)      | \ref arm_vsi_audio "Audio via VSI"  Python script for audio output interface based on \ref arm_vsi_py "VSI Python interface" 
 Audio driver for NXP IMXRT1050-EVKB board | Audio driver implementation for NXP IMXRT1050-EVKB. See [AVH-TFLmicrospeech GitHub repo](https://github.com/ARM-software/AVH-TFLmicrospeech/tree/main/Platform_IMXRT1050-EVKB/Driver_Audio)
 Audio driver for NXP MIMXRT1064-EVK board | Audio driver implementation for NXP MIMXRT1064-EVK. See [AVH-TFLmicrospeech GitHub repo](https://github.com/ARM-software/AVH-TFLmicrospeech/tree/main/Platform_MIMXRT1064-EVK/Driver_Audio)
 
-The chapter [**Micro Speech Example**](../../examples/html/MicroSpeech.html) describes an example projects that demonstrate use of this audio driver API in both the AVH test environment and on the physical evaluation boards.
-
 @{
 
-\defgroup audio_drv_interface Audio Driver Interface
+\defgroup audio_drv_functions Audion Driver API Functions
 \ingroup arm_vsi_audio
-\brief Definitions of audio driver interface
+\brief Audio Driver API functions.
 \details
-Audio driver interface definitions for use in various audio driver functions (for example \ref AudioDrv_Configure, \ref AudioDrv_SetBuf).
+
 @{
-\def AUDIO_DRV_INTERFACE_RX
-\def AUDIO_DRV_INTERFACE_TX
-@}
-
-\defgroup audio_drv_control Audio Driver Controls
-\ingroup arm_vsi_audio
-\brief Definitions of control parameters
-\details
-Audio driver control parameters for use in \ref AudioDrv_Control function.
-@{
-\def AUDIO_DRV_CONTROL_TX_ENABLE
-\def AUDIO_DRV_CONTROL_RX_ENABLE
-\def AUDIO_DRV_CONTROL_TX_DISABLE
-\def AUDIO_DRV_CONTROL_RX_DISABLE
-@}
-
-\defgroup audio_events Audio Driver Events
-\ingroup arm_vsi_audio
-\brief Events reported by audio driver
-\details
-The Audio driver reports its events via the registered callback function \ref AudioDrv_Event_t. Each event is encoded in a separate bit and therefore it is possible to signal multiple events within the same call.
-@{
-\def AUDIO_DRV_EVENT_RX_DATA
-\details Triggered to indicate that all the data has been received. The driver is ready to receive next data block.
-
-\def AUDIO_DRV_EVENT_TX_DATA
-\details Triggered to indicate that all the data has been sent (or queued in transmit buffers). The driver is ready for the next transmission.
-@}
-
-\defgroup audio_drv_errors Status Error Codes
-\ingroup arm_vsi_audio
-\brief Error codes returned by Audio interface functions.
-\details
-Following error codes can be reported:
-@{
-\def AUDIO_DRV_OK
-\def AUDIO_DRV_ERROR
-\def AUDIO_DRV_ERROR_BUSY
-\def AUDIO_DRV_ERROR_TIMEOUT
-\def AUDIO_DRV_ERROR_UNSUPPORTED
-\def AUDIO_DRV_ERROR_PARAMETER
-@}
-
-\struct AudioDrv_Status_t
-\details
-Structure with information about the status of the Audio driver. The data fields encode busy flags and error flags.
-
-<b>Returned by:</b>
-  - \ref AudioDrv_GetStatus
-
-\typedef AudioDrv_Event_t
-\details
-Provides the typedef for the event callback function <b>AudioDrv_Event (uint32 event)</b> to be registered with \ref AudioDrv_Initialize.
-
-The parameter \em event indicates one or more \ref audio_events that occurred during driver operation.
-
-<b>Parameter for:</b>
-  - \ref AudioDrv_Initialize
-
 \fn int32_t AudioDrv_Initialize (AudioDrv_Event_t cb_event)
 \details
 The function \b AudioDrv_Initialize initializes the Audio interface over VSI peripheral. It is called when the middleware component starts
@@ -182,6 +126,75 @@ The function \b AudioDrv_GetRxCount returns the number of the currently received
 \details
 The function \b AudioDrv_GetStatus retrieves the current Audio interface status.
 
+\typedef AudioDrv_Event_t
+\details
+Provides the typedef for the event callback function <b>AudioDrv_Event (uint32 event)</b> to be registered with \ref AudioDrv_Initialize.
+
+The parameter \em event indicates the reported event(s) that occurred during driver operation.
+Each event is encoded in a separate bit so it is possible to signal multiple events within the same call.
+\ref AUDIO_DRV_EVENT_RX_DATA "AUDIO_DRV_EVENT_..." definitions list the events that can be reported.
+
+
+<b>Parameter for:</b>
+  - \ref AudioDrv_Initialize
+
+@}
+
+\defgroup audio_drv_defines Audio Driver API Defines
+\ingroup arm_vsi_audio
+\brief Audio Driver API Definitions
+\details
+Audio driver provides various definitions to simplify use of its \ref audio_drv_functions :
+ - Control parameter definitions (\ref AUDIO_DRV_CONTROL_TX_ENABLE "AUDIO_DRV_CONTROL_...") can be used in \ref AudioDrv_Control function.
+ - Interface definitions (\ref AUDIO_DRV_INTERFACE_RX "AUDIO_DRV_INTERFACE_...") can be used in \ref AudioDrv_Configure, \ref AudioDrv_SetBuf functions.
+ - Error codes definitions (\ref AUDIO_DRV_OK,\ref AUDIO_DRV_ERROR "AUDIO_DRV_ERROR_...") map the status results that can be returned by \ref audio_drv_functions.
+ - Event definitions \ref AUDIO_DRV_EVENT_RX_DATA "AUDIO_DRV_EVENT_..." list the events that can be reported via callback function \ref AudioDrv_Event_t.
+
+
+@{
+
+@{
+\def AUDIO_DRV_CONTROL_TX_ENABLE
+\def AUDIO_DRV_CONTROL_RX_ENABLE
+\def AUDIO_DRV_CONTROL_TX_DISABLE
+\def AUDIO_DRV_CONTROL_RX_DISABLE
+@}
+
+@{
+\def AUDIO_DRV_INTERFACE_RX
+\def AUDIO_DRV_INTERFACE_TX
+@}
+
+@{
+\def AUDIO_DRV_OK
+\def AUDIO_DRV_ERROR
+\def AUDIO_DRV_ERROR_BUSY
+\def AUDIO_DRV_ERROR_TIMEOUT
+\def AUDIO_DRV_ERROR_UNSUPPORTED
+\def AUDIO_DRV_ERROR_PARAMETER
+@}
+
+@{
+\def AUDIO_DRV_EVENT_RX_DATA
+\details Triggered to indicate that all the data has been received. The driver is ready to receive next data block.
+
+\def AUDIO_DRV_EVENT_TX_DATA
+\details Triggered to indicate that all the data has been sent (or queued in transmit buffers). The driver is ready for the next transmission.
+@}
+
+@}
+
+
+
+@{
+\struct AudioDrv_Status_t
+\details
+Structure with information about the status of the Audio driver. The data fields encode busy flags and error flags.
+
+<b>Returned by:</b>
+  - \ref AudioDrv_GetStatus
+
+@}
 @}
 */
 */

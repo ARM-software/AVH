@@ -37,7 +37,7 @@ The command line options can be listed using the -help command. For example in L
 VHT_Corstone_SSE-300_Ethos-U55 -help
 ```
 
-The FVP models can be configured using the option *-f FILE* that specifies a *config-file*. The available *config-file* options can be listed with the option *-l*.
+The FVP models can be configured using the option `-f FILE` (or `--config-file FILE`) that specifies a file with additional configuration parameters for the target model. The available configuration options can be listed with the option `-l` (or `--list`).
 
 # Usage Examples {#Example}
 
@@ -48,11 +48,11 @@ VHT_Corstone_SSE-300_Ethos-U55 -V "..\VSI\audio\python" -f fvp_config.txt -a Obj
 ```
 
 Where:
-  - **-V** specifies that path to the Python scripts for \ref arm_cmvp.
-  - **-f** specifies the *config-file* for the AVH simulation model.
-  - **-a** specifies the application to load.
-  - **--stat** instructs to print run statistics on simulation exit.
-  - **--simlimit** specifies the maximum number of seconds to simulate.
+  - `-V` (or `--v_path`) specifies that path to the Python scripts for \ref arm_cmvp.
+  - `-f` (or `--config-file`) specifies the configuration file for the AVH simulation model.
+  - `-a` (or `--application`) specifies the firmware binary application to load and run.
+  - `--stat` instructs to print run statistics on simulation exit.
+  - `--simlimit` specifies the maximum number of seconds to simulate.
 
 The content of the *fvp_config.txt* could be:
 ```
