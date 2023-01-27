@@ -30,7 +30,7 @@ File                                | Description
 :-----------------------------------|:-----------------------------------
 [./interface/include/arm_vio.h](https://github.com/ARM-software/AVH/blob/main/interface/include/arm_vio.h)       | \ref arm_vio_api "VIO API" header file
 [./interface/python/arm_vio.py](https://github.com/ARM-software/AVH/blob/main/interface/python/arm_vio.py)       | \ref arm_vio_py "VIO Python interface" script template
-[./interface/vio/vio_vht.c](https://github.com/ARM-software/AVH/blob/main/interface/vio/vio_vht.c)           | Implementation of CMSIS-Driver VIO for Arm FVPs
+[./interface/vio/vio_fvp.c](https://github.com/ARM-software/AVH/blob/main/interface/vio/vio_fvp.c)           | Implementation of CMSIS-Driver VIO for Arm FVPs
 
 A read or write access to a VIO peripheral via its \ref arm_vio_api "API" triggers execution of a corresponding function in the Python script that implements the \ref arm_vio_py "VIO Python interface" instance. The concept is shown on the figure below.
 

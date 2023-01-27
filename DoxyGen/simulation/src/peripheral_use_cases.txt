@@ -11,7 +11,7 @@
 
 \ref arm_vio_api provides a general purpose implementation for simple I/O peripherals. This chapter shows how VIO can be applied in a specific use case.
 
-__[./interface/vio/vio_vht.c](https://github.com/ARM-software/AVH/tree/main/interface/vio/vio_vht.c)__: implements [**CMSIS-Driver VIO**](https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html) for Arm Virtual Hardware based on the \ref ARM_VIO_Type structure and its mapping defined in *arm_vio.h*.
+__[./interface/vio/vio_fvp.c](https://github.com/ARM-software/AVH/tree/main/interface/vio/vio_fvp.c)__: implements [**CMSIS-Driver VIO**](https://arm-software.github.io/CMSIS_5/Driver/html/group__vio__interface__gr.html) for Arm Virtual Hardware based on the \ref ARM_VIO_Type structure and its mapping defined in *arm_vio.h*.
 
 # Setup {#vio_setup}
 
@@ -23,7 +23,7 @@ Instructions below cover specifically setup for using CMSIS-Driver VIO in a proj
  .
 The packs can be found on [CMSIS Packs page](https://developer.arm.com/tools-and-software/embedded/cmsis/cmsis-packs).
 - Add to the project the *CMSIS-Driver:VIO (API):Custom* component that provides access to *cmsis_vio.c* file.
-- Copy **[./interface/vio/vio_vht.c](https://github.com/ARM-software/AVH/tree/main/interface/vio/vio_vht.c)** file to your local project folder and add it to the project.
+- Copy **[./interface/vio/vio_fvp.c](https://github.com/ARM-software/AVH/tree/main/interface/vio/vio_fvp.c)** file to your local project folder and add it to the project.
 
 # Usage example {#vio_example}
 
