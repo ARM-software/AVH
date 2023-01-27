@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Simulation: Status Error Codes</title>
+<title>Simulation: Audio Driver API Defines</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",'Search','.html');
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('group__audio__drv__errors.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('group__audio__drv__defines.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -109,15 +109,39 @@ $(document).ready(function(){initNavTree('group__audio__drv__errors.html',''); i
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a>  </div>
-  <div class="headertitle"><div class="title">Status Error Codes<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a> &raquo; <a class="el" href="group__arm__vsi.html">Virtual Streaming Interface (VSI)</a> &raquo; <a class="el" href="group__arm__vsi__cases.html">VSI Use Cases</a> &raquo; <a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a></div></div></div>
+  <div class="headertitle"><div class="title">Audio Driver API Defines<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Virtual Interfaces</a> &raquo; <a class="el" href="group__arm__vsi.html">Virtual Streaming Interface (VSI)</a> &raquo; <a class="el" href="group__arm__vsi__cases.html">VSI Use Cases</a> &raquo; <a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Error codes returned by Audio interface functions.  
+<p>Audio Driver API Definitions.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:ga19fd4bec18bcaa695ce70e60785346fa"><td class="memItemLeft" align="right" valign="top"><a id="ga19fd4bec18bcaa695ce70e60785346fa" name="ga19fd4bec18bcaa695ce70e60785346fa"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AUDIO_DRV_CONTROL_TX_ENABLE</b>&#160;&#160;&#160;(1UL &lt;&lt; 0)</td></tr>
+<tr class="memdesc:ga19fd4bec18bcaa695ce70e60785346fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable Transmitter. <br /></td></tr>
+<tr class="separator:ga19fd4bec18bcaa695ce70e60785346fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf6f490a2e326fe5db6a2ae3d3ff90d08"><td class="memItemLeft" align="right" valign="top"><a id="gaf6f490a2e326fe5db6a2ae3d3ff90d08" name="gaf6f490a2e326fe5db6a2ae3d3ff90d08"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AUDIO_DRV_CONTROL_RX_ENABLE</b>&#160;&#160;&#160;(1UL &lt;&lt; 1)</td></tr>
+<tr class="memdesc:gaf6f490a2e326fe5db6a2ae3d3ff90d08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable Receiver. <br /></td></tr>
+<tr class="separator:gaf6f490a2e326fe5db6a2ae3d3ff90d08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1c054890d0d31601c71ede31ae8d9f7c"><td class="memItemLeft" align="right" valign="top"><a id="ga1c054890d0d31601c71ede31ae8d9f7c" name="ga1c054890d0d31601c71ede31ae8d9f7c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AUDIO_DRV_CONTROL_TX_DISABLE</b>&#160;&#160;&#160;(1UL &lt;&lt; 2)</td></tr>
+<tr class="memdesc:ga1c054890d0d31601c71ede31ae8d9f7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable Transmitter. <br /></td></tr>
+<tr class="separator:ga1c054890d0d31601c71ede31ae8d9f7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf2030e115e7ab830c9524d64ca46fafc"><td class="memItemLeft" align="right" valign="top"><a id="gaf2030e115e7ab830c9524d64ca46fafc" name="gaf2030e115e7ab830c9524d64ca46fafc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AUDIO_DRV_CONTROL_RX_DISABLE</b>&#160;&#160;&#160;(1UL &lt;&lt; 3)</td></tr>
+<tr class="memdesc:gaf2030e115e7ab830c9524d64ca46fafc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable Receiver. <br /></td></tr>
+<tr class="separator:gaf2030e115e7ab830c9524d64ca46fafc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabc3aa9d4319a122dcb68f08bf2d1d8ab"><td class="memItemLeft" align="right" valign="top"><a id="gabc3aa9d4319a122dcb68f08bf2d1d8ab" name="gabc3aa9d4319a122dcb68f08bf2d1d8ab"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AUDIO_DRV_INTERFACE_RX</b>&#160;&#160;&#160;(2U)</td></tr>
+<tr class="memdesc:gabc3aa9d4319a122dcb68f08bf2d1d8ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receiver. <br /></td></tr>
+<tr class="separator:gabc3aa9d4319a122dcb68f08bf2d1d8ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4e7d0e17edb9300964e60db8fd9b7ce3"><td class="memItemLeft" align="right" valign="top"><a id="ga4e7d0e17edb9300964e60db8fd9b7ce3" name="ga4e7d0e17edb9300964e60db8fd9b7ce3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AUDIO_DRV_INTERFACE_TX</b>&#160;&#160;&#160;(1U)</td></tr>
+<tr class="memdesc:ga4e7d0e17edb9300964e60db8fd9b7ce3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmitter. <br /></td></tr>
+<tr class="separator:ga4e7d0e17edb9300964e60db8fd9b7ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac12cb06a8d6cfc11afb624b3880e1044"><td class="memItemLeft" align="right" valign="top"><a id="gac12cb06a8d6cfc11afb624b3880e1044" name="gac12cb06a8d6cfc11afb624b3880e1044"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>AUDIO_DRV_OK</b>&#160;&#160;&#160;(0)</td></tr>
 <tr class="memdesc:gac12cb06a8d6cfc11afb624b3880e1044"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operation succeeded. <br /></td></tr>
@@ -142,10 +166,56 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>AUDIO_DRV_ERROR_PARAMETER</b>&#160;&#160;&#160;(-5)</td></tr>
 <tr class="memdesc:gae491b5a2b45c6f067d727efa16ab0cd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameter error. <br /></td></tr>
 <tr class="separator:gae491b5a2b45c6f067d727efa16ab0cd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1b7bf37c6c56ad17414478d6dc7a62ac"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__audio__drv__defines.html#ga1b7bf37c6c56ad17414478d6dc7a62ac">AUDIO_DRV_EVENT_RX_DATA</a>&#160;&#160;&#160;(1UL &lt;&lt; 1)</td></tr>
+<tr class="memdesc:ga1b7bf37c6c56ad17414478d6dc7a62ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data block received.  <a href="group__audio__drv__defines.html#ga1b7bf37c6c56ad17414478d6dc7a62ac">More...</a><br /></td></tr>
+<tr class="separator:ga1b7bf37c6c56ad17414478d6dc7a62ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga25cc0b8c5c4e6d0a504a084e7a2b5b2f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__audio__drv__defines.html#ga25cc0b8c5c4e6d0a504a084e7a2b5b2f">AUDIO_DRV_EVENT_TX_DATA</a>&#160;&#160;&#160;(1UL &lt;&lt; 0)</td></tr>
+<tr class="memdesc:ga25cc0b8c5c4e6d0a504a084e7a2b5b2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data block transmitted.  <a href="group__audio__drv__defines.html#ga25cc0b8c5c4e6d0a504a084e7a2b5b2f">More...</a><br /></td></tr>
+<tr class="separator:ga25cc0b8c5c4e6d0a504a084e7a2b5b2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
-<p >Error codes returned by Audio interface functions. </p>
-<p >Following error codes can be reported: </p>
+<p >Audio Driver API Definitions. </p>
+<p >Audio driver provides various definitions to simplify use of its <a class="el" href="group__audio__drv__functions.html">Audion Driver API Functions</a> :</p><ul>
+<li>Control parameter definitions (<a class="el" href="group__audio__drv__defines.html#ga19fd4bec18bcaa695ce70e60785346fa">AUDIO_DRV_CONTROL_...</a>) can be used in <a class="el" href="group__audio__drv__functions.html#ga907ce53168efb2f29dce946226fa52a1">AudioDrv_Control</a> function.</li>
+<li>Interface definitions (<a class="el" href="group__audio__drv__defines.html#gabc3aa9d4319a122dcb68f08bf2d1d8ab">AUDIO_DRV_INTERFACE_...</a>) can be used in <a class="el" href="group__audio__drv__functions.html#gaa57e127ec95db9c076d939f43311b2a7">AudioDrv_Configure</a>, <a class="el" href="group__audio__drv__functions.html#ga69ef0761019c0316ba5073c33570fa65">AudioDrv_SetBuf</a> functions.</li>
+<li>Error codes definitions (<a class="el" href="group__audio__drv__defines.html#gac12cb06a8d6cfc11afb624b3880e1044">AUDIO_DRV_OK</a>,<a class="el" href="group__audio__drv__defines.html#ga65425fdcbb4d5c8533b7355b3dfa4876">AUDIO_DRV_ERROR_...</a>) map the status results that can be returned by <a class="el" href="group__audio__drv__functions.html">Audion Driver API Functions</a>.</li>
+<li>Event definitions <a class="el" href="group__audio__drv__defines.html#ga1b7bf37c6c56ad17414478d6dc7a62ac">AUDIO_DRV_EVENT_...</a> list the events that can be reported via callback function <a class="el" href="group__audio__drv__functions.html#ga76a21d8243b1b87fb51efe30532d94b6">AudioDrv_Event_t</a>. </li>
+</ul>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ga1b7bf37c6c56ad17414478d6dc7a62ac" name="ga1b7bf37c6c56ad17414478d6dc7a62ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1b7bf37c6c56ad17414478d6dc7a62ac">&#9670;&nbsp;</a></span>AUDIO_DRV_EVENT_RX_DATA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AUDIO_DRV_EVENT_RX_DATA&#160;&#160;&#160;(1UL &lt;&lt; 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Data block received. </p>
+<p >Triggered to indicate that all the data has been received. The driver is ready to receive next data block. </p>
+
+</div>
+</div>
+<a id="ga25cc0b8c5c4e6d0a504a084e7a2b5b2f" name="ga25cc0b8c5c4e6d0a504a084e7a2b5b2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga25cc0b8c5c4e6d0a504a084e7a2b5b2f">&#9670;&nbsp;</a></span>AUDIO_DRV_EVENT_TX_DATA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AUDIO_DRV_EVENT_TX_DATA&#160;&#160;&#160;(1UL &lt;&lt; 0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Data block transmitted. </p>
+<p >Triggered to indicate that all the data has been sent (or queued in transmit buffers). The driver is ready for the next transmission. </p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

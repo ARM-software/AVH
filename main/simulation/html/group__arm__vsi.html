@@ -109,17 +109,17 @@ $(document).ready(function(){initNavTree('group__arm__vsi.html',''); initResizab
 <div class="header">
   <div class="summary">
 <a href="#groups">Content</a>  </div>
-  <div class="headertitle"><div class="title">Virtual Streaming Interface (VSI)<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a></div></div></div>
+  <div class="headertitle"><div class="title">Virtual Streaming Interface (VSI)<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Virtual Interfaces</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Data streaming interface for Cortex-M applications.  
+<p>Data streaming interface.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="groups" name="groups"></a>
 Content</h2></td></tr>
 <tr class="memitem:group__arm__vsi__api"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vsi__api.html">VSI API</a></td></tr>
-<tr class="memdesc:group__arm__vsi__api"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data streaming interface for Cortex-M applications to Python scripting. <br /></td></tr>
+<tr class="memdesc:group__arm__vsi__api"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual Streaming Interface API for application firmware. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group__arm__vsi__py"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vsi__py.html">VSI Python interface</a></td></tr>
 <tr class="memdesc:group__arm__vsi__py"><td class="mdescLeft">&#160;</td><td class="mdescRight">VSI python interface. <br /></td></tr>
@@ -129,14 +129,20 @@ Content</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
-<p >Data streaming interface for Cortex-M applications. </p>
-<p >The Virtual Streaming Interface (VSI) is a flexible peripheral that allows to implement a wide range of use cases. It can be used to simulate data streaming such as audio, video and various sensors frequently found in Machine-Learning applications. Eight VSI instances are available and may be used in parallel for simultaneous multi-channel streaming inputs and outputs.</p>
-<p >Examples demonstrate the <a class="el" href="group__arm__vsi__audio.html">Audio</a> streaming as shown in the diagram below.</p>
+<p >Data streaming interface. </p>
+<p >The <b>Virtual Streaming Interface (VSI)</b> is a flexible memory-mapped peripheral available in Arm Fixed Virtual Platforms (FVPs). It can be used to simulate data streaming interfaces such as audio, video and various sensors often found in IoT and Machine-Learning applications. The VSI is provided in 8 independent instances that can be used in parallel for multi-channel input/ouput interfaces.</p>
+<p >Figure below illustrates the concept behind the VSI on Arm FVPs.</p>
 <div class="image">
-<img src="Example-Structure.png" alt=""/>
+<img src="vsi_structure.png" alt=""/>
 <div class="caption">
-AVH CoreStone-300 for Linux and Windows</div></div>
-<p >The VSI implements general purpose peripheral registers, an interrupt peripheral, a timer peripheral, and a DMA peripheral. The following files define the access to the VSI peripherals.</p>
+Using the Virtual Streaming Interface (VSI)</div></div>
+<ul>
+<li>On the application firmware side a peripheral driver uses the <a class="el" href="group__arm__vsi__api.html">VSI registers</a> in the FVP model to simulate peripheral operation for a target use case. By relying on common driver APIs the same application-level code can be reused for FVPs and real hardware targets.</li>
+<li>Read/write accesses to the VSI peripheral registers in the FVP trigger execution of corresponding callback functions in the <a class="el" href="group__arm__vsi__py.html">VSI Python scripts</a> that implement peripheral behavior in the target scenario.</li>
+<li>An FVP model can be run on a Windows or Linux host and executes the target firmware application image. The path to the VSI python scripts shall be provided to the FVP using the command-line option <code>-V</code>, or <code>--v_path</code>, see <a class="el" href="Using.html#Example">Usage Examples</a>.</li>
+</ul>
+<p >Section <a class="el" href="group__arm__vsi__cases.html">VSI Use Cases</a> explains in details the reference implementations of VSI-based peripherals. Specifically <a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a> implementing audio streaming input from a local audio wave file.</p>
+<p >Access to the VSI peripherals is defined in the following files:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">File   </th><th class="markdownTableHeadLeft">Description    </th></tr>
@@ -149,11 +155,11 @@ AVH CoreStone-300 for Linux and Windows</div></div>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">./interface/python/arm_vsi7.py   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vsi__py.html">VSI Python interface</a> script template for instance 7   </td></tr>
 </table>
-<p >A read or write access to a VSI peripheral via its <a class="el" href="group__arm__vsi__api.html">API</a> triggers execution of a corresponding function in the Python script that implements the <a class="el" href="group__arm__vsi__py.html">VSI Python interface</a> instance. The concept is shown on the figure below.</p>
+<p >An example flow for using the VSI peripheral is shown on the figure below:</p>
 <div class="image">
 <img src="using_vsi_uml.png" alt=""/>
 <div class="caption">
-Using VSI peripheral</div></div>
+Example flow for using the VSI peripheral</div></div>
  </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

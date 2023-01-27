@@ -5,7 +5,7 @@ var searchData=
   ['vio_20api_2',['VIO API',['../group__arm__vio__api.html',1,'']]],
   ['vio_20python_20interface_3',['VIO Python interface',['../group__arm__vio__py.html',1,'']]],
   ['virtual_20input_2foutput_20_28vio_29_4',['Virtual Input/Output (VIO)',['../group__arm__vio.html',1,'']]],
-  ['virtual_20peripherals_5',['Virtual Peripherals',['../group__arm__cmvp.html',1,'']]],
+  ['virtual_20interfaces_5',['Virtual Interfaces',['../group__arm__cmvp.html',1,'']]],
   ['virtual_20socket_20interface_20_28vsocket_29_6',['Virtual Socket Interface (VSocket)',['../group__arm__vsocket.html',1,'']]],
   ['virtual_20streaming_20interface_20_28vsi_29_7',['Virtual Streaming Interface (VSI)',['../group__arm__vsi.html',1,'']]],
   ['vsi_20api_8',['VSI API',['../group__arm__vsi__api.html',1,'']]],

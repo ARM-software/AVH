@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['audio_20driver_20controls_0',['Audio Driver Controls',['../group__audio__drv__control.html',1,'']]],
-  ['audio_20driver_20events_1',['Audio Driver Events',['../group__audio__events.html',1,'']]],
-  ['audio_20driver_20interface_2',['Audio Driver Interface',['../group__audio__drv__interface.html',1,'']]],
-  ['audio_20via_20vsi_3',['Audio via VSI',['../group__arm__vsi__audio.html',1,'']]]
+  ['audio_20driver_20api_20defines_0',['Audio Driver API Defines',['../group__audio__drv__defines.html',1,'']]],
+  ['audio_20via_20vsi_1',['Audio via VSI',['../group__arm__vsi__audio.html',1,'']]],
+  ['audion_20driver_20api_20functions_2',['Audion Driver API Functions',['../group__audio__drv__functions.html',1,'']]]
 ];

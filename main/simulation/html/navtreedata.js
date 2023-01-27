@@ -38,14 +38,14 @@ var NAVTREE =
         [ "Execution stop", "Using.html#autotoc_md0", null ]
       ] ]
     ] ],
-    [ "Reference", "modules.html", "modules" ]
+    [ "API References", "modules.html", "modules" ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
 "Using.html",
-"index.html#Development_Challanges"
+"index.html#Physical_Hardware"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

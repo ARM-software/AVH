@@ -111,7 +111,7 @@ $(document).ready(function(){initNavTree('Using.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p >This section describes how to use the <b>Arm Fixed Virtual Platforms (FVPs)</b>.</p>
-<p >The FVP simulation models in AVH context correspond to the <a href="https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms">Arm Fast Models Fixed Virtual Platforms</a> with extensions for <a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a>. The table below shows the available models:</p>
+<p >The FVP simulation models in AVH context correspond to the <a href="https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms">Arm Fast Models Fixed Virtual Platforms</a> with extensions for <a class="el" href="group__arm__cmvp.html">Virtual Interfaces</a>. The table below shows the available models:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">FVP Simulation Model   </th><th class="markdownTableHeadLeft">Processor Core   </th><th class="markdownTableHeadLeft">Overview Description    </th></tr>
@@ -154,17 +154,17 @@ Execution</h1>
 Command Line Options</h1>
 <p >The command line options can be listed using the -help command. For example in Linux environment:</p>
 <div class="fragment"><div class="line">VHT_Corstone_SSE-300_Ethos-U55 -help</div>
-</div><!-- fragment --><p >The FVP models can be configured using the option <em>-f FILE</em> that specifies a <em>config-file</em>. The available <em>config-file</em> options can be listed with the option <em>-l</em>.</p>
+</div><!-- fragment --><p >The FVP models can be configured using the option <code>-f FILE</code> (or <code>--config-file FILE</code>) that specifies a file with additional configuration parameters for the target model. The available configuration options can be listed with the option <code>-l</code> (or <code>--list</code>).</p>
 <h1><a class="anchor" id="Example"></a>
 Usage Examples</h1>
 <p >Below is an example of running a program on the AVH model for Corstone-300 with Ethos-U55 in Linux environment:</p>
 <div class="fragment"><div class="line">VHT_Corstone_SSE-300_Ethos-U55 -V &quot;..\VSI\audio\python&quot; -f fvp_config.txt -a Objects\microspeech.axf --stat --simlimit 24</div>
 </div><!-- fragment --><p >Where:</p><ul>
-<li><b>-V</b> specifies that path to the Python scripts for <a class="el" href="group__arm__cmvp.html">Virtual Peripherals</a>.</li>
-<li><b>-f</b> specifies the <em>config-file</em> for the AVH simulation model.</li>
-<li><b>-a</b> specifies the application to load.</li>
-<li><b>&ndash;stat</b> instructs to print run statistics on simulation exit.</li>
-<li><b>&ndash;simlimit</b> specifies the maximum number of seconds to simulate.</li>
+<li><code>-V</code> (or <code>--v_path</code>) specifies that path to the Python scripts for <a class="el" href="group__arm__cmvp.html">Virtual Interfaces</a>.</li>
+<li><code>-f</code> (or <code>--config-file</code>) specifies the configuration file for the AVH simulation model.</li>
+<li><code>-a</code> (or <code>--application</code>) specifies the firmware binary application to load and run.</li>
+<li><code>--stat</code> instructs to print run statistics on simulation exit.</li>
+<li><code>--simlimit</code> specifies the maximum number of seconds to simulate.</li>
 </ul>
 <p >The content of the <em>fvp_config.txt</em> could be: </p><div class="fragment"><div class="line"># Parameters:</div>
 <div class="line"># instance.parameter=value       #(type, mode) default = &#39;def value&#39; : description : [min..max]</div>

@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Simulation: Virtual Peripherals</title>
+<title>Simulation: Virtual Interfaces</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -109,11 +109,11 @@ $(document).ready(function(){initNavTree('group__arm__cmvp.html',''); initResiza
 <div class="header">
   <div class="summary">
 <a href="#groups">Content</a>  </div>
-  <div class="headertitle"><div class="title">Virtual Peripherals</div></div>
+  <div class="headertitle"><div class="title">Virtual Interfaces</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Virtual Interfaces on Arm Fixed Virtual Platforms.  
+<p>Virtual Interfaces on Arm Fixed Virtual Platforms (FVPs)  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="groups" name="groups"></a>
@@ -122,15 +122,22 @@ Content</h2></td></tr>
 <tr class="memdesc:group__arm__vio"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controls simple I/O such as LED and switches. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group__arm__vsi"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vsi.html">Virtual Streaming Interface (VSI)</a></td></tr>
-<tr class="memdesc:group__arm__vsi"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data streaming interface for Cortex-M applications. <br /></td></tr>
+<tr class="memdesc:group__arm__vsi"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data streaming interface. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group__arm__vsocket"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vsocket.html">Virtual Socket Interface (VSocket)</a></td></tr>
 <tr class="memdesc:group__arm__vsocket"><td class="mdescLeft">&#160;</td><td class="mdescRight">IP network connectivity via host system. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
-<p >Virtual Interfaces on Arm Fixed Virtual Platforms. </p>
-<p >The <b>Virtual Interfaces</b> are memory-mapped implementations of that simulate a user application application running on a virtual Cortex processor. </p>
+<p >Virtual Interfaces on Arm Fixed Virtual Platforms (FVPs) </p>
+<p >The <b>Virtual Interfaces</b> in Arm FVPs implement various CPU peripherals that allow to use external resources for stimulating the firmware application. Following interfaces are available and explained in details in corresponding sections:</p>
+<ul>
+<li>The <a class="el" href="group__arm__vio.html">Virtual Input/Output (VIO)</a> interface controls simple binary state I/O such as LED and switches.</li>
+<li>The <a class="el" href="group__arm__vsi.html">Virtual Streaming Interface (VSI)</a> provides up to 8 channels for data streaming.</li>
+<li>The <a class="el" href="group__arm__vsocket.html">Virtual Socket Interface (VSocket)</a> connects the user application to <a href="https://en.wikipedia.org/wiki/Berkeley_sockets"><b>BSD sockets</b></a> on the Host computer for IP network connectivity.</li>
+</ul>
+<p >Both <a class="el" href="group__arm__vio.html">VIO</a> and <a class="el" href="group__arm__vsi.html">VSI</a> connect to Python and enable flexible scripting for test automation.</p>
+<p ><img src="Virtual_Interfaces.png" alt="" class="inline" title="AVH Virtual Interfaces"/> </p>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
