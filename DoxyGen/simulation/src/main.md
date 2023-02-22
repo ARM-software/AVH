@@ -1,6 +1,8 @@
 \mainpage Overview
 
-The **Arm Fixed Virtual Platforms (FVP)** provide a functional accurate simulation of an Arm-based SoC and can be automated for scalable deployment in the CI development flow. This virtual platform can be used standalone or with development tools such as <a href="https://developer.arm.com/tools-and-software/embedded/arm-development-studio" target="_blank"><b>Arm Development Studio</b></a> or <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk" target="_blank"><b>Arm Keil MDK</b></a> with debug and trace capabilities supported as well.
+The **Arm Fixed Virtual Platforms (FVP)** provide a functional accurate simulation of an Arm-based SoC and can be automated for scalable deployment in the CI development flow. 
+
+The virtual platforms can be used standalone via command prompt or with development tools such as <a href="https://developer.arm.com/tools-and-software/embedded/arm-development-studio" target="_blank"><b>Arm Development Studio</b></a> or <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk" target="_blank"><b>Arm Keil MDK</b></a>, both in cloud-native or desktop environments. See [Infrastructure chapter](../../infrastructure/index.html) for additional details. 
 
 # Virtual Interfaces {#Virtual_Interfaces}
 

@@ -1,8 +1,9 @@
 \page Using Using Arm Fixed Virtual Platforms
 
-This section describes how to use the **Arm Fixed Virtual Platforms (FVPs)**.
+This section gives an overview on how to use the **Arm Fixed Virtual Platforms (FVPs)** in AVH context.
 
-The FVP simulation models in AVH context correspond to the [Arm Fast Models Fixed Virtual Platforms](https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms) with extensions for \ref arm_cmvp. The table below shows the available models:
+The FVP simulation models in AVH correspond to a subset of [Arm Fast Models Fixed Virtual Platforms](https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms) with extensions for \ref arm_cmvp. 
+They can be accessed in cloud-native and desktop environments as explained in [Infrastructure chapter](../../infrastructure/index.html). The table below lists the available models:
 
 FVP Simulation Model           | Processor Core        | Overview Description
 :------------------------------|:----------------------|:----------------------------------------
@@ -25,52 +26,64 @@ Simulation Model               | Processor Core        | Overview Description
 :------------------------------|:----------------------|:----------------------------------------
 FVP_Corstone-1000              | Cortex-A35, Cortex-M0+, Cortex-M3 | [Arm Corstone-1000 for MPS3 (AppNote AN550)](https://developer.arm.com/documentation/dai0550/)
 
-# Execution {#Execution}
 
-FVP models can be executed in Linux environment by using their model names, for example `VHT_Corestone_SSE-300_Ethos-U55`, and on Windows platform the models are provided as executables files, for example `VHT_Corestone_SSE-300_Ethos-U55.exe`. See \ref Example.
+# Running User Applications {#Execution}
 
-# Command Line Options {#Options}
+The FVP models can be executed from command prompt by using the model name followed by the model options. Development tools may abstract the execution with GUI, but the underlying approach stays the same.
 
-The command line options can be listed using the -help command. For example in Linux environment:
-
-```
-VHT_Corstone_SSE-300_Ethos-U55 -help
-```
-
-The FVP models can be configured using the option `-f FILE` (or `--config-file FILE`) that specifies a file with additional configuration parameters for the target model. The available configuration options can be listed with the option `-l` (or `--list`).
-
-# Usage Examples {#Example}
-
-Below is an example of running a program on the AVH model for Corstone-300 with Ethos-U55 in Linux environment:
+Below is an example of the command for running a program on the FVP model for Corstone-300 with Ethos-U55 in Linux environment:
 
 ```
-VHT_Corstone_SSE-300_Ethos-U55 -V "..\VSI\audio\python" -f fvp_config.txt -a Objects\microspeech.axf --stat --simlimit 24
+VHT_Corstone_SSE-300_Ethos-U55 -a Objects\microspeech.axf -V "..\VSI\audio\python" -f fvp_config.txt  --stat --simlimit 24
 ```
 
 Where:
-  - `-V` (or `--v_path`) specifies that path to the Python scripts for \ref arm_cmvp.
-  - `-f` (or `--config-file`) specifies the configuration file for the AVH simulation model.
-  - `-a` (or `--application`) specifies the firmware binary application to load and run.
+  - `VHT_Corstone_SSE-300_Ethos-U55` is the simulation model name. Note that on Windows the executable files shall be used, for example `VHT_Corestone_SSE-300_Ethos-U55.exe`. 
+  - `-a` (or `--application`) option specifies the application binary file to run on the model (`Objects\microspeech.axf` in this example).
+  - `-f` (or `--config-file`) specifies the configuration file for the simulation model (`fvp_config.txt` in this case). See \ref Config.
+  - `-V` (or `--v_path`) specifies the path to python scripts for \ref arm_cmvp (`"..\VSI\audio\python"` here).
   - `--stat` instructs to print run statistics on simulation exit.
   - `--simlimit` specifies the maximum number of seconds to simulate.
 
-The content of the *fvp_config.txt* could be:
+The availalable command options can be listed using the `--help` option. See chapter [FVP-command-line-options](https://developer.arm.com/documentation/100966/latest/Getting-Started-with-Fixed-Virtual-Platforms/FVP-command-line-options) in the FVP Reference Guide for additional documentations.
+
+# Model Configuration {#Config}
+
+The operation of the FVP models can be configured at start-time by providing following command-line options:
+ - using `-C` (or `--parameter`) option to configure individual parameters.
+ - using option `-f` (or `--config-file`) followed by path to the text file with configuration parameters.
+
+The configuration parameters are model-specific and follow syntax `instance.parameter= <value>`, where `instance` specifies a simulated instance, such as CPU, interface, bus, memory, peripheral,  etc. and can be also hierarchical. Available instances can be obtained with the command option `--list-instances`.
+
+All parameters available for a target model including default setting and brief description can be obtained with the command option `-l` (or `--list-params`). Because of the large number of parameters, it is convinient to print them into a text file. For example:
+
+```
+VHT_Corstone_SSE-300_Ethos-U55 --list-params > config.txt
+```
+
+For additional details see chapter [Configuring-the-model](https://developer.arm.com/documentation/100966/1120/Getting-Started-with-Fixed-Virtual-Platforms/Configuring-the-model) in the 
+Getting Started with Fixed Virtual Platforms Guide.
+
+In a simple case the content of the configuration file could be as shown below for VHT_Corstone_SSE-300 targets:
+
 ```
 # Parameters:
 # instance.parameter=value       #(type, mode) default = 'def value' : description : [min..max]
 #------------------------------------------------------------------------------
-core_clk.mul=32000000                                 # (int   , init-time) default = '0x17d7840' : Clock Rate Multiplier. This parameter is not exposed via CADI and can only be set in LISA
-mps3_board.telnetterminal0.start_telnet=0             # (bool  , init-time) default = '1'      : Start telnet if nothing connected
-mps3_board.uart0.out_file=-                           # (string, init-time) default = ''       : Output file to hold data written by the UART (use '-' to send all output to stdout)
-mps3_board.visualisation.disable-visualisation=1      # (bool  , init-time) default = '0'      : Enable/disable visualisation
+core_clk.mul=100000000                              # (int   , init-time) default = '0x17d7840' : Clock Rate Multiplier. This parameter is not exposed via CADI and can only be set in LISA
+mps3_board.telnetterminal0.start_telnet=0           # (bool  , init-time) default = '1'      : Start telnet if nothing connected
+mps3_board.uart0.out_file=-                         # (string, init-time) default = ''       : Output file to hold data written by the UART (use '-' to send all output to stdout)
+mps3_board.visualisation.disable-visualisation=1    # (bool  , init-time) default = '0'      : Enable/disable visualisation
+cpu0.semihosting-enable=1                           # (bool  , init-time) default = '0'      : Enable semihosting SVC traps. Applications that do not use semihosting must set this parameter to false.
 #------------------------------------------------------------------------------
 ```
 
 Where:
- - **core_clk.mul=32000000** specifies the virtual time, in this case 32MHz CPU clock.
+ - **core_clk.mul=100000000** specifies the virtual time, in this case 100MHz CPU clock.
  - **mps3_board.telnetterminal0.start_telnet=0** disables the Telnet connectivity.
  - **mps3_board.uart0.out_file=-** UART output is send to stdout.
- - **mps3_board.visualisation.disable-visualisation=1** disables the graphical user interface of the AVH.
+ - **mps3_board.visualisation.disable-visualisation=1** disables the graphical user interface of the FVP.
+
 
 ## Execution stop
 
