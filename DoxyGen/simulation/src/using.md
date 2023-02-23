@@ -3,7 +3,7 @@
 This section gives an overview on how to use the **Arm Fixed Virtual Platforms (FVPs)** in AVH context.
 
 The FVP simulation models in AVH correspond to a subset of [Arm Fast Models Fixed Virtual Platforms](https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms) with extensions for \ref arm_cmvp. 
-They can be accessed in cloud-native and desktop environments as explained in [Infrastructure chapter](../../infrastructure/index.html). The table below lists the available models:
+They can be accessed in cloud-native and desktop environments as explained in [Infrastructure chapter](../../infrastructure/html/index.html). The table below lists the available models:
 
 FVP Simulation Model           | Processor Core        | Overview Description
 :------------------------------|:----------------------|:----------------------------------------
