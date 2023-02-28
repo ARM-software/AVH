@@ -11,8 +11,6 @@ The **Virtual Socket Interface (VSocket)** provides IP connectivity to the user 
 
 \image html ./images/vsocket_structure.png
 
-VSocket implements a variant of the  and consists of the following parts:
-
 The following files define the access to the VSocket peripheral.
 
 File                                | Description
