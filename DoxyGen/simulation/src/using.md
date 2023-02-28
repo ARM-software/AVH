@@ -53,16 +53,13 @@ The operation of the FVP models can be configured at start-time by providing fol
  - using `-C` (or `--parameter`) option to configure individual parameters.
  - using option `-f` (or `--config-file`) followed by path to the text file with configuration parameters.
 
-The configuration parameters are model-specific and follow syntax `instance.parameter= <value>`, where `instance` specifies a simulated instance, such as CPU, interface, bus, memory, peripheral,  etc. and can be also hierarchical. Available instances can be obtained with the command option `--list-instances`.
+The configuration parameters are model-specific and follow syntax `instance.parameter= <value>`, where `instance` specifies a simulated instance, such as CPU, interface, bus, memory, peripheral,  etc. and can be also hierarchical.
 
 All parameters available for a target model including default setting and brief description can be obtained with the command option `-l` (or `--list-params`). Because of the large number of parameters, it is convinient to print them into a text file. For example:
 
 ```
 VHT_Corstone_SSE-300_Ethos-U55 --list-params > config.txt
 ```
-
-For additional details see chapter [Configuring-the-model](https://developer.arm.com/documentation/100966/1120/Getting-Started-with-Fixed-Virtual-Platforms/Configuring-the-model) in the 
-Getting Started with Fixed Virtual Platforms Guide.
 
 In a simple case the content of the configuration file could be as shown below for VHT_Corstone_SSE-300 targets:
 
@@ -83,13 +80,21 @@ Where:
  - **mps3_board.telnetterminal0.start_telnet=0** disables the Telnet connectivity.
  - **mps3_board.uart0.out_file=-** UART output is send to stdout.
  - **mps3_board.visualisation.disable-visualisation=1** disables the graphical user interface of the FVP.
+ - **cpu0.semihosting-enable=1** enables \ref semihosting "semihosting in the FVP".
 
+Note that instances implemented in the model can be obtained with the command option `--list-instances` that returns instance names and corresponding Fast Model component type, version and brief description. Section [Fast Models components](https://developer.arm.com/documentation/100964/latest/Fast-Models-components) explains all the components available with FastModel technology and can be used for finding more information about a specific instance in the FVP.
 
-## Execution stop
+For additional details also see chapter [Configuring the model](https://developer.arm.com/documentation/100966/latest/Getting-Started-with-Fixed-Virtual-Platforms/Configuring-the-model) in the Getting Started with Fixed Virtual Platforms Guide.
+
+# Useful Hints and Tips {#Hints}
+
+Below are some useful tips for using FVP models in common AVH scenarios.
+
+## Execution stop {#stop}
 
 Embedded applications typically run with an infinite loop that ensures continuous program execution. But for executing regression tests as part of Continuous Integration (CI) workflows it is often required that program execution is stopped after a test is completed, so that the next test can be started.
 
-FVP models have `shutdown_on_eot` parameter that enables simple implementation of such program exit. The parameter should be set in the model configuration file (*fvp_config.txt* explained above), for example for VHT_Corstone_SSE-300:
+FVP models have `shutdown_on_eot` parameter that enables simple implementation of such program exit. The parameter should be set in the \ref Config, for example for VHT_Corstone_SSE-300:
 
 ```
 mps3_board.uart0.shutdown_on_eot=1   # (bool, init-time) default = '0' : Shutdown simulation when a EOT (ASCII 4) char is transmitted (useful for regression tests when semihosting is not available)
@@ -105,3 +110,48 @@ And then to trigger the shutdown, a EOT (ASCII 4) symbol can be transmitted to t
     osDelay (1000);
   }
 ```
+
+## Execution timing {#timing}
+
+FVP simulation models are targeted to software development and functional testing, and are not  suitable for accurate performance comparisons on the CPU level. However, they can be well used to analyze timing on the program level, such as for scheduling RTOS tasks, detecting deadlocks, but also identifying overall performance trends.
+
+Following mechanisms and settings can be used for timing control and measurements:
+- FVP model can be started with command-line option `--stat` to print the execution statistics on simulation exit. Here is an example of such statistics output:
+  ```
+  --- cpu_core statistics: ------------------------------------------------------
+  Simulated time                          : 0.651964s
+  User time                               : 0.843750s
+  System time                             : 0.109375s
+  Wall time                               : 1.503559s
+  Performance index                       : 0.43
+  cpu_core.cpu0                           :  68.40 MIPS (    65196784 Inst)
+  -------------------------------------------------------------------------------
+  ```
+  Also see [corresponding section](https://developer.arm.com/documentation/100965/latest/Timing-Annotation/Timing-annotation-tutorial/Setting-up-the-environment/Displaying-the-total-execution-time-of-the-simulation) in the Fast Models User Guide.
+
+- [CMSIS-View](https://github.com/ARM-software/CMSIS-View) utility can be used to measure and analyze timing between events in the program, including statistical data. To store the log files on FVPs, \ref semihosting "semihosting" shall be enabled. CMSIS-View annotations can also be reused for event analysis and time measurement on real hardware.
+- \ref Config parameters can be used to control and impact the execution timing:
+  - With Cycle Per Instruction (CPI) settings `cpi_div` and `cpi_mul`.
+  - With clock configurations such as Clock Rate Multiplier, for example `core_clk.mul` on Corstone-300.
+  - With pipeline-impacting parameters such as for memory caches, Floating-Point-Unit (FPU) or M-Profile Vector Extensions (MVE), etc.
+  .
+Chapter [Timing Annotations](https://developer.arm.com/documentation/100965/latest/Timing-Annotation) in the Fast Models User Guide explains the performance estimation concept as implemented in the underlying FastModels technology. Note that the FVPs are built with Timing Annotations enabled (`FASTSIM_DISABLE_TA` set to 0).
+
+## Semihosting {#semihosting}
+
+Semihosting is a mechanism that enables code running on an FVP model to directly access the Input/Output facilities on a host computer, such as console I/O and file I/O.
+
+This is often useful for testing and debugging your software when use of HW I/O interfaces in the model is not strictly required or would unnecessary complicate the program.
+
+By default semihosting is disabled in FVPs and can be enabled with `semihosting-enable` configuration parameter on the CPU instance . For example for VHT_Corstone_SSE-300/310:
+```
+cpu0.semihosting-enable=1
+```
+and for VHT_MPS2_Cortex-M4:
+```
+armcortexm4ct.semihosting-enable=1
+```
+
+Semihosting can be useful in various scenarios with some of them listed below:
+- [CMSIS-View](https://github.com/ARM-software/CMSIS-View) utility can be used with FVPs in semihosting mode to store the events into the log file on the host. See more in [Event Recorder semihosting](https://arm-software.github.io/CMSIS-View/main/er_use.html#er_semihosting).
+- Direct use of the host platform when invoking `stdio.h` functions. This for example allows to bypass message redirection via UART.

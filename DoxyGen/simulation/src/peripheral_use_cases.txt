@@ -90,6 +90,8 @@ Instructions below cover specifically setup for using IoT Socket API in a projec
    - *IoT Utility:Socket (API):Custom* component that provides access to *iot_socket.h* file.
  - Copy **[./interface/vsocket/iot_socket.c](https://github.com/ARM-software/AVH/tree/main/interface/vsocket/iot_socket.c)** file to your local project folder and add it to the project.
  
+Note that VSocket does not require \ref semihosting to be enabled on the FVP model.
+
 # Usage example{#vsocket_example}
 
 After VSocket is added to the project the interface can be fully used as described in [IoT Socket documentation](
