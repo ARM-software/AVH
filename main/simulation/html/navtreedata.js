@@ -33,8 +33,11 @@ var NAVTREE =
     ] ],
     [ "Using Arm Fixed Virtual Platforms", "Using.html", [
       [ "Running User Applications", "Using.html#Execution", null ],
-      [ "Model Configuration", "Using.html#Config", [
-        [ "Execution stop", "Using.html#autotoc_md0", null ]
+      [ "Model Configuration", "Using.html#Config", null ],
+      [ "Useful Hints and Tips", "Using.html#Hints", [
+        [ "Execution stop", "Using.html#stop", null ],
+        [ "Execution timing", "Using.html#timing", null ],
+        [ "Semihosting", "Using.html#semihosting", null ]
       ] ]
     ] ],
     [ "API References", "modules.html", "modules" ]
@@ -44,7 +47,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Using.html",
-"index.html#Virtual_Interfaces"
+"index.html#Development_Challanges"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
