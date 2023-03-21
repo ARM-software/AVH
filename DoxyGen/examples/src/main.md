@@ -5,6 +5,7 @@ This chapter describes the examples that demonstrate how to use **Arm Virtual Ha
 Example               | Description     | Repository
 :---------------------|:----------------|:----------------
 \subpage GetStarted   | Simple example that explains the setup of a CI test run on Arm Virtual Hardware| [github.com/Arm-Software/AVH-GetStarted](https://github.com/Arm-Software/AVH-GetStarted)
+Hello VSI Example     | Simple example that streams data from a file via Virtual Streaming Interface (VSI) .| [github.com/Arm-Examples/Hello_AVH](https://github.com/Arm-Examples/Hello_AVH)
 \subpage MicroSpeech  | Tensorflow voice recognition example that runs on Arm Virtual Hardware and physical hardware targets |[github.com/Arm-Software/AVH-TFLmicrospeech](https://github.com/Arm-Software/AVH-TFLmicrospeech)
 \subpage aws_mqtt     | IoT application with MQTT connectivity to AWS cloud service | [github.com/Arm-Software/AVH-AWS_MQTT_Demo](https://github.com/Arm-Software/AVH-AWS_MQTT_Demo)
 \subpage ATS-Keyword  | Arm Total Solution example with ML-based keyword recognition and AWS Cloud connectivity | [github.com/Arm-Software/open-iot-sdk/tree/main/examples/ats-keyword](https://github.com/Arm-Software/open-iot-sdk/tree/main/examples/ats-keyword)
