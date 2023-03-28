@@ -1,9 +1,8 @@
-
-# AVH with local toolchains {#Local}
+# AVH on Desktop {#Local}
 
 You can use Arm Virtual Hardware with embedded projects locally on your machine.
   - \subpage run_mdk_pro explains how to use Keil MDK for developing and debugging a program with [Arm Fixed Virtual Platforms](../../simulation/html/index.html) running on a local PC.
-  - \subpage debug_ds explains how to connect to Arm Virtual Hardware AMI from a local PC and debug the program with Arm DS.
+
 
 \page run_mdk_pro Run with MDK-Professional
 

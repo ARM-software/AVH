@@ -872,12 +872,14 @@ WARN_LOGFILE           =
 # Note: If this tag is empty the current directory is searched.
 
 INPUT                  = ./src/main.md  \
-                         ./src/aws.md  \
-                         ./src/ami_inventory.md  \
-                         ./src/github.md \
-                         ./src/jenkins.md \
+                         ./src/avh_gh_runner.md \
+                         ./src/avh_gh_inventory.md \
+                         ./src/avh_ami.md  \
+                         ./src/avh_ami_inventory.md  \
+                         ./src/avh_ami_github.md \
+                         ./src/avh_ami_jenkins.md \
+                         ./src/avh_ami_ds.md \
                          ./src/mdk.md \
-                         ./src/ds_debug.md \
                          ./src/avhclient.md \
 
 # This tag can be used to specify the character encoding of the source files

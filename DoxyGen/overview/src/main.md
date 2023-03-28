@@ -10,11 +10,11 @@ Arm Virtual Hardware offers a comprehensive tool integration along with resource
 
   - **Arm Fixed Virtual Platforms (FVPs)** are precise [**simulation models**](https://en.wikipedia.org/wiki/Simulation) of Cortex-M device sub-systems and are designed for complex software verification and testing. This allows [**simulation-based test automation**](https://en.wikipedia.org/wiki/Test_automation) of various software workloads, including unit tests, integration tests, and fault injection.
 
-  - **Arm Virtual Hardware Services** provide a cloud-native infrastructure for software test and validation. These services can be integrated into various **CI/CD** and **MLOps** environments that range from GitHub to on-premise IT infrastructure. The Arm Virtual Hardware services are available via the AWS Marketplace (and later also via other Cloud Service providers).
+  - **Arm Virtual Hardware Services** provide a cloud-native infrastructure for software test and validation. These services can be integrated into various **CI/CD** and **MLOps** environments that range from GitHub to on-premise IT infrastructure.
  
   - **Arm Virtual Hardware Developer Resources** gives you access to interface drivers that map to virtual targets and physical hardware along with Python scripts for I/O simulation. The documentation explains how to integrate Arm Virtual Hardware into typical **CI/CD** environments. Usage examples show typical usage cases and range from audio processing, ML algorithm testing, up to IoT applications that interface to Cloud Service providers.
   
-  - **Software Development Environments** can be used with Arm Virtual Hardware. So, Arm Fixed Virtual Platforms are an integral part of the Keil MDK Professional Edition that is a comprehensive software tool suite for creating Cortex-M-based applications and related validation and test processes. Other IDEs and debuggers can be used to connect remotely to Arm Virtual Hardware services.
+  - **Software Development Environments** can be used with Arm Virtual Hardware. So, Arm Fixed Virtual Platforms are an integral part of the Keil MDK Professional Edition that is a comprehensive software tool suite for creating Cortex-M-based applications and related validation and test processes. Other IDEs and debuggers can be used as well. 
 
 \image html "vht_overview.png" "Arm Virtual Hardware - Components"
 
