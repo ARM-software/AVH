@@ -47,5 +47,10 @@ var AWS =
       [ "Add GitHub Secrets", "run_ami_github.html#github_add_secrets", null ],
       [ "Define AVH Actions", "run_ami_github.html#github_avh_actions", null ],
       [ "Use GitHub Actions workflow", "run_ami_github.html#github_use_workflow", null ]
+    ] ],
+    [ "Debug with Arm Development Studio", "debug_ds.html", [
+      [ "Tools Installation and set up", "debug_ds.html#ds_setup", null ],
+      [ "Start program on the remote FVP model", "debug_ds.html#ds_vht_start", null ],
+      [ "Connect to Target in Arm DS", "debug_ds.html#ds_connect", null ]
     ] ]
 ];

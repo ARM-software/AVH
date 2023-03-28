@@ -26,8 +26,9 @@ var NAVTREE =
 [
   [ "Infrastructure", "index.html", [
     [ "Overview", "index.html", null ],
-    [ "Arm Virtual Hardware on AWS", "AWS.html", "AWS" ],
-    [ "AVH with local toolchains", "Local.html", "Local" ],
+    [ "AVH GitHub Runner", "avh_gh.html", "avh_gh" ],
+    [ "AVH on AWS Marketplace", "AWS.html", "AWS" ],
+    [ "AVH on Desktop", "Local.html", "Local" ],
     [ "AVH Client", "avhclient.html", [
       [ "Installation", "avhclient.html#avhclient_install", null ],
       [ "Supported backends", "avhclient.html#avhclient_backends", null ],

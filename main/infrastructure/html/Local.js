@@ -8,10 +8,5 @@ var Local =
       ] ],
       [ "Project Export", "run_mdk_pro.html#mdk_cprj_export", null ],
       [ "Program Build and Debug", "run_mdk_pro.html#mdk_program_run", null ]
-    ] ],
-    [ "Debug with Arm Development Studio", "debug_ds.html", [
-      [ "Tools Installation and set up", "debug_ds.html#ds_setup", null ],
-      [ "Start program on the remote FVP model", "debug_ds.html#ds_vht_start", null ],
-      [ "Connect to Target in Arm DS", "debug_ds.html#ds_connect", null ]
     ] ]
 ];

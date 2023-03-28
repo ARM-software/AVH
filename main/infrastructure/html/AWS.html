@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Infrastructure: Arm Virtual Hardware on AWS</title>
+<title>Infrastructure: AVH on AWS Marketplace</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -107,15 +107,16 @@ $(document).ready(function(){initNavTree('AWS.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Arm Virtual Hardware on AWS </div></div>
+  <div class="headertitle"><div class="title">AVH on AWS Marketplace </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md_src_aws"></a> Arm provides a ready-to-use Amazon Machine Image (AMI) on AWS Marketplace. This is a Linux Virtual Machine that contains fully operational Arm simulation models, compilers and useful software utilities. It gives a lot of flexibility to integrate the <b>Arm Virtual Hardware</b> in various CI/CD DevOps environments. <a class="el" href="ami_inventory.html">AMI Inventory</a> gives the full list of resources available on the AVH AMI.</p>
+<div class="textblock"><p ><a class="anchor" id="md_src_avh_ami"></a> Arm provides a ready-to-use Amazon Machine Image (AMI) on AWS Marketplace. This is a Linux Virtual Machine that contains fully operational Arm simulation models, compilers and useful software utilities. It gives a lot of flexibility to integrate the <b>Arm Virtual Hardware</b> in various CI/CD DevOps environments. <a class="el" href="ami_inventory.html">AMI Inventory</a> gives the full list of resources available on the AVH AMI.</p>
 <p >The following sections explain AVH AMI setup and usage in different scenarios:</p>
 <ul>
 <li><a class="el" href="run_ami_local.html">Run AMI from AWS Console</a> describes how to setup and access the <b>AVH</b> directly from AWS Management Console.</li>
 <li><a class="el" href="run_ami_jenkins.html">Run AMI with Jenkins</a> explains how to integrate the <b>AVH AMI</b> using Jenkins workflows.</li>
 <li><a class="el" href="run_ami_github.html">Run AMI with GitHub Actions</a> explains how to integrate the <b>AVH AMI</b> in GitHub action workflows.</li>
+<li><a class="el" href="debug_ds.html">Debug with Arm Development Studio</a> explains how to connect to the <b>AVH AMI</b> for debug the running program with Arm DS.</li>
 </ul>
 <h1><a class="anchor" id="Subscribe"></a>
 Subscribe to Arm Virtual Hardware</h1>

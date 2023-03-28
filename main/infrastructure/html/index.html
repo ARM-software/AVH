@@ -110,7 +110,13 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Overview </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="mainpage"></a> <b>Arm Virtual Hardware</b> (AVH) provides a cloud-native infrastructure with <a href="../../simulation/html/index.html">simulation models</a> and necessary software tooling . It integrates well into various CI/CD and MLOps workflows ranging from GitHub to on-premise IT infrastructure. Section <a class="el" href="AWS.html">Arm Virtual Hardware on AWS</a> explains in details the AVH service, its setup as well as integration with common CI workflows. Development of embedded projects and program debug in local enviromnemt is supported as explained in <a class="el" href="Local.html">AVH with local toolchains</a>.</p>
+<div class="textblock"><p ><a class="anchor" id="mainpage"></a> <b>Arm Virtual Hardware</b> (AVH) provides a cloud-native infrastructure with <a href="../../simulation/html/index.html">simulation models</a> and necessary software tooling . It integrates well into various CI/CD and MLOps workflows ranging from GitHub to on-premise IT infrastructure.</p>
+<p >Following methods of accessing and using AVH are explained in this section:</p>
+<ul>
+<li><a class="el" href="avh_gh.html">AVH GitHub Runner</a> enables AVH-based CI flows for building and testing embedded projects mantained in GitHub repositories.</li>
+<li><a class="el" href="AWS.html">AVH Amazon Machine Image (AMI)</a> allows flexible AVH integration in custom DevOps flows with the full power of AWS services behind.</li>
+<li><a class="el" href="Local.html">AVH on Desktop</a> is useful for development and program debug.</li>
+</ul>
 <p ><img src="create_debug_test.png" alt="" class="inline" title="Create, debug, and test"/> </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
