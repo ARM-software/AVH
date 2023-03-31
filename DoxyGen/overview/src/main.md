@@ -1,5 +1,7 @@
 \mainpage Introduction
 
+[comment]:[TOC]
+
 **Arm Virtual Hardware (AVH)** provides simulation models, software tooling, and infrastructure that can be integrated into [**CI/CD**](https://en.wikipedia.org/wiki/CI/CD) and [**MLOps**](https://en.wikipedia.org/wiki/MLOps) development flows. 
 
 AVH supports the software development cycle of embedded, IoT, and ML applications and provides essential components for effective test and validation environments. Arm Virtual Hardware is flexible and can run any [**RTOS**](https://en.wikipedia.org/wiki/Real-time_operating_system) that is designed for Cortex-M or bare metal code that interacts with the processor. 
@@ -16,7 +18,7 @@ Arm Virtual Hardware offers a comprehensive tool integration along with resource
   
   - **Software Development Environments** can be used with Arm Virtual Hardware. So, Arm Fixed Virtual Platforms are an integral part of the Keil MDK Professional Edition that is a comprehensive software tool suite for creating Cortex-M-based applications and related validation and test processes. Other IDEs and debuggers can be used as well. 
 
-\image html "vht_overview.png" "Arm Virtual Hardware - Components"
+![Arm Virtual Hardware - Components](./images/vht_overview.png)
 
 
 # Documentation Structure {#Sections}
@@ -57,7 +59,7 @@ Software algorithms for Digital Signal Processing (DSP) or Machine Learning (ML)
 
 Applying continuous integration work flows for embedded applications can be complicated by the specifics of development environments and the need of executing the program on target hardware. So the development teams are often reluctant to spend initial effort setting up the continuous integration (CI) workflow even though the long-term benefits are undisputed as shown on the Figure below
 
-\image html "effort_comparison.png" "Comparison of test efforts in CI and no CI workflows"
+![Comparison of test efforts in CI and no CI workflows](./images/effort_comparison.png)
 
 **Arm Virtual Hardware** simplifies the setup and use of CI workflows in embedded projects.
 
@@ -139,7 +141,7 @@ For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html
 
 The current beta version of of Arm Virtual Hardware has the following known issues:
 
-[**Virtual Peripherals**](../../simulation/html/group__arm__cmvp.html):
+[**Virtual Interfaces**](../../simulation/html/group__arm__cmvp.html):
   - After processor reset virtual interfaces may not work correctly. So it is required to restart the debug/run session.
 
 # Feedback and Support {#Support}

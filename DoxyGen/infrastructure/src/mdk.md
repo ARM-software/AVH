@@ -88,7 +88,7 @@ Perform the following steps to configure execution and debug of an MDK project o
   .
 [Fast Models Debug Driver Configuration](https://developer.arm.com/documentation/101452/latest/Debug-Driver-Configuration) explains the configuration dialog in details.
  .
- - Back in the  _Debug_ tab, in the *Initilization File* field, use the ... button to provide a path to a file that assigns `CORE_CLK` to the same value as specified for the `core_clk.mul` parameter in the model configuration file. This ensures that the timing for MDK displays is correctly calculated in synch with the simulation. *Edit* button can be used to view and modify the file in the µVision editor. Figure below shows the example configuration and content of the files used, *mdk_config.txt* and *vht-mdk.ini*:<br/>
+ - Back in the  _Debug_ tab, in the *Initilization File* field, use the ... button to provide a path to a file that assigns `CORE_CLK` to the same value as specified for the `core_clk.mul` parameter in the model configuration file. This ensures that the timing for MDK displays is correctly calculated in synch with the simulation. *Edit* button can be used to view and modify the file in the µVision editor. Figure below shows the example configuration and content of the files used, *mdk_fvp_config.txt* and *mdk_fvp_init.ini*:<br/>
   ![MDK Core Clock configuration](images/mdk_vht_core_clk.png)
 .
 

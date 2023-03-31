@@ -1,5 +1,6 @@
 \page Using Using Arm Fixed Virtual Platforms
 
+[comment]:[TOC]
 This section gives an overview on how to use the **Arm Fixed Virtual Platforms (FVPs)** in AVH context.
 
 The FVP simulation models in AVH correspond to a subset of [Arm Fast Models Fixed Virtual Platforms](https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms) with extensions for \ref arm_cmvp. 
@@ -102,7 +103,7 @@ mps3_board.uart0.shutdown_on_eot=1   # (bool, init-time) default = '0' : Shutdow
 
 And then to trigger the shutdown, a EOT (ASCII 4) symbol can be transmitted to the corresponding serial interface from the program. The code below demonstrates an example, where the execution is stopped after target execution count is achieved. In this implementation the STDIO is assumed to be retargeted to the UART0:
 
-```
+```c
   while (1)  {
     printf ("Hello World %d\r\n", count);
     if (count > 100) printf ("\x04");  // EOT (0x04) stops simulation

@@ -109,7 +109,7 @@ avhclient operation with AWS backend requires certain Identity and Access Manage
 The IAM User that is used by avhclient for AWS access (see *AWS credentials* in \ref avhclient_setup_aws) shall have following [IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_id-based):
 
 - AVHPassRole,- a customer-managed policy that you need to create in your AWS account specifically for using avhclient:
-```
+```json
 AVHPassrole:
   Type: 'AWS::IAM::Policy'
   Properties:
@@ -175,7 +175,7 @@ A JSON schema for automatic checks and auto-completion is available in [ARM-soft
 
 **Example**
 
-```
+```yml
 # yaml-language-server: $schema=https://raw.githubusercontent.com/ARM-software/avhclient/main/schema/avh.schema.json
 
 name: "AVH GetStarted Example"

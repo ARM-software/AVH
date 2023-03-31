@@ -1,7 +1,7 @@
 #!/bin/bash
-# Version: 1.0
-# Date: 2021-07-27
-# This bash script generates AVT Documentation:
+# Version: 2.0
+# Date: 2023-03-31
+# This bash script generates AVH Documentation:
 #
 # Pre-requisites:
 # - bash shell (for Windows: install git for Windows)
@@ -13,6 +13,7 @@ set -o pipefail
 
 DIRNAME=$(dirname $(readlink -f $0))
 DOXYGEN=$(which doxygen 2>/dev/null)
+REQ_DXY_VERSION="1.9.6"
 GVDOT=$(which dot 2>/dev/null)
 PLANTUML=$(which plantuml 2>/dev/null)
 REGEN=0
@@ -36,8 +37,8 @@ if [[ ! -f "${DOXYGEN}" ]]; then
 else
     version=$("${DOXYGEN}" --version | sed -E 's/.*([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
     echo "Doxygen is ${DOXYGEN} at version ${version}"
-    if [[ "${version}" != "1.9.2" ]]; then
-        echo "Doxygen should be at version 1.9.2!" >&2
+    if [[ "${version}" != "${REQ_DXY_VERSION}" ]]; then
+        echo "Doxygen is required to be at version ${REQ_DXY_VERSION}!" >&2
         exit 1
     fi
 fi
@@ -68,10 +69,10 @@ function doxygen {
         "${DOXYGEN}" $(basename "$1")
         popd > /dev/null
         
-        if [[ $2 != 0 ]]; then
-            mkdir -p "${DIRNAME}/../Documentation/${partname}/html/search/"
-            cp -f "${DIRNAME}/Doxygen_Templates/search.css" "${DIRNAME}/../Documentation/${partname}/html/search/"
-        fi
+        #if [[ $2 != 0 ]]; then
+        #    mkdir -p "${DIRNAME}/../Documentation/${partname}/html/search/"
+        #    cp -f "${DIRNAME}/Doxygen_Templates/search.css" "${DIRNAME}/../Documentation/${partname}/html/search/"
+        #fi
         
         projectName=$(grep -E "PROJECT_NAME\s+=" $1 | sed -r -e 's/[^"]*"([^"]+)".*/\1/')
         projectNumber=$(grep -E "PROJECT_NUMBER\s+=" $1 | sed -r -e 's/[^"]*"([^"]+)".*/\1/')
