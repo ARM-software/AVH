@@ -1,6 +1,6 @@
 # Get Started Example {#GetStarted}
 
-[TOC]
+[comment]:[TOC]
 
 GetStarted example demonstrates how to setup a Continuous Integration (CI) workflow for testing and debugging embedded applications using Arm Virtual Hardware (AVH). The project is maintained in the GitHub repository [**github.com/ARM-software/AVH-GetStarted**](https://github.com/ARM-software/AVH-GetStarted/) that also contains detailed description of the example.
 
