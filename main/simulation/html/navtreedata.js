@@ -25,29 +25,24 @@
 var NAVTREE =
 [
   [ "Simulation", "index.html", [
-    [ "Overview", "index.html", [
-      [ "Virtual Interfaces", "index.html#Virtual_Interfaces", null ],
-      [ "Physical Hardware", "index.html#Physical_Hardware", null ],
-      [ "Development Workflow", "index.html#Development_Workflow", null ],
-      [ "Development Challenges", "index.html#Development_Challanges", null ]
-    ] ],
-    [ "Using Arm Fixed Virtual Platforms", "Using.html", [
-      [ "Running User Applications", "Using.html#Execution", null ],
-      [ "Model Configuration", "Using.html#Config", null ],
-      [ "Useful Hints and Tips", "Using.html#Hints", [
-        [ "Execution stop", "Using.html#stop", null ],
-        [ "Execution timing", "Using.html#timing", null ],
-        [ "Semihosting", "Using.html#semihosting", null ]
+    [ "Overview", "index.html", "index" ],
+    [ "Using Arm Fixed Virtual Platforms", "md_src_using.html", [
+      [ "Running User Applications", "md_src_using.html#Execution", null ],
+      [ "Model Configuration", "md_src_using.html#Config", null ],
+      [ "Useful Hints and Tips", "md_src_using.html#Hints", [
+        [ "Execution stop", "md_src_using.html#stop", null ],
+        [ "Execution timing", "md_src_using.html#timing", null ],
+        [ "Semihosting", "md_src_using.html#semihosting", null ]
       ] ]
     ] ],
-    [ "API References", "modules.html", "modules" ]
+    [ "API Reference", "modules.html", "modules" ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"Using.html",
-"index.html#Development_Challanges"
+"group__arm__cmvp.html",
+"md_src_using.html#Hints"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,15 +1,15 @@
 var group__arm__vsi__py =
 [
     [ "arm_vsi0", "namespacearm__vsi0.html", null ],
-    [ "arm_vsi0.init", "group__arm__vsi__py.html#ga15a63c7123ecb9407ecfc8f3d422dab7", null ],
-    [ "arm_vsi0.rdIRQ", "group__arm__vsi__py.html#gac89f3b60c2bf1d7055d6133a6f666544", null ],
-    [ "arm_vsi0.wrIRQ", "group__arm__vsi__py.html#ga43d3a46017dc89df066aacfb9e7df7b5", null ],
-    [ "arm_vsi0.wrTimer", "group__arm__vsi__py.html#gadb1b8dbd347a9daa1eeca5b21b52bd93", null ],
-    [ "arm_vsi0.timerEvent", "group__arm__vsi__py.html#ga99efc8c6c86f4e319dcf191317bd0ff9", null ],
-    [ "arm_vsi0.wrDMA", "group__arm__vsi__py.html#gac643893241d1c7d4fa0eac562f8ac714", null ],
-    [ "arm_vsi0.rdDataDMA", "group__arm__vsi__py.html#ga2850f146457a13a84be8b3cf3510bfaf", null ],
-    [ "arm_vsi0.wrDataDMA", "group__arm__vsi__py.html#ga609003669f1d8dc8e11165adffee495f", null ],
-    [ "arm_vsi0.rdRegs", "group__arm__vsi__py.html#gaeb7664fa99429eba0237dba7397811d4", null ],
-    [ "arm_vsi0.wrRegs", "group__arm__vsi__py.html#gaa2d49666cf6d074777e7150ef76327e6", null ],
-    [ "arm_vsi0.verbosity", "group__arm__vsi__py.html#ga97b1cc04ec204ba7f1507498beb1d460", null ]
+    [ "arm_vsi0.init", "group__arm__vsi__py.html#ga2e59915d5f3148d41e6b80b0dbbf58e6", null ],
+    [ "arm_vsi0.rdIRQ", "group__arm__vsi__py.html#gad4c5ebd1f0499a4997ac65a42d082af9", null ],
+    [ "arm_vsi0.wrIRQ", "group__arm__vsi__py.html#ga3508b724860dc4fb9f18ef0f2f12477b", null ],
+    [ "arm_vsi0.wrTimer", "group__arm__vsi__py.html#ga73ef91ee478340e93c7cc9d6b9e47bb9", null ],
+    [ "arm_vsi0.timerEvent", "group__arm__vsi__py.html#gae1d3e85924c263af90f6929f2e6b2844", null ],
+    [ "arm_vsi0.wrDMA", "group__arm__vsi__py.html#ga99d6e07a72f332156a710dd4e9699464", null ],
+    [ "arm_vsi0.rdDataDMA", "group__arm__vsi__py.html#gafdd0f9d2681cca3ff1bdfa345d6bb98e", null ],
+    [ "arm_vsi0.wrDataDMA", "group__arm__vsi__py.html#ga12c3ecba9a44a6bbb73ba1edb07093f9", null ],
+    [ "arm_vsi0.rdRegs", "group__arm__vsi__py.html#ga5a974ab0346f8945c661d03816f0d758", null ],
+    [ "arm_vsi0.wrRegs", "group__arm__vsi__py.html#gaa030799752b4931e9aa88a4332715459", null ],
+    [ "arm_vsi0.verbosity", "group__arm__vsi__py.html#gac267d4cb318f4245905461a1aa54a322", null ]
 ];

@@ -13,7 +13,7 @@
   --arm_yellow: #FFC700;
 }
 
-/* in Doxygen 1.9.1 'tabs' is assigned to second navigation row (navrow1) with
+/* in Doxygen 1.9.2 'tabs' is assigned to second navigation row (navrow1) with
  'Main Page', 'Namespaces', etc */
 
 .tabs, .tabs1, .tabs2, .tabs3, .main-nav {
@@ -53,6 +53,13 @@
     margin:0px;
 }
 
+.tablist .MSearchBoxInactive {
+    opacity:0.75;
+}
+
+.tablist .MSearchBoxInactive:hover {
+    opacity:1.0;
+}
 .tabs1 .tablist li {
     background-color: var(--arm_black);
     font-weight: 1000;

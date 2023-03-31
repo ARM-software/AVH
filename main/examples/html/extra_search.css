@@ -1,0 +1,7 @@
+
+dark-mode-toggle {
+    position: absolute;
+    right: 205px;
+    padding-top: 3px;
+    color: var(--arm_light_gray);
+}

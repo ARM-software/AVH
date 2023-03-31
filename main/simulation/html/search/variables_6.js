@@ -1,7 +1,7 @@
 var searchData=
 [
   ['value_0',['Value',['../group__arm__vio__api.html#a1410e716fef703dbc126e07a09764df0',1,'ARM_VIO_Type']]],
-  ['verbosity_1',['verbosity',['../group__arm__vio__py.html#ga97b1cc04ec204ba7f1507498beb1d460',1,'arm_vio.verbosity()'],['../group__arm__vsi__py.html#ga97b1cc04ec204ba7f1507498beb1d460',1,'arm_vsi0.verbosity()']]],
+  ['verbosity_1',['verbosity',['../group__arm__vio__py.html#gac267d4cb318f4245905461a1aa54a322',1,'arm_vio.verbosity()'],['../group__arm__vsi__py.html#gac267d4cb318f4245905461a1aa54a322',1,'arm_vsi0.verbosity()']]],
   ['vsocketacceptio_2',['vSocketAcceptIO',['../group__arm__vsocket__api.html#a94f437993f25408c12e907e0630e3500',1,'ARM_VSocket_Type']]],
   ['vsocketbindio_3',['vSocketBindIO',['../group__arm__vsocket__api.html#a083a6b6c10f0184c93d21513e614e6af',1,'ARM_VSocket_Type']]],
   ['vsocketcloseio_4',['vSocketCloseIO',['../group__arm__vsocket__api.html#a251bda48e65298dbde08608e3698d51b',1,'ARM_VSocket_Type']]],
