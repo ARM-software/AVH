@@ -69,10 +69,10 @@ function doxygen {
         "${DOXYGEN}" $(basename "$1")
         popd > /dev/null
         
-        #if [[ $2 != 0 ]]; then
+        if [[ $2 != 0 ]]; then
         #    mkdir -p "${DIRNAME}/../Documentation/${partname}/html/search/"
-        #    cp -f "${DIRNAME}/Doxygen_Templates/search.css" "${DIRNAME}/../Documentation/${partname}/html/search/"
-        #fi
+            cp -f "${DIRNAME}/Doxygen_Templates/navtree.js" "${DIRNAME}/../Documentation/${partname}/html/"
+        fi
         
         projectName=$(grep -E "PROJECT_NAME\s+=" $1 | sed -r -e 's/[^"]*"([^"]+)".*/\1/')
         projectNumber=$(grep -E "PROJECT_NUMBER\s+=" $1 | sed -r -e 's/[^"]*"([^"]+)".*/\1/')
