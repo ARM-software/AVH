@@ -10,9 +10,9 @@ The following sections explain the setup of AVH GitHub Runner and its usage in d
 
 ## Enabling AVH Runner {#avh_gh_enable}
 
-AVH GitHub Runner is available for GitHub Organization and Enterprise accounts, see [Types of GitHub Accounts](https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts).
+[**Sign up to join the beta access**](https://resources.github.com/arm-gihub-actions-beta/) to Arm Virtual Hardware for GitHub Actions.
 
-[**Sign up to join the beta access**](https://resources.github.com/arm-gihub-actions-beta/) to AVH GitHub Runner.
+AVH GitHub Runner is available for GitHub Organization and Enterprise accounts, see [Types of GitHub Accounts](https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts).
 
 ### Adding AVH Runner {#avh_gh_adding_runner}
 
