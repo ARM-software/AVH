@@ -1404,6 +1404,7 @@ HTML_EXTRA_FILES       = ../Doxygen_Templates/tabs.css \
                          ../Doxygen_Templates/navtree.js \
                          ../Doxygen_Templates/toc.js \
                          ./src/images/Corstone_SSE-300_Ethos-U55_FVP_MPS3_Technical_Overview.pdf \
+                         ./src/images/Corstone_SSE-310_FVP_Technical_Overview.pdf
 
 # The HTML_COLORSTYLE tag can be used to specify if the generated HTML output
 # should be rendered with a dark or light theme.
