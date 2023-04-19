@@ -1,4 +1,4 @@
-\page Using Using Arm Fixed Virtual Platforms
+# Using Arm Fixed Virtual Platforms {#Using}
 
 [comment]:[TOC]
 This section gives an overview on how to use the **Arm Fixed Virtual Platforms (FVPs)** in AVH context.
@@ -28,7 +28,7 @@ Simulation Model               | Processor Core        | Overview Description
 FVP_Corstone-1000              | Cortex-A35, Cortex-M0+, Cortex-M3 | [Arm Corstone-1000 for MPS3 (AppNote AN550)](https://developer.arm.com/documentation/dai0550/)
 
 
-# Running User Applications {#Execution}
+## Running User Applications {#Execution}
 
 The FVP models can be executed from command prompt by using the model name followed by the model options. Development tools may abstract the execution with GUI, but the underlying approach stays the same.
 
@@ -48,7 +48,7 @@ Where:
 
 The availalable command options can be listed using the `--help` option. See chapter [FVP-command-line-options](https://developer.arm.com/documentation/100966/latest/Getting-Started-with-Fixed-Virtual-Platforms/FVP-command-line-options) in the FVP Reference Guide for additional documentations.
 
-# Model Configuration {#Config}
+## Model Configuration {#Config}
 
 The operation of the FVP models can be configured at start-time by providing following command-line options:
  - using `-C` (or `--parameter`) option to configure individual parameters.
@@ -87,11 +87,11 @@ Note that instances implemented in the model can be obtained with the command op
 
 For additional details also see chapter [Configuring the model](https://developer.arm.com/documentation/100966/latest/Getting-Started-with-Fixed-Virtual-Platforms/Configuring-the-model) in the Getting Started with Fixed Virtual Platforms Guide.
 
-# Useful Hints and Tips {#Hints}
+## Useful Hints and Tips {#Hints}
 
 Below are some useful tips for using FVP models in common AVH scenarios.
 
-## Execution stop {#stop}
+### Execution stop {#stop}
 
 Embedded applications typically run with an infinite loop that ensures continuous program execution. But for executing regression tests as part of Continuous Integration (CI) workflows it is often required that program execution is stopped after a test is completed, so that the next test can be started.
 
@@ -112,7 +112,7 @@ And then to trigger the shutdown, a EOT (ASCII 4) symbol can be transmitted to t
   }
 ```
 
-## Execution timing {#timing}
+### Execution timing {#timing}
 
 FVP simulation models are targeted to software development and functional testing, and are not  suitable for accurate performance comparisons on the CPU level. However, they can be well used to analyze timing on the program level, such as for scheduling RTOS tasks, detecting deadlocks, but also identifying overall performance trends.
 
@@ -138,7 +138,7 @@ Following mechanisms and settings can be used for timing control and measurement
   .
 Chapter [Timing Annotations](https://developer.arm.com/documentation/100965/latest/Timing-Annotation) in the Fast Models User Guide explains the performance estimation concept as implemented in the underlying FastModels technology. Note that the FVPs are built with Timing Annotations enabled (`FASTSIM_DISABLE_TA` set to 0).
 
-## Semihosting {#semihosting}
+### Semihosting {#semihosting}
 
 Semihosting is a mechanism that enables code running on an FVP model to directly access the Input/Output facilities on a host computer, such as console I/O and file I/O.
 

@@ -1,4 +1,3 @@
-
 # AVH Client {#avhclient}
 
 **Arm Virtual Hardware Client (avhclient)** is a python module for deploying projects on Arm Virtual Hardware from a command-line interface (CLI). The implementation is maintained by Arm in the GitHub repository [**github.com/ARM-software/avhclient**](https://github.com/ARM-software/avhclient).
