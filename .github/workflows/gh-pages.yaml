@@ -16,38 +16,67 @@ jobs:
     name: Build main documentation
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+
       - name: Install packages
         run: |
           sudo apt-get update
           sudo apt-get install --no-install-recommends -y graphviz plantuml libclang1-9 libclang-cpp1-9
-      - name: Install doxygen 1.9.6
+          sudo pip install LinkChecker
+
+      - name: Cache Doxygen 1.9.6
+        id: cache-doxygen
+        uses: actions/cache@v3
+        with:
+          path: /opt/doxygen-1.9.6
+          key: doxygen-1.9.6-${{ runner.os }}
+
+      - name: Download Doxygen 1.9.6
+        if: steps.cache-doxygen.outputs.cache-hit != 'true'
+        shell: bash
         run: |
-          wget https://sourceforge.net/projects/doxygen/files/rel-1.9.6/doxygen-1.9.6.linux.bin.tar.gz
-          sudo tar -C /opt -xf doxygen-1.9.6.linux.bin.tar.gz
+          wget -O doxygen.tgz https://sourceforge.net/projects/doxygen/files/rel-1.9.6/doxygen-1.9.6.linux.bin.tar.gz
+          sudo tar -C /opt -xf doxygen.tgz
+
+      - name: Install Doxygen 1.9.6
+        shell: bash
+        run: |
           sudo ln -s /opt/doxygen-1.9.6/bin/doxygen /usr/local/bin/
           which doxygen
           doxygen --version
+
       - name: Generate doxygen
-        run: DoxyGen/gen_doc.sh
+        run: |
+          echo "::add-matcher::.github/doxygen.json"
+          DoxyGen/gen_doc.sh
+          echo "::remove-matcher owner=doxygen::"
+
+      - name: Run linkchecker
+        run: |
+          echo "::add-matcher::.github/linkchecker.json"
+          DoxyGen/check_links.sh
+          echo "::remove-matcher owner=linkchecker::"
+
       - name: Archive documentation
         if: ${{ github.event_name == 'pull_request' }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: documentation
           path: Documentation/
           retention-days: 1
           if-no-files-found: error
+
       - name: Archive documentation
         if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
         run: |
           cd Documentation
           tar -cvjf /tmp/doc.tbz2 .
-      - uses: actions/checkout@v2
+
+      - uses: actions/checkout@v3
         if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
         with:
           ref: gh-pages
+
       - name: Publish documentation
         if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
         run: |
