@@ -73,7 +73,7 @@ int32_t AudioDrv_Configure (uint32_t interface, uint32_t channels, uint32_t samp
 /// \param[in]   interface   audio interface
 /// \param[in]   buf         pointer to buffer for audio data
 /// \param[in]   block_num   number of blocks in buffer (must be 2^n)
-/// \param[in]   block_size  block size in number of samples
+/// \param[in]   block_size  block size in bytes
 /// \return      return code
 int32_t AudioDrv_SetBuf (uint32_t interface, void *buf, uint32_t block_num, uint32_t block_size);
 
