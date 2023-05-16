@@ -55,7 +55,7 @@ In the YAML file that describes the GitHub Actions workflow you can now specify 
 jobs:
   avh_build_run:
     name: Build and Run on AVH
-    runs-on: Arm-Virtual-Hardware
+    runs-on: AVH-Runner
 
     steps:
       - name: Checkout
