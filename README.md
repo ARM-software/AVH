@@ -38,4 +38,4 @@ Directory      | Description
 Doxygen        | Doxygen sources for  Arm Virtual Hardware documentation.
 Documentation  | Temporary output directory for the [documentation](https://arm-software.github.io/AVH/main/overview/html/index.html).
 
-Copyright (C) 2021, 2022, Arm Ltd.
+Copyright (C) 2021-2023, Arm Ltd.
