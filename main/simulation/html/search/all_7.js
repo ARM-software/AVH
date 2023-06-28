@@ -1,6 +1,11 @@
 var searchData=
 [
-  ['timer_0',['Timer',['../group__arm__vsi__api.html#a6e0035edd58cc6ca8c94b5f9723a0d80',1,'ARM_VSI_Type']]],
-  ['timerevent_1',['timerEvent',['../group__arm__vsi__py.html#gae1d3e85924c263af90f6929f2e6b2844',1,'arm_vsi0']]],
-  ['tx_5factive_2',['tx_active',['../group__arm__vsi__audio.html#a8aadf78b02db62a5c4a4c30cd3aa2399',1,'AudioDrv_Status_t']]]
+  ['rddatadma_0',['rdDataDMA',['../group__arm__vsi__py.html#gafdd0f9d2681cca3ff1bdfa345d6bb98e',1,'arm_vsi0']]],
+  ['rdirq_1',['rdIRQ',['../group__arm__vsi__py.html#gad4c5ebd1f0499a4997ac65a42d082af9',1,'arm_vsi0']]],
+  ['rdregs_2',['rdRegs',['../group__arm__vsi__py.html#ga5a974ab0346f8945c661d03816f0d758',1,'arm_vsi0']]],
+  ['rdsignal_3',['rdSignal',['../group__arm__vio__py.html#gaf28aab968884f1d735f4709540350a7f',1,'arm_vio']]],
+  ['rdvalue_4',['rdValue',['../group__arm__vio__py.html#gae372ae26bb8ac1c188cb8567f5f08ecb',1,'arm_vio']]],
+  ['regs_5',['Regs',['../group__arm__vsi__api.html#a489c2266d8123eea4daa6d19c425a56c',1,'ARM_VSI_Type']]],
+  ['ret_5fval_6',['ret_val',['../group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf',1,'vSocketGetPeerNameIO_t::ret_val()'],['../group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf',1,'vSocketGetHostByNameIO_t::ret_val()'],['../group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf',1,'vSocketCloseIO_t::ret_val()'],['../group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf',1,'vSocketSetOptIO_t::ret_val()'],['../group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf',1,'vSocketGetOptIO_t::ret_val()'],['../group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf',1,'vSocketGetSockNameIO_t::ret_val()'],['../group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf',1,'vSocketSendToIO_t::ret_val()'],['../group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf',1,'vSocketSendIO_t::ret_val()'],['../group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf',1,'vSocketRecvFromIO_t::ret_val()'],['../group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf',1,'vSocketRecvIO_t::ret_val()'],['../group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf',1,'vSocketConnectIO_t::ret_val()'],['../group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf',1,'vSocketAcceptIO_t::ret_val()'],['../group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf',1,'vSocketListenIO_t::ret_val()'],['../group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf',1,'vSocketBindIO_t::ret_val()'],['../group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf',1,'vSocketCreateIO_t::ret_val()']]],
+  ['rx_5factive_7',['rx_active',['../group__arm__vsi__audio.html#abf786bdf31f500a28b33b2f49461b982',1,'AudioDrv_Status_t']]]
 ];

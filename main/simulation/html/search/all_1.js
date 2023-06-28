@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['dma_0',['DMA',['../group__arm__vsi__api.html#a2adfebde5b46a4adc0318f5077f03c6d',1,'ARM_VSI_Type']]]
+  ['buf_5fempty_0',['buf_empty',['../group__arm__vsi__video.html#ac644e277e4294dfe0f43640cbce9ddbe',1,'VideoDrv_Status_t']]],
+  ['buf_5ffull_1',['buf_full',['../group__arm__vsi__video.html#a2a19de3146543c3c35844519913ed2de',1,'VideoDrv_Status_t']]]
 ];

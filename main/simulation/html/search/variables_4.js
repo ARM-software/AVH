@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['signalin_0',['SignalIn',['../group__arm__vio__api.html#aca77784de1995fcd0f87b4c27b54048a',1,'ARM_VIO_Type']]],
-  ['signalout_1',['SignalOut',['../group__arm__vio__api.html#a1d475e57aeb84d8430d950cb49f5a807',1,'ARM_VIO_Type']]]
+  ['irq_0',['IRQ',['../group__arm__vsi__api.html#a891c9036e6872ed134c185addd341b24',1,'ARM_VSI_Type']]]
 ];
