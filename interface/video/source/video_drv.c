@@ -343,24 +343,24 @@ int32_t VideoDrv_Configure (uint32_t channel, uint32_t frame_width, uint32_t fra
       (frame_width  == 0U) ||
       (frame_height == 0U) ||
       (frame_rate   == 0U) ||
-      (color_format <= COLOR_FORMAT_BEGIN) ||
-      (color_format >= COLOR_FORMAT_END)) {
+      (color_format <= VIDEO_DRV_COLOR_FORMAT_BEGIN) ||
+      (color_format >= VIDEO_DRV_COLOR_FORMAT_END)) {
     return VIDEO_DRV_ERROR_PARAMETER;
   }
 
   switch (color_format) {
-    case COLOR_GRAYSCALE8:
+    case VIDEO_DRV_COLOR_GRAYSCALE8:
       pixel_size = 8U;
       break;
-    case COLOR_YUV420:
+    case VIDEO_DRV_COLOR_YUV420:
       pixel_size = 12U;
       break;
-    case COLOR_BGR565:
+    case VIDEO_DRV_COLOR_BGR565:
       pixel_size = 16U;
       break;
-    case COLOR_RGB888:
-    case COLOR_NV12:
-    case COLOR_NV21:
+    case VIDEO_DRV_COLOR_RGB888:
+    case VIDEO_DRV_COLOR_NV12:
+    case VIDEO_DRV_COLOR_NV21:
       pixel_size = 24U;
       break;
     default:

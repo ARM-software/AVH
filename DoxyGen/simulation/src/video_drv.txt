@@ -1,0 +1,329 @@
+/**
+\addtogroup arm_vsi_video Video via VSI
+\ingroup arm_vsi_cases
+\brief Video file streaming interface
+\details
+
+Video streaming use case is implemented for Arm FVPs based on the general-purpose \ref arm_vsi.
+
+The use of common video driver API simplifies re-targeting of the application code between virtual and physical devices.
+Currently video driver implementations and examples are available for the following platforms:
+  - Arm FVPs using \ref arm_vsi_api "VSI" with an interface to Python script that streams local video or image files (supported formats: *.bmp, *.png, *.jpg, *.wmv, *.avi, *.mp4). Alternatively, PC's camera can be used as video input and PC's display as video output.
+
+and support for other hardware platforms can be added following the same concept.
+
+The table below references the files that implement the video peripheral:
+
+Item                                                                                                                                      | Description
+:-----------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------
+[./interface/video/include/video_drv.h](https://github.com/ARM-software/AVH/blob/main/interface/video/include/video_drv.h)                | \ref arm_vsi_video "Video Driver API" header file. Used by implementations on Arm Virtual Hardware and real HW boards.
+[./interface/video/source/video_drv.c](https://github.com/ARM-software/AVH/blob/main/interface/video/source/video_drv.c)                  | Video driver implementation for Arm Virtual Hardware based on \ref arm_vsi_api "VSI"
+[./interface/video/python/arm_vsi4.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi4.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video input channel 0, based on \ref arm_vsi_py "VSI Python interface".
+[./interface/video/python/arm_vsi5.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi5.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video output channel 0, based on \ref arm_vsi_py "VSI Python interface".
+[./interface/video/python/arm_vsi6.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi6.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video input channel 1, based on \ref arm_vsi_py "VSI Python interface".
+[./interface/video/python/arm_vsi7.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi7.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video output channel 1, based on \ref arm_vsi_py "VSI Python interface".
+[./interface/video/python/vsi_video.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/vsi_video.py)                | \ref arm_vsi_video "Video via VSI" Python module for video input / output interface.
+[./interface/video/python/vsi_video_server.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/vsi_video_server.py)  | \ref arm_vsi_video "Video via VSI" Accompanying Python script to the \em vsi_video.py.
+
+@{
+
+\defgroup video_drv_functions Video Driver API Functions
+\ingroup arm_vsi_video
+\brief Video Driver API functions.
+\details
+
+@{
+\fn int32_t VideoDrv_Initialize (VideoDrv_Event_t cb_event)
+\details
+The function \b VideoDrv_Initialize initializes the Video interface over VSI peripheral. It is called when the middleware component starts operation.
+
+The function performs the following operations:
+  - Initializes the required resources of the video interface.
+  - Registers the \ref VideoDrv_Event_t callback function.
+
+The parameter \em cb_event is a pointer to the \ref VideoDrv_Event_t callback function; use a NULL pointer when no callback signals are required.
+
+Possible return values:
+  - \ref VIDEO_DRV_OK : video interface is successfully initialized.
+
+
+\fn int32_t VideoDrv_Uninitialize (void)
+\details
+The function \b VideoDrv_Uninitialize de-initializes the resources of Video interface.
+
+It is called when the middleware component stops operation and releases the software resources used by the interface.
+
+Possible return values:
+  - \ref VIDEO_DRV_OK : video interface is successfully de-initialized.
+
+
+\fn int32_t VideoDrv_SetFile (uint32_t channel, const char *name)
+\details
+The function \b VideoDrv_SetFile sets file for specified video channel.
+
+\em channel specifies the video channel (\ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" or \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1").
+
+\em name specifies filename with extension of video or image.
+
+Possible return values:
+  - \ref VIDEO_DRV_OK : filename was set successfully (filename is valid).
+  - \ref VIDEO_DRV_ERROR_PARAMETER : invalid argument values. Returned in the following cases:
+    - \em channel is not \ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" or \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1".
+    - \em name is NULL.
+  - \ref VIDEO_DRV_ERROR : returned in the following cases:
+    - video interface is not initialized.
+    - video channel stream is active.
+    - \em name is not a valid or supported filename.
+
+
+\fn int32_t VideoDrv_Configure (uint32_t channel, uint32_t frame_width, uint32_t frame_height, uint32_t color_format, uint32_t frame_rate)
+\details
+The function \b VideoDrv_Configure configures specified video channel.
+
+\em channel specifies the video channel (\ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" or \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1").
+
+\em frame_width configures frame width in pixels.
+
+\em frame_height configures frame height in pixels.
+
+\em color_format configures frame pixel color format:
+  - \ref VIDEO_DRV_COLOR_GRAYSCALE8,
+  - \ref VIDEO_DRV_COLOR_RGB888,
+  - \ref VIDEO_DRV_COLOR_BGR565,
+  - \ref VIDEO_DRV_COLOR_YUV420,
+  - \ref VIDEO_DRV_COLOR_NV12,
+  - \ref VIDEO_DRV_COLOR_NV21.
+
+\em frame_rate configures frame rate (frames per second).
+
+Possible return values:
+  - \ref VIDEO_DRV_OK : channel configured.
+  - \ref VIDEO_DRV_ERROR_PARAMETER : invalid argument values. Returned in the following cases:
+    - \em channel is not \ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" or \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1".
+    - \em frame_width is 0.
+    - \em frame_height is 0.
+    - \em frame_rate is 0.
+    - \em color_format is &le; \ref VIDEO_DRV_COLOR_FORMAT_BEGIN or &ge; \ref VIDEO_DRV_COLOR_FORMAT_END.
+  - \ref VIDEO_DRV_ERROR : returned in the following cases:
+    - video interface is not initialized.
+    - video channel stream is active.
+
+
+\fn int32_t VideoDrv_SetBuf (uint32_t channel, void *buf, uint32_t buf_size)
+\details
+The function \b VideoDrv_SetBuf sets the buffer for specified video channel.
+
+\em channel specifies the video channel (\ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" or \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1").
+
+\em buf points to the video memory buffer provided by the user.
+
+\em buf_size defines the size of user provided video memory buffer.
+
+User provided memory is used as a circular buffer for storing video frames.
+
+Possible return values:
+  - \ref VIDEO_DRV_OK : channel buffer set.
+  - \ref VIDEO_DRV_ERROR_PARAMETER : invalid argument values. Returned in the following cases:
+    - \em channel is not \ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" or \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1".
+    - \em buf is NULL.
+    - \em buf_size is 0.
+  - \ref VIDEO_DRV_ERROR : returned in the following cases:
+    - video interface is not initialized.
+    - video channel is not configured.
+    - video channel stream is active.
+    - \em buf_size is smaller than the size of one frame.
+
+
+\fn int32_t VideoDrv_FlushBuf (uint32_t channel)
+\details
+The function \b VideoDrv_FlushBuf flushes buffer of specified video channel.
+
+\em channel specifies the video channel (\ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" or \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1").
+
+Possible return values:
+  - \ref VIDEO_DRV_OK : channel buffer flushed.
+  - \ref VIDEO_DRV_ERROR_PARAMETER : invalid argument values. Returned in the following case:
+    - \em channel is not \ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" or \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1".
+  - \ref VIDEO_DRV_ERROR : returned in the following cases:
+    - video interface is not initialized.
+    - video channel stream is active.
+
+
+\fn int32_t VideoDrv_StreamStart (uint32_t channel, uint32_t mode)
+\details
+The function \b VideoDrv_StreamStart starts streaming on specified video channel.
+
+\em channel specifies the video channel (\ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" or \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1").
+
+\em mode specifies whether the stream will be continuous (\ref VIDEO_DRV_MODE_CONTINUOS) or single frame (\ref VIDEO_DRV_MODE_SINGLE) which will automatically stop after a single frame.
+
+For <b>video input channels</b>, frames received from video input will be stored in the video buffer.
+
+When a frame is received:
+  - \ref VIDEO_DRV_EVENT_FRAME event is generated. 
+  - In case the video buffer overflowed an additional \ref VIDEO_DRV_EVENT_OVERFLOW event is generated.
+  - In case end of stream is reached an additional \ref VIDEO_DRV_EVENT_EOS event is generated.
+
+Frame buffer is retrieved by calling \ref VideoDrv_GetFrameBuf. Once the frame data is consumed it needs to be released by calling \ref VideoDrv_ReleaseFrame.
+
+For <b>video output channels</b>, frames stored in the video buffer will be sent to the video output.
+
+Frame buffer is retrieved by calling \ref VideoDrv_GetFrameBuf. Once the frame data is produced it needs to be released by calling \ref VideoDrv_ReleaseFrame.
+
+When a frame is sent:
+  - \ref VIDEO_DRV_EVENT_FRAME event is generated. 
+  - In case the video buffer underflowed an additional \ref VIDEO_DRV_EVENT_UNDERFLOW event is generated.
+
+Possible return values:
+  - \ref VIDEO_DRV_OK : channel streaming started.
+  - \ref VIDEO_DRV_ERROR_PARAMETER : invalid argument values. Returned in the following cases:
+    - \em channel is not \ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" or \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1".
+    - \em mode is not \ref VIDEO_DRV_MODE_CONTINUOS or \ref VIDEO_DRV_MODE_SINGLE.
+  - \ref VIDEO_DRV_ERROR : returned in the following cases:
+    - video interface is not initialized.
+    - video channel is not configured.
+    - video channel stream failed to activate.
+
+
+\fn int32_t VideoDrv_StreamStop (uint32_t channel)
+\details
+The function \b VideoDrv_StreamStop stops streaming on specified video channel.
+
+\em channel specifies the video channel (\ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" or \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1").
+
+Possible return values:
+  - \ref VIDEO_DRV_OK : channel streaming stopped.
+  - \ref VIDEO_DRV_ERROR_PARAMETER : invalid argument values. Returned in the following case:
+    - \em channel is not \ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" or \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1".
+  - \ref VIDEO_DRV_ERROR : returned in the following cases:
+    - video interface is not initialized.
+    - video channel is not configured.
+
+
+\fn void *VideoDrv_GetFrameBuf (uint32_t channel)
+\details
+The function \b VideoDrv_GetFrameBuf gets frame buffer from specified video channel.
+
+\em channel specifies the video channel (\ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" or \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1").
+
+For <b>video input channels</b>, the application gets the pointer to the frame buffer, consumes frame data and releases the frame by calling \ref VideoDrv_ReleaseFrame.
+
+For <b>video output channels</b>, the application gets the pointer to the frame buffer, produces frame data and releases the frame by calling \ref VideoDrv_ReleaseFrame.
+
+Possible return values:
+  - pointer to frame buffer,
+  - NULL : invalid argument values. Returned in the following case:
+    - \em channel is not \ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" or \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1".
+    - video interface is not initialized.
+    - video channel is not configured.
+    - buffer is empty (input channel)
+    - buffer is full (output channel)
+
+
+\fn int32_t VideoDrv_ReleaseFrame (uint32_t channel)
+\details
+The function \b VideoDrv_ReleaseFrame releases a frame from specified video channel.
+
+\em channel specifies the video channel (\ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" or \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1").
+
+Possible return values:
+  - \ref VIDEO_DRV_OK : channel frame released.
+  - \ref VIDEO_DRV_ERROR_PARAMETER : invalid argument values. Returned in the following case:
+    - \em channel is not \ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" or \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1".
+  - \ref VIDEO_DRV_ERROR : returned in the following cases:
+    - video interface is not initialized.
+    - video channel is not configured.
+    - buffer is empty (input channel)
+    - buffer is full (output channel)
+
+
+\fn VideoDrv_Status_t VideoDrv_GetStatus (uint32_t channel)
+\details
+The function \b VideoDrv_GetStatus retrieves the current status of specified video channel.
+
+\em channel specifies the video channel (\ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" or \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1").
+
+
+\typedef VideoDrv_Event_t
+\details
+Provides the typedef for the event callback function <b>VideoDrv_Event (uint32_t event)</b> to be registered with \ref VideoDrv_Initialize.
+
+The parameter \em event indicates the reported event(s) that occurred during driver operation.
+Each event is encoded in a separate bit so it is possible to signal multiple events within the same call.
+\ref VIDEO_DRV_EVENT_FRAME "VIDEO_DRV_EVENT_..." definitions list the events that can be reported.
+
+<b>Parameter for:</b>
+  - \ref VideoDrv_Initialize
+
+@}
+
+\defgroup video_drv_defines Video Driver API Defines
+\ingroup arm_vsi_video
+\brief Video Driver API Definitions
+\details
+Video driver provides various definitions to simplify use of its \ref video_drv_functions :
+  - Channel parameter definitions (\ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" and \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1") can be used in \ref VideoDrv_SetFile, \ref VideoDrv_Configure, \ref VideoDrv_SetBuf, \ref VideoDrv_FlushBuf, \ref VideoDrv_StreamStart, \ref VideoDrv_StreamStop, \ref VideoDrv_GetFrameBuf, \ref VideoDrv_ReleaseFrame functions.
+  - Event definitions \ref VIDEO_DRV_EVENT_FRAME "VIDEO_DRV_EVENT_..." list the events that can be reported via callback function \ref VideoDrv_Event_t.
+  - Error code definitions (\ref VIDEO_DRV_OK, \ref VIDEO_DRV_ERROR "VIDEO_DRV_ERROR...") map the status results that can be returned by \ref video_drv_functions.
+  - Color format definitions \ref VIDEO_DRV_COLOR_GRAYSCALE8 "VIDEO_DRV_COLOR_..." list supported color formats used for channel configuration.
+
+@{
+
+@{
+\def VIDEO_DRV_IN0
+\def VIDEO_DRV_OUT0
+\def VIDEO_DRV_IN1
+\def VIDEO_DRV_OUT1
+@}
+
+@{
+\def VIDEO_DRV_EVENT_FRAME
+\details Triggered to indicate that a new frame is available in buffer.
+
+\def VIDEO_DRV_EVENT_OVERFLOW
+\details Triggered to indicate that overflow of data buffer has occurred.
+
+\def VIDEO_DRV_EVENT_UNDERFLOW
+\details Triggered to indicate that underflow of data buffer has occurred.
+
+\def VIDEO_DRV_EVENT_EOS
+\details Triggered to indicate that end of file has been reached.
+@}
+
+@{
+\def VIDEO_DRV_MODE_SINGLE
+\def VIDEO_DRV_MODE_CONTINUOS
+@}
+
+@{
+\def VIDEO_DRV_OK
+\def VIDEO_DRV_ERROR
+\def VIDEO_DRV_ERROR_PARAMETER
+@}
+
+@{
+\def VIDEO_DRV_COLOR_FORMAT_BEGIN
+\def VIDEO_DRV_COLOR_GRAYSCALE8
+\def VIDEO_DRV_COLOR_RGB888
+\def VIDEO_DRV_COLOR_BGR565
+\def VIDEO_DRV_COLOR_YUV420
+\def VIDEO_DRV_COLOR_NV12
+\def VIDEO_DRV_COLOR_NV21
+\def VIDEO_DRV_COLOR_FORMAT_END
+@}
+
+@}
+
+@{
+\struct VideoDrv_Status_t
+\details
+Structure with information about the Video channel status. The data fields encode active and buffer state flags.
+
+<b>Returned by:</b>
+  - \ref VideoDrv_GetStatus
+
+@}
+@}
+*/
+*/
+// End Video Interface

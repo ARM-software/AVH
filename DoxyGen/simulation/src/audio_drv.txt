@@ -28,7 +28,7 @@ Audio driver for NXP MIMXRT1064-EVK board | Audio driver implementation for NXP 
 
 @{
 
-\defgroup audio_drv_functions Audion Driver API Functions
+\defgroup audio_drv_functions Audio Driver API Functions
 \ingroup arm_vsi_audio
 \brief Audio Driver API functions.
 \details
