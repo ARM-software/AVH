@@ -24,9 +24,9 @@
 */
 var NAVTREE =
 [
-  [ "Simulation", "index.html", [
+  [ "AVH FVP models", "index.html", [
     [ "Overview", "index.html", "index" ],
-    [ "Using Arm Fixed Virtual Platforms", "Using.html", [
+    [ "Using AVH FVPs", "Using.html", [
       [ "Running User Applications", "Using.html#Execution", null ],
       [ "Model Configuration", "Using.html#Config", null ],
       [ "Useful Hints and Tips", "Using.html#Hints", [

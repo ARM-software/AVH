@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Infrastructure: Overview</title>
+<title>Overview: User Benefits</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="extra_navtree.css" rel="stylesheet" type="text/css"/>
@@ -46,7 +46,7 @@
    <div id="projectname">Virtual Hardware
    &#160;<span id="projectnumber">Version 1.3.1 - beta</span>
    </div>
-   <div id="projectbrief">Infrastructure Service and Tool Integration</div>
+   <div id="projectbrief">Solutions Overview</div>
   </td>
   <!--END !PROJECT_NAME-->
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -94,7 +94,7 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('index.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('User_Benefits.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -120,22 +120,47 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Overview </div></div>
+  <div class="headertitle"><div class="title">User Benefits </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="mainpage"></a> <b>Arm Virtual Hardware</b> (AVH) provides a cloud-native infrastructure with <a href="../../simulation/html/index.html">simulation models</a> and necessary software tooling . It integrates well into various CI/CD and MLOps workflows ranging from GitHub to on-premise IT infrastructure.</p>
-<p>Following methods of accessing and using AVH are explained in this section:</p>
-<ul>
-<li><a class="el" href="avh_gh.html">AVH FVPs in GitHub Runner</a> enables AVH-based CI flows for building and testing embedded projects mantained in GitHub repositories.</li>
-<li><a class="el" href="AWS.html">AVH Amazon Machine Image (AMI)</a> allows flexible AVH integration in custom DevOps flows with the full power of AWS services behind.</li>
-<li><a class="el" href="Local.html">AVH FVPs on Desktop</a> is useful for development and program debug.</li>
+<div class="textblock"><h1><a class="anchor" id="No_Hardware"></a>
+Test without Hardware</h1>
+<p>AVH allows to verify your code without the need for physical hardware which provides a robust test environment that enables:</p><ul>
+<li>Early software development for faster time-to-market</li>
+<li>Select optimal target device once the software workload is analysed</li>
+<li>Re-target applications to production hardware with driver abstractions</li>
 </ul>
+<h1><a class="anchor" id="Verify"></a>
+Verify Correctness</h1>
+<p><b>Arm Fixed Virtual Platforms (FVPs)</b> are Arm simulation models validated with the same process as the CPU IP. Specially it allows you to:</p><ul>
+<li>Perform algorithm testing with identical logical behaviour of the target device</li>
+<li>Precisely repeat complex input patterns in CI/CD test environments</li>
+<li>Analyse software behaviour with event annotations</li>
+</ul>
+<h1><a class="anchor" id="Evaluate"></a>
+Evaluate Performance</h1>
+<p>Software algorithms for Digital Signal Processing (DSP) or Machine Learning (ML) frequently require significant CPU resources and need to be optimized for the target hardware. Comparing performance of such "load heavy" algorithms requires that they can be automatically executed with different configurations parameters but using identical input.</p>
+<p><b>Arm Virtual Hardware Services</b> allows users to test their programs at scale with reproducible input patterns and so validate and optimize application performance which allows you to:</p><ul>
+<li>Compare speed of different implementations of an algorithm</li>
+<li>Identify timing issues during system integration</li>
+<li>Optimize resources (i.e. data buffers) towards application requirements</li>
+</ul>
+<h1><a class="anchor" id="CI"></a>
+Continuous Testing</h1>
+<p>Applying continuous integration work flows for embedded applications can be complicated by the specifics of development environments and the need of executing the program on target hardware. So the development teams are often reluctant to spend initial effort setting up the continuous integration (CI) workflow even though the long-term benefits are undisputed as shown on the Figure below</p>
 <div class="image">
-<img src="create_debug_test.png" alt=""/>
+<img src="effort_comparison.png" alt=""/>
 <div class="caption">
-Create, debug, and test</div></div>
-     </div></div><!-- PageDoc -->
-</div><!-- contents -->
+Comparison of test efforts in CI and no CI workflows</div></div>
+    <p><b>Arm Virtual Hardware</b> simplifies the setup and use of CI workflows in embedded projects.</p>
+<p>For unit and integration tests virtual targets offer additional advantages over hardware, including:</p><ul>
+<li><b>Speed</b> - no overhead for flashing the application on physical hardware. This saves time on small and fast unit tests.</li>
+<li><b>Scale</b> - virtual platforms can scale to run many tests in parallel. This makes virtual platforms more cost-effective than a farm of physical hardware.</li>
+<li><b>Maintenance</b> – unlike physical hardware, virtual platforms do not overheat, wear out from overuse, break from misuse, or use physical space and resources.</li>
+<li><b>Upgrades</b> – virtual platforms can be adapted and re-configured to match corresponding changes to the underlying hardware platform that is under development. These types of changes can be costly or impossible with physical hardware. </li>
+</ul>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

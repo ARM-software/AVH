@@ -26,9 +26,9 @@ var NAVTREE =
 [
   [ "Infrastructure", "index.html", [
     [ "Overview", "index.html", null ],
-    [ "AVH GitHub Runner", "avh_gh.html", "avh_gh" ],
-    [ "AVH on AWS Marketplace", "AWS.html", "AWS" ],
-    [ "AVH on Desktop", "Local.html", "Local" ],
+    [ "AVH FVPs in GitHub Runner", "avh_gh.html", "avh_gh" ],
+    [ "AVH FVPs on AWS Marketplace", "AWS.html", "AWS" ],
+    [ "AVH FVPs on Desktop", "Local.html", "Local" ],
     [ "AVH Client", "avhclient.html", [
       [ "Installation", "avhclient.html#avhclient_install", null ],
       [ "Supported backends", "avhclient.html#avhclient_backends", null ],

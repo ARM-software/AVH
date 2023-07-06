@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['using_20arm_20fixed_20virtual_20platforms_0',['Using Arm Fixed Virtual Platforms',['../Using.html',1,'']]]
+  ['using_20avh_20fvps_0',['Using AVH FVPs',['../Using.html',1,'']]]
 ];

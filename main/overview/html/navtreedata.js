@@ -25,13 +25,23 @@
 var NAVTREE =
 [
   [ "Overview", "index.html", [
-    [ "Introduction", "index.html", "index" ]
+    [ "Introduction", "index.html", "index" ],
+    [ "User Benefits", "User_Benefits.html", [
+      [ "Test without Hardware", "User_Benefits.html#No_Hardware", null ],
+      [ "Verify Correctness", "User_Benefits.html#Verify", null ],
+      [ "Evaluate Performance", "User_Benefits.html#Evaluate", null ],
+      [ "Continuous Testing", "User_Benefits.html#CI", null ]
+    ] ],
+    [ "Release History", "History.html", [
+      [ "Known Limitations", "History.html#Issues", null ],
+      [ "Feedback and Support", "History.html#Support", null ]
+    ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"index.html"
+"History.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

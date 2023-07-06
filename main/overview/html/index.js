@@ -1,13 +1,6 @@
 var index =
 [
-    [ "Documentation Structure", "index.html#Sections", null ],
-    [ "User Benefits", "index.html#User_Benefits", [
-      [ "Test without Hardware", "index.html#No_Hardware", null ],
-      [ "Verify Correctness", "index.html#Verify", null ],
-      [ "Evaluate Performance", "index.html#Evaluate", null ],
-      [ "Continuous Testing", "index.html#CI", null ]
-    ] ],
-    [ "Release History", "index.html#History", null ],
-    [ "Known Limitations", "index.html#Issues", null ],
-    [ "Feedback and Support", "index.html#Support", null ]
+    [ "AVH Models", "index.html#avh_models", null ],
+    [ "AVH Integrations", "index.html#avh_integrations", null ],
+    [ "AVH Developer Resources", "index.html#avh_dev", null ]
 ];
