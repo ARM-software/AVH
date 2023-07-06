@@ -1,6 +1,6 @@
-# AVH on AWS Marketplace {#AWS}
+# AVH FVPs on AWS Marketplace {#AWS}
 
-Arm provides a ready-to-use Amazon Machine Image (AMI) on AWS Marketplace. This is a Linux Virtual Machine that contains fully operational Arm simulation models, compilers and useful software utilities. It gives a lot of flexibility to integrate the **Arm Virtual Hardware** in various CI/CD DevOps environments. \subpage ami_inventory gives the full list of resources available on the AVH AMI.
+Arm provides a ready-to-use Amazon Machine Image (AMI) on AWS Marketplace. This is a Linux Virtual Machine that contains fully operational AVH FVP simulation models, compilers and useful software utilities. It gives a lot of flexibility to integrate the **Arm Virtual Hardware** in various CI/CD DevOps environments. \subpage ami_inventory gives the full list of resources available on the AVH AMI.
 
 The following sections explain AVH AMI setup and usage in different scenarios:
 

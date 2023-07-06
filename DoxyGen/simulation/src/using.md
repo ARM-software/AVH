@@ -1,4 +1,4 @@
-# Using Arm Fixed Virtual Platforms {#Using}
+# Using AVH FVPs {#Using}
 
 [comment]:[TOC]
 This section gives an overview on how to use the **Arm Fixed Virtual Platforms (FVPs)** in AVH context.

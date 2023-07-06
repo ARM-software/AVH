@@ -1,4 +1,4 @@
-# AVH GitHub Runner {#avh_gh}
+# AVH FVPs in GitHub Runner {#avh_gh}
 
 **Arm Virtual Hardware (AVH)** is available as a GitHub-hosted Runner that greatly simplifies use of AVH for projects maintained in GitHub repositories.
 

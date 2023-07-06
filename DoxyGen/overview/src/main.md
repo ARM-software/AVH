@@ -2,51 +2,71 @@
 
 [comment]:[TOC]
 
-**Arm Virtual Hardware (AVH)** provides simulation models, software tooling, and infrastructure that can be integrated into [**CI/CD**](https://en.wikipedia.org/wiki/CI/CD) and [**MLOps**](https://en.wikipedia.org/wiki/MLOps) development flows. 
+[Arm Virtual Hardware (AVH)](https://www.arm.com/products/development-tools/simulation/virtual-hardware) covers various solutions for software development on Arm-based processors using virtual targets. This includes virtual simulation models, their cloud-native deployments and integrations with development tools.
 
-AVH supports the software development cycle of embedded, IoT, and ML applications and provides essential components for effective test and validation environments. Arm Virtual Hardware is flexible and can run any [**RTOS**](https://en.wikipedia.org/wiki/Real-time_operating_system) that is designed for Cortex-M or bare metal code that interacts with the processor. 
+AVH supports the software development cycle of embedded, IoT, and ML applications and provides essential components for effective integration into Continuous Integration/Continuous Delivery ([CI/CD](https://en.wikipedia.org/wiki/CI/CD)) and [MLOps](https://en.wikipedia.org/wiki/MLOps) development flows.
 
-Arm Virtual Hardware offers a comprehensive tool integration along with resources for software developers and can therefore run complex applications and software integration tests. A potential workload could be a [**sensor-fusion**](https://en.wikipedia.org/wiki/Sensor_fusion) Machine Learning (ML) application that connects to the Internet via an IoT operating system.
+![Arm Virtual Hardware - Overview](./images/avh_overview.png)
 
-**Arm Virtual Hardware** consists of the following components:
+# AVH Models {#avh_models}
 
-  - **Arm Fixed Virtual Platforms (FVPs)** are precise [**simulation models**](https://en.wikipedia.org/wiki/Simulation) of Cortex-M device sub-systems and are designed for complex software verification and testing. This allows [**simulation-based test automation**](https://en.wikipedia.org/wiki/Test_automation) of various software workloads, including unit tests, integration tests, and fault injection.
+AVH simulation models enable execution of software programs on virtual targets. Two different AVH modelling technologies are available:
 
-  - **Arm Virtual Hardware Services** provide a cloud-native infrastructure for software test and validation. These services can be integrated into various **CI/CD** and **MLOps** environments that range from GitHub to on-premise IT infrastructure.
- 
-  - **Arm Virtual Hardware Developer Resources** gives you access to interface drivers that map to virtual targets and physical hardware along with Python scripts for I/O simulation. The documentation explains how to integrate Arm Virtual Hardware into typical **CI/CD** environments. Usage examples show typical usage cases and range from audio processing, ML algorithm testing, up to IoT applications that interface to Cloud Service providers.
-  
-  - **Software Development Environments** can be used with Arm Virtual Hardware. So, Arm Fixed Virtual Platforms are an integral part of the Keil MDK Professional Edition that is a comprehensive software tool suite for creating Cortex-M-based applications and related validation and test processes. Other IDEs and debuggers can be used as well. 
+  <h2>AVH Fixed Virtual Platforms (FVPs)</h2>
 
-![Arm Virtual Hardware - Components](./images/vht_overview.png)
+  - Precise simulation models of Arm Cortex-M based reference platforms, such as Corstone-300/310. Learn more at [Sumulation](../../simulation/html/index.html).
+  - Available for cloud-native and desktop environments. See [Infrastructure](../../infrastructure/html/index.html) for details.
 
+  <h2>AVH Corellium models</h2>
 
-# Documentation Structure {#Sections}
+   - Functionally accurate virtual representations of popular IoT development boards and selected Arm reference platforms:
+     - Cortex-A based systems with Linux OS support, such as Raspberry Pi and NXP i.MX.
+     - Selected Cortex-M based kits.
+   - Software binary-compatible with the hardware targets.
+   - Available via [app.avh.arm.com](https://app.avh.arm.com/) cloud platform. Read more in [AVH Users's Guide](https://developer.arm.com/docs/107660).
+
+# AVH Integrations {#avh_integrations}
+
+Arm Virtual Hardware models integrate well in various tools and services for development, debug, testing as well as CI/CD and MLOps flows. AVH is already  supported within many Arm tools, as well as by third-party vendors.
+
+The integration approach depends on the modelling technology:
+- AVH FVP models are standalone programs that gets executed in the target environment. See [Infrastructure](../../infrastructure/html/index.html) for more details.
+- AVH Corellium models are cloud-native and gets integrated via REST API and SSH connections. See [AVH Users's Guide](https://developer.arm.com/docs/107660)
+
+# AVH Developer Resources {#avh_dev}
+
+Various Resources explain how to integrate Arm Virtual Hardware into workflows common for generic embedded software development, CI testing and MLOps.
+
+Usage examples show typical use cases and range from audio processing, ML algorithm testing, up to IoT applications that interface to Cloud Service providers and Over-the-Air Firware Updates (OTAU).
+
+**This documentation** is largely dedicated to **AVH FVPs** and has following sections that can be accessed as document tabs as well:
 
 Section                                                    | Description
 :----------------------------------------------------------|:--------------------
 [**Overview**](index.html)                                 | Introduces **Arm Virtual Hardware** along with the top-level structure.
-[**Simulation**](../../simulation/html/index.html)         | Explains the simulation technology and the virtual interfaces.
-[**Infrastructure**](../../infrastructure/html/index.html) | Describes how to setup development workflows with **Arm Virtual Hardware**, locally and in the cloud.
-[**Examples**](../../examples/html/index.html)             | Guides through the examples that demonstrate how to use **Arm Virtual Hardware**.
+[**Simulation**](../../simulation/html/index.html)         | Explains the AVH FVP simulation technology and the virtual interfaces.
+[**Infrastructure**](../../infrastructure/html/index.html) | Describes key integrations of AVH FVPs locally and in the cloud.
+[**Examples**](../../examples/html/index.html)             | Guides through the examples that demonstrate how to use AVH FVPs.
 
-# User Benefits {#User_Benefits}
+For more details about AVH Corellium models refer to [AVH Users's Guide](https://developer.arm.com/docs/107660).
 
-## Test without Hardware {#No_Hardware}
+\page User_Benefits User Benefits
+
+# Test without Hardware {#No_Hardware}
 
 AVH allows to verify your code without the need for physical hardware which provides a robust test environment that enables:
  - Early software development for faster time-to-market
  - Select optimal target device once the software workload is analysed
  - Re-target applications to production hardware with driver abstractions
 
-## Verify Correctness {#Verify}
+# Verify Correctness {#Verify}
 
 **Arm Fixed Virtual Platforms (FVPs)** are Arm simulation models validated with the same process as the CPU IP. Specially it allows you to:
  - Perform algorithm testing with identical logical behaviour of the target device
  - Precisely repeat complex input patterns in CI/CD test environments
  - Analyse software behaviour with event annotations
 
-## Evaluate Performance {#Evaluate}
+# Evaluate Performance {#Evaluate}
 
 Software algorithms for Digital Signal Processing (DSP) or Machine Learning (ML) frequently require significant CPU resources and need to be optimized for the target hardware. Comparing performance of such "load heavy" algorithms requires that they can be automatically executed with different configurations parameters but using identical input. 
 
@@ -55,7 +75,7 @@ Software algorithms for Digital Signal Processing (DSP) or Machine Learning (ML)
  - Identify timing issues during system integration
  - Optimize resources (i.e. data buffers) towards application requirements
 
-## Continuous Testing {#CI}
+# Continuous Testing {#CI}
 
 Applying continuous integration work flows for embedded applications can be complicated by the specifics of development environments and the need of executing the program on target hardware. So the development teams are often reluctant to spend initial effort setting up the continuous integration (CI) workflow even though the long-term benefits are undisputed as shown on the Figure below
 
@@ -69,7 +89,7 @@ For unit and integration tests virtual targets offer additional advantages over 
  - **Maintenance** – unlike physical hardware, virtual platforms do not overheat, wear out from overuse, break from misuse, or use physical space and resources. 
  - **Upgrades** – virtual platforms can be adapted and re-configured to match corresponding changes to the underlying hardware platform that is under development. These types of changes can be costly or impossible with physical hardware.
 
-# Release History {#History}
+\page History Release History
 
 For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html/ami_inventory.html).
 

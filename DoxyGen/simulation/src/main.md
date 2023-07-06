@@ -1,10 +1,10 @@
-\mainpage Overview
+# Overview {#mainpage}
 
-The **Arm Fixed Virtual Platforms (FVP)** provide a functional accurate simulation of an Arm-based SoC and can be automated for scalable deployment in the CI development flow. 
+The **AVH Fixed Virtual Platforms (AVH FVPs)** provide a functional accurate simulation of an Arm-based SoC and can be automated for scalable deployment in the CI development flow. 
 
 The virtual platforms can be used standalone via command prompt or with development tools such as <a href="https://developer.arm.com/tools-and-software/embedded/arm-development-studio" target="_blank"><b>Arm Development Studio</b></a> or <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk" target="_blank"><b>Arm Keil MDK</b></a>, both in cloud-native or desktop environments. See [Infrastructure chapter](../../infrastructure/html/index.html) for additional details. 
 
-# Virtual Interfaces {#Virtual_Interfaces}
+## Virtual Interfaces {#Virtual_Interfaces}
 
 The virtual platforms implement various Virtual Interfaces that can be used to stimulate the application under test.
 
@@ -18,7 +18,7 @@ Both \ref arm_vio "VIO" and \ref arm_vsi "VSI" connect to Python and enable flex
 
 In addition the **Event Recorder Capturing** provides an interface for the [Event Recorder](https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_overview.html) API. This software component enables event annotations in the application code or software component libraries. The **Event Recorder** provides visibility to the dynamic execution of an application, enables RTOS awareness, and [**Event Execution Statistics**](https://www.keil.com/pack/doc/compiler/EventRecorder/html/group__Event__Execution__Statistic.html) which helps to optimize the timing of complex algorithms.
 
-# Physical Hardware {#Physical_Hardware}
+## Physical Hardware {#Physical_Hardware}
 
 [**Modular programming**](https://en.wikipedia.org/wiki/Modular_programming) recommends to separate the functionality of a program into independent, interchangeable modules that use defined interfaces that abstract the hardware functionality. This design concept simplifies code re-use and allows to implement **Virtual Drivers** and **Hardware Drivers** that expose the same API and implement the same logical behavior. If built correctly, it overcomes many issues that are typically found in monolithic software and enables a staged [software validation](https://en.wikipedia.org/wiki/Software_testing) with multiple test levels such as unit, integration, and system testing.
 
@@ -27,7 +27,7 @@ To simplify re-targeting from FVP simulation models to final production hardware
 ![AVH Re-target to Hardware](./images/Simulation2Hardware.png "Re-target from Simulation to Hardware")
 
 
-# Development Workflow {#Development_Workflow}
+## Development Workflow {#Development_Workflow}
 
 Using a flexible workflow that combines desktop and cloud-native development tools simplify the development workflow further. Using software layers, it is possible to possible to develop a new functionality with a physical board and the commit the changes to a cloud based version control system which executes a complete CI/CD integration flow. This ensures that new product innovations are thoroughly tested before they are integrate into final systems.
 
@@ -36,7 +36,7 @@ Using a flexible workflow that combines desktop and cloud-native development too
 This workflow mandates that a set of test cases are developed. For test case development and failure analysis, it is currently recommended to use desktop tools such as [Keil MDK](https://developer.arm.com/tools-and-software/embedded/keil-mdk). However, over time the more flexible [Keil Studio](https://www.keil.arm.com/) will enable a hybrid work-style that allows to use cloud-native or desktop development workflows. 
 
 
-# Development Challenges {#Development_Challanges}
+## Development Challenges {#Development_Challanges}
 
 Naturally, the Fixed Virtual Platforms cannot simulate the exact behavior of every Arm Cortex processor-based microcontroller that is available today. However, the simulated targets overcome many challenges that users are facing with physical hardware. The FVPs make CI/CD economic for embedded applications and enable modern DevOps workflows that benefit from test automation.  
 
