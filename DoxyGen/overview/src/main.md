@@ -14,7 +14,7 @@ AVH simulation models enable execution of software programs on virtual targets. 
 
   <h2>AVH Fixed Virtual Platforms (FVPs)</h2>
 
-  - Precise simulation models of Arm Cortex-M based reference platforms, such as Corstone-300/310. Learn more at [Sumulation](../../simulation/html/index.html).
+  - Precise simulation models of Arm Cortex-M based reference platforms, such as Corstone-300/310. Learn more at [Simulation](../../simulation/html/index.html).
   - Available for cloud-native and desktop environments. See [Infrastructure](../../infrastructure/html/index.html) for details.
 
   <h2>AVH Corellium models</h2>
