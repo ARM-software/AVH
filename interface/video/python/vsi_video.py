@@ -20,6 +20,7 @@ import logging
 import subprocess
 from multiprocessing.connection import Client
 from os import path
+from os import name as os_name
 
 
 class VideoClient:
@@ -134,16 +135,20 @@ def init(address, authkey):
     global FILENAME_VALID
 
     base_dir = path.dirname(__file__)
-    server_path = path.join( base_dir, 'vsi_video_server.py')
+    server_path = path.join(base_dir, 'vsi_video_server.py')
 
     logging.info("Start video server")
     if path.isfile(server_path):
         # Start Video Server
-        subprocess.Popen(['python', server_path,
-                          '--ip', address[0],
-                          '--port', str(address[1]),
-                          '--authkey', authkey],
-                          shell=True)
+        if os_name == 'nt':
+            py_cmd = 'python'
+        else:
+            py_cmd = 'python3'
+        cmd = f"{py_cmd} {server_path} "\
+              f"--ip {address[0]} "\
+              f"--port {address[1]} "\
+              f"--authkey {authkey}"
+        subprocess.Popen(cmd, shell=True)
         # Connect to Video Server
         Video.connectToServer(address, authkey)
         if Video.conn == None:
