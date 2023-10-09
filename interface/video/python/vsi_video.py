@@ -19,7 +19,7 @@
 import logging
 import subprocess
 from multiprocessing.connection import Client
-from os import path
+from os import path, getcwd
 from os import name as os_name
 
 
@@ -49,7 +49,7 @@ class VideoClient:
             self.conn = None
 
     def setFilename(self, filename, mode):
-        self.conn.send([self.SET_FILENAME, filename, mode])
+        self.conn.send([self.SET_FILENAME, getcwd(), filename, mode])
         filename_valid = self.conn.recv()
 
         return filename_valid
