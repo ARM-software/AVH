@@ -204,7 +204,37 @@ class VideoServer:
 
     # Resize frame to requested resolution in pixels
     def __resizeFrame(self, frame, resolution):
-        logging.debug(f"Resize frame to {resolution}")
+        frame_h = frame.shape[0]
+        frame_w = frame.shape[1]
+
+        # Calculate requested aspect ratio (width/height):
+        crop_aspect_ratio  = resolution[0] / resolution[1]
+
+        if crop_aspect_ratio != (frame_w / frame_h):
+            # Crop into image with resize aspect ratio
+            crop_w = int(frame_h * crop_aspect_ratio)
+            crop_h = int(frame_w / crop_aspect_ratio)
+
+            if   crop_w > frame_w:
+                # Crop top and bottom part of the image
+                top    = (frame_h - crop_h) // 2
+                bottom = top + crop_h
+                frame  = frame[top : bottom, 0 : frame_w]
+            elif crop_h > frame_h:
+                # Crop left and right side of the image``
+                left   = (frame_w - crop_w) // 2
+                right  = left + crop_w
+                frame  = frame[0 : frame_h, left : right]
+            else:
+                # Crop to the center of the image
+                left   = (frame_w - crop_w) // 2
+                right  = left + crop_w
+                top    = (frame_h - crop_h) // 2
+                bottom = top + crop_h
+                frame  = frame[top : bottom, left : right]
+            logging.debug(f"Frame cropped from ({frame_w}, {frame_h}) to ({frame.shape[1]}, {frame.shape[0]})")
+        
+        logging.debug(f"Resize frame from ({frame.shape[1]}, {frame.shape[0]}) to ({resolution[0]}, {resolution[1]})")
         try:
             frame = cv2.resize(frame, resolution)
         except Exception as e:
