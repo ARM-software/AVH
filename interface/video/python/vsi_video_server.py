@@ -41,6 +41,10 @@ default_authkey       = 'vsi_video'
 video_file_extensions = ('wmv', 'avi', 'mp4')
 image_file_extensions = ('bmp', 'png', 'jpg')
 
+# Mode Input/Output
+MODE_IO_Msk           = 1<<0
+MODE_Input            = 0<<0
+MODE_Output           = 1<<0
 
 class VideoServer:
     def __init__(self, address, authkey):
@@ -60,8 +64,8 @@ class VideoServer:
         self.NV21             = 6
         # Variables
         self.listener         = Listener(address, authkey=authkey.encode('utf-8'))
-        self.mode             = ""
         self.filename         = ""
+        self.mode             = None
         self.active           = False
         self.video            = True
         self.stream           = None
@@ -94,14 +98,14 @@ class VideoServer:
         file_path = os.path.join(base_dir, filename)
         logging.debug(f"File path: {file_path}")
 
-        if mode == 0:
-            self.mode = "input"
+        if (mode & MODE_IO_Msk) == MODE_Input:
+            self.mode = MODE_Input
             if os.path.isfile(file_path):
                 if file_extension in (video_file_extensions + image_file_extensions):
                     self.filename  = file_path
                     filename_valid = True
         else:
-            self.mode = "output"
+            self.mode = MODE_Output
             if file_extension in (video_file_extensions + image_file_extensions):
                 self.filename  = file_path
                 filename_valid = True
@@ -134,15 +138,15 @@ class VideoServer:
 
         if self.filename == "":
             self.video = True
-            if mode == 0:
+            if (mode & MODE_IO_Msk) == MODE_Input:
                 # Device mode: camera
-                self.mode = "input"
+                self.mode = MODE_Input
             else:
                 # Device mode: display
-                self.mode = "output"
+                self.mode = MODE_Output
 
         if self.video:
-            if self.mode == "input":
+            if self.mode == MODE_Input:
                 if self.filename == "":
                     self.stream = cv2.VideoCapture(0)
                     if not self.stream.isOpened():
@@ -167,7 +171,8 @@ class VideoServer:
     def _disableStream(self):
         self.active = False
         if self.stream is not None:
-            self.frame_index = self.stream.get(cv2.CAP_PROP_POS_FRAMES)
+            if self.mode == MODE_Input:
+                self.frame_index = self.stream.get(cv2.CAP_PROP_POS_FRAMES)
             self.stream.release()
             self.stream = None
         logging.info("Stream disabled")
@@ -327,7 +332,7 @@ class VideoServer:
 
     # Stop Video Server
     def stop(self):
-        if self.mode == "output" and self.filename == "":
+        if (self.mode == MODE_Output) and (self.filename == ""):
             try:
                 cv2.destroyAllWindows()
             except Exception:
