@@ -40,6 +40,7 @@ default_authkey       = 'vsi_video'
 # Supported file extensions
 video_file_extensions = ('wmv', 'avi', 'mp4')
 image_file_extensions = ('bmp', 'png', 'jpg')
+video_fourcc          = {'wmv' : 'WMV1', 'avi' : 'MJPG', 'mp4' : 'mp4v'}
 
 # Mode Input/Output
 MODE_IO_Msk           = 1<<0
@@ -107,6 +108,8 @@ class VideoServer:
         else:
             self.mode = MODE_Output
             if file_extension in (video_file_extensions + image_file_extensions):
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
                 self.filename  = file_path
                 filename_valid = True
 
@@ -161,8 +164,30 @@ class VideoServer:
                         logging.debug(f"Frame ratio: {self.frame_ratio}")
             else:
                 if self.filename != "":
-                    #TODO: Video Output to file
-                    return
+                    extension = str(self.filename).split('.')[-1].lower()
+                    fourcc = cv2.VideoWriter_fourcc(*f'{video_fourcc[extension]}')
+
+                    if os.path.isfile(self.filename) and (self.frame_index != 0):
+                        tmp_filename = f'{self.filename.rstrip(f".{extension}")}_tmp.{extension}'
+                        os.rename(self.filename, tmp_filename)
+                        cap    = cv2.VideoCapture(tmp_filename)
+                        width  = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+                        height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+                        self.resolution = (width, height)
+                        self.frame_rate = cap.get(cv2.CAP_PROP_FPS)
+                        self.stream = cv2.VideoWriter(self.filename, fourcc, self.frame_rate, self.resolution)
+
+                        while cap.isOpened():
+                            ret, frame = cap.read()
+                            if not ret:
+                                cap.release()
+                                os.remove(tmp_filename)
+                                break
+                            self.stream.write(frame)
+                            del frame
+
+                    else:
+                        self.stream = cv2.VideoWriter(self.filename, fourcc, self.frame_rate, self.resolution)
 
         self.active = True
         logging.info("Stream enabled")
@@ -192,20 +217,35 @@ class VideoServer:
         color_format = None
 
         # Default OpenCV color profile: BGR
-        if   color_space == self.GRAYSCALE8:
-            color_format = cv2.COLOR_BGR2GRAY
-        elif color_space == self.RGB888:
-            color_format = cv2.COLOR_BGR2RGB
-        elif color_space == self.BGR565:
-            color_format = cv2.COLOR_BGR2BGR565
-        elif color_space == self.YUV420:
-            color_format = cv2.COLOR_BGR2YUV_I420
-        elif color_space == self.NV12:
-            frame = self.__changeColorSpace(frame, self.YUV420)
-            color_format = cv2.COLOR_YUV2RGB_NV12
-        elif color_space == self.NV21:
-            frame = self.__changeColorSpace(frame, self.YUV420)
-            color_format = cv2.COLOR_YUV2RGB_NV21
+        if self.mode == MODE_Input:
+            if   color_space == self.GRAYSCALE8:
+                color_format = cv2.COLOR_BGR2GRAY
+            elif color_space == self.RGB888:
+                color_format = cv2.COLOR_BGR2RGB
+            elif color_space == self.BGR565:
+                color_format = cv2.COLOR_BGR2BGR565
+            elif color_space == self.YUV420:
+                color_format = cv2.COLOR_BGR2YUV_I420
+            elif color_space == self.NV12:
+                frame = self.__changeColorSpace(frame, self.YUV420)
+                color_format = cv2.COLOR_YUV2RGB_NV12
+            elif color_space == self.NV21:
+                frame = self.__changeColorSpace(frame, self.YUV420)
+                color_format = cv2.COLOR_YUV2RGB_NV21
+
+        else:
+            if   color_space == self.GRAYSCALE8:
+                color_format = cv2.COLOR_GRAY2BGR
+            elif color_space == self.RGB888:
+                color_format = cv2.COLOR_RGB2BGR
+            elif color_space == self.BGR565:
+                color_format = cv2.COLOR_BGR5652BGR
+            elif color_space == self.YUV420:
+                color_format = cv2.COLOR_YUV2BGR_I420
+            elif color_space == self.NV12:
+                color_format = cv2.COLOR_YUV2BGR_I420
+            elif color_space == self.NV21:
+                color_format = cv2.COLOR_YUV2BGR_I420
 
         if color_format != None:
             logging.debug(f"Change color space to {color_format}")
@@ -263,18 +303,17 @@ class VideoServer:
         try:
             decoded_frame = np.frombuffer(frame, dtype=np.uint8)
             decoded_frame = decoded_frame.reshape((self.resolution[0], self.resolution[1], 3))
-            rgb_frame = self.__changeColorSpace(decoded_frame, self.RGB888)
+            bgr_frame = self.__changeColorSpace(decoded_frame, self.RGB888)
 
             if self.filename == "":
-                cv2.imshow(self.filename, rgb_frame)
+                cv2.imshow(self.filename, bgr_frame)
                 cv2.waitKey(10)
             else:
                 if self.video:
-                    #TODO
-                    pass
-                    #self.stream.write(rgb_frame)
+                    self.stream.write(np.uint8(bgr_frame))
+                    self.frame_index += 1
                 else:
-                    cv2.imwrite(self.filename, rgb_frame)
+                    cv2.imwrite(self.filename, bgr_frame)
         except Exception:
             pass
 
