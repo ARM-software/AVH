@@ -19,8 +19,8 @@
 import argparse
 import ipaddress
 import logging
+import os
 from multiprocessing.connection import Listener
-from os import path
 
 import cv2
 import numpy as np
@@ -75,7 +75,7 @@ class VideoServer:
         self.frame_rate       = None
 
     # Set filename
-    def _setFilename(self, filename, mode):
+    def _setFilename(self, base_dir, filename, mode):
         filename_valid = False
 
         if self.active:
@@ -84,19 +84,19 @@ class VideoServer:
         self.filename    = ""
         self.frame_index = 0
 
-        file_extension = filename.split('.')[-1].lower()
+        file_extension = str(filename).split('.')[-1].lower()
 
         if file_extension in video_file_extensions:
             self.video = True
         else:
             self.video = False
 
-        base_dir  = path.dirname(__file__)
-        file_path = path.join(base_dir, filename)
+        file_path = os.path.join(base_dir, filename)
+        logging.debug(f"File path: {file_path}")
 
         if mode == 0:
             self.mode = "input"
-            if path.isfile(file_path):
+            if os.path.isfile(file_path):
                 if file_extension in (video_file_extensions + image_file_extensions):
                     self.filename  = file_path
                     filename_valid = True
@@ -280,7 +280,7 @@ class VideoServer:
         try:
             conn = self.listener.accept()
             logging.info(f'Connection accepted {self.listener.address}')
-        except Exception as e:
+        except Exception:
             logging.error("Connection not accepted")
             return
 
@@ -296,7 +296,7 @@ class VideoServer:
 
             if  cmd == self.SET_FILENAME:
                 logging.info("Set filename called")
-                filename_valid = self._setFilename(payload[0], payload[1])
+                filename_valid = self._setFilename(payload[0], payload[1], payload[2])
                 conn.send(filename_valid)
 
             elif cmd == self.STREAM_CONFIGURE:
