@@ -56,6 +56,7 @@ class VideoServer:
         self.STREAM_DISABLE   = 4
         self.FRAME_READ       = 5
         self.FRAME_WRITE      = 6
+        self.CLOSE_SERVER     = 7
         # Color space
         self.GRAYSCALE8       = 1
         self.RGB888           = 2
@@ -361,7 +362,6 @@ class VideoServer:
         while True:
             try:
                 recv = conn.recv()
-
             except EOFError:
                 return
 
@@ -399,8 +399,13 @@ class VideoServer:
                 frame = conn.recv_bytes()
                 self._writeFrame(frame)
 
+            elif cmd == self.CLOSE_SERVER:
+                logging.info("Close server connection")
+                self.stop()
+
     # Stop Video Server
     def stop(self):
+        self._disableStream()
         if (self.mode == MODE_Output) and (self.filename == ""):
             try:
                 cv2.destroyAllWindows()
@@ -415,7 +420,6 @@ def ip(ip):
     try:
         _ = ipaddress.ip_address(ip)
         return ip
-
     except:
         raise argparse.ArgumentTypeError(f"Invalid IP address: {ip}!")
 
@@ -442,6 +446,4 @@ if __name__ == '__main__':
     try:
         Server.run()
     except KeyboardInterrupt:
-        pass
-    finally:
         Server.stop()

@@ -16,9 +16,11 @@
 
 # Python VSI Video Client module
 
+import time
+import atexit
 import logging
 import subprocess
-from multiprocessing.connection import Client
+from multiprocessing.connection import Client, Connection
 from os import path, getcwd
 from os import name as os_name
 
@@ -32,6 +34,7 @@ class VideoClient:
         self.STREAM_DISABLE   = 4
         self.FRAME_READ       = 5
         self.FRAME_WRITE      = 6
+        self.CLOSE_SERVER     = 7
         # Color space
         self.GRAYSCALE8       = 1
         self.RGB888           = 2
@@ -43,10 +46,16 @@ class VideoClient:
         self.conn = None
 
     def connectToServer(self, address, authkey):
-        try:
-            self.conn = Client(address, authkey=authkey.encode('utf-8'))
-        except Exception:
-            self.conn = None
+        for _ in range(50):
+            try:
+                self.conn = Client(address, authkey=authkey.encode('utf-8'))
+                if isinstance(self.conn, Connection):
+                    break
+                else:
+                    self.conn = None
+            except Exception:
+                self.conn = None
+            time.sleep(0.01)
 
     def setFilename(self, filename, mode):
         self.conn.send([self.SET_FILENAME, getcwd(), filename, mode])
@@ -82,6 +91,14 @@ class VideoClient:
     def writeFrame(self, data):
         self.conn.send([self.FRAME_WRITE])
         self.conn.send_bytes(data)
+
+    def closeServer(self):
+        try:
+            if isinstance(self.conn, Connection):
+                self.conn.send([self.CLOSE_SERVER])
+                self.conn.close()
+        except Exception as e:
+            logging.error(f'Exception occurred on cleanup: {e}')
 
 
 # User registers
@@ -130,6 +147,11 @@ Filename                  = ""
 FilenameIdx               = 0
 
 
+# Close VSI Video Server on exit
+def cleanup():
+    Video.closeServer()
+
+
 # Client connection to VSI Video Server
 def init(address, authkey):
     global FILENAME_VALID
@@ -156,6 +178,9 @@ def init(address, authkey):
 
     else:
         logging.error(f"Server script not found: {server_path}")
+
+    # Register clean-up function
+    atexit.register(cleanup)
 
 
 ## Flush Stream buffer
