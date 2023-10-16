@@ -25,6 +25,25 @@ Item                                                                            
 [./interface/video/python/vsi_video.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/vsi_video.py)                | \ref arm_vsi_video "Video via VSI" Python module for video input / output interface.
 [./interface/video/python/vsi_video_server.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/vsi_video_server.py)  | \ref arm_vsi_video "Video via VSI" Accompanying Python script to the \em vsi_video.py.
 
+## Python requirements
+VSI Video Server requires a Python 3.9 or later installation with installed OpenCV Python package:
+- \em opencv-python
+
+Run the following command to install required package with pip:
+\code{.sh}
+pip install opencv-python
+\endcode
+
+The following packages are required on Linux systems (Ubuntu 20.04 and later):
+- \em libatomic1
+- \em libpython3.9
+- \em python3-pip
+
+Run the following command to install required packages on Ubuntu:
+\code{.sh}
+sudo apt install libatomic1 libpython3.9 python3-pip
+\endcode
+
 @{
 
 \defgroup video_drv_functions Video Driver API Functions
