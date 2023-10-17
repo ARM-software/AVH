@@ -38,5 +38,33 @@ An example flow for using the VSI peripheral is shown on the figure below:
 
 \image html "using_vsi_uml.png" "Example flow for using the VSI peripheral"
 
+\defgroup arm_vsi_pyenv Python environment
+\ingroup arm_vsi
+\brief Python environment for Arm FVPs
+\details
+
+Arm FVPs require an installation of <b>Python 3.9</b> for running the Python virtual interfaces. If you are using a Windows machine you can use an embedded Python installation in FVPs root directory, otherwise a system installation is required.
+Additional Python packages can be added using \em pip. In case you are using embedded Python installation see section: \ref embedded-pip-vsi
+
+# Known issues
+Some Python packages can't be imported directly in the Python virtual interfaces, because they are incompatible with Python sub-interpreters (e.g. \em numpy). Possible workaround for this issue is to split the Python module into client and server scripts.
+
+# Install additional packages in embedded Python {#embedded-pip-vsi}
+By default the embedded Python installation on Windows does not support installation of new packages using pip. To enable installing new packages follow the steps described below.
+- Download [get-pip.py](https://bootstrap.pypa.io/get-pip.py) to the FVPs root directory.
+- Uncomment the following line in the \b python39._pth file.
+  \code {.sh}
+  import site
+  \endcode
+- Open command prompt in the FVPs root directory and run the following command.
+  \code {.sh}
+  .\python.exe get-pip.py
+  \endcode
+- Install new packages using:
+  \code {.sh}
+  .\python.exe -m pip install <package>
+  \endcode
+  The packages will be installed in <code>Lib\\site-packages</code> subfolder.
+
 */
 
