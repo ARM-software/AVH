@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AVH FVP models: Virtual Input/Output (VIO)</title>
+<title>AVH FVP models: Python environment</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="extra_navtree.css" rel="stylesheet" type="text/css"/>
@@ -94,7 +94,7 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('group__arm__vio.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('group__arm__vsi__pyenv.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -120,53 +120,29 @@ $(document).ready(function(){initNavTree('group__arm__vio.html',''); initResizab
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#groups">Content</a>  </div>
-  <div class="headertitle"><div class="title">Virtual Input/Output (VIO)<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Virtual Interfaces</a></div></div></div>
+  <div class="headertitle"><div class="title">Python environment<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Virtual Interfaces</a> &raquo; <a class="el" href="group__arm__vsi.html">Virtual Streaming Interface (VSI)</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Controls simple I/O such as LED and switches.  
-<a href="#details">More...</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="groups" name="groups"></a>
-Content</h2></td></tr>
-<tr class="memitem:group__arm__vio__pyenv"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vio__pyenv.html">Python environment</a></td></tr>
-<tr class="memdesc:group__arm__vio__pyenv"><td class="mdescLeft">&#160;</td><td class="mdescRight">Python environment for Arm FVPs. <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:group__arm__vio__api"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vio__api.html">VIO API</a></td></tr>
-<tr class="memdesc:group__arm__vio__api"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual Input/Output (VIO) API. <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:group__arm__vio__py"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vio__py.html">VIO Python interface</a></td></tr>
-<tr class="memdesc:group__arm__vio__py"><td class="mdescLeft">&#160;</td><td class="mdescRight">VIO python interface. <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:group__arm__vio__cases"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vio__cases.html">Using VIO</a></td></tr>
-<tr class="memdesc:group__arm__vio__cases"><td class="mdescLeft">&#160;</td><td class="mdescRight">Using Virtual I/O Interface (VIO) <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Description</h2>
-<p>Controls simple I/O such as LED and switches. </p>
-<p>The <b>Virtual Input/Output Interface (VIO)</b> implements a register-based peripheral for simple digital I/Os. It can be used to simulate control of such items as LEDs, switches, digital signals and others. Figure below demonstrates the concept.</p>
-<div class="image">
-<img src="vio_structure.png" alt=""/>
-</div>
-<p>The following files define the access to the VIO peripheral.</p>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">File   </th><th class="markdownTableHeadLeft">Description    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><a href="https://github.com/ARM-software/AVH/blob/main/interface/include/arm_vio.h">./interface/include/arm_vio.h</a>   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vio__api.html">VIO API</a> header file    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><a href="https://github.com/ARM-software/AVH/blob/main/interface/python/arm_vio.py">./interface/python/arm_vio.py</a>   </td><td class="markdownTableBodyLeft"><a class="el" href="group__arm__vio__py.html">VIO Python interface</a> script template    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><a href="https://github.com/ARM-software/AVH/blob/main/interface/vio/vio_fvp.c">./interface/vio/vio_fvp.c</a>   </td><td class="markdownTableBodyLeft">Implementation of CMSIS-Driver VIO for Arm FVPs   </td></tr>
-</table>
-<p>A read or write access to a VIO peripheral via its <a class="el" href="group__arm__vio__api.html">API</a> triggers execution of a corresponding function in the Python script that implements the <a class="el" href="group__arm__vio__py.html">VIO Python interface</a> instance. The concept is shown on the figure below.</p>
-<div class="image">
-<img src="using_vio_uml.png" alt=""/>
-<div class="caption">
-Using VIO peripheral</div></div>
- </div><!-- contents -->
+<p>Python environment for Arm FVPs.  
+</p>
+<p>Python environment for Arm FVPs. </p>
+<p>Arm FVPs require an installation of <b>Python 3.9</b> for running the Python virtual interfaces. If you are using a Windows machine you can use an embedded Python installation in FVPs root directory, otherwise a system installation is required. Additional Python packages can be added using <em>pip</em>. In case you are using embedded Python installation see section: <a class="el" href="group__arm__vsi__pyenv.html#embedded-pip-vsi">Install additional packages in embedded Python</a></p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Known issues</h1>
+<p>Some Python packages can't be imported directly in the Python virtual interfaces, because they are incompatible with Python sub-interpreters (e.g. <em>numpy</em>). Possible workaround for this issue is to split the Python module into client and server scripts.</p>
+<h1><a class="anchor" id="embedded-pip-vsi"></a>
+Install additional packages in embedded Python</h1>
+<p>By default the embedded Python installation on Windows does not support installation of new packages using pip. To enable installing new packages follow the steps described below.</p><ul>
+<li>Download <a href="https://bootstrap.pypa.io/get-pip.py">get-pip.py</a> to the FVPs root directory.</li>
+<li>Uncomment the following line in the <b>python39._pth</b> file. <div class="fragment"><div class="line">import site</div>
+</div><!-- fragment --></li>
+<li>Open command prompt in the FVPs root directory and run the following command. <div class="fragment"><div class="line">.\python.exe get-pip.py</div>
+</div><!-- fragment --></li>
+<li>Install new packages using: <div class="fragment"><div class="line">.\python.exe -m pip install &lt;package&gt;</div>
+</div><!-- fragment --> The packages will be installed in <code>Lib\site-packages</code> subfolder. </li>
+</ul>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

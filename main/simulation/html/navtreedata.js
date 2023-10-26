@@ -42,7 +42,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Using.html",
-"group__audio__drv__functions.html#ga69ef0761019c0316ba5073c33570fa65"
+"group__audio__drv__functions.html#ga5d9c0749586bd5c75db54d92fa28049d"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
