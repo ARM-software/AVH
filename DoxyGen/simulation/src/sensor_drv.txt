@@ -1,0 +1,191 @@
+/**
+\addtogroup arm_vsi_sensor Sensor via VSI
+\ingroup arm_vsi_cases
+\brief Sensor data streaming interface
+\details
+
+VSI Sensor interface use case is implemented for Arm FVPs based on the general-purpose \ref arm_vsi.
+
+The use of common sensor driver API simplifies re-targeting of the application code between virtual and physical devices.
+Currently sensor driver implementations are available for the following platforms:
+  - Arm FVPs using \ref arm_vsi_api "VSI" with an interface to Python script that streams local SDS files.
+  - ST Microelectronics B-U585I-IOT02A Discovery kit for IoT which uses on-board MEMS sensors (Microphone, 3D Accelerometer, 3D Gyroscope, Temperature)
+
+and support for other hardware platforms can be added following the same concept.
+
+The table below references the files that implement the sensor peripheral:
+
+Item                                                                                                                                   | Description
+:--------------------------------------------------------------------------------------------------------------------------------------|:-----------------------
+[./interface/sensor/template/sensor_config.h](https://github.com/ARM-software/AVH/blob/main/interface/sensor/template/sensor_config.h) | Sensor configuration.
+[./interface/sensor/include/sensor_drv.h](https://github.com/ARM-software/AVH/blob/main/interface/sensor/include/sensor_drv.h)         | Common \ref arm_vsi_sensor "Sensor Driver API" header file. Used by implementations on Arm Virtual Hardware and real HW boards.
+[./interface/sensor/source/sensor_drv.c](https://github.com/ARM-software/AVH/blob/main/interface/sensor/source/sensor_drv.c)           | Common sensor driver implementation. Used in combination with hardware specific implementations.
+[./interface/sensor/include/sensor_drv_hw.h](https://github.com/ARM-software/AVH/blob/main/interface/sensor/include/sensor_drv_hw.h)   | Hardware specific \ref arm_vsi_sensor "Sensor Driver API" header file.
+[./interface/sensor/source/sensor_drv_hw.c](https://github.com/ARM-software/AVH/blob/main/interface/sensor/source/sensor_drv_hw.c)     | Sensor driver implementation for Arm Virtual Hardware based on \ref arm_vsi_api "VSI".
+[./interface/sensor/python/arm_vsi2.py](https://github.com/ARM-software/AVH/blob/main/interface/sensor/python/arm_vsi2.py)             | \ref arm_vsi_sensor "VSI Sensor" Python script for sensor emulation based on \ref arm_vsi_py "VSI Python Interface".
+[./interface/sensor/python/vsi_sensor.py](https://github.com/ARM-software/AVH/blob/main/interface/sensor/python/vsi_sensor.py)         | \ref arm_vsi_sensor "VSI Sensor" Python module for sensor interface.
+Hardware specific sensor driver for ST Microelectronics B-U585I-IOT02A Discovery kit for IoT                                           | Hardware specific sensor driver implementation for ST Microelectronics B-U585I-IOT02A Discovery kit for IoT. See [SDS-Framework GitHub repo](https://github.com/ARM-software/SDS-Framework/tree/main/examples/framework/layer/Board/B-U585I-IOT02A/Driver).
+
+@{
+\defgroup sensor_drv_functions Sensor Driver API Functions
+\ingroup arm_vsi_sensor
+\brief Sensor Driver API functions.
+\details
+
+@{
+\typedef sensorId_t
+
+
+\typedef sensorEvent_t
+\details
+Provides the typedef for the event callback function <b>sensorEvent (sensorId_t id, uint32_t event)</b> to be registered with \ref sensorRegisterEvents.
+
+The parameter \em id specifies the sensor.
+
+The parameter \em event indicates the reported event(s) that occurred during driver operation.
+Each event is encoded in a separate bit so it is possible to signal multiple events within the same call.
+\ref SENSOR_EVENT_DATA "SENSOR_EVENT_..." definitions list the events that can be reported.
+
+<b>Parameter for:</b>
+  - \ref sensorRegisterEvents
+
+
+\fn sensorId_t sensorGetId (const char *name)
+\details
+The function \b sensorGetId retrieves the sensor identifier, which is then used to specify which sensor is affected by the function call.
+
+The parameter \em name specifies sensor name.
+
+Possible return values:
+  - \ref sensorId_t
+  - NULL : sensor name was not specified.
+
+
+\fn sensorConfig_t *sensorGetConfig (sensorId_t id)
+\details
+The function \b sensorGetConfig retrieves sensor configuration.
+
+The parameter \em id specifies the sensor.
+
+
+\fn int32_t sensorRegisterEvents (sensorId_t id, sensorEvent_t event_cb, uint32_t event_mask)
+\details
+The function \b sensorRegisterEvents registers sensor events.
+
+The parameter \em id specifies the sensor.
+
+The parameter \em event_cb is a pointer to the \ref sensorEvent_t callback function.
+
+The parameter \em event_mask specifies the event. Each event is encoded in a separate bit. \ref SENSOR_EVENT_DATA "SENSOR_EVENT_..." definitions list the events that can be reported.
+
+Possible return values:
+  - \ref SENSOR_OK : events registered.
+  - \ref SENSOR_ERROR : returned in the following cases:
+    - sensor \em id is invalid.
+    - \em event_cb is NULL.
+    - \em event_mask is 0.
+
+
+\fn int32_t sensorEnable (sensorId_t id)
+\details
+The function \b sensorEnable enables the specified sensor.
+
+The parameter \em id specifies the sensor.
+
+Possible return values:
+  - \ref SENSOR_OK : sensor enabled.
+  - \ref SENSOR_ERROR : returned in the following cases:
+    - sensor \em id is invalid.
+    - sensor is already active.
+
+
+\fn int32_t sensorDisable (sensorId_t id)
+\details
+The function \b sensorDisable disables the specified sensor.
+
+The parameter \em id specifies the sensor.
+
+Possible return values:
+  - \ref SENSOR_OK : sensor disabled.
+  - \ref SENSOR_ERROR : returned in the following cases:
+    - sensor \em id is invalid.
+    - sensor is already disabled.
+
+
+\fn sensorStatus_t sensorGetStatus (sensorId_t id)
+\details
+The function \b sensorGetStatus retrieves the current status of the specified sensor.
+
+The parameter \em id specifies the sensor.
+
+
+\fn uint32_t sensorReadSamples (sensorId_t id, uint32_t num_samples, void *buf, uint32_t buf_size)
+\details
+The function \b sensorReadSamples reads requested number of samples from sensor and stores them in the specified buffer.
+If the requested number of samples is higher than the number of available samples, the available number of samples will be read and stored in the buffer.
+If the provided buffer size is not big enough, no samples will be read from the sensor.
+
+The parameter \em id specifies the sensor.
+
+The parameter \em num_samples specifies the maximum number of samples to be read from the sensor.
+
+The parameter \em buf points to the sensor sample memory buffer provided by the user.
+
+The parameter \em buf_size defines the size of user provided sensor sample buffer.
+
+
+\fn void *sensorGetBlockData (sensorId_t id)
+\details
+The function \b sensorGetBlockData gets a pointer to block data.
+
+The parameter \em id specifies the sensor.
+@}
+
+@{
+\struct sensorStatus_t
+\details
+Structure with information about the sensor status. The data fields encode active and buffer state flags.
+
+<b>Returned by:</b>
+  - \ref sensorGetStatus
+@}
+
+
+@{
+\struct sensorConfig_t
+\details
+Structure with sensor configuration parameters.
+
+<b>Returned by:</b>
+  - \ref sensorGetConfig
+@}
+@}
+
+
+@{
+\defgroup sensor_drv_defines Sensor Driver API Defines
+\ingroup arm_vsi_sensor
+\brief Sensor Driver API Definitions.
+\details
+
+@{
+\def SENSOR_OK
+\def SENSOR_ERROR
+@}
+
+@{
+\def SENSOR_EVENT_DATA
+\details Triggered to indicate that new data is available.
+
+If \ref sensorConfig_t.dma_mode "sensorConfig_t.dma_mode" is set to 1 (DMA mode) the event will be generated on \ref sensorConfig_t.u.fifo "sensorConfig_t.fifo.sample_interval".
+
+If \ref sensorConfig_t.dma_mode "sensorConfig_t.dma_mode" is set to 0 (FIFO mode) the event will be generated on \ref sensorConfig_t.u.dma "sensorConfig_t.dma.block_interval".
+
+\def SENSOR_EVENT_OVERFLOW
+\details Triggered to indicate that overflow of data buffer has occurred.
+@}
+@}
+
+*/
+*/
+// End Sensor Interface
