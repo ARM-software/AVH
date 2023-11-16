@@ -52,7 +52,7 @@ typedef const struct {
 
 /// Status
 typedef struct {
-  uint32_t active   :  1;                   ///< Active state: 1=%active(enabled), 0=inactive(disabled)
+  uint32_t active   :  1;                   ///< Active state: 1=enabled(active), 0=disabled(inactive)
   uint32_t overflow :  1;                   ///< Overflow flag (cleared on \ref sensorGetStatus)
   uint32_t reserved : 30;
 } sensorStatus_t;
