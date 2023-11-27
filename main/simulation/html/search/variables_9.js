@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['timer_0',['Timer',['../group__arm__vsi__api.html#a6e0035edd58cc6ca8c94b5f9723a0d80',1,'ARM_VSI_Type']]],
-  ['tx_5factive_1',['tx_active',['../group__arm__vsi__audio.html#a8aadf78b02db62a5c4a4c30cd3aa2399',1,'AudioDrv_Status_t']]]
+  ['sample_5fsize_0',['sample_size',['../group__arm__vsi__sensor.html#a2fdb93e2e5c5728b8ab619235ea2766f',1,'sensorConfig_t']]],
+  ['signalin_1',['SignalIn',['../group__arm__vio__api.html#aca77784de1995fcd0f87b4c27b54048a',1,'ARM_VIO_Type']]],
+  ['signalout_2',['SignalOut',['../group__arm__vio__api.html#a1d475e57aeb84d8430d950cb49f5a807',1,'ARM_VIO_Type']]]
 ];

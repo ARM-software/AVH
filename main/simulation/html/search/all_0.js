@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['active_0',['active',['../group__arm__vsi__video.html#ab22b96a3efad48f5a542f46c1b224800',1,'VideoDrv_Status_t']]],
+  ['active_0',['active',['../group__arm__vsi__sensor.html#ab22b96a3efad48f5a542f46c1b224800',1,'sensorStatus_t::active()'],['../group__arm__vsi__video.html#ab22b96a3efad48f5a542f46c1b224800',1,'VideoDrv_Status_t::active()']]],
   ['arm_5fvio_1',['ARM_VIO',['../group__arm__vio__api.html#ga6a9e9175f5d4d2adffbd58375449ba13',1,'arm_vio.h']]],
   ['arm_5fvio_2',['arm_vio',['../namespacearm__vio.html',1,'']]],
   ['arm_5fvio_5fbase_3',['ARM_VIO_BASE',['../group__arm__vio__api.html#ga3dae438379d7beadfebcf94bf7bcb710',1,'arm_vio.h']]],
