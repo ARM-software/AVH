@@ -29,7 +29,7 @@
       <description>Virtual I/O implementation for Arm FVPs</description>
       <files>
         <file category="doc"     name="Documentation/simulation/html/group__arm__vio.html"/>
-        <file category="sourceC" name="interface/vio/vio_vht.c"/>
+        <file category="sourceC" name="interface/vio/vio_fvp.c"/>
       </files>
     </component>
     <component Cclass="IoT Utility" Cgroup="Socket" Csub="VSocket" Capiversion="1.2.0" Cversion="1.0.0" condition="VSocket">
