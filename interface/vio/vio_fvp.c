@@ -1,11 +1,12 @@
 /******************************************************************************
  * @file     vio_fvp.c
  * @brief    Virtual I/O implementation for Arm FVPs
- * @version  V1.0.0
- * @date     1. December 2021
+ * @version  V2.0.0
+ * @date     17. October 2023
  ******************************************************************************/
 /*
- * Copyright (c) 2019-2023 Arm Limited. All rights reserved.
+ * Copyright (c) 2019-2023 Arm Limited (or its affiliates).
+ * All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -22,38 +23,26 @@
  * limitations under the License.
  */
 
-#include <stdio.h>
+/* History:
+ *  Version 2.0.0
+ *    Updated to API 1.0.0
+ *  Version 1.0.0
+ *    Initial release
+ */
+
 #include <string.h>
-#include <stdarg.h>
 #include "cmsis_vio.h"
 
-#include "RTE_Components.h"             // Component selection
+#include "RTE_Components.h"                 // Component selection
 #include CMSIS_device_header
 
 // VIO input, output definitions
-#define VIO_PRINT_MAX_SIZE      64U     // maximum size of print memory
-#define VIO_PRINTMEM_NUM         4U     // number of print memories
-#ifndef VIO_VALUE_NUM
-#define VIO_VALUE_NUM            3U     // number of values
-#endif
-#ifndef VIO_VALUEXYZ_NUM
-#define VIO_VALUEXYZ_NUM         3U     // number of XYZ values
-#endif
-#ifndef VIO_IPV4_ADDRESS_NUM
-#define VIO_IPV4_ADDRESS_NUM     2U     // number of IPv4 addresses
-#endif
-#ifndef VIO_IPV6_ADDRESS_NUM
-#define VIO_IPV6_ADDRESS_NUM     2U     // number of IPv6 addresses
-#endif
+#define VIO_VALUE_NUM           3U          // Number of values
 
 // VIO input, output variables
-__USED uint32_t      vioSignalIn;                                       // Memory for incoming signal
-__USED uint32_t      vioSignalOut;                                      // Memory for outgoing signal
-__USED char          vioPrintMem[VIO_PRINTMEM_NUM][VIO_PRINT_MAX_SIZE]; // Memory for the last value for each level
-__USED int32_t       vioValue   [VIO_VALUE_NUM];                        // Memory for value used in vioGetValue/vioSetValue
-__USED vioValueXYZ_t vioValueXYZ[VIO_VALUEXYZ_NUM];                     // Memory for XYZ value for 3-D vector
-__USED vioAddrIPv4_t vioAddrIPv4[VIO_IPV4_ADDRESS_NUM];                 // Memory for IPv4 address value used in vioSetIPv4/vioGetIPv4
-__USED vioAddrIPv6_t vioAddrIPv6[VIO_IPV6_ADDRESS_NUM];                 // Memory for IPv6 address value used in vioSetIPv6/vioGetIPv6
+__USED uint32_t vioSignalIn;                // Memory for incoming signal
+__USED uint32_t vioSignalOut;               // Memory for outgoing signal
+__USED int32_t  vioValue[VIO_VALUE_NUM];    // Memory for value used in vioGetValue/vioSetValue
 
 // Initialize test input, output.
 void vioInit (void) {
@@ -61,33 +50,8 @@ void vioInit (void) {
   vioSignalIn  = 0U;
   vioSignalOut = 0U;
 
-  memset(vioPrintMem, 0, sizeof(vioPrintMem));
-  memset(vioValue,    0, sizeof(vioValue));
-  memset(vioValueXYZ, 0, sizeof(vioValueXYZ));
-  memset(vioAddrIPv4, 0, sizeof(vioAddrIPv4));
-  memset(vioAddrIPv6, 0, sizeof(vioAddrIPv6));
-}
+  memset(vioValue, 0, sizeof(vioValue));
 
-// Print formated string to test terminal.
-int32_t vioPrint (uint32_t level, const char *format, ...) {
-  va_list args;
-  int32_t ret;
-
-  if (level > vioLevelError) {
-    return (-1);
-  }
-
-  if (level > VIO_PRINTMEM_NUM) {
-    return (-1);
-  }
-
-  va_start(args, format);
-
-  ret = vsnprintf((char *)vioPrintMem[level], sizeof(vioPrintMem[level]), format, args);
-
-  va_end(args);
-
-  return ret;
 }
 
 // Set signal output.
@@ -140,80 +104,4 @@ int32_t vioGetValue (uint32_t id) {
   vioValue[index] = value;
 
   return value;
-}
-
-// Set XYZ value output.
-void vioSetXYZ (uint32_t id, vioValueXYZ_t valueXYZ) {
-  uint32_t index = id;
-
-  if (index >= VIO_VALUEXYZ_NUM) {
-    return;                             /* return in case of out-of-range index */
-  }
-
-  vioValueXYZ[index] = valueXYZ;
-}
-
-// Get XYZ value input.
-vioValueXYZ_t vioGetXYZ (uint32_t id) {
-  uint32_t index = id;
-  vioValueXYZ_t valueXYZ = {0, 0, 0};
-
-  if (index >= VIO_VALUEXYZ_NUM) {
-    return valueXYZ;                    /* return default in case of out-of-range index */
-  }
-
-  valueXYZ = vioValueXYZ[index];
-
-  return valueXYZ;
-}
-
-// Set IPv4 address output.
-void vioSetIPv4 (uint32_t id, vioAddrIPv4_t addrIPv4) {
-  uint32_t index = id;
-
-  if (index >= VIO_IPV4_ADDRESS_NUM) {
-    return;                             /* return in case of out-of-range index */
-  }
-
-  vioAddrIPv4[index] = addrIPv4;
-}
-
-// Get IPv4 address input.
-vioAddrIPv4_t vioGetIPv4 (uint32_t id) {
-  uint32_t index = id;
-  vioAddrIPv4_t addrIPv4 = {0U, 0U, 0U, 0U};
-
-  if (index >= VIO_IPV4_ADDRESS_NUM) {
-    return addrIPv4;                    /* return default in case of out-of-range index */
-  }
-
-  addrIPv4 = vioAddrIPv4[index];
-
-  return addrIPv4;
-}
-
-// Set IPv6 address output.
-void vioSetIPv6 (uint32_t id, vioAddrIPv6_t addrIPv6) {
-  uint32_t index = id;
-
-  if (index >= VIO_IPV6_ADDRESS_NUM) {
-    return;                             /* return in case of out-of-range index */
-  }
-
-  vioAddrIPv6[index] = addrIPv6;
-}
-
-// Get IPv6 address input.
-vioAddrIPv6_t vioGetIPv6 (uint32_t id) {
-  uint32_t index = id;
-  vioAddrIPv6_t addrIPv6 = {0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U,
-                            0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U};
-
-  if (index >= VIO_IPV6_ADDRESS_NUM) {
-    return addrIPv6;                    /* return default in case of out-of-range index */
-  }
-
-  addrIPv6 = vioAddrIPv6[index];
-
-  return addrIPv6;
 }
