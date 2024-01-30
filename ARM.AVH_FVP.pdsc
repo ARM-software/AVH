@@ -8,6 +8,9 @@
   <license>LICENSE</license>
 
   <releases>
+    <release version="1.1.0-dev1">
+      Update VIO to API 1.0.0
+    </release>
     <release version="1.1.0-dev0">
       Pack Description:
         - Add LICENSE file
@@ -32,7 +35,7 @@
   </conditions>
 
   <components>
-    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="VIO" Cversion="1.0.0" Capiversion="0.1.0" condition="VIO">
+    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="VIO" Cversion="2.0.0" Capiversion="1.0.0" condition="VIO">
       <description>Virtual I/O implementation for Arm FVPs</description>
       <files>
         <file category="doc"     name="Documentation/simulation/html/group__arm__vio.html"/>
