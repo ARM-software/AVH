@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.7.2">
-  <vendor>ARM</vendor>
+<package schemaVersion="1.7.28" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.28/schema/PACK.xsd">
   <name>AVH_FVP</name>
+  <vendor>ARM</vendor>
   <description>Virtual Interfaces for Arm FVPs</description>
-  <!-- <license>LICENSE</license> -->
-  <url>http://www.keil.com/pack/</url>
+  <url>https://github.com/ARM-software/AVH</url>
+  <repository type="git">https://github.com/ARM-software/AVH.git</repository>
+  <license>LICENSE</license>
 
   <releases>
+    <release version="1.1.0-dev0">
+      Pack Description:
+        - Add LICENSE file
+        - Update schemaVersion (1.7.28)
+        - Update URL and repository type
+    </release>
     <release version="1.0.0">
       Initial release
     </release>
