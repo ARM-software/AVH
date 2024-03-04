@@ -46,8 +46,16 @@ An example flow for using the VSI peripheral is shown on the figure below:
 Arm FVPs require an installation of <b>Python 3.9</b> for running the Python virtual interfaces. If you are using a Windows machine you can use an embedded Python installation in FVPs root directory, otherwise a system installation is required.
 Additional Python packages can be added using \em pip. In case you are using embedded Python installation see section: \ref embedded-pip-vsi
 
-# Known issues
-Some Python packages can't be imported directly in the Python virtual interfaces, because they are incompatible with Python sub-interpreters (e.g. \em numpy). Possible workaround for this issue is to split the Python module into client and server scripts.
+# Python requirements
+The following packages are required on Linux systems (Ubuntu 20.04 and later):
+- \em libatomic1
+- \em libpython3.9
+- \em python3-pip
+
+Run the following command to install required packages on Ubuntu:
+\code{.sh}
+sudo apt install libatomic1 libpython3.9 python3-pip
+\endcode
 
 # Install additional packages in embedded Python {#embedded-pip-vsi}
 By default the embedded Python installation on Windows does not support installation of new packages using pip. To enable installing new packages follow the steps described below.
@@ -66,5 +74,12 @@ By default the embedded Python installation on Windows does not support installa
   \endcode
   The packages will be installed in <code>Lib\\site-packages</code> subfolder.
 
-*/
+# Known issues
+- Some Python packages can't be imported directly in the Python virtual interfaces, because they are incompatible with Python sub-interpreters (e.g. \em numpy). Possible workaround for this issue is to split the Python module into client and server scripts.
+- Fast Models (Version 11.22.39) available through vcpkg include a stripped-down version of libpython3.9 library on Linux systems. This can cause the Fast Model to close with an error (<em>VSI:Video:ImportError: No module named '_posixsubprocess'</em>) when running applications with VSI.  
+  Current workaround:
+    - Rename or remove included \em libpython3.9.so.1.0 file, located in the vcpkg installation folder  
+      (e.g. ~/.vcpkg/artifacts/fd3d78d7/models.arm.avh.fvp/11.22.39/bin/models).
+    - Install libpython3.9 using the system package manager.
 
+*/
