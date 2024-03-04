@@ -46,7 +46,7 @@ Where:
   - `--stat` instructs to print run statistics on simulation exit.
   - `--simlimit` specifies the maximum number of seconds to simulate.
 
-The availalable command options can be listed using the `--help` option. See chapter [FVP-command-line-options](https://developer.arm.com/documentation/100966/latest/Getting-Started-with-Fixed-Virtual-Platforms/FVP-command-line-options) in the FVP Reference Guide for additional documentations.
+The available command options can be listed using the `--help` option. See chapter [FVP-command-line-options](https://developer.arm.com/documentation/100966/latest/Getting-Started-with-Fixed-Virtual-Platforms/FVP-command-line-options) in the FVP Reference Guide for additional documentations.
 
 ## Model Configuration {#Config}
 
