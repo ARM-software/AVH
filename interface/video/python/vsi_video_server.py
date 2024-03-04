@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Arm Limited. All rights reserved.
+# Copyright (c) 2023-2024 Arm Limited. All rights reserved.
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -16,14 +16,20 @@
 
 # Python VSI Video Server module
 
-import argparse
-import ipaddress
-import logging
-import os
-from multiprocessing.connection import Listener
+try:
+    import argparse
+    import ipaddress
+    import logging
+    import os
+    from multiprocessing.connection import Listener
 
-import cv2
-import numpy as np
+    import cv2
+    import numpy as np
+except ImportError as err:
+    print(f"VSI:Video:Server:ImportError: {err}")
+except Exception as e:
+    print(f"VSI:Video:Server:Exception: {type(e).__name__}")
+
 
 ## Set verbosity level
 verbosity = logging.ERROR

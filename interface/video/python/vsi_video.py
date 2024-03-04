@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Arm Limited. All rights reserved.
+# Copyright (c) 2023-2024 Arm Limited. All rights reserved.
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -16,13 +16,20 @@
 
 # Python VSI Video Client module
 
-import time
-import atexit
-import logging
-import subprocess
-from multiprocessing.connection import Client, Connection
-from os import path, getcwd
-from os import name as os_name
+try:
+    import time
+    import atexit
+    import logging
+    import subprocess
+    from multiprocessing.connection import Client, Connection
+    from os import path, getcwd
+    from os import name as os_name
+except ImportError as err:
+    print(f"VSI:Video:ImportError: {err}")
+    raise
+except Exception as e:
+    print(f"VSI:Video:Exception: {type(e).__name__}")
+    raise
 
 
 class VideoClient:
