@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Arm Limited. All rights reserved.
+# Copyright (c) 2022-2024 Arm Limited. All rights reserved.
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -16,10 +16,16 @@
 
 # Python VSI sensor module
 
-
-import logging
-from os import path
-from struct import unpack
+try:
+    import logging
+    from os import path
+    from struct import unpack
+except ImportError as err:
+    print(f"VSI:Sensor:ImportError: {err}")
+    raise
+except Exception as e:
+    print(f"VSI:Sensor:Exception: {type(e).__name__}")
+    raise
 
 
 class RecordManager:
