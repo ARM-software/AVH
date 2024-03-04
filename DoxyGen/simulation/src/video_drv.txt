@@ -34,18 +34,7 @@ Run the following command to install required package with pip:
 pip install opencv-python
 \endcode
 
-The following packages are required on Linux systems (Ubuntu 20.04 and later):
-- \em libatomic1
-- \em libpython3.9
-- \em python3-pip
-
-Run the following command to install required packages on Ubuntu:
-\code{.sh}
-sudo apt install libatomic1 libpython3.9 python3-pip
-\endcode
-
 @{
-
 \defgroup video_drv_functions Video Driver API Functions
 \ingroup arm_vsi_video
 \brief Video Driver API functions.
