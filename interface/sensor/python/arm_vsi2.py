@@ -37,8 +37,8 @@ verbosity = logging.ERROR
 
 # [debugging] Verbosity settings
 level = { 10: "DEBUG",  20: "INFO",  30: "WARNING",  40: "ERROR" }
-logging.basicConfig(format='Py: %(name)s : [%(levelname)s]\t%(message)s', level = verbosity)logger.info("Verbosity level is set to " + level[verbosity])
-
+logging.basicConfig(format='Py: %(name)s : [%(levelname)s]\t%(message)s', level = verbosity
+logger.info("Verbosity level is set to " + level[verbosity])
 
 # IRQ registers
 IRQ_Status = 0
