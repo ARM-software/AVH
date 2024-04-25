@@ -31,6 +31,7 @@ except Exception as e:
     print(f"VSI:Video:Server:Exception: {type(e).__name__}")
 
 logger = logging.getLogger(__name__)
+
 ## Set verbosity level
 #verbosity = logging.DEBUG
 #verbosity = logging.INFO

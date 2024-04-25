@@ -11,12 +11,14 @@
 #More details.
 
 import logging
-import vsi_video as vsi_video7
+import vsi_video
+
 logger = logging.getLogger(__name__)
 
 ## Set verbosity level
 #verbosity = logging.DEBUG
 #verbosity = logging.INFO
+#verbosity = logging.WARNING
 verbosity = logging.ERROR
 
 # [debugging] Verbosity settings
@@ -27,7 +29,7 @@ logger.info("Verbosity level is set to " + level[verbosity])
 
 # Video Server configuration
 server_address = ('127.0.0.1', 6003)
-server_authkey = 'vsi_video7'
+server_authkey = 'vsi_video'
 
 
 # IRQ registers
@@ -63,7 +65,7 @@ Data = bytearray()
 #  @return None
 def init():
     logger.info("Python function init() called")
-    vsi_video7.init(server_address, server_authkey)
+    vsi_video.init(server_address, server_authkey)
 
 
 ## Read interrupt request (the VSI IRQ Status Register)
@@ -85,7 +87,7 @@ def wrIRQ(value):
     global IRQ_Status
     logger.info("Python function wrIRQ() called")
 
-    value = vsi_video7.wrIRQ(IRQ_Status, value)
+    value = vsi_video.wrIRQ(IRQ_Status, value)
     IRQ_Status = value
     logger.debug("Write interrupt request: {}".format(value))
 
@@ -117,7 +119,7 @@ def timerEvent():
 
     logger.info("Python function timerEvent() called")
 
-    IRQ_Status = vsi_video7.timerEvent(IRQ_Status)
+    IRQ_Status = vsi_video.timerEvent(IRQ_Status)
 
 
 ## Write DMA registers (the VSI DMA Registers)
@@ -142,7 +144,7 @@ def rdDataDMA(size):
     global Data
     logger.info("Python function rdDataDMA() called")
 
-    Data = vsi_video7.rdDataDMA(size)
+    Data = vsi_video.rdDataDMA(size)
 
     n = min(len(Data), size)
     data = bytearray(size)
@@ -163,7 +165,7 @@ def wrDataDMA(data, size):
     Data = data
     logger.debug("Write data ({} bytes)".format(size))
 
-    vsi_video7.wrDataDMA(data, size)
+    vsi_video.wrDataDMA(data, size)
 
     return
 
@@ -175,8 +177,8 @@ def rdRegs(index):
     global Regs
     logger.info("Python function rdRegs() called")
 
-    if index <= vsi_video7.REG_IDX_MAX:
-        Regs[index] = vsi_video7.rdRegs(index)
+    if index <= vsi_video.REG_IDX_MAX:
+        Regs[index] = vsi_video.rdRegs(index)
 
     value = Regs[index]
     logger.debug("Read user register at index {}: {}".format(index, value))
@@ -192,8 +194,8 @@ def wrRegs(index, value):
     global Regs
     logger.info("Python function wrRegs() called")
 
-    if index <= vsi_video7.REG_IDX_MAX:
-        value = vsi_video7.wrRegs(index, value)
+    if index <= vsi_video.REG_IDX_MAX:
+        value = vsi_video.wrRegs(index, value)
 
     Regs[index] = value
     logger.debug("Write user register at index {}: {}".format(index, value))
