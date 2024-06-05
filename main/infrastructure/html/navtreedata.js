@@ -26,18 +26,18 @@ var NAVTREE =
 [
   [ "Infrastructure", "index.html", [
     [ "Overview", "index.html", null ],
-    [ "AVH FVPs in GitHub Runner", "avh_gh.html", "avh_gh" ],
-    [ "AVH FVPs on AWS Marketplace", "AWS.html", "AWS" ],
-    [ "AVH FVPs on Desktop", "Local.html", "Local" ],
-    [ "AVH Client", "avhclient.html", [
-      [ "Installation", "avhclient.html#avhclient_install", null ],
-      [ "Supported backends", "avhclient.html#avhclient_backends", null ],
-      [ "AWS backend setup", "avhclient.html#avhclient_setup_aws", [
-        [ "CloudFormation template", "avhclient.html#avhclient_setup_cloudformation", null ],
-        [ "IAM Requirements", "avhclient.html#avhclient_setup_iam", null ]
-      ] ],
-      [ "AVH YML file", "avhclient.html#avhclient_yml", null ]
-    ] ]
+    [ "AVH FVPs in Arm Tools Artifactory", "avh_fvp_artifactory.html", [
+      [ "Direct Download", "avh_fvp_artifactory.html#avh_fvp_download", null ],
+      [ "Download with vcpkg", "avh_fvp_artifactory.html#avh_fvp_vcpkg", null ],
+      [ "License management", "avh_fvp_artifactory.html#avh_fvp_lic_act", null ]
+    ] ],
+    [ "AVH FVPs with GitHub Actions", "avh_gh_actions.html", [
+      [ "Setup with CMSIS-Actions", "avh_gh_actions.html#arm_cmsis_actions", null ],
+      [ "Program Execution", "avh_gh_actions.html#avh_gh_run", null ],
+      [ "Example Template", "avh_gh_actions.html#avh_ci_template", null ]
+    ] ],
+    [ "AVH FVPs on Desktop", "avh_desktop.html", "avh_desktop" ],
+    [ "Experimental Environments", "avh_beta.html", "avh_beta" ]
   ] ]
 ];
 

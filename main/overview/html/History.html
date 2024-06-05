@@ -43,8 +43,8 @@
  <tr id="projectrow" style="height: 55px;">
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
-   <div id="projectname">Virtual Hardware
-   &#160;<span id="projectnumber">Version 1.3.1 - beta</span>
+   <div id="projectname">Arm Virtual Hardware
+   &#160;<span id="projectnumber">Version 2.0.0</span>
    </div>
    <div id="projectbrief">Solutions Overview</div>
   </td>
@@ -128,6 +128,21 @@ $(document).ready(function(){initNavTree('History.html',''); initResizable(); })
 <tr>
 <th>Version </th><th>Changes  </th></tr>
 <tr>
+<td>2.0.0 (June 5, 2024) </td><td><ul>
+<li>Removed beta status</li>
+<li>Added Arm Tools Artifactory:</li>
+<li>Added AVH FVP models:<ul>
+<li>FVP_Corstone_SSE-315</li>
+<li>FVP_MPS2_Cortex-M85</li>
+<li>FVP_MPS2_Cortex-M55</li>
+<li>FVP_MPS2_Cortex-M52</li>
+<li>FVP_MPS2_Cortex-M35P</li>
+</ul>
+</li>
+<li>Reworked documentation   </li>
+</ul>
+</td></tr>
+<tr>
 <td>1.3.1-beta (Jan 26, 2023) </td><td><ul>
 <li>License validity period for installed Arm tools is extended.</li>
 <li>EULA for AVH AMI is updated on AWS marketplace.   </li>
@@ -135,11 +150,11 @@ $(document).ready(function(){initNavTree('History.html',''); initResizable(); })
 </td></tr>
 <tr>
 <td>1.3.0-beta (Sept 22, 2022) </td><td><ul>
-<li>Arm Corstone SSE-300 model is supported with <a href="https://www.keil.arm.com/boards/arm-v2m-mps3-sse-300-fvp-610bb98/"><b>Keil Studio Cloud</b></a>.</li>
-<li>Provided <a href="https://github.com/ARM-software/CMSIS-View/tree/main/tools/eventlist"><b>eventlist utility</b></a> to process Event Recorder logs obtained with Arm FVP targets.</li>
+<li>Arm Corstone SSE-300 model is supported with <a href="https://www.keil.arm.com/boards/arm-v2m-mps3-sse-300-fvp-610bb98/">Keil Studio Cloud</a>.</li>
+<li>Provided <a href="https://github.com/ARM-software/CMSIS-View/tree/main/tools/eventlist">eventlist utility</a> to process Event Recorder logs obtained with Arm FVP targets.</li>
 <li>Added new FVP model - VHT_Corstone_SSE-310_Ethos-U65 to the AMI, see <a href="../../simulation/html/Using.html">Using Arm Fixed Virtual Platforms</a>.</li>
-<li>Added installation of <a href="https://github.com/Open-CMSIS-Pack/CMSIS-Toolbox"><b>CMSIS-Toolbox v1.0.0</b></a> to the AMI, that also includes CMSIS-Build for command-line project builds.</li>
-<li>Updated <a href="../../examples/html/index.html"><b>examples</b></a> to use dynamic credentials (IAM Role) in the GitHub CI workflow, removing the need for storing AWS credentials in GitHub Secrets.</li>
+<li>Added installation of <a href="https://github.com/Open-CMSIS-Pack/CMSIS-Toolbox">CMSIS-Toolbox v1.0.0</a> to the AMI, that also includes CMSIS-Build for command-line project builds.</li>
+<li>Updated <a href="../../examples/html/index.html">examples</a> to use dynamic credentials (IAM Role) in the GitHub CI workflow, removing the need for storing AWS credentials in GitHub Secrets.</li>
 <li>Removed preinstalled Bootloader and OpenSuSE software for Corstone-1000.</li>
 <li>Removed preinstalled CMSIS Packs.   </li>
 </ul>
@@ -153,26 +168,26 @@ If disabled (FASTSIM_DISABLE_TA set to 1), VSI streams data too quickly and prev
 <tr>
 <td>1.2.2-beta (May 10, 2022) </td><td><ul>
 <li>New versioning scheme to match the AMI version (see <a href="../../infrastructure/html/ami_inventory.html">AMI Inventory</a>).</li>
-<li><a href="https://github.com/ARM-software/CMSIS-RTOS2_Validation"><b>CMSIS-RTOS2 Validation</b></a>: Advanced test suite for validating CMSIS-RTOS2 implementations on supported Cortex-M cores runs using AVH.</li>
+<li><a href="https://github.com/ARM-software/CMSIS-RTOS2_Validation">CMSIS-RTOS2 Validation</a>: Advanced test suite for validating CMSIS-RTOS2 implementations on supported Cortex-M cores runs using AVH.</li>
 <li>Corstone-310 model fixes: NPU access fix as well as a parameter for the flash region size allowing it to be a maximum of 64MB.   </li>
 </ul>
 </td></tr>
 <tr>
 <td>0.3-beta (Apr 2022) </td><td>Added features:<ul>
-<li><a href="../../simulation/html/Using.html"><b>Corstone-310 and Corstone-1000</b></a>: added new simulation models.</li>
-<li><a href="../../infrastructure/html/run_ami_jenkins.html"><b>Integration with Jenkins</b></a>: example of AVH AMI usage in Jenkins CI pipelines.</li>
-<li><a href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_use.html#er_semihosting"><b>Event Recorder Semihosting Support</b></a>: allows to generate Event Recorder logs in AVH AMI environment.</li>
-<li><a href="../../examples/html/aws_mqtt.html"><b>AWS MQTT Example</b></a>: IoT application with MQTT connectivity to AWS cloud service.</li>
-<li><a href="https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword"><b>ATS-Keyword Example</b></a>: keyword detection application based on <a href="https://github.com/ARM-software/ATS-Keyword/">Arm Total Solutions for IoT</a>.   </li>
+<li><a href="../../simulation/html/Using.html">Corstone-310 and Corstone-1000</a>: added new simulation models.</li>
+<li><a href="../../infrastructure/html/run_ami_jenkins.html">Integration with Jenkins</a>: example of AVH AMI usage in Jenkins CI pipelines.</li>
+<li><a href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_use.html#er_semihosting">Event Recorder Semihosting Support</a>: allows to generate Event Recorder logs in AVH AMI environment.</li>
+<li><a href="../../examples/html/aws_mqtt.html">AWS MQTT Example</a>: IoT application with MQTT connectivity to AWS cloud service.</li>
+<li><a href="https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword">ATS-Keyword Example</a>: keyword detection application based on <a href="https://github.com/ARM-software/ATS-Keyword/">Arm Total Solutions for IoT</a>.   </li>
 </ul>
 </td></tr>
 <tr>
 <td>0.2-beta (Feb 2022) </td><td>Added features:<ul>
-<li><a href="../../simulation/html/Using.html"><b>Extended Target support</b></a>: additional Cortex-M processors are supported: Cortex-M0/M0+/M3/M4/M7/M23/M33.</li>
-<li><a href="../../infrastructure/html/run_mdk_pro.html"><b>Support in MDK-Professional</b></a>: enables desktop development in classic tooling.</li>
-<li><a href="../../simulation/html/group__arm__vio.html"><b>VIO Interface</b></a>: simple interface to control I/O such as switches and LEDs via Python scripts.</li>
-<li><a href="../../simulation/html/group__arm__vsocket.html"><b>VSocket Interface</b></a>: BSD socket interface that connects the application under test to networks, including public Internet.</li>
-<li><a href="../../examples/html/GetStarted.html"><b>Get-Started example</b></a>: added simple example demonstrating how to setup a Continuous Integration (CI) workflow using Arm Virtual Hardware.   </li>
+<li><a href="../../simulation/html/Using.html">Extended Target support</a>: additional Cortex-M processors are supported: Cortex-M0/M0+/M3/M4/M7/M23/M33.</li>
+<li><a href="../../infrastructure/html/run_mdk_pro.html">Support in MDK-Professional</a>: enables desktop development in classic tooling.</li>
+<li><a href="../../simulation/html/group__arm__vio.html">VIO Interface</a>: simple interface to control I/O such as switches and LEDs via Python scripts.</li>
+<li><a href="../../simulation/html/group__arm__vsocket.html">VSocket Interface</a>: BSD socket interface that connects the application under test to networks, including public Internet.</li>
+<li><a href="../../examples/html/GetStarted.html">Get-Started example</a>: added simple example demonstrating how to setup a Continuous Integration (CI) workflow using Arm Virtual Hardware.   </li>
 </ul>
 </td></tr>
 <tr>
@@ -181,7 +196,7 @@ If disabled (FASTSIM_DISABLE_TA set to 1), VSI streams data too quickly and prev
 <h1><a class="anchor" id="Issues"></a>
 Known Limitations</h1>
 <p>The current beta version of of Arm Virtual Hardware has the following known issues:</p>
-<p><a href="../../simulation/html/group__arm__cmvp.html"><b>Virtual Interfaces</b></a>:</p><ul>
+<p><a href="../../simulation/html/group__arm__cmvp.html">Virtual Interfaces</a>:</p><ul>
 <li>After processor reset virtual interfaces may not work correctly. So it is required to restart the debug/run session.</li>
 </ul>
 <h1><a class="anchor" id="Support"></a>

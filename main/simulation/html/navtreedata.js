@@ -27,7 +27,7 @@ var NAVTREE =
   [ "AVH FVP models", "index.html", [
     [ "Overview", "index.html", "index" ],
     [ "Using AVH FVPs", "Using.html", [
-      [ "Running User Applications", "Using.html#Execution", null ],
+      [ "Running User Applications in CLI", "Using.html#Execution", null ],
       [ "Model Configuration", "Using.html#Config", null ],
       [ "Useful Hints and Tips", "Using.html#Hints", [
         [ "Execution stop", "Using.html#stop", null ],
@@ -35,6 +35,7 @@ var NAVTREE =
         [ "Semihosting", "Using.html#semihosting", null ]
       ] ]
     ] ],
+    [ "CMSIS-based projects for AVH FVPs", "md_src_avh_fvp_cmsis.html", null ],
     [ "API Reference", "modules.html", "modules" ]
   ] ]
 ];

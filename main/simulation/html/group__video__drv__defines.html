@@ -43,8 +43,8 @@
  <tr id="projectrow" style="height: 55px;">
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
-   <div id="projectname">Virtual Hardware
-   &#160;<span id="projectnumber">Version 1.3.1 - beta</span>
+   <div id="projectname">Arm Virtual Hardware
+   &#160;<span id="projectnumber">Version 2.0.0</span>
    </div>
    <div id="projectbrief">AVH FVP Models</div>
   </td>
@@ -121,7 +121,7 @@ $(document).ready(function(){initNavTree('group__video__drv__defines.html',''); 
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a>  </div>
+<a href="#groups">Content</a>  </div>
   <div class="headertitle"><div class="title">Video Driver API Defines<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Virtual Interfaces</a> &raquo; <a class="el" href="group__arm__vsi.html">Virtual Streaming Interface (VSI)</a> &raquo; <a class="el" href="group__arm__vsi__cases.html">VSI Use Cases</a> &raquo; <a class="el" href="group__arm__vsi__video.html">Video via VSI</a></div></div></div>
 </div><!--header-->
 <div class="contents">
@@ -129,36 +129,16 @@ $(document).ready(function(){initNavTree('group__video__drv__defines.html',''); 
 <p>Video Driver API Definitions.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:ga0b297f960320816a4d1b7ed1dc2341c8"><td class="memItemLeft" align="right" valign="top"><a id="ga0b297f960320816a4d1b7ed1dc2341c8" name="ga0b297f960320816a4d1b7ed1dc2341c8"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDEO_DRV_IN0</b>&#160;&#160;&#160;(0UL)</td></tr>
-<tr class="memdesc:ga0b297f960320816a4d1b7ed1dc2341c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Video Input channel 0. <br /></td></tr>
-<tr class="separator:ga0b297f960320816a4d1b7ed1dc2341c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga77a04f6318816a8703c9cdc7db88fdbb"><td class="memItemLeft" align="right" valign="top"><a id="ga77a04f6318816a8703c9cdc7db88fdbb" name="ga77a04f6318816a8703c9cdc7db88fdbb"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDEO_DRV_OUT0</b>&#160;&#160;&#160;(1UL)</td></tr>
-<tr class="memdesc:ga77a04f6318816a8703c9cdc7db88fdbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Video Output channel 0. <br /></td></tr>
-<tr class="separator:ga77a04f6318816a8703c9cdc7db88fdbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae7bd9f6168a627da8290c7987b688636"><td class="memItemLeft" align="right" valign="top"><a id="gae7bd9f6168a627da8290c7987b688636" name="gae7bd9f6168a627da8290c7987b688636"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDEO_DRV_IN1</b>&#160;&#160;&#160;(2UL)</td></tr>
-<tr class="memdesc:gae7bd9f6168a627da8290c7987b688636"><td class="mdescLeft">&#160;</td><td class="mdescRight">Video Input channel 1. <br /></td></tr>
-<tr class="separator:gae7bd9f6168a627da8290c7987b688636"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa15a08ccefe6d06a6b9af07d5a03ef73"><td class="memItemLeft" align="right" valign="top"><a id="gaa15a08ccefe6d06a6b9af07d5a03ef73" name="gaa15a08ccefe6d06a6b9af07d5a03ef73"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDEO_DRV_OUT1</b>&#160;&#160;&#160;(3UL)</td></tr>
-<tr class="memdesc:gaa15a08ccefe6d06a6b9af07d5a03ef73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Video Output channel 1. <br /></td></tr>
-<tr class="separator:gaa15a08ccefe6d06a6b9af07d5a03ef73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac39f1c6884638f4b1e341732bd4861a7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__video__drv__defines.html#gac39f1c6884638f4b1e341732bd4861a7">VIDEO_DRV_EVENT_FRAME</a>&#160;&#160;&#160;(1UL &lt;&lt; 0)</td></tr>
-<tr class="memdesc:gac39f1c6884638f4b1e341732bd4861a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Video frame received.  <br /></td></tr>
-<tr class="separator:gac39f1c6884638f4b1e341732bd4861a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabc284ee259e3dbfe0f3f08ea6f7acdb2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__video__drv__defines.html#gabc284ee259e3dbfe0f3f08ea6f7acdb2">VIDEO_DRV_EVENT_OVERFLOW</a>&#160;&#160;&#160;(1UL &lt;&lt; 1)</td></tr>
-<tr class="memdesc:gabc284ee259e3dbfe0f3f08ea6f7acdb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Video buffer overflow.  <br /></td></tr>
-<tr class="separator:gabc284ee259e3dbfe0f3f08ea6f7acdb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga23d3f6d542db1657a467ef794feb7737"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__video__drv__defines.html#ga23d3f6d542db1657a467ef794feb7737">VIDEO_DRV_EVENT_UNDERFLOW</a>&#160;&#160;&#160;(1UL &lt;&lt; 2)</td></tr>
-<tr class="memdesc:ga23d3f6d542db1657a467ef794feb7737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Video buffer underflow.  <br /></td></tr>
-<tr class="separator:ga23d3f6d542db1657a467ef794feb7737"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8155b296d6596c477a3be9767d315876"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__video__drv__defines.html#ga8155b296d6596c477a3be9767d315876">VIDEO_DRV_EVENT_EOS</a>&#160;&#160;&#160;(1UL &lt;&lt; 3)</td></tr>
-<tr class="memdesc:ga8155b296d6596c477a3be9767d315876"><td class="mdescLeft">&#160;</td><td class="mdescRight">Video end of stream.  <br /></td></tr>
-<tr class="separator:ga8155b296d6596c477a3be9767d315876"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="groups" name="groups"></a>
+Content</h2></td></tr>
+<tr class="memitem:group__video__drv__ch__params"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__video__drv__ch__params.html">Video Driver Channel definitions</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__video__drv__events"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__video__drv__events.html">Video Driver Event Defines</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__video__drv__errors"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__video__drv__errors.html">Video Driver Return Codes</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__video__drv__colors"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__video__drv__colors.html">Video Driver Color Formats</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1c80eb82fe0d12a6ae97b3eb1dad210f"><td class="memItemLeft" align="right" valign="top"><a id="ga1c80eb82fe0d12a6ae97b3eb1dad210f" name="ga1c80eb82fe0d12a6ae97b3eb1dad210f"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDEO_DRV_MODE_SINGLE</b>&#160;&#160;&#160;(0UL)</td></tr>
 <tr class="memdesc:ga1c80eb82fe0d12a6ae97b3eb1dad210f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Single frame. <br /></td></tr>
@@ -167,128 +147,15 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDEO_DRV_MODE_CONTINUOS</b>&#160;&#160;&#160;(1UL)</td></tr>
 <tr class="memdesc:ga1094223a185c8ac3197822f14f4c836e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Continuos stream. <br /></td></tr>
 <tr class="separator:ga1094223a185c8ac3197822f14f4c836e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac04a54334a51a60120a90d91d0c4590d"><td class="memItemLeft" align="right" valign="top"><a id="gac04a54334a51a60120a90d91d0c4590d" name="gac04a54334a51a60120a90d91d0c4590d"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDEO_DRV_OK</b>&#160;&#160;&#160;(0)</td></tr>
-<tr class="memdesc:gac04a54334a51a60120a90d91d0c4590d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operation succeeded. <br /></td></tr>
-<tr class="separator:gac04a54334a51a60120a90d91d0c4590d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3ef806e8e431ed465e32847d88a59280"><td class="memItemLeft" align="right" valign="top"><a id="ga3ef806e8e431ed465e32847d88a59280" name="ga3ef806e8e431ed465e32847d88a59280"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDEO_DRV_ERROR</b>&#160;&#160;&#160;(-1)</td></tr>
-<tr class="memdesc:ga3ef806e8e431ed465e32847d88a59280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unspecified error. <br /></td></tr>
-<tr class="separator:ga3ef806e8e431ed465e32847d88a59280"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga22bcc3302df9b303a6c137db809e380c"><td class="memItemLeft" align="right" valign="top"><a id="ga22bcc3302df9b303a6c137db809e380c" name="ga22bcc3302df9b303a6c137db809e380c"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDEO_DRV_ERROR_PARAMETER</b>&#160;&#160;&#160;(-2)</td></tr>
-<tr class="memdesc:ga22bcc3302df9b303a6c137db809e380c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameter error. <br /></td></tr>
-<tr class="separator:ga22bcc3302df9b303a6c137db809e380c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0b6cf8521f6386ec33cd09436e1ab9cc"><td class="memItemLeft" align="right" valign="top"><a id="ga0b6cf8521f6386ec33cd09436e1ab9cc" name="ga0b6cf8521f6386ec33cd09436e1ab9cc"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDEO_DRV_COLOR_FORMAT_BEGIN</b>&#160;&#160;&#160;(0UL)</td></tr>
-<tr class="memdesc:ga0b6cf8521f6386ec33cd09436e1ab9cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color format begin. <br /></td></tr>
-<tr class="separator:ga0b6cf8521f6386ec33cd09436e1ab9cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga016189a1f64e9093b55e9db4ca2349ee"><td class="memItemLeft" align="right" valign="top"><a id="ga016189a1f64e9093b55e9db4ca2349ee" name="ga016189a1f64e9093b55e9db4ca2349ee"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDEO_DRV_COLOR_GRAYSCALE8</b>&#160;&#160;&#160;(1UL)</td></tr>
-<tr class="memdesc:ga016189a1f64e9093b55e9db4ca2349ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">8 bit grayscale color format <br /></td></tr>
-<tr class="separator:ga016189a1f64e9093b55e9db4ca2349ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga90f96ee8f567f2502bcaadb5f29811fc"><td class="memItemLeft" align="right" valign="top"><a id="ga90f96ee8f567f2502bcaadb5f29811fc" name="ga90f96ee8f567f2502bcaadb5f29811fc"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDEO_DRV_COLOR_RGB888</b>&#160;&#160;&#160;(2UL)</td></tr>
-<tr class="memdesc:ga90f96ee8f567f2502bcaadb5f29811fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">24 bit RGB color format <br /></td></tr>
-<tr class="separator:ga90f96ee8f567f2502bcaadb5f29811fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga78da6d3013d4c819504c917560315c74"><td class="memItemLeft" align="right" valign="top"><a id="ga78da6d3013d4c819504c917560315c74" name="ga78da6d3013d4c819504c917560315c74"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDEO_DRV_COLOR_BGR565</b>&#160;&#160;&#160;(3UL)</td></tr>
-<tr class="memdesc:ga78da6d3013d4c819504c917560315c74"><td class="mdescLeft">&#160;</td><td class="mdescRight">16 bit BGR color format <br /></td></tr>
-<tr class="separator:ga78da6d3013d4c819504c917560315c74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafc1331a5debed4b499dee54734877e78"><td class="memItemLeft" align="right" valign="top"><a id="gafc1331a5debed4b499dee54734877e78" name="gafc1331a5debed4b499dee54734877e78"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDEO_DRV_COLOR_YUV420</b>&#160;&#160;&#160;(4UL)</td></tr>
-<tr class="memdesc:gafc1331a5debed4b499dee54734877e78"><td class="mdescLeft">&#160;</td><td class="mdescRight">12 bit YUV420 color format <br /></td></tr>
-<tr class="separator:gafc1331a5debed4b499dee54734877e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf27668f718260d4bea3dc383c0b6f603"><td class="memItemLeft" align="right" valign="top"><a id="gaf27668f718260d4bea3dc383c0b6f603" name="gaf27668f718260d4bea3dc383c0b6f603"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDEO_DRV_COLOR_NV12</b>&#160;&#160;&#160;(5UL)</td></tr>
-<tr class="memdesc:gaf27668f718260d4bea3dc383c0b6f603"><td class="mdescLeft">&#160;</td><td class="mdescRight">24 bit NV12 color format <br /></td></tr>
-<tr class="separator:gaf27668f718260d4bea3dc383c0b6f603"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabbadd0ad9452d0f2fae1bbe7cefe14ed"><td class="memItemLeft" align="right" valign="top"><a id="gabbadd0ad9452d0f2fae1bbe7cefe14ed" name="gabbadd0ad9452d0f2fae1bbe7cefe14ed"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDEO_DRV_COLOR_NV21</b>&#160;&#160;&#160;(6UL)</td></tr>
-<tr class="memdesc:gabbadd0ad9452d0f2fae1bbe7cefe14ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">24 bit NV12 color format <br /></td></tr>
-<tr class="separator:gabbadd0ad9452d0f2fae1bbe7cefe14ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab6fda3d61b7d1d6e961f3970cf589162"><td class="memItemLeft" align="right" valign="top"><a id="gab6fda3d61b7d1d6e961f3970cf589162" name="gab6fda3d61b7d1d6e961f3970cf589162"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIDEO_DRV_COLOR_FORMAT_END</b>&#160;&#160;&#160;(7UL)</td></tr>
-<tr class="memdesc:gab6fda3d61b7d1d6e961f3970cf589162"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color format end. <br /></td></tr>
-<tr class="separator:gab6fda3d61b7d1d6e961f3970cf589162"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
 <p>Video Driver API Definitions. </p>
 <p>Video driver provides various definitions to simplify use of its <a class="el" href="group__video__drv__functions.html">Video Driver API Functions</a> :</p><ul>
-<li>Channel parameter definitions (<a class="el" href="group__video__drv__defines.html#ga0b297f960320816a4d1b7ed1dc2341c8">VIDEO_DRV_IN0..1</a> and <a class="el" href="group__video__drv__defines.html#ga77a04f6318816a8703c9cdc7db88fdbb">VIDEO_DRV_OUT0..1</a>) can be used in <a class="el" href="group__video__drv__functions.html#gae7bed6c8b6e83eef0ef54f510a3c948a">VideoDrv_SetFile</a>, <a class="el" href="group__video__drv__functions.html#ga6ad4d20e1dea6332fabe53710023957e">VideoDrv_Configure</a>, <a class="el" href="group__video__drv__functions.html#ga75f42edad029c1670eb55c837e14548c">VideoDrv_SetBuf</a>, <a class="el" href="group__video__drv__functions.html#ga6c818d3ceac97170fdccf5eb7678a55b">VideoDrv_FlushBuf</a>, <a class="el" href="group__video__drv__functions.html#ga0d74405efb2075a59ed51e0da42cc988">VideoDrv_StreamStart</a>, <a class="el" href="group__video__drv__functions.html#ga1f88af1f66776ec9cf661bbdcaf268cd">VideoDrv_StreamStop</a>, <a class="el" href="group__video__drv__functions.html#ga0084bec78863eed1ccaaff29499e59bc">VideoDrv_GetFrameBuf</a>, <a class="el" href="group__video__drv__functions.html#ga034fdbb82c1133e8fa0c15a3e0085166">VideoDrv_ReleaseFrame</a> functions.</li>
-<li>Event definitions <a class="el" href="group__video__drv__defines.html#gac39f1c6884638f4b1e341732bd4861a7">VIDEO_DRV_EVENT_...</a> list the events that can be reported via callback function <a class="el" href="group__video__drv__functions.html#gaef6aad25e387243a1b9ab5b30534c8db">VideoDrv_Event_t</a>.</li>
-<li>Error code definitions (<a class="el" href="group__video__drv__defines.html#gac04a54334a51a60120a90d91d0c4590d">VIDEO_DRV_OK</a>, <a class="el" href="group__video__drv__defines.html#ga3ef806e8e431ed465e32847d88a59280">VIDEO_DRV_ERROR...</a>) map the status results that can be returned by <a class="el" href="group__video__drv__functions.html">Video Driver API Functions</a>.</li>
-<li>Color format definitions <a class="el" href="group__video__drv__defines.html#ga016189a1f64e9093b55e9db4ca2349ee">VIDEO_DRV_COLOR_...</a> list supported color formats used for channel configuration. </li>
+<li><a class="el" href="group__video__drv__ch__params.html">Channel parameter definitions</a> can be used in <a class="el" href="group__video__drv__functions.html#gae7bed6c8b6e83eef0ef54f510a3c948a">VideoDrv_SetFile</a>, <a class="el" href="group__video__drv__functions.html#ga6ad4d20e1dea6332fabe53710023957e">VideoDrv_Configure</a>, <a class="el" href="group__video__drv__functions.html#ga75f42edad029c1670eb55c837e14548c">VideoDrv_SetBuf</a>, <a class="el" href="group__video__drv__functions.html#ga6c818d3ceac97170fdccf5eb7678a55b">VideoDrv_FlushBuf</a>, <a class="el" href="group__video__drv__functions.html#ga0d74405efb2075a59ed51e0da42cc988">VideoDrv_StreamStart</a>, <a class="el" href="group__video__drv__functions.html#ga1f88af1f66776ec9cf661bbdcaf268cd">VideoDrv_StreamStop</a>, <a class="el" href="group__video__drv__functions.html#ga0084bec78863eed1ccaaff29499e59bc">VideoDrv_GetFrameBuf</a>, <a class="el" href="group__video__drv__functions.html#ga034fdbb82c1133e8fa0c15a3e0085166">VideoDrv_ReleaseFrame</a> functions.</li>
+<li><a class="el" href="group__video__drv__events.html">Event definitions</a> list the events that can be reported via callback function <a class="el" href="group__video__drv__functions.html#gaef6aad25e387243a1b9ab5b30534c8db">VideoDrv_Event_t</a>.</li>
+<li><a class="el" href="group__video__drv__errors.html">Error code definitions</a> map the status results that can be returned by <a class="el" href="group__video__drv__functions.html">Video Driver API Functions</a>.</li>
+<li><a class="el" href="group__video__drv__colors.html">Color format definitions</a> list supported color formats used for channel configuration. </li>
 </ul>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="gac39f1c6884638f4b1e341732bd4861a7" name="gac39f1c6884638f4b1e341732bd4861a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac39f1c6884638f4b1e341732bd4861a7">&#9670;&#160;</a></span>VIDEO_DRV_EVENT_FRAME</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define VIDEO_DRV_EVENT_FRAME&#160;&#160;&#160;(1UL &lt;&lt; 0)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Video frame received. </p>
-<p>Triggered to indicate that a new frame is available in buffer. </p>
-
-</div>
-</div>
-<a id="gabc284ee259e3dbfe0f3f08ea6f7acdb2" name="gabc284ee259e3dbfe0f3f08ea6f7acdb2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gabc284ee259e3dbfe0f3f08ea6f7acdb2">&#9670;&#160;</a></span>VIDEO_DRV_EVENT_OVERFLOW</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define VIDEO_DRV_EVENT_OVERFLOW&#160;&#160;&#160;(1UL &lt;&lt; 1)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Video buffer overflow. </p>
-<p>Triggered to indicate that overflow of data buffer has occurred. </p>
-
-</div>
-</div>
-<a id="ga23d3f6d542db1657a467ef794feb7737" name="ga23d3f6d542db1657a467ef794feb7737"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga23d3f6d542db1657a467ef794feb7737">&#9670;&#160;</a></span>VIDEO_DRV_EVENT_UNDERFLOW</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define VIDEO_DRV_EVENT_UNDERFLOW&#160;&#160;&#160;(1UL &lt;&lt; 2)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Video buffer underflow. </p>
-<p>Triggered to indicate that underflow of data buffer has occurred. </p>
-
-</div>
-</div>
-<a id="ga8155b296d6596c477a3be9767d315876" name="ga8155b296d6596c477a3be9767d315876"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8155b296d6596c477a3be9767d315876">&#9670;&#160;</a></span>VIDEO_DRV_EVENT_EOS</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define VIDEO_DRV_EVENT_EOS&#160;&#160;&#160;(1UL &lt;&lt; 3)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Video end of stream. </p>
-<p>Triggered to indicate that end of file has been reached. </p>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

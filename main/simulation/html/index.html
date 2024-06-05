@@ -43,8 +43,8 @@
  <tr id="projectrow" style="height: 55px;">
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
-   <div id="projectname">Virtual Hardware
-   &#160;<span id="projectnumber">Version 1.3.1 - beta</span>
+   <div id="projectname">Arm Virtual Hardware
+   &#160;<span id="projectnumber">Version 2.0.0</span>
    </div>
    <div id="projectbrief">AVH FVP Models</div>
   </td>
@@ -123,11 +123,62 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Overview </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="mainpage"></a> The <b>AVH Fixed Virtual Platforms (AVH FVPs)</b> provide a functional accurate simulation of an Arm-based SoC and can be automated for scalable deployment in the CI development flow.</p>
-<p>The virtual platforms can be used standalone via command prompt or with development tools such as <a href="https://developer.arm.com/tools-and-software/embedded/arm-development-studio" target="_blank"><b>Arm Development Studio</b></a> or <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk" target="_blank"><b>Arm Keil MDK</b></a>, both in cloud-native or desktop environments. See <a href="../../infrastructure/html/index.html">Infrastructure chapter</a> for additional details.</p>
+<div class="textblock"><p><a class="anchor" id="mainpage"></a> The <b>AVH Fixed Virtual Platforms (AVH FVPs)</b> provide functionally accurate simulation models of Arm-based Cortex-M CPUs and Corstone-3xx Subsystems.</p>
+<p>The AVH FVP models are standalone programs that can be executed in a target environment. See <a class="el" href="index.html#Models">Available Models</a> for a list of FVPs provided in the AVH context.</p>
+<p>Section <a class="el" href="Using.html">Using AVH FVPs</a> gives an overview how to run an embedded program on a target AVH FVP model using command line interface. <a href="../../infrastructure/html/index.html">Infrastructure chapter</a> provides details on how to obtain AVH FVPs and use them in various cloud-native or desktop environments workflows, such as GitHub and Keil MDK.</p>
+<h1><a class="anchor" id="Models"></a>
+Available Models</h1>
+<p>The AVH FVP simulation models build a subset of <a href="https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms">Arm Fast Models Fixed Virtual Platforms</a> with extensions for <a class="el" href="group__arm__cmvp.html">Virtual Interfaces</a>.</p>
+<p>The table below lists the available models:</p>
+<table class="doxtable">
+<tr>
+<th style="width:30%">FVP Simulation Model Name </th><th style="width:16%">Processor Cores </th><th>Overview Description  </th></tr>
+<tr>
+<td>FVP_Corstone_SSE-315 </td><td>Cortex-M85,<br  />
+Ethos-U65,<br  />
+Mali-C55 </td><td>Public documentation pending  </td></tr>
+<tr>
+<td>FVP_Corstone_SSE-310_Ethos-U65 </td><td>Cortex-M85,<br  />
+Ethos-U65 </td><td><a href="https://developer.arm.com/documentation/100966/latest/Arm--Corstone-SSE-310-FVP">Arm Corstone SSE-310 FVP</a>  </td></tr>
+<tr>
+<td>FVP_Corstone_SSE-310 </td><td>Cortex-M85<br  />
+Ethos-U55 </td><td><a href="https://developer.arm.com/documentation/100966/latest/Arm--Corstone-SSE-310-FVP">Arm Corstone SSE-310 FVP</a>  </td></tr>
+<tr>
+<td>FVP_Corstone_SSE-300_Ethos-U65 </td><td>Cortex-M55,<br  />
+Ethos-U65 </td><td><a href="https://developer.arm.com/documentation/100966/latest/Arm--Corstone-SSE-300-FVP">Arm Corstone SSE-300 FVP</a>  </td></tr>
+<tr>
+<td>FVP_Corstone_SSE-300_Ethos-U55 </td><td>Cortex-M55,<br  />
+Ethos-U55 </td><td><a href="https://developer.arm.com/documentation/100966/latest/Arm--Corstone-SSE-300-FVP">Arm Corstone SSE-300 FVP</a>  </td></tr>
+<tr>
+<td>FVP_Corstone_SSE-300</td><td>Cortex-M55 </td><td><a href="https://developer.arm.com/documentation/100966/latest/Arm--Corstone-SSE-300-FVP">Arm Corstone SSE-300 FVP</a>  </td></tr>
+<tr>
+<td>FVP_MPS2_Cortex-M85 </td><td>Cortex-M85 (2x) </td><td><a href="https://developer.arm.com/documentation/100966/latest/MPS2-Platform-FVPs/FVP-MPS2-Cortex-M85">FVP_MPS2_Cortex-M85 in FVP Reference Guide</a>.<br  />
+ It is recommended to use Corstone-310/315 FVP models for Cortex-M85.  </td></tr>
+<tr>
+<td>FVP_MPS2_Cortex-M55 </td><td>Cortex-M55 (2x) </td><td><a href="https://developer.arm.com/documentation/100966/latest/MPS2-Platform-FVPs/FVP-MPS2-Cortex-M55">FVP_MPS2_Cortex-M55 in FVP Reference Guide</a>.<br  />
+ It is recommended to use Corstone-300 FVP models for Cortex-M55.  </td></tr>
+<tr>
+<td>FVP_MPS2_Cortex-M52 </td><td>Cortex-M52 (2x) </td><td><a href="https://developer.arm.com/documentation/100966/latest/MPS2-Platform-FVPs/FVP-MPS2-Cortex-M52">FVP_MPS2_Cortex-M52 in FVP Reference Guide</a>  </td></tr>
+<tr>
+<td>FVP_MPS2_Cortex-M35P </td><td>Cortex-M35P (2x) </td><td><a href="https://developer.arm.com/documentation/100966/latest/MPS2-Platform-FVPs/FVP-MPS2-Cortex-M35P">FVP_MPS2_Cortex-M35P in FVP Reference Guide</a>  </td></tr>
+<tr>
+<td>FVP_MPS2_Cortex-M33 </td><td>Cortex-M33 (2x) </td><td><a href="https://developer.arm.com/documentation/dai0505">ARM Cortex-M33 IoT Subsystem for V2M-MPS2+ (AppNote AN505)</a>  </td></tr>
+<tr>
+<td>FVP_MPS2_Cortex-M23 </td><td>Cortex-M23 (2x) </td><td><a href="https://developer.arm.com/documentation/dai0519">ARM Cortex-M23 IoT Subsystem for V2M-MPS2+ (AppNote AN519)</a>  </td></tr>
+<tr>
+<td>FVP_MPS2_Cortex-M7 </td><td>Cortex-M7 </td><td><a href="https://developer.arm.com/documentation/dai0386">ARM Cortex-M7 SMM on V2M-MPS2 (AppNote AN399)</a>  </td></tr>
+<tr>
+<td>FVP_MPS2_Cortex-M4 </td><td>Cortex-M4 </td><td><a href="https://developer.arm.com/documentation/dai0386">ARM Cortex-M4 SMM on V2M-MPS2 (AppNote AN386)</a>  </td></tr>
+<tr>
+<td>FVP_MPS2_Cortex-M3 </td><td>Cortex-M3 </td><td><a href="https://developer.arm.com/documentation/dai0385">ARM Cortex-M3 SMM on V2M-MPS2 (AppNote AN385)</a>  </td></tr>
+<tr>
+<td>FVP_MPS2_Cortex-M0plus </td><td>Cortex-M0+ </td><td><a href="https://developer.arm.com/documentation/dai0383">ARM Cortex-M0+ SMM on V2M-MPS2 (AppNote AN383)</a>  </td></tr>
+<tr>
+<td>FVP_MPS2_Cortex-M0 </td><td>Cortex-M0 </td><td><a href="https://developer.arm.com/documentation/dai0382">ARM Cortex-M0 SMM on V2M-MPS2 (AppNote AN382)</a>  </td></tr>
+</table>
 <h1><a class="anchor" id="Virtual_Interfaces"></a>
 Virtual Interfaces</h1>
-<p>The virtual platforms implement various Virtual Interfaces that can be used to stimulate the application under test.</p>
+<p>The AVH FVPs implement various Virtual Interfaces that can be used to stimulate the application under test.</p>
 <div class="image">
 <img src="Virtual_Interfaces.png" alt=""/>
 <div class="caption">
@@ -135,13 +186,13 @@ FVPs with Virtual Interfaces</div></div>
     <ul>
 <li>The <a class="el" href="group__arm__vio.html">Virtual Input/Output (VIO)</a> interface controls simple I/O such as LED and switches.</li>
 <li>The <a class="el" href="group__arm__vsi.html">Virtual Streaming Interface (VSI)</a> provides up to 8 channels for data streaming.</li>
-<li>The <a class="el" href="group__arm__vsocket.html">Virtual Socket Interface (VSocket)</a> connects the user application to <a href="https://en.wikipedia.org/wiki/Berkeley_sockets"><b>BSD sockets</b></a> on the Host computer for IP network connectivity.</li>
+<li>The <a class="el" href="group__arm__vsocket.html">Virtual Socket Interface (VSocket)</a> connects the user application to <a href="https://en.wikipedia.org/wiki/Berkeley_sockets">BSD sockets</a> on the Host computer for IP network connectivity.</li>
 </ul>
-<p>Both <a class="el" href="group__arm__vio.html">VIO</a> and <a class="el" href="group__arm__vsi.html">VSI</a> connect to Python and enable flexible scripting for test automation. Eight VSI interfaces are available and may be used in parallel to stream simultaneous multi-channel inputs and outputs. The interfaces are tailored for simulation, but can also map to physical target hardware.</p>
-<p>In addition the <b>Event Recorder Capturing</b> provides an interface for the <a href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_overview.html">Event Recorder</a> API. This software component enables event annotations in the application code or software component libraries. The <b>Event Recorder</b> provides visibility to the dynamic execution of an application, enables RTOS awareness, and <a href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/group__Event__Execution__Statistic.html"><b>Event Execution Statistics</b></a> which helps to optimize the timing of complex algorithms.</p>
+<p>Both <a class="el" href="group__arm__vio.html">VIO</a> and <a class="el" href="group__arm__vsi.html">VSI</a> connect to local python scripts and enable flexible scripting for test automation. Eight VSI interfaces are available and may be used in parallel to stream simultaneous multi-channel inputs and outputs. The interfaces are tailored for simulation, but can also map to physical target hardware, for example to a video camera as a VSI input.</p>
+<p>In addition the <b>Event Recorder Capturing</b> provides an interface for the <a href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_overview.html">Event Recorder</a> API. This software component enables event annotations in the application code or software component libraries. The <b>Event Recorder</b> provides visibility to the dynamic execution of an application, enables RTOS awareness, and <a href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/group__Event__Execution__Statistic.html">Event Execution Statistics</a> which helps to optimize the timing of complex algorithms.</p>
 <h1><a class="anchor" id="Physical_Hardware"></a>
 Physical Hardware</h1>
-<p><a href="https://en.wikipedia.org/wiki/Modular_programming"><b>Modular programming</b></a> recommends to separate the functionality of a program into independent, interchangeable modules that use defined interfaces that abstract the hardware functionality. This design concept simplifies code re-use and allows to implement <b>Virtual Drivers</b> and <b>Hardware Drivers</b> that expose the same API and implement the same logical behavior. If built correctly, it overcomes many issues that are typically found in monolithic software and enables a staged <a href="https://en.wikipedia.org/wiki/Software_testing">software validation</a> with multiple test levels such as unit, integration, and system testing.</p>
+<p><a href="https://en.wikipedia.org/wiki/Modular_programming">Modular programming</a> recommends to separate the functionality of a program into independent, interchangeable modules that use defined interfaces that abstract the hardware functionality. This design concept simplifies code re-use and allows to implement <b>Virtual Drivers</b> and <b>Hardware Drivers</b> that expose the same API and implement the same logical behavior. If built correctly, it overcomes many issues that are typically found in monolithic software and enables a staged <a href="https://en.wikipedia.org/wiki/Software_testing">software validation</a> with multiple test levels such as unit, integration, and system testing.</p>
 <p>To simplify re-targeting from FVP simulation models to final production hardware, the examples implement the concept of software layers. As the next generation tooling will provide native support for program layers, it makes it easy to work on a combination of simulated and physical hardware. The picture below examplifies this concept.</p>
 <div class="image">
 <img src="Simulation2Hardware.png" alt=""/>
@@ -154,23 +205,7 @@ Development Workflow</h1>
 <img src="Workflow.png" alt=""/>
 <div class="caption">
 Development Workflow</div></div>
-    <p>This workflow mandates that a set of test cases are developed. For test case development and failure analysis, it is currently recommended to use desktop tools such as <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">Keil MDK</a>. However, over time the more flexible <a href="https://www.keil.arm.com/">Keil Studio</a> will enable a hybrid work-style that allows to use cloud-native or desktop development workflows.</p>
-<h1><a class="anchor" id="Development_Challanges"></a>
-Development Challenges</h1>
-<p>Naturally, the Fixed Virtual Platforms cannot simulate the exact behavior of every Arm Cortex processor-based microcontroller that is available today. However, the simulated targets overcome many challenges that users are facing with physical hardware. The FVPs make CI/CD economic for embedded applications and enable modern DevOps workflows that benefit from test automation. <br  />
-</p>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">Challenge   </th><th class="markdownTableHeadLeft">Solution    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">Over 9000 different Arm based Microcontrollers are available and many have a comprehensive peripheral set along with sophisticated clock and power-down features. Is it possible to simulation bespoke Microcontroller peripherals? Can I validate device-specific drivers?   </td><td class="markdownTableBodyLeft">It is not economic to simulate specific microcontrollers, but with driver abstraction the behavior of software can be analyzed. The device-specific interfaces should be tested on final target hardware, but the more complex high-level software can be verified using Arm Virtual Hardware.    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft">Arm Fast Models are not timing-accurate and the timing of the memory system is not simulated too. How is it possible to identify timing issues that may appear in final target hardware?   </td><td class="markdownTableBodyLeft">The simulation is not timing accurate but gives still a good approximation that can be validated using <a href="https://www.keil.com/support/man/docs/uv4/uv4_db_dbg_evr_stat.htm"><b>Event Statistics</b></a>. It is recommended to run simulation at lower clock frequency that maps to worst-case timing of final target hardware.    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">The <b>Arm Virtual Hardware Services</b> provide a cloud-native infra-structure for software test and validation. But currently there is no debug possible with this CI/CD system. How are test cases developed and analysed?   </td><td class="markdownTableBodyLeft">Today, desktop tools (for example <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">Keil MDK</a>) are required to develop test cases and debug failures. <a href="./index.html##Development_Workflow">Development Workflow</a> explains this process.    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft">The examples for <a class="el" href="group__arm__vsi.html">VSI</a> show currently Audio streaming. Is it possible to use this interface also for other data sources?   </td><td class="markdownTableBodyLeft">The <a class="el" href="group__arm__vsi.html">VSI</a> is a simple, but flexible interface that connects a generic streaming peripheral with Python for test script automation. It is today possible to develop own data streaming interfaces but we work on more examples that show the potential of this interface.   </td></tr>
-</table>
+    <p>This workflow mandates that a set of test cases are developed. For test case development and failure analysis, it is currently recommended to use desktop tools such as <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">Keil MDK</a>. However, over time the more flexible <a href="https://www.keil.arm.com/">Keil Studio</a> will enable a hybrid work-style that allows to use cloud-native or desktop development workflows. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
