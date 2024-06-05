@@ -270,13 +270,17 @@ Each event is encoded in a separate bit so it is possible to signal multiple eve
 \brief Video Driver API Definitions
 \details
 Video driver provides various definitions to simplify use of its \ref video_drv_functions :
-  - Channel parameter definitions (\ref VIDEO_DRV_IN0 "VIDEO_DRV_IN0..1" and \ref VIDEO_DRV_OUT0 "VIDEO_DRV_OUT0..1") can be used in \ref VideoDrv_SetFile, \ref VideoDrv_Configure, \ref VideoDrv_SetBuf, \ref VideoDrv_FlushBuf, \ref VideoDrv_StreamStart, \ref VideoDrv_StreamStop, \ref VideoDrv_GetFrameBuf, \ref VideoDrv_ReleaseFrame functions.
-  - Event definitions \ref VIDEO_DRV_EVENT_FRAME "VIDEO_DRV_EVENT_..." list the events that can be reported via callback function \ref VideoDrv_Event_t.
-  - Error code definitions (\ref VIDEO_DRV_OK, \ref VIDEO_DRV_ERROR "VIDEO_DRV_ERROR...") map the status results that can be returned by \ref video_drv_functions.
-  - Color format definitions \ref VIDEO_DRV_COLOR_GRAYSCALE8 "VIDEO_DRV_COLOR_..." list supported color formats used for channel configuration.
+  - \ref video_drv_ch_params "Channel parameter definitions" can be used in \ref VideoDrv_SetFile, \ref VideoDrv_Configure, \ref VideoDrv_SetBuf, \ref VideoDrv_FlushBuf, \ref VideoDrv_StreamStart, \ref VideoDrv_StreamStop, \ref VideoDrv_GetFrameBuf, \ref VideoDrv_ReleaseFrame functions.
+  - \ref video_drv_events "Event definitions" list the events that can be reported via callback function \ref VideoDrv_Event_t.
+  - \ref video_drv_errors "Error code definitions" map the status results that can be returned by \ref video_drv_functions.
+  - \ref video_drv_colors "Color format definitions" list supported color formats used for channel configuration.
 
 @{
 
+\defgroup video_drv_ch_params Video Driver Channel definitions
+\ingroup video_drv_defines
+\details
+Channel parameter definitions can be used in \ref VideoDrv_SetFile, \ref VideoDrv_Configure, \ref VideoDrv_SetBuf, \ref VideoDrv_FlushBuf, \ref VideoDrv_StreamStart, \ref VideoDrv_StreamStop, \ref VideoDrv_GetFrameBuf, \ref VideoDrv_ReleaseFrame functions.
 @{
 \def VIDEO_DRV_IN0
 \def VIDEO_DRV_OUT0
@@ -284,6 +288,11 @@ Video driver provides various definitions to simplify use of its \ref video_drv_
 \def VIDEO_DRV_OUT1
 @}
 
+
+\defgroup video_drv_events Video Driver Event Defines
+\ingroup video_drv_defines
+\details
+Event definitions specify events that can be reported via callback function \ref VideoDrv_Event_t.
 @{
 \def VIDEO_DRV_EVENT_FRAME
 \details Triggered to indicate that a new frame is available in buffer.
@@ -298,17 +307,26 @@ Video driver provides various definitions to simplify use of its \ref video_drv_
 \details Triggered to indicate that end of file has been reached.
 @}
 
+
 @{
 \def VIDEO_DRV_MODE_SINGLE
 \def VIDEO_DRV_MODE_CONTINUOS
 @}
 
+\defgroup video_drv_errors Video Driver Return Codes
+\ingroup video_drv_defines
+\details
+Error code definitions map the status results that can be returned by \ref video_drv_functions.
 @{
 \def VIDEO_DRV_OK
 \def VIDEO_DRV_ERROR
 \def VIDEO_DRV_ERROR_PARAMETER
 @}
 
+\defgroup video_drv_colors Video Driver Color Formats
+\ingroup video_drv_defines
+\details
+Color format definitions specify supported color formats used for channel configuration.
 @{
 \def VIDEO_DRV_COLOR_FORMAT_BEGIN
 \def VIDEO_DRV_COLOR_GRAYSCALE8

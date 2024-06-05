@@ -1,71 +1,26 @@
 # Using AVH FVPs {#Using}
 
-[comment]:[TOC]
-This section gives an overview on how to use the **Arm Fixed Virtual Platforms (FVPs)** in AVH context.
+This section gives an overview on how to use the **Arm Fixed Virtual Platforms (FVPs)** in command line interface.
 
-The FVP simulation models in AVH correspond to a subset of [Arm Fast Models Fixed Virtual Platforms](https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms) with extensions for \ref arm_cmvp.
+[Infrastructure chapter](../../infrastructure/html/index.html) provides details on how to obtain AVH FVPs and use them in various cloud-native workflows or desktop setups, such as GitHub and Keil MDK.
 
-They can be accessed in cloud-native and desktop environments as explained in [Infrastructure chapter](../../infrastructure/html/index.html). The table below lists the available models:
-
-<table>
-<tr>
-<th style="width:30%">FVP Simulation Model Name   </th><th style="width:16%">Processor Cores   </th><th>Overview Description    </th></tr>
-<tr>
-<td>FVP_MPS2_Cortex-M0        </td><td>Cortex-M0   </td><td><a href="https://developer.arm.com/documentation/dai0382">ARM Cortex-M0 SMM on V2M-MPS2 (AppNote AN382)</a>    </td></tr>
-<tr>
-<td>FVP_MPS2_Cortex-M0plus   </td><td>Cortex-M0+   </td><td><a href="https://developer.arm.com/documentation/dai0383">ARM Cortex-M0+ SMM on V2M-MPS2 (AppNote AN383)</a>    </td></tr>
-<tr>
-<td>FVP_MPS2_Cortex-M3       </td><td>Cortex-M3   </td><td><a href="https://developer.arm.com/documentation/dai0385">ARM Cortex-M3 SMM on V2M-MPS2 (AppNote AN385)</a>    </td></tr>
-<tr>
-<td>FVP_MPS2_Cortex-M4       </td><td>Cortex-M4   </td><td><a href="https://developer.arm.com/documentation/dai0386">ARM Cortex-M4 SMM on V2M-MPS2 (AppNote AN386)</a>    </td></tr>
-<tr>
-<td>FVP_MPS2_Cortex-M7       </td><td>Cortex-M7   </td><td><a href="https://developer.arm.com/documentation/dai0386">ARM Cortex-M7 SMM on V2M-MPS2 (AppNote AN399)</a>    </td></tr>
-<tr>
-<td>FVP_MPS2_Cortex-M23      </td><td>Cortex-M23 (2x)   </td><td><a href="https://developer.arm.com/documentation/dai0519">ARM Cortex-M23 IoT Subsystem for V2M-MPS2+ (AppNote AN519)</a>    </td></tr>
-<tr>
-<td>FVP_MPS2_Cortex-M33      </td><td>Cortex-M33 (2x)   </td><td><a href="https://developer.arm.com/documentation/dai0505">ARM Cortex-M33 IoT Subsystem for V2M-MPS2+ (AppNote AN505)</a>    </td></tr>
-<tr>
-<td>FVP_MPS2_Cortex-M35P     </td><td>Cortex-M35P (2x)   </td><td><a href="https://developer.arm.com/documentation/100966/latest/MPS2-Platform-FVPs/FVP-MPS2-Cortex-M35P">FVP_MPS2_Cortex-M35P in FVP Reference Guide</a>    </td></tr>
-<tr>
-<td>FVP_MPS2_Cortex-M52      </td><td>Cortex-M52 (2x)   </td><td><a href="https://developer.arm.com/documentation/100966/latest/MPS2-Platform-FVPs/FVP-MPS2-Cortex-M52">FVP_MPS2_Cortex-M52 in FVP Reference Guide</a>    </td></tr>
-<tr>
-<td>FVP_MPS2_Cortex-M55      </td><td>Cortex-M55 (2x)  </td><td><a href="https://developer.arm.com/documentation/100966/latest/MPS2-Platform-FVPs/FVP-MPS2-Cortex-M55">FVP_MPS2_Cortex-M55 in FVP Reference Guide</a>.<br  />
-It is recommended to use Corstone-300 FVP models for Cortex-M55.    </td></tr>
-<tr>
-<td>FVP_MPS2_Cortex-M85   </td><td>Cortex-M85 (2x)  </td><td><a href="https://developer.arm.com/documentation/100966/latest/MPS2-Platform-FVPs/FVP-MPS2-Cortex-M55">FVP_MPS2_Cortex-M85 in FVP Reference Guide</a>.<br  />
-It is recommended to use Corstone-310/315 FVP models for Cortex-M85.    </td></tr>
-<tr>
-<td>FVP_MPS3_Corstone_SSE-300   </td><td>Cortex-M55   </td><td><a href="https://developer.arm.com/documentation/100966/latest/Arm--Corstone-SSE-300-FVP">Arm Corstone SSE-300 FVP</a>    </td></tr>
-<tr>
-<td>FVP_Corstone_SSE-300_Ethos-U55   </td><td>Cortex-M55,<br/>Ethos-U55   </td><td><a href="https://developer.arm.com/documentation/100966/latest/Arm--Corstone-SSE-300-FVP">Arm Corstone SSE-300 FVP</a>    </td></tr>
-<tr>
-<td>FVP_Corstone_SSE-300_Ethos-U65   </td><td>Cortex-M55,<br/>Ethos-U65   </td><td><a href="https://developer.arm.com/documentation/100966/latest/Arm--Corstone-SSE-300-FVP">Arm Corstone SSE-300 FVP</a>    </td></tr>
-<tr>
-<td>FVP_Corstone_SSE-310   </td><td>Cortex-M85<br/>Ethos-U55   </td><td><a href="https://developer.arm.com/documentation/100966/latest/Arm--Corstone-SSE-310-FVP">Arm Corstone SSE-310 FVP</a>    </td></tr>
-<tr>
-<td>FVP_Corstone_SSE-310_Ethos-U65   </td><td>Cortex-M85,<br/>Ethos-U65   </td><td><a href="https://developer.arm.com/documentation/100966/latest/Arm--Corstone-SSE-310-FVP">Arm Corstone SSE-310 FVP</a>    </td></tr>
-<tr>
-<td>FVP_Corstone_SSE-315   </td><td>Cortex-M85,<br/>Ethos-U65,<br/>Mali-C55   </td><td>Public documentation pending   </td></tr>
-</table>
-
-
-## Running User Applications {#Execution}
+## Running User Applications in CLI {#Execution}
 
 The FVP models can be executed from command prompt by using the model name followed by the model options. Development tools may abstract the execution with GUI, but the underlying approach stays the same.
 
 Below is an example of the command for running a program on the FVP model for Corstone-300 with Ethos-U55 in Linux environment:
 
 ```bash
-FVP_Corstone_SSE-300_Ethos-U55 -a Objects\microspeech.axf -C mps3_board.v_path= ../VSI/audio/python/ -f fvp_config.txt  --stat --simlimit 24
+FVP_Corstone_SSE-300_Ethos-U55 -a project.axf -C mps3_board.v_path=./vsi_py/ -f fvp_config.txt --simlimit 24 --stat
 ```
 
 Where:
-  - `FVP_Corstone_SSE-300_Ethos-U55` is the simulation model name. Note that on Windows the executable files shall be used, for example `FVP_Corestone_SSE-300_Ethos-U55.exe`. 
-  - `-a` (or `--application`) option specifies the application binary file to run on the model (`Objects\microspeech.axf` in this example).
-  - `-f` (or `--config-file`) specifies the configuration file for the simulation model (`fvp_config.txt` in this case). See \ref Config.
-  - `-C mp3_board.v_path` specifies model configuration parameter for VSI python scripts for \ref arm_cmvp (`"../VSI/audio/python"` here). Use `mp2_board.v_path`, `mps3_board.v_path` or `mps4_board.v_path`, depending on the underlying board.
-  - `--stat` instructs to print run statistics on simulation exit.
-  - `--simlimit` specifies the maximum number of seconds to simulate.
+ - `FVP_Corstone_SSE-300_Ethos-U55` is the simulation model name. Note that on Windows the executable files shall be used, for example `FVP_Corestone_SSE-300_Ethos-U55.exe`. 
+ - `-a` (or `--application`) option specifies the application binary file to run on the model (`project.axf` in this example).
+ - `-f` (or `--config-file`) specifies the configuration file for the simulation model (`fvp_config.txt` in this case). See \ref Config.
+ - `-C mp3_board.v_path` specifies model configuration parameter for VSI python scripts for \ref arm_cmvp (`"./vsi_py/"` here). Use `mp2_board.v_path`, `mps3_board.v_path` or `mps4_board.v_path`, depending on the underlying board.
+ - `--stat` instructs to print run statistics on simulation exit.
+ - `--simlimit` specifies the maximum number of seconds to simulate.
 
 The available command options can be listed using the `--help` option. See chapter [FVP-command-line-options](https://developer.arm.com/documentation/100966/latest/Getting-Started-with-Fixed-Virtual-Platforms/FVP-command-line-options) in the FVP Reference Guide for additional documentations.
 

@@ -14,7 +14,7 @@ AVH simulation models enable execution of software programs on virtual targets. 
 
   <h2>AVH Fixed Virtual Platforms (FVPs)</h2>
 
-  - Precise simulation models of Arm Cortex-M based reference platforms, such as Corstone-300/310. Learn more at [Simulation](../../simulation/html/index.html).
+  - Precise simulation models of Arm Cortex-M based reference platforms, such as Corstone-315/310/300. Learn more at [Simulation](../../simulation/html/index.html).
   - Available for cloud-native and desktop environments. See [Infrastructure](../../infrastructure/html/index.html) for details.
 
   <h2>AVH Corellium models</h2>
@@ -39,7 +39,7 @@ Various Resources explain how to integrate Arm Virtual Hardware into workflows c
 
 Usage examples show typical use cases and range from audio processing, ML algorithm testing, up to IoT applications that interface to Cloud Service providers and Over-the-Air Firware Updates (OTAU).
 
-**This documentation** is largely dedicated to **AVH FVPs** and has following sections that can be accessed as document tabs as well:
+**This documentation** is largely dedicated to the **AVH FVPs** and has following sections that can be accessed as document tabs as well:
 
 Section                                                    | Description
 :----------------------------------------------------------|:--------------------
@@ -99,6 +99,20 @@ For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html
 <th>Changes</th>
 </tr>
 <tr>
+<td>2.0.0 (June 5, 2024)</td>
+<td>
+ - Removed beta status
+ - Added Arm Tools Artifactory:
+ - Added AVH FVP models:
+   - FVP_Corstone_SSE-315
+   - FVP_MPS2_Cortex-M85
+   - FVP_MPS2_Cortex-M55
+   - FVP_MPS2_Cortex-M52
+   - FVP_MPS2_Cortex-M35P
+ - Reworked documentation
+</td>
+</tr>
+<tr>
 <td>1.3.1-beta (Jan 26, 2023)</td>
 <td>
  - License validity period for installed Arm tools is extended.
@@ -108,11 +122,11 @@ For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html
 <tr>
 <td>1.3.0-beta (Sept 22, 2022)</td>
 <td>
- - Arm Corstone SSE-300 model is supported with [**Keil Studio Cloud**](https://www.keil.arm.com/boards/arm-v2m-mps3-sse-300-fvp-610bb98/).
- - Provided [**eventlist utility**](https://github.com/ARM-software/CMSIS-View/tree/main/tools/eventlist) to process Event Recorder logs obtained with Arm FVP targets.
+ - Arm Corstone SSE-300 model is supported with [Keil Studio Cloud](https://www.keil.arm.com/boards/arm-v2m-mps3-sse-300-fvp-610bb98/).
+ - Provided [eventlist utility](https://github.com/ARM-software/CMSIS-View/tree/main/tools/eventlist) to process Event Recorder logs obtained with Arm FVP targets.
  - Added new FVP model - VHT_Corstone_SSE-310_Ethos-U65 to the AMI, see [Using Arm Fixed Virtual Platforms](../../simulation/html/Using.html).
- - Added installation of [**CMSIS-Toolbox v1.0.0**](https://github.com/Open-CMSIS-Pack/CMSIS-Toolbox) to the AMI, that also includes CMSIS-Build for command-line project builds.
- - Updated [**examples**](../../examples/html/index.html) to use dynamic credentials (IAM Role) in the GitHub CI workflow, removing the need for storing AWS credentials in GitHub Secrets.
+ - Added installation of [CMSIS-Toolbox v1.0.0](https://github.com/Open-CMSIS-Pack/CMSIS-Toolbox) to the AMI, that also includes CMSIS-Build for command-line project builds.
+ - Updated [examples](../../examples/html/index.html) to use dynamic credentials (IAM Role) in the GitHub CI workflow, removing the need for storing AWS credentials in GitHub Secrets.
  - Removed preinstalled Bootloader and OpenSuSE software for Corstone-1000.
  - Removed preinstalled CMSIS Packs.
 </td>
@@ -127,28 +141,28 @@ For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html
 <td>1.2.2-beta (May 10, 2022)</td>
 <td>
  - New versioning scheme to match the AMI version (see [AMI Inventory](../../infrastructure/html/ami_inventory.html)).
- - [**CMSIS-RTOS2 Validation**](https://github.com/ARM-software/CMSIS-RTOS2_Validation): Advanced test suite for validating CMSIS-RTOS2 implementations on supported Cortex-M cores runs using AVH.
+ - [CMSIS-RTOS2 Validation](https://github.com/ARM-software/CMSIS-RTOS2_Validation): Advanced test suite for validating CMSIS-RTOS2 implementations on supported Cortex-M cores runs using AVH.
  - Corstone-310 model fixes: NPU access fix as well as a parameter for the flash region size allowing it to be a maximum of 64MB.
 </td>
 </tr>
 <tr>
 <td>0.3-beta (Apr 2022)</td>
 <td>Added features:
- - [**Corstone-310 and Corstone-1000**](../../simulation/html/Using.html): added new simulation models.
- - [**Integration with Jenkins**](../../infrastructure/html/run_ami_jenkins.html): example of AVH AMI usage in Jenkins CI pipelines.
- - [**Event Recorder Semihosting Support**](https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_use.html#er_semihosting): allows to generate Event Recorder logs in AVH AMI environment.
- - [**AWS MQTT Example**](../../examples/html/aws_mqtt.html): IoT application with MQTT connectivity to AWS cloud service.
- - [**ATS-Keyword Example**](https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword): keyword detection application based on [Arm Total Solutions for IoT](https://github.com/ARM-software/ATS-Keyword/).
+ - [Corstone-310 and Corstone-1000](../../simulation/html/Using.html): added new simulation models.
+ - [Integration with Jenkins](../../infrastructure/html/run_ami_jenkins.html): example of AVH AMI usage in Jenkins CI pipelines.
+ - [Event Recorder Semihosting Support](https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_use.html#er_semihosting): allows to generate Event Recorder logs in AVH AMI environment.
+ - [AWS MQTT Example](../../examples/html/aws_mqtt.html): IoT application with MQTT connectivity to AWS cloud service.
+ - [ATS-Keyword Example](https://github.com/ARM-software/open-iot-sdk/tree/main/examples/ats-keyword): keyword detection application based on [Arm Total Solutions for IoT](https://github.com/ARM-software/ATS-Keyword/).
 </td>
 </tr>
 <tr>
 <td>0.2-beta (Feb 2022)</td>
 <td>Added features:
- - [**Extended Target support**](../../simulation/html/Using.html): additional Cortex-M processors are supported: Cortex-M0/M0+/M3/M4/M7/M23/M33.
- - [**Support in MDK-Professional**](../../infrastructure/html/run_mdk_pro.html): enables desktop development in classic tooling.
- - [**VIO Interface**](../../simulation/html/group__arm__vio.html): simple interface to control I/O such as switches and LEDs via Python scripts.
- - [**VSocket Interface**](../../simulation/html/group__arm__vsocket.html): BSD socket interface that connects the application under test to networks, including public Internet.
- - [**Get-Started example**](../../examples/html/GetStarted.html): added simple example demonstrating how to setup a Continuous Integration (CI) workflow using Arm Virtual Hardware.
+ - [Extended Target support](../../simulation/html/Using.html): additional Cortex-M processors are supported: Cortex-M0/M0+/M3/M4/M7/M23/M33.
+ - [Support in MDK-Professional](../../infrastructure/html/run_mdk_pro.html): enables desktop development in classic tooling.
+ - [VIO Interface](../../simulation/html/group__arm__vio.html): simple interface to control I/O such as switches and LEDs via Python scripts.
+ - [VSocket Interface](../../simulation/html/group__arm__vsocket.html): BSD socket interface that connects the application under test to networks, including public Internet.
+ - [Get-Started example](../../examples/html/GetStarted.html): added simple example demonstrating how to setup a Continuous Integration (CI) workflow using Arm Virtual Hardware.
 </td>
 </tr>
 <tr>
@@ -161,7 +175,7 @@ For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html
 
 The current beta version of of Arm Virtual Hardware has the following known issues:
 
-[**Virtual Interfaces**](../../simulation/html/group__arm__cmvp.html):
+[Virtual Interfaces](../../simulation/html/group__arm__cmvp.html):
   - After processor reset virtual interfaces may not work correctly. So it is required to restart the debug/run session.
 
 # Feedback and Support {#Support}

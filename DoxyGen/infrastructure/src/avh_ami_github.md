@@ -1,4 +1,3 @@
-
 # Run AMI with GitHub Actions {#run_ami_github}
 
 GitHub Actions help you to automate tasks within your software development life cycle. They are event-driven, meaning that you can run a series of commands after a specified event has occurred. For example, every time someone commits a push or creates a pull request for a repository branch, you can automatically trigger a job that executes automated build and run scripts on Arm Virtual Hardware. Refer to [Introduction to GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions) for information about the components of GitHub Actions.

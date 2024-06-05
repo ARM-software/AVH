@@ -13,7 +13,7 @@ Currently audio driver implementations and examples are available for the follow
   .
 and support for other hardware platforms can be added following the same concept.
 
-[**Micro Speech Example**](../../examples/html/MicroSpeech.html) project demonstrates use of this audio driver in both the AVH test environment and on the physical evaluation boards.
+[Micro Speech Example](../../examples/html/MicroSpeech.html) project demonstrates use of this audio driver in both the AVH test environment and on the physical evaluation boards.
 
 The table below references the files that implement the audio peripheral:
 

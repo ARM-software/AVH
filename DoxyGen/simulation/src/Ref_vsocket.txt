@@ -7,7 +7,7 @@
 \brief IP network connectivity via host system
 \details
 
-The **Virtual Socket Interface (VSocket)** provides IP connectivity to the user application by connecting it to [**BSD sockets**](https://en.wikipedia.org/wiki/Berkeley_sockets) on the Host system. Figure below demonstrates the concept.
+The **Virtual Socket Interface (VSocket)** provides IP connectivity to the user application by connecting it to [BSD sockets](https://en.wikipedia.org/wiki/Berkeley_sockets) on the Host system. Figure below demonstrates the concept.
 
 \image html ./images/vsocket_structure.png
 

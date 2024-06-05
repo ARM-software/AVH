@@ -4,10 +4,12 @@
 
 Following methods of accessing and using AVH are explained in this section:
 
- - \ref avh_gh enables AVH-based CI flows for building and testing embedded projects mantained in GitHub repositories.
+ - \ref avh_fvp_artifactory gives universal access to AVH FVP models that can be used in different workflows.
 
- - \ref AWS "AVH Amazon Machine Image (AMI)" allows flexible AVH integration in custom DevOps flows with the full power of AWS services behind.
+ - \ref avh_gh_actions simplifies use of AVH FVPs from Arm Tools Artifactory for building and testing embedded projects mantained in GitHub repositories.
 
- - \ref Local is useful for development and program debug.
+ - \ref avh_desktop is useful for local development and program debugging.
+ 
+ - \ref avh_beta guides through the AVH FVP integrations that are in beta/experimental status.
 
 ![Create, debug, and test](./create_debug_test.png)

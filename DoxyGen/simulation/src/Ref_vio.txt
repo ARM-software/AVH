@@ -9,7 +9,7 @@ The **Virtual Interfaces** in Arm FVPs implement various CPU peripherals that al
 
   - The \ref arm_vio interface controls simple binary state I/O such as LED and switches.
   - The \ref arm_vsi provides up to 8 channels for data streaming.
-  - The \ref arm_vsocket connects the user application to [**BSD sockets**](https://en.wikipedia.org/wiki/Berkeley_sockets) on the Host computer for IP network connectivity.
+  - The \ref arm_vsocket connects the user application to [BSD sockets](https://en.wikipedia.org/wiki/Berkeley_sockets) on the Host computer for IP network connectivity.
 
 Both \ref arm_vio "VIO" and \ref arm_vsi "VSI" connect to Python and enable flexible scripting for test automation.
 

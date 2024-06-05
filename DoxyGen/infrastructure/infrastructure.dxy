@@ -47,13 +47,13 @@ PROJECT_NAME           = "Infrastructure"
 # could be handy for archiving the generated documentation or if some version
 # control system is used.
 
-PROJECT_NUMBER         = "Version 1.3.1 - beta"
+PROJECT_NUMBER         = "Version 2.0.0"
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "Infrastructure Service and Tool Integration"
+PROJECT_BRIEF          = "Infrastructure Services and Tool Integrations"
 
 # With the PROJECT_LOGO tag one can specify a logo or an icon that is included
 # in the documentation. The maximum height of the logo should not exceed 55
@@ -916,15 +916,20 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = ./src/main.md  \
+INPUT                  = ./src/main.md \
+                         ./src/avh_artifactory.md \
+                         ./src/avh_gh_actions.md \
+                         ./src/avh_desktop.md \
+                         ./src/avh_mdk_vscode.md \
+                         ./src/avh_mdk_uv4.md \
+                         ./src/avh_beta.md \
                          ./src/avh_gh_runner.md \
                          ./src/avh_gh_inventory.md \
-                         ./src/avh_ami.md  \
-                         ./src/avh_ami_inventory.md  \
+                         ./src/avh_ami.md \
+                         ./src/avh_ami_inventory.md \
                          ./src/avh_ami_github.md \
                          ./src/avh_ami_jenkins.md \
                          ./src/avh_ami_ds.md \
-                         ./src/mdk.md \
                          ./src/avhclient.md \
 
 # This tag can be used to specify the character encoding of the source files
