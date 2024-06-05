@@ -128,7 +128,7 @@ $(document).ready(function(){initNavTree('group__arm__vsi__pyenv.html',''); init
 </p>
 <p>Python environment for Arm FVPs. </p>
 <p>Arm FVPs require an installation of <b>Python 3.9</b> for running the Python virtual interfaces. If you are using a Windows machine you can use an embedded Python installation in FVPs root directory, otherwise a system installation is required. Additional Python packages can be added using <em>pip</em>. In case you are using embedded Python installation see section: <a class="el" href="group__arm__vsi__pyenv.html#embedded-pip-vsi">Install additional packages in embedded Python</a></p>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<h1><a class="anchor" id="autotoc_md1"></a>
 Python requirements</h1>
 <p>The following packages are required on Linux systems (Ubuntu 20.04 and later):</p><ul>
 <li><em>libatomic1</em> </li>
@@ -147,7 +147,7 @@ Install additional packages in embedded Python</h1>
 <li>Install new packages using: <div class="fragment"><div class="line">.\python.exe -m pip install &lt;package&gt;</div>
 </div><!-- fragment --> The packages will be installed in <code>Lib\site-packages</code> subfolder.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3"></a>
+<h1><a class="anchor" id="autotoc_md2"></a>
 Known issues</h1>
 <ul>
 <li>Some Python packages can't be imported directly in the Python virtual interfaces, because they are incompatible with Python sub-interpreters (e.g. <em>numpy</em>). Possible workaround for this issue is to split the Python module into client and server scripts.</li>

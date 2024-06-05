@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"group__arm__vsocket__api.html#structvSocketSendToIO__t_8param":[3,0,2,0,24],
 "group__arm__vsocket__api.html#structvSocketSetOptIO__t":[3,0,2,0,13],
 "group__arm__vsocket__api.html#structvSocketSetOptIO__t_8param":[3,0,2,0,28],
 "group__arm__vsocket__cases.html":[3,0,2,1],
@@ -89,7 +90,6 @@ var NAVTREEINDEX1 =
 "index.html#Models":[0,0],
 "index.html#Physical_Hardware":[0,2],
 "index.html#Virtual_Interfaces":[0,1],
-"md_src_avh_fvp_cmsis.html":[2],
 "modules.html":[3],
 "namespacearm__vio.html":[3,0,0,2,0],
 "namespacearm__vsi0.html":[3,0,1,2,0],

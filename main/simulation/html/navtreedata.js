@@ -35,7 +35,7 @@ var NAVTREE =
         [ "Semihosting", "Using.html#semihosting", null ]
       ] ]
     ] ],
-    [ "CMSIS-based projects for AVH FVPs", "md_src_avh_fvp_cmsis.html", null ],
+    [ "CMSIS-based projects for AVH FVPs", "avh_fvp_cmsis.html", null ],
     [ "API Reference", "modules.html", "modules" ]
   ] ]
 ];
@@ -43,7 +43,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Using.html",
-"group__arm__vsocket__api.html#structvSocketSetOptIO__t"
+"group__arm__vsocket__api.html#structvSocketSendToIO__t_8param"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
