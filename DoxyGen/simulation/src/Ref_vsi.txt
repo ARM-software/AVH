@@ -19,9 +19,9 @@ By relying on common driver APIs the same application-level code can be reused f
 - Read/write accesses to the VSI peripheral registers in the FVP trigger execution of corresponding callback functions in 
 the \ref arm_vsi_py "VSI Python scripts" that implement peripheral behavior in the target scenario.
 
-- An FVP model can be run on a Windows or Linux host and executes the target firmware application image.
-The path to the VSI python scripts shall be provided to the FVP using the command-line option `-V`, or `--v_path`, see \ref Execution.
-
+- An FVP model can be run on a host OS and executes the target firmware application image.
+The path to the VSI python scripts shall be provided to the FVP using the model configuration parameter `v_path`, that depending on the model is part of the `mps2_board`, `mps3_board` or `mps4_board` component. Section \ref Execution gives an example.
+ 
 Section \ref arm_vsi_cases explains in details the reference implementations of VSI-based peripherals.
 Specifically \ref arm_vsi_audio implementing audio streaming input from a local audio wave file and \ref arm_vsi_video implementing video streaming from a local video or image file.
 

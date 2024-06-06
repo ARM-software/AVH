@@ -13,6 +13,4 @@ CMSIS-Core Validation  | Test suite for validating CMSIS-Core implementations on
 CMSIS-RTOS2 Validation  | Test suite for validating CMSIS-RTOS2 implementations on Cortex-M cores using different toolchains and AVH FVPs | [github.com/Arm-Software/CMSIS-RTOS2_Validation](https://github.com/Arm-Software/CMSIS-RTOS2_Validation)
 
 
-https://github.com/ARM-software/AVH-MLOps
-
 Section \ref examples_beta provides examples that demonstrate use of AVH FVPs in experimental environments or are not actively maintained.

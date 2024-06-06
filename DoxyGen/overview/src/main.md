@@ -91,8 +91,6 @@ For unit and integration tests virtual targets offer additional advantages over 
 
 \page History Release History
 
-For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html/ami_inventory.html).
-
 <table>
 <tr>
 <th>Version</th>
@@ -101,8 +99,11 @@ For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html
 <tr>
 <td>2.0.0 (June 5, 2024)</td>
 <td>
- - Removed beta status
- - Added Arm Tools Artifactory:
+ - Removed beta status.
+ - VIO/VSI python script path is moved into model configuration. See [Using AVH FVPs](../../simulation/html/using.html).
+ - Added [Arm Tools Artifactory](../../infrastructure/html/avh_fvp_artifactory.html) support.
+ - Added [Arm GitHub Actions](../../infrastructure/html/avh_gh_actions.html) support.
+ - Added [Arm Keil Studio VsCode](../../infrastructure/html/run_mdk_vscode.html) support.
  - Added AVH FVP models:
    - FVP_Corstone_SSE-315
    - FVP_MPS2_Cortex-M85
@@ -110,6 +111,7 @@ For details of the AVH AMI content see [AMI Inventory](../../infrastructure/html
    - FVP_MPS2_Cortex-M52
    - FVP_MPS2_Cortex-M35P
  - Reworked documentation
+ - AWS AMI and custom GitHub Runner support are kept as [experimental](../../infrastructure/html/avh_beta.html).
 </td>
 </tr>
 <tr>

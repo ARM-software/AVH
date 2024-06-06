@@ -1,4 +1,4 @@
-# AVH FVPs with GitHub Actions {#avh_gh_actions}
+# AVH FVPs with Arm GitHub Actions {#avh_gh_actions}
 
 GitHub Actions allow you to automate build, test, and deployment pipelines for GitHub-based projects.
 
@@ -8,7 +8,7 @@ This section explains how to setup your GitHub Runner environment for executing 
 
 ## Setup with CMSIS-Actions {#arm_cmsis_actions}
 
-Arm provides several GitHub Actions that simplify installation and use of AVH FVPs and other Arm Tools within your own GitHub CI workflows. Following actions are maintained in the [github.com/ARM-software/cmsis-actions](https://github.com/ARM-software/cmsis-actions) repository:
+Arm provides several GitHub Actions that simplify installation of AVH FVPs and other Arm Tools within your own GitHub CI workflows. Following actions are maintained in the [github.com/ARM-software/cmsis-actions](https://github.com/ARM-software/cmsis-actions) repository:
 
  - **vcpkg action**  performs environment setup from Arm Tools Artifactory based on vcpkg configuration.<br/>This follows the concept explained in \ref avh_fvp_vcpkg.<br/>
  Following step can be added to the workflow to execute this action:
@@ -22,7 +22,7 @@ Arm provides several GitHub Actions that simplify installation and use of AVH FV
  ```
 .
 
-- **armlm action** activates an Arm user based license (UBL) on GitHub Runner.<br/>
+- **armlm action** activates an Arm user based license (UBL) for Arm Tools on your GitHub Runner.<br/>
  For example add the following step to your workflow to activate a Keil-MDK Community license that allows evaluation and open-source usage of Arm Tools:
  ```yml
  - name: Activate Arm license
@@ -30,6 +30,7 @@ Arm provides several GitHub Actions that simplify installation and use of AVH FV
  ```
  The activated environment is preserved into `$GITHUB_PATH` and `$GITHUB_ENV` so that it can be used by subsequent steps.
 
+The actions execute on the GitHub runner operations for vcpkg-based tool download and license activation explained in the \ref avh_fvp_artifactory.
 
 ## Program Execution {#avh_gh_run}
 

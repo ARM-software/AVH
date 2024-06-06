@@ -135,8 +135,8 @@ Index array for digital I/O values.
 \brief      VIO python interface.
 \details
 
-The Python interface described in this section triggers on peripheral register access of the \ref arm_vio_api.
+The Python interface described in this section triggers upon peripheral register accesses of the \ref arm_vio_api.
 
-The path to the python script implementing the interface shall be provided to the target in command line option \ref Execution "-V or --v_path".
+The path to the python script implementing the interface shall be provided to the target in the model configuration paramater `v_path` that depending on the model is part of the `mps2_board`, `mps3_board` or `mps4_board` component. Section \ref Execution gives an example.
 
 */
