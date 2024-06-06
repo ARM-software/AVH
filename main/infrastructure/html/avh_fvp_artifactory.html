@@ -153,8 +153,14 @@ Download with vcpkg</h1>
 <div class="line">}</div>
 </div><!-- fragment --><h1><a class="anchor" id="avh_fvp_lic_act"></a>
 License management</h1>
-<p>AVH FVPs as well as other Arm Tools obtained from the Arm Tools Artifactory require an active Arm user-based license for their operation.</p>
-<p>Your use of an Arm tool is subject to your acceptance of the End User License Agreement for Arm Software Development Tools, located within the 'license_terms' folder of the downloaded archive. By installing and using the Arm tool, you agree to be bound by the terms and conditions of the end user license agreement. </p>
+<p>AVH FVPs as well as other Arm Tools provided in the Arm Tools Artifactory require an active <a href="https://developer.arm.com/Tools%20and%20Software/User-based%20Licensing">Arm user-based license (UBL)</a> for their operation.</p>
+<p>Arm tools artifacts include the license management utility armlm that shall be used to <a href="https://developer.arm.com/documentation/102516/1-3/Activate-and-deactivate-your-product-license">activate and deactivate</a> a UBL license in your environment.</p>
+<p>For evaluation and non-commercial use you can activate an <a href="https://www.keil.arm.com/keil-mdk/#mdk-v6-editions">MDK-Community Edition</a> that also enables AVH FVPs. Use the following command for that:</p>
+<div class="fragment"><div class="line">armlm activate -product KEMDK-COM0 -server https://mdk-preview.keil.arm.com</div>
+</div><!-- fragment --><p>For commercial use you need to obtain a license for <a href="https://www.keil.arm.com/keil-mdk/#mdk-v6-editions">MDK-Professional edition</a> or <a href="https://www.arm.com/products/development-tools/success-kits">Arm Success Kit</a>.</p>
+<blockquote class="doxtable">
+<p>&zwj;<b>Note</b> Your use of an Arm tool is subject to your acceptance of the End User License Agreement for Arm Software Development Tools, located within the 'license_terms' folder of the downloaded archive. By installing and using the Arm tool, you agree to be bound by the terms and conditions of the end user license agreement. </p>
+</blockquote>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
