@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Infrastructure: AVH FVPs with GitHub Actions</title>
+<title>Infrastructure: AVH FVPs with Arm GitHub Actions</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="extra_navtree.css" rel="stylesheet" type="text/css"/>
@@ -120,7 +120,7 @@ $(document).ready(function(){initNavTree('avh_gh_actions.html',''); initResizabl
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">AVH FVPs with GitHub Actions </div></div>
+  <div class="headertitle"><div class="title">AVH FVPs with Arm GitHub Actions </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_src_avh_gh_actions"></a> GitHub Actions allow you to automate build, test, and deployment pipelines for GitHub-based projects.</p>
@@ -128,7 +128,7 @@ $(document).ready(function(){initNavTree('avh_gh_actions.html',''); initResizabl
 <p>This section explains how to setup your GitHub Runner environment for executing programs on AVH FVPs.</p>
 <h1><a class="anchor" id="arm_cmsis_actions"></a>
 Setup with CMSIS-Actions</h1>
-<p>Arm provides several GitHub Actions that simplify installation and use of AVH FVPs and other Arm Tools within your own GitHub CI workflows. Following actions are maintained in the <a href="https://github.com/ARM-software/cmsis-actions">github.com/ARM-software/cmsis-actions</a> repository:</p>
+<p>Arm provides several GitHub Actions that simplify installation of AVH FVPs and other Arm Tools within your own GitHub CI workflows. Following actions are maintained in the <a href="https://github.com/ARM-software/cmsis-actions">github.com/ARM-software/cmsis-actions</a> repository:</p>
 <ul>
 <li><b>vcpkg action</b> performs environment setup from Arm Tools Artifactory based on vcpkg configuration.<br  />
 This follows the concept explained in <a class="el" href="avh_fvp_artifactory.html#avh_fvp_vcpkg">Download with vcpkg</a>.<br  />
@@ -141,11 +141,12 @@ This follows the concept explained in <a class="el" href="avh_fvp_artifactory.ht
 </div><!-- fragment --></li>
 </ul>
 <ul>
-<li><b>armlm action</b> activates an Arm user based license (UBL) on GitHub Runner.<br  />
+<li><b>armlm action</b> activates an Arm user based license (UBL) for Arm Tools on your GitHub Runner.<br  />
  For example add the following step to your workflow to activate a Keil-MDK Community license that allows evaluation and open-source usage of Arm Tools: <div class="fragment"><div class="line">- name: Activate Arm license</div>
 <div class="line">  uses: ARM-software/cmsis-actions/armlm@v1</div>
 </div><!-- fragment --> The activated environment is preserved into <code>$GITHUB_PATH</code> and <code>$GITHUB_ENV</code> so that it can be used by subsequent steps.</li>
 </ul>
+<p>The actions execute on the GitHub runner operations for vcpkg-based tool download and license activation explained in the <a class="el" href="avh_fvp_artifactory.html">AVH FVPs in Arm Tools Artifactory</a>.</p>
 <h1><a class="anchor" id="avh_gh_run"></a>
 Program Execution</h1>
 <p>After AVH FVPs and other tools are installed and activated on the GitHub Runner (see <a class="el" href="avh_gh_actions.html#arm_cmsis_actions">Setup with CMSIS-Actions</a>) you can use the command line interface for building your project (e.g with cbuild utility) and run the firmware on the AVH FVP target (see <a href="../../simulation/html/using.html#Execution">Running User Applications in CLI</a>).</p>

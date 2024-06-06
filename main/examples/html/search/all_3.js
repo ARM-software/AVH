@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['micro_20speech_20example_0',['Micro Speech Example',['../MicroSpeech.html',1,'']]]
+  ['legacy_20and_20experimental_0',['Legacy and experimental',['../examples_beta.html',1,'']]]
 ];

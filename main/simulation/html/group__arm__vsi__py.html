@@ -180,7 +180,7 @@ logging&#160;</td><td class="memItemRight" valign="bottom"><b>verbosity</b> = lo
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
 <p>VSI python interface. </p>
 <p>The Python interface described in this section triggers on peripheral registers and events of the <a class="el" href="group__arm__vsi__api.html">VSI API</a>. Each peripheral instance has a separate dedicated Python script file with the names <b>arm_vsi0.py</b>, <b>arm_vsi1.py</b>, ..., <b>arm_vsi7.py</b>.</p>
-<p>The path to the python files implementing used interfaces shall be provided to the target in <a class="el" href="Using.html#Execution">-V command line option</a>. </p>
+<p>The path to the python files implementing used interfaces shall be provided via the model configuration parameter <code>v_path</code>, that depending on the model is part of the <code>mps2_board</code>, <code>mps3_board</code> or <code>mps4_board</code> component. Section <a class="el" href="Using.html#Execution">Running User Applications in CLI</a> gives an example. </p>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga2e59915d5f3148d41e6b80b0dbbf58e6" name="ga2e59915d5f3148d41e6b80b0dbbf58e6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga2e59915d5f3148d41e6b80b0dbbf58e6">&#9670;&#160;</a></span>init()</h2>

@@ -31,7 +31,7 @@ var NAVTREE =
       [ "Download with vcpkg", "avh_fvp_artifactory.html#avh_fvp_vcpkg", null ],
       [ "License management", "avh_fvp_artifactory.html#avh_fvp_lic_act", null ]
     ] ],
-    [ "AVH FVPs with GitHub Actions", "avh_gh_actions.html", [
+    [ "AVH FVPs with Arm GitHub Actions", "avh_gh_actions.html", [
       [ "Setup with CMSIS-Actions", "avh_gh_actions.html#arm_cmsis_actions", null ],
       [ "Program Execution", "avh_gh_actions.html#avh_gh_run", null ],
       [ "Example Template", "avh_gh_actions.html#avh_ci_template", null ]

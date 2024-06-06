@@ -123,14 +123,16 @@ $(document).ready(function(){initNavTree('History.html',''); initResizable(); })
   <div class="headertitle"><div class="title">Release History </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>For details of the AVH AMI content see <a href="../../infrastructure/html/ami_inventory.html">AMI Inventory</a>.</p>
-<table class="doxtable">
+<div class="textblock"><table class="doxtable">
 <tr>
 <th>Version </th><th>Changes  </th></tr>
 <tr>
 <td>2.0.0 (June 5, 2024) </td><td><ul>
-<li>Removed beta status</li>
-<li>Added Arm Tools Artifactory:</li>
+<li>Removed beta status.</li>
+<li>VIO/VSI python script path is moved into model configuration. See <a href="../../simulation/html/using.html">Using AVH FVPs</a>.</li>
+<li>Added <a href="../../infrastructure/html/avh_fvp_artifactory.html">Arm Tools Artifactory</a> support.</li>
+<li>Added <a href="../../infrastructure/html/avh_gh_actions.html">Arm GitHub Actions</a> support.</li>
+<li>Added <a href="../../infrastructure/html/run_mdk_vscode.html">Arm Keil Studio VsCode</a> support.</li>
 <li>Added AVH FVP models:<ul>
 <li>FVP_Corstone_SSE-315</li>
 <li>FVP_MPS2_Cortex-M85</li>
@@ -139,7 +141,8 @@ $(document).ready(function(){initNavTree('History.html',''); initResizable(); })
 <li>FVP_MPS2_Cortex-M35P</li>
 </ul>
 </li>
-<li>Reworked documentation   </li>
+<li>Reworked documentation</li>
+<li>AWS AMI and custom GitHub Runner support are kept as <a href="../../infrastructure/html/avh_beta.html">experimental</a>.   </li>
 </ul>
 </td></tr>
 <tr>
