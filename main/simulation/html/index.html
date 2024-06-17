@@ -189,23 +189,7 @@ FVPs with Virtual Interfaces</div></div>
 <li>The <a class="el" href="group__arm__vsocket.html">Virtual Socket Interface (VSocket)</a> connects the user application to <a href="https://en.wikipedia.org/wiki/Berkeley_sockets">BSD sockets</a> on the Host computer for IP network connectivity.</li>
 </ul>
 <p>Both <a class="el" href="group__arm__vio.html">VIO</a> and <a class="el" href="group__arm__vsi.html">VSI</a> connect to local python scripts and enable flexible scripting for test automation. Eight VSI interfaces are available and may be used in parallel to stream simultaneous multi-channel inputs and outputs. The interfaces are tailored for simulation, but can also map to physical target hardware, for example to a video camera as a VSI input.</p>
-<p>In addition the <b>Event Recorder Capturing</b> provides an interface for the <a href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_overview.html">Event Recorder</a> API. This software component enables event annotations in the application code or software component libraries. The <b>Event Recorder</b> provides visibility to the dynamic execution of an application, enables RTOS awareness, and <a href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/group__Event__Execution__Statistic.html">Event Execution Statistics</a> which helps to optimize the timing of complex algorithms.</p>
-<h1><a class="anchor" id="Physical_Hardware"></a>
-Physical Hardware</h1>
-<p><a href="https://en.wikipedia.org/wiki/Modular_programming">Modular programming</a> recommends to separate the functionality of a program into independent, interchangeable modules that use defined interfaces that abstract the hardware functionality. This design concept simplifies code re-use and allows to implement <b>Virtual Drivers</b> and <b>Hardware Drivers</b> that expose the same API and implement the same logical behavior. If built correctly, it overcomes many issues that are typically found in monolithic software and enables a staged <a href="https://en.wikipedia.org/wiki/Software_testing">software validation</a> with multiple test levels such as unit, integration, and system testing.</p>
-<p>To simplify re-targeting from FVP simulation models to final production hardware, the examples implement the concept of software layers. As the next generation tooling will provide native support for program layers, it makes it easy to work on a combination of simulated and physical hardware. The picture below examplifies this concept.</p>
-<div class="image">
-<img src="Simulation2Hardware.png" alt=""/>
-<div class="caption">
-Re-target from Simulation to Hardware</div></div>
-    <h1><a class="anchor" id="Development_Workflow"></a>
-Development Workflow</h1>
-<p>Using a flexible workflow that combines desktop and cloud-native development tools simplify the development workflow further. Using software layers, it is possible to possible to develop a new functionality with a physical board and the commit the changes to a cloud based version control system which executes a complete CI/CD integration flow. This ensures that new product innovations are thoroughly tested before they are integrate into final systems.</p>
-<div class="image">
-<img src="Workflow.png" alt=""/>
-<div class="caption">
-Development Workflow</div></div>
-    <p>This workflow mandates that a set of test cases are developed. For test case development and failure analysis, it is currently recommended to use desktop tools such as <a href="https://developer.arm.com/tools-and-software/embedded/keil-mdk">Keil MDK</a>. However, over time the more flexible <a href="https://www.keil.arm.com/">Keil Studio</a> will enable a hybrid work-style that allows to use cloud-native or desktop development workflows. </p>
+<p>In addition the <b>Event Recorder Capturing</b> provides an interface for the <a href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_overview.html">Event Recorder</a> API. This software component enables event annotations in the application code or software component libraries. The <b>Event Recorder</b> provides visibility to the dynamic execution of an application, enables RTOS awareness, and <a href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/group__Event__Execution__Statistic.html">Event Execution Statistics</a> which helps to optimize the timing of complex algorithms. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

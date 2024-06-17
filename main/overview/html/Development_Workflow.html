@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AVH FVPs Infrastructure: AVH FVPs on AWS Marketplace</title>
+<title>Overview: Development Workflow</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="extra_navtree.css" rel="stylesheet" type="text/css"/>
@@ -46,7 +46,7 @@
    <div id="projectname">Arm Virtual Hardware
    &#160;<span id="projectnumber">Version 2.0.0</span>
    </div>
-   <div id="projectbrief">Infrastructure Services and Tool Integrations</div>
+   <div id="projectbrief">AVH FVP Solutions Overview</div>
   </td>
   <!--END !PROJECT_NAME-->
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -94,7 +94,7 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('AWS.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('Development_Workflow.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -120,31 +120,26 @@ $(document).ready(function(){initNavTree('AWS.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">AVH FVPs on AWS Marketplace </div></div>
+  <div class="headertitle"><div class="title">Development Workflow </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_src_avh_ami"></a> Arm provides a ready-to-use Amazon Machine Image (AMI) on AWS Marketplace. This is a Linux Virtual Machine that contains fully operational AVH FVP simulation models, compilers and useful software utilities. It gives a lot of flexibility to integrate the <b>Arm Virtual Hardware</b> in various CI/CD DevOps environments. <a class="el" href="ami_inventory.html">AMI Inventory</a> gives the full list of resources available on the AVH AMI.</p>
-<p>The following sections explain AVH AMI setup and usage in different scenarios:</p>
-<ul>
-<li><a class="el" href="run_ami_local.html">Run AMI from AWS Console</a> describes how to setup and access the <b>AVH</b> directly from AWS Management Console.</li>
-<li><a class="el" href="run_ami_jenkins.html">Run AMI with Jenkins</a> explains how to integrate the <b>AVH AMI</b> using Jenkins workflows.</li>
-<li><a class="el" href="run_ami_github.html">Run AMI with GitHub Actions</a> explains how to integrate the <b>AVH AMI</b> in GitHub action workflows.</li>
-<li><a class="el" href="debug_ds.html">Debug with Arm Development Studio</a> explains how to connect to the <b>AVH AMI</b> for debug the running program with Arm DS.</li>
-</ul>
-<h1><a class="anchor" id="Subscribe"></a>
-Subscribe to Arm Virtual Hardware</h1>
-<p>To use the Arm Virtual Hardware Service you first need an active AWS account. See corresponding AWS tutorial: <a href="https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/">How do I create and activate a new AWS account?</a>.</p>
-<p>From your AWS account subscribe to Arm Virtual Hardware as follows:</p><ul>
-<li>Open <a href="https://aws.amazon.com/marketplace/search/results?x=24&amp;y=20&amp;searchTerms=Arm+Virtual+Hardware">AWS Marketplace</a> and search for <b>Arm Virtual Hardware</b>.</li>
-<li>Click on <b>Arm Virtual Hardware</b> to open the product page.</li>
-<li>Click on <b>Continue to Subscribe</b> and then click <b>Accept Terms</b> to activate the subscription.</li>
-</ul>
-<p>With the AVH Subscription you can now create and use AVH AMI instances.</p>
-<h1><a class="anchor" id="Requirements"></a>
-System Requirements</h1>
-<p><b>EC2 Instance type</b></p>
-<p><em>c5.large</em> instance type is recommended to run AVH AMI. A different instance type can be also used to improve the performance. </p>
-</div></div><!-- contents -->
+<div class="textblock"><p><a class="anchor" id="md_src_workflow"></a> Arm Virtual Hardware enables a flexible approach that combines desktop and cloud-native development tools thus simplifying and accelerating the development workflow.</p>
+<p>Using software layers, it is possible to develop a new functionality with a physical board and the commit the changes to a cloud based version control system which executes a complete CI/CD integration flow. This ensures that new product innovations are thoroughly tested before they are integrate into final systems.</p>
+<div class="image">
+<img src="workflow.png" alt=""/>
+<div class="caption">
+Development Workflow</div></div>
+    <p>For ailure analysis, it is currently recommended to use desktop tools such as <a href="https://www.keil.arm.com/">Keil MDK</a>.</p>
+<h1><a class="anchor" id="Physical_Hardware"></a>
+Migration to Physical Hardware</h1>
+<p><a href="https://en.wikipedia.org/wiki/Modular_programming">Modular programming</a> recommends to separate the functionality of a program into independent, interchangeable modules that use defined interfaces that abstract the hardware functionality.</p>
+<p>This **"software-first"** design concept simplifies code re-use and allows to implement "Virtual Drivers" and "Hardware Drivers" that expose the same API and implement the same logical behavior. If built correctly, it overcomes many issues that are typically found in monolithic software and enables a staged <a href="https://en.wikipedia.org/wiki/Software_testing">software validation</a> with multiple test levels such as unit, integration, and system testing.</p>
+<p>To simplify re-targeting from AVH FVP simulation models to final production hardware, the examples implement the concept of software layers. As the next generation tooling will provide native support for program layers, it makes it easy to work on a combination of simulated and physical hardware. The picture below examplifies this concept.</p>
+<div class="image">
+<img src="simulation2hardware.png" alt=""/>
+<div class="caption">
+Re-target from Simulation to Hardware</div></div>
+     </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->

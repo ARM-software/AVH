@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['user_20benefits_0',['User Benefits',['../User_Benefits.html',1,'']]]
+  ['release_20history_0',['Release History',['../History.html',1,'']]]
 ];
