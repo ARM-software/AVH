@@ -24,13 +24,17 @@ participant VSIPer as " VSI peripheral\n\n(AVH FVP model)" blue_clr
 participant VSIVideopy as "VSI Video\n(vsi_video.py via\narm_vsi4.py)" brown_clr
 participant VSIVideoSrvpy as "VSI Video Server\n\n(vsi_video_server.py)" brown_clr
 
+
+
+note over VSIPer : Device reset
 activate VSIPer blue_clr
+activate VSIVideopy brown_clr
 
 VSIPer -> VSIVideopy : init()
-note left: Device reset
-activate VSIVideopy brown_clr
 & VSIVideopy -> VSIVideoSrvpy : Start Video Server
 activate VSIVideoSrvpy brown_clr
+
+|||
 
 activate VideoDrv green_clr
 ?-> VideoDrv : VideoDrv_Initialize()
@@ -44,47 +48,53 @@ activate VideoDrv green_clr
 & VSIPer -> VSIVideopy
 & VSIVideopy -> VSIVideoSrvpy : Configure Stream
 VideoDrv -> VSIPer: Configure Timer and DMA
+
 |||
 
 ?-> VideoDrv: VideoDrv_SetBuf()
 & VideoDrv -> VSIPer : Assign buffer for DMA
+
 |||
 
 ?-> VideoDrv: VideoDrv_SetFile()
 & VideoDrv -> VSIPer : Configure input/output file
 & VSIPer -> VSIVideopy
 & VSIVideopy -> VSIVideoSrvpy : Select file
-note right: Check if\nfile exists
+note right of VSIVideoSrvpy : Check if\nfile exists
 VSIVideopy <-- VSIVideoSrvpy : Filename valid/invalid
+
 |||
 
 ?-> VideoDrv: VideoDrv_StreamStart()
 & VideoDrv -> VSIPer : Start video stream\n(continuous/single mode)
 & VSIPer -> VSIVideopy
 & VSIVideopy -> VSIVideoSrvpy
-note right: Open\nselected file
+note right of VSIVideoSrvpy : Open\nselected file
 VideoDrv -> VSIPer : Start timer and enable IRQ
+
 |||
 
 loop until end of stream/file
 VSIPer -> VSIVideopy : Read frame
 & VSIVideopy -> VSIVideoSrvpy
-note right: Read frame\nfrom the file,\nprocess for input
+note right of VSIVideoSrvpy : Read frame\nfrom the file,\nprocess for input
 VSIVideopy <- VSIVideoSrvpy : Copy data to DMA buffer
 & VSIPer <- VSIVideopy
 VSIPer -> VSIVideopy : timer event
-|||
 
+|||
 
 loop while frame buffer is empty
 ?-> VideoDrv : VideoDrv_GetStatus()
 & VideoDrv -> VSIPer
 & VSIPer -> VSIVideopy : read status register
 end
+
 |||
 
 ?-> VideoDrv: VideoDrv_GetFrameBuf()
 & VideoDrv -> VSIPer : Get current DMA block
+
 |||
 
 ?-> VideoDrv: VideoDrv_ReleaseFrame()
@@ -97,12 +107,12 @@ end
 & VSIPer -> VSIVideopy
 & VSIVideopy -> VSIVideoSrvpy : Stop video stream
 note right: Release\nopen file
+
 deactivate VSIVideoSrvpy
 
 ?-> VideoDrv: VideoDrv_Uninitialize()
 & VideoDrv -> VSIPer
 & VSIPer -> VSIVideopy: Stop operation
-
 
 deactivate VSIVideopy
 deactivate VSIPer
