@@ -60,7 +60,7 @@ VideoDrv -> VSIPer: Configure Timer and DMA
 & VideoDrv -> VSIPer : Configure input/output file
 & VSIPer -> VSIVideopy
 & VSIVideopy -> VSIVideoSrvpy : Select file
-note right of VSIVideoSrvpy : Check if\nfile exists
+note right : Check if\nfile exists
 VSIVideopy <-- VSIVideoSrvpy : Filename valid/invalid
 
 |||
@@ -69,7 +69,7 @@ VSIVideopy <-- VSIVideoSrvpy : Filename valid/invalid
 & VideoDrv -> VSIPer : Start video stream\n(continuous/single mode)
 & VSIPer -> VSIVideopy
 & VSIVideopy -> VSIVideoSrvpy
-note right of VSIVideoSrvpy : Open\nselected file
+note right : Open\nselected file
 VideoDrv -> VSIPer : Start timer and enable IRQ
 
 |||
@@ -77,7 +77,7 @@ VideoDrv -> VSIPer : Start timer and enable IRQ
 loop until end of stream/file
 VSIPer -> VSIVideopy : Read frame
 & VSIVideopy -> VSIVideoSrvpy
-note right of VSIVideoSrvpy : Read frame\nfrom the file,\nprocess for input
+note right : Read frame\nfrom the file,\nprocess for input
 VSIVideopy <- VSIVideoSrvpy : Copy data to DMA buffer
 & VSIPer <- VSIVideopy
 VSIPer -> VSIVideopy : timer event
