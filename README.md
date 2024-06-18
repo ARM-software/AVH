@@ -4,14 +4,7 @@ This repository explains the use of Arm Virtual Hardware on Fixed Virtual Platfo
 
 The [documentation](https://arm-software.github.io/AVH/main/overview/html/index.html) describes how to integrate AVH FVPs into typical CI/CD workflows as well as desktop development environments. Additional interface drivers are provided that map to virtual targets and physical hardware along with Python scripts for I/O simulation.
 
-## Resources
-
-Resource       | Description
-:--------------|:--------------------------------------------------
-[Marketing Overview](https://www.arm.com/virtual-hardware)                                            | Gives you a top-level marketing message.
-[Documentation](https://arm-software.github.io/AVH/main/overview/html/index.html)                     | Is a comprehensive documentation about AVH FVPs.
-[Support Forum](https://community.arm.com/support-forums/f/arm-virtual-hardware-targets-forum)        | Arm Virtual Hardware is supported via a forum. Your feedback will influence future roadmap.
-
+## Examples
 
 The table below lists some of the example projects that demonstrate the usage of AVH FVPs. Also see [Examples](https://arm-software.github.io/AVH/main/examples/html/index.html) in the documentation.
 
