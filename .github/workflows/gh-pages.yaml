@@ -21,7 +21,7 @@ jobs:
       - name: Install packages
         run: |
           sudo apt-get update
-          sudo apt-get install --no-install-recommends -y graphviz plantuml libclang1-9 libclang-cpp1-9
+          sudo apt-get install --no-install-recommends -y graphviz plantuml
           sudo pip install LinkChecker
 
       - name: Cache Doxygen 1.9.6
