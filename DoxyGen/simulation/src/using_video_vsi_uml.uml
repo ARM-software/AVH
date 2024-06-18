@@ -19,10 +19,10 @@ LifeLineBorderThickness 1
 LifeLineBorderColor #Grey
 }
 
-participant VideoDrv as " \nVideo Driver\n(video_drv.c)" green_clr
-participant VSIPer as " \nVSI peripheral\n(part of the AVH FVP)" blue_clr
-participant VSIVideopy as "VSI Video \n(vsi_video.py via\narm_vsi4.py)" brown_clr
-participant VSIVideoSrvpy as "\nVSI Video Server\n(vsi_video_server.py)" brown_clr
+participant VideoDrv as "Video Driver\n\n(video_drv.c)" green_clr
+participant VSIPer as " VSI peripheral\n\n(AVH FVP model)" blue_clr
+participant VSIVideopy as "VSI Video\n(vsi_video.py via\narm_vsi4.py)" brown_clr
+participant VSIVideoSrvpy as "VSI Video Server\n\n(vsi_video_server.py)" brown_clr
 
 activate VSIPer blue_clr
 
@@ -32,9 +32,8 @@ activate VSIVideopy brown_clr
 & VSIVideopy -> VSIVideoSrvpy : Start Video Server
 activate VSIVideoSrvpy brown_clr
 
-
-?-> VideoDrv : VideoDrv_Initialize()
 activate VideoDrv green_clr
+?-> VideoDrv : VideoDrv_Initialize()
 & VideoDrv -> VSIPer : Peripheral initializaiton
 & VSIPer -> VSIVideopy : Set Input/Output mode
 
@@ -42,8 +41,8 @@ activate VideoDrv green_clr
 
 ?-> VideoDrv: VideoDrv_Configure()
 & VideoDrv -> VSIPer : Configure parameters:\nwidth, height, color, rate
-& VSIPer -> VSIVideopy : Configure Stream
-& VSIVideopy -> VSIVideoSrvpy
+& VSIPer -> VSIVideopy
+& VSIVideopy -> VSIVideoSrvpy : Configure Stream
 VideoDrv -> VSIPer: Configure Timer and DMA
 |||
 
@@ -68,9 +67,11 @@ VideoDrv -> VSIPer : Start timer and enable IRQ
 |||
 
 loop until end of stream/file
-VSIPer -> VSIVideoSrvpy : Read frame
+VSIPer -> VSIVideopy : Read frame
+& VSIVideopy -> VSIVideoSrvpy
 note right: Read frame\nfrom the file,\nprocess for input
-VSIPer <- VSIVideoSrvpy : Copy data to DMA buffer
+VSIVideopy <- VSIVideoSrvpy : Copy data to DMA buffer
+& VSIPer <- VSIVideopy
 VSIPer -> VSIVideopy : timer event
 |||
 
