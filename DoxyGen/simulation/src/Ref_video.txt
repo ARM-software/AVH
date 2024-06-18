@@ -22,10 +22,7 @@ Additional details are provided in \ref video_vsi_detail.
 
 ## Python requirements
 
-In addition to the requirements listed in \ref arm_vsi_pyenv, the VSI Video use case also requires installed OpenCV Python package:
-- \em opencv-python
-
-Run the following command to install required package with pip:
+In addition to the requirements listed in \ref arm_vsi_pyenv, the VSI Video use case also requires installed OpenCV Python package. Run the following command to install it with pip:
 \code{.sh}
 pip install opencv-python
 \endcode

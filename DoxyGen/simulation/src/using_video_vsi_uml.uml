@@ -69,7 +69,7 @@ VideoDrv -> VSIPer : Start timer and enable IRQ
 
 loop until end of stream/file
 VSIPer -> VSIVideoSrvpy : Read frame
-note right: Read frame\nfrom the file\nprocess for input
+note right: Read frame\nfrom the file,\nprocess for input
 VSIPer <- VSIVideoSrvpy : Copy data to DMA buffer
 VSIPer -> VSIVideopy : timer event
 |||
