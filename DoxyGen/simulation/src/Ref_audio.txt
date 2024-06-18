@@ -1,3 +1,22 @@
+
+//  ==== VSI Use Cases ====
+
+/**
+\defgroup   arm_vsi_cases VSI Use Cases
+\ingroup arm_vsi
+\brief      Use Cases for Virtual Streaming Interface (VSI)
+\details
+
+\ref arm_vsi is a general purpose peripheral for implementing data streaming support on Arm FVPs.
+
+\ref arm_vsi_audio implements VSI-based audio data streaming with local audio wave file and so simulates audio I/O peripheral in the system.
+
+\ref arm_vsi_video implements VSI-based video data streaming with local video or image files. Alternatively, PC's camera can be used as video input and PC's display as video output.
+
+Other examples for VSI peripherals will be added in future as well.
+
+*/
+
 /**
 \addtogroup arm_vsi_audio Audio via VSI
 \ingroup arm_vsi_cases

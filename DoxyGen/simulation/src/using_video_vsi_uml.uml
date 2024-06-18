@@ -1,0 +1,110 @@
+@startuml
+!pragma teoz true
+skinparam Shadowing False
+skinparam NoteBorderColor #White
+skinparam NoteBackgroundColor #White
+skinparam ParticipantFontColor #White
+skinparam ParticipantBorderColor Grey
+skinparam ParticipantBorderThickness 1
+skinparam ParticipantFontStyle Bold
+
+skinparam ArrowColor #DimGrey
+
+!define green_clr #70A000
+!define blue_clr #0091BD
+!define brown_clr #BF5000
+
+skinparam sequence {
+LifeLineBorderThickness 1
+LifeLineBorderColor #Grey
+}
+
+participant VideoDrv as " \nVideo Driver\n(video_drv.c)" green_clr
+participant VSIPer as " \nVSI peripheral\n(part of the AVH FVP)" blue_clr
+participant VSIVideopy as "VSI Video \n(vsi_video.py via\narm_vsi4.py)" brown_clr
+participant VSIVideoSrvpy as "\nVSI Video Server\n(vsi_video_server.py)" brown_clr
+
+activate VSIPer blue_clr
+
+VSIPer -> VSIVideopy : init()
+note left: Device reset
+activate VSIVideopy brown_clr
+& VSIVideopy -> VSIVideoSrvpy : Start Video Server
+activate VSIVideoSrvpy brown_clr
+
+
+?-> VideoDrv : VideoDrv_Initialize()
+activate VideoDrv green_clr
+& VideoDrv -> VSIPer : Peripheral initializaiton
+& VSIPer -> VSIVideopy : Set Input/Output mode
+
+|||
+
+?-> VideoDrv: VideoDrv_Configure()
+& VideoDrv -> VSIPer : Configure parameters:\nwidth, height, color, rate
+& VSIPer -> VSIVideopy : Configure Stream
+& VSIVideopy -> VSIVideoSrvpy
+VideoDrv -> VSIPer: Configure Timer and DMA
+|||
+
+?-> VideoDrv: VideoDrv_SetBuf()
+& VideoDrv -> VSIPer : Assign buffer for DMA
+|||
+
+?-> VideoDrv: VideoDrv_SetFile()
+& VideoDrv -> VSIPer : Configure input/output file
+& VSIPer -> VSIVideopy
+& VSIVideopy -> VSIVideoSrvpy : Select file
+note right: Check if\nfile exists
+VSIVideopy <-- VSIVideoSrvpy : Filename valid/invalid
+|||
+
+?-> VideoDrv: VideoDrv_StreamStart()
+& VideoDrv -> VSIPer : Start video stream\n(continuous/single mode)
+& VSIPer -> VSIVideopy
+& VSIVideopy -> VSIVideoSrvpy
+note right: Open\nselected file
+VideoDrv -> VSIPer : Start timer and enable IRQ
+|||
+
+loop until end of stream/file
+VSIPer -> VSIVideoSrvpy : Read frame
+note right: Read frame\nfrom the file\nprocess for input
+VSIPer <- VSIVideoSrvpy : Copy data to DMA buffer
+VSIPer -> VSIVideopy : timer event
+|||
+
+
+loop while frame buffer is empty
+?-> VideoDrv : VideoDrv_GetStatus()
+& VideoDrv -> VSIPer
+& VSIPer -> VSIVideopy : read status register
+end
+|||
+
+?-> VideoDrv: VideoDrv_GetFrameBuf()
+& VideoDrv -> VSIPer : Get current DMA block
+|||
+
+?-> VideoDrv: VideoDrv_ReleaseFrame()
+& VideoDrv -> VSIPer : Release current DMA block
+
+end
+
+?-> VideoDrv: VideoDrv_StreamStop()
+& VideoDrv -> VSIPer
+& VSIPer -> VSIVideopy
+& VSIVideopy -> VSIVideoSrvpy : Stop video stream
+note right: Release\nopen file
+deactivate VSIVideoSrvpy
+
+?-> VideoDrv: VideoDrv_Uninitialize()
+& VideoDrv -> VSIPer
+& VSIPer -> VSIVideopy: Stop operation
+
+
+deactivate VSIVideopy
+deactivate VSIPer
+deactivate VideoDrv
+
+@enduml

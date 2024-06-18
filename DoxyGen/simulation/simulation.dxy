@@ -919,6 +919,7 @@ WARN_LOGFILE           =
 INPUT                  = ./src/main.md \
                          ./src/using.md \
                          ./src/avh_fvp_cmsis.md \
+                         ./src/Ref_overview.txt \
                          ./src/Ref_vio.txt \
                          ./src/Ref_vsi.txt \
                          ../../interface/include/arm_vsi.h \
@@ -929,10 +930,9 @@ INPUT                  = ./src/main.md \
                          ../../interface/python/arm_vsi0.py \
                          ../../interface/python/arm_vio.py \
                          ./src/Ref_vsocket.txt \
-                         ./src/peripheral_use_cases.txt \
-                         ./src/audio_drv.txt \
-                         ./src/video_drv.txt \
-                         ./src/sensor_drv.txt \
+                         ./src/Ref_audio.txt \
+                         ./src/Ref_video.txt \
+                         ./src/Ref_sensor.txt \
                          ../../interface/audio/include/audio_drv.h \
                          ../../interface/video/include/video_drv.h \
                          ../../interface/sensor/include/sensor_drv.h \

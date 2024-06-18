@@ -4,29 +4,25 @@
 \brief Video file streaming interface
 \details
 
-Video streaming use case is implemented for Arm FVPs based on the general-purpose \ref arm_vsi.
+Video streaming use case is implemented for AVH FVPs based on the general-purpose \ref arm_vsi.
 
-The use of common video driver API simplifies re-targeting of the application code between virtual and physical devices.
-Currently video driver implementations and examples are available for the following platforms:
-  - Arm FVPs using \ref arm_vsi_api "VSI" with an interface to Python script that streams local video or image files (supported formats: *.bmp, *.png, *.jpg, *.wmv, *.avi, *.mp4). Alternatively, PC's camera can be used as video input and PC's display as video output.
+The use of generic \ref video_drv_functions  "Video Driver APIs" simplifies re-targeting of the application code between virtual and physical devices.
 
-and support for other hardware platforms can be added following the same concept.
+The video driver implementation for AVH FVPs relies on the \ref arm_vsi_api "VSI peripheral API" with an interface to the python scripts. For video use case the python scripts access local video or image files as streaming input/output. Alternatively, PC's camera can be used as video input and PC's display as video output.
 
-The table below references the files that implement the video peripheral:
+The operation of the video driver follows the principles used in the drivers for real hardware: application should configure the driver with such parameters as resolution, frame rate, color scheme. Additionally it specifies the local input/output file name or defaults to webcam input. Then the application controls the video stream / frame extraction from the peripheral.
 
-Item                                                                                                                                      | Description
-:-----------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------
-[./interface/video/include/video_drv.h](https://github.com/ARM-software/AVH/blob/main/interface/video/include/video_drv.h)                | \ref arm_vsi_video "Video Driver API" header file. Used by implementations on Arm Virtual Hardware and real HW boards.
-[./interface/video/source/video_drv.c](https://github.com/ARM-software/AVH/blob/main/interface/video/source/video_drv.c)                  | Video driver implementation for Arm Virtual Hardware based on \ref arm_vsi_api "VSI"
-[./interface/video/python/arm_vsi4.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi4.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video input channel 0, based on \ref arm_vsi_py "VSI Python interface".
-[./interface/video/python/arm_vsi5.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi5.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video output channel 0, based on \ref arm_vsi_py "VSI Python interface".
-[./interface/video/python/arm_vsi6.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi6.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video input channel 1, based on \ref arm_vsi_py "VSI Python interface".
-[./interface/video/python/arm_vsi7.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi7.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video output channel 1, based on \ref arm_vsi_py "VSI Python interface".
-[./interface/video/python/vsi_video.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/vsi_video.py)                | \ref arm_vsi_video "Video via VSI" Python module for video input / output interface.
-[./interface/video/python/vsi_video_server.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/vsi_video_server.py)  | \ref arm_vsi_video "Video via VSI" Accompanying Python script to the \em vsi_video.py.
+The concept is shown on the figure below for input and optional output streams:
+ - An input flow uses a local video input and relies on the VSI python API (arm_vsi4.py) as well as additional submodules (vsi_video.py, vsi_video_server.py) to adjust the stream configuration based on the paratemeters specified by the application firmware and to deliver the frames into the application for ML-Processing. 
+ - After that, post-processing can be applied to the image (for example box-drawing for detected  object) and then sent to the output stream.
+
+Additional details are provided in \ref video_vsi_detail.
+
+\image html ./images/vsi_video_structure.png "Video VSI Implementation Overview"
 
 ## Python requirements
-VSI Video Server requires a Python 3.9 or later installation with installed OpenCV Python package:
+
+In addition to the requirements listed in \ref arm_vsi_pyenv, the VSI Video use case also requires installed OpenCV Python package:
 - \em opencv-python
 
 Run the following command to install required package with pip:
@@ -34,10 +30,46 @@ Run the following command to install required package with pip:
 pip install opencv-python
 \endcode
 
+## Operation details {#video_vsi_detail}
+
+The table below lists the files that implement the video over VSI peripheral:
+
+Item                                                                                                                                      | Description
+:-----------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------
+[./interface/video/include/video_drv.h](https://github.com/ARM-software/AVH/blob/main/interface/video/include/video_drv.h)                | \ref arm_vsi_video "Video Driver API" header file. Used by implementations on AVH FVPs and real HW boards.
+[./interface/video/source/video_drv.c](https://github.com/ARM-software/AVH/blob/main/interface/video/source/video_drv.c)                  | Video driver implementation for AVH FVP over VSI
+[./interface/video/python/arm_vsi4.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi4.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video input channel 0, based on \ref arm_vsi_py "VSI Python interface".
+[./interface/video/python/arm_vsi5.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi5.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video output channel 0, based on \ref arm_vsi_py "VSI Python interface".
+[./interface/video/python/arm_vsi6.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi6.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video input channel 1, based on \ref arm_vsi_py "VSI Python interface".
+[./interface/video/python/arm_vsi7.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi7.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video output channel 1, based on \ref arm_vsi_py "VSI Python interface".
+[./interface/video/python/vsi_video.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/vsi_video.py)                | \ref arm_vsi_video "Video via VSI" Python module for video input / output interface.
+[./interface/video/python/vsi_video_server.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/vsi_video_server.py)  | \ref arm_vsi_video "Video via VSI" Accompanying Python script to the \em vsi_video.py.
+
+The execution flow for video input on channel 0 is explained in the diagram below:
+
+\image html "using_video_vsi_uml.png" "Sequence diagram for the Video over VSI implementation"
+
+ 1. Upon start/reset of the FVP model the VSI peripheral calls \ref arm_vsi0.init "init()" function in the available VSI Python API files. In this example, for video input on channel 0 it is arm_vsi4.py. The init() function then starts video server on the host.
+ 2. User application on the device calls \ref VideoDrv_Initialize that configures the available channels on the driver into default state.
+ 3. Then \ref VideoDrv_Configure is used to specify required parameters for the input stream such as resolution, color scheme, and frame rate. The driver propagates this configuration to the video server, and also sets the DMA and the Timer for the VSI peripheral according to that configuration.
+ 4. With \ref VideoDrv_SetBuf a DMA buffer is assigned to be used for incoming data.
+ 5. \ref VideoDrv_SetFile specifies the input file. If the file is not found then an error will be returned.
+ 6. After that application initiates the streaming with \ref VideoDrv_StreamStart. This opens selected file, and also configures VSI timer and enables VSI IRQ.
+ 7. With step 6 completed, a loop of frame reading is started:
+    - A frame is read from the file, and is prepared according to the stream configuration (with crop/resize and color change operations done in the vsi_video_server.py).
+    - The processed frame data is copied to the DMA buffer.
+    - \ref VideoDrv_GetStatus checks if the frame buffer is full, meaning that a complete frame was transferred to the FVP memory. An approach with VSI interrupt check can be used as well.
+    - When video buffer is filled, we can extract the frame from it using \ref VideoDrv_GetFrameBuf() .
+    - Obtained frame can be now passed to the processing algorithm (for example for object detection).
+    - Release the frame with \ref VideoDrv_ReleaseFrame to enable reception of the next frame.
+    - Repeat the steps above until end of stream is reported in the status.
+ 8. Once end of stream is reached, we can close the stream with \ref VideoDrv_StreamStop and stop driver operation with \ref VideoDrv_Uninitialize.
+
+
 @{
 \defgroup video_drv_functions Video Driver API Functions
 \ingroup arm_vsi_video
-\brief Video Driver API functions.
+\brief Video Driver API functions
 \details
 
 @{
@@ -46,13 +78,13 @@ pip install opencv-python
 The function \b VideoDrv_Initialize initializes the Video interface over VSI peripheral. It is called when the middleware component starts operation.
 
 The function performs the following operations:
-  - Initializes the required resources of the video interface.
-  - Registers the \ref VideoDrv_Event_t callback function.
+ - Initializes the required resources of the video interface.
+ - Registers the \ref VideoDrv_Event_t callback function.
 
 The parameter \em cb_event is a pointer to the \ref VideoDrv_Event_t callback function; use a NULL pointer when no callback signals are required.
 
 Possible return values:
-  - \ref VIDEO_DRV_OK : video interface is successfully initialized.
+ - \ref VIDEO_DRV_OK : video interface is successfully initialized.
 
 
 \fn int32_t VideoDrv_Uninitialize (void)
@@ -62,7 +94,7 @@ The function \b VideoDrv_Uninitialize de-initializes the resources of Video inte
 It is called when the middleware component stops operation and releases the software resources used by the interface.
 
 Possible return values:
-  - \ref VIDEO_DRV_OK : video interface is successfully de-initialized.
+ - \ref VIDEO_DRV_OK : video interface is successfully de-initialized.
 
 
 \fn int32_t VideoDrv_SetFile (uint32_t channel, const char *name)

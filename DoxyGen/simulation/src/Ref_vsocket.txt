@@ -3,7 +3,6 @@
 /**
 
 \defgroup arm_vsocket Virtual Socket Interface (VSocket)
-\ingroup arm_cmvp
 \brief IP network connectivity via host system
 \details
 
@@ -98,5 +97,74 @@ The **ARM_VSocket_Type** structure provides access to the VSocket peripheral reg
 
 @}
 
+
+*/
+
+//  ==== VSocket Use Cases ====
+
+/**
+\defgroup   arm_vsocket_cases VSocket Use Cases
+\ingroup arm_vsocket
+\brief      Using Virtual Socket Interface (VSocket)
+\details
+
+\ref arm_vsocket_api provides a general purpose implementation for socket peripheral. This chapter shows how VSocket can be applied in specific use case.
+
+__[./interface/vsocket/iot_socket.c](https://github.com/ARM-software/AVH/tree/main/interface/vsocket/iot_socket.c)__: implements the [IoT Socket](https://github.com/MDK-Packs/IoT_Socket) variant for Arm Virtual Hardware based on the \ref ARM_VSocket_Type structure and its mapping defined in *arm_vsocket.h*.
+
+# Setup {#vsocket_setup}
+
+Instructions below cover specifically setup for using IoT Socket API in a project using Arm Fixed Virtual Platform (FVP) as a target.
+
+ - Verify that following packs are installed in your development environment:
+  - ARM::CMSIS pack for access to CMSIS-RTOS2 API used by VSocket implementation.
+  - [IoT Socket pack](https://github.com/MDK-Packs/IoT_Socket) for access to IoT Socket API header (*iot_socket.h*)
+  - Pack with target device support for access to \ref arm_vsocket_api (*arm_vsocket.h*)
+ - Select Virtual Hardware device as the target in the project. See in \ref Using.
+ - Following components shall be selected as part of the project:
+   - *CMSIS:CORE* for general device abstraction
+   - *CMSIS:RTOS2 (API)* for RTOS2 API, 
+   - *IoT Utility:Socket (API):Custom* component that provides access to *iot_socket.h* file.
+ - Copy **[./interface/vsocket/iot_socket.c](https://github.com/ARM-software/AVH/tree/main/interface/vsocket/iot_socket.c)** file to your local project folder and add it to the project.
+ 
+Note that VSocket does not require \ref semihosting to be enabled on the FVP model.
+
+# Usage example{#vsocket_example}
+
+After VSocket is added to the project the interface can be fully used as described in [IoT Socket documentation](
+https://mdk-packs.github.io/IoT_Socket/html/index.html). For example:
+
+\code
+#include "iot_socket.h"                  // ::IoT Utility:Socket (API)
+static const char message[] = { "The quick brown fox jumps over the lazy dog." };
+ 
+void Echo_Client_Thread (void *arg) {
+  uint8_t ip[4] = { 192U, 168U, 0U, 100U };
+  int32_t sock, res;
+  char dbuf[120];
+ 
+  while (1) {
+    sock = iotSocketCreate (IOT_SOCKET_AF_INET, IOT_SOCKET_SOCK_STREAM, IOT_SOCKET_IPPROTO_TCP);
+ 
+    res = iotSocketConnect (sock, (uint8_t *)ip, sizeof(ip), 7U);
+    if (res == 0) {
+      while (1) {
+        iotSocketSend (sock, message, sizeof(message));
+        res = iotSocketRecv (sock, dbuf, sizeof(dbuf));
+        if (res < 0) {
+          break;               // Receive error
+        }
+        if (res > 0) {
+          if (memcmp (dbuf, message, res) != 0) {
+            break;             // Message error, echoed message is not the same
+          }
+        }
+        osDelay (1000U);
+      }
+    }
+    iotSocketClose (sock);
+  }
+}
+\endcode
 
 */
