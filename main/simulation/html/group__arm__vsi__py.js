@@ -1,5 +1,6 @@
 var group__arm__vsi__py =
 [
+    [ "Python environment setup", "group__arm__vsi__pyenv.html", null ],
     [ "arm_vsi0", "namespacearm__vsi0.html", null ],
     [ "arm_vsi0.init", "group__arm__vsi__py.html#ga2e59915d5f3148d41e6b80b0dbbf58e6", null ],
     [ "arm_vsi0.rdIRQ", "group__arm__vsi__py.html#gad4c5ebd1f0499a4997ac65a42d082af9", null ],

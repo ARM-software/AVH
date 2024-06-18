@@ -121,16 +121,23 @@ $(document).ready(function(){initNavTree('group__arm__vsi__py.html',''); initRes
 
 <div class="header">
   <div class="summary">
+<a href="#groups">Content</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
-  <div class="headertitle"><div class="title">VSI Python interface<div class="ingroups"><a class="el" href="group__arm__cmvp.html">Virtual Interfaces</a> &raquo; <a class="el" href="group__arm__vsi.html">Virtual Streaming Interface (VSI)</a></div></div></div>
+  <div class="headertitle"><div class="title">VSI Python interface<div class="ingroups"><a class="el" href="group__arm__vsi.html">Virtual Streaming Interface (VSI)</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>VSI python interface.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="groups" name="groups"></a>
+Content</h2></td></tr>
+<tr class="memitem:group__arm__vsi__pyenv"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vsi__pyenv.html">Python environment setup</a></td></tr>
+<tr class="memdesc:group__arm__vsi__pyenv"><td class="mdescLeft">&#160;</td><td class="mdescRight">Python environment for Arm FVPs. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacearm__vsi0"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacearm__vsi0.html">arm_vsi0</a></td></tr>
@@ -179,7 +186,8 @@ logging&#160;</td><td class="memItemRight" valign="bottom"><b>verbosity</b> = lo
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
 <p>VSI python interface. </p>
-<p>The Python interface described in this section triggers on peripheral registers and events of the <a class="el" href="group__arm__vsi__api.html">VSI API</a>. Each peripheral instance has a separate dedicated Python script file with the names <b>arm_vsi0.py</b>, <b>arm_vsi1.py</b>, ..., <b>arm_vsi7.py</b>.</p>
+<p>The Python interface described in this section gets executed upon access to corresponding VSI peripheral registers and events explained in the <a class="el" href="group__arm__vsi__api.html">VSI API</a>.</p>
+<p>Each peripheral instance has a separate dedicated Python script file with the names <b>arm_vsi0.py</b>, <b>arm_vsi1.py</b>, ..., <b>arm_vsi7.py</b>.</p>
 <p>The path to the python files implementing used interfaces shall be provided via the model configuration parameter <code>v_path</code>, that depending on the model is part of the <code>mps2_board</code>, <code>mps3_board</code> or <code>mps4_board</code> component. Section <a class="el" href="Using.html#Execution">Running User Applications in CLI</a> gives an example. </p>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga2e59915d5f3148d41e6b80b0dbbf58e6" name="ga2e59915d5f3148d41e6b80b0dbbf58e6"></a>
