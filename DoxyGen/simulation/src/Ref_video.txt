@@ -34,13 +34,13 @@ The table below lists the files that implement the video over VSI peripheral:
 Item                                                                                                                                      | Description
 :-----------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------
 [./interface/video/include/video_drv.h](https://github.com/ARM-software/AVH/blob/main/interface/video/include/video_drv.h)                | \ref arm_vsi_video "Video Driver API" header file. Used by implementations on AVH FVPs and real HW boards.
-[./interface/video/source/video_drv.c](https://github.com/ARM-software/AVH/blob/main/interface/video/source/video_drv.c)                  | Video driver implementation for AVH FVPs over VSI.
-[./interface/video/python/arm_vsi4.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi4.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video input channel 0, based on \ref arm_vsi_py "VSI Python interface".
-[./interface/video/python/arm_vsi5.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi5.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video output channel 0, based on \ref arm_vsi_py "VSI Python interface".
-[./interface/video/python/arm_vsi6.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi6.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video input channel 1, based on \ref arm_vsi_py "VSI Python interface".
-[./interface/video/python/arm_vsi7.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi7.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video output channel 1, based on \ref arm_vsi_py "VSI Python interface".
-[./interface/video/python/vsi_video.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/vsi_video.py)                | \ref arm_vsi_video "Video via VSI" Python module for video input / output interface.
-[./interface/video/python/vsi_video_server.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/vsi_video_server.py)  | \ref arm_vsi_video "Video via VSI" Accompanying Python script to the \em vsi_video.py.
+[./interface/video/source/video_drv.c](https://github.com/ARM-software/AVH/blob/main/interface/video/source/video_drv.c)                  | Video driver implementation for AVH FVPs.
+[./interface/video/python/arm_vsi4.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi4.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video input channel 0.
+[./interface/video/python/arm_vsi5.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi5.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video output channel 0.
+[./interface/video/python/arm_vsi6.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi6.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video input channel 1.
+[./interface/video/python/arm_vsi7.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/arm_vsi7.py)                  | \ref arm_vsi_video "Video via VSI" Python script for video output channel 1.
+[./interface/video/python/vsi_video.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/vsi_video.py)                | VSI video client module.
+[./interface/video/python/vsi_video_server.py](https://github.com/ARM-software/AVH/blob/main/interface/video/python/vsi_video_server.py)  | VSI video server module.
 
 The execution flow for video input on channel 0 is explained in the diagram below:
 
