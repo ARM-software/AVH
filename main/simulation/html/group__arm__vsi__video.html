@@ -201,7 +201,7 @@ Sequence diagram for the Video over VSI implementation</div></div>
 <li>With step 6 completed, a loop of frame reading is started:<ul>
 <li>A frame is read from the file, and is prepared according to the stream configuration (with crop/resize and color change operations done in the vsi_video_server.py).</li>
 <li>The processed frame data is copied to the DMA buffer.</li>
-<li><a class="el" href="group__video__drv__functions.html#ga963660475d743daa2f2ae1a87d409f3a">VideoDrv_GetStatus</a> checks if the frame buffer is full, meaning that a complete frame was transferred to the FVP memory. An approach with VSI interrupt check can be used as well.</li>
+<li><a class="el" href="group__video__drv__functions.html#ga963660475d743daa2f2ae1a87d409f3a">VideoDrv_GetStatus</a> checks if the frame buffer is full, meaning that a complete frame was transferred to the FVP memory. An approach with asynchronous video driver event <a class="el" href="group__video__drv__events.html#gac39f1c6884638f4b1e341732bd4861a7">VIDEO_DRV_EVENT_FRAME</a> can be used as well.</li>
 <li>When video buffer is filled, we can extract the frame from it using <a class="el" href="group__video__drv__functions.html#ga0084bec78863eed1ccaaff29499e59bc">VideoDrv_GetFrameBuf()</a> .</li>
 <li>Obtained frame can be now passed to the processing algorithm (for example for object detection).</li>
 <li>Release the frame with <a class="el" href="group__video__drv__functions.html#ga034fdbb82c1133e8fa0c15a3e0085166">VideoDrv_ReleaseFrame</a> to enable reception of the next frame.</li>
