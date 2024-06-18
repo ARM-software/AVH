@@ -26,7 +26,7 @@ jobs:
 
       - name: Cache Doxygen 1.9.6
         id: cache-doxygen
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: /opt/doxygen-1.9.6
           key: doxygen-1.9.6-${{ runner.os }}
