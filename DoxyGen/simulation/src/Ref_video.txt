@@ -60,7 +60,7 @@ The execution flow for video input on channel 0 is explained in the diagram belo
     - Obtained frame can be now passed to the processing algorithm (for example for object detection).
     - Release the frame with \ref VideoDrv_ReleaseFrame to enable reception of the next frame.
     - Repeat the steps above until end of stream is reported in the status.
- 8. Once end of stream is reached, we can close the stream with \ref VideoDrv_StreamStop and stop driver operation with \ref VideoDrv_Uninitialize.
+ 8. When the end of the stream is reached, we can close the stream with \ref VideoDrv_StreamStop and stop driver operation with \ref VideoDrv_Uninitialize.
 
 
 @{
