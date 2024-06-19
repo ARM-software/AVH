@@ -12,7 +12,7 @@
  - VIO/VSI python script path is moved into model configuration. See [Using AVH FVPs](../../simulation/html/using.html).
  - Added [Arm Tools Artifactory](../../infrastructure/html/avh_fvp_artifactory.html) support.
  - Added [Arm GitHub Actions](../../infrastructure/html/avh_gh_actions.html) support.
- - Added [Arm Keil Studio VsCode](../../infrastructure/html/run_mdk_vscode.html) support.
+ - Added [Arm Keil Studio for VS Code](../../infrastructure/html/run_mdk_vscode.html) support.
  - Added AVH FVP models:
    - FVP_Corstone_SSE-315
    - FVP_MPS2_Cortex-M85

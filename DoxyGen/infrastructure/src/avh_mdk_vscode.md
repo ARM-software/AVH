@@ -1,6 +1,6 @@
 # Use with Keil Studio {#run_mdk_vscode}
 
-This section explains how Arm Fixed Virtual Platforms (FVP) can be used with [Keil Studio for VsCode (MDK v6)](https://www.keil.arm.com) for developing and debugging embedded applications on a local computer.
+This section explains how Arm Fixed Virtual Platforms (FVP) can be used with [Keil Studio for VS Code (MDK v6)](https://www.keil.arm.com) for developing and debugging embedded applications on a local computer.
 
 ## Tools Installation {#mdk_vscode_install}
 
@@ -45,7 +45,7 @@ Note that in Keil Studio also other artifacts are usually present for build and 
 
 ## Program Build {#mdk_vscode_build}
 
-Follow the instructions provided in the [Build the example project](https://developer.arm.com/documentation/108029/0000/Get-started-with-an-example-project/Build-the-example-project) in the Arm Keil Studio for VsCode User's Guide.
+Follow the instructions provided in the [Build the example project](https://developer.arm.com/documentation/108029/0000/Get-started-with-an-example-project/Build-the-example-project) in the Arm Keil Studio for VS Code User's Guide.
 
 
 ## Program Run and Debug {#mdk_vscode_program_run}

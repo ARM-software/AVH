@@ -26,7 +26,7 @@ vcpkg is a package management utility that can be used to easily configure and r
 Learning path article [Install tools on the command line using vcpkg
 ](https://learn.arm.com/learning-paths/microcontrollers/vcpkg-tool-installation/) provides detailed information on how to install vcpkg on your machine and use it to retrieve specific tool artifacts.
 
-The package management via vcpkg is natively integrated into Keil Studio for VsCode and is configured in many Arm references examples. It is also simplified for use in GitHub CI/CD workflows as explained in \ref avh_gh_actions.
+The package management via vcpkg is natively integrated into Keil Studio for VS Code and is configured in many Arm references examples. It is also simplified for use in GitHub CI/CD workflows as explained in \ref avh_gh_actions.
 
 For AVH FVPs the vcpkg_configuration.json file shall contain `"arm:models/arm/avh-fvp"` entry to ensure the download of the models. For example:
 
