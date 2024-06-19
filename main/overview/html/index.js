@@ -1,7 +1,7 @@
 var index =
 [
-    [ "AVH Models", "index.html#avh_models", null ],
-    [ "AVH Integrations", "index.html#avh_integrations", null ],
-    [ "AVH Developer Resources", "index.html#avh_dev", null ],
+    [ "AVH FVP Models", "index.html#avh_models", null ],
+    [ "AVH FVP Infrastructure", "index.html#avh_integrations", null ],
+    [ "AVH FVP Developer Resources", "index.html#avh_dev", null ],
     [ "Feedback and Support", "index.html#Support", null ]
 ];

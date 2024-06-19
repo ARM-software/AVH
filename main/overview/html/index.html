@@ -125,43 +125,29 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="contents">
 <div class="textblock"><p><a href="https://www.arm.com/products/development-tools/simulation/virtual-hardware">Arm Virtual Hardware (AVH)</a> covers various solutions for software development on Arm-based processors using virtual targets. This includes virtual simulation models, their cloud-native deployments and integrations with development tools.</p>
 <p>AVH supports the software development cycle of embedded, IoT, and ML applications and provides essential components for effective integration into Continuous Integration/Continuous Delivery (<a href="https://en.wikipedia.org/wiki/CI/CD">CI/CD</a>) and <a href="https://en.wikipedia.org/wiki/MLOps">MLOps</a> development flows.</p>
+<p><b>This documentation</b> is dedicated to the <b>AVH FVPs</b>: Arm Virtual Hardware with Fixed Virtual Platforms, for details about AVH Corellium refer to <a href="https://developer.arm.com/docs/107660">AVH Corellium Users's Guide</a>.</p>
 <div class="image">
 <img src="avh_overview.png" alt=""/>
 <div class="caption">
-Arm Virtual Hardware - Overview</div></div>
+AVH FVP: Arm Virtual Hardware with Fixed Virtual Platforms - Overview</div></div>
     <h1><a class="anchor" id="avh_models"></a>
-AVH Models</h1>
-<p>AVH simulation models enable execution of software programs on virtual targets. Two different AVH modelling technologies are available:</p>
-<h2>AVH Fixed Virtual Platforms (FVPs)</h2>
+AVH FVP Models</h1>
+<p>AVH FVP simulation models are standalone programs that gets executed in the target environment and enable execution of firmware programs on virtual targets.</p>
 <ul>
 <li>Precise simulation models of Arm Cortex-M based reference platforms, such as Corstone-315/310/300. Learn more at <a href="../../simulation/html/index.html">Simulation</a>.</li>
 <li>Available for cloud-native and desktop environments. See <a href="../../infrastructure/html/index.html">Infrastructure</a> for details.</li>
 </ul>
-<h2>AVH Corellium models</h2>
-<ul>
-<li>Functionally accurate virtual representations of popular IoT development boards and selected Arm reference platforms:<ul>
-<li>Cortex-A based systems with Linux OS support, such as Raspberry Pi and NXP i.MX.</li>
-<li>Selected Cortex-M based kits.</li>
-</ul>
-</li>
-<li>Software binary-compatible with the hardware targets.</li>
-<li>Available via <a href="https://app.avh.arm.com/">app.avh.arm.com</a> cloud platform. Read more in <a href="https://developer.arm.com/docs/107660">AVH Users's Guide</a>.</li>
-</ul>
 <h1><a class="anchor" id="avh_integrations"></a>
-AVH Integrations</h1>
-<p>Arm Virtual Hardware models integrate well in various tools and services for development, debug, testing as well as CI/CD and MLOps flows. AVH is already supported within many Arm tools, as well as by third-party vendors.</p>
-<p>The integration approach depends on the modelling technology:</p><ul>
-<li>AVH FVP models are standalone programs that gets executed in the target environment. See <a href="../../infrastructure/html/index.html">Infrastructure</a> for more details.</li>
-<li>AVH Corellium models are cloud-native and gets integrated via REST API and SSH connections. See <a href="https://developer.arm.com/docs/107660">AVH Users's Guide</a></li>
-</ul>
+AVH FVP Infrastructure</h1>
+<p>Arm Virtual Hardware models integrate well in various tools and services for development, debug, testing as well as CI/CD and MLOps flows. AVH FVPs are already supported within many Arm tools, as well as by third-party vendors. See <a href="../../infrastructure/html/index.html">Infrastructure</a> for more details.</p>
 <h1><a class="anchor" id="avh_dev"></a>
-AVH Developer Resources</h1>
+AVH FVP Developer Resources</h1>
 <p>Various Resources explain how to integrate Arm Virtual Hardware into workflows common for generic embedded software development, CI testing and MLOps.</p>
 <p>Usage examples show typical use cases and range from audio processing, ML algorithm testing, up to IoT applications that interface to Cloud Service providers and Over-the-Air Firware Updates (OTAU).</p>
-<p><b>This documentation</b> is dedicated to the <b>AVH FVPs</b> and has following sections that can be accessed as document tabs as well:</p>
+<p>This documentation is structured into following chapters:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">Section   </th><th class="markdownTableHeadLeft">Description    </th></tr>
+<th class="markdownTableHeadLeft">Chapter   </th><th class="markdownTableHeadLeft">Description    </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><a href="index.html"><b>Overview</b></a>   </td><td class="markdownTableBodyLeft">Introduces <b>Arm Virtual Hardware</b> along with the top-level structure.    </td></tr>
 <tr class="markdownTableRowEven">
@@ -171,10 +157,9 @@ AVH Developer Resources</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><a href="../../examples/html/index.html"><b>Examples</b></a>   </td><td class="markdownTableBodyLeft">Guides through the examples that demonstrate how to use AVH FVPs.   </td></tr>
 </table>
-<p>For more details about AVH Corellium models refer to <a href="https://developer.arm.com/docs/107660">AVH Users's Guide</a>.</p>
 <h1><a class="anchor" id="Support"></a>
 Feedback and Support</h1>
-<p>Arm Virtual Hardware is supported via this <a href="https://community.arm.com/support-forums/f/arm-virtual-hardware-forum">Arm forum</a>. Your feedback will influence our future roadmap and we try to help you promptly with your questions. </p>
+<p>Arm Virtual Hardware is supported via this <a href="https://community.arm.com/support-forums/f/arm-virtual-hardware-forum">Arm forum</a>. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
