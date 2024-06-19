@@ -15,24 +15,30 @@ The path to the python files implementing used interfaces shall be provided via 
 
 \defgroup arm_vsi_pyenv Python environment setup
 \ingroup arm_vsi_py
-\brief Python environment for Arm FVPs
 \details
 
-Arm FVPs require an installation of <b>Python 3.9</b> for running the Python virtual interfaces. If you are using a Windows machine you can use an embedded Python installation in FVPs root directory, otherwise a system installation is required.
-Additional Python packages can be added using \em pip. In case you are using embedded Python installation see section: \ref embedded-pip-vsi
+Arm FVPs require an installation of <b>Python 3.9</b> for running the Python virtual interfaces. Additional Python packages can be added using \em pip.
 
 # Python requirements
 The following packages are required on Linux systems (Ubuntu 20.04 and later):
 - \em libatomic1
-- \em libpython3.9
+- \em python3.9
 - \em python3-pip
 
 Run the following command to install required packages on Ubuntu:
 \code{.sh}
-sudo apt install libatomic1 libpython3.9 python3-pip
+sudo apt install libatomic1 python3.9 python3-pip
 \endcode
 
-# Install additional packages in embedded Python {#embedded-pip-vsi}
+# Known issues
+- Some Python packages can't be imported directly in the Python virtual interfaces, because they are incompatible with Python sub-interpreters (e.g. \em numpy). Possible workaround for this issue is to split the Python module into client and server scripts.
+
+
+# Setup for FVPs older than 11.26
+
+If you are using a Windows machine you can use an embedded Python installation in FVPs root directory, otherwise a system installation is required.
+
+## Install additional packages in embedded Python
 By default the embedded Python installation on Windows does not support installation of new packages using pip. To enable installing new packages follow the steps described below.
 - Download [get-pip.py](https://bootstrap.pypa.io/get-pip.py) to the FVPs root directory.
 - Uncomment the following line in the \b python39._pth file.
@@ -49,8 +55,7 @@ By default the embedded Python installation on Windows does not support installa
   \endcode
   The packages will be installed in <code>Lib\\site-packages</code> subfolder.
 
-# Known issues
-- Some Python packages can't be imported directly in the Python virtual interfaces, because they are incompatible with Python sub-interpreters (e.g. \em numpy). Possible workaround for this issue is to split the Python module into client and server scripts.
+## Known issues
 - Fast Models (Version 11.22.39) available through vcpkg include a stripped-down version of libpython3.9 library on Linux systems. This can cause the Fast Model to close with an error (<em>VSI:Video:ImportError: No module named '_posixsubprocess'</em>) when running applications with VSI.  
   Current workaround:
     - Rename or remove included \em libpython3.9.so.1.0 file, located in the vcpkg installation folder  
