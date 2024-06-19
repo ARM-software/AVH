@@ -172,7 +172,7 @@ def init(address, authkey):
         if os_name == 'nt':
             py_cmd = 'python'
         else:
-            py_cmd = 'python3'
+            py_cmd = 'python3.9'
         cmd = f"{py_cmd} {server_path} "\
               f"--ip {address[0]} "\
               f"--port {address[1]} "\
