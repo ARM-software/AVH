@@ -123,21 +123,25 @@ $(document).ready(function(){initNavTree('group__arm__vsi__pyenv.html',''); init
   <div class="headertitle"><div class="title">Python environment setup<div class="ingroups"><a class="el" href="group__arm__vsi.html">Virtual Streaming Interface (VSI)</a> &raquo; <a class="el" href="group__arm__vsi__py.html">VSI Python interface</a></div></div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Python environment for Arm FVPs.  
-</p>
-<p>Python environment for Arm FVPs. </p>
-<p>Arm FVPs require an installation of <b>Python 3.9</b> for running the Python virtual interfaces. If you are using a Windows machine you can use an embedded Python installation in FVPs root directory, otherwise a system installation is required. Additional Python packages can be added using <em>pip</em>. In case you are using embedded Python installation see section: <a class="el" href="group__arm__vsi__pyenv.html#embedded-pip-vsi">Install additional packages in embedded Python</a></p>
+<p>Arm FVPs require an installation of <b>Python 3.9</b> for running the Python virtual interfaces. Additional Python packages can be added using <em>pip</em>.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Python requirements</h1>
 <p>The following packages are required on Linux systems (Ubuntu 20.04 and later):</p><ul>
 <li><em>libatomic1</em> </li>
-<li><em>libpython3.9</em> </li>
+<li><em>python3.9</em> </li>
 <li><em>python3-pip</em> </li>
 </ul>
-<p>Run the following command to install required packages on Ubuntu: </p><div class="fragment"><div class="line">sudo apt install libatomic1 libpython3.9 python3-pip</div>
-</div><!-- fragment --><h1><a class="anchor" id="embedded-pip-vsi"></a>
-Install additional packages in embedded Python</h1>
+<p>Run the following command to install required packages on Ubuntu: </p><div class="fragment"><div class="line">sudo apt install libatomic1 python3.9 python3-pip</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
+Known issues</h1>
+<ul>
+<li>Some Python packages can't be imported directly in the Python virtual interfaces, because they are incompatible with Python sub-interpreters (e.g. <em>numpy</em>). Possible workaround for this issue is to split the Python module into client and server scripts.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Setup for FVPs older than 11.26</h1>
+<p>If you are using a Windows machine you can use an embedded Python installation in FVPs root directory, otherwise a system installation is required.</p>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Install additional packages in embedded Python</h2>
 <p>By default the embedded Python installation on Windows does not support installation of new packages using pip. To enable installing new packages follow the steps described below.</p><ul>
 <li>Download <a href="https://bootstrap.pypa.io/get-pip.py">get-pip.py</a> to the FVPs root directory.</li>
 <li>Uncomment the following line in the <b>python39._pth</b> file. <div class="fragment"><div class="line">import site</div>
@@ -147,10 +151,9 @@ Install additional packages in embedded Python</h1>
 <li>Install new packages using: <div class="fragment"><div class="line">.\python.exe -m pip install &lt;package&gt;</div>
 </div><!-- fragment --> The packages will be installed in <code>Lib\site-packages</code> subfolder.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2"></a>
-Known issues</h1>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Known issues</h2>
 <ul>
-<li>Some Python packages can't be imported directly in the Python virtual interfaces, because they are incompatible with Python sub-interpreters (e.g. <em>numpy</em>). Possible workaround for this issue is to split the Python module into client and server scripts.</li>
 <li>Fast Models (Version 11.22.39) available through vcpkg include a stripped-down version of libpython3.9 library on Linux systems. This can cause the Fast Model to close with an error (<em>VSI:Video:ImportError: No module named '_posixsubprocess'</em>) when running applications with VSI. <br  />
  Current workaround:<ul>
 <li>Rename or remove included <em>libpython3.9.so.1.0</em> file, located in the vcpkg installation folder <br  />
