@@ -9,19 +9,18 @@ AVH allows to verify your code without the need for physical hardware which prov
 
 ## Verify Correctness {#Verify}
 
-**Arm Fixed Virtual Platforms (FVPs)** models are validated with the same process as the CPU IP. Specially it allows you to:
+**AVH FVP** simulation models are validated with the same process as the CPU IP. Specially it allows you to:
  - Perform algorithm testing with identical logical behaviour of the target device
  - Precisely repeat complex input patterns in CI/CD test environments
  - Analyse software behaviour with event annotations
 
 ## Evaluate Performance {#Evaluate}
 
-Software algorithms for Digital Signal Processing (DSP) or Machine Learning (ML) frequently require significant CPU resources and need to be optimized for the target hardware. Comparing performance of such "load heavy" algorithms requires that they can be automatically executed with different configurations parameters but using identical input. 
+Software algorithms for Digital Signal Processing (DSP) or Machine Learning (ML) frequently require significant CPU resources and need to be optimized for the target hardware. Comparing performance of such "load heavy" algorithms requires that they can be automatically executed with different configurations parameters but using identical input. The timing in AVH FVP models is based on a instruction could, therefore it is not timing accurate. However the results can still be used for performance estimation and A/B comparison of algorithms.  
 
-**Arm Virtual Hardware Services** allows users to test their programs at scale with reproducible input patterns and so validate and optimize application performance which allows you to:
- - Compare speed of different implementations of an algorithm
- - Identify timing issues during system integration
- - Optimize resources (i.e. data buffers) towards application requirements
+**AVH FVP** simulation models allow users to test their programs at scale with reproducible input patterns and so validate and optimize application performance which allows you to:
+ - Compare speed of different implementations of an algorithm (A/B test).
+ - Optimize resources (i.e. RTOS memory buffers for stream processing) towards application requirements.
 
 ## Continuous Testing {#CI}
 
