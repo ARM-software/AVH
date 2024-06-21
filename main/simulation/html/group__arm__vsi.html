@@ -143,18 +143,18 @@ Content</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
 <p>Data streaming interface. </p>
-<p>The <b>Virtual Streaming Interface (VSI)</b> is a flexible memory-mapped peripheral available in Arm Fixed Virtual Platforms (FVPs). It can be used to simulate data streaming interfaces such as audio, video and various sensors often found in IoT and Machine-Learning applications. The VSI is provided in 8 independent instances that can be used in parallel for multi-channel input/ouput interfaces.</p>
-<p>Figure below illustrates the concept behind the VSI on Arm FVPs.</p>
+<p>The <b>Virtual Streaming Interface (VSI)</b> is a flexible memory-mapped peripheral available in AVH FVP models. It can be used to simulate data streaming interfaces such as audio, video, and various sensors often found in IoT and machine learning (ML) applications. The VSI is provided in 8 independent instances that can be used in parallel for multi-channel input/ouput interfaces.</p>
+<p>The figure below illustrates the concept behind the VSI on AVH FVP models.</p>
 <div class="image">
 <img src="vsi_structure.png" alt=""/>
 <div class="caption">
 Using the Virtual Streaming Interface (VSI)</div></div>
 <ul>
-<li>On the application firmware side a peripheral driver uses the <a class="el" href="group__arm__vsi__api.html">VSI registers</a> in the FVP model to simulate peripheral operation for a target use case. By relying on common driver APIs the same application-level code can be reused for FVPs and real hardware targets.</li>
+<li>On the application firmware side a peripheral driver uses the <a class="el" href="group__arm__vsi__api.html">VSI registers</a> in the FVP model to simulate peripheral operation for a target use case. By relying on common driver APIs the same application-level code can be tested on an FVP model or a real hardware target.</li>
 <li>Read/write accesses to the VSI peripheral registers in the FVP trigger execution of corresponding callback functions in the <a class="el" href="group__arm__vsi__py.html">VSI Python scripts</a> that implement peripheral behavior in the target scenario.</li>
-<li>An FVP model can be run on a host OS and executes the target firmware application image. The path to the VSI python scripts shall be provided to the FVP using the model configuration parameter <code>v_path</code>, that depending on the model is part of the <code>mps2_board</code>, <code>mps3_board</code> or <code>mps4_board</code> component. Section <a class="el" href="Using.html#Execution">Running User Applications in CLI</a> gives an example.</li>
+<li>An FVP model can be run on a host OS and executes the target firmware application image. The path to the VSI python scripts is provided to the FVP using the configuration parameter <code>v_path</code>. Section <a class="el" href="Using.html#Execution">Running User Applications in CLI</a> gives an example.</li>
 </ul>
-<p>Section <a class="el" href="group__arm__vsi__cases.html">VSI Use Cases</a> explains in details the reference implementations of VSI-based peripherals. Specifically <a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a> implementing audio streaming input from a local audio wave file and <a class="el" href="group__arm__vsi__video.html">Video via VSI</a> implementing video streaming from a local video or image file.</p>
+<p>Section <a class="el" href="group__arm__vsi__cases.html">VSI Use Cases</a> explains in detail the reference implementations of VSI-based peripherals. Specifically <a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a> implementing audio streaming input from a local audio wave file and <a class="el" href="group__arm__vsi__video.html">Video via VSI</a> implementing video streaming from a local video or image file.</p>
 <p>Access to the VSI peripherals is defined in the following files:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
