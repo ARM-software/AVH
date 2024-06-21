@@ -5,23 +5,23 @@
 \brief Data streaming interface
 \details
 
-The **Virtual Streaming Interface (VSI)** is a flexible memory-mapped peripheral available in Arm Fixed Virtual Platforms (FVPs). It can be used to simulate data streaming interfaces such as audio, video and various sensors often found in IoT and Machine-Learning applications.
+The **Virtual Streaming Interface (VSI)** is a flexible memory-mapped peripheral available in AVH FVP models. It can be used to simulate data streaming interfaces such as audio, video, and various sensors often found in IoT and machine learning (ML) applications.
 The VSI is provided in 8 independent instances that can be used in parallel for multi-channel input/ouput interfaces.
 
-Figure below illustrates the concept behind the VSI on Arm FVPs.
+The figure below illustrates the concept behind the VSI on AVH FVP models.
 
 \image html ./images/vsi_structure.png "Using the Virtual Streaming Interface (VSI)"
 
 - On the application firmware side a peripheral driver uses the \ref arm_vsi_api "VSI registers" in the FVP model to simulate peripheral operation for a target use case.
-By relying on common driver APIs the same application-level code can be reused for FVPs and real hardware targets.
+By relying on common driver APIs the same application-level code can be tested on an FVP model or a real hardware target.
 
 - Read/write accesses to the VSI peripheral registers in the FVP trigger execution of corresponding callback functions in 
 the \ref arm_vsi_py "VSI Python scripts" that implement peripheral behavior in the target scenario.
 
 - An FVP model can be run on a host OS and executes the target firmware application image.
-The path to the VSI python scripts shall be provided to the FVP using the model configuration parameter `v_path`, that depending on the model is part of the `mps2_board`, `mps3_board` or `mps4_board` component. Section \ref Execution gives an example.
+The path to the VSI python scripts is provided to the FVP using the configuration parameter `v_path`. Section \ref Execution gives an example.
  
-Section \ref arm_vsi_cases explains in details the reference implementations of VSI-based peripherals.
+Section \ref arm_vsi_cases explains in detail the reference implementations of VSI-based peripherals.
 Specifically \ref arm_vsi_audio implementing audio streaming input from a local audio wave file and \ref arm_vsi_video implementing video streaming from a local video or image file.
 
 Access to the VSI peripherals is defined in the following files:
