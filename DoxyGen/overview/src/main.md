@@ -6,9 +6,9 @@
 
 AVH supports the software development cycle of embedded, IoT, and ML applications and provides essential components for effective integration into Continuous Integration/Continuous Delivery ([CI/CD](https://en.wikipedia.org/wiki/CI/CD)) and [MLOps](https://en.wikipedia.org/wiki/MLOps) development flows.
 
-**This documentation** is dedicated to the **AVH FVPs**: Arm Virtual Hardware with Fixed Virtual Platforms, for details about AVH Corellium refer to [AVH Corellium Users's Guide](https://developer.arm.com/docs/107660).
-
 ![AVH FVP: Arm Virtual Hardware with Fixed Virtual Platforms - Overview](./images/avh_overview.png)
+
+Note that this documentation is dedicated to the **AVH FVPs**: Arm Virtual Hardware with Fixed Virtual Platforms, for details about AVH Corellium refer to [AVH Corellium Users's Guide](https://developer.arm.com/docs/107660).
 
 # AVH FVP Models {#avh_models}
 

@@ -2,19 +2,19 @@
 
 ## Test without Hardware {#No_Hardware}
 
-AVH allows to verify your code without the need for physical hardware which provides a robust test environment that enables:
+AVH FVP models allow to verify your code without the need for physical hardware which provides a robust test environment that enables:
  - Early software development for faster time-to-market
  - Select optimal target device once the software workload is analysed
  - Re-target applications to production hardware with driver abstractions
 
-## Verify Correctness {#Verify}
+## Verify Correctness {#Verify_Benefits}
 
-**AVH FVP** simulation models are validated with the same process as the CPU IP. Specially it allows you to:
+AVH FVP simulation models are validated with the same process as the CPU IP. Specially it allows you to:
  - Perform algorithm testing with identical logical behaviour of the target device
  - Precisely repeat complex input patterns in CI/CD test environments
  - Analyse software behaviour with event annotations
 
-## Evaluate Performance {#Evaluate}
+## Evaluate Performance {#Perf_Benefits}
 
 Software algorithms for Digital Signal Processing (DSP) or Machine Learning (ML) frequently require significant CPU resources and need to be optimized for the target hardware. Comparing performance of such "load heavy" algorithms requires that they can be automatically executed with different configurations parameters but using identical input. The timing in AVH FVP models is based on a instruction could, therefore it is not timing accurate. However the results can still be used for performance estimation and A/B comparison of algorithms.  
 
@@ -22,13 +22,13 @@ Software algorithms for Digital Signal Processing (DSP) or Machine Learning (ML)
  - Compare speed of different implementations of an algorithm (A/B test).
  - Optimize resources (i.e. RTOS memory buffers for stream processing) towards application requirements.
 
-## Continuous Testing {#CI}
+## Continuous Testing {#CI_Benefits}
 
 Applying continuous integration work flows for embedded applications can be complicated by the specifics of development environments and the need of executing the program on target hardware. Development teams are often reluctant to spend initial effort setting up the continuous integration (CI) workflow even though the long-term benefits are undisputed as shown on the figure below.
 
 ![Comparison of test efforts in CI and no CI workflows](./images/effort_comparison.png)
 
-**AVH FVP** simplifies the setup and use of CI workflows in embedded projects. The integration in tools such as Keil MDK and GitHub Actions simplifies setup of CI workflows.
+[AVH FVP Infrastructure](../../infrastructure/html/index.html) with integration in tools such as Keil MDK and GitHub Actions simplifies setup of CI workflows.
 
 For unit and integration tests virtual targets offer additional advantages over hardware, including:
  - **Speed** - no overhead for flashing the application on physical hardware. This saves time on small and fast unit tests.

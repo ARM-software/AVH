@@ -1,12 +1,21 @@
 # Development Workflow {#Development_Workflow}
 
-Arm Virtual Hardware enables a flexible approach that combines desktop and cloud-native development tools thus simplifying and accelerating the development workflow.
+Using AVH FVP models enables a flexible approach that combines desktop and cloud-native development tools thus simplifying and accelerating the development of embedded software.
 
-Using software layers, it is possible to develop a new functionality with a physical board and the commit the changes to a cloud based version control system which executes a complete CI/CD integration flow. This ensures that new product innovations are thoroughly tested before they are integrate into final systems.
+# Continuous Integration (CI) {#CI_workflow}
 
-![Development Workflow](./images/workflow.png "Development Workflow")
+New functionality can be quickly developed on a simulation model with frequent changes being automatically verified upon the code commits to a cloud based version control system such as GitHub which executes a complete CI/CD integration flow. Figure below illustrates the concept.
 
-For ailure analysis, it is currently recommended to use desktop tools such as [Keil MDK](https://www.keil.arm.com/).
+![Continuous Integration (CI) workflow](./images/basic_ci_workflow.png "Continuous Integration (CI) workflow")
+
+1. **Local development** is done by engineers on local machines using common embedded tools such as Keil MDK with AVH FVP models used for MCU simulation. See [AVH FVPs on Desktop](../../infrastructure/html/avh_desktop.html) for details. The software can also be already prepared for real hardware as explained in \ref Physical_Hardware.
+2. **Code repository** is used as a source code management system for synchronization, storage and version control. For example GitHub.
+3. **CI pipeline** implements the Continuous Integration flow (for example GitHub Actions) that gets triggered on every code update in the target repository.
+4. **CI execution** includes automated program build and testing and is performed in the cloud using the AVH Infrastructure, with results being reported back to the repository and user. See [Infrastructure](../../infrastructure/html/index.html) for details.
+5.**Failure analysis and local debug**: developer can observe the CI test results and in case of any failures also uses local setup to reproduce
+ and debug the issues.
+
+Learn more about benefits from CI workflow at \ref CI_Benefits.
 
 # Migration to Physical Hardware {#Physical_Hardware}
 
