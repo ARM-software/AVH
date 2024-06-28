@@ -45,6 +45,24 @@ name: Execute
           FVP_MPS2_Cortex-M3 --simlimit 10 -f fvp_config.txt -a Project.axf | tee Project.avh.log
 ```
 
+## Running multiple configurations {#avh_gh_matrix}
+
+Software often needs to be tested in multiple configurations, with different toolchains and on different platforms. To simplify job definition for such variations you can use [matrix strategy in GitHub Action](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs).
+
+For example the code snapshot below defines a two-dimensional matrix for Corsone-315/310/300 targets with Arm Compiler 6, GCC and Clang:
+
+```yml
+matrix:
+  target: [CS315, CS310, CS300]
+  compiler: [AC6, GCC, Clang]
+```
+
+And then in your job descriptions you can use `${{ matrix.target }}` and  `${{ matrix.compiler }}` variables, that GitHub Actions will automatically iterate over for you.
+
+See [CMSIS-RTOS2_Validation project](https://github.com/ARM-software/CMSIS-RTOS2_Validation/blob/15c0fbfaf4302af39a8144bca8dbb7b1f04fce1a/.github/workflows/cmsis_rv2.yml#L131) as an implementation example where such matrix strategy is implemented for API verification over different RTOS kernels and with different toolchains.
+
+Note that use of [csolution project format](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/YML-Input-Format.md) greatly simplifies project definition and build for different target types and build configurations. It well integrates with the GitHub Actions matrix for CI jobs.
+
 ## Example Template {#avh_ci_template}
 
 [AVH_CI_Template](https://github.com/Arm-Examples/AVH_CI_Template) provides an example that uses \ref arm_cmsis_actions "CMSIS-Actions" for environment setup and subsequently performs project build with Arm Compiler and program execution on an AVH FVP target. See its Readme for detailed description and [.github/workflows/basic.yml](https://github.com/Arm-Examples/AVH_CI_Template/blob/main/.github/workflows/basic.yml) for the GitHub workflow implementation.
