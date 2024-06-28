@@ -123,13 +123,18 @@ $(document).ready(function(){initNavTree('Development_Workflow.html',''); initRe
   <div class="headertitle"><div class="title">Development Workflow </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_src_workflow"></a> Arm Virtual Hardware enables a flexible approach that combines desktop and cloud-native development tools thus simplifying and accelerating the development workflow.</p>
-<p>Using software layers, it is possible to develop a new functionality with a physical board and the commit the changes to a cloud based version control system which executes a complete CI/CD integration flow. This ensures that new product innovations are thoroughly tested before they are integrate into final systems.</p>
-<div class="image">
-<img src="workflow.png" alt=""/>
-<div class="caption">
-Development Workflow</div></div>
-    <p>For ailure analysis, it is currently recommended to use desktop tools such as <a href="https://www.keil.arm.com/">Keil MDK</a>.</p>
+<div class="textblock"><p><a class="anchor" id="md_src_workflow"></a> Using AVH FVP models enables a flexible approach that combines desktop and cloud-native development tools thus simplifying and accelerating the development of embedded software.</p>
+<h1><a class="anchor" id="CI_workflow"></a>
+Continuous Integration (CI)</h1>
+<p>New functionality can be quickly developed on a simulation model with frequent changes being automatically verified upon the code commits to a cloud based version control system such as GitHub which executes a complete CI/CD integration flow. Figure below illustrates the concept.</p>
+<p><img src="./images/basic_ci_workflow.png" alt="Continuous Integration (CI) workflow" title="Continuous Integration (CI) workflow" class="inline"/></p>
+<ol type="1">
+<li><b>Local development</b> is done by engineers on local machines using common embedded tools such as Keil MDK with AVH FVP models used for MCU simulation. See <a href="../../infrastructure/html/avh_desktop.html">AVH FVPs on Desktop</a> for details. The software can also be already prepared for real hardware as explained in <a class="el" href="Development_Workflow.html#Physical_Hardware">Migration to Physical Hardware</a>.</li>
+<li><b>Code repository</b> is used as a source code management system for synchronization, storage and version control. For example GitHub.</li>
+<li><b>CI pipeline</b> implements the Continuous Integration flow (for example GitHub Actions) that gets triggered on every code update in the target repository.</li>
+<li><b>CI execution</b> includes automated program build and testing and is performed in the cloud using the AVH Infrastructure, with results being reported back to the repository and user. See <a href="../../infrastructure/html/index.html">Infrastructure</a> for details. 5.**Failure analysis and local debug**: developer can observe the CI test results and in case of any failures also uses local setup to reproduce and debug the issues.</li>
+</ol>
+<p>Learn more about benefits from CI workflow at <a class="el" href="User_Benefits.html#CI_Benefits">Continuous Testing</a>.</p>
 <h1><a class="anchor" id="Physical_Hardware"></a>
 Migration to Physical Hardware</h1>
 <p><a href="https://en.wikipedia.org/wiki/Modular_programming">Modular programming</a> recommends to separate the functionality of a program into independent, interchangeable modules that use defined interfaces that abstract the hardware functionality.</p>

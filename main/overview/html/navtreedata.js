@@ -27,13 +27,14 @@ var NAVTREE =
   [ "Overview", "index.html", [
     [ "Introduction", "index.html", "index" ],
     [ "Development Workflow", "Development_Workflow.html", [
+      [ "Continuous Integration (CI)", "Development_Workflow.html#CI_workflow", null ],
       [ "Migration to Physical Hardware", "Development_Workflow.html#Physical_Hardware", null ]
     ] ],
     [ "User Benefits", "User_Benefits.html", [
       [ "Test without Hardware", "User_Benefits.html#No_Hardware", null ],
-      [ "Verify Correctness", "User_Benefits.html#Verify", null ],
-      [ "Evaluate Performance", "User_Benefits.html#Evaluate", null ],
-      [ "Continuous Testing", "User_Benefits.html#CI", null ]
+      [ "Verify Correctness", "User_Benefits.html#Verify_Benefits", null ],
+      [ "Evaluate Performance", "User_Benefits.html#Perf_Benefits", null ],
+      [ "Continuous Testing", "User_Benefits.html#CI_Benefits", null ]
     ] ],
     [ "Release History", "History.html", null ]
   ] ]

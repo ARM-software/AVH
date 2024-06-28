@@ -126,19 +126,19 @@ $(document).ready(function(){initNavTree('User_Benefits.html',''); initResizable
 <div class="textblock"><p><a class="anchor" id="md_src_benefits"></a> </p>
 <h1><a class="anchor" id="No_Hardware"></a>
 Test without Hardware</h1>
-<p>AVH allows to verify your code without the need for physical hardware which provides a robust test environment that enables:</p><ul>
+<p>AVH FVP models allow to verify your code without the need for physical hardware which provides a robust test environment that enables:</p><ul>
 <li>Early software development for faster time-to-market</li>
 <li>Select optimal target device once the software workload is analysed</li>
 <li>Re-target applications to production hardware with driver abstractions</li>
 </ul>
-<h1><a class="anchor" id="Verify"></a>
+<h1><a class="anchor" id="Verify_Benefits"></a>
 Verify Correctness</h1>
-<p><b>AVH FVP</b> simulation models are validated with the same process as the CPU IP. Specially it allows you to:</p><ul>
+<p>AVH FVP simulation models are validated with the same process as the CPU IP. Specially it allows you to:</p><ul>
 <li>Perform algorithm testing with identical logical behaviour of the target device</li>
 <li>Precisely repeat complex input patterns in CI/CD test environments</li>
 <li>Analyse software behaviour with event annotations</li>
 </ul>
-<h1><a class="anchor" id="Evaluate"></a>
+<h1><a class="anchor" id="Perf_Benefits"></a>
 Evaluate Performance</h1>
 <p>Software algorithms for Digital Signal Processing (DSP) or Machine Learning (ML) frequently require significant CPU resources and need to be optimized for the target hardware. Comparing performance of such "load heavy" algorithms requires that they can be automatically executed with different configurations parameters but using identical input. The timing in AVH FVP models is based on a instruction could, therefore it is not timing accurate. However the results can still be used for performance estimation and A/B comparison of algorithms. <br  />
 </p>
@@ -146,14 +146,14 @@ Evaluate Performance</h1>
 <li>Compare speed of different implementations of an algorithm (A/B test).</li>
 <li>Optimize resources (i.e. RTOS memory buffers for stream processing) towards application requirements.</li>
 </ul>
-<h1><a class="anchor" id="CI"></a>
+<h1><a class="anchor" id="CI_Benefits"></a>
 Continuous Testing</h1>
 <p>Applying continuous integration work flows for embedded applications can be complicated by the specifics of development environments and the need of executing the program on target hardware. Development teams are often reluctant to spend initial effort setting up the continuous integration (CI) workflow even though the long-term benefits are undisputed as shown on the figure below.</p>
 <div class="image">
 <img src="effort_comparison.png" alt=""/>
 <div class="caption">
 Comparison of test efforts in CI and no CI workflows</div></div>
-    <p><b>AVH FVP</b> simplifies the setup and use of CI workflows in embedded projects. The integration in tools such as Keil MDK and GitHub Actions simplifies setup of CI workflows.</p>
+    <p><a href="../../infrastructure/html/index.html">AVH FVP Infrastructure</a> with integration in tools such as Keil MDK and GitHub Actions simplifies setup of CI workflows.</p>
 <p>For unit and integration tests virtual targets offer additional advantages over hardware, including:</p><ul>
 <li><b>Speed</b> - no overhead for flashing the application on physical hardware. This saves time on small and fast unit tests.</li>
 <li><b>Scale</b> - virtual platforms can scale to run many tests in parallel. This makes virtual platforms more cost-effective than a farm of physical hardware.</li>
