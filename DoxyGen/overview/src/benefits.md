@@ -16,7 +16,7 @@ AVH FVP simulation models are validated with the same process as the CPU IP. Spe
 
 ## Evaluate Performance {#Perf_Benefits}
 
-Software algorithms for Digital Signal Processing (DSP) or Machine Learning (ML) frequently require significant CPU resources and need to be optimized for the target hardware. Comparing performance of such "load heavy" algorithms requires that they can be automatically executed with different configurations parameters but using identical input. The timing in AVH FVP models is based on a instruction could, therefore it is not timing accurate. However the results can still be used for performance estimation and A/B comparison of algorithms.  
+Software algorithms for Digital Signal Processing (DSP) or Machine Learning (ML) frequently require significant CPU resources and need to be optimized for the target hardware. Comparing performance of such "load heavy" algorithms requires that they can be automatically executed with different configurations parameters but using identical input. The timing in AVH FVP models is based on a instruction count, therefore it is not timing accurate. However the results can still be used for performance estimation and A/B comparison of algorithms.  
 
 **AVH FVP** simulation models allow users to test their programs at scale with reproducible input patterns. This allows you to validate and optimize application performance. Usage examples are:
  - Compare speed of different implementations of an algorithm (A/B test).
