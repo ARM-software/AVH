@@ -30,14 +30,18 @@ except ImportError as err:
 except Exception as e:
     print(f"VSI:Video:Server:Exception: {type(e).__name__}")
 
+logger = logging.getLogger(__name__)
 
 ## Set verbosity level
+#verbosity = logging.DEBUG
+#verbosity = logging.INFO
+#verbosity = logging.WARNING
 verbosity = logging.ERROR
 
 # [debugging] Verbosity settings
 level = { 10: "DEBUG",  20: "INFO",  30: "WARNING",  40: "ERROR" }
 logging.basicConfig(format='VSI Server: [%(levelname)s]\t%(message)s', level = verbosity)
-logging.info("Verbosity level is set to " + level[verbosity])
+logger.info("Verbosity level is set to " + level[verbosity])
 
 # Default Server configuration
 default_address       = ('127.0.0.1', 6000)
@@ -104,7 +108,7 @@ class VideoServer:
             self.video = False
 
         file_path = os.path.join(base_dir, filename)
-        logging.debug(f"File path: {file_path}")
+        logger.debug(f"File path: {file_path}")
 
         if (mode & MODE_IO_Msk) == MODE_Input:
             self.mode = MODE_Input
@@ -160,7 +164,7 @@ class VideoServer:
                 if self.filename == "":
                     self.stream = cv2.VideoCapture(0)
                     if not self.stream.isOpened():
-                        logging.error("Failed to open Camera interface")
+                        logger.error("Failed to open Camera interface")
                         return
                 else:
                     self.stream = cv2.VideoCapture(self.filename)
@@ -168,7 +172,7 @@ class VideoServer:
                     video_fps = self.stream.get(cv2.CAP_PROP_FPS)
                     if video_fps > self.frame_rate:
                         self.frame_ratio = video_fps / self.frame_rate
-                        logging.debug(f"Frame ratio: {self.frame_ratio}")
+                        logger.debug(f"Frame ratio: {self.frame_ratio}")
             else:
                 if self.filename != "":
                     extension = str(self.filename).split('.')[-1].lower()
@@ -197,7 +201,7 @@ class VideoServer:
                         self.stream = cv2.VideoWriter(self.filename, fourcc, self.frame_rate, self.resolution)
 
         self.active = True
-        logging.info("Stream enabled")
+        logger.info("Stream enabled")
 
     # Disable Video Server
     def _disableStream(self):
@@ -207,7 +211,7 @@ class VideoServer:
                 self.frame_index = self.stream.get(cv2.CAP_PROP_POS_FRAMES)
             self.stream.release()
             self.stream = None
-        logging.info("Stream disabled")
+        logger.info("Stream disabled")
 
     # Resize frame to requested resolution in pixels
     def __resizeFrame(self, frame, resolution):
@@ -239,13 +243,13 @@ class VideoServer:
                 top    = (frame_h - crop_h) // 2
                 bottom = top + crop_h
                 frame  = frame[top : bottom, left : right]
-            logging.debug(f"Frame cropped from ({frame_w}, {frame_h}) to ({frame.shape[1]}, {frame.shape[0]})")
+            logger.debug(f"Frame cropped from ({frame_w}, {frame_h}) to ({frame.shape[1]}, {frame.shape[0]})")
         
-        logging.debug(f"Resize frame from ({frame.shape[1]}, {frame.shape[0]}) to ({resolution[0]}, {resolution[1]})")
+        logger.debug(f"Resize frame from ({frame.shape[1]}, {frame.shape[0]}) to ({resolution[0]}, {resolution[1]})")
         try:
             frame = cv2.resize(frame, resolution)
         except Exception as e:
-            logging.error(f"Error in resizeFrame(): {e}")
+            logger.error(f"Error in resizeFrame(): {e}")
 
         return frame
 
@@ -285,11 +289,11 @@ class VideoServer:
                 color_format = cv2.COLOR_YUV2BGR_I420
 
         if color_format != None:
-            logging.debug(f"Change color space to {color_format}")
+            logger.debug(f"Change color space to {color_format}")
             try:
                 frame = cv2.cvtColor(frame, color_format)
             except Exception as e:
-                logging.error(f"Error in changeColorSpace(): {e}")
+                logger.error(f"Error in changeColorSpace(): {e}")
 
         return frame
 
@@ -308,22 +312,22 @@ class VideoServer:
                 _, tmp_frame = self.stream.read()
                 self.frame_drop += (self.frame_ratio - 1)
                 if self.frame_drop > 1:
-                    logging.debug(f"Frames to drop: {self.frame_drop}")
+                    logger.debug(f"Frames to drop: {self.frame_drop}")
                     drop = int(self.frame_drop // 1)
                     for i in range(drop):
                         _, _ = self.stream.read()
-                    logging.debug(f"Frames dropped: {drop}")
+                    logger.debug(f"Frames dropped: {drop}")
                     self.frame_drop -= drop
-                    logging.debug(f"Frames left to drop: {self.frame_drop}")
+                    logger.debug(f"Frames left to drop: {self.frame_drop}")
             else:
                 _, tmp_frame = self.stream.read()
             if tmp_frame is None:
                 self.eos = True
-                logging.debug("End of stream.")
+                logger.debug("End of stream.")
         else:
             tmp_frame = cv2.imread(self.filename)
             self.eos  = True
-            logging.debug("End of stream.")
+            logger.debug("End of stream.")
 
         if tmp_frame is not None:
             tmp_frame = self.__resizeFrame(tmp_frame, self.resolution)
@@ -356,13 +360,13 @@ class VideoServer:
 
     # Run Video Server
     def run(self):
-        logging.info("Video server started")
+        logger.info("Video server started")
 
         try:
             conn = self.listener.accept()
-            logging.info(f'Connection accepted {self.listener.address}')
+            logger.info(f'Connection accepted {self.listener.address}')
         except Exception:
-            logging.error("Connection not accepted")
+            logger.error("Connection not accepted")
             return
 
         while True:
@@ -375,38 +379,38 @@ class VideoServer:
             payload = recv[1:] # Payload
 
             if  cmd == self.SET_FILENAME:
-                logging.info("Set filename called")
+                logger.info("Set filename called")
                 filename_valid = self._setFilename(payload[0], payload[1], payload[2])
                 conn.send(filename_valid)
 
             elif cmd == self.STREAM_CONFIGURE:
-                logging.info("Stream configure called")
+                logger.info("Stream configure called")
                 configuration_valid = self._configureStream(payload[0], payload[1], payload[2], payload[3])
                 conn.send(configuration_valid)
 
             elif cmd == self.STREAM_ENABLE:
-                logging.info("Enable stream called")
+                logger.info("Enable stream called")
                 self._enableStream(payload[0])
                 conn.send(self.active)
 
             elif cmd == self.STREAM_DISABLE:
-                logging.info("Disable stream called")
+                logger.info("Disable stream called")
                 self._disableStream()
                 conn.send(self.active)
 
             elif cmd == self.FRAME_READ:
-                logging.info("Read frame called")
+                logger.info("Read frame called")
                 frame = self._readFrame()
                 conn.send_bytes(frame)
                 conn.send(self.eos)
 
             elif cmd == self.FRAME_WRITE:
-                logging.info("Write frame called")
+                logger.info("Write frame called")
                 frame = conn.recv_bytes()
                 self._writeFrame(frame)
 
             elif cmd == self.CLOSE_SERVER:
-                logging.info("Close server connection")
+                logger.info("Close server connection")
                 self.stop()
 
     # Stop Video Server
@@ -418,7 +422,7 @@ class VideoServer:
             except Exception:
                 pass
         self.listener.close()
-        logging.info("Video server stopped")
+        logger.info("Video server stopped")
 
 
 # Validate IP address

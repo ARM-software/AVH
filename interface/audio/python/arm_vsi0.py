@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2022 Arm Limited. All rights reserved.
+# Copyright (c) 2021-2024 Arm Limited. All rights reserved.
 
 # Virtual Streaming Interface instance 0 Python script: Audio Input
 
@@ -13,15 +13,18 @@
 import logging
 import wave
 
+logger = logging.getLogger(__name__)
 
 ## Set verbosity level
 #verbosity = logging.DEBUG
+#verbosity = logging.INFO
+#verbosity = logging.WARNING
 verbosity = logging.ERROR
 
 # [debugging] Verbosity settings
 level = { 10: "DEBUG",  20: "INFO",  30: "WARNING",  40: "ERROR" }
-logging.basicConfig(format='Py: VSI0: [%(levelname)s]\t%(message)s', level = verbosity)
-logging.info("Verbosity level is set to " + level[verbosity])
+logging.basicConfig(format='Py: %(name)s : [%(levelname)s]\t%(message)s', level = verbosity)
+logger.info("Verbosity level is set to " + level[verbosity])
 
 
 # IRQ registers
@@ -65,26 +68,26 @@ Data = bytearray()
 #  @param name name of WAVE file to open
 def openWAVE(name):
     global WAVE
-    logging.info("Open WAVE file (read mode): {}".format(name))
+    logger.info("Open WAVE file (read mode): {}".format(name))
     WAVE = wave.open(name, 'rb')
-    logging.info("  Number of channels: {}".format(WAVE.getnchannels()))
-    logging.info("  Sample bits: {}".format(WAVE.getsampwidth() * 8))
-    logging.info("  Sample rate: {}".format(WAVE.getframerate()))
-    logging.info("  Number of frames: {}".format(WAVE.getnframes()))
+    logger.info("  Number of channels: {}".format(WAVE.getnchannels()))
+    logger.info("  Sample bits: {}".format(WAVE.getsampwidth() * 8))
+    logger.info("  Sample rate: {}".format(WAVE.getframerate()))
+    logger.info("  Number of frames: {}".format(WAVE.getnframes()))
 
 ## Read WAVE frames (global WAVE object) into global AudioFrames object
 #  @param n number of frames to read
 #  @return frames frames read
 def readWAVE(n):
     global WAVE
-    logging.info("Read WAVE frames")
+    logger.info("Read WAVE frames")
     frames = WAVE.readframes(n)
     return frames
 
 ## Close WAVE file (global WAVE object)
 def closeWAVE():
     global WAVE
-    logging.info("Close WAVE file")
+    logger.info("Close WAVE file")
     WAVE.close()
 
 
@@ -92,7 +95,7 @@ def closeWAVE():
 #  @param block_size size of block to load (in bytes)
 def loadAudioFrames(block_size):
     global Data
-    logging.info("Load audio frames into data buffer")
+    logger.info("Load audio frames into data buffer")
     frame_size = CHANNELS * ((SAMPLE_BITS + 7) // 8)
     frames_max = block_size // frame_size
     Data = readWAVE(frames_max)
@@ -100,17 +103,17 @@ def loadAudioFrames(block_size):
 
 ## Initialize
 def init():
-    logging.info("Python function init() called")
+    logger.info("Python function init() called")
 
 
 ## Read interrupt request (the VSI IRQ Status Register)
 #  @return value value read (32-bit)
 def rdIRQ():
     global IRQ_Status
-    logging.info("Python function rdIRQ() called")
+    logger.info("Python function rdIRQ() called")
 
     value = IRQ_Status
-    logging.debug("Read interrupt request: {}".format(value))
+    logger.debug("Read interrupt request: {}".format(value))
 
     return value
 
@@ -120,10 +123,10 @@ def rdIRQ():
 #  @return value value written (32-bit)
 def wrIRQ(value):
     global IRQ_Status
-    logging.info("Python function wrIRQ() called")
+    logger.info("Python function wrIRQ() called")
 
     IRQ_Status = value
-    logging.debug("Write interrupt request: {}".format(value))
+    logger.debug("Write interrupt request: {}".format(value))
 
     return value
 
@@ -134,21 +137,21 @@ def wrIRQ(value):
 #  @return value value written (32-bit)
 def wrTimer(index, value):
     global Timer_Control, Timer_Interval
-    logging.info("Python function wrTimer() called")
+    logger.info("Python function wrTimer() called")
 
     if   index == 0:
         Timer_Control = value
-        logging.debug("Write Timer_Control: {}".format(value))
+        logger.debug("Write Timer_Control: {}".format(value))
     elif index == 1:
         Timer_Interval = value
-        logging.debug("Write Timer_Interval: {}".format(value))
+        logger.debug("Write Timer_Interval: {}".format(value))
 
     return value
 
 
 ## Timer event (called at Timer Overflow)
 def timerEvent():
-    logging.info("Python function timerEvent() called")
+    logger.info("Python function timerEvent() called")
 
 
 ## Write DMA registers (the VSI DMA Registers)
@@ -157,11 +160,11 @@ def timerEvent():
 #  @return value value written (32-bit)
 def wrDMA(index, value):
     global DMA_Control
-    logging.info("Python function wrDMA() called")
+    logger.info("Python function wrDMA() called")
 
     if   index == 0:
         DMA_Control = value
-        logging.debug("Write DMA_Control: {}".format(value))
+        logger.debug("Write DMA_Control: {}".format(value))
 
     return value
 
@@ -171,14 +174,14 @@ def wrDMA(index, value):
 #  @return data data read (bytearray)
 def rdDataDMA(size):
     global Data
-    logging.info("Python function rdDataDMA() called")
+    logger.info("Python function rdDataDMA() called")
 
     loadAudioFrames(size)
 
     n = min(len(Data), size)
     data = bytearray(size)
     data[0:n] = Data[0:n]
-    logging.debug("Read data ({} bytes)".format(size))
+    logger.debug("Read data ({} bytes)".format(size))
 
     return data
 
@@ -188,10 +191,10 @@ def rdDataDMA(size):
 #  @param size size of data to write (in bytes, multiple of 4)
 def wrDataDMA(data, size):
     global Data
-    logging.info("Python function wrDataDMA() called")
+    logger.info("Python function wrDataDMA() called")
 
     Data = data
-    logging.debug("Write data ({} bytes)".format(size))
+    logger.debug("Write data ({} bytes)".format(size))
 
     return
 
@@ -202,10 +205,10 @@ def wrCONTROL(value):
     global CONTROL
     if ((value ^ CONTROL) & CONTROL_ENABLE_Msk) != 0:
         if (value & CONTROL_ENABLE_Msk) != 0:
-            logging.info("Enable Receiver")
+            logger.info("Enable Receiver")
             openWAVE('test.wav')
         else:
-            logging.info("Disable Receiver")
+            logger.info("Disable Receiver")
             closeWAVE()
     CONTROL = value
 
@@ -214,21 +217,21 @@ def wrCONTROL(value):
 def wrCHANNELS(value):
     global CHANNELS
     CHANNELS = value
-    logging.info("Number of channels: {}".format(value))
+    logger.info("Number of channels: {}".format(value))
 
 ## Write SAMPLE_BITS register (user register)
 #  @param value value to write (32-bit)
 def wrSAMPLE_BITS(value):
     global SAMPLE_BITS
     SAMPLE_BITS = value
-    logging.info("Sample bits: {}".format(value))
+    logger.info("Sample bits: {}".format(value))
 
 ## Write SAMPLE_RATE register (user register)
 #  @param value value to write (32-bit)
 def wrSAMPLE_RATE(value):
     global SAMPLE_RATE
     SAMPLE_RATE = value
-    logging.info("Sample rate: {}".format(value))
+    logger.info("Sample rate: {}".format(value))
 
 
 ## Read user registers (the VSI User Registers)
@@ -236,10 +239,10 @@ def wrSAMPLE_RATE(value):
 #  @return value value read (32-bit)
 def rdRegs(index):
     global Regs
-    logging.info("Python function rdRegs() called")
+    logger.info("Python function rdRegs() called")
 
     value = Regs[index]
-    logging.debug("Read user register at index {}: {}".format(index, value))
+    logger.debug("Read user register at index {}: {}".format(index, value))
 
     return value
 
@@ -250,7 +253,7 @@ def rdRegs(index):
 #  @return value value written (32-bit)
 def wrRegs(index, value):
     global Regs
-    logging.info("Python function wrRegs() called")
+    logger.info("Python function wrRegs() called")
 
     if   index == 0:
         wrCONTROL(value)
@@ -262,7 +265,7 @@ def wrRegs(index, value):
         wrSAMPLE_RATE(value)
 
     Regs[index] = value
-    logging.debug("Write user register at index {}: {}".format(index, value))
+    logger.debug("Write user register at index {}: {}".format(index, value))
 
     return value
 
