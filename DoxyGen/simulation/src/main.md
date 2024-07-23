@@ -16,7 +16,7 @@ The table below lists the available models:
 <tr>
 <th style="width:30%">FVP Simulation Model Name        </th><th style="width:16%">Processor Cores   </th><th>Overview Description    </th></tr>
 <tr>
-<td>FVP_Corstone_SSE-315     </td><td>Cortex-M85,<br/>Ethos-U65,<br/>Mali-C55   </td><td>Public documentation pending   </td></tr>
+<td>FVP_Corstone_SSE-315     </td><td>Cortex-M85,<br/>Ethos-U65,<br/>Mali-C55   </td><td>[FVP for Arm Corstone SSE-315 Reference Guide](https://developer.arm.com/documentation/109395/)  </td></tr>
 <tr>
 <td>FVP_Corstone_SSE-310_Ethos-U65   </td><td>Cortex-M85,<br/>Ethos-U65   </td><td>[Arm Corstone SSE-310 FVP](https://developer.arm.com/documentation/100966/latest/Arm--Corstone-SSE-310-FVP)  </td></tr>
 <tr>
