@@ -163,7 +163,7 @@ Running multiple configurations</h1>
 <div class="line">  target: [CS315, CS310, CS300]</div>
 <div class="line">  compiler: [AC6, GCC, Clang]</div>
 </div><!-- fragment --><p>And then in your job descriptions you can use <code>${{ matrix.target }}</code> and <code>${{ matrix.compiler }}</code> variables, that GitHub Actions will automatically iterate over for you.</p>
-<p>See <a href="https://github.com/ARM-software/CMSIS-RTOS2_Validation/blob/15c0fbfaf4302af39a8144bca8dbb7b1f04fce1a/.github/workflows/cmsis_rv2.yml#L131">CMSIS-RTOS2_Validation project</a> as an implementation example where such matrix strategy is implemented for API verification over different RTOS kernels and with different toolchains.</p>
+<p>See <a href="https://github.com/Arm-Examples/AVH-Hello">AVH-Hello</a>) as a simple example where such matrix strategy is implemented for building the program with different toolchain and for running on different AVH FVP targets.</p>
 <p>Note that use of <a href="https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/YML-Input-Format.md">csolution project format</a> greatly simplifies project definition and build for different target types and build configurations. It well integrates with the GitHub Actions matrix for CI jobs.</p>
 <h1><a class="anchor" id="avh_ci_template"></a>
 Example Template</h1>

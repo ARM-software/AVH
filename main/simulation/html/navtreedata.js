@@ -28,12 +28,16 @@ var NAVTREE =
     [ "Overview", "index.html", "index" ],
     [ "Using AVH FVPs", "Using.html", [
       [ "Running User Applications in CLI", "Using.html#Execution", null ],
-      [ "Model Configuration", "Using.html#Config", null ],
-      [ "Useful Hints and Tips", "Using.html#Hints", [
-        [ "Execution stop", "Using.html#stop", null ],
-        [ "Execution timing", "Using.html#timing", null ],
-        [ "Semihosting", "Using.html#semihosting", null ]
-      ] ]
+      [ "Model Configuration", "Using.html#Config", null ]
+    ] ],
+    [ "Useful Hints and Tips", "Hints.html", [
+      [ "Terminal output and logging", "Hints.html#console", [
+        [ "UART I/O", "Hints.html#uart", null ],
+        [ "Semihosting I/O", "Hints.html#semihosting", null ]
+      ] ],
+      [ "Execution in CI frameworks", "Hints.html#ci_frameworks", null ],
+      [ "Execution timing", "Hints.html#timing", null ],
+      [ "Execution stop", "Hints.html#stop", null ]
     ] ],
     [ "CMSIS-based projects for AVH FVPs", "avh_fvp_cmsis.html", null ],
     [ "API Reference", "modules.html", "modules" ]
@@ -42,8 +46,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"Using.html",
-"group__arm__vsocket__api.html#structvSocketSendToIO__t_8param"
+"Hints.html",
+"group__arm__vsocket__api.html#structvSocketSendIO__t"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
