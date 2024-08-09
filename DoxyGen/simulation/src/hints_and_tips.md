@@ -32,6 +32,7 @@ Below are some useful points for using UART I/O on FVP targets:
 complete.
  - **Linux setup** : on Linux both `xterm` and `telnet` must be installed and be specified in your PATH.
  - **Logging** : If a UART output needs to be saved as a log file (for example in CI tests), you can use FVP parameter `<board>.<uart>.out_file` to specify the log file. For example for UART0 on Corstone-315: `msp4_board.UART0.out_file=./log.txt`.
+   - If displaying the ouput information in an output terminal is not required (for example in CI jobs) you can disable it with FVP configuration parameter `<board>.<telnetterminal>.start_telnet`. For example for Corsone-315 and UART0: `msp4_board.telnetterminal0.start_telnet=0`. In this case the output will not be displayed in any terminal, but will be stored into a log file if this is configured accordingly with the `out_file` parameter.
  - **Multiple channels**: in complex systems and applications it can be beneficial to separate output into different UART channels and hence terminals, to avoid cluttered messages in a single terminal.
  - **Example** : [AVH-Hello example](https://github.com/Arm-Examples/AVH-Hello) provides a universal example with UART output, covering all AVH FVP targets.
 
@@ -66,7 +67,7 @@ Chapter [Infrastructure](./../../infrastructure/html/index.html) explains how AV
  - Disable GUI visualisation, as it often is not supported by a host and not needed in CI testing. Fot this following is required:
    - Set FVP configuration parameter `<board>.visualisation.disable-visualisation=1` for the board instance on the target FVP. For example for Corstone-315 FVP it should be `mps4_board.visualisation.disable-visualisation=1`.
    - For targets with HDLCD such as Corstone-315 FVP, additionally disable the visualisation for HDLCD as `vis_hdlcd.disable_visualisation=1`.
- - Redirect the outputs to a log file as explained in \ref console.
+ - Redirect the console outputs to a log file as explained in \ref console.
  - Ensure the program execution is exited when required by the test. \ref stop explains options for such exit.
  - For faster execution and simpler implementation you can run. See for example [Running multiple configurations with GitHub Actions](./../../infrastructure/html/avh_gh_actions.html#avh_gh_matrix).
 
