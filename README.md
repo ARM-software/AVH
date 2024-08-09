@@ -10,9 +10,9 @@ The table below lists some of the example projects that demonstrate the usage of
 
 Examples       | Description
 :--------------|:--------------------------------------------------
-[VsCode Get Started](https://github.com/Open-CMSIS-Pack/vscode-get-started) | Hello world example for AVH FVPs with support of GitHub Actions for build and run
+[AVH-Hello](https://github.com/Arm-Examples/AVH-Hello) | Hello world example for AVH FVPs with support of GitHub Actions for build and run
 [AVH_CI_Template](https://github.com/Arm-Examples/AVH_CI_Template)          | Simple example with unit tests that shows the CI setup with AVH FVPs using GitHub Actions
-[Hello VSI Examples](https://github.com/Arm-Examples/Hello_AVH)             | Simple examples that streams data from a file via Virtual Streaming Interface (VSI)
+[AVH-VSI Examples](https://github.com/Arm-Examples/AVH-VSI)             | Simple examples that demonstrate use of Virtual Streaming Interface (VSI) in different use cases
 [AVH-MLOps](https://github.com/ARM-software/AVH-MLOps)                      | A set of tools and software components and examples showcasing MLOps systems with AVH FVPs
 [CMSIS-Core Validation](https://github.com/ARM-software/CMSIS_6/tree/main/CMSIS/CoreValidation)  | Test suite for validating CMSIS-Core implementations on Cortex-M cores using different toolchains and AVH FVPs
 [CMSIS-RTOS2 Validation](https://github.com/Arm-Software/CMSIS-RTOS2_Validation)  | Test suite for validating CMSIS-RTOS2 implementations on Cortex-M cores using different toolchains and AVH FVPs

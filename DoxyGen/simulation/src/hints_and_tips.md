@@ -88,7 +88,7 @@ Following mechanisms and settings can be used for timing control and measurement
    cpu_core.cpu0                           :  68.40 MIPS (    65196784 Inst)
    -------------------------------------------------------------------------------
    ```
-  Also see [corresponding section](https://developer.arm.com/documentation/100965/latest/Timing-Annotation/Timing-annotation-tutorial/Setting-up-the-environment/Displaying-the-total-execution-time-of-the-simulation) in the Fast Models User Guide.
+  Also see section [Displaying the total execution time](https://developer.arm.com/documentation/100965/latest/Timing-Annotation/Timing-annotation-tutorial/Setting-up-the-environment/Displaying-the-total-execution-time-of-the-simulation) in the Fast Models User Guide.
 
  - [CMSIS-View](https://github.com/ARM-software/CMSIS-View) utility can be used to measure and analyze timing between events in the program, including statistical data. To store the log files on FVPs, \ref semihosting "semihosting" shall be enabled. CMSIS-View annotations can also be reused for event analysis and time measurement on real hardware.
  - \ref Config parameters can be used to control and impact the execution timing:
@@ -99,13 +99,13 @@ Following mechanisms and settings can be used for timing control and measurement
 
 Chapter [Timing Annotations](https://developer.arm.com/documentation/100965/latest/Timing-Annotation) in the Fast Models User Guide explains the performance estimation concept as implemented in the underlying FastModels technology. Note that the FVPs are built with Timing Annotations enabled (`FASTSIM_DISABLE_TA` set to 0).
 
-For interaction with external world such as via [virtual interfaces] or \ref semihosting the timing differences need to be taken into account as explain in [Timing-considerations-for-FVPs](https://developer.arm.com/documentation/100966/1126/Getting-Started-with-Fixed-Virtual-Platforms/Timing-considerations-for-FVPs).
+For interaction with external world such as via \ref arm_vsi or \ref semihosting the timing differences need to be taken into account as explain in [Timing-considerations-for-FVPs](https://developer.arm.com/documentation/100966/1126/Getting-Started-with-Fixed-Virtual-Platforms/Timing-considerations-for-FVPs).
 
 ## Execution stop {#stop}
 
 Embedded applications typically run with an infinite loop that ensures continuous program execution. But for executing regression tests as part of Continuous Integration (CI) workflows it is often required that program execution is stopped after a test is completed, so that the next test can be started.
 
-FVP command line option `--simlimit` can be used to stop execution after specified amount of seconds, for example, for 20 seconds, use `--simlimit 20`.
+FVP command line options `--cpulimit`, `--cyclelimit`, `--timelimit` and `--simlimit` can be used to stop execution after specified activity time, for example, for 20 wall-clock seconds, use `--timelimit 20`. See [FVP command line options](https://developer.arm.com/documentation/100966/latest/Getting-Started-with-Fixed-Virtual-Platforms/FVP-command-line-options) for more details.
 
 FVP models have `shutdown_on_eot` parameter that enables simple implementation of program exit. The parameter should be set in the \ref Config, for example for FPV_Corstone_SSE-300:
 
