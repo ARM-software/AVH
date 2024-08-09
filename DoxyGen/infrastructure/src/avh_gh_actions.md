@@ -59,7 +59,7 @@ matrix:
 
 And then in your job descriptions you can use `${{ matrix.target }}` and  `${{ matrix.compiler }}` variables, that GitHub Actions will automatically iterate over for you.
 
-See [CMSIS-RTOS2_Validation project](https://github.com/ARM-software/CMSIS-RTOS2_Validation/blob/15c0fbfaf4302af39a8144bca8dbb7b1f04fce1a/.github/workflows/cmsis_rv2.yml#L131) as an implementation example where such matrix strategy is implemented for API verification over different RTOS kernels and with different toolchains.
+See [AVH-Hello](https://github.com/Arm-Examples/AVH-Hello)) as a simple example where such matrix strategy is implemented for building the program with different toolchain and for running on different AVH FVP targets.
 
 Note that use of [csolution project format](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/YML-Input-Format.md) greatly simplifies project definition and build for different target types and build configurations. It well integrates with the GitHub Actions matrix for CI jobs.
 

@@ -918,6 +918,7 @@ WARN_LOGFILE           =
 
 INPUT                  = ./src/main.md \
                          ./src/using.md \
+                         ./src/hints_and_tips.md \
                          ./src/avh_fvp_cmsis.md \
                          ./src/Ref_overview.txt \
                          ./src/Ref_vio.txt \
