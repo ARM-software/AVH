@@ -155,7 +155,10 @@ UART I/O</h2>
 </ul>
 </li>
 <li><b>Linux setup</b> : on Linux both <code>xterm</code> and <code>telnet</code> must be installed and be specified in your PATH.</li>
-<li><b>Logging</b> : If a UART output needs to be saved as a log file (for example in CI tests), you can use FVP parameter <code>&lt;board&gt;.&lt;uart&gt;.out_file</code> to specify the log file. For example for UART0 on Corstone-315: <code>msp4_board.UART0.out_file=./log.txt</code>.</li>
+<li><b>Logging</b> : If a UART output needs to be saved as a log file (for example in CI tests), you can use FVP parameter <code>&lt;board&gt;.&lt;uart&gt;.out_file</code> to specify the log file. For example for UART0 on Corstone-315: <code>msp4_board.UART0.out_file=./log.txt</code>.<ul>
+<li>If displaying the ouput information in an output terminal is not required (for example in CI jobs) you can disable it with FVP configuration parameter <code>&lt;board&gt;.&lt;telnetterminal&gt;.start_telnet</code>. For example for Corsone-315 and UART0: <code>msp4_board.telnetterminal0.start_telnet=0</code>. In this case the output will not be displayed in any terminal, but will be stored into a log file if this is configured accordingly with the <code>out_file</code> parameter.</li>
+</ul>
+</li>
 <li><b>Multiple channels</b>: in complex systems and applications it can be beneficial to separate output into different UART channels and hence terminals, to avoid cluttered messages in a single terminal.</li>
 <li><b>Example</b> : <a href="https://github.com/Arm-Examples/AVH-Hello">AVH-Hello example</a> provides a universal example with UART output, covering all AVH FVP targets.</li>
 </ul>
@@ -193,7 +196,7 @@ Execution in CI frameworks</h1>
 <li>For targets with HDLCD such as Corstone-315 FVP, additionally disable the visualisation for HDLCD as <code>vis_hdlcd.disable_visualisation=1</code>.</li>
 </ul>
 </li>
-<li>Redirect the outputs to a log file as explained in <a class="el" href="Hints.html#console">Terminal output and logging</a>.</li>
+<li>Redirect the console outputs to a log file as explained in <a class="el" href="Hints.html#console">Terminal output and logging</a>.</li>
 <li>Ensure the program execution is exited when required by the test. <a class="el" href="Hints.html#stop">Execution stop</a> explains options for such exit.</li>
 <li>For faster execution and simpler implementation you can run. See for example <a href="./../../infrastructure/html/avh_gh_actions.html#avh_gh_matrix">Running multiple configurations with GitHub Actions</a>.</li>
 </ul>
