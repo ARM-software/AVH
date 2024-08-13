@@ -1,4 +1,4 @@
-# Useful Hints and Tips {#Hints}
+# Useful Hints and Tips {#hints}
 
 Below are some useful tips for using FVP models in common AVH scenarios:
 
@@ -64,12 +64,12 @@ Semihosting is also required for the following use cases:
 
 Chapter [Infrastructure](./../../infrastructure/html/index.html) explains how AVH FVPs and other related tools can be programatiically installed into various Continuous Integraion (CI) frameworks, such as GitHub. To execute your programs on AVH FVPs in such workflows following is important:
 
- - Disable GUI visualisation, as it often is not supported by a host and not needed in CI testing. Fot this following is required:
+ - Disable GUI visualisation, as it often is not supported by a host and not needed in CI testing:
    - Set FVP configuration parameter `<board>.visualisation.disable-visualisation=1` for the board instance on the target FVP. For example for Corstone-315 FVP it should be `mps4_board.visualisation.disable-visualisation=1`.
    - For targets with HDLCD such as Corstone-315 FVP, additionally disable the visualisation for HDLCD as `vis_hdlcd.disable_visualisation=1`.
  - Redirect the console outputs to a log file as explained in \ref console.
  - Ensure the program execution is exited when required by the test. \ref stop explains options for such exit.
- - For faster execution and simpler implementation you can run. See for example [Running multiple configurations with GitHub Actions](./../../infrastructure/html/avh_gh_actions.html#avh_gh_matrix).
+ - For simpler implementation a matrix-style job configuration configuration can be used. See for example [Running multiple configurations with GitHub Actions](./../../infrastructure/html/avh_gh_actions.html#avh_gh_matrix).
 
 
 ## Execution timing {#timing}

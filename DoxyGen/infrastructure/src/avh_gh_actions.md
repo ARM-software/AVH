@@ -46,6 +46,8 @@ name: Execute
           FVP_MPS2_Cortex-M3 --simlimit 10 -f fvp_config.txt -a Project.axf | tee Project.avh.log
 ```
 
+Also see [Execution in CI frameworks](../../simulation/html/hints.html#ci_frameworks) for useful hints about running FVPs in CI workflows.
+
 ## Running multiple configurations {#avh_gh_matrix}
 
 Software often needs to be tested in multiple configurations, with different toolchains and on different platforms. To simplify job definition for such variations you can use [matrix strategy in GitHub Action](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs).
@@ -66,4 +68,4 @@ Note that use of [csolution project format](https://github.com/Open-CMSIS-Pack/c
 
 ## Examples  {#avh_ci_template}
 
-See chapter [Examples](../../examples/index.html) for reference implementations that use \ref arm_cmsis_actions "CMSIS-Actions" for environment setup and subsequently perform project build and program execution on AVH FVP targets. Refer to the project's `./github/workflows/` directory for the implemented GitHub Actions workflows.
+See chapter [Examples](../../examples/html/index.html) for reference implementations that use \ref arm_cmsis_actions "CMSIS-Actions" for environment setup and subsequently perform project build and program execution on AVH FVP targets. Refer to the project's `./github/workflows/` directory for the implemented GitHub Actions workflows.
