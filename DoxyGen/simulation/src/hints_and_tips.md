@@ -1,6 +1,6 @@
 # Useful Hints and Tips {#Hints}
 
-Below are some useful tips for using FVP models in common AVH scenarios.
+Below are some useful tips for using FVP models in common AVH scenarios:
 
  - \ref console
  - \ref ci_frameworks
@@ -15,11 +15,11 @@ Application can use following options for printing information to a console:
 
 ### UART I/O {#uart}
 
-The application firmware can use UART channels available in the FVP model to print out information, with data being forwarded to a Telnet terminal on the PC via local TCP/IP connection.
+The application firmware can use UART channels available in the FVP model to print out information, with data being forwarded to a Telnet terminal on the PC via a local TCP/IP connection.
 
-This approach is especially beneficial for full-stack applications that also run on real hardware with UART communication and hence can keep uniform structure for virtual and read targets.
+This approach is especially beneficial for full-stack applications that also run on real hardware with UART communication and so can keep uniform structure for virtual and real targets.
 
-Below are some useful points for using UART I/O on FVP targets:
+Below is useful information for using UART I/O on FVP targets:
 
  - **Concept**: [Using-a-terminal-with-an-FVP](https://developer.arm.com/documentation/100966/latest/Getting-Started-with-Fixed-Virtual-Platforms/Using-a-terminal-with-an-FVP) and [TelnetTerminal](https://developer.arm.com/documentation/100964/1126/Fast-Models-components/Peripheral-components/TelnetTerminal) explain the concept in details.
  - **UART Drivers**: CMSIS BSP packs listed in \ref avh_fvp_cmsis contain drivers for UART access on corresponding FVP targets.
@@ -42,13 +42,13 @@ Application can also rely on the semihosting mechanism that enables the code run
 
 Semihosting approach can be useful to quickly enable terminal communication and bypass the complexity of using UART and I/O retargeting. It also helps to  achieve a simpler and universal implementation for rather CPU-centric test suites of individual software components, for example with unit testing, module testings and API testing that need to be run on various CPUs and with different compilers.
 
-Below are some useful points for using semihosting for terminal output on FVP targets:
+Below is useful information for using semihosting for terminal output on FVP targets:
 
  - **Concept**: [Using semihosting](https://developer.arm.com/documentation/101470/2024-0/Controlling-Target-Execution/Using-semihosting-to-access-resources-on-the-host-computer) gives a good overview and references about semihosting on Arm targets. It is a part of Arm Development Studio documenation, and contains additional details for that environment.
  - **FVP parameters**: by default semihosting is disabled in FVPs and needs to be enabled with `semihosting-enable` configuration parameter on the CPU instance. For example for FVP_Corstone_SSE-3xx as `cpu0.semihosting-enable=1` and for FVP_MPS2_Cortex-M4 as  `armcortexm4ct.semihosting-enable=1`. Additional compiler-specific parameters can be required as explained below.
  - **GCC support**: special considerations are required when using firmware built with GCC toolchain:
    - to enable semihosting for firmware built with GCC compiler you need to set the spec strings file in Linker options as `--specs=rdimon.specs` to use the semihosted version of the syscalls.
-   - When running a project built using GCC and CMSIS, the semihosting implementation can overwrite the memory configuration. To avoid this problem, configure the required memory values using model parameters, as described in this Knowledge Base Article [How do I Avoid Stack Pointer Corruption When Semihosting is Enabled on a GCC Toolchain?](https://developer.arm.com/documentation/ka005824/)
+   - when running a project built using GCC and CMSIS, the semihosting implementation can overwrite the memory configuration. To avoid this problem, configure the required values for stack and heap using model parameters, as described in this Knowledge Base Article [How do I Avoid Stack Pointer Corruption When Semihosting is Enabled on a GCC Toolchain?](https://developer.arm.com/documentation/ka005824/).
  - **Logging**: to store the semihosted output simply redirect the terminal output of the FVP execution to a log file, using standard mechanisms provided by corresponding console, such as `tee` in Linux or `>` in bash.
  - **Examples**:
    - [CMSIS-Core Validation](https://github.com/ARM-software/CMSIS_6/tree/main/CMSIS/CoreValidation) project implements tests suite for CMSIS-Core using semihosting-based print outs. FVP configuration file can be found in [/Layer/Target](https://github.com/ARM-software/CMSIS_6/tree/main/CMSIS/CoreValidation/Layer/Target) folder for respective target, as `model-config.txt`.
@@ -89,6 +89,7 @@ Following mechanisms and settings can be used for timing control and measurement
    cpu_core.cpu0                           :  68.40 MIPS (    65196784 Inst)
    -------------------------------------------------------------------------------
    ```
+
   Also see section [Displaying the total execution time](https://developer.arm.com/documentation/100965/latest/Timing-Annotation/Timing-annotation-tutorial/Setting-up-the-environment/Displaying-the-total-execution-time-of-the-simulation) in the Fast Models User Guide.
 
  - [CMSIS-View](https://github.com/ARM-software/CMSIS-View) utility can be used to measure and analyze timing between events in the program, including statistical data. To store the log files on FVPs, \ref semihosting "semihosting" shall be enabled. CMSIS-View annotations can also be reused for event analysis and time measurement on real hardware.
