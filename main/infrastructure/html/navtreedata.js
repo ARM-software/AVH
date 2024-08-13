@@ -35,7 +35,7 @@ var NAVTREE =
       [ "Setup with CMSIS-Actions", "avh_gh_actions.html#arm_cmsis_actions", null ],
       [ "Program Execution", "avh_gh_actions.html#avh_gh_run", null ],
       [ "Running multiple configurations", "avh_gh_actions.html#avh_gh_matrix", null ],
-      [ "Example Template", "avh_gh_actions.html#avh_ci_template", null ]
+      [ "Examples", "avh_gh_actions.html#avh_ci_template", null ]
     ] ],
     [ "AVH FVPs on Desktop", "avh_desktop.html", "avh_desktop" ],
     [ "Experimental Environments", "avh_beta.html", "avh_beta" ]
