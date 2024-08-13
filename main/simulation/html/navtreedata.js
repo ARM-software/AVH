@@ -30,14 +30,14 @@ var NAVTREE =
       [ "Running User Applications in CLI", "Using.html#Execution", null ],
       [ "Model Configuration", "Using.html#Config", null ]
     ] ],
-    [ "Useful Hints and Tips", "Hints.html", [
-      [ "Terminal output and logging", "Hints.html#console", [
-        [ "UART I/O", "Hints.html#uart", null ],
-        [ "Semihosting I/O", "Hints.html#semihosting", null ]
+    [ "Useful Hints and Tips", "hints.html", [
+      [ "Terminal output and logging", "hints.html#console", [
+        [ "UART I/O", "hints.html#uart", null ],
+        [ "Semihosting I/O", "hints.html#semihosting", null ]
       ] ],
-      [ "Execution in CI frameworks", "Hints.html#ci_frameworks", null ],
-      [ "Execution timing", "Hints.html#timing", null ],
-      [ "Execution stop", "Hints.html#stop", null ]
+      [ "Execution in CI frameworks", "hints.html#ci_frameworks", null ],
+      [ "Execution timing", "hints.html#timing", null ],
+      [ "Execution stop", "hints.html#stop", null ]
     ] ],
     [ "CMSIS-based projects for AVH FVPs", "avh_fvp_cmsis.html", null ],
     [ "API Reference", "modules.html", "modules" ]
@@ -46,8 +46,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"Hints.html",
-"group__arm__vsocket__api.html#structvSocketSendIO__t"
+"Using.html",
+"group__audio__drv__defines.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
