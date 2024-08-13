@@ -123,7 +123,7 @@ $(document).ready(function(){initNavTree('Hints.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Useful Hints and Tips </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_src_hints_and_tips"></a> Below are some useful tips for using FVP models in common AVH scenarios.</p>
+<div class="textblock"><p><a class="anchor" id="md_src_hints_and_tips"></a> Below are some useful tips for using FVP models in common AVH scenarios:</p>
 <ul>
 <li><a class="el" href="Hints.html#console">Terminal output and logging</a></li>
 <li><a class="el" href="Hints.html#ci_frameworks">Execution in CI frameworks</a></li>
@@ -138,9 +138,9 @@ Terminal output and logging</h1>
 </ul>
 <h2><a class="anchor" id="uart"></a>
 UART I/O</h2>
-<p>The application firmware can use UART channels available in the FVP model to print out information, with data being forwarded to a Telnet terminal on the PC via local TCP/IP connection.</p>
-<p>This approach is especially beneficial for full-stack applications that also run on real hardware with UART communication and hence can keep uniform structure for virtual and read targets.</p>
-<p>Below are some useful points for using UART I/O on FVP targets:</p>
+<p>The application firmware can use UART channels available in the FVP model to print out information, with data being forwarded to a Telnet terminal on the PC via a local TCP/IP connection.</p>
+<p>This approach is especially beneficial for full-stack applications that also run on real hardware with UART communication and so can keep uniform structure for virtual and real targets.</p>
+<p>Below is useful information for using UART I/O on FVP targets:</p>
 <ul>
 <li><b>Concept</b>: <a href="https://developer.arm.com/documentation/100966/latest/Getting-Started-with-Fixed-Virtual-Platforms/Using-a-terminal-with-an-FVP">Using-a-terminal-with-an-FVP</a> and <a href="https://developer.arm.com/documentation/100964/1126/Fast-Models-components/Peripheral-components/TelnetTerminal">TelnetTerminal</a> explain the concept in details.</li>
 <li><b>UART Drivers</b>: CMSIS BSP packs listed in <a class="el" href="avh_fvp_cmsis.html">CMSIS-based projects for AVH FVPs</a> contain drivers for UART access on corresponding FVP targets.</li>
@@ -166,13 +166,13 @@ UART I/O</h2>
 Semihosting I/O</h2>
 <p>Application can also rely on the semihosting mechanism that enables the code running on an FVP model to direcly use the Input/Output facilities of the host computer. With semihosting we can enable standard C I/O functions, such as <code>printf()</code> and <code>scanf()</code>, to use the host terminal from where the model is started.</p>
 <p>Semihosting approach can be useful to quickly enable terminal communication and bypass the complexity of using UART and I/O retargeting. It also helps to achieve a simpler and universal implementation for rather CPU-centric test suites of individual software components, for example with unit testing, module testings and API testing that need to be run on various CPUs and with different compilers.</p>
-<p>Below are some useful points for using semihosting for terminal output on FVP targets:</p>
+<p>Below is useful information for using semihosting for terminal output on FVP targets:</p>
 <ul>
 <li><b>Concept</b>: <a href="https://developer.arm.com/documentation/101470/2024-0/Controlling-Target-Execution/Using-semihosting-to-access-resources-on-the-host-computer">Using semihosting</a> gives a good overview and references about semihosting on Arm targets. It is a part of Arm Development Studio documenation, and contains additional details for that environment.</li>
 <li><b>FVP parameters</b>: by default semihosting is disabled in FVPs and needs to be enabled with <code>semihosting-enable</code> configuration parameter on the CPU instance. For example for FVP_Corstone_SSE-3xx as <code>cpu0.semihosting-enable=1</code> and for FVP_MPS2_Cortex-M4 as <code>armcortexm4ct.semihosting-enable=1</code>. Additional compiler-specific parameters can be required as explained below.</li>
 <li><b>GCC support</b>: special considerations are required when using firmware built with GCC toolchain:<ul>
 <li>to enable semihosting for firmware built with GCC compiler you need to set the spec strings file in Linker options as <code>--specs=rdimon.specs</code> to use the semihosted version of the syscalls.</li>
-<li>When running a project built using GCC and CMSIS, the semihosting implementation can overwrite the memory configuration. To avoid this problem, configure the required memory values using model parameters, as described in this Knowledge Base Article <a href="https://developer.arm.com/documentation/ka005824/">How do I Avoid Stack Pointer Corruption When Semihosting is Enabled on a GCC Toolchain?</a></li>
+<li>when running a project built using GCC and CMSIS, the semihosting implementation can overwrite the memory configuration. To avoid this problem, configure the required values for stack and heap using model parameters, as described in this Knowledge Base Article <a href="https://developer.arm.com/documentation/ka005824/">How do I Avoid Stack Pointer Corruption When Semihosting is Enabled on a GCC Toolchain?</a>.</li>
 </ul>
 </li>
 <li><b>Logging</b>: to store the semihosted output simply redirect the terminal output of the FVP execution to a log file, using standard mechanisms provided by corresponding console, such as <code>tee</code> in Linux or <code>&gt;</code> in bash.</li>
@@ -205,7 +205,7 @@ Execution timing</h1>
 <p>FVP simulation models are targeted to software development and functional testing, and are not suitable for accurate performance comparisons on the CPU level. However, they can be well used to analyze timing on the program level, such as for scheduling RTOS tasks, detecting deadlocks, but also identifying overall performance trends.</p>
 <p>Following mechanisms and settings can be used for timing control and measurements:</p>
 <ul>
-<li>FVP model can be started with command-line option <code>--stat</code> to print the execution statistics on simulation exit. Here is an example of such statistics output: <div class="fragment"><div class="line">--- cpu_core statistics: ------------------------------------------------------</div>
+<li><p class="startli">FVP model can be started with command-line option <code>--stat</code> to print the execution statistics on simulation exit. Here is an example of such statistics output: </p><div class="fragment"><div class="line">--- cpu_core statistics: ------------------------------------------------------</div>
 <div class="line">Simulated time                          : 0.651964s</div>
 <div class="line">User time                               : 0.843750s</div>
 <div class="line">System time                             : 0.109375s</div>
@@ -213,7 +213,8 @@ Execution timing</h1>
 <div class="line">Performance index                       : 0.43</div>
 <div class="line">cpu_core.cpu0                           :  68.40 MIPS (    65196784 Inst)</div>
 <div class="line">-------------------------------------------------------------------------------</div>
-</div><!-- fragment --> Also see section <a href="https://developer.arm.com/documentation/100965/latest/Timing-Annotation/Timing-annotation-tutorial/Setting-up-the-environment/Displaying-the-total-execution-time-of-the-simulation">Displaying the total execution time</a> in the Fast Models User Guide.</li>
+</div><!-- fragment --><p class="startli">Also see section <a href="https://developer.arm.com/documentation/100965/latest/Timing-Annotation/Timing-annotation-tutorial/Setting-up-the-environment/Displaying-the-total-execution-time-of-the-simulation">Displaying the total execution time</a> in the Fast Models User Guide.</p>
+</li>
 <li><a href="https://github.com/ARM-software/CMSIS-View">CMSIS-View</a> utility can be used to measure and analyze timing between events in the program, including statistical data. To store the log files on FVPs, <a class="el" href="Hints.html#semihosting">semihosting</a> shall be enabled. CMSIS-View annotations can also be reused for event analysis and time measurement on real hardware.</li>
 <li><a class="el" href="Using.html#Config">Model Configuration</a> parameters can be used to control and impact the execution timing:<ul>
 <li>With Cycle Per Instruction (CPI) settings <code>cpi_div</code> and <code>cpi_mul</code>.</li>
