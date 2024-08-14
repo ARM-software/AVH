@@ -36,7 +36,7 @@ Keil Studio relies on [Arm Environment Manager extension](https://developer.arm.
     }
   ],
   "requires": {
-    "arm:models/arm/avh-fvp": "^11.24.24"
+    "arm:models/arm/avh-fvp": "^11.26.11"
   }
 }
 ```

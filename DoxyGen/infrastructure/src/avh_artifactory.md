@@ -6,15 +6,15 @@ You can either download the AVH FVPs directly or rely on the environment setup v
 
 Note that AVH FVPs integrations in \ref avh_gh_actions "GitHub Actions" or \ref avh_desktop "desktop IDEs" may provide own built-in mechanisms for environment setup and vcpkg configuration support. Refer to corresponding documentation sections for details.
 
-## Direct Download {#avh_fvp_download}
+## Direct download {#avh_fvp_download}
 
 You can download individual tool artifacts from Arm Tools Artifactory directly using URLs. The AVH FVPs can be found at [https://artifacts.tools.arm.com/avh/](https://artifacts.tools.arm.com/avh/), are organized by release version and packaged for supported host operating systems.
 
-For example to download AVH FVP v11.24.24 for use on Linux with Arm-based CPUs, run the following commands:
+For example to download AVH FVP v11.26.11 for use on Linux with Arm-based CPUs, run the following commands:
 
 ```
-wget https://artifacts.tools.arm.com/avh/11.24.24/avh-linux-aarch64_11.24_24_Linux64_armv8l.tgz
-tar zxvf avh-linux-aarch64_11.24_24_Linux64_armv8l.tgz
+wget https://artifacts.tools.arm.com/avh/11.26.11/avh-linux-aarch64_11.26_11_Linux64_armv8l.tgz
+tar zxvf avh-linux-aarch64_11.26_11_Linux64_armv8l.tgz
 ```
 
 In this example, the avh-fvp artifact is downloaded and the extracted models are available locally in `./avh-linux-aarch64/bin/models/` directory.
@@ -40,7 +40,7 @@ For AVH FVPs the vcpkg_configuration.json file shall contain `"arm:models/arm/av
     }
   ],
   "requires": {
-    "arm:models/arm/avh-fvp": "^11.24.24"
+    "arm:models/arm/avh-fvp": "^11.26.11"
   }
 }
 ```
