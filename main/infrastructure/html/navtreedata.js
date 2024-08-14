@@ -27,7 +27,7 @@ var NAVTREE =
   [ "Infrastructure", "index.html", [
     [ "Overview", "index.html", null ],
     [ "AVH FVPs in Arm Tools Artifactory", "avh_fvp_artifactory.html", [
-      [ "Direct Download", "avh_fvp_artifactory.html#avh_fvp_download", null ],
+      [ "Direct download", "avh_fvp_artifactory.html#avh_fvp_download", null ],
       [ "Download with vcpkg", "avh_fvp_artifactory.html#avh_fvp_vcpkg", null ],
       [ "License management", "avh_fvp_artifactory.html#avh_fvp_lic_act", null ]
     ] ],

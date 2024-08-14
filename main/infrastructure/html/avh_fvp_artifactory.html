@@ -127,11 +127,11 @@ $(document).ready(function(){initNavTree('avh_fvp_artifactory.html',''); initRes
 <p>You can either download the AVH FVPs directly or rely on the environment setup via the vcpkg configuration in the project. Additionally a user-based license needs to be activated.</p>
 <p>Note that AVH FVPs integrations in <a class="el" href="avh_gh_actions.html">GitHub Actions</a> or <a class="el" href="avh_desktop.html">desktop IDEs</a> may provide own built-in mechanisms for environment setup and vcpkg configuration support. Refer to corresponding documentation sections for details.</p>
 <h1><a class="anchor" id="avh_fvp_download"></a>
-Direct Download</h1>
+Direct download</h1>
 <p>You can download individual tool artifacts from Arm Tools Artifactory directly using URLs. The AVH FVPs can be found at <a href="https://artifacts.tools.arm.com/avh/">https://artifacts.tools.arm.com/avh/</a>, are organized by release version and packaged for supported host operating systems.</p>
-<p>For example to download AVH FVP v11.24.24 for use on Linux with Arm-based CPUs, run the following commands:</p>
-<div class="fragment"><div class="line">wget https://artifacts.tools.arm.com/avh/11.24.24/avh-linux-aarch64_11.24_24_Linux64_armv8l.tgz</div>
-<div class="line">tar zxvf avh-linux-aarch64_11.24_24_Linux64_armv8l.tgz</div>
+<p>For example to download AVH FVP v11.26.11 for use on Linux with Arm-based CPUs, run the following commands:</p>
+<div class="fragment"><div class="line">wget https://artifacts.tools.arm.com/avh/11.26.11/avh-linux-aarch64_11.26_11_Linux64_armv8l.tgz</div>
+<div class="line">tar zxvf avh-linux-aarch64_11.26_11_Linux64_armv8l.tgz</div>
 </div><!-- fragment --><p>In this example, the avh-fvp artifact is downloaded and the extracted models are available locally in <code>./avh-linux-aarch64/bin/models/</code> directory.</p>
 <h1><a class="anchor" id="avh_fvp_vcpkg"></a>
 Download with vcpkg</h1>
@@ -148,7 +148,7 @@ Download with vcpkg</h1>
 <div class="line">    }</div>
 <div class="line">  ],</div>
 <div class="line">  &quot;requires&quot;: {</div>
-<div class="line">    &quot;arm:models/arm/avh-fvp&quot;: &quot;^11.24.24&quot;</div>
+<div class="line">    &quot;arm:models/arm/avh-fvp&quot;: &quot;^11.26.11&quot;</div>
 <div class="line">  }</div>
 <div class="line">}</div>
 </div><!-- fragment --><h1><a class="anchor" id="avh_fvp_lic_act"></a>
