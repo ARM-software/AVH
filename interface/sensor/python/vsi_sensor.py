@@ -27,6 +27,7 @@ except Exception as e:
     print(f"VSI:Sensor:Exception: {type(e).__name__}")
     raise
 
+logger = logging.getLogger(__name__)
 
 class RecordManager:
     def __init__(self):
@@ -48,7 +49,7 @@ class RecordManager:
 
     # Flush variables
     def flush(self):
-        logging.info("Flush Record Data")
+        logger.info("Flush Record Data")
         self.data_buff          = bytearray()
         self.timestamp          = []
         self.data_size          = []
@@ -63,20 +64,20 @@ class RecordManager:
 
     # Read one Record from data file and save acquired data in corresponding buffers
     def __getRecord(self):
-        logging.info("Get Record Data")
+        logger.info("Get Record Data")
         data = readFile(self.HEADER_SIZE)
         if len(data) == self.HEADER_SIZE:
             self.timestamp.append(unpack("I", data[:self.TIMESTAMP_SIZE])[0])
             self.data_size.append(unpack("I", data[self.TIMESTAMP_SIZE:])[0])
             self.data_buff.extend(readFile(self.data_size[-1]))
-            logging.debug(f"Record Data size: {len(self.data_buff)}")
+            logger.debug(f"Record Data size: {len(self.data_buff)}")
         else:
-            logging.info("No Record")
+            logger.info("No Record")
 
     # Extract requested number of bytes from data buffer
     # If end of file is reached, return requested number of zeroes
     def getData(self, size):
-        logging.info("Get Data from Record")
+        logger.info("Get Data from Record")
 
         if len(self.data_buff) == 0:
             self.__getRecord()
@@ -84,14 +85,14 @@ class RecordManager:
         if len(self.data_buff) >= size:
             data = self.data_buff[:size]
             self.data_buff = self.data_buff[size:]
-            logging.debug(f"Requested Data size: {size}")
+            logger.debug(f"Requested Data size: {size}")
 
             if self.active_record_size == 0:
                 self.active_record_size = self.data_size[self.cnt]
                 self.cnt += 1
             self.active_record_size -= size
         else:
-            logging.info("No Data in Record")
+            logger.info("No Data in Record")
             data = bytearray(size)
 
         return data
@@ -101,7 +102,7 @@ class RecordManager:
     def __getWindow(self):
         window = 0
         old_timestamp_num = 0
-        logging.info("Get Time window")
+        logger.info("Get Time window")
         while True:
             if len(self.timestamp) == 0:
                 self.__getRecord()
@@ -120,11 +121,11 @@ class RecordManager:
                 self.__getRecord()
 
         self.window = window
-        logging.debug(f"Window size: {self.window} ms")
+        logger.debug(f"Window size: {self.window} ms")
 
     # Calculate average interval based on number of samples/blocks in current time window
     def __getInterval(self):
-        logging.info("Calculate new Interval")
+        logger.info("Calculate new Interval")
         if (CONTROL & CONTROL_DMA_Msk) != 0:
             size = FIFO_SIZE
         else:
@@ -134,7 +135,7 @@ class RecordManager:
 
         if num > 0:
             self.interval = round((self.window * 1000)/num)
-            logging.debug(f"Number of Samples/Blocks: {num}")
+            logger.debug(f"Number of Samples/Blocks: {num}")
 
             # Compensate for time drift
             record_elapsed_time = (self.timestamp[self.cnt] - self.timestamp[0]) * 1000
@@ -147,7 +148,7 @@ class RecordManager:
     # Calculate new average timer interval when current record timestamp is at least
     # SLIDE_INTERVAL ahead of last timestamp used for updating the timer
     def updateTimer(self, interval):
-        logging.info("Update AVH TimerEvent interval")
+        logger.info("Update AVH TimerEvent interval")
         if len(self.timestamp) > self.cnt:
             time_delta = self.timestamp[self.cnt] - self.timestamp[self.cnt_old]
         elif len(self.timestamp) == 0:
@@ -188,15 +189,15 @@ class FifoBuff:
         self.count          = 0
 
     def put(self, byte):
-        logging.info("Put byte in FIFO")
+        logger.info("Put byte in FIFO")
 
         # Check if buffer is already full
         if self.count == self.buff_size:
-            logging.info("FIFO is full")
+            logger.info("FIFO is full")
             return None
         else:
             self.data[self.idx_put] = byte
-            logging.debug(f"Byte {byte} inserted at position {self.idx_put}")
+            logger.debug(f"Byte {byte} inserted at position {self.idx_put}")
             self.idx_put = (self.idx_put + 1) % self.buff_size
             self.count += 1
             if (self.count >= self.threshold_size) and (self.threshold_size != 0):
@@ -204,15 +205,15 @@ class FifoBuff:
             return byte
 
     def get(self):
-        logging.info("Get byte from FIFO")
+        logger.info("Get byte from FIFO")
 
         # Check if buffer is already empty
         if self.count == 0:
-            logging.info("FIFO is empty")
+            logger.info("FIFO is empty")
             return None
         else:
             byte = self.data[self.idx_get]
-            logging.debug(f"Byte {byte} extracted from position {self.idx_get}")
+            logger.debug(f"Byte {byte} extracted from position {self.idx_get}")
             self.idx_get = (self.idx_get + 1) % self.buff_size
             self.count -= 1
             if self.count < self.threshold_size:
@@ -260,11 +261,11 @@ Record = RecordManager()
 def openFile(name):
     global file
 
-    logging.info(f"Open recording file (read mode): {name}")
+    logger.info(f"Open recording file (read mode): {name}")
     try:
         file = open(f"{name}", "rb")
     except Exception as e:
-        logging.info(f"An error occurred when trying to open recording: {e}")
+        logger.info(f"An error occurred when trying to open recording: {e}")
 
 
 ## Read data bytes from sensor recording file
@@ -274,10 +275,10 @@ def readFile(n_bytes):
     global file
 
     try:
-        logging.info("Read recording file")
+        logger.info("Read recording file")
         data = bytearray(file.read(n_bytes))
     except Exception as e:
-        logging.debug(f"An error occurred when reading n_bytes = {n_bytes}: {e}")
+        logger.debug(f"An error occurred when reading n_bytes = {n_bytes}: {e}")
         data = bytearray()
 
     return data
@@ -288,10 +289,10 @@ def closeFile():
     global file
 
     try:
-        logging.info("Close recording file")
+        logger.info("Close recording file")
         file.close()
     except Exception as e:
-        logging.info(f"An error occurred when closing SDS file: {e}")
+        logger.info(f"An error occurred when closing SDS file: {e}")
 
 
 ## VSI IRQ Status register
@@ -328,15 +329,15 @@ def timerEvent(IRQ_Status):
             if byte is None:
                 STATUS |= STATUS_OVERFLOW_Msk
                 IRQ_Status |= IRQ_Status_Overflow_Msk
-                logging.debug("Overflow detected")
+                logger.debug("Overflow detected")
                 break
 
         if FIFO.threshold:
             IRQ_Status |= IRQ_Status_Threshold_Msk
-            logging.debug("Threshold event")
+            logger.debug("Threshold event")
     else:
         IRQ_Status |= IRQ_Status_Threshold_Msk
-        logging.debug("DMA Threshold event")
+        logger.debug("DMA Threshold event")
 
     return IRQ_Status
 
@@ -359,14 +360,14 @@ def wrCONTROL(value):
         STATUS = 0
         Record.flush()
         if (value & CONTROL_ENABLE_Msk) != 0:
-            logging.info("Enable Sensor")
+            logger.info("Enable Sensor")
             if SENSOR_NAME_VALID:
                 openFile(f"{sensor_filename}.{sensor_idx}.sds")
             if (value & CONTROL_DMA_Msk) == 0:
                 FIFO = FifoBuff(((FIFO_SIZE // SAMPLE_SIZE) * SAMPLE_SIZE), (DATA_THRESHOLD * SAMPLE_SIZE))
             sensor_idx += 1
         else:
-            logging.info("Disable sensor")
+            logger.info("Disable sensor")
             if SENSOR_NAME_VALID:
                 closeFile()
 
@@ -389,7 +390,7 @@ def rdSTATUS():
 def wrSENSOR_NAME_LEN(value):
     global SENSOR_NAME_LEN, SENSOR_NAME_VALID, sensor_filename, sensor_name_idx
 
-    logging.info("Set new sensor name length and reset filename and valid flag")
+    logger.info("Set new sensor name length and reset filename and valid flag")
     sensor_name_idx = 0
     sensor_filename = ""
     SENSOR_NAME_VALID = 0
@@ -402,19 +403,19 @@ def wrSENSOR_NAME_CHAR(value):
     global SENSOR_NAME_VALID, sensor_filename, sensor_name_idx
 
     if sensor_name_idx < SENSOR_NAME_LEN:
-        logging.info(f"Append {value} to filename")
+        logger.info(f"Append {value} to filename")
         sensor_filename += f"{value}"
         sensor_name_idx += 1
-        logging.debug(f"Received {sensor_name_idx} of {SENSOR_NAME_LEN} characters")
+        logger.debug(f"Received {sensor_name_idx} of {SENSOR_NAME_LEN} characters")
 
     if sensor_name_idx == SENSOR_NAME_LEN:
-        logging.info("Check if file exists and set VALID flag")
-        logging.debug(f"Filename: {sensor_filename}.{sensor_idx}.sds")
+        logger.info("Check if file exists and set VALID flag")
+        logger.debug(f"Filename: {sensor_filename}.{sensor_idx}.sds")
         if path.isfile(f"{sensor_filename}.{sensor_idx}.sds"):
             SENSOR_NAME_VALID = 1
         else:
             SENSOR_NAME_VALID = 0
-        logging.debug(f"Filename VALID: {SENSOR_NAME_VALID}")
+        logger.debug(f"Filename VALID: {SENSOR_NAME_VALID}")
 
 
 ## Read SAMPLE_COUNT register (user register)
@@ -422,7 +423,7 @@ def wrSENSOR_NAME_CHAR(value):
 def rdSAMPLE_COUNT():
     global SAMPLE_COUNT
 
-    logging.debug(f"Fifo Count: {FIFO.count}")
+    logger.debug(f"Fifo Count: {FIFO.count}")
     SAMPLE_COUNT = FIFO.count // SAMPLE_SIZE
 
     return SAMPLE_COUNT

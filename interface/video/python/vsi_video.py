@@ -31,6 +31,7 @@ except Exception as e:
     print(f"VSI:Video:Exception: {type(e).__name__}")
     raise
 
+logger = logging.getLogger(__name__)
 
 class VideoClient:
     def __init__(self):
@@ -105,7 +106,7 @@ class VideoClient:
                 self.conn.send([self.CLOSE_SERVER])
                 self.conn.close()
         except Exception as e:
-            logging.error(f'Exception occurred on cleanup: {e}')
+            logger.error(f'Exception occurred on cleanup: {e}')
 
 
 # User registers
@@ -166,7 +167,7 @@ def init(address, authkey):
     base_dir = path.dirname(__file__)
     server_path = path.join(base_dir, 'vsi_video_server.py')
 
-    logging.info("Start video server")
+    logger.info("Start video server")
     if path.isfile(server_path):
         # Start Video Server
         if os_name == 'nt':
@@ -181,10 +182,10 @@ def init(address, authkey):
         # Connect to Video Server
         Video.connectToServer(address, authkey)
         if Video.conn == None:
-            logging.error("Server not connected")
+            logger.error("Server not connected")
 
     else:
-        logging.error(f"Server script not found: {server_path}")
+        logger.error(f"Server script not found: {server_path}")
 
     # Register clean-up function
     atexit.register(cleanup)
@@ -289,29 +290,29 @@ def wrCONTROL(value):
     if ((value ^ CONTROL) & CONTROL_ENABLE_Msk) != 0:
         STATUS &= ~STATUS_ACTIVE_Msk
         if (value & CONTROL_ENABLE_Msk) != 0:
-            logging.info("Start video stream")
+            logger.info("Start video stream")
             if Video.conn != None:
-                logging.info("Configure video stream")
+                logger.info("Configure video stream")
                 configuration_valid = Video.configureStream(FRAME_WIDTH, FRAME_HEIGHT, COLOR_FORMAT, FRAME_RATE)
                 if configuration_valid:
-                    logging.info("Enable video stream")
+                    logger.info("Enable video stream")
                     server_active = Video.enableStream(MODE)
                     if server_active:
                         STATUS |=   STATUS_ACTIVE_Msk
                         STATUS &= ~(STATUS_OVERFLOW_Msk | STATUS_UNDERFLOW_Msk | STATUS_EOS_Msk)
                     else:
-                        logging.error("Enable video stream failed")
+                        logger.error("Enable video stream failed")
                 else:
-                    logging.error("Configure video stream failed")
+                    logger.error("Configure video stream failed")
             else:
-                logging.error("Server not connected")
+                logger.error("Server not connected")
         else:
-            logging.info("Stop video stream")
+            logger.info("Stop video stream")
             if Video.conn != None:
-                logging.info("Disable video stream")
+                logger.info("Disable video stream")
                 Video.disableStream()
             else:
-                logging.error("Server not connected")
+                logger.error("Server not connected")
 
     if (value & CONTROL_BUF_FLUSH_Msk) != 0:
         value &= ~CONTROL_BUF_FLUSH_Msk
@@ -336,7 +337,7 @@ def rdSTATUS():
 def wrFILENAME_LEN(value):
     global STATUS, FILENAME_LEN, FILENAME_VALID, Filename, FilenameIdx
 
-    logging.info("Set new source name length and reset filename and valid flag")
+    logger.info("Set new source name length and reset filename and valid flag")
     FilenameIdx = 0
     Filename = ""
     FILENAME_VALID = 0
@@ -349,21 +350,21 @@ def wrFILENAME_CHAR(value):
     global FILENAME_VALID, Filename, FilenameIdx
 
     if FilenameIdx < FILENAME_LEN:
-        logging.info(f"Append {value} to filename")
+        logger.info(f"Append {value} to filename")
         Filename += f"{value}"
         FilenameIdx += 1
-        logging.debug(f"Received {FilenameIdx} of {FILENAME_LEN} characters")
+        logger.debug(f"Received {FilenameIdx} of {FILENAME_LEN} characters")
 
     if FilenameIdx == FILENAME_LEN:
-        logging.info("Check if file exists on Server side and set VALID flag")
-        logging.debug(f"Filename: {Filename}")
+        logger.info("Check if file exists on Server side and set VALID flag")
+        logger.debug(f"Filename: {Filename}")
 
         if Video.conn != None:
             FILENAME_VALID = Video.setFilename(Filename, MODE)
         else:
-            logging.error("Server not connected")
+            logger.error("Server not connected")
 
-        logging.debug(f"Filename VALID: {FILENAME_VALID}")
+        logger.debug(f"Filename VALID: {FILENAME_VALID}")
 
 
 ## Write FRAME_INDEX register (user register)
