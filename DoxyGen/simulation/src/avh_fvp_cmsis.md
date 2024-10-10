@@ -8,6 +8,8 @@ Table below lists AVH FVPs with the corresponding CMSIS Packs that implement dev
 <tr>
 <th style="width:27%">AVH FVP Model Name   </th><th style="width:25%">CMSIS Packs with DFP/BSP<sup> (1)</sup>  </th><th style="width:17%">Device name</th><th>Description</th></tr>
 <tr>
+<td>FVP_Corstone_SSE-320</td><td>[ARM.SSE_320_BSP](https://www.keil.arm.com/packs/sse_320_bsp-arm)</td><td>[`SSE-320-FVP`](https://www.keil.arm.com/devices/arm-sse-320-fvp)</td><td>Corstone-320 subsystem</td></tr>
+<tr>
 <td>FVP_Corstone_SSE-315</td><td>[ARM.SSE_315_BSP](https://www.keil.arm.com/packs/sse_315_bsp-arm)</td><td>[`SSE-315-FVP`](https://www.keil.arm.com/devices/arm-sse-315-fvp)</td><td>Corstone-315 subsystem</td></tr>
 <tr>
 <td>FVP_Corstone_SSE-310<br/>FVP_Corstone_SSE-310_Ethos-U65</td><td>[ARM.V2M_MPS3_SSE_310_BSP](https://www.keil.arm.com/packs/v2m_mps3_sse_310_bsp-arm)</td><td>[`SSE-310-MPS3_FVP`](https://www.keil.arm.com/devices/arm-sse-310-mps3-fvp)</td><td>Corstone-310 subsystem</td></tr>

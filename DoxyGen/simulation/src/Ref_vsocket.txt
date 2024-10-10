@@ -120,7 +120,7 @@ Instructions below cover specifically setup for using IoT Socket API in a projec
   - ARM::CMSIS pack for access to CMSIS-RTOS2 API used by VSocket implementation.
   - [IoT Socket pack](https://github.com/MDK-Packs/IoT_Socket) for access to IoT Socket API header (*iot_socket.h*)
   - Pack with target device support for access to \ref arm_vsocket_api (*arm_vsocket.h*)
- - Select Virtual Hardware device as the target in the project. See in \ref Using.
+ - Select Virtual Hardware device as the target in the project. See in \ref using.
  - Following components shall be selected as part of the project:
    - *CMSIS:CORE* for general device abstraction
    - *CMSIS:RTOS2 (API)* for RTOS2 API, 

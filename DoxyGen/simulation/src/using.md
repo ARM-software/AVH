@@ -1,4 +1,4 @@
-# Using AVH FVPs {#Using}
+# Using AVH FVPs {#using}
 
 This section gives an overview on how to use the **Arm Fixed Virtual Platforms (FVPs)** in command line interface.
 

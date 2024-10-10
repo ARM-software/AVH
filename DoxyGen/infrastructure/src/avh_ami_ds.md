@@ -15,7 +15,7 @@ The `-N` option holds the SSH tunnel connection and does not allow to execute ot
 
 ## Start program on the remote FVP model {#ds_vht_start}
 
-- Add following [command line options](../../simulation/html/Using.html#Options) when launching a program on the FVP target in the AMI:
+- Add following [command line options](../../simulation/html/using.html#Options) when launching a program on the FVP target in the AMI:
 |**Option**             |**Alias**|
 | ----------------------| ------- |
 | `--iris-server`       | `-I`    |

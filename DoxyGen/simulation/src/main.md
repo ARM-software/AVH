@@ -4,7 +4,7 @@ The **AVH Fixed Virtual Platforms (AVH FVPs)** provide functionally accurate sim
 
 The AVH FVP models are standalone programs that can be executed in a target environment. See \ref Models for a list of FVPs provided in the AVH context.
 
-Section \ref Using gives an overview how to run an embedded program on a target AVH FVP model using command line interface. [Infrastructure chapter](../../infrastructure/html/index.html) provides details on how to obtain AVH FVPs and use them in various cloud-native or desktop environments workflows, such as GitHub and Keil MDK.
+Section \ref using gives an overview how to run an embedded program on a target AVH FVP model using command line interface. [Infrastructure chapter](../../infrastructure/html/index.html) provides details on how to obtain AVH FVPs and use them in various cloud-native or desktop environments workflows, such as GitHub and Keil MDK.
 
 ## Available Models {#Models}
 
@@ -16,7 +16,9 @@ The table below lists the available models:
 <tr>
 <th style="width:30%">FVP Simulation Model Name        </th><th style="width:16%">Processor Cores   </th><th>Overview Description    </th></tr>
 <tr>
-<td>FVP_Corstone_SSE-315     </td><td>Cortex-M85,<br/>Ethos-U65,<br/>Mali-C55   </td><td>[FVP for Arm Corstone SSE-315 Reference Guide](https://developer.arm.com/documentation/109395/)  </td></tr>
+<td>FVP_Corstone_SSE-320     </td><td>Cortex-M85,<br/>Ethos-U85,<br/>Mali-C55   </td><td>[FVP for Arm Corstone SSE-320 Reference Guide](https://developer.arm.com/documentation/109760)  </td></tr>
+<tr>
+<td>FVP_Corstone_SSE-315     </td><td>Cortex-M85,<br/>Ethos-U65,<br/>Mali-C55   </td><td>[FVP for Arm Corstone SSE-315 Reference Guide](https://developer.arm.com/documentation/109395)  </td></tr>
 <tr>
 <td>FVP_Corstone_SSE-310_Ethos-U65   </td><td>Cortex-M85,<br/>Ethos-U65   </td><td>[Arm Corstone SSE-310 FVP](https://developer.arm.com/documentation/100966/latest/Arm--Corstone-SSE-310-FVP)  </td></tr>
 <tr>

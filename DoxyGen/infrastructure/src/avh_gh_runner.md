@@ -69,7 +69,7 @@ As the AVH Runner is a Ubuntu based machine, you can use many common utilities f
 
 ### Using AVH FVP models {#avh_gh_using_fvp}
 
-[AVH simulation models](../../simulation/html/index.html) are located at `/opt/VHT/` and can be run from there using command line commands as explained in [Using Arm Fixed Virtual Platforms](../../simulation/html/Using.html). 
+[AVH simulation models](../../simulation/html/index.html) are located at `/opt/VHT/` and can be run from there using command line commands as explained in [Using Arm Fixed Virtual Platforms](../../simulation/html/using.html). 
 This can be done directly in the .yaml file that specifoies the GitHub Action, or abstracted with a custom script. For example a step for running the hello.axf binary on a Cortex-M3 model can be done as a step in the GitHub Action yaml as:
 ```
 ... 
