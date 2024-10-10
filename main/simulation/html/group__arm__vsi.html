@@ -44,7 +44,7 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Arm Virtual Hardware
-   &#160;<span id="projectnumber">Version 2.0.0</span>
+   &#160;<span id="projectnumber">Version 2.1.0</span>
    </div>
    <div id="projectbrief">AVH FVP Models</div>
   </td>
@@ -152,7 +152,7 @@ Using the Virtual Streaming Interface (VSI)</div></div>
 <ul>
 <li>On the application firmware side a peripheral driver uses the <a class="el" href="group__arm__vsi__api.html">VSI registers</a> in the FVP model to simulate peripheral operation for a target use case. By relying on common driver APIs the same application-level code can be tested on an FVP model or a real hardware target.</li>
 <li>Read/write accesses to the VSI peripheral registers in the FVP trigger execution of corresponding callback functions in the <a class="el" href="group__arm__vsi__py.html">VSI Python scripts</a> that implement peripheral behavior in the target scenario.</li>
-<li>An FVP model can be run on a host OS and executes the target firmware application image. The path to the VSI python scripts is provided to the FVP using the configuration parameter <code>v_path</code>. Section <a class="el" href="Using.html#Execution">Running User Applications in CLI</a> gives an example.</li>
+<li>An FVP model can be run on a host OS and executes the target firmware application image. The path to the VSI python scripts is provided to the FVP using the configuration parameter <code>v_path</code>. Section <a class="el" href="using.html#Execution">Running User Applications in CLI</a> gives an example.</li>
 </ul>
 <p>Section <a class="el" href="group__arm__vsi__cases.html">VSI Use Cases</a> explains in detail the reference implementations of VSI-based peripherals. Specifically <a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a> implementing audio streaming input from a local audio wave file and <a class="el" href="group__arm__vsi__video.html">Video via VSI</a> implementing video streaming from a local video or image file.</p>
 <p>Access to the VSI peripherals is defined in the following files:</p>

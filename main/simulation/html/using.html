@@ -44,7 +44,7 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Arm Virtual Hardware
-   &#160;<span id="projectnumber">Version 2.0.0</span>
+   &#160;<span id="projectnumber">Version 2.1.0</span>
    </div>
    <div id="projectbrief">AVH FVP Models</div>
   </td>
@@ -94,7 +94,7 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('Using.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('using.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -133,7 +133,7 @@ Running User Applications in CLI</h1>
 </div><!-- fragment --><p>Where:</p><ul>
 <li><code>FVP_Corstone_SSE-300_Ethos-U55</code> is the simulation model name. Note that on Windows the executable files shall be used, for example <code>FVP_Corestone_SSE-300_Ethos-U55.exe</code>.</li>
 <li><code>-a</code> (or <code>--application</code>) option specifies the application binary file to run on the model (<code>project.axf</code> in this example).</li>
-<li><code>-f</code> (or <code>--config-file</code>) specifies the configuration file for the simulation model (<code>fvp_config.txt</code> in this case). See <a class="el" href="Using.html#Config">Model Configuration</a>.</li>
+<li><code>-f</code> (or <code>--config-file</code>) specifies the configuration file for the simulation model (<code>fvp_config.txt</code> in this case). See <a class="el" href="using.html#Config">Model Configuration</a>.</li>
 <li><code>-C mp3_board.v_path</code> specifies model configuration parameter for VSI python scripts for <a class="el" href="group__arm__cmvp.html">Virtual Interfaces Overview</a> (<code>"./vsi_py/"</code> here). Use <code>mp2_board.v_path</code>, <code>mps3_board.v_path</code> or <code>mps4_board.v_path</code>, depending on the underlying board.</li>
 <li><code>--stat</code> instructs to print run statistics on simulation exit.</li>
 <li><code>--simlimit</code> specifies the maximum number of seconds to simulate.</li>

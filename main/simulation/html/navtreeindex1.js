@@ -1,8 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"group__audio__drv__defines.html":[4,2,2,0,1],
-"group__audio__drv__defines.html#ga19fd4bec18bcaa695ce70e60785346fa":[4,2,2,0,1,0],
-"group__audio__drv__defines.html#ga1b7bf37c6c56ad17414478d6dc7a62ac":[4,2,2,0,1,12],
 "group__audio__drv__defines.html#ga1c054890d0d31601c71ede31ae8d9f7c":[4,2,2,0,1,2],
 "group__audio__drv__defines.html#ga1c69ec4dab365737f5bb2e3977a244a0":[4,2,2,0,1,8],
 "group__audio__drv__defines.html#ga25cc0b8c5c4e6d0a504a084e7a2b5b2f":[4,2,2,0,1,13],
@@ -87,12 +84,15 @@ var NAVTREEINDEX1 =
 "hints.html#stop":[2,3],
 "hints.html#timing":[2,2],
 "hints.html#uart":[2,0,0],
-"index.html":[0],
 "index.html":[],
+"index.html":[0],
 "index.html#Models":[0,0],
 "index.html#Virtual_Interfaces":[0,1],
 "modules.html":[4],
 "namespacearm__vio.html":[4,1,2,0],
 "namespacearm__vsi0.html":[4,2,1,1],
-"pages.html":[]
+"pages.html":[],
+"using.html":[1],
+"using.html#Config":[1,1],
+"using.html#Execution":[1,0]
 };

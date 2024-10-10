@@ -26,9 +26,9 @@ var NAVTREE =
 [
   [ "AVH FVP models", "index.html", [
     [ "Overview", "index.html", "index" ],
-    [ "Using AVH FVPs", "Using.html", [
-      [ "Running User Applications in CLI", "Using.html#Execution", null ],
-      [ "Model Configuration", "Using.html#Config", null ]
+    [ "Using AVH FVPs", "using.html", [
+      [ "Running User Applications in CLI", "using.html#Execution", null ],
+      [ "Model Configuration", "using.html#Config", null ]
     ] ],
     [ "Useful Hints and Tips", "hints.html", [
       [ "Terminal output and logging", "hints.html#console", [
@@ -46,8 +46,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"Using.html",
-"group__audio__drv__defines.html"
+"avh_fvp_cmsis.html",
+"group__audio__drv__defines.html#ga1c054890d0d31601c71ede31ae8d9f7c"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

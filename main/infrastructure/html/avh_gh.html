@@ -44,7 +44,7 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Arm Virtual Hardware
-   &#160;<span id="projectnumber">Version 2.0.0</span>
+   &#160;<span id="projectnumber">Version 2.1.0</span>
    </div>
    <div id="projectbrief">AVH FVP Infrastructure</div>
   </td>
@@ -178,7 +178,7 @@ Using AVH Runner</h1>
 <p>As the AVH Runner is a Ubuntu based machine, you can use many common utilities for your job. AVH-specific services are available as described in subsections below.</p>
 <h2><a class="anchor" id="avh_gh_using_fvp"></a>
 Using AVH FVP models</h2>
-<p><a href="../../simulation/html/index.html">AVH simulation models</a> are located at <code>/opt/VHT/</code> and can be run from there using command line commands as explained in <a href="../../simulation/html/Using.html">Using Arm Fixed Virtual Platforms</a>. This can be done directly in the .yaml file that specifoies the GitHub Action, or abstracted with a custom script. For example a step for running the hello.axf binary on a Cortex-M3 model can be done as a step in the GitHub Action yaml as: </p><div class="fragment"><div class="line">... </div>
+<p><a href="../../simulation/html/index.html">AVH simulation models</a> are located at <code>/opt/VHT/</code> and can be run from there using command line commands as explained in <a href="../../simulation/html/using.html">Using Arm Fixed Virtual Platforms</a>. This can be done directly in the .yaml file that specifoies the GitHub Action, or abstracted with a custom script. For example a step for running the hello.axf binary on a Cortex-M3 model can be done as a step in the GitHub Action yaml as: </p><div class="fragment"><div class="line">... </div>
 <div class="line">      - name: Run the example</div>
 <div class="line">        run: |</div>
 <div class="line">           /opt/VHT/VHT_MPS2_Cortex-M3  -f ./fvp-config.txt -a ./hello/out/hello/debug/avh/hello.axf --stat $*</div>

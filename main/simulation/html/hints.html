@@ -44,7 +44,7 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Arm Virtual Hardware
-   &#160;<span id="projectnumber">Version 2.0.0</span>
+   &#160;<span id="projectnumber">Version 2.1.0</span>
    </div>
    <div id="projectbrief">AVH FVP Models</div>
   </td>
@@ -214,7 +214,7 @@ Execution timing</h1>
 </div><!-- fragment --><p class="startli">Also see section <a href="https://developer.arm.com/documentation/100965/latest/Timing-Annotation/Timing-annotation-tutorial/Setting-up-the-environment/Displaying-the-total-execution-time-of-the-simulation">Displaying the total execution time</a> in the Fast Models User Guide.</p>
 </li>
 <li><a href="https://github.com/ARM-software/CMSIS-View">CMSIS-View</a> utility can be used to measure and analyze timing between events in the program, including statistical data. To store the log files on FVPs, <a class="el" href="hints.html#semihosting">semihosting</a> shall be enabled. CMSIS-View annotations can also be reused for event analysis and time measurement on real hardware.</li>
-<li><a class="el" href="Using.html#Config">Model Configuration</a> parameters can be used to control and impact the execution timing:<ul>
+<li><a class="el" href="using.html#Config">Model Configuration</a> parameters can be used to control and impact the execution timing:<ul>
 <li>With Cycle Per Instruction (CPI) settings <code>cpi_div</code> and <code>cpi_mul</code>.</li>
 <li>With clock configurations such as Clock Rate Multiplier, for example <code>core_clk.mul</code> on Corstone-300.</li>
 <li>With pipeline-impacting parameters such as for memory caches, Floating-Point-Unit (FPU) or M-Profile Vector Extensions (MVE), etc.</li>
@@ -226,7 +226,7 @@ Chapter <a href="https://developer.arm.com/documentation/100965/latest/Timing-An
 Execution stop</h1>
 <p>Embedded applications typically run with an infinite loop that ensures continuous program execution. But for executing regression tests as part of Continuous Integration (CI) workflows it is often required that program execution is stopped after a test is completed, so that the next test can be started.</p>
 <p>FVP command line options <code>--cpulimit</code>, <code>--cyclelimit</code>, <code>--timelimit</code> and <code>--simlimit</code> can be used to stop execution after specified activity time, for example, for 20 wall-clock seconds, use <code>--timelimit 20</code>. See <a href="https://developer.arm.com/documentation/100966/latest/Getting-Started-with-Fixed-Virtual-Platforms/FVP-command-line-options">FVP command line options</a> for more details.</p>
-<p>FVP models have <code>shutdown_on_eot</code> parameter that enables simple implementation of program exit. The parameter should be set in the <a class="el" href="Using.html#Config">Model Configuration</a>, for example for FPV_Corstone_SSE-300:</p>
+<p>FVP models have <code>shutdown_on_eot</code> parameter that enables simple implementation of program exit. The parameter should be set in the <a class="el" href="using.html#Config">Model Configuration</a>, for example for FPV_Corstone_SSE-300:</p>
 <div class="fragment"><div class="line">mps3_board.uart0.shutdown_on_eot=1   # (bool, init-time) default = &#39;0&#39; : Shutdown simulation when a EOT (ASCII 4) char is transmitted (useful for regression tests when semihosting is not available)</div>
 </div><!-- fragment --><p>And then to trigger the shutdown, a EOT (ASCII 4) symbol can be transmitted to the corresponding serial interface from the program. The code below demonstrates an example, where the execution is stopped after target execution count is achieved. In this implementation the STDIO is assumed to be retargeted to the UART0:</p>
 <div class="fragment"><div class="line"><span class="keywordflow">while</span> (1)  {</div>
