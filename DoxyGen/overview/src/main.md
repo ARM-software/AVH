@@ -8,13 +8,15 @@ AVH supports the software development cycle of embedded, IoT, and ML application
 
 ![AVH FVP: Arm Virtual Hardware with Fixed Virtual Platforms - Overview](./images/avh_overview.png)
 
-Note that this documentation is dedicated to the **AVH FVPs**: Arm Virtual Hardware with Fixed Virtual Platforms, for details about AVH Corellium refer to [AVH Corellium Users's Guide](https://developer.arm.com/docs/107660).
+> **Note:**
+> - This documentation is dedicated to the **AVH FVPs**: Arm Virtual Hardware with Fixed Virtual Platforms.
+> - For details about Arm Virtual Hardware board models powered by **Corellium** refer to [Corellium AVH Support Center](https://support.avh.corellium.com/).
 
 # AVH FVP Models {#avh_models}
 
 AVH FVP simulation models are standalone programs that gets executed in the target environment and enable execution of firmware programs on virtual targets.
 
- - Precise simulation models of Arm Cortex-M based reference platforms, such as Corstone-315/310/300. Learn more at [Simulation](../../simulation/html/index.html).
+ - Precise simulation models of Arm Cortex-M based reference platforms, such as Corstone-3xx. Learn more at [Simulation](../../simulation/html/index.html).
  - Available for cloud-native and desktop environments. See [Infrastructure](../../infrastructure/html/index.html) for details.
 
 # AVH FVP Infrastructure {#avh_integrations}

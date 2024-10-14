@@ -31,7 +31,7 @@ The table below lists the available models:
 <td>FVP_Corstone_SSE-300</td><td>Cortex-M55       </td><td>[Arm Corstone SSE-300 FVP](https://developer.arm.com/documentation/100966/latest/Arm--Corstone-SSE-300-FVP)    </td></tr>
 <tr>
 <td>FVP_MPS2_Cortex-M85      </td><td>Cortex-M85 (2x)  </td><td>[FVP_MPS2_Cortex-M85 in FVP Reference Guide](https://developer.arm.com/documentation/100966/latest/MPS2-Platform-FVPs/FVP-MPS2-Cortex-M85).<br/>
-It is recommended to use Corstone-310/315 FVP models for Cortex-M85.    </td></tr>
+It is recommended to use Corstone-320/315/310 FVP models for Cortex-M85.    </td></tr>
 <tr>
 <td>FVP_MPS2_Cortex-M55      </td><td>Cortex-M55 (2x)  </td><td>[FVP_MPS2_Cortex-M55 in FVP Reference Guide](https://developer.arm.com/documentation/100966/latest/MPS2-Platform-FVPs/FVP-MPS2-Cortex-M55).<br/>
 It is recommended to use Corstone-300 FVP models for Cortex-M55.    </td></tr>
