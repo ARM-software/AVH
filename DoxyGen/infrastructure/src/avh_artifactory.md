@@ -2,13 +2,13 @@
 
 The AVH FVP models can be universally obtained from [Arm Tools Artifactory](https://www.keil.arm.com/artifacts/) that also contains other useful develepment tools, such as Arm Compiler, GCC toolchain, CMSIS-Toolbox.
 
-You can either download the AVH FVPs directly or rely on the environment setup via the vcpkg configuration in the project. Additionally a user-based license needs to be activated.
+You can either download the AVH FVPs \ref avh_fvp_download "directly" or rely on the environment setup via the \ref avh_fvp_vcpkg "vcpkg configuration" in the project. Additionally a user-based license needs to be \ref avh_fvp_lic_act "activated".
 
 Note that AVH FVPs integrations in \ref avh_gh_actions "GitHub Actions" or \ref avh_desktop "desktop IDEs" may provide own built-in mechanisms for environment setup and vcpkg configuration support. Refer to corresponding documentation sections for details.
 
 ## Direct download {#avh_fvp_download}
 
-You can download individual tool artifacts from Arm Tools Artifactory directly using URLs. The AVH FVPs can be found at [https://artifacts.tools.arm.com/avh/](https://artifacts.tools.arm.com/avh/), are organized by release version and packaged for supported host operating systems.
+You can download individual tool artifacts from Arm Tools Artifactory directly using URLs. The AVH FVPs can be found at [https://artifacts.tools.arm.com/avh/](https://artifacts.tools.arm.com/avh/), are organized by release version and packaged for supported host operating systems such as Linux on Arm (AArch64), Windows on x86, and Linux on x86.
 
 For example to download AVH FVP v11.26.11 for use on Linux with Arm-based CPUs, run the following commands:
 
