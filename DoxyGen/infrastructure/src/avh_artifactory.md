@@ -10,11 +10,11 @@ Note that AVH FVPs integrations in \ref avh_gh_actions "GitHub Actions" or \ref 
 
 You can download individual tool artifacts from Arm Tools Artifactory directly using URLs. The AVH FVPs can be found at [https://artifacts.tools.arm.com/avh/](https://artifacts.tools.arm.com/avh/), are organized by release version and packaged for supported host operating systems such as Linux on Arm (AArch64), Windows on x86, and Linux on x86.
 
-For example to download AVH FVP v11.26.11 for use on Linux with Arm-based CPUs, run the following commands:
+For example to download AVH FVP v11.27.31 for use on Linux with Arm-based CPUs, run the following commands:
 
 ```
-wget https://artifacts.tools.arm.com/avh/11.26.11/avh-linux-aarch64_11.26_11_Linux64_armv8l.tgz
-tar zxvf avh-linux-aarch64_11.26_11_Linux64_armv8l.tgz
+wget https://artifacts.tools.arm.com/avh/11.27.31/avh-linux-aarch64_11.27_31_Linux64_armv8l.tgz
+tar zxvf avh-linux-aarch64_11.27_31_Linux64_armv8l.tgz
 ```
 
 In this example, the avh-fvp artifact is downloaded and the extracted models are available locally in `./avh-linux-aarch64/bin/models/` directory.
@@ -28,7 +28,7 @@ Learning path article [Install tools on the command line using vcpkg
 
 The package management via vcpkg is natively integrated into Keil Studio for VS Code and is configured in many Arm references examples. It is also simplified for use in GitHub CI/CD workflows as explained in \ref avh_gh_actions.
 
-For AVH FVPs the vcpkg_configuration.json file shall contain `"arm:models/arm/avh-fvp"` entry to ensure the download of the models. For example:
+For AVH FVPs the `vcpkg_configuration.json` file shall contain `"arm:models/arm/avh-fvp"` entry to ensure the download of the models. For example:
 
 ```
 {
@@ -40,7 +40,7 @@ For AVH FVPs the vcpkg_configuration.json file shall contain `"arm:models/arm/av
     }
   ],
   "requires": {
-    "arm:models/arm/avh-fvp": "^11.26.11"
+    "arm:models/arm/avh-fvp": "^11.27.31"
   }
 }
 ```
