@@ -150,18 +150,18 @@ This follows the concept explained in <a class="el" href="avh_fvp_artifactory.ht
 <h1><a class="anchor" id="avh_gh_run"></a>
 Program Execution</h1>
 <p>After AVH FVPs and other tools are installed and activated on the GitHub Runner (see <a class="el" href="avh_gh_actions.html#arm_cmsis_actions">Setup with CMSIS-Actions</a>) you can use the command line interface for building your project (e.g with <code>cbuild</code> utility) and run the firmware on an AVH FVP target (see <a href="../../simulation/html/using.html#Execution">Running User Applications in CLI</a>).</p>
-<p>For example, the code snippet below adds to a GitHub Actions workflow a step with program execution on Cortex-M3 FVP target:</p>
+<p>For example, the code snippet below adds to a GitHub Actions workflow a step with program execution on Corstone-320 FVP target:</p>
 <div class="fragment"><div class="line">name: Execute</div>
 <div class="line">        run: |</div>
-<div class="line">          echo &quot;Running get started example ...&quot;</div>
-<div class="line">          FVP_MPS2_Cortex-M3 --simlimit 10 -f fvp_config.txt -a Project.axf | tee Project.avh.log</div>
+<div class="line">          echo &quot;Running project example ...&quot;</div>
+<div class="line">          FVP_Corstone_SSE-320 -f fvp_config.txt -a Project.axf | tee Project.avh.log</div>
 </div><!-- fragment --><p>Also see <a href="../../simulation/html/hints.html#ci_frameworks">Execution in CI frameworks</a> for useful hints about running FVPs in CI workflows.</p>
 <h1><a class="anchor" id="avh_gh_matrix"></a>
 Running multiple configurations</h1>
 <p>Software often needs to be tested in multiple configurations, with different toolchains and on different platforms. To simplify job definition for such variations you can use <a href="https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs">matrix strategy in GitHub Action</a>.</p>
-<p>For example the code snapshot below defines a two-dimensional matrix for Corsone-315/310/300 targets with Arm Compiler 6, GCC and Clang:</p>
+<p>For example the code snapshot below defines a two-dimensional matrix for Corstone-320/315/310/300 targets with Arm Compiler 6, GCC and Clang:</p>
 <div class="fragment"><div class="line">matrix:</div>
-<div class="line">  target: [CS315, CS310, CS300]</div>
+<div class="line">  target: [CS320, CS315, CS310, CS300]</div>
 <div class="line">  compiler: [AC6, GCC, Clang]</div>
 </div><!-- fragment --><p>And then in your job descriptions you can use <code>${{ matrix.target }}</code> and <code>${{ matrix.compiler }}</code> variables, that GitHub Actions will automatically iterate over for you.</p>
 <p>See <a href="https://github.com/Arm-Examples/AVH-Hello">AVH-Hello</a> as a simple example where such matrix strategy is implemented for building the program with different toolchains and for different AVH FVP targets.</p>
