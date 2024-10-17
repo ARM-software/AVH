@@ -36,12 +36,12 @@ Keil Studio relies on [Arm Environment Manager extension](https://developer.arm.
     }
   ],
   "requires": {
-    "arm:models/arm/avh-fvp": "^11.26.11"
+    "arm:models/arm/avh-fvp": "^11.27.31"
   }
 }
 ```
 
-Note that in Keil Studio also other artifacts are usually present for build and debug tasks.
+Note that in Keil Studio also other artifacts are usually present for build and debug tasks such as cmsis-toolbox, compiler toolchain, and others.
 
 ## Program Build {#mdk_vscode_build}
 
