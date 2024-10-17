@@ -22,7 +22,7 @@ Arm provides several GitHub Actions that simplify installation of AVH FVPs and o
  ```
 .
 
-- **armlm action** activates an Arm user based license (UBL) for Arm Tools on your GitHub Runner.<br/>
+ - **armlm action** activates an Arm user based license (UBL) for Arm Tools on your GitHub Runner.<br/>
  For example add the following step to your workflow to activate a Keil-MDK Community license that allows evaluation and open-source usage of Arm Tools:
  ```yml
  - name: Activate Arm license
@@ -37,13 +37,13 @@ The actions execute on the GitHub Runner operations for vcpkg-based tool downloa
 
 After AVH FVPs and other tools are installed and activated on the GitHub Runner (see \ref arm_cmsis_actions) you can use the command line interface for building your project (e.g with `cbuild` utility) and run the firmware on an AVH FVP target (see [Running User Applications in CLI](../../simulation/html/using.html#Execution)).
 
-For example, the code snippet below adds to a GitHub Actions workflow a step with program execution on Cortex-M3 FVP target:
+For example, the code snippet below adds to a GitHub Actions workflow a step with program execution on Corstone-320 FVP target:
 
 ```yml
 name: Execute
         run: |
-          echo "Running get started example ..."
-          FVP_MPS2_Cortex-M3 --simlimit 10 -f fvp_config.txt -a Project.axf | tee Project.avh.log
+          echo "Running project example ..."
+          FVP_Corstone_SSE-320 -f fvp_config.txt -a Project.axf | tee Project.avh.log
 ```
 
 Also see [Execution in CI frameworks](../../simulation/html/hints.html#ci_frameworks) for useful hints about running FVPs in CI workflows.
@@ -52,11 +52,11 @@ Also see [Execution in CI frameworks](../../simulation/html/hints.html#ci_framew
 
 Software often needs to be tested in multiple configurations, with different toolchains and on different platforms. To simplify job definition for such variations you can use [matrix strategy in GitHub Action](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs).
 
-For example the code snapshot below defines a two-dimensional matrix for Corsone-315/310/300 targets with Arm Compiler 6, GCC and Clang:
+For example the code snapshot below defines a two-dimensional matrix for Corstone-320/315/310/300 targets with Arm Compiler 6, GCC and Clang:
 
 ```yml
 matrix:
-  target: [CS315, CS310, CS300]
+  target: [CS320, CS315, CS310, CS300]
   compiler: [AC6, GCC, Clang]
 ```
 

@@ -2,8 +2,8 @@
 
 You can use Arm Virtual Hardware FVP models with embedded projects locally on your machine.
 
-**Use in command line interface:**
- - Section \ref avh_fvp_artifactory explains how to download the AVH FVPs to your local machine. While section [Simulation - Using AVH FVPs](../../simulation/html/using.html) gives an overview on how to use AVH FVPs in a command-line interface (CLI).
+**Use in command line interface (CLI):**
+ - Section \ref avh_fvp_artifactory explains how to download the AVH FVPs to your local machine. For an overview about program execution using CLI see section [Simulation - Using AVH FVPs](../../simulation/html/using.html).
 
 **Use in IDEs:**
  - \subpage run_mdk_vscode explains how to use AVH FVPs in Keil MDK for VS Code running on a Linux/Windows/MacOs machine.
