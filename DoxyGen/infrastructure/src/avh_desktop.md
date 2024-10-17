@@ -8,3 +8,4 @@ You can use Arm Virtual Hardware FVP models with embedded projects locally on yo
 **Use in IDEs:**
  - \subpage run_mdk_vscode explains how to use AVH FVPs in Keil MDK for VS Code running on a Linux/Windows/MacOs machine.
  - \subpage run_mdk_uv4 explains how to use Keil MDK uVision running on a local Windows PC.
+ - Several other popular development and debug environments such as **IAR** and **Lauterbach** support the Fast Models-based targets and can be used with AVH FVPs as well. Refer to documentation of corresponding tools for setup details.
