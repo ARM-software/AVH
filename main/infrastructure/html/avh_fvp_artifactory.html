@@ -129,16 +129,16 @@ $(document).ready(function(){initNavTree('avh_fvp_artifactory.html',''); initRes
 <h1><a class="anchor" id="avh_fvp_download"></a>
 Direct download</h1>
 <p>You can download individual tool artifacts from Arm Tools Artifactory directly using URLs. The AVH FVPs can be found at <a href="https://artifacts.tools.arm.com/avh/">https://artifacts.tools.arm.com/avh/</a>, are organized by release version and packaged for supported host operating systems such as Linux on Arm (AArch64), Windows on x86, and Linux on x86.</p>
-<p>For example to download AVH FVP v11.26.11 for use on Linux with Arm-based CPUs, run the following commands:</p>
-<div class="fragment"><div class="line">wget https://artifacts.tools.arm.com/avh/11.26.11/avh-linux-aarch64_11.26_11_Linux64_armv8l.tgz</div>
-<div class="line">tar zxvf avh-linux-aarch64_11.26_11_Linux64_armv8l.tgz</div>
+<p>For example to download AVH FVP v11.27.31 for use on Linux with Arm-based CPUs, run the following commands:</p>
+<div class="fragment"><div class="line">wget https://artifacts.tools.arm.com/avh/11.27.31/avh-linux-aarch64_11.27_31_Linux64_armv8l.tgz</div>
+<div class="line">tar zxvf avh-linux-aarch64_11.27_31_Linux64_armv8l.tgz</div>
 </div><!-- fragment --><p>In this example, the avh-fvp artifact is downloaded and the extracted models are available locally in <code>./avh-linux-aarch64/bin/models/</code> directory.</p>
 <h1><a class="anchor" id="avh_fvp_vcpkg"></a>
 Download with vcpkg</h1>
 <p>vcpkg is a package management utility that can be used to easily configure and recreate your development environment.</p>
 <p>Learning path article <a href="https://learn.arm.com/learning-paths/microcontrollers/vcpkg-tool-installation/">Install tools on the command line using vcpkg</a> provides detailed information on how to install vcpkg on your machine and use it to retrieve specific tool artifacts.</p>
 <p>The package management via vcpkg is natively integrated into Keil Studio for VS Code and is configured in many Arm references examples. It is also simplified for use in GitHub CI/CD workflows as explained in <a class="el" href="avh_gh_actions.html">AVH FVPs with Arm GitHub Actions</a>.</p>
-<p>For AVH FVPs the vcpkg_configuration.json file shall contain <code>"arm:models/arm/avh-fvp"</code> entry to ensure the download of the models. For example:</p>
+<p>For AVH FVPs the <code>vcpkg_configuration.json</code> file shall contain <code>"arm:models/arm/avh-fvp"</code> entry to ensure the download of the models. For example:</p>
 <div class="fragment"><div class="line">{</div>
 <div class="line">  &quot;registries&quot;: [</div>
 <div class="line">    {</div>
@@ -148,7 +148,7 @@ Download with vcpkg</h1>
 <div class="line">    }</div>
 <div class="line">  ],</div>
 <div class="line">  &quot;requires&quot;: {</div>
-<div class="line">    &quot;arm:models/arm/avh-fvp&quot;: &quot;^11.26.11&quot;</div>
+<div class="line">    &quot;arm:models/arm/avh-fvp&quot;: &quot;^11.27.31&quot;</div>
 <div class="line">  }</div>
 <div class="line">}</div>
 </div><!-- fragment --><h1><a class="anchor" id="avh_fvp_lic_act"></a>
