@@ -28,6 +28,7 @@ import logging
 import vsi_sensor
 
 logger = logging.getLogger(__name__)
+vsi_sensor.logger = logger
 
 ## Set verbosity level
 #verbosity = logging.DEBUG
