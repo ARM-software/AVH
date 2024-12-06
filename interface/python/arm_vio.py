@@ -12,15 +12,18 @@
 
 import logging
 
+logger = logging.getLogger(__name__)
 
 ## Set verbosity level
 #verbosity = logging.DEBUG
+#verbosity = logging.INFO
+#verbosity = logging.WARNING
 verbosity = logging.ERROR
 
 # [debugging] Verbosity settings
 level = { 10: "DEBUG",  20: "INFO",  30: "WARNING",  40: "ERROR" }
-logging.basicConfig(format='Py: VIO:  [%(levelname)s]\t%(message)s', level = verbosity)
-logging.info("Verbosity level is set to " + level[verbosity])
+logging.basicConfig(format='Py: %(name)s : [%(levelname)s]\t%(message)s', level = verbosity)
+logger.info("Verbosity level is set to " + level[verbosity])
 
 
 # VIO Signals
@@ -34,7 +37,7 @@ Values = [0] * 64
 ## Initialize
 #  @return None
 def init():
-    logging.info("Python function init() called")
+    logger.info("Python function init() called")
 
 
 ## Read Signal
@@ -42,10 +45,10 @@ def init():
 #  @return signal signal value read
 def rdSignal(mask):
     global SignalIn
-    logging.info("Python function rdSignal() called")
+    logger.info("Python function rdSignal() called")
 
     signal = SignalIn & mask
-    logging.debug("Read signal: {}, mask: {}".format(signal, mask))
+    logger.debug("Read signal: {}, mask: {}".format(signal, mask))
 
     return signal
 
@@ -56,11 +59,11 @@ def rdSignal(mask):
 #  @return None
 def wrSignal(mask, signal):
     global SignalOut
-    logging.info("Python function wrSignal() called")
+    logger.info("Python function wrSignal() called")
 
     SignalOut &= ~mask
     SignalOut |=  mask & signal
-    logging.debug("Write signal: {}, mask: {}".format(signal, mask))
+    logger.debug("Write signal: {}, mask: {}".format(signal, mask))
 
     return
 
@@ -70,10 +73,10 @@ def wrSignal(mask, signal):
 #  @return value value read (32-bit)
 def rdValue(index):
     global Values
-    logging.info("Python function rdValue() called")
+    logger.info("Python function rdValue() called")
 
     value = Values[index]
-    logging.debug("Read value at index {}: {}".format(index, value))
+    logger.debug("Read value at index {}: {}".format(index, value))
 
     return value
 
@@ -84,10 +87,10 @@ def rdValue(index):
 #  @return None
 def wrValue(index, value):
     global Values
-    logging.info("Python function wrValue() called")
+    logger.info("Python function wrValue() called")
 
     Values[index] = value
-    logging.debug("Write value at index {}: {}".format(index, value))
+    logger.debug("Write value at index {}: {}".format(index, value))
 
     return
 

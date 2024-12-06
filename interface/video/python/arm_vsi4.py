@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2023 Arm Limited. All rights reserved.
+# Copyright (c) 2021-2024 Arm Limited. All rights reserved.
 
 # Virtual Streaming Interface instance 4 Python script
 
@@ -13,14 +13,19 @@
 import logging
 import vsi_video
 
+logger = logging.getLogger(__name__)
+vsi_video.logger = logger
+
 ## Set verbosity level
 #verbosity = logging.DEBUG
+#verbosity = logging.INFO
+#verbosity = logging.WARNING
 verbosity = logging.ERROR
 
 # [debugging] Verbosity settings
 level = { 10: "DEBUG",  20: "INFO",  30: "WARNING",  40: "ERROR" }
-logging.basicConfig(format='Py: VSI4: [%(levelname)s]\t%(message)s', level = verbosity)
-logging.info("Verbosity level is set to " + level[verbosity])
+logging.basicConfig(format='Py: %(name)s : [%(levelname)s]\t%(message)s', level = verbosity)
+logger.info("Verbosity level is set to " + level[verbosity])
 
 
 # Video Server configuration
@@ -60,7 +65,7 @@ Data = bytearray()
 ## Initialize
 #  @return None
 def init():
-    logging.info("Python function init() called")
+    logger.info("Python function init() called")
     vsi_video.init(server_address, server_authkey)
 
 
@@ -68,10 +73,10 @@ def init():
 #  @return value value read (32-bit)
 def rdIRQ():
     global IRQ_Status
-    logging.info("Python function rdIRQ() called")
+    logger.info("Python function rdIRQ() called")
 
     value = IRQ_Status
-    logging.debug("Read interrupt request: {}".format(value))
+    logger.debug("Read interrupt request: {}".format(value))
 
     return value
 
@@ -81,11 +86,11 @@ def rdIRQ():
 #  @return value value written (32-bit)
 def wrIRQ(value):
     global IRQ_Status
-    logging.info("Python function wrIRQ() called")
+    logger.info("Python function wrIRQ() called")
 
     value = vsi_video.wrIRQ(IRQ_Status, value)
     IRQ_Status = value
-    logging.debug("Write interrupt request: {}".format(value))
+    logger.debug("Write interrupt request: {}".format(value))
 
     return value
 
@@ -96,14 +101,14 @@ def wrIRQ(value):
 #  @return value value written (32-bit)
 def wrTimer(index, value):
     global Timer_Control, Timer_Interval
-    logging.info("Python function wrTimer() called")
+    logger.info("Python function wrTimer() called")
 
     if   index == 0:
         Timer_Control = value
-        logging.debug("Write Timer_Control: {}".format(value))
+        logger.debug("Write Timer_Control: {}".format(value))
     elif index == 1:
         Timer_Interval = value
-        logging.debug("Write Timer_Interval: {}".format(value))
+        logger.debug("Write Timer_Interval: {}".format(value))
 
     return value
 
@@ -113,7 +118,7 @@ def wrTimer(index, value):
 def timerEvent():
     global IRQ_Status
 
-    logging.info("Python function timerEvent() called")
+    logger.info("Python function timerEvent() called")
 
     IRQ_Status = vsi_video.timerEvent(IRQ_Status)
 
@@ -124,11 +129,11 @@ def timerEvent():
 #  @return value value written (32-bit)
 def wrDMA(index, value):
     global DMA_Control
-    logging.info("Python function wrDMA() called")
+    logger.info("Python function wrDMA() called")
 
     if   index == 0:
         DMA_Control = value
-        logging.debug("Write DMA_Control: {}".format(value))
+        logger.debug("Write DMA_Control: {}".format(value))
 
     return value
 
@@ -138,14 +143,14 @@ def wrDMA(index, value):
 #  @return data data read (bytearray)
 def rdDataDMA(size):
     global Data
-    logging.info("Python function rdDataDMA() called")
+    logger.info("Python function rdDataDMA() called")
 
     Data = vsi_video.rdDataDMA(size)
 
     n = min(len(Data), size)
     data = bytearray(size)
     data[0:n] = Data[0:n]
-    logging.debug("Read data ({} bytes)".format(size))
+    logger.debug("Read data ({} bytes)".format(size))
 
     return data
 
@@ -156,10 +161,10 @@ def rdDataDMA(size):
 #  @return None
 def wrDataDMA(data, size):
     global Data
-    logging.info("Python function wrDataDMA() called")
+    logger.info("Python function wrDataDMA() called")
 
     Data = data
-    logging.debug("Write data ({} bytes)".format(size))
+    logger.debug("Write data ({} bytes)".format(size))
 
     vsi_video.wrDataDMA(data, size)
 
@@ -171,13 +176,13 @@ def wrDataDMA(data, size):
 #  @return value value read (32-bit)
 def rdRegs(index):
     global Regs
-    logging.info("Python function rdRegs() called")
+    logger.info("Python function rdRegs() called")
 
     if index <= vsi_video.REG_IDX_MAX:
         Regs[index] = vsi_video.rdRegs(index)
 
     value = Regs[index]
-    logging.debug("Read user register at index {}: {}".format(index, value))
+    logger.debug("Read user register at index {}: {}".format(index, value))
 
     return value
 
@@ -188,13 +193,13 @@ def rdRegs(index):
 #  @return value value written (32-bit)
 def wrRegs(index, value):
     global Regs
-    logging.info("Python function wrRegs() called")
+    logger.info("Python function wrRegs() called")
 
     if index <= vsi_video.REG_IDX_MAX:
         value = vsi_video.wrRegs(index, value)
 
     Regs[index] = value
-    logging.debug("Write user register at index {}: {}".format(index, value))
+    logger.debug("Write user register at index {}: {}".format(index, value))
 
     return value
 
