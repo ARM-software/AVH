@@ -14,6 +14,7 @@ import logging
 import vsi_video
 
 logger = logging.getLogger(__name__)
+vsi_video.logger = logger
 
 ## Set verbosity level
 #verbosity = logging.DEBUG
