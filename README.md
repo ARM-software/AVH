@@ -28,4 +28,10 @@ Directory      | Description
 Doxygen        | Doxygen sources for Arm Virtual Hardware FVP documentation.
 Documentation  | Temporary output directory for the [documentation](https://arm-software.github.io/AVH/main/overview/html/index.html).
 
-Copyright (C) 2021-2024, Arm Ltd.
+## Issues
+
+Please feel free to raise an [issue on GitHub](https://github.com/ARM-software/AVH/issues)
+to report misbehavior (i.e. bugs) or start discussions about enhancements. This
+is your best way to interact directly with the maintenance team and the community.
+
+Copyright (C) 2021-2025, Arm Ltd.
