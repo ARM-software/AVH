@@ -153,8 +153,8 @@ UART I/O</h2>
 </ul>
 </li>
 <li><b>Linux setup</b> : on Linux both <code>xterm</code> and <code>telnet</code> must be installed and be specified in your PATH.</li>
-<li><b>Logging</b> : If a UART output needs to be saved as a log file (for example in CI tests), you can use FVP parameter <code>&lt;board&gt;.&lt;uart&gt;.out_file</code> to specify the log file. For example for UART0 on Corstone-315: <code>msp4_board.UART0.out_file=./log.txt</code>.<ul>
-<li>If displaying the ouput information in an output terminal is not required (for example in CI jobs) you can disable it with FVP configuration parameter <code>&lt;board&gt;.&lt;telnetterminal&gt;.start_telnet</code>. For example for Corsone-315 and UART0: <code>msp4_board.telnetterminal0.start_telnet=0</code>. In this case the output will not be displayed in any terminal, but will be stored into a log file if this is configured accordingly with the <code>out_file</code> parameter.</li>
+<li><b>Logging</b> : If a UART output needs to be saved as a log file (for example in CI tests), you can use FVP parameter <code>&lt;board&gt;.&lt;uart&gt;.out_file</code> to specify the log file. For example for UART0 on Corstone-315: <code>mps4_board.UART0.out_file=./log.txt</code>.<ul>
+<li>If displaying the ouput information in an output terminal is not required (for example in CI jobs) you can disable it with FVP configuration parameter <code>&lt;board&gt;.&lt;telnetterminal&gt;.start_telnet</code>. For example for Corsone-315 and UART0: <code>mps4_board.telnetterminal0.start_telnet=0</code>. In this case the output will not be displayed in any terminal, but will be stored into a log file if this is configured accordingly with the <code>out_file</code> parameter.</li>
 </ul>
 </li>
 <li><b>Multiple channels</b>: in complex systems and applications it can be beneficial to separate output into different UART channels and hence terminals, to avoid cluttered messages in a single terminal.</li>
