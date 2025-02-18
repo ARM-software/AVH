@@ -31,8 +31,8 @@ Below is useful information for using UART I/O on FVP targets:
    - Select the _Telnet Client_ check box and click _OK_. The installation might take several minutes to
 complete.
  - **Linux setup** : on Linux both `xterm` and `telnet` must be installed and be specified in your PATH.
- - **Logging** : If a UART output needs to be saved as a log file (for example in CI tests), you can use FVP parameter `<board>.<uart>.out_file` to specify the log file. For example for UART0 on Corstone-315: `msp4_board.UART0.out_file=./log.txt`.
-   - If displaying the ouput information in an output terminal is not required (for example in CI jobs) you can disable it with FVP configuration parameter `<board>.<telnetterminal>.start_telnet`. For example for Corsone-315 and UART0: `msp4_board.telnetterminal0.start_telnet=0`. In this case the output will not be displayed in any terminal, but will be stored into a log file if this is configured accordingly with the `out_file` parameter.
+ - **Logging** : If a UART output needs to be saved as a log file (for example in CI tests), you can use FVP parameter `<board>.<uart>.out_file` to specify the log file. For example for UART0 on Corstone-315: `mps4_board.UART0.out_file=./log.txt`.
+   - If displaying the ouput information in an output terminal is not required (for example in CI jobs) you can disable it with FVP configuration parameter `<board>.<telnetterminal>.start_telnet`. For example for Corsone-315 and UART0: `mps4_board.telnetterminal0.start_telnet=0`. In this case the output will not be displayed in any terminal, but will be stored into a log file if this is configured accordingly with the `out_file` parameter.
  - **Multiple channels**: in complex systems and applications it can be beneficial to separate output into different UART channels and hence terminals, to avoid cluttered messages in a single terminal.
  - **Example** : [AVH-Hello](https://github.com/Arm-Examples/AVH-Hello) provides a universal example with UART output, covering all AVH FVP targets.
 
