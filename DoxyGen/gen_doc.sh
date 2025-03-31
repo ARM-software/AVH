@@ -5,19 +5,19 @@
 #
 # Pre-requisites:
 # - bash shell (for Windows: install git for Windows)
-# - doxygen 1.9.6
+# - doxygen 1.13.2
 # - graphviz (dot)
 # - plantuml
 
 set -o pipefail
 
 # Set version of gen pack library
-REQUIRED_GEN_PACK_LIB="0.7.0"
+REQUIRED_GEN_PACK_LIB="0.11.3"
 
 DIRNAME=$(dirname $(readlink -f $0))
 DOXYGEN=$(which doxygen 2>/dev/null)
 
-REQ_DXY_VERSION="1.9.6"
+REQ_DXY_VERSION="1.13.2"
 
 ############ DO NOT EDIT BELOW ###########
 
