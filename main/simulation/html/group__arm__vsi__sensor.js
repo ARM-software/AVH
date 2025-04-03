@@ -10,7 +10,7 @@ var group__arm__vsi__sensor =
       [ "name", "group__arm__vsi__sensor.html#a5ac083a645d964373f022d03df4849c8", null ],
       [ "dma_mode", "group__arm__vsi__sensor.html#ae615b6e1bcf05a0e09b0d555db1a2573", null ],
       [ "sample_size", "group__arm__vsi__sensor.html#a2fdb93e2e5c5728b8ab619235ea2766f", null ],
-      [ "u", "group__arm__vsi__sensor.html#a8cfa86aeace085923b0d6703022a706e", null ]
+      [ "u", "group__arm__vsi__sensor.html#ab59d5355ba158ca109afd51284b80b16", null ]
     ] ],
     [ "sensorConfig_t.u", "group__arm__vsi__sensor.html#unionsensorConfig__t_8u", [
       [ "fifo", "group__arm__vsi__sensor.html#acf54937a2330ac17aa523bf7130911a3", null ],

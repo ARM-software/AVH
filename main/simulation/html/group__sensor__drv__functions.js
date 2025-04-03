@@ -1,7 +1,7 @@
 var group__sensor__drv__functions =
 [
-    [ "sensorId_t", "group__sensor__drv__functions.html#ga4436c8691087162d345dab72f3f6699a", null ],
-    [ "sensorEvent_t", "group__sensor__drv__functions.html#ga0b5d16677adad1274306109e0ff1dfa3", null ],
+    [ "sensorId_t", "group__sensor__drv__functions.html#ga948611e0ece3ce77056dcff02b02ad41", null ],
+    [ "sensorEvent_t", "group__sensor__drv__functions.html#gad22fe2244b0d2a760ca7329ecae464cb", null ],
     [ "sensorGetId", "group__sensor__drv__functions.html#ga6c2c697c156608618454cdd7426550a3", null ],
     [ "sensorGetConfig", "group__sensor__drv__functions.html#ga1209ff87f065a29faa2f53b832f219e3", null ],
     [ "sensorRegisterEvents", "group__sensor__drv__functions.html#ga87e6268a4aef18d45a801573441b925b", null ],

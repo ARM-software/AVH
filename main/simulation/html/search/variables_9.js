@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['sample_5fsize_0',['sample_size',['../group__arm__vsi__sensor.html#a2fdb93e2e5c5728b8ab619235ea2766f',1,'sensorConfig_t']]],
-  ['signalin_1',['SignalIn',['../group__arm__vio__api.html#aca77784de1995fcd0f87b4c27b54048a',1,'ARM_VIO_Type']]],
-  ['signalout_2',['SignalOut',['../group__arm__vio__api.html#a1d475e57aeb84d8430d950cb49f5a807',1,'ARM_VIO_Type']]]
+  ['name_0',['name',['../group__arm__vsi__sensor.html#a5ac083a645d964373f022d03df4849c8',1,'sensorConfig_t::name'],['../group__arm__vsocket__api.html#ab068931cc450442b63f5b3d276ea4297',1,'vSocketGetHostByNameIO_t.param::name']]]
 ];

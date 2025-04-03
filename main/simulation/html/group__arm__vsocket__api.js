@@ -19,63 +19,63 @@ var group__arm__vsocket__api =
     ] ],
     [ "vSocketCreateIO_t", "group__arm__vsocket__api.html#structvSocketCreateIO__t", [
       [ "ret_val", "group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf", null ],
-      [ "param", "group__arm__vsocket__api.html#ae55fab6ee31741e101bcf688fcd926e4", null ]
+      [ "param", "group__arm__vsocket__api.html#a5cce3b9fddeef665beed241096940999", null ]
     ] ],
     [ "vSocketBindIO_t", "group__arm__vsocket__api.html#structvSocketBindIO__t", [
       [ "ret_val", "group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf", null ],
-      [ "param", "group__arm__vsocket__api.html#ac5fdc7b4cfbe78503f70a70ff2419510", null ]
+      [ "param", "group__arm__vsocket__api.html#a76f324309f89d16d1bc4374b699daef0", null ]
     ] ],
     [ "vSocketListenIO_t", "group__arm__vsocket__api.html#structvSocketListenIO__t", [
       [ "ret_val", "group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf", null ],
-      [ "param", "group__arm__vsocket__api.html#a8a80561e99c31e2e822f8f9ef87a161f", null ]
+      [ "param", "group__arm__vsocket__api.html#ac4a7dd44e0197ac8e20476c037e518f5", null ]
     ] ],
     [ "vSocketAcceptIO_t", "group__arm__vsocket__api.html#structvSocketAcceptIO__t", [
       [ "ret_val", "group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf", null ],
-      [ "param", "group__arm__vsocket__api.html#a8efae26b3ea3cb8c8c3214666bbb5327", null ]
+      [ "param", "group__arm__vsocket__api.html#a56f1c80dafc9b3ad75f68f5589d118f3", null ]
     ] ],
     [ "vSocketConnectIO_t", "group__arm__vsocket__api.html#structvSocketConnectIO__t", [
       [ "ret_val", "group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf", null ],
-      [ "param", "group__arm__vsocket__api.html#a1612cbc7d192e1f05f4bf73567754ec8", null ]
+      [ "param", "group__arm__vsocket__api.html#ab2844f7c37f4ec678448859b7b9d9c8d", null ]
     ] ],
     [ "vSocketRecvIO_t", "group__arm__vsocket__api.html#structvSocketRecvIO__t", [
       [ "ret_val", "group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf", null ],
-      [ "param", "group__arm__vsocket__api.html#a38aba406af72077edc18d62f92a53ee1", null ]
+      [ "param", "group__arm__vsocket__api.html#a483dd04710f7f5e09e1c58528935e1d7", null ]
     ] ],
     [ "vSocketRecvFromIO_t", "group__arm__vsocket__api.html#structvSocketRecvFromIO__t", [
       [ "ret_val", "group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf", null ],
-      [ "param", "group__arm__vsocket__api.html#a302f6e59bf247eb75ac43c533d001888", null ]
+      [ "param", "group__arm__vsocket__api.html#adabbe971263db114eda7ac1c32004c71", null ]
     ] ],
     [ "vSocketSendIO_t", "group__arm__vsocket__api.html#structvSocketSendIO__t", [
       [ "ret_val", "group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf", null ],
-      [ "param", "group__arm__vsocket__api.html#abb8a2d1549edbdfb1ecc7e3f7a8d53e0", null ]
+      [ "param", "group__arm__vsocket__api.html#a7de9e57130d2b3f2b764e37165ae702c", null ]
     ] ],
     [ "vSocketSendToIO_t", "group__arm__vsocket__api.html#structvSocketSendToIO__t", [
       [ "ret_val", "group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf", null ],
-      [ "param", "group__arm__vsocket__api.html#ae56e8059d0de87e62aa077bdebb6d2e3", null ]
+      [ "param", "group__arm__vsocket__api.html#a2af320caacf15cd9b0a7c2a5cbcc1554", null ]
     ] ],
     [ "vSocketGetSockNameIO_t", "group__arm__vsocket__api.html#structvSocketGetSockNameIO__t", [
       [ "ret_val", "group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf", null ],
-      [ "param", "group__arm__vsocket__api.html#a3b7ab35363e6fa93948d0faffa15ac9a", null ]
+      [ "param", "group__arm__vsocket__api.html#a10fb36ca2597cb75ddb8e407b42abdf1", null ]
     ] ],
     [ "vSocketGetPeerNameIO_t", "group__arm__vsocket__api.html#structvSocketGetPeerNameIO__t", [
       [ "ret_val", "group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf", null ],
-      [ "param", "group__arm__vsocket__api.html#a64f2f5eee879dd0b7212bbd558e51e67", null ]
+      [ "param", "group__arm__vsocket__api.html#a2775fe11ada9de1651d7c1610ecce9a6", null ]
     ] ],
     [ "vSocketGetOptIO_t", "group__arm__vsocket__api.html#structvSocketGetOptIO__t", [
       [ "ret_val", "group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf", null ],
-      [ "param", "group__arm__vsocket__api.html#a47142bc70321c193ff8d6295cabdb7f8", null ]
+      [ "param", "group__arm__vsocket__api.html#a5fd596659b1b5d96224c924a1b255f50", null ]
     ] ],
     [ "vSocketSetOptIO_t", "group__arm__vsocket__api.html#structvSocketSetOptIO__t", [
       [ "ret_val", "group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf", null ],
-      [ "param", "group__arm__vsocket__api.html#ad684cbd4b046dc26643d6b5f68feb09c", null ]
+      [ "param", "group__arm__vsocket__api.html#a731140157686a905addba0217d5d5046", null ]
     ] ],
     [ "vSocketCloseIO_t", "group__arm__vsocket__api.html#structvSocketCloseIO__t", [
       [ "ret_val", "group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf", null ],
-      [ "param", "group__arm__vsocket__api.html#a271186edf92d76709d28eae6894107e3", null ]
+      [ "param", "group__arm__vsocket__api.html#ae34fae0f385aabd82be36ad2280db368", null ]
     ] ],
     [ "vSocketGetHostByNameIO_t", "group__arm__vsocket__api.html#structvSocketGetHostByNameIO__t", [
       [ "ret_val", "group__arm__vsocket__api.html#af1738ffd2f5def68f66fd7c246a604bf", null ],
-      [ "param", "group__arm__vsocket__api.html#a9106069494f622d47b392439ff329fd8", null ]
+      [ "param", "group__arm__vsocket__api.html#ae8c54cffa6d47ffdd2ceb591955901a8", null ]
     ] ],
     [ "vSocketCreateIO_t.param", "group__arm__vsocket__api.html#structvSocketCreateIO__t_8param", [
       [ "af", "group__arm__vsocket__api.html#af0357a3f154bc2ffe2bff55055457068", null ],

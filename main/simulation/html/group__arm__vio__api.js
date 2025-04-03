@@ -1,9 +1,9 @@
 var group__arm__vio__api =
 [
     [ "ARM_VIO_Type", "group__arm__vio__api.html#structARM__VIO__Type", [
-      [ "SignalOut", "group__arm__vio__api.html#a1d475e57aeb84d8430d950cb49f5a807", null ],
-      [ "SignalIn", "group__arm__vio__api.html#aca77784de1995fcd0f87b4c27b54048a", null ],
-      [ "Value", "group__arm__vio__api.html#a1410e716fef703dbc126e07a09764df0", null ]
+      [ "SignalOut", "group__arm__vio__api.html#acc4e9dab8dc67606759df8552d54aabb", null ],
+      [ "SignalIn", "group__arm__vio__api.html#a5462d2a6a7bd93cf3e57ec554c8059fc", null ],
+      [ "Value", "group__arm__vio__api.html#a45ed0733bdf5f91a105153a269b8648d", null ]
     ] ],
     [ "ARM_VIO_Type.SignalOut", "group__arm__vio__api.html#structARM__VIO__Type_8SignalOut", [
       [ "mask", "group__arm__vio__api.html#af2ce11ebf110993621bedd8e747d7b1b", null ],

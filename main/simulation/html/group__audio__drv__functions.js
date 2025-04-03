@@ -1,6 +1,6 @@
 var group__audio__drv__functions =
 [
-    [ "AudioDrv_Event_t", "group__audio__drv__functions.html#ga76a21d8243b1b87fb51efe30532d94b6", null ],
+    [ "AudioDrv_Event_t", "group__audio__drv__functions.html#ga87e2efd23a40605b48814f0a5f8729d1", null ],
     [ "AudioDrv_Initialize", "group__audio__drv__functions.html#ga3df94f2eb2478ea1229356dd7deee319", null ],
     [ "AudioDrv_Uninitialize", "group__audio__drv__functions.html#gafcdd4c1c67ae0f18a57e5036ffda8c6d", null ],
     [ "AudioDrv_Configure", "group__audio__drv__functions.html#gaa57e127ec95db9c076d939f43311b2a7", null ],

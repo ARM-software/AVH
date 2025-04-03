@@ -1,28 +1,4 @@
 var searchData=
 [
-  ['sample_5fsize_0',['sample_size',['../group__arm__vsi__sensor.html#a2fdb93e2e5c5728b8ab619235ea2766f',1,'sensorConfig_t']]],
-  ['sensor_20driver_20api_20defines_1',['Sensor Driver API Defines',['../group__sensor__drv__defines.html',1,'']]],
-  ['sensor_20driver_20api_20functions_2',['Sensor Driver API Functions',['../group__sensor__drv__functions.html',1,'']]],
-  ['sensor_20via_20vsi_3',['Sensor via VSI',['../group__arm__vsi__sensor.html',1,'']]],
-  ['sensor_5ferror_4',['SENSOR_ERROR',['../group__sensor__drv__defines.html#ga3f2233baca5963581aa8c025fc13c15e',1,'sensor_drv.h']]],
-  ['sensor_5fevent_5fdata_5',['SENSOR_EVENT_DATA',['../group__sensor__drv__defines.html#ga78fb4a67bed457325efdcc481612b4b6',1,'sensor_drv.h']]],
-  ['sensor_5fevent_5foverflow_6',['SENSOR_EVENT_OVERFLOW',['../group__sensor__drv__defines.html#ga5f918f11848a3c11b3877c08fa7213b6',1,'sensor_drv.h']]],
-  ['sensor_5fok_7',['SENSOR_OK',['../group__sensor__drv__defines.html#ga00323998b45fe5c4581cd57257dcb107',1,'sensor_drv.h']]],
-  ['sensorconfig_5ft_8',['sensorConfig_t',['../group__arm__vsi__sensor.html#structsensorConfig__t',1,'']]],
-  ['sensorconfig_5ft_2eu_9',['sensorConfig_t.u',['../group__arm__vsi__sensor.html#unionsensorConfig__t_8u',1,'']]],
-  ['sensorconfig_5ft_2eu_2edma_10',['sensorConfig_t.u.dma',['../group__arm__vsi__sensor.html#structsensorConfig__t_8u_8dma',1,'']]],
-  ['sensorconfig_5ft_2eu_2efifo_11',['sensorConfig_t.u.fifo',['../group__arm__vsi__sensor.html#structsensorConfig__t_8u_8fifo',1,'']]],
-  ['sensordisable_12',['sensorDisable',['../group__sensor__drv__functions.html#ga0a3b4419f76dfc64f2b233f818a0fa72',1,'sensor_drv.h']]],
-  ['sensorenable_13',['sensorEnable',['../group__sensor__drv__functions.html#gae7289cc8d306736cdcd098858a848c69',1,'sensor_drv.h']]],
-  ['sensorevent_5ft_14',['sensorEvent_t',['../group__sensor__drv__functions.html#ga0b5d16677adad1274306109e0ff1dfa3',1,'sensor_drv.h']]],
-  ['sensorgetblockdata_15',['sensorGetBlockData',['../group__sensor__drv__functions.html#ga4dc1ca3205a30d068a04039db85f7c27',1,'sensor_drv.h']]],
-  ['sensorgetconfig_16',['sensorGetConfig',['../group__sensor__drv__functions.html#ga1209ff87f065a29faa2f53b832f219e3',1,'sensor_drv.h']]],
-  ['sensorgetid_17',['sensorGetId',['../group__sensor__drv__functions.html#ga6c2c697c156608618454cdd7426550a3',1,'sensor_drv.h']]],
-  ['sensorgetstatus_18',['sensorGetStatus',['../group__sensor__drv__functions.html#ga0b614c9c74efb187df75225357160e76',1,'sensor_drv.h']]],
-  ['sensorid_5ft_19',['sensorId_t',['../group__sensor__drv__functions.html#ga4436c8691087162d345dab72f3f6699a',1,'sensor_drv.h']]],
-  ['sensorreadsamples_20',['sensorReadSamples',['../group__sensor__drv__functions.html#ga2b400760976f8a7cadf12a875acb452e',1,'sensor_drv.h']]],
-  ['sensorregisterevents_21',['sensorRegisterEvents',['../group__sensor__drv__functions.html#ga87e6268a4aef18d45a801573441b925b',1,'sensor_drv.h']]],
-  ['sensorstatus_5ft_22',['sensorStatus_t',['../group__arm__vsi__sensor.html#structsensorStatus__t',1,'']]],
-  ['signalin_23',['SignalIn',['../group__arm__vio__api.html#aca77784de1995fcd0f87b4c27b54048a',1,'ARM_VIO_Type']]],
-  ['signalout_24',['SignalOut',['../group__arm__vio__api.html#a1d475e57aeb84d8430d950cb49f5a807',1,'ARM_VIO_Type']]]
+  ['known_20issues_0',['Known issues',['../group__arm__vio__pyenv.html#autotoc_md0',1,'Known issues'],['../group__arm__vsi__pyenv.html#autotoc_md2',1,'Known issues'],['../group__arm__vsi__pyenv.html#autotoc_md5',1,'Known issues']]]
 ];

@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['u_0',['u',['../group__arm__vsi__sensor.html#a8cfa86aeace085923b0d6703022a706e',1,'sensorConfig_t']]],
-  ['underflow_1',['underflow',['../group__arm__vsi__video.html#a91203e7151825fa5a14fc617ca2c9af3',1,'VideoDrv_Status_t']]],
-  ['useful_20hints_20and_20tips_2',['Useful Hints and Tips',['../hints.html',1,'']]],
-  ['using_20avh_20fvps_3',['Using AVH FVPs',['../using.html',1,'']]],
-  ['using_20vio_4',['Using VIO',['../group__arm__vio__cases.html',1,'']]]
+  ['mask_0',['mask',['../group__arm__vio__api.html#af2ce11ebf110993621bedd8e747d7b1b',1,'ARM_VIO_Type.SignalOut::mask'],['../group__arm__vio__api.html#af2ce11ebf110993621bedd8e747d7b1b',1,'ARM_VIO_Type.SignalIn::mask']]],
+  ['model_20configuration_1',['Model Configuration',['../using.html#Config',1,'']]],
+  ['models_2',['Available Models',['../index.html#Models',1,'']]]
 ];

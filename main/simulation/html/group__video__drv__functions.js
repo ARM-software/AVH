@@ -1,6 +1,6 @@
 var group__video__drv__functions =
 [
-    [ "VideoDrv_Event_t", "group__video__drv__functions.html#gaef6aad25e387243a1b9ab5b30534c8db", null ],
+    [ "VideoDrv_Event_t", "group__video__drv__functions.html#gaa88d8f3200ab45ace8660724cab233e3", null ],
     [ "VideoDrv_Initialize", "group__video__drv__functions.html#ga5fd938d5ff84b46771e2a8a3d0a73cfe", null ],
     [ "VideoDrv_Uninitialize", "group__video__drv__functions.html#ga671a4ef5b5e1f24342a933013994e842", null ],
     [ "VideoDrv_SetFile", "group__video__drv__functions.html#gae7bed6c8b6e83eef0ef54f510a3c948a", null ],

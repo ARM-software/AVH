@@ -1,10 +1,10 @@
 var group__arm__vsi__api =
 [
     [ "ARM_VSI_Type", "group__arm__vsi__api.html#structARM__VSI__Type", [
-      [ "IRQ", "group__arm__vsi__api.html#a891c9036e6872ed134c185addd341b24", null ],
-      [ "Timer", "group__arm__vsi__api.html#a6e0035edd58cc6ca8c94b5f9723a0d80", null ],
-      [ "DMA", "group__arm__vsi__api.html#a2adfebde5b46a4adc0318f5077f03c6d", null ],
-      [ "Regs", "group__arm__vsi__api.html#a489c2266d8123eea4daa6d19c425a56c", null ]
+      [ "IRQ", "group__arm__vsi__api.html#ac86e72152caab0e3ce36ded39ea8fe3e", null ],
+      [ "Timer", "group__arm__vsi__api.html#a28b528ac428821bc99f4f7da49316d58", null ],
+      [ "DMA", "group__arm__vsi__api.html#a857dc2f4c0c71d8eadfee1bda8df02fd", null ],
+      [ "Regs", "group__arm__vsi__api.html#ad9292adad4a74b2256c2b61200c8a526", null ]
     ] ],
     [ "ARM_VSI_Type.IRQ", "group__arm__vsi__api.html#structARM__VSI__Type_8IRQ", [
       [ "Enable", "group__arm__vsi__api.html#a2faec1f9f8cc7f8f40d521c4dd574f49", null ],
