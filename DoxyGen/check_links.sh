@@ -3,7 +3,7 @@
 set -o pipefail
 
 DIRNAME=$(dirname $(realpath $0))
-REQUIRED_GEN_PACK_LIB="0.8.1"
+REQUIRED_GEN_PACK_LIB="0.11.3"
 
 ############ gen-pack library ###########
 
