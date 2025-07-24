@@ -9,6 +9,7 @@
 
   <releases>
     <release version="1.1.0-dev1">
+      Add vStream AudioIn/Out drivers
       Update VIO to API 1.0.0
     </release>
     <release version="1.1.0-dev0">
@@ -27,6 +28,10 @@
       <description>Virtual I/O</description>
       <require Cclass="Device" Cgroup="Startup"/>
     </condition>
+    <condition id="vStream">
+      <description>Requirements for vStream components</description>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
     <condition id="VSocket">
       <description>VSocket</description>
       <require Cclass="Device" Cgroup="Startup"/>
@@ -42,6 +47,31 @@
         <file category="sourceC" name="interface/vio/vio_fvp.c"/>
       </files>
     </component>
+
+   <component Cclass="CMSIS Driver" Cgroup="vStream" Csub="AudioIn" Cversion="1.0.0" Capiversion="1.0.0" condition="vStream">
+      <description>Audio Input vStream implementation for Arm FVPs</description>
+      <RTE_Components_h>
+        #define RTE_VSTREAM_AUDIOIN
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="Documentation/simulation/html/group__arm__vsi.html"/>
+        <file category="include" name="interface/include/"/>
+        <file category="sourceC" name="interface/vstream/source/vstream_audio_in.c"/>
+      </files>
+    </component>
+
+   <component Cclass="CMSIS Driver" Cgroup="vStream" Csub="AudioOut" Cversion="1.0.0" Capiversion="1.0.0" condition="vStream">
+      <description>Audio Output vStream implementation for Arm FVPs</description>
+      <RTE_Components_h>
+        #define RTE_VSTREAM_AUDIOOUT
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="Documentation/simulation/html/group__arm__vsi.html"/>
+        <file category="include" name="interface/include/"/>
+        <file category="sourceC" name="interface/vstream/source/vstream_audio_out.c"/>
+      </files>
+    </component>
+
     <component Cclass="IoT Utility" Cgroup="Socket" Csub="VSocket" Capiversion="1.2.0" Cversion="1.0.0" condition="VSocket">
       <description>IoT Socket implementation for Arm FVPs</description>
       <RTE_Components_h>
