@@ -86,7 +86,7 @@ typedef struct {
   StreamBuf_t       buf;      /* Stream buffer    */
   volatile uint32_t idx_get;  /* Index of block to be returned on GetBlock call     */
   volatile uint32_t idx_rel;  /* Index of block to be released on ReleaseBlock call */
-  volatile uint32_t idx_in;   /* Index of block currently being streamed           */
+  volatile uint32_t idx_in;   /* Index of block currently being streamed            */
   volatile uint8_t  active;   /* Streaming active flag */
   volatile uint8_t  overflow; /* Buffer overflow flag  */
   volatile uint8_t  eos;      /* End of stream flag    */
@@ -181,7 +181,7 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
   /* Driver is initialized */
   hAudioIn.flags |= FLAGS_INIT;
 
-  return (VSTREAM_OK);
+  return VSTREAM_OK;
 }
 
 /* De-initialize streaming interface */
@@ -208,21 +208,21 @@ static int32_t Uninitialize (void) {
 }
 /* Set streaming data buffer */
 static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
-  int32_t status;
+  int32_t rval;
 
   if (buf == NULL) {
-    status = VSTREAM_ERROR_PARAMETER;
+    rval = VSTREAM_ERROR_PARAMETER;
   }
   else if ((buf_size == 0U) || (block_size == 0U) || (block_size > buf_size)) {
-    status = VSTREAM_ERROR_PARAMETER;
+    rval = VSTREAM_ERROR_PARAMETER;
   }
   else if ((hAudioIn.flags & FLAGS_INIT) == 0) {
     /* Not initialized */
-    status = VSTREAM_ERROR;
+    rval = VSTREAM_ERROR;
   }
   else if (hAudioIn.active == 1U) {
     /* Streaming is active */
-    status = VSTREAM_ERROR;
+    rval = VSTREAM_ERROR;
   }
   else {
     hAudioIn.buf.data       = (uint8_t *)buf;
@@ -241,10 +241,10 @@ static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
     AudioIn->DMA.BlockNum  = buf_size / block_size;
     AudioIn->DMA.BlockSize = block_size;
 
-    status = VSTREAM_OK;
+    rval = VSTREAM_OK;
   }
 
-  return (status);
+  return rval;
 }
 /* Start streaming */
 static int32_t Start (uint32_t mode) {
@@ -303,6 +303,7 @@ static int32_t Start (uint32_t mode) {
     /* Apply configuration and start the timer */
     AudioIn->Timer.Control = ctrl | ARM_VSI_Timer_Run_Msk;
   }
+
   return rval;
 }
 
@@ -414,7 +415,7 @@ static vStreamStatus_t GetStatus (void) {
   hAudioIn.overflow = 0U;
   hAudioIn.eos      = 0U;
 
-  return (status);
+  return status;
 }
 
 vStreamDriver_t Driver_vStreamAudioIn = {

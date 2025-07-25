@@ -181,7 +181,7 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
   /* Driver is initialized */
   hAudioOut.flags |= FLAGS_INIT;
 
-  return (VSTREAM_OK);
+  return VSTREAM_OK;
 }
 
 /* De-initialize streaming interface */
@@ -208,21 +208,21 @@ static int32_t Uninitialize (void) {
 }
 /* Set streaming data buffer */
 static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
-  int32_t status;
+  int32_t rval;
 
   if (buf == NULL) {
-    status = VSTREAM_ERROR_PARAMETER;
+    rval = VSTREAM_ERROR_PARAMETER;
   }
   else if ((buf_size == 0U) || (block_size == 0U) || (block_size > buf_size)) {
-    status = VSTREAM_ERROR_PARAMETER;
+    rval = VSTREAM_ERROR_PARAMETER;
   }
   else if ((hAudioOut.flags & FLAGS_INIT) == 0) {
     /* Not initialized */
-    status = VSTREAM_ERROR;
+    rval = VSTREAM_ERROR;
   }
   else if (hAudioOut.active == 1U) {
     /* Streaming is active */
-    status = VSTREAM_ERROR;
+    rval = VSTREAM_ERROR;
   }
   else {
     hAudioOut.buf.data       = (uint8_t *)buf;
@@ -241,10 +241,10 @@ static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
     AudioOut->DMA.BlockNum  = buf_size / block_size;
     AudioOut->DMA.BlockSize = block_size;
 
-    status = VSTREAM_OK;
+    rval = VSTREAM_OK;
   }
 
-  return (status);
+  return rval;
 }
 /* Start streaming */
 static int32_t Start (uint32_t mode) {
@@ -303,6 +303,7 @@ static int32_t Start (uint32_t mode) {
     /* Apply configuration and start the timer */
     AudioOut->Timer.Control = ctrl | ARM_VSI_Timer_Run_Msk;
   }
+
   return rval;
 }
 
@@ -409,7 +410,7 @@ static vStreamStatus_t GetStatus (void) {
   hAudioOut.underflow = 0U;
   hAudioOut.eos       = 0U;
 
-  return (status);
+  return status;
 }
 
 vStreamDriver_t Driver_vStreamAudioOut = {
