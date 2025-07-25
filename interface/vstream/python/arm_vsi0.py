@@ -271,9 +271,9 @@ def wrCONTROL(value):
         else:
             logger.info("CONTROL register updated: ENABLE bit cleared")
             closeWAVE()
-            # Clear OPEN bit when stream is closed
-            STATUS &= ~STATUS_OPEN_Msk
-            logger.debug("STATUS register updated: OPEN bit cleared")
+            # Clear OPEN, DATA, EOS status bits when stream is closed
+            STATUS &= ~(STATUS_OPEN_Msk | STATUS_DATA_Msk | STATUS_EOS_Msk)
+            logger.debug("STATUS register updated: OPEN, DATA, EOS bits cleared")
     CONTROL = value
 
 ## Write CHANNELS register (user register)
