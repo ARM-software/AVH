@@ -3,23 +3,16 @@
   <name>AVH_FVP</name>
   <vendor>ARM</vendor>
   <description>Virtual Interfaces for Arm FVPs</description>
-  <url>https://github.com/ARM-software/AVH</url>
+  <url>https://github.com/ARM-software/AVH/</url>
   <repository type="git">https://github.com/ARM-software/AVH.git</repository>
   <license>LICENSE</license>
 
   <releases>
-    <release version="1.1.0-dev1">
-      Add vStream AudioIn/Out drivers
-      Update VIO to API 1.0.0
-    </release>
-    <release version="1.1.0-dev0">
-      Pack Description:
-        - Add LICENSE file
-        - Update schemaVersion (1.7.28)
-        - Update URL and repository type
-    </release>
-    <release version="1.0.0">
-      Initial release
+    <release version="1.0.0-dev">
+      Active development ...
+        - Add VIO driver
+        - Add vStream AudioIn/Out drivers
+        - Add vSocket driver
     </release>
   </releases>
 
@@ -69,6 +62,34 @@
         <file category="doc"     name="Documentation/simulation/html/group__arm__vsi.html"/>
         <file category="include" name="interface/include/"/>
         <file category="sourceC" name="interface/vstream/source/vstream_audio_out.c"/>
+      </files>
+    </component>
+
+   <component Cclass="CMSIS Driver" Cgroup="vStream" Csub="VideoIn" Cversion="1.0.0" Capiversion="1.0.0" condition="vStream">
+      <description>Video Input vStream implementation for Arm FVPs</description>
+      <RTE_Components_h>
+        #define RTE_VSTREAM_AUDIOIN
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="Documentation/simulation/html/group__arm__vsi.html"/>
+        <file category="include" name="interface/include/"/>
+        <file category="sourceC" name="interface/vstream/source/vstream_video_in.c"/>
+        <file category="header"  name="interface/vstream/source/vstream_video_in.h"/>
+        <file category="header"  name="interface/vstream/config/vstream_video_in_config.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+   <component Cclass="CMSIS Driver" Cgroup="vStream" Csub="VideoOut" Cversion="1.0.0" Capiversion="1.0.0" condition="vStream">
+      <description>Video Output vStream implementation for Arm FVPs</description>
+      <RTE_Components_h>
+        #define RTE_VSTREAM_AUDIOOUT
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="Documentation/simulation/html/group__arm__vsi.html"/>
+        <file category="include" name="interface/include/"/>
+        <file category="sourceC" name="interface/vstream/source/vstream_video_out.c"/>
+        <file category="header"  name="interface/vstream/source/vstream_video_out.h"/>
+        <file category="header"  name="interface/vstream/config/vstream_video_out_config.h" attr="config" version="1.0.0"/>
       </files>
     </component>
 
