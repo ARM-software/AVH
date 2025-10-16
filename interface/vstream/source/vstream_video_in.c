@@ -334,7 +334,6 @@ static int32_t Start (uint32_t mode) {
 /* Stop streaming */
 static int32_t Stop (void) {
   int32_t rval;
-  int32_t status;
 
   if ((hVideoIn.flags & FLAGS_INIT) == 0) {
     /* Not initialized */
