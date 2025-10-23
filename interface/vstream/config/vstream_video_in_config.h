@@ -46,4 +46,11 @@
 #define VIDEO_IN_FRAME_COLOR      1
 #endif
 
+// <o> System Device Index
+// <i> Defines the index of the video streaming device.
+// <i> Default: -1 (system default video device)
+#ifndef VIDEO_IN_DEVICE
+#define VIDEO_IN_DEVICE           -1
+#endif
+
 #endif

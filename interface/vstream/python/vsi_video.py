@@ -44,13 +44,14 @@ class VideoClient:
     def __init__(self):
         # Server command codes
         self.SET_MODE         = 1
-        self.SET_FILENAME     = 2
-        self.STREAM_CONFIGURE = 3
-        self.STREAM_ENABLE    = 4
-        self.STREAM_DISABLE   = 5
-        self.FRAME_READ       = 6
-        self.FRAME_WRITE      = 7
-        self.CLOSE_SERVER     = 8
+        self.SET_DEVICE       = 2
+        self.SET_FILENAME     = 3
+        self.STREAM_CONFIGURE = 4
+        self.STREAM_ENABLE    = 5
+        self.STREAM_DISABLE   = 6
+        self.FRAME_READ       = 7
+        self.FRAME_WRITE      = 8
+        self.CLOSE_SERVER     = 9
         # Color space codes
         self.GRAYSCALE8       = 0
         self.RGB888           = 1
@@ -94,6 +95,19 @@ class VideoClient:
         mode_valid = self.conn.recv()
 
         return mode_valid
+
+    def setDevice(self, device):
+        """
+        Set the audio streaming device index (input/output).
+        Args:
+            device: The device index value to set on the server.
+        Returns:
+            Device index actually set.
+        """
+        self.conn.send([self.SET_DEVICE, device])
+        device_index = self.conn.recv()
+
+        return device_index
 
     def setFilename(self, filename):
         """
@@ -185,13 +199,14 @@ class VideoClient:
 
 
 # User register variables (simulate hardware registers for VSI peripheral)
-CONTROL                   = 0   # Regs[0]  // Control: enable, mode, continuous
-STATUS                    = 0   # Regs[1]  // Status: active, eos, file_name, file_valid
-FILENAME                  = ""  # Regs[2]  // Filename string array
-FRAME_WIDTH               = 300 # Regs[3]  // Requested frame width
-FRAME_HEIGHT              = 300 # Regs[4]  // Requested frame height
-FRAME_RATE                = 0   # Regs[5]  // Frame rate
-FRAME_COLOR               = 0   # Regs[6]  // Frame color space
+CONTROL                   = 0     # Regs[0]  // Control: enable, mode, continuous
+STATUS                    = 0     # Regs[1]  // Status: active, eos, file_name, file_valid
+DEVICE                    = -1    # Regs[2]  // Streaming device
+FILENAME                  = ""    # Regs[3]  // Filename string array
+FRAME_WIDTH               = 300   # Regs[4]  // Requested frame width
+FRAME_HEIGHT              = 300   # Regs[5]  // Requested frame height
+FRAME_RATE                = 0     # Regs[6]  // Frame rate
+FRAME_COLOR               = 0     # Regs[7]  // Frame color space
 
 
 # CONTROL register bit definitions
@@ -396,6 +411,21 @@ def rdSTATUS():
     return value
 
 
+def wrDEVICE(value):
+    """
+    Write DEVICE register (user register).
+    Write is ignored if value to write equals to -1.
+
+    Args:
+        value: Device index to set.
+    Returns:
+        None
+    """
+    global DEVICE
+    DEVICE = Video.setDevice(value)
+    logger.info(f"wrDEVICE: DEVICE register set to {DEVICE}")
+
+
 def rdFILENAME():
     """
     Read FILENAME register (user register).
@@ -460,6 +490,7 @@ def rdRegs(index):
     Returns:
         value: Value read (32-bit)
     """
+    global CONTROL, DEVICE, FRAME_WIDTH, FRAME_HEIGHT, FRAME_RATE, FRAME_COLOR
     value = 0
 
     if   index == 0:
@@ -467,14 +498,16 @@ def rdRegs(index):
     elif index == 1:
         value = rdSTATUS()
     elif index == 2:
-        value = rdFILENAME()
+        value = DEVICE
     elif index == 3:
-        value = FRAME_WIDTH
+        value = rdFILENAME()
     elif index == 4:
-        value = FRAME_HEIGHT
+        value = FRAME_WIDTH
     elif index == 5:
-        value = FRAME_RATE
+        value = FRAME_HEIGHT
     elif index == 6:
+        value = FRAME_RATE
+    elif index == 7:
         value = FRAME_COLOR
 
     return value
@@ -491,21 +524,23 @@ def wrRegs(index, value):
     Returns:
         value: Value written (32-bit)
     """
-    global MODE, FRAME_WIDTH, FRAME_HEIGHT, FRAME_COLOR, FRAME_RATE
+    global STATUS, FRAME_WIDTH, FRAME_HEIGHT,  FRAME_RATE, FRAME_COLOR
 
     if   index == 0:
         wrCONTROL(value)
     elif index == 1:
         value = STATUS
     elif index == 2:
-        wrFILENAME(value)
+        wrDEVICE(value)
     elif index == 3:
-        FRAME_WIDTH = value
+        wrFILENAME(value)
     elif index == 4:
-        FRAME_HEIGHT = value
+        FRAME_WIDTH = value
     elif index == 5:
-        FRAME_RATE = value
+        FRAME_HEIGHT = value
     elif index == 6:
+        FRAME_RATE = value
+    elif index == 7:
         FRAME_COLOR = value
 
     return value

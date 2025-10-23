@@ -79,13 +79,14 @@ class VideoServer:
         """
         # Server commands
         self.SET_MODE         = 1
-        self.SET_FILENAME     = 2
-        self.STREAM_CONFIGURE = 3
-        self.STREAM_ENABLE    = 4
-        self.STREAM_DISABLE   = 5
-        self.FRAME_READ       = 6
-        self.FRAME_WRITE      = 7
-        self.CLOSE_SERVER     = 8
+        self.SET_DEVICE       = 2
+        self.SET_FILENAME     = 3
+        self.STREAM_CONFIGURE = 4
+        self.STREAM_ENABLE    = 5
+        self.STREAM_DISABLE   = 6
+        self.FRAME_READ       = 7
+        self.FRAME_WRITE      = 8
+        self.CLOSE_SERVER     = 9
         # Color space
         self.GRAYSCALE8       = 0
         self.RGB888           = 1
@@ -95,6 +96,7 @@ class VideoServer:
         self.NV21             = 5
         # Variables
         self.listener         = Listener(address, authkey=authkey.encode('utf-8'))
+        self.device           = 0
         self.filename         = ""
         self.mode             = None
         self.active           = False
@@ -136,6 +138,30 @@ class VideoServer:
 
         return mode_valid
 
+    def _setDevice(self, device):
+        """
+        Set the video device index for input/output.
+
+        Sets the device index to the specified value, or
+        scans for the default device if -1 (0xFFFFFFFF) is given.
+
+        Args:
+            device: The device index to set.
+        Returns:
+            Device index actually set.
+        """
+        logger.debug(f"_setDevice: device={device}")
+
+        if (device == 4294967295):  # -1 as unsigned 32-bit
+            # Set device index to point to default device for the selected mode
+            self.device = self._scan_video_devices()
+        else:
+            # Set device index to the specified value
+            self.device = device
+
+        logger.info(f"_setDevice: audio device set to {self.device}")
+
+        return self.device
 
     def _setFilename(self, base_dir, filename):
         """
@@ -218,6 +244,50 @@ class VideoServer:
 
         return True
 
+    def _scan_video_devices(self):
+        """
+        Scan and log available video input devices.
+        Returns:
+            Default device index for the current mode.
+        """
+        logger.info("=== Available Video Devices ===")
+
+        available_devices = []
+
+        # Test device indices 0-1 (covers built-in webcam + external camera)
+        for device_index in range(2):
+            try:
+                cap = cv2.VideoCapture(device_index)
+                if cap.isOpened():
+
+                    # Get device properties
+                    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+                    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+                    fps = cap.get(cv2.CAP_PROP_FPS)
+
+                    device_info = {
+                        'index': device_index,
+                        'width': width,
+                        'height': height,
+                        'fps': fps,
+                    }
+                    available_devices.append(device_info)
+
+                    logger.info(f"Device {device_index}: {width}x{height} @ {fps:.1f}fps")
+
+                cap.release()
+            except Exception as e:
+                logger.error(f"Error accessing device {device_index}: {e}")
+
+        if not available_devices:
+            logger.warning("No video devices found")
+            return -1
+        else:
+            logger.info(f"Found {len(available_devices)} input device(s)")
+            logger.info(f"Default Input Device: 0")
+
+        return 0
+
     def _enableStream(self):
         """
         Enable the video stream for input (camera/file) or output (file/display).
@@ -253,7 +323,7 @@ class VideoServer:
                 if self.filename == "":
                     # No filename specified: use camera interface
                     logger.debug("_enableStream: use camera interface for input streaming")
-                    self.stream = cv2.VideoCapture(0)
+                    self.stream = cv2.VideoCapture(self.device)
 
                     if not self.stream.isOpened():
                         logger.error("_enableStream: failed to open Camera interface")
@@ -630,6 +700,10 @@ class VideoServer:
             if   cmd == self.SET_MODE:
                 mode_valid = self._setMode(payload[0])
                 conn.send(mode_valid)
+
+            elif cmd == self.SET_DEVICE:
+                device_valid = self._setDevice(payload[0])
+                conn.send(device_valid)
 
             elif cmd == self.SET_FILENAME:
                 filename_valid = self._setFilename(payload[0], payload[1])

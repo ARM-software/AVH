@@ -38,11 +38,12 @@
 /* Video Peripheral registers */
 #define CONTROL                 Regs[0]  // Control: enable, mode, continuous
 #define STATUS                  Regs[1]  // Status: active, eos, file_name, file_valid
-#define FILENAME                Regs[2]  // Filename string array
-#define FRAME_WIDTH             Regs[3]  // Requested frame width
-#define FRAME_HEIGHT            Regs[4]  // Requested frame height
-#define FRAME_RATE              Regs[5]  // Frame rate
-#define FRAME_COLOR             Regs[6]  // Frame color space
+#define DEVICE                  Regs[2]  // Streaming device
+#define FILENAME                Regs[3]  // Filename string array
+#define FRAME_WIDTH             Regs[4]  // Requested frame width
+#define FRAME_HEIGHT            Regs[5]  // Requested frame height
+#define FRAME_RATE              Regs[6]  // Frame rate
+#define FRAME_COLOR             Regs[7]  // Frame color space
 
 /* CONTROL register definitions */
 #define CONTROL_ENABLE_Pos      0U                             // Cleared= Disabled, Set= Enabled
@@ -178,6 +179,10 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
   VideoOut->CONTROL       = CONTROL_MODE_OUT;
 
   /* Set video configuration */
+  VideoOut->FRAME_WIDTH  = VIDEO_OUT_FRAME_WIDTH;
+  VideoOut->FRAME_HEIGHT = VIDEO_OUT_FRAME_HEIGHT;
+  VideoOut->FRAME_COLOR  = VIDEO_OUT_FRAME_COLOR;
+  VideoOut->FRAME_RATE   = VIDEO_OUT_FRAME_RATE;
 
   /* Enable peripheral interrupts */
 //NVIC_EnableIRQ(VideoIn_IRQn);
@@ -278,11 +283,6 @@ static int32_t Start (uint32_t mode) {
 
     /* Set active status */
     hVideoOut.active = 1U;
-    /* Configure peripheral */
-    VideoOut->FRAME_WIDTH    = VIDEO_OUT_FRAME_WIDTH;
-    VideoOut->FRAME_HEIGHT   = VIDEO_OUT_FRAME_HEIGHT;
-    VideoOut->FRAME_COLOR    = VIDEO_OUT_FRAME_COLOR;
-    VideoOut->FRAME_RATE     = VIDEO_OUT_FRAME_RATE;
 
     /* Set control register */
     ctrl = VideoOut->CONTROL | CONTROL_ENABLE_Msk;
