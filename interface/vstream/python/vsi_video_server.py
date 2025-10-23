@@ -658,7 +658,7 @@ class VideoServer:
             logger.error(f"Exception in _writeFrame: {type(e).__name__}: {e}", exc_info=True)
             pass
 
-    # Run Video Server
+
     def run(self):
         """
         Main server loop.
@@ -721,7 +721,7 @@ class VideoServer:
             elif cmd == self.CLOSE_SERVER:
                 self.stop()
 
-    # Stop Video Server
+
     def stop(self):
         """
         Stop the video server.
@@ -740,7 +740,6 @@ class VideoServer:
         logger.info("Video server stopped")
 
 
-# Validate IP address
 def ip(ip):
     """
     Validate that the input string is a valid IP address.
