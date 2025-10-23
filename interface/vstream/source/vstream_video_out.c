@@ -164,6 +164,9 @@ void VideoOut_Handler(void) {
 
 /* Initialize streaming interface */
 static int32_t Initialize (vStreamEvent_t event_cb) {
+  char *fn;
+  uint32_t len;
+  uint32_t i;
 
   hVideoOut.callback  = event_cb;
   hVideoOut.active    = 0U;
@@ -183,6 +186,19 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
   VideoOut->FRAME_HEIGHT = VIDEO_OUT_FRAME_HEIGHT;
   VideoOut->FRAME_COLOR  = VIDEO_OUT_FRAME_COLOR;
   VideoOut->FRAME_RATE   = VIDEO_OUT_FRAME_RATE;
+
+  fn = VIDEO_OUT_FILENAME;
+  len = strlen(fn);
+
+  if (len > 0U) {
+    /* Add null terminator */
+    len += 1U;
+
+    /* Load filename register */
+    for (i = 0; i < len; i++) {
+      VideoOut->FILENAME = fn[i];
+    }
+  }
 
   /* Enable peripheral interrupts */
 //NVIC_EnableIRQ(VideoIn_IRQn);

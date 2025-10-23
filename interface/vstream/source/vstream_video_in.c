@@ -164,6 +164,9 @@ void VideoIn_Handler(void) {
 
 /* Initialize streaming interface */
 static int32_t Initialize (vStreamEvent_t event_cb) {
+  char *fn;
+  uint32_t len;
+  uint32_t i;
 
   hVideoIn.callback = event_cb;
   hVideoIn.active   = 0U;
@@ -184,6 +187,19 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
   VideoIn->FRAME_HEIGHT = VIDEO_IN_FRAME_HEIGHT;
   VideoIn->FRAME_COLOR  = VIDEO_IN_FRAME_COLOR;
   VideoIn->FRAME_RATE   = VIDEO_IN_FRAME_RATE;
+
+  fn = VIDEO_IN_FILENAME;
+  len = strlen(fn);
+
+  if (len > 0U) {
+    /* Add null terminator */
+    len += 1U;
+
+    /* Load filename register */
+    for (i = 0; i < len; i++) {
+      VideoIn->FILENAME = fn[i];
+    }
+  }
 
   /* Enable peripheral interrupts */
 //NVIC_EnableIRQ(VideoIn_IRQn);

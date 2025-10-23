@@ -458,26 +458,27 @@ def wrFILENAME(value):
     if STATUS & STATUS_FILE_NAME_Msk:
         # Clear file related flags and reset filename
         STATUS &= ~(STATUS_FILE_NAME_Msk | STATUS_FILE_VALID_Msk)
-        logger.debug("STATUS register updated: FILE_NAME and FILE_VALID bits cleared")
+        logger.debug("wrFILENAME: STATUS register updated: FILE_NAME and FILE_VALID bits cleared")
 
         FILENAME = ""
-        logger.debug("FILENAME register reset")
+        logger.info("wrFILENAME: FILENAME register reset")
 
-    logger.info(f"Append {char} to filename")
-    FILENAME += f"{char}"
-
-    if char == '\0':
-        # Filename is null terminated
-        logger.info(f"Filename: {FILENAME}")
+    if char != '\0':
+        # Got character to append
+        logger.debug(f"wrFILENAME: append {char} to filename")
+        FILENAME += f"{char}"
+    else:
+        # Got null terminator
+        logger.info(f"wrFILENAME: filename: {FILENAME}")
 
         STATUS |= STATUS_FILE_NAME_Msk
-        logger.debug("STATUS register updated: FILE_NAME bit set")
+        logger.debug("wrFILENAME: STATUS register updated: FILE_NAME bit set")
 
         if Video.setFilename(FILENAME) == True:
             STATUS |= STATUS_FILE_VALID_Msk
-            logger.debug("STATUS register updated: FILE_VALID bit set")
+            logger.debug("wrFILENAME: STATUS register updated: FILE_VALID bit set")
         else:
-            logger.error("Filename validation failed, file not found on server")
+            logger.error("wrFILENAME: Filename validation failed, file not found on server")
 
 
 def rdRegs(index):
