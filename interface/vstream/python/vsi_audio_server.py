@@ -35,10 +35,10 @@ except Exception as e:
 logger = logging.getLogger(__name__)
 
 ## Set verbosity level
-verbosity = logging.DEBUG
+#verbosity = logging.DEBUG
 #verbosity = logging.INFO
 #verbosity = logging.WARNING
-#verbosity = logging.ERROR
+verbosity = logging.ERROR
 
 # [debugging] Verbosity settings
 level = { 10: "DEBUG",  20: "INFO",  30: "WARNING",  40: "ERROR" }
@@ -133,7 +133,7 @@ class AudioServer:
 
     def _setDevice(self, device):
         """
-        Set the audio device index for input/output.
+        Set the streaming device index for input/output.
 
         Sets the device index to the specified value, or
         scans for the default device if -1 (0xFFFFFFFF) is given.
@@ -158,9 +158,9 @@ class AudioServer:
 
     def _setFilename(self, base_dir, filename):
         """
-        Set the filename for input or output audio file.
+        Set the filename for input or output file.
 
-        Checks file extension to determine if it's a supported audio format.
+        Checks file extension to determine if file format is supported.
         For input: verifies file exists and is supported.
         For output: removes existing file if present.
         Args:
@@ -646,7 +646,6 @@ class AudioServer:
         logger.info("Audio server stopped")
 
 
-# Validate IP address
 def ip(ip):
     """
     Validate that the input string is a valid IP address.
