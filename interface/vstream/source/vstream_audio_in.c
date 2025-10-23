@@ -221,8 +221,8 @@ static int32_t Uninitialize (void) {
   memset(&hAudioIn, 0, sizeof(hAudioIn));
 
   return VSTREAM_OK;
-
 }
+
 /* Set streaming data buffer */
 static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
   int32_t rval;
@@ -263,6 +263,7 @@ static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
 
   return rval;
 }
+
 /* Start streaming */
 static int32_t Start (uint32_t mode) {
   int32_t  rval;
