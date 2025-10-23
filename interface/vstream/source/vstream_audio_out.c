@@ -18,7 +18,7 @@
 
 #include <stdint.h>
 #include <string.h>
-#include "cmsis_vstream.h"
+#include "vstream_audio_out.h"
 #include "vstream_audio_out_config.h"
 
 #ifdef _RTE_
