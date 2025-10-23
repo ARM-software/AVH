@@ -90,11 +90,11 @@ typedef struct {
 
 /* vStream Handle Type Definition */
 typedef struct {
-  vStreamEvent_t    callback; /* VideoIn callback       */
-  StreamBuf_t       buf;      /* VideoIn stream buffer  */
+  vStreamEvent_t    callback; /* Callback from vStream driver */
+  StreamBuf_t       buf;      /* Stream buffer    */
   volatile uint32_t idx_get;  /* Index of block to be returned on GetBlock call     */
   volatile uint32_t idx_rel;  /* Index of block to be released on ReleaseBlock call */
-  volatile uint32_t idx_in;   /* Index of block currently beeing streamed           */
+  volatile uint32_t idx_in;   /* Index of block currently being streamed            */
   volatile uint8_t  active;   /* Streaming active flag */
   volatile uint8_t  overflow; /* Buffer overflow flag  */
   volatile uint8_t  eos;      /* End of stream flag    */
@@ -263,10 +263,10 @@ static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
     hVideoIn.idx_get = 0U;
     hVideoIn.idx_rel = 0U;
 
-    /* Configure peripheral */
-    VideoIn->DMA.Address     = (uint32_t)buf;
-    VideoIn->DMA.BlockNum    = hVideoIn.buf.block_num;
-    VideoIn->DMA.BlockSize   = block_size;
+    /* Configure DMA */
+    VideoIn->DMA.Address   = (uint32_t)buf;
+    VideoIn->DMA.BlockNum  = hVideoIn.buf.block_num;
+    VideoIn->DMA.BlockSize = block_size;
 
     rval = VSTREAM_OK;
   }
@@ -448,7 +448,7 @@ static vStreamStatus_t GetStatus (void) {
   hVideoIn.overflow = 0U;
   hVideoIn.eos      = 0U;
 
-  return (status);
+  return status;
 }
 
 vStreamDriver_t Driver_vStreamVideoIn = {

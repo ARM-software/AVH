@@ -370,19 +370,19 @@ def wrCONTROL(value):
         if (value & CONTROL_ENABLE_Msk) != 0:
             logger.info("wrCONTROL: CONTROL register updated: ENABLE bit set")
 
-            # Configure video stream
+            # Configure stream
             configuration_valid = Video.configureStream(FRAME_WIDTH, FRAME_HEIGHT, FRAME_RATE, FRAME_COLOR)
             if configuration_valid:
-                # Configuration is valid, enable video stream
+                # Configuration is valid, enable stream
                 server_active = Video.enableStream()
 
                 if server_active:
                     STATUS |=  STATUS_ACTIVE_Msk
                     STATUS &= ~STATUS_EOS_Msk
                 else:
-                    logger.error("wrCONTROL: enable video stream failed")
+                    logger.error("wrCONTROL: enable stream failed")
             else:
-                logger.error("wrCONTROL: configure video stream failed")
+                logger.error("wrCONTROL: configure stream failed")
         else:
             logger.info("wrCONTROL: CONTROL register updated: ENABLE bit cleared")
             Video.disableStream()

@@ -90,11 +90,11 @@ typedef struct {
 
 /* vStream Handle Type Definition */
 typedef struct {
-  vStreamEvent_t    callback; /* VideoOut callback       */
-  StreamBuf_t       buf;      /* VideoOut stream buffer  */
+  vStreamEvent_t    callback; /* Callback from vStream driver */
+  StreamBuf_t       buf;      /* Stream buffer    */
   volatile uint32_t idx_get;  /* Index of block to be returned on GetBlock call     */
   volatile uint32_t idx_rel;  /* Index of block to be released on ReleaseBlock call */
-  volatile uint32_t idx_out;  /* Index of block currently beeing streamed           */
+  volatile uint32_t idx_out;  /* Index of block currently being streamed            */
   volatile uint8_t  active;   /* Streaming active flag */
   volatile uint8_t  underflow; /* Buffer underflow flag */
   volatile uint8_t  eos;      /* End of stream flag    */
@@ -262,10 +262,10 @@ static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
     hVideoOut.idx_get = 0U;
     hVideoOut.idx_rel = 0U;
 
-    /* Configure peripheral */
-    VideoOut->DMA.Address     = (uint32_t)buf;
-    VideoOut->DMA.BlockNum    = hVideoOut.buf.block_num;
-    VideoOut->DMA.BlockSize   = block_size;
+    /* Configure DMA */
+    VideoOut->DMA.Address   = (uint32_t)buf;
+    VideoOut->DMA.BlockNum  = hVideoOut.buf.block_num;
+    VideoOut->DMA.BlockSize = block_size;
 
     rval = VSTREAM_OK;
   }
@@ -347,7 +347,6 @@ static int32_t Start (uint32_t mode) {
 /* Stop streaming */
 static int32_t Stop (void) {
   int32_t rval;
-  int32_t status;
 
   if ((hVideoOut.flags & FLAGS_INIT) == 0) {
     /* Not initialized */
@@ -449,7 +448,7 @@ static vStreamStatus_t GetStatus (void) {
   hVideoOut.underflow = 0U;
   hVideoOut.eos       = 0U;
 
-  return (status);
+  return status;
 }
 
 vStreamDriver_t Driver_vStreamVideoOut = {
