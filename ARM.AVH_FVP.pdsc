@@ -50,6 +50,7 @@
         <file category="doc"     name="Documentation/simulation/html/group__arm__vsi.html"/>
         <file category="include" name="interface/include/"/>
         <file category="sourceC" name="interface/vstream/source/vstream_audio_in.c"/>
+        <file category="header"  name="interface/vstream/config/vstream_audio_in_config.h" attr="config" version="1.0.0"/>
       </files>
     </component>
 
@@ -62,6 +63,7 @@
         <file category="doc"     name="Documentation/simulation/html/group__arm__vsi.html"/>
         <file category="include" name="interface/include/"/>
         <file category="sourceC" name="interface/vstream/source/vstream_audio_out.c"/>
+        <file category="header"  name="interface/vstream/config/vstream_audio_out_config.h" attr="config" version="1.0.0"/>
       </files>
     </component>
 

@@ -19,30 +19,13 @@
 #include <stdint.h>
 #include <string.h>
 #include "cmsis_vstream.h"
+#include "vstream_audio_out_config.h"
 
 #ifdef _RTE_
 #include "RTE_Components.h"
 #endif
 #include CMSIS_device_header
 #include "arm_vsi.h"
-
-/* Number of channels 1=Mono, 2=Stereo            */
-/* Defines the number of audio channels in stream */
-#ifndef AUDIO_OUT_CHANNELS
-#define AUDIO_OUT_CHANNELS     2U
-#endif
-
-/* Number of bits per sample <0=>8 <1=>16 <2=>24 <3=>32  */
-/* Defines number of bits of information in each sample. */
-#ifndef AUDIO_OUT_SAMPLE_BITS
-#define AUDIO_OUT_SAMPLE_BITS  16U
-#endif
-
-/* Sample rate (samples per second)                   */
-/* Defines the number of samples captured per second. */
-#ifndef AUDIO_OUT_SAMPLE_RATE
-#define AUDIO_OUT_SAMPLE_RATE  16000U
-#endif
 
 
 /* Audio Peripheral definitions */
