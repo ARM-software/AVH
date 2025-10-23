@@ -43,7 +43,6 @@
 #define FRAME_HEIGHT            Regs[4]  // Requested frame height
 #define FRAME_RATE              Regs[5]  // Frame rate
 #define FRAME_COLOR             Regs[6]  // Frame color space
-#define FRAME_COUNT             Regs[7]  // Frame count
 
 /* CONTROL register definitions */
 #define CONTROL_ENABLE_Pos      0U                             // Cleared= Disabled, Set= Enabled

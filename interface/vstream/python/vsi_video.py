@@ -192,7 +192,6 @@ FRAME_WIDTH               = 300 # Regs[3]  // Requested frame width
 FRAME_HEIGHT              = 300 # Regs[4]  // Requested frame height
 FRAME_RATE                = 0   # Regs[5]  // Frame rate
 FRAME_COLOR               = 0   # Regs[6]  // Frame color space
-FRAME_COUNT               = 0   # Regs[7]  // Frame count
 
 
 # CONTROL register bit definitions
@@ -294,7 +293,7 @@ def rdDataDMA(size):
     Returns:
         data: Bytearray of frame data.
     """
-    global STATUS, FRAME_COUNT
+    global STATUS
 
     if (STATUS & STATUS_ACTIVE_Msk) != 0:
 
@@ -302,10 +301,6 @@ def rdDataDMA(size):
         if eos:
             STATUS |= STATUS_EOS_Msk
             logger.debug("rdDataDMA: STATUS register updated: EOS bit set")
-
-        if (STATUS & STATUS_EOS_Msk) == 0:
-            # No End Of Stream, increment number of frames streamed
-            FRAME_COUNT += 1
     else:
         data = bytearray()
 
@@ -324,7 +319,7 @@ def wrDataDMA(data, size):
         data: Bytearray of frame data to write.
         size: Number of bytes to write (multiple of 4).
     """
-    global STATUS, FRAME_COUNT
+    global STATUS
 
     if (STATUS & STATUS_ACTIVE_Msk) != 0:
 
@@ -333,9 +328,6 @@ def wrDataDMA(data, size):
         # Set DATA bit after the block of data is written
         STATUS |= STATUS_DATA_Msk
         logger.debug("wrDataDMA: STATUS register updated: DATA bit set")
-
-        # Increment number of frames streamed
-        FRAME_COUNT += 1
 
 
 def wrCONTROL(value):
@@ -484,8 +476,6 @@ def rdRegs(index):
         value = FRAME_RATE
     elif index == 6:
         value = FRAME_COLOR
-    elif index == 7:
-        value = FRAME_COUNT
 
     return value
 
@@ -517,7 +507,5 @@ def wrRegs(index, value):
         FRAME_RATE = value
     elif index == 6:
         FRAME_COLOR = value
-    elif index == 7:
-        value = FRAME_COUNT
 
     return value
