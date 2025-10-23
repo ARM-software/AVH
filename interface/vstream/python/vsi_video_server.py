@@ -20,8 +20,8 @@ try:
     import argparse
     import ipaddress
     import logging
-    import os
     from multiprocessing.connection import Listener
+    from pathlib import Path
 
     import cv2
     import numpy as np
@@ -97,7 +97,7 @@ class VideoServer:
         # Variables
         self.listener         = Listener(address, authkey=authkey.encode('utf-8'))
         self.device           = 0
-        self.filename         = ""
+        self.filename         = None
         self.mode             = None
         self.active           = False
         self.video            = True
@@ -139,7 +139,7 @@ class VideoServer:
 
     def _setDevice(self, device):
         """
-        Set the video device index for input/output.
+        Set the streaming device index for input/output.
 
         Sets the device index to the specified value, or
         scans for the default device if -1 (0xFFFFFFFF) is given.
@@ -164,9 +164,9 @@ class VideoServer:
 
     def _setFilename(self, base_dir, filename):
         """
-        Set the filename for input or output video/image.
+        Set the filename for input or output file.
 
-        Checks file extension to determine if it's a video or image.
+        Checks file extension to determine if file format is supported.
         For input: verifies file exists and is supported.
         For output: removes existing file if present.
         Args:
@@ -179,35 +179,54 @@ class VideoServer:
 
         filename_valid = False
 
-        if self.active:
-            logger.error("_setFilename: stream is active, cannot set filename")
+        self.filename = None
+
+        if filename == "":
+            # Empty filename is valid (use microphone/speakers)
+            return True
+
+        work_dir   = Path(base_dir)
+        file_name  = Path(filename)
+        file_path  = Path("")
+
+        # Check if file extension is supported
+        ext = file_name.suffix.lstrip('.').lower()
+        if ext not in video_file_extensions + image_file_extensions:
+            logger.error(f"_setFilename: unsupported file extension={ext}")
             return filename_valid
 
-        self.filename    = ""
-
-        file_extension = str(filename).split('.')[-1].lower()
-
-        if file_extension not in (video_file_extensions + image_file_extensions):
-            logger.error(f"_setFilename: unsupported file extension={file_extension}")
-            return filename_valid
-
-        if file_extension in video_file_extensions:
-            self.video = True
+        # Check if filename is absolute path
+        if file_name.is_absolute():
+            # Absolute path provided
+            file_path = file_name
+            logger.debug(f"_setFilename: absolute path provided, file path={file_path}")
         else:
-            self.video = False
+            # Relative path provided, create full path
+            file_path = work_dir / file_name
+            logger.debug(f"_setFilename: relative path provided, file path={file_path}")
 
-        file_path = os.path.join(base_dir, filename)
-        logger.debug(f"_setFilename: file path={file_path}")
+        # Normalize the file path
+        file_path = file_path.resolve()
 
-        # Check if the file exists
-        if os.path.isfile(file_path):
-            self.filename  = file_path
+        if self.mode == MODE_VIDEO_INPUT:
+            # Check if the file exists
+            if Path(file_path).exists():
+                # File exists
+                filename_valid = True
+            else:
+                logger.error(f"_setFilename: file does not exist: {file_path}")
+
+        if self.mode == MODE_VIDEO_OUTPUT:
+            # Check if the file exists
+            if Path(file_path).exists():
+                # Remove existing file
+                Path(file_path).unlink(missing_ok=True)
+
             filename_valid = True
 
-            if self.mode == MODE_VIDEO_OUTPUT:
-                # Remove existing file
-                os.remove(file_path)
-
+        if filename_valid:
+            # Set server side filename
+            self.filename = file_path
             logger.info(f"_setFilename: filename set to {self.filename}")
 
         return filename_valid
@@ -312,13 +331,13 @@ class VideoServer:
             self.stream.release()
             self.stream = None
 
-        if self.filename == "":
+        if self.filename == None:
             self.video = True
 
         if self.video:
             if self.mode == MODE_VIDEO_INPUT:
                 # Input mode: read from camera or video file
-                if self.filename == "":
+                if self.filename == None:
                     # No filename specified: use camera interface
                     logger.debug("_enableStream: use camera interface for input streaming")
                     self.stream = cv2.VideoCapture(self.device)
@@ -343,10 +362,11 @@ class VideoServer:
 
             elif self.mode == MODE_VIDEO_OUTPUT:
                 # Output mode: write to video file or display window
-                if self.filename != "":
+                if self.filename != None:
                     # Filename specified: output to file
                     logger.debug("_enableStream: output stream to a file")
-                    extension = str(self.filename).split('.')[-1].lower()
+
+                    extension = self.filename.suffix.lstrip('.').lower()
                     fourcc = cv2.VideoWriter_fourcc(*f'{video_fourcc[extension]}')
 
                     self.stream = cv2.VideoWriter(self.filename, fourcc, self.frame_rate, (self.frame_width, self.frame_height))
@@ -366,6 +386,7 @@ class VideoServer:
         """
         self.active = False
         if self.stream is not None:
+            # Clean-up stream resources and invalidate object
             self.stream.release()
             self.stream = None
 
@@ -617,7 +638,7 @@ class VideoServer:
             # Convert color space to BGR
             frame_out = self.__convertToBGR(decoded_frame)
 
-            if self.filename == "":
+            if self.filename == None:
                 logger.debug("_writeFrame: display frame in window")
                 # If no filename, display the frame in a window
                 cv2.imshow(self.filename, frame_out)
@@ -710,7 +731,7 @@ class VideoServer:
             None
         """
         self._disableStream()
-        if (self.mode == MODE_VIDEO_OUTPUT) and (self.filename == ""):
+        if (self.mode == MODE_VIDEO_OUTPUT) and (self.filename == None):
             try:
                 cv2.destroyAllWindows()
             except Exception:
