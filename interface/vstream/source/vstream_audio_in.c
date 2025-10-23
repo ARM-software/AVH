@@ -34,19 +34,36 @@
 #define AudioIn_Handler       ARM_VSI0_Handler        /* Audio Input Interrupt handler */
 
 /* Audio Peripheral registers */
-#define STATUS                Regs[0]                 /* Status register           */
-#define CONTROL               Regs[1]                 /* Control receiver          */
-#define CHANNELS              Regs[2]                 /* Number of channels        */
-#define SAMPLE_BITS           Regs[3]                 /* Number of bits per sample */
-#define SAMPLE_RATE           Regs[4]                 /* Samples per second        */
+#define CONTROL               Regs[0]                 /* Control receiver          */
+#define STATUS                Regs[1]                 /* Status register           */
+#define DEVICE                Regs[2]                 /* Streaming device          */
+#define FILENAME              Regs[3]                 /* Filename string array     */
+#define CHANNELS              Regs[4]                 /* Number of channels        */
+#define SAMPLE_RATE           Regs[5]                 /* Samples per second        */
+#define SAMPLE_BITS           Regs[6]                 /* Number of bits per sample */
+
+/* CONTROL register definitions */
+#define CONTROL_ENABLE_Pos      0U                             // Cleared= Disabled, Set= Enabled
+#define CONTROL_ENABLE_Msk      (1UL << CONTROL_ENABLE_Pos)
+#define CONTROL_MODE_Pos        1U                             // Bits 2:1
+#define CONTROL_MODE_Msk        (3UL << CONTROL_MODE_Pos)      // 0= Disabled, 1= Input, 2= Output
+#define CONTROL_MODE_NONE       (0U << CONTROL_MODE_Pos)
+#define CONTROL_MODE_IN         (1U << CONTROL_MODE_Pos)
+#define CONTROL_MODE_OUT        (2U << CONTROL_MODE_Pos)
+#define CONTROL_CONTINUOUS_Pos  3U                             // Cleared= Single, Set= Continuous
+#define CONTROL_CONTINUOUS_Msk  (1UL << CONTROL_CONTINUOUS_Pos)
 
 /* STATUS register definitions */
-#define STATUS_OPEN_Msk       (1UL << 0)              /* Stream Open    */
-#define STATUS_DATA_Msk       (1UL << 1)              /* Data Available */
-#define STATUS_EOS_Msk        (1UL << 2)              /* End of Stream  */
-
-/* Audio Control register definitions */
-#define CONTROL_ENABLE_Msk    (1UL << 0)              /* CONTROL: ENABLE Streaming */
+#define STATUS_ACTIVE_Pos       0U
+#define STATUS_ACTIVE_Msk       (1UL << STATUS_ACTIVE_Pos)
+#define STATUS_DATA_Pos         1U
+#define STATUS_DATA_Msk         (1UL << STATUS_DATA_Pos)
+#define STATUS_EOS_Pos          2U
+#define STATUS_EOS_Msk          (1UL << STATUS_EOS_Pos)
+#define STATUS_FILE_NAME_Pos    3U
+#define STATUS_FILE_NAME_Msk    (1UL << STATUS_FILE_NAME_Pos)
+#define STATUS_FILE_VALID_Pos   4U
+#define STATUS_FILE_VALID_Msk   (1UL << STATUS_FILE_VALID_Pos)
 
 /* Handle Flags Definitions */
 #define FLAGS_INIT            (1U << 0)
@@ -136,6 +153,9 @@ void AudioIn_Handler (void) {
 
 /* Initialize streaming interface */
 static int32_t Initialize (vStreamEvent_t event_cb) {
+  char *fn;
+  uint32_t len;
+  uint32_t i;
 
   hAudioIn.callback = event_cb;
   hAudioIn.active   = 0U;
@@ -148,12 +168,26 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
   AudioIn->DMA.Control   = 0U;
   AudioIn->IRQ.Clear     = 0x00000001U;
   AudioIn->IRQ.Enable    = 0x00000001U;
-  AudioIn->CONTROL       = 0U;
+  AudioIn->CONTROL       = CONTROL_MODE_IN;
 
   /* Set audio configuration */
+  AudioIn->DEVICE      = AUDIO_IN_DEVICE;
   AudioIn->CHANNELS    = AUDIO_IN_CHANNELS;
   AudioIn->SAMPLE_BITS = AUDIO_IN_SAMPLE_BITS;
   AudioIn->SAMPLE_RATE = AUDIO_IN_SAMPLE_RATE;
+
+  fn = AUDIO_IN_FILENAME;
+  len = strlen(fn);
+
+  if (len > 0U) {
+    /* Add null terminator */
+    len += 1U;
+
+    /* Load filename register */
+    for (i = 0; i < len; i++) {
+      AudioIn->FILENAME = fn[i];
+    }
+  }
 
   /* Enable peripheral interrupts */
 //NVIC_EnableIRQ(AudioIn_IRQn);
@@ -259,32 +293,53 @@ static int32_t Start (uint32_t mode) {
     /* Set active status */
     hAudioIn.active = 1U;
 
+    /* Set control register */
+    ctrl = AudioIn->CONTROL | CONTROL_ENABLE_Msk;
+
     if (mode == VSTREAM_MODE_SINGLE) {
       /* Single mode */
       hAudioIn.flags |= FLAGS_SINGLE;
-
-      /* Initialize timer control register for one-shot mode */
-      ctrl = ARM_VSI_Timer_Trig_DMA_Msk | ARM_VSI_Timer_Trig_IRQ_Msk;
     }
     else {
       /* Continuous mode */
       hAudioIn.flags &= ~FLAGS_SINGLE;
 
-      /* Initialize timer control register for continuous mode */
-      ctrl = ARM_VSI_Timer_Trig_DMA_Msk | ARM_VSI_Timer_Trig_IRQ_Msk | ARM_VSI_Timer_Periodic_Msk;
+      ctrl |= CONTROL_CONTINUOUS_Msk;
     }
 
-    AudioIn->CONTROL     = CONTROL_ENABLE_Msk;
-    AudioIn->DMA.Control = ARM_VSI_DMA_Direction_P2M | ARM_VSI_DMA_Enable_Msk;
+    AudioIn->CONTROL = ctrl;
 
-    sample_size = AudioIn->CHANNELS * ((AudioIn->SAMPLE_BITS + 7U) / 8U);
-    sample_rate = AudioIn->SAMPLE_RATE;
-    block_size  = AudioIn->DMA.BlockSize;
+    if ((AudioIn->STATUS & STATUS_ACTIVE_Msk) == 0U) {
+      /* Peripheral not active */
+      rval = VSTREAM_ERROR;
+    }
+    else {
+      /* Configure peripheral DMA */
+      AudioIn->DMA.Control = ARM_VSI_DMA_Direction_P2M | ARM_VSI_DMA_Enable_Msk;
 
-    AudioIn->Timer.Interval = ((uint64_t)1000000U * (block_size / sample_size)) / sample_rate;
+      /* Configure Timer */
+      ctrl = ARM_VSI_Timer_Trig_DMA_Msk |
+             ARM_VSI_Timer_Trig_IRQ_Msk |
+             ARM_VSI_Timer_Run_Msk;
 
-    /* Apply configuration and start the timer */
-    AudioIn->Timer.Control = ctrl | ARM_VSI_Timer_Run_Msk;
+      if (mode == VSTREAM_MODE_CONTINUOUS) {
+        ctrl |= ARM_VSI_Timer_Periodic_Msk;
+      }
+
+      sample_size = AudioIn->CHANNELS * ((AudioIn->SAMPLE_BITS + 7U) / 8U);
+      sample_rate = AudioIn->SAMPLE_RATE;
+      block_size  = AudioIn->DMA.BlockSize;
+
+      AudioIn->Timer.Interval = ((uint64_t)1000000U * (block_size / sample_size)) / sample_rate;
+
+      /* Apply configuration */
+      AudioIn->Timer.Control = ctrl;
+    }
+
+    if (rval != VSTREAM_OK) {
+      /* Clear active flag */
+      hAudioIn.active = 0U;
+    }
   }
 
   return rval;

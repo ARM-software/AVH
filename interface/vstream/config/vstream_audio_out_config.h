@@ -43,4 +43,18 @@
 #define AUDIO_OUT_SAMPLE_RATE     16000
 #endif
 
+// <o> System Device Index
+// <i> Defines the index of the audio streaming device.
+// <i> Default: -1 (system default audio device)
+#ifndef AUDIO_OUT_DEVICE
+#define AUDIO_OUT_DEVICE          -1
+#endif
+
+// <o> Audio File Name
+// <i> Defines the name of the audio file to be used for streaming.
+// <i> Default: "" (use streaming device instead of file)
+#ifndef AUDIO_OUT_FILENAME
+#define AUDIO_OUT_FILENAME        ""
+#endif
+
 #endif
