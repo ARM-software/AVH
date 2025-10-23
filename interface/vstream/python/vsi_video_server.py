@@ -104,7 +104,6 @@ class VideoServer:
         self.stream           = None
         self.frame_ratio      = 0
         self.frame_drop       = 0
-        self.frame_index      = 0
         self.eos              = False
         # Stream configuration
         self.frame_width      = None
@@ -185,7 +184,6 @@ class VideoServer:
             return filename_valid
 
         self.filename    = ""
-        self.frame_index = 0
 
         file_extension = str(filename).split('.')[-1].lower()
 
@@ -333,9 +331,6 @@ class VideoServer:
                     logger.debug("_enableStream: use file interface for input streaming")
                     self.stream = cv2.VideoCapture(self.filename)
 
-                    # Seek to the last processed frame
-                    self.stream.set(cv2.CAP_PROP_POS_FRAMES, self.frame_index)
-
                 # Display stream properties
                 logger.info(f"_enableStream: source stream properties: width={self.stream.get(cv2.CAP_PROP_FRAME_WIDTH)}, height={self.stream.get(cv2.CAP_PROP_FRAME_HEIGHT)}, fps={self.stream.get(cv2.CAP_PROP_FPS)}")
 
@@ -354,30 +349,7 @@ class VideoServer:
                     extension = str(self.filename).split('.')[-1].lower()
                     fourcc = cv2.VideoWriter_fourcc(*f'{video_fourcc[extension]}')
 
-                    if os.path.isfile(self.filename) and (self.frame_index != 0):
-                        tmp_filename = f'{self.filename.rstrip(f".{extension}")}_tmp.{extension}'
-                        os.rename(self.filename, tmp_filename)
-                        cap    = cv2.VideoCapture(tmp_filename)
-
-                        # Get stream properties
-                        self.frame_width  = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-                        self.frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-                        self.frame_rate   = cap.get(cv2.CAP_PROP_FPS)
-
-                        # Write video file
-                        self.stream = cv2.VideoWriter(self.filename, fourcc, self.frame_rate, (self.frame_width, self.frame_height))
-
-                        while cap.isOpened():
-                            ret, frame = cap.read()
-                            if not ret:
-                                cap.release()
-                                os.remove(tmp_filename)
-                                break
-                            self.stream.write(frame)
-                            del frame
-
-                    else:
-                        self.stream = cv2.VideoWriter(self.filename, fourcc, self.frame_rate, (self.frame_width, self.frame_height))
+                    self.stream = cv2.VideoWriter(self.filename, fourcc, self.frame_rate, (self.frame_width, self.frame_height))
                 else:
                     logger.debug("_enableStream: output stream to display window")
 
@@ -394,10 +366,6 @@ class VideoServer:
         """
         self.active = False
         if self.stream is not None:
-            if self.mode == MODE_VIDEO_INPUT:
-                # Input stream: save current frame index
-                self.frame_index = self.stream.get(cv2.CAP_PROP_POS_FRAMES)
-
             self.stream.release()
             self.stream = None
 
@@ -659,7 +627,6 @@ class VideoServer:
                     logger.debug("_writeFrame: write frame to video file")
                     # Write frame to video file
                     self.stream.write(np.uint8(frame_out))
-                    self.frame_index += 1
                 else:
                     logger.debug("_writeFrame: write frame as image file")
                     # Write frame as image file
