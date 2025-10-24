@@ -43,8 +43,8 @@
 #define AUDIO_OUT_SAMPLE_RATE     16000
 #endif
 
-// <o> System Device Index
-// <i> Defines the index of the audio streaming device.
+// <o> Streaming Device Index
+// <i> Defines the system index of the audio streaming device.
 // <i> Default: -1 (system default audio device)
 #ifndef AUDIO_OUT_DEVICE
 #define AUDIO_OUT_DEVICE          -1
