@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/github/license/ARM-software/AVH?label)](https://github.com/ARM-software/AVH/blob/main/LICENSE)
+
 # AVH FVPs: Developer Resources
 
 This repository explains the use of Arm Virtual Hardware on Fixed Virtual Platforms (AVH FVP).
