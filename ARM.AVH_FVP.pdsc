@@ -135,6 +135,15 @@
     </component>
   </components>
 
+  <examples>
+    <example name="vStream Video" folder="example/vStream_Video" doc="README.md">
+      <description>vStream Video Input/Output streaming example</description>
+      <project>
+        <environment name="csolution" load="vStream_Video.csolution.yml"/>
+      </project>
+    </example>
+  </examples>
+
   <csolution>
     <clayer type="Board" path="board/Corstone-300" file="Board.clayer.yml"     copy-to="Board/Corstone-300" condition="Corstone-300"/>
     <clayer type="Board" path="board/Corstone-300" file="Board-U55.clayer.yml" copy-to="Board/Corstone-300" condition="Corstone-300"/>
