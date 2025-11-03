@@ -40,7 +40,7 @@ verbosity = logging.ERROR
 
 # [debugging] Verbosity settings
 level = { 10: "DEBUG",  20: "INFO",  30: "WARNING",  40: "ERROR" }
-logging.basicConfig(format='VSI Server: [%(levelname)s]\t%(message)s', level = verbosity)
+logging.basicConfig(format='VSI Video Server: [%(levelname)s]\t%(message)s', level = verbosity)
 logger.info("Verbosity level is set to " + level[verbosity])
 
 # Default Server configuration
@@ -158,7 +158,7 @@ class VideoServer:
             # Set device index to the specified value
             self.device = device
 
-        logger.info(f"_setDevice: audio device set to {self.device}")
+        logger.info(f"_setDevice: streaming device set to {self.device}")
 
         return self.device
 
