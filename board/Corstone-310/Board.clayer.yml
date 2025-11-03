@@ -1,0 +1,59 @@
+layer:
+  type: Board
+  description: Board setup for AI/ML
+  for-board: ARM::V2M-MPS3-SSE-310
+  for-device: ARM::SSE-310-MPS3_FVP
+
+  connections:
+    - connect: Corstone-310
+      provides:
+        - CMSIS_USART
+        - CMSIS_VSTREAM_AUDIO_IN
+        - CMSIS_VSTREAM_AUDIO_OUT
+        - CMSIS_VSTREAM_VIDEO_IN
+        - CMSIS_VSTREAM_VIDEO_OUT
+        - STDOUT
+        - STDERR
+        - Heap: 786432
+
+  define:
+    - CMSIS_target_header: \"Corstone-310.h\"
+    - ARM_MODEL_USE_PMU_COUNTERS
+
+  packs:
+    - pack: ARM::CMSIS
+    - pack: ARM::CMSIS-Compiler@^2.1.0
+    - pack: ARM::AVH_FVP
+    - pack: ARM::V2M_MPS3_SSE_310_BSP@1.4.0
+
+  components:
+    - component: CMSIS:CORE
+
+    - component: CMSIS Driver:USART
+    - component: CMSIS Driver:vStream:AudioIn
+    - component: CMSIS Driver:vStream:AudioOut
+    - component: CMSIS Driver:vStream:VideoIn
+    - component: CMSIS Driver:vStream:VideoOut
+
+    - component: CMSIS-Compiler:CORE
+    - component: CMSIS-Compiler:STDERR:Custom
+    - component: CMSIS-Compiler:STDIN:Custom
+    - component: CMSIS-Compiler:STDOUT:Custom
+
+    - component: Device:Definition
+    - component: Device:Startup&C Startup
+
+    - component: Device:Native Driver:SysCounter
+    - component: Device:Native Driver:SysTimer
+    - component: Device:Native Driver:Timeout
+    - component: Device:Native Driver:UART
+
+  groups:
+    - group: Board
+      files:
+        - file: ./main.c
+        - file: ./main.h
+        - file: ./retarget_stdio.c
+
+  linker:
+    - regions: ./regions_SSE-310.h

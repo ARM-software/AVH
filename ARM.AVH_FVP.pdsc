@@ -30,6 +30,31 @@
       <require Cclass="Device" Cgroup="Startup"/>
       <require Cclass="CMSIS"  Cgroup="RTOS2"/>
     </condition>
+
+    <condition id="Corstone-300">
+      <description>Requirements for Corstone-310 FVP</description>
+      <accept Dvendor="ARM" Dname="SSE-300-MPS3"/>
+      <accept Bvendor="ARM" Bname="V2M-MPS3-SSE-300-FVP"/>
+    </condition>
+    
+    <condition id="Corstone-310">
+      <description>Requirements for Corstone-310 FVP</description>
+      <accept Dvendor="ARM" Dname="SSE-310-MPS3_FVP"/>
+      <accept Bvendor="ARM" Bname="V2M-MPS3-SSE-310"/>
+    </condition>
+    
+    <condition id="Corstone-315">
+      <description>Requirements for Corstone-315 FVP</description>
+      <accept Dvendor="ARM" Dname="SSE-315-FVP"/>
+      <accept Bvendor="ARM" Bname="SSE-315"/>
+    </condition>
+
+    <condition id="Corstone-320">
+      <description>Requirements for Corstone-320 FVP</description>
+      <accept Dvendor="ARM" Dname="SSE-320-FVP"/>
+      <accept Bvendor="ARM" Bname="SSE-320"/>
+    </condition>
+
   </conditions>
 
   <components>
@@ -109,5 +134,21 @@
       </files>
     </component>
   </components>
+
+  <csolution>
+    <clayer type="Board" path="board/Corstone-300" file="Board.clayer.yml"     copy-to="Board/Corstone-300" condition="Corstone-300"/>
+    <clayer type="Board" path="board/Corstone-300" file="Board-U55.clayer.yml" copy-to="Board/Corstone-300" condition="Corstone-300"/>
+    <clayer type="Board" path="board/Corstone-300" file="Board-U65.clayer.yml" copy-to="Board/Corstone-300" condition="Corstone-300"/>
+
+    <clayer type="Board" path="board/Corstone-310" file="Board.clayer.yml"     copy-to="Board/Corstone-310" condition="Corstone-310"/>
+    <clayer type="Board" path="board/Corstone-310" file="Board-U55.clayer.yml" copy-to="Board/Corstone-310" condition="Corstone-310"/>
+    <clayer type="Board" path="board/Corstone-310" file="Board-U65.clayer.yml" copy-to="Board/Corstone-310" condition="Corstone-310"/>
+
+    <clayer type="Board" path="board/Corstone-315" file="Board.clayer.yml"     copy-to="Board/Corstone-315" condition="Corstone-315"/>
+    <clayer type="Board" path="board/Corstone-315" file="Board-U65.clayer.yml" copy-to="Board/Corstone-315" condition="Corstone-315"/>
+
+    <clayer type="Board" path="board/Corstone-320" file="Board.clayer.yml"     copy-to="Board/Corstone-320" condition="Corstone-320"/>
+    <clayer type="Board" path="board/Corstone-320" file="Board-U85.clayer.yml" copy-to="Board/Corstone-320" condition="Corstone-320"/>
+  </csolution>
 
 </package>
