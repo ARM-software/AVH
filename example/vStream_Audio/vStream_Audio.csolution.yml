@@ -1,0 +1,33 @@
+# A solution is a collection of related projects that share same base configuration.
+solution:
+  description: vStream Audio example solution
+  created-for: CMSIS-Toolbox@2.12.0
+  cdefault: # use CMSIS-Toolbox default Compiler options
+
+  # Compilers that can be selected
+  select-compiler:
+    - compiler: AC6
+    - compiler: GCC
+    - compiler: CLANG
+    - compiler: IAR
+
+  # List the packs that define the device and/or board.
+  packs:
+    - pack: ARM::AVH_FVP
+
+  # List different hardware targets that are used to deploy the solution.
+  target-types:
+
+  # List of different build configurations.
+  build-types:
+    - type: Debug
+      debug: on
+      optimize: none
+
+    - type: Release
+      debug: off
+      optimize: balanced
+
+  # List related projects.
+  projects:
+    - project: ./vStream_Audio.cproject.yml

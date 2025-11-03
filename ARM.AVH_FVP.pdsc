@@ -136,6 +136,13 @@
   </components>
 
   <examples>
+    <example name="vStream Audio" folder="example/vStream_Audio" doc="README.md">
+      <description>vStream Audio Input/Output streaming example</description>
+      <project>
+        <environment name="csolution" load="vStream_Audio.csolution.yml"/>
+      </project>
+    </example>
+
     <example name="vStream Video" folder="example/vStream_Video" doc="README.md">
       <description>vStream Video Input/Output streaming example</description>
       <project>
