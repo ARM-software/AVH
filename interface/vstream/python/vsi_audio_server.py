@@ -152,7 +152,7 @@ class AudioServer:
             # Set device index to the specified value
             self.device = device
 
-        logger.info(f"_setDevice: audio device set to {self.device}")
+        logger.info(f"_setDevice: streaming device set to {self.device}")
 
         return self.device
 
