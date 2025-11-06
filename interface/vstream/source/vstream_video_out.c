@@ -38,12 +38,12 @@
 /* Video Peripheral registers */
 #define CONTROL                 Regs[0]  // Control: enable, mode, continuous
 #define STATUS                  Regs[1]  // Status: active, eos, file_name, file_valid
-#define FILENAME                Regs[2]  // Filename string array
-#define FRAME_WIDTH             Regs[3]  // Requested frame width
-#define FRAME_HEIGHT            Regs[4]  // Requested frame height
-#define FRAME_RATE              Regs[5]  // Frame rate
-#define FRAME_COLOR             Regs[6]  // Frame color space
-#define FRAME_COUNT             Regs[7]  // Frame count
+#define DEVICE                  Regs[2]  // Streaming device
+#define FILENAME                Regs[3]  // Filename string array
+#define FRAME_WIDTH             Regs[4]  // Requested frame width
+#define FRAME_HEIGHT            Regs[5]  // Requested frame height
+#define FRAME_RATE              Regs[6]  // Frame rate
+#define FRAME_COLOR             Regs[7]  // Frame color space
 
 /* CONTROL register definitions */
 #define CONTROL_ENABLE_Pos      0U                             // Cleared= Disabled, Set= Enabled
@@ -90,11 +90,11 @@ typedef struct {
 
 /* vStream Handle Type Definition */
 typedef struct {
-  vStreamEvent_t    callback; /* VideoOut callback       */
-  StreamBuf_t       buf;      /* VideoOut stream buffer  */
+  vStreamEvent_t    callback; /* Callback from vStream driver */
+  StreamBuf_t       buf;      /* Stream buffer    */
   volatile uint32_t idx_get;  /* Index of block to be returned on GetBlock call     */
   volatile uint32_t idx_rel;  /* Index of block to be released on ReleaseBlock call */
-  volatile uint32_t idx_out;  /* Index of block currently beeing streamed           */
+  volatile uint32_t idx_out;  /* Index of block currently being streamed            */
   volatile uint8_t  active;   /* Streaming active flag */
   volatile uint8_t  underflow; /* Buffer underflow flag */
   volatile uint8_t  eos;      /* End of stream flag    */
@@ -164,6 +164,9 @@ void VideoOut_Handler(void) {
 
 /* Initialize streaming interface */
 static int32_t Initialize (vStreamEvent_t event_cb) {
+  char *fn;
+  uint32_t len;
+  uint32_t i;
 
   hVideoOut.callback  = event_cb;
   hVideoOut.active    = 0U;
@@ -179,6 +182,23 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
   VideoOut->CONTROL       = CONTROL_MODE_OUT;
 
   /* Set video configuration */
+  VideoOut->FRAME_WIDTH  = VIDEO_OUT_FRAME_WIDTH;
+  VideoOut->FRAME_HEIGHT = VIDEO_OUT_FRAME_HEIGHT;
+  VideoOut->FRAME_COLOR  = VIDEO_OUT_FRAME_COLOR;
+  VideoOut->FRAME_RATE   = VIDEO_OUT_FRAME_RATE;
+
+  fn = VIDEO_OUT_FILENAME;
+  len = strlen(fn);
+
+  if (len > 0U) {
+    /* Add null terminator */
+    len += 1U;
+
+    /* Load filename register */
+    for (i = 0; i < len; i++) {
+      VideoOut->FILENAME = fn[i];
+    }
+  }
 
   /* Enable peripheral interrupts */
 //NVIC_EnableIRQ(VideoIn_IRQn);
@@ -242,10 +262,10 @@ static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
     hVideoOut.idx_get = 0U;
     hVideoOut.idx_rel = 0U;
 
-    /* Configure peripheral */
-    VideoOut->DMA.Address     = (uint32_t)buf;
-    VideoOut->DMA.BlockNum    = hVideoOut.buf.block_num;
-    VideoOut->DMA.BlockSize   = block_size;
+    /* Configure DMA */
+    VideoOut->DMA.Address   = (uint32_t)buf;
+    VideoOut->DMA.BlockNum  = hVideoOut.buf.block_num;
+    VideoOut->DMA.BlockSize = block_size;
 
     rval = VSTREAM_OK;
   }
@@ -279,11 +299,6 @@ static int32_t Start (uint32_t mode) {
 
     /* Set active status */
     hVideoOut.active = 1U;
-    /* Configure peripheral */
-    VideoOut->FRAME_WIDTH    = VIDEO_OUT_FRAME_WIDTH;
-    VideoOut->FRAME_HEIGHT   = VIDEO_OUT_FRAME_HEIGHT;
-    VideoOut->FRAME_COLOR    = VIDEO_OUT_FRAME_COLOR;
-    VideoOut->FRAME_RATE     = VIDEO_OUT_FRAME_RATE;
 
     /* Set control register */
     ctrl = VideoOut->CONTROL | CONTROL_ENABLE_Msk;
@@ -332,7 +347,6 @@ static int32_t Start (uint32_t mode) {
 /* Stop streaming */
 static int32_t Stop (void) {
   int32_t rval;
-  int32_t status;
 
   if ((hVideoOut.flags & FLAGS_INIT) == 0) {
     /* Not initialized */
@@ -434,7 +448,7 @@ static vStreamStatus_t GetStatus (void) {
   hVideoOut.underflow = 0U;
   hVideoOut.eos       = 0U;
 
-  return (status);
+  return status;
 }
 
 vStreamDriver_t Driver_vStreamVideoOut = {

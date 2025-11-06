@@ -20,8 +20,8 @@ try:
     import argparse
     import ipaddress
     import logging
-    import os
     from multiprocessing.connection import Listener
+    from pathlib import Path
 
     import cv2
     import numpy as np
@@ -40,7 +40,7 @@ verbosity = logging.ERROR
 
 # [debugging] Verbosity settings
 level = { 10: "DEBUG",  20: "INFO",  30: "WARNING",  40: "ERROR" }
-logging.basicConfig(format='VSI Server: [%(levelname)s]\t%(message)s', level = verbosity)
+logging.basicConfig(format='VSI Video Server: [%(levelname)s]\t%(message)s', level = verbosity)
 logger.info("Verbosity level is set to " + level[verbosity])
 
 # Default Server configuration
@@ -79,13 +79,14 @@ class VideoServer:
         """
         # Server commands
         self.SET_MODE         = 1
-        self.SET_FILENAME     = 2
-        self.STREAM_CONFIGURE = 3
-        self.STREAM_ENABLE    = 4
-        self.STREAM_DISABLE   = 5
-        self.FRAME_READ       = 6
-        self.FRAME_WRITE      = 7
-        self.CLOSE_SERVER     = 8
+        self.SET_DEVICE       = 2
+        self.SET_FILENAME     = 3
+        self.STREAM_CONFIGURE = 4
+        self.STREAM_ENABLE    = 5
+        self.STREAM_DISABLE   = 6
+        self.FRAME_READ       = 7
+        self.FRAME_WRITE      = 8
+        self.CLOSE_SERVER     = 9
         # Color space
         self.GRAYSCALE8       = 0
         self.RGB888           = 1
@@ -95,14 +96,14 @@ class VideoServer:
         self.NV21             = 5
         # Variables
         self.listener         = Listener(address, authkey=authkey.encode('utf-8'))
-        self.filename         = ""
+        self.device           = 0
+        self.filename         = None
         self.mode             = None
         self.active           = False
         self.video            = True
         self.stream           = None
         self.frame_ratio      = 0
         self.frame_drop       = 0
-        self.frame_index      = 0
         self.eos              = False
         # Stream configuration
         self.frame_width      = None
@@ -136,12 +137,36 @@ class VideoServer:
 
         return mode_valid
 
+    def _setDevice(self, device):
+        """
+        Set the streaming device index for input/output.
+
+        Sets the device index to the specified value, or
+        scans for the default device if -1 (0xFFFFFFFF) is given.
+
+        Args:
+            device: The device index to set.
+        Returns:
+            Device index actually set.
+        """
+        logger.debug(f"_setDevice: device={device}")
+
+        if (device == 4294967295):  # -1 as unsigned 32-bit
+            # Set device index to point to default device for the selected mode
+            self.device = self._scan_video_devices()
+        else:
+            # Set device index to the specified value
+            self.device = device
+
+        logger.info(f"_setDevice: streaming device set to {self.device}")
+
+        return self.device
 
     def _setFilename(self, base_dir, filename):
         """
-        Set the filename for input or output video/image.
+        Set the filename for input or output file.
 
-        Checks file extension to determine if it's a video or image.
+        Checks file extension to determine if file format is supported.
         For input: verifies file exists and is supported.
         For output: removes existing file if present.
         Args:
@@ -154,36 +179,54 @@ class VideoServer:
 
         filename_valid = False
 
-        if self.active:
-            logger.error("_setFilename: stream is active, cannot set filename")
+        self.filename = None
+
+        if filename == "":
+            # Empty filename is valid (use microphone/speakers)
+            return True
+
+        work_dir   = Path(base_dir)
+        file_name  = Path(filename)
+        file_path  = Path("")
+
+        # Check if file extension is supported
+        ext = file_name.suffix.lstrip('.').lower()
+        if ext not in video_file_extensions + image_file_extensions:
+            logger.error(f"_setFilename: unsupported file extension={ext}")
             return filename_valid
 
-        self.filename    = ""
-        self.frame_index = 0
-
-        file_extension = str(filename).split('.')[-1].lower()
-
-        if file_extension not in (video_file_extensions + image_file_extensions):
-            logger.error(f"_setFilename: unsupported file extension={file_extension}")
-            return filename_valid
-
-        if file_extension in video_file_extensions:
-            self.video = True
+        # Check if filename is absolute path
+        if file_name.is_absolute():
+            # Absolute path provided
+            file_path = file_name
+            logger.debug(f"_setFilename: absolute path provided, file path={file_path}")
         else:
-            self.video = False
+            # Relative path provided, create full path
+            file_path = work_dir / file_name
+            logger.debug(f"_setFilename: relative path provided, file path={file_path}")
 
-        file_path = os.path.join(base_dir, filename)
-        logger.debug(f"_setFilename: file path={file_path}")
+        # Normalize the file path
+        file_path = file_path.resolve()
 
-        # Check if the file exists
-        if os.path.isfile(file_path):
-            self.filename  = file_path
+        if self.mode == MODE_VIDEO_INPUT:
+            # Check if the file exists
+            if Path(file_path).exists():
+                # File exists
+                filename_valid = True
+            else:
+                logger.error(f"_setFilename: file does not exist: {file_path}")
+
+        if self.mode == MODE_VIDEO_OUTPUT:
+            # Check if the file exists
+            if Path(file_path).exists():
+                # Remove existing file
+                Path(file_path).unlink(missing_ok=True)
+
             filename_valid = True
 
-            if self.mode == MODE_VIDEO_OUTPUT:
-                # Remove existing file
-                os.remove(file_path)
-
+        if filename_valid:
+            # Set server side filename
+            self.filename = file_path
             logger.info(f"_setFilename: filename set to {self.filename}")
 
         return filename_valid
@@ -218,6 +261,50 @@ class VideoServer:
 
         return True
 
+    def _scan_video_devices(self):
+        """
+        Scan and log available video input devices.
+        Returns:
+            Default device index for the current mode.
+        """
+        logger.info("=== Available Video Devices ===")
+
+        available_devices = []
+
+        # Test device indices 0-1 (covers built-in webcam + external camera)
+        for device_index in range(2):
+            try:
+                cap = cv2.VideoCapture(device_index)
+                if cap.isOpened():
+
+                    # Get device properties
+                    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+                    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+                    fps = cap.get(cv2.CAP_PROP_FPS)
+
+                    device_info = {
+                        'index': device_index,
+                        'width': width,
+                        'height': height,
+                        'fps': fps,
+                    }
+                    available_devices.append(device_info)
+
+                    logger.info(f"Device {device_index}: {width}x{height} @ {fps:.1f}fps")
+
+                cap.release()
+            except Exception as e:
+                logger.error(f"Error accessing device {device_index}: {e}")
+
+        if not available_devices:
+            logger.warning("No video devices found")
+            return -1
+        else:
+            logger.info(f"Found {len(available_devices)} input device(s)")
+            logger.info(f"Default Input Device: 0")
+
+        return 0
+
     def _enableStream(self):
         """
         Enable the video stream for input (camera/file) or output (file/display).
@@ -244,16 +331,16 @@ class VideoServer:
             self.stream.release()
             self.stream = None
 
-        if self.filename == "":
+        if self.filename == None:
             self.video = True
 
         if self.video:
             if self.mode == MODE_VIDEO_INPUT:
                 # Input mode: read from camera or video file
-                if self.filename == "":
+                if self.filename == None:
                     # No filename specified: use camera interface
                     logger.debug("_enableStream: use camera interface for input streaming")
-                    self.stream = cv2.VideoCapture(0)
+                    self.stream = cv2.VideoCapture(self.device)
 
                     if not self.stream.isOpened():
                         logger.error("_enableStream: failed to open Camera interface")
@@ -262,9 +349,6 @@ class VideoServer:
                     # Filename specified: use video file
                     logger.debug("_enableStream: use file interface for input streaming")
                     self.stream = cv2.VideoCapture(self.filename)
-
-                    # Seek to the last processed frame
-                    self.stream.set(cv2.CAP_PROP_POS_FRAMES, self.frame_index)
 
                 # Display stream properties
                 logger.info(f"_enableStream: source stream properties: width={self.stream.get(cv2.CAP_PROP_FRAME_WIDTH)}, height={self.stream.get(cv2.CAP_PROP_FRAME_HEIGHT)}, fps={self.stream.get(cv2.CAP_PROP_FPS)}")
@@ -278,36 +362,14 @@ class VideoServer:
 
             elif self.mode == MODE_VIDEO_OUTPUT:
                 # Output mode: write to video file or display window
-                if self.filename != "":
+                if self.filename != None:
                     # Filename specified: output to file
                     logger.debug("_enableStream: output stream to a file")
-                    extension = str(self.filename).split('.')[-1].lower()
+
+                    extension = self.filename.suffix.lstrip('.').lower()
                     fourcc = cv2.VideoWriter_fourcc(*f'{video_fourcc[extension]}')
 
-                    if os.path.isfile(self.filename) and (self.frame_index != 0):
-                        tmp_filename = f'{self.filename.rstrip(f".{extension}")}_tmp.{extension}'
-                        os.rename(self.filename, tmp_filename)
-                        cap    = cv2.VideoCapture(tmp_filename)
-
-                        # Get stream properties
-                        self.frame_width  = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-                        self.frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-                        self.frame_rate   = cap.get(cv2.CAP_PROP_FPS)
-
-                        # Write video file
-                        self.stream = cv2.VideoWriter(self.filename, fourcc, self.frame_rate, (self.frame_width, self.frame_height))
-
-                        while cap.isOpened():
-                            ret, frame = cap.read()
-                            if not ret:
-                                cap.release()
-                                os.remove(tmp_filename)
-                                break
-                            self.stream.write(frame)
-                            del frame
-
-                    else:
-                        self.stream = cv2.VideoWriter(self.filename, fourcc, self.frame_rate, (self.frame_width, self.frame_height))
+                    self.stream = cv2.VideoWriter(self.filename, fourcc, self.frame_rate, (self.frame_width, self.frame_height))
                 else:
                     logger.debug("_enableStream: output stream to display window")
 
@@ -324,10 +386,7 @@ class VideoServer:
         """
         self.active = False
         if self.stream is not None:
-            if self.mode == MODE_VIDEO_INPUT:
-                # Input stream: save current frame index
-                self.frame_index = self.stream.get(cv2.CAP_PROP_POS_FRAMES)
-
+            # Clean-up stream resources and invalidate object
             self.stream.release()
             self.stream = None
 
@@ -579,7 +638,7 @@ class VideoServer:
             # Convert color space to BGR
             frame_out = self.__convertToBGR(decoded_frame)
 
-            if self.filename == "":
+            if self.filename == None:
                 logger.debug("_writeFrame: display frame in window")
                 # If no filename, display the frame in a window
                 cv2.imshow(self.filename, frame_out)
@@ -589,7 +648,6 @@ class VideoServer:
                     logger.debug("_writeFrame: write frame to video file")
                     # Write frame to video file
                     self.stream.write(np.uint8(frame_out))
-                    self.frame_index += 1
                 else:
                     logger.debug("_writeFrame: write frame as image file")
                     # Write frame as image file
@@ -600,7 +658,7 @@ class VideoServer:
             logger.error(f"Exception in _writeFrame: {type(e).__name__}: {e}", exc_info=True)
             pass
 
-    # Run Video Server
+
     def run(self):
         """
         Main server loop.
@@ -631,6 +689,10 @@ class VideoServer:
                 mode_valid = self._setMode(payload[0])
                 conn.send(mode_valid)
 
+            elif cmd == self.SET_DEVICE:
+                device_valid = self._setDevice(payload[0])
+                conn.send(device_valid)
+
             elif cmd == self.SET_FILENAME:
                 filename_valid = self._setFilename(payload[0], payload[1])
                 conn.send(filename_valid)
@@ -659,7 +721,7 @@ class VideoServer:
             elif cmd == self.CLOSE_SERVER:
                 self.stop()
 
-    # Stop Video Server
+
     def stop(self):
         """
         Stop the video server.
@@ -669,7 +731,7 @@ class VideoServer:
             None
         """
         self._disableStream()
-        if (self.mode == MODE_VIDEO_OUTPUT) and (self.filename == ""):
+        if (self.mode == MODE_VIDEO_OUTPUT) and (self.filename == None):
             try:
                 cv2.destroyAllWindows()
             except Exception:
@@ -678,7 +740,6 @@ class VideoServer:
         logger.info("Video server stopped")
 
 
-# Validate IP address
 def ip(ip):
     """
     Validate that the input string is a valid IP address.

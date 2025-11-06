@@ -16,8 +16,8 @@
  * limitations under the License.
  *---------------------------------------------------------------------------*/
 
-#ifndef VSTREAM_VIDEO_OUT_H_
-#define VSTREAM_VIDEO_OUT_H_
+#ifndef VSTREAM_AUDIO_OUT_H_
+#define VSTREAM_AUDIO_OUT_H_
 
 #ifdef  __cplusplus
 extern  "C"
@@ -27,7 +27,7 @@ extern  "C"
 #include "cmsis_vstream.h"
 
 // External driver structure
-extern vStreamDriver_t Driver_vStreamVideoOut;
+extern vStreamDriver_t Driver_vStreamAudioOut;
 
 #ifdef  __cplusplus
 }

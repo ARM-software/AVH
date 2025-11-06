@@ -29,7 +29,7 @@ logger.info("Verbosity level is set to " + level[verbosity])
 
 
 # Video Server configuration
-server_address = ('127.0.0.1', 6000)
+server_address = ('127.0.0.1', 6004)
 server_authkey = 'vsi_video'
 
 

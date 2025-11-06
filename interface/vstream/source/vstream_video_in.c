@@ -38,12 +38,12 @@
 /* Video Peripheral registers */
 #define CONTROL                 Regs[0]  // Control: enable, mode, continuous
 #define STATUS                  Regs[1]  // Status: active, eos, file_name, file_valid
-#define FILENAME                Regs[2]  // Filename string array
-#define FRAME_WIDTH             Regs[3]  // Requested frame width
-#define FRAME_HEIGHT            Regs[4]  // Requested frame height
-#define FRAME_RATE              Regs[5]  // Frame rate
-#define FRAME_COLOR             Regs[6]  // Frame color space
-#define FRAME_COUNT             Regs[7]  // Frame count
+#define DEVICE                  Regs[2]  // Streaming device
+#define FILENAME                Regs[3]  // Filename string array
+#define FRAME_WIDTH             Regs[4]  // Requested frame width
+#define FRAME_HEIGHT            Regs[5]  // Requested frame height
+#define FRAME_RATE              Regs[6]  // Frame rate
+#define FRAME_COLOR             Regs[7]  // Frame color space
 
 /* CONTROL register definitions */
 #define CONTROL_ENABLE_Pos      0U                             // Cleared= Disabled, Set= Enabled
@@ -90,11 +90,11 @@ typedef struct {
 
 /* vStream Handle Type Definition */
 typedef struct {
-  vStreamEvent_t    callback; /* VideoIn callback       */
-  StreamBuf_t       buf;      /* VideoIn stream buffer  */
+  vStreamEvent_t    callback; /* Callback from vStream driver */
+  StreamBuf_t       buf;      /* Stream buffer    */
   volatile uint32_t idx_get;  /* Index of block to be returned on GetBlock call     */
   volatile uint32_t idx_rel;  /* Index of block to be released on ReleaseBlock call */
-  volatile uint32_t idx_in;   /* Index of block currently beeing streamed           */
+  volatile uint32_t idx_in;   /* Index of block currently being streamed            */
   volatile uint8_t  active;   /* Streaming active flag */
   volatile uint8_t  overflow; /* Buffer overflow flag  */
   volatile uint8_t  eos;      /* End of stream flag    */
@@ -164,6 +164,9 @@ void VideoIn_Handler(void) {
 
 /* Initialize streaming interface */
 static int32_t Initialize (vStreamEvent_t event_cb) {
+  char *fn;
+  uint32_t len;
+  uint32_t i;
 
   hVideoIn.callback = event_cb;
   hVideoIn.active   = 0U;
@@ -179,6 +182,24 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
   VideoIn->CONTROL       = CONTROL_MODE_IN;
 
   /* Set video configuration */
+  VideoIn->DEVICE       = VIDEO_IN_DEVICE;
+  VideoIn->FRAME_WIDTH  = VIDEO_IN_FRAME_WIDTH;
+  VideoIn->FRAME_HEIGHT = VIDEO_IN_FRAME_HEIGHT;
+  VideoIn->FRAME_COLOR  = VIDEO_IN_FRAME_COLOR;
+  VideoIn->FRAME_RATE   = VIDEO_IN_FRAME_RATE;
+
+  fn = VIDEO_IN_FILENAME;
+  len = strlen(fn);
+
+  if (len > 0U) {
+    /* Add null terminator */
+    len += 1U;
+
+    /* Load filename register */
+    for (i = 0; i < len; i++) {
+      VideoIn->FILENAME = fn[i];
+    }
+  }
 
   /* Enable peripheral interrupts */
 //NVIC_EnableIRQ(VideoIn_IRQn);
@@ -242,10 +263,10 @@ static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
     hVideoIn.idx_get = 0U;
     hVideoIn.idx_rel = 0U;
 
-    /* Configure peripheral */
-    VideoIn->DMA.Address     = (uint32_t)buf;
-    VideoIn->DMA.BlockNum    = hVideoIn.buf.block_num;
-    VideoIn->DMA.BlockSize   = block_size;
+    /* Configure DMA */
+    VideoIn->DMA.Address   = (uint32_t)buf;
+    VideoIn->DMA.BlockNum  = hVideoIn.buf.block_num;
+    VideoIn->DMA.BlockSize = block_size;
 
     rval = VSTREAM_OK;
   }
@@ -279,12 +300,6 @@ static int32_t Start (uint32_t mode) {
 
     /* Set active status */
     hVideoIn.active = 1U;
-
-    /* Configure peripheral */
-    VideoIn->FRAME_WIDTH    = VIDEO_IN_FRAME_WIDTH;
-    VideoIn->FRAME_HEIGHT   = VIDEO_IN_FRAME_HEIGHT;
-    VideoIn->FRAME_COLOR    = VIDEO_IN_FRAME_COLOR;
-    VideoIn->FRAME_RATE     = VIDEO_IN_FRAME_RATE;
 
     /* Set control register */
     ctrl = VideoIn->CONTROL | CONTROL_ENABLE_Msk;
@@ -334,7 +349,6 @@ static int32_t Start (uint32_t mode) {
 /* Stop streaming */
 static int32_t Stop (void) {
   int32_t rval;
-  int32_t status;
 
   if ((hVideoIn.flags & FLAGS_INIT) == 0) {
     /* Not initialized */
@@ -434,7 +448,7 @@ static vStreamStatus_t GetStatus (void) {
   hVideoIn.overflow = 0U;
   hVideoIn.eos      = 0U;
 
-  return (status);
+  return status;
 }
 
 vStreamDriver_t Driver_vStreamVideoIn = {
