@@ -50,7 +50,7 @@
 #define AUDIO_IN_DEVICE           -1
 #endif
 
-// <o> Audio File Name
+// <s> Audio File Name
 // <i> Defines the name of the audio file to be used for streaming.
 // <i> Default: "" (use streaming device instead of file)
 #ifndef AUDIO_IN_FILENAME

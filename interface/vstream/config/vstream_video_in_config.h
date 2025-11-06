@@ -60,7 +60,7 @@
 #define VIDEO_IN_DEVICE           -1
 #endif
 
-// <o> Video File Name
+// <s> Video File Name
 // <i> Defines the name of the video file to be used for streaming.
 // <i> Default: "" (use streaming device instead of file)
 #ifndef VIDEO_IN_FILENAME
