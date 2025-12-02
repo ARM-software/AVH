@@ -98,7 +98,7 @@ class VideoClient:
 
     def setDevice(self, device):
         """
-        Set the audio streaming device index (input/output).
+        Set the video streaming device index (input/output).
         Args:
             device: The device index value to set on the server.
         Returns:
