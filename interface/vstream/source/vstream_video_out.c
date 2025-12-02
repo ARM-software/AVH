@@ -21,39 +21,36 @@
 #include "vstream_video_out.h"
 #include "vstream_video_out_config.h"
 
-#include "RTE_Components.h"
-#include CMSIS_device_header
-
 #ifdef _RTE_
 #include "RTE_Components.h"
 #endif
 #include CMSIS_device_header
 #include "arm_vsi.h"
 
-/* Video peripheral definitions */
-#define VideoOut                ARM_VSI6              /* Video Output access struct    */
+/* Peripheral definitions */
+#define VideoOut                ARM_VSI6              /* Video Output access struct     */
 #define VideoOut_IRQn           ARM_VSI6_IRQn         /* Video Output Interrupt number  */
 #define VideoOut_Handler        ARM_VSI6_Handler      /* Video Output Interrupt handler */
 
-/* Video Peripheral registers */
-#define CONTROL                 Regs[0]  // Control: enable, mode, continuous
-#define STATUS                  Regs[1]  // Status: active, eos, file_name, file_valid
-#define DEVICE                  Regs[2]  // Streaming device
-#define FILENAME                Regs[3]  // Filename string array
-#define FRAME_WIDTH             Regs[4]  // Requested frame width
-#define FRAME_HEIGHT            Regs[5]  // Requested frame height
-#define FRAME_RATE              Regs[6]  // Frame rate
-#define FRAME_COLOR             Regs[7]  // Frame color space
+/* Peripheral registers */
+#define CONTROL                 Regs[0]  /* Control: enable, mode, continuous          */
+#define STATUS                  Regs[1]  /* Status: active, eos, file_name, file_valid */
+#define DEVICE                  Regs[2]  /* Streaming device                           */
+#define FILENAME                Regs[3]  /* Filename string array                      */
+#define FRAME_WIDTH             Regs[4]  /* Requested frame width                      */
+#define FRAME_HEIGHT            Regs[5]  /* Requested frame height                     */
+#define FRAME_RATE              Regs[6]  /* Frame rate                                 */
+#define FRAME_COLOR             Regs[7]  /* Frame color space                          */
 
 /* CONTROL register definitions */
-#define CONTROL_ENABLE_Pos      0U                             // Cleared= Disabled, Set= Enabled
+#define CONTROL_ENABLE_Pos      0U                             /* Cleared= Disabled, Set= Enabled  */
 #define CONTROL_ENABLE_Msk      (1UL << CONTROL_ENABLE_Pos)
-#define CONTROL_MODE_Pos        1U                             // Bits 2:1
-#define CONTROL_MODE_Msk        (3UL << CONTROL_MODE_Pos)      // 0= Disabled, 1= Input, 2= Output
+#define CONTROL_MODE_Pos        1U                             /* Bits 2:1                         */
+#define CONTROL_MODE_Msk        (3UL << CONTROL_MODE_Pos)      /* 0= Disabled, 1= Input, 2= Output */
 #define CONTROL_MODE_NONE       (0U << CONTROL_MODE_Pos)
 #define CONTROL_MODE_IN         (1U << CONTROL_MODE_Pos)
 #define CONTROL_MODE_OUT        (2U << CONTROL_MODE_Pos)
-#define CONTROL_CONTINUOUS_Pos  3U                             // Cleared= Single, Set= Continuous
+#define CONTROL_CONTINUOUS_Pos  3U                             /* Cleared= Single, Set= Continuous */
 #define CONTROL_CONTINUOUS_Msk  (1UL << CONTROL_CONTINUOUS_Pos)
 
 /* STATUS register definitions */
@@ -74,14 +71,14 @@
 
 
 /* Handle Flags Definitions */
-#define FLAGS_INIT        (1U << 0)
-#define FLAGS_START       (1U << 1)
-#define FLAGS_SINGLE      (1U << 2)
-#define FLAGS_LIMIT_OWN   (1U << 3)
-#define FLAGS_BUF_EMPTY   (1U << 4)
-#define FLAGS_BUF_FULL    (1U << 5)
+#define FLAGS_INIT              (1U << 0)
+#define FLAGS_START             (1U << 1)
+#define FLAGS_SINGLE            (1U << 2)
+#define FLAGS_LIMIT_OWN         (1U << 3)
+#define FLAGS_BUF_EMPTY         (1U << 4)
+#define FLAGS_BUF_FULL          (1U << 5)
 
-/* Stream Buffer Type */
+/* Stream Buffer Type Definition */
 typedef struct {
   uint8_t *data;              /* Data buffer pointer             */
   uint32_t block_num;         /* Number of blocks in data buffer */
@@ -90,15 +87,15 @@ typedef struct {
 
 /* vStream Handle Type Definition */
 typedef struct {
-  vStreamEvent_t    callback; /* Callback from vStream driver */
-  StreamBuf_t       buf;      /* Stream buffer    */
+  vStreamEvent_t    callback; /* Callback from vStream driver                       */
+  StreamBuf_t       buf;      /* Stream buffer                                      */
   volatile uint32_t idx_get;  /* Index of block to be returned on GetBlock call     */
   volatile uint32_t idx_rel;  /* Index of block to be released on ReleaseBlock call */
   volatile uint32_t idx_out;  /* Index of block currently being streamed            */
-  volatile uint8_t  active;   /* Streaming active flag */
+  volatile uint8_t  active;   /* Streaming active flag  */
   volatile uint8_t  underflow; /* Buffer underflow flag */
-  volatile uint8_t  eos;      /* End of stream flag    */
-  volatile uint8_t  flags;    /* Handle status flags   */
+  volatile uint8_t  eos;      /* End of stream flag     */
+  volatile uint8_t  flags;    /* Handle status flags    */
 } StreamHandle_t;
 
 /* vStream Handle */
@@ -107,14 +104,13 @@ static StreamHandle_t hVideoOut = {0};
 /**
   \brief Video Output Interrupt Handler.
 */
-void VideoOut_Handler(void) {
+void VideoOut_Handler (void) {
   uint32_t status;
   uint32_t event;
-  uint32_t buf_index;
 
   status = VideoOut->STATUS;
 
-  VideoOut->IRQ.Clear = 1U;
+  VideoOut->IRQ.Clear = IRQ_TIMER_OVERFLOW_Msk;
   __DSB();
   __ISB();
 
@@ -124,11 +120,10 @@ void VideoOut_Handler(void) {
     /* Data block streamed out */
     event |= VSTREAM_EVENT_DATA;
 
+    /* Get index of the block being streamed */
+    hVideoOut.idx_out = VideoOut->DMA.BlockIndex;
     /* Clear buffer full flag */
     hVideoOut.flags &= ~FLAGS_BUF_FULL;
-
-    /* Get index of the block beeing streamed */
-    hVideoOut.idx_out = VideoOut->DMA.BlockIndex;
 
     if (hVideoOut.idx_out == hVideoOut.idx_rel) {
       /* Buffer is empty */
@@ -143,10 +138,9 @@ void VideoOut_Handler(void) {
     }
   }
 
-  if ((status & STATUS_EOS_Msk) != 0) {
+  if ((status & STATUS_EOS_Msk) != 0U) {
     /* End of stream */
-    hVideoOut.active = 0U;
-    hVideoOut.eos    = 1U;
+    hVideoOut.eos = 1U;
 
     event |= VSTREAM_EVENT_EOS;
   }
@@ -203,6 +197,8 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
   /* Enable peripheral interrupts */
 //NVIC_EnableIRQ(VideoIn_IRQn);
   NVIC->ISER[(((uint32_t)VideoOut_IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)VideoOut_IRQn) & 0x1FUL));
+  __DSB();
+  __ISB();
 
   /* Driver is initialized */
   hVideoOut.flags = FLAGS_INIT;
@@ -216,6 +212,8 @@ static int32_t Uninitialize (void) {
   /* Disable peripheral interrupts */
 //NVIC_DisableIRQ(VideoIn_IRQn);
   NVIC->ICER[(((uint32_t)VideoOut_IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)VideoOut_IRQn) & 0x1FUL));
+  __DSB();
+  __ISB();
 
   /* De-initialize Video Output peripheral */
   VideoOut->Timer.Control = 0U;
@@ -224,7 +222,7 @@ static int32_t Uninitialize (void) {
   VideoOut->IRQ.Enable    = 0U;
   VideoOut->CONTROL       = 0U;
 
-  /* Clear video handle control block structure */
+  /* Clear video handle structure */
   memset(&hVideoOut, 0, sizeof(hVideoOut));
 
   return VSTREAM_OK;
@@ -264,7 +262,7 @@ static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
 
     /* Configure DMA */
     VideoOut->DMA.Address   = (uint32_t)buf;
-    VideoOut->DMA.BlockNum  = hVideoOut.buf.block_num;
+    VideoOut->DMA.BlockNum  = buf_size / block_size;
     VideoOut->DMA.BlockSize = block_size;
 
     rval = VSTREAM_OK;
@@ -312,6 +310,7 @@ static int32_t Start (uint32_t mode) {
       hVideoOut.flags &= ~FLAGS_SINGLE;
       ctrl |= CONTROL_CONTINUOUS_Msk;
     }
+
     VideoOut->CONTROL = ctrl;
 
     if ((VideoOut->STATUS & STATUS_ACTIVE_Msk) == 0U) {
@@ -320,18 +319,20 @@ static int32_t Start (uint32_t mode) {
     }
     else {
       /* Configure peripheral DMA */
-      VideoOut->DMA.Control = ARM_VSI_DMA_Enable_Msk | ARM_VSI_DMA_Direction_M2P;
+      VideoOut->DMA.Control = ARM_VSI_DMA_Direction_M2P | ARM_VSI_DMA_Enable_Msk;
 
       /* Configure Timer */
-      VideoOut->Timer.Interval = 1000000U / VIDEO_OUT_FRAME_RATE;
-
-      ctrl = ARM_VSI_Timer_Run_Msk      |
-             ARM_VSI_Timer_Trig_DMA_Msk |
-             ARM_VSI_Timer_Trig_IRQ_Msk;
+      ctrl = ARM_VSI_Timer_Trig_DMA_Msk |
+             ARM_VSI_Timer_Trig_IRQ_Msk |
+             ARM_VSI_Timer_Run_Msk;
 
       if (mode == VSTREAM_MODE_CONTINUOUS) {
         ctrl |= ARM_VSI_Timer_Periodic_Msk;
       }
+
+      VideoOut->Timer.Interval = 1000000U / VIDEO_OUT_FRAME_RATE;
+
+      /* Apply configuration */
       VideoOut->Timer.Control = ctrl;
     }
 

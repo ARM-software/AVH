@@ -1,12 +1,12 @@
 # Copyright (c) 2021-2025 Arm Limited. All rights reserved.
 
-# Virtual Streaming Interface instance 0 Python script: Audio Input
+# Virtual Streaming Interface instance 0 Python script
 
-##@addtogroup arm_vsi0_py_audio_in
+##@addtogroup arm_vsi_py_vstream_audio
 #  @{
 #
-##@package arm_vsi0_audio_in
-#Documentation for VSI Audio Input module.
+##@package arm_vsi0_vstream_audio
+#Documentation for VSI vStream Audio module.
 #
 #More details.
 

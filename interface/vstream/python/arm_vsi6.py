@@ -2,11 +2,11 @@
 
 # Virtual Streaming Interface instance 6 Python script
 
-##@addtogroup arm_vsi_py_video
+##@addtogroup arm_vsi_py_vstream_video
 #  @{
 #
-##@package arm_vsi6_video
-#Documentation for VSI peripherals module.
+##@package arm_vsi6_vstream_video
+#Documentation for VSI vStream Video module.
 #
 #More details.
 

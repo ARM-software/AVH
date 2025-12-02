@@ -27,30 +27,29 @@
 #include CMSIS_device_header
 #include "arm_vsi.h"
 
+/* Peripheral definitions */
+#define AudioOut                ARM_VSI1              /* Audio Output access struct     */
+#define AudioOut_IRQn           ARM_VSI1_IRQn         /* Audio Output Interrupt number  */
+#define AudioOut_Handler        ARM_VSI1_Handler      /* Audio Output Interrupt handler */
 
-/* Audio Peripheral definitions */
-#define AudioOut              ARM_VSI1                /* Audio Output access struct     */
-#define AudioOut_IRQn         ARM_VSI1_IRQn           /* Audio Output Interrupt number  */
-#define AudioOut_Handler      ARM_VSI1_Handler        /* Audio Output Interrupt handler */
-
-/* Audio Peripheral registers */
-#define CONTROL               Regs[0]                 /* Control receiver          */
-#define STATUS                Regs[1]                 /* Status register           */
-#define DEVICE                Regs[2]                 /* Streaming device          */
-#define FILENAME              Regs[3]                 /* Filename string array     */
-#define CHANNELS              Regs[4]                 /* Number of channels        */
-#define SAMPLE_RATE           Regs[5]                 /* Samples per second        */
-#define SAMPLE_BITS           Regs[6]                 /* Number of bits per sample */
+/* Peripheral registers */
+#define CONTROL                 Regs[0]  /* Control: enable, mode, continuous          */
+#define STATUS                  Regs[1]  /* Status: active, eos, file_name, file_valid */
+#define DEVICE                  Regs[2]  /* Streaming device                           */
+#define FILENAME                Regs[3]  /* Filename string array                      */
+#define CHANNELS                Regs[4]  /* Number of channels                         */
+#define SAMPLE_RATE             Regs[5]  /* Samples per second                         */
+#define SAMPLE_BITS             Regs[6]  /* Number of bits per sample                  */
 
 /* CONTROL register definitions */
-#define CONTROL_ENABLE_Pos      0U                             // Cleared= Disabled, Set= Enabled
+#define CONTROL_ENABLE_Pos      0U                             /* Cleared= Disabled, Set= Enabled  */
 #define CONTROL_ENABLE_Msk      (1UL << CONTROL_ENABLE_Pos)
-#define CONTROL_MODE_Pos        1U                             // Bits 2:1
-#define CONTROL_MODE_Msk        (3UL << CONTROL_MODE_Pos)      // 0= Disabled, 1= Input, 2= Output
+#define CONTROL_MODE_Pos        1U                             /* Bits 2:1                         */
+#define CONTROL_MODE_Msk        (3UL << CONTROL_MODE_Pos)      /* 0= Disabled, 1= Input, 2= Output */
 #define CONTROL_MODE_NONE       (0U << CONTROL_MODE_Pos)
 #define CONTROL_MODE_IN         (1U << CONTROL_MODE_Pos)
 #define CONTROL_MODE_OUT        (2U << CONTROL_MODE_Pos)
-#define CONTROL_CONTINUOUS_Pos  3U                             // Cleared= Single, Set= Continuous
+#define CONTROL_CONTINUOUS_Pos  3U                             /* Cleared= Single, Set= Continuous */
 #define CONTROL_CONTINUOUS_Msk  (1UL << CONTROL_CONTINUOUS_Pos)
 
 /* STATUS register definitions */
@@ -65,16 +64,21 @@
 #define STATUS_FILE_VALID_Pos   4U
 #define STATUS_FILE_VALID_Msk   (1UL << STATUS_FILE_VALID_Pos)
 
+/* IRQ_* register definitions */
+#define IRQ_TIMER_OVERFLOW_Pos  0U
+#define IRQ_TIMER_OVERFLOW_Msk  (1UL << IRQ_TIMER_OVERFLOW_Pos)
+
+
 /* Handle Flags Definitions */
-#define FLAGS_INIT            (1U << 0)
-#define FLAGS_START           (1U << 1)
-#define FLAGS_SINGLE          (1U << 2)
-#define FLAGS_LIMIT_OWN       (1U << 3)
-#define FLAGS_BUF_EMPTY       (1U << 4)
-#define FLAGS_BUF_FULL        (1U << 5)
+#define FLAGS_INIT              (1U << 0)
+#define FLAGS_START             (1U << 1)
+#define FLAGS_SINGLE            (1U << 2)
+#define FLAGS_LIMIT_OWN         (1U << 3)
+#define FLAGS_BUF_EMPTY         (1U << 4)
+#define FLAGS_BUF_FULL          (1U << 5)
 
 /* Stream Buffer Type Definition */
-typedef struct stream_buf_s {
+typedef struct {
   uint8_t *data;              /* Data buffer pointer             */
   uint32_t block_num;         /* Number of blocks in data buffer */
   uint32_t block_size;        /* Size of block in data buffer    */
@@ -82,8 +86,8 @@ typedef struct stream_buf_s {
 
 /* vStream Handle Type Definition */
 typedef struct {
-  vStreamEvent_t    callback; /* Callback from vStream driver */
-  StreamBuf_t       buf;      /* Stream buffer    */
+  vStreamEvent_t    callback; /* Callback from vStream driver                       */
+  StreamBuf_t       buf;      /* Stream buffer                                      */
   volatile uint32_t idx_get;  /* Index of block to be returned on GetBlock call     */
   volatile uint32_t idx_rel;  /* Index of block to be released on ReleaseBlock call */
   volatile uint32_t idx_out;  /* Index of block currently being streamed            */
@@ -105,7 +109,7 @@ void AudioOut_Handler (void) {
 
   status = AudioOut->STATUS;
 
-  AudioOut->IRQ.Clear = 0x00000001U;
+  AudioOut->IRQ.Clear = IRQ_TIMER_OVERFLOW_Msk;
   __DSB();
   __ISB();
 
@@ -140,7 +144,7 @@ void AudioOut_Handler (void) {
     event |= VSTREAM_EVENT_EOS;
   }
 
-  if (hAudioOut.flags & FLAGS_SINGLE) {
+  if ((hAudioOut.flags & FLAGS_SINGLE) != 0U) {
     /* Single mode, clear active flag */
     hAudioOut.active = 0U;
   }
@@ -166,8 +170,8 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
   /* Initialize Audio Input peripheral */
   AudioOut->Timer.Control = 0U;
   AudioOut->DMA.Control   = 0U;
-  AudioOut->IRQ.Clear     = 0x00000001U;
-  AudioOut->IRQ.Enable    = 0x00000001U;
+  AudioOut->IRQ.Clear     = IRQ_TIMER_OVERFLOW_Msk;
+  AudioOut->IRQ.Enable    = IRQ_TIMER_OVERFLOW_Msk;
   AudioOut->CONTROL       = CONTROL_MODE_OUT;
 
   /* Set audio configuration */
@@ -213,16 +217,16 @@ static int32_t Uninitialize (void) {
   /* De-initialize Audio Input peripheral */
   AudioOut->Timer.Control = 0U;
   AudioOut->DMA.Control   = 0U;
-  AudioOut->IRQ.Clear     = 0x00000001U;
-  AudioOut->IRQ.Enable    = 0x00000000U;
-  AudioOut->CONTROL       = CONTROL_MODE_IN;
+  AudioOut->IRQ.Clear     = IRQ_TIMER_OVERFLOW_Msk;
+  AudioOut->IRQ.Enable    = 0U;
+  AudioOut->CONTROL       = 0U;
 
-  /* Clear audio control block structure */
+  /* Clear audio handle structure */
   memset(&hAudioOut, 0, sizeof(hAudioOut));
 
   return VSTREAM_OK;
-
 }
+
 /* Set streaming data buffer */
 static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
   int32_t rval;
@@ -242,6 +246,7 @@ static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
     rval = VSTREAM_ERROR;
   }
   else {
+    /* Set buffer */
     hAudioOut.buf.data       = (uint8_t *)buf;
     hAudioOut.buf.block_num  = buf_size / block_size;
     hAudioOut.buf.block_size = block_size;
@@ -254,6 +259,7 @@ static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
     hAudioOut.idx_get = 0U;
     hAudioOut.idx_rel = 0U;
 
+    /* Configure DMA */
     AudioOut->DMA.Address   = (uint32_t)buf;
     AudioOut->DMA.BlockNum  = buf_size / block_size;
     AudioOut->DMA.BlockSize = block_size;
@@ -263,6 +269,7 @@ static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
 
   return rval;
 }
+
 /* Start streaming */
 static int32_t Start (uint32_t mode) {
   int32_t  rval;
