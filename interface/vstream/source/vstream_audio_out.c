@@ -18,7 +18,8 @@
 
 #include <stdint.h>
 #include <string.h>
-#include "cmsis_vstream.h"
+#include "vstream_audio_out.h"
+#include "vstream_audio_out_config.h"
 
 #ifdef _RTE_
 #include "RTE_Components.h"
@@ -26,55 +27,58 @@
 #include CMSIS_device_header
 #include "arm_vsi.h"
 
-/* Number of channels 1=Mono, 2=Stereo            */
-/* Defines the number of audio channels in stream */
-#ifndef AUDIO_OUT_CHANNELS
-#define AUDIO_OUT_CHANNELS     2U
-#endif
+/* Peripheral definitions */
+#define AudioOut                ARM_VSI1              /* Audio Output access struct     */
+#define AudioOut_IRQn           ARM_VSI1_IRQn         /* Audio Output Interrupt number  */
+#define AudioOut_Handler        ARM_VSI1_Handler      /* Audio Output Interrupt handler */
 
-/* Number of bits per sample <0=>8 <1=>16 <2=>24 <3=>32  */
-/* Defines number of bits of information in each sample. */
-#ifndef AUDIO_OUT_SAMPLE_BITS
-#define AUDIO_OUT_SAMPLE_BITS  16U
-#endif
+/* Peripheral registers */
+#define CONTROL                 Regs[0]  /* Control: enable, mode, continuous          */
+#define STATUS                  Regs[1]  /* Status: active, eos, file_name, file_valid */
+#define DEVICE                  Regs[2]  /* Streaming device                           */
+#define FILENAME                Regs[3]  /* Filename string array                      */
+#define CHANNELS                Regs[4]  /* Number of channels                         */
+#define SAMPLE_RATE             Regs[5]  /* Samples per second                         */
+#define SAMPLE_BITS             Regs[6]  /* Number of bits per sample                  */
 
-/* Sample rate (samples per second)                   */
-/* Defines the number of samples captured per second. */
-#ifndef AUDIO_OUT_SAMPLE_RATE
-#define AUDIO_OUT_SAMPLE_RATE  16000U
-#endif
-
-
-/* Audio Peripheral definitions */
-#define AudioOut              ARM_VSI1                /* Audio Output access struct     */
-#define AudioOut_IRQn         ARM_VSI1_IRQn           /* Audio Output Interrupt number  */
-#define AudioOut_Handler      ARM_VSI1_Handler        /* Audio Output Interrupt handler */
-
-/* Audio Peripheral registers */
-#define STATUS                Regs[0]                 /* Status register           */
-#define CONTROL               Regs[1]                 /* Control receiver          */
-#define CHANNELS              Regs[2]                 /* Number of channels        */
-#define SAMPLE_BITS           Regs[3]                 /* Number of bits per sample */
-#define SAMPLE_RATE           Regs[4]                 /* Samples per second        */
+/* CONTROL register definitions */
+#define CONTROL_ENABLE_Pos      0U                             /* Cleared= Disabled, Set= Enabled  */
+#define CONTROL_ENABLE_Msk      (1UL << CONTROL_ENABLE_Pos)
+#define CONTROL_MODE_Pos        1U                             /* Bits 2:1                         */
+#define CONTROL_MODE_Msk        (3UL << CONTROL_MODE_Pos)      /* 0= Disabled, 1= Input, 2= Output */
+#define CONTROL_MODE_NONE       (0U << CONTROL_MODE_Pos)
+#define CONTROL_MODE_IN         (1U << CONTROL_MODE_Pos)
+#define CONTROL_MODE_OUT        (2U << CONTROL_MODE_Pos)
+#define CONTROL_CONTINUOUS_Pos  3U                             /* Cleared= Single, Set= Continuous */
+#define CONTROL_CONTINUOUS_Msk  (1UL << CONTROL_CONTINUOUS_Pos)
 
 /* STATUS register definitions */
-#define STATUS_OPEN_Msk       (1UL << 0)              /* Stream Open    */
-#define STATUS_DATA_Msk       (1UL << 1)              /* Data Available */
-#define STATUS_EOS_Msk        (1UL << 2)              /* End of Stream  */
+#define STATUS_ACTIVE_Pos       0U
+#define STATUS_ACTIVE_Msk       (1UL << STATUS_ACTIVE_Pos)
+#define STATUS_DATA_Pos         1U
+#define STATUS_DATA_Msk         (1UL << STATUS_DATA_Pos)
+#define STATUS_EOS_Pos          2U
+#define STATUS_EOS_Msk          (1UL << STATUS_EOS_Pos)
+#define STATUS_FILE_NAME_Pos    3U
+#define STATUS_FILE_NAME_Msk    (1UL << STATUS_FILE_NAME_Pos)
+#define STATUS_FILE_VALID_Pos   4U
+#define STATUS_FILE_VALID_Msk   (1UL << STATUS_FILE_VALID_Pos)
 
-/* Audio Control register definitions */
-#define CONTROL_ENABLE_Msk    (1UL << 0)              /* CONTROL: ENABLE Streaming */
+/* IRQ_* register definitions */
+#define IRQ_TIMER_OVERFLOW_Pos  0U
+#define IRQ_TIMER_OVERFLOW_Msk  (1UL << IRQ_TIMER_OVERFLOW_Pos)
+
 
 /* Handle Flags Definitions */
-#define FLAGS_INIT            (1U << 0)
-#define FLAGS_START           (1U << 1)
-#define FLAGS_SINGLE          (1U << 2)
-#define FLAGS_LIMIT_OWN       (1U << 3)
-#define FLAGS_BUF_EMPTY       (1U << 4)
-#define FLAGS_BUF_FULL        (1U << 5)
+#define FLAGS_INIT              (1U << 0)
+#define FLAGS_START             (1U << 1)
+#define FLAGS_SINGLE            (1U << 2)
+#define FLAGS_LIMIT_OWN         (1U << 3)
+#define FLAGS_BUF_EMPTY         (1U << 4)
+#define FLAGS_BUF_FULL          (1U << 5)
 
 /* Stream Buffer Type Definition */
-typedef struct stream_buf_s {
+typedef struct {
   uint8_t *data;              /* Data buffer pointer             */
   uint32_t block_num;         /* Number of blocks in data buffer */
   uint32_t block_size;        /* Size of block in data buffer    */
@@ -82,8 +86,8 @@ typedef struct stream_buf_s {
 
 /* vStream Handle Type Definition */
 typedef struct {
-  vStreamEvent_t    callback; /* Callback from vStream driver */
-  StreamBuf_t       buf;      /* Stream buffer    */
+  vStreamEvent_t    callback; /* Callback from vStream driver                       */
+  StreamBuf_t       buf;      /* Stream buffer                                      */
   volatile uint32_t idx_get;  /* Index of block to be returned on GetBlock call     */
   volatile uint32_t idx_rel;  /* Index of block to be released on ReleaseBlock call */
   volatile uint32_t idx_out;  /* Index of block currently being streamed            */
@@ -105,7 +109,7 @@ void AudioOut_Handler (void) {
 
   status = AudioOut->STATUS;
 
-  AudioOut->IRQ.Clear = 0x00000001U;
+  AudioOut->IRQ.Clear = IRQ_TIMER_OVERFLOW_Msk;
   __DSB();
   __ISB();
 
@@ -140,7 +144,7 @@ void AudioOut_Handler (void) {
     event |= VSTREAM_EVENT_EOS;
   }
 
-  if (hAudioOut.flags & FLAGS_SINGLE) {
+  if ((hAudioOut.flags & FLAGS_SINGLE) != 0U) {
     /* Single mode, clear active flag */
     hAudioOut.active = 0U;
   }
@@ -153,6 +157,9 @@ void AudioOut_Handler (void) {
 
 /* Initialize streaming interface */
 static int32_t Initialize (vStreamEvent_t event_cb) {
+  char *fn;
+  uint32_t len;
+  uint32_t i;
 
   hAudioOut.callback  = event_cb;
   hAudioOut.active    = 0U;
@@ -163,14 +170,28 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
   /* Initialize Audio Input peripheral */
   AudioOut->Timer.Control = 0U;
   AudioOut->DMA.Control   = 0U;
-  AudioOut->IRQ.Clear     = 0x00000001U;
-  AudioOut->IRQ.Enable    = 0x00000001U;
-  AudioOut->CONTROL       = 0U;
+  AudioOut->IRQ.Clear     = IRQ_TIMER_OVERFLOW_Msk;
+  AudioOut->IRQ.Enable    = IRQ_TIMER_OVERFLOW_Msk;
+  AudioOut->CONTROL       = CONTROL_MODE_OUT;
 
   /* Set audio configuration */
+  AudioOut->DEVICE      = AUDIO_OUT_DEVICE;
   AudioOut->CHANNELS    = AUDIO_OUT_CHANNELS;
   AudioOut->SAMPLE_BITS = AUDIO_OUT_SAMPLE_BITS;
   AudioOut->SAMPLE_RATE = AUDIO_OUT_SAMPLE_RATE;
+
+  fn = AUDIO_OUT_FILENAME;
+  len = strlen(fn);
+
+  if (len > 0U) {
+    /* Add null terminator */
+    len += 1U;
+
+    /* Load filename register */
+    for (i = 0; i < len; i++) {
+      AudioOut->FILENAME = fn[i];
+    }
+  }
 
   /* Enable peripheral interrupts */
 //NVIC_EnableIRQ(AudioOut_IRQn);
@@ -196,16 +217,16 @@ static int32_t Uninitialize (void) {
   /* De-initialize Audio Input peripheral */
   AudioOut->Timer.Control = 0U;
   AudioOut->DMA.Control   = 0U;
-  AudioOut->IRQ.Clear     = 0x00000001U;
-  AudioOut->IRQ.Enable    = 0x00000000U;
+  AudioOut->IRQ.Clear     = IRQ_TIMER_OVERFLOW_Msk;
+  AudioOut->IRQ.Enable    = 0U;
   AudioOut->CONTROL       = 0U;
 
-  /* Clear audio control block structure */
+  /* Clear audio handle structure */
   memset(&hAudioOut, 0, sizeof(hAudioOut));
 
   return VSTREAM_OK;
-
 }
+
 /* Set streaming data buffer */
 static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
   int32_t rval;
@@ -225,6 +246,7 @@ static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
     rval = VSTREAM_ERROR;
   }
   else {
+    /* Set buffer */
     hAudioOut.buf.data       = (uint8_t *)buf;
     hAudioOut.buf.block_num  = buf_size / block_size;
     hAudioOut.buf.block_size = block_size;
@@ -237,6 +259,7 @@ static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
     hAudioOut.idx_get = 0U;
     hAudioOut.idx_rel = 0U;
 
+    /* Configure DMA */
     AudioOut->DMA.Address   = (uint32_t)buf;
     AudioOut->DMA.BlockNum  = buf_size / block_size;
     AudioOut->DMA.BlockSize = block_size;
@@ -246,6 +269,7 @@ static int32_t SetBuf (void *buf, uint32_t buf_size, uint32_t block_size) {
 
   return rval;
 }
+
 /* Start streaming */
 static int32_t Start (uint32_t mode) {
   int32_t  rval;
@@ -276,32 +300,53 @@ static int32_t Start (uint32_t mode) {
     /* Set active status */
     hAudioOut.active = 1U;
 
+    /* Set control register */
+    ctrl = AudioOut->CONTROL | CONTROL_ENABLE_Msk;
+
     if (mode == VSTREAM_MODE_SINGLE) {
       /* Single mode */
       hAudioOut.flags |= FLAGS_SINGLE;
-
-      /* Initialize timer control register for one-shot mode */
-      ctrl = ARM_VSI_Timer_Trig_DMA_Msk | ARM_VSI_Timer_Trig_IRQ_Msk;
     }
     else {
       /* Continuous mode */
       hAudioOut.flags &= ~FLAGS_SINGLE;
 
-      /* Initialize timer control register for continuous mode */
-      ctrl = ARM_VSI_Timer_Trig_DMA_Msk | ARM_VSI_Timer_Trig_IRQ_Msk | ARM_VSI_Timer_Periodic_Msk;
+      ctrl |= CONTROL_CONTINUOUS_Msk;
     }
 
-    AudioOut->CONTROL     = CONTROL_ENABLE_Msk;
-    AudioOut->DMA.Control = ARM_VSI_DMA_Direction_M2P | ARM_VSI_DMA_Enable_Msk;
+    AudioOut->CONTROL = ctrl;
 
-    sample_size = AudioOut->CHANNELS * ((AudioOut->SAMPLE_BITS + 7U) / 8U);
-    sample_rate = AudioOut->SAMPLE_RATE;
-    block_size  = AudioOut->DMA.BlockSize;
+    if ((AudioOut->STATUS & STATUS_ACTIVE_Msk) == 0U) {
+      /* Peripheral not active */
+      rval = VSTREAM_ERROR;
+    }
+    else {
+      /* Configure peripheral DMA */
+      AudioOut->DMA.Control = ARM_VSI_DMA_Direction_M2P | ARM_VSI_DMA_Enable_Msk;
 
-    AudioOut->Timer.Interval = ((uint64_t)1000000U * (block_size / sample_size)) / sample_rate;
+      /* Configure Timer */
+      ctrl = ARM_VSI_Timer_Trig_DMA_Msk |
+             ARM_VSI_Timer_Trig_IRQ_Msk |
+             ARM_VSI_Timer_Run_Msk;
 
-    /* Apply configuration and start the timer */
-    AudioOut->Timer.Control = ctrl | ARM_VSI_Timer_Run_Msk;
+      if (mode == VSTREAM_MODE_CONTINUOUS) {
+        ctrl |= ARM_VSI_Timer_Periodic_Msk;
+      }
+
+      sample_size = AudioOut->CHANNELS * ((AudioOut->SAMPLE_BITS + 7U) / 8U);
+      sample_rate = AudioOut->SAMPLE_RATE;
+      block_size  = AudioOut->DMA.BlockSize;
+
+      AudioOut->Timer.Interval = ((uint64_t)1000000U * (block_size / sample_size)) / sample_rate;
+
+      /* Apply configuration */
+      AudioOut->Timer.Control = ctrl;
+    }
+
+    if (rval != VSTREAM_OK) {
+      /* Clear active flag */
+      hAudioOut.active = 0U;
+    }
   }
 
   return rval;

@@ -16,48 +16,45 @@
  * limitations under the License.
  *---------------------------------------------------------------------------*/
 
-#ifndef VSTREAM_VIDEO_OUT_CONFIG_H_
-#define VSTREAM_VIDEO_OUT_CONFIG_H_
+#ifndef VSTREAM_AUDIO_OUT_CONFIG_H_
+#define VSTREAM_AUDIO_OUT_CONFIG_H_
 
 //-------- <<< Use Configuration Wizard in Context Menu >>> --------------------
 //------ With VS Code: Open Preview for Configuration Wizard -------------------
 
-// <o> Frame width
-// <i> Defines the video stream frame width in pixels.
-// <i> Common frame widths: 320, 640, 800, 1024.
-// <i> Default: 640
-#ifndef VIDEO_OUT_FRAME_WIDTH
-#define VIDEO_OUT_FRAME_WIDTH     320
+// <o> Number of channels <1=>Mono <2=>Stereo
+// <i> Defines the number of audio channels in stream.
+// <i> Default: 2
+#ifndef AUDIO_OUT_CHANNELS
+#define AUDIO_OUT_CHANNELS        2
 #endif
 
-// <o> Frame height
-// <i> Defines the video stream frame height in pixels.
-// <i> Common frame heights: 240, 480, 600, 768.
-// <i> Default: 480
-#ifndef VIDEO_OUT_FRAME_HEIGHT
-#define VIDEO_OUT_FRAME_HEIGHT    240
+// <o> Number of bits per sample <0=>8 <1=>16 <2=>24 <3=>32
+// <i> Defines number of bits of information in each sample.
+// <i> Default: 16
+#ifndef AUDIO_OUT_SAMPLE_BITS
+#define AUDIO_OUT_SAMPLE_BITS     16
 #endif
 
-// <o> Frame rate
-// <i> Defines the video stream frame rate in frames per second.
-// <i> Common frame rates: 15, 25, 30, 60.
-// <i> Default: 30
-#ifndef VIDEO_OUT_FRAME_RATE
-#define VIDEO_OUT_FRAME_RATE      30
+// <o> Sample rate <8000=>8 kHz <16000=>16 kHz <44100=>44.1 kHz <48000=>48 kHz
+// <i> Defines the number of samples captured per second.
+// <i> Default: 16000
+#ifndef AUDIO_OUT_SAMPLE_RATE
+#define AUDIO_OUT_SAMPLE_RATE     16000
 #endif
 
-// <o> Color format <0=>Grayscale(8-bit) <1=>RGB888 <2=>BGR565 <3=>YUV420 <4=>NV12 <5=>NV21
-// <i> Defines the video frame color space.
-// <i> Default: 1
-#ifndef VIDEO_OUT_FRAME_COLOR
-#define VIDEO_OUT_FRAME_COLOR     1
+// <o> Streaming Device Index
+// <i> Defines the system index of the audio streaming device.
+// <i> Default: -1 (system default audio device)
+#ifndef AUDIO_OUT_DEVICE
+#define AUDIO_OUT_DEVICE          -1
 #endif
 
-// <s> Video File Name
-// <i> Defines the name of the video file to be used for streaming.
+// <s> Audio File Name
+// <i> Defines the name of the audio file to be used for streaming.
 // <i> Default: "" (use streaming device instead of file)
-#ifndef VIDEO_OUT_FILENAME
-#define VIDEO_OUT_FILENAME        ""
+#ifndef AUDIO_OUT_FILENAME
+#define AUDIO_OUT_FILENAME        ""
 #endif
 
 #endif

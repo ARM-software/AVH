@@ -1,4 +1,4 @@
-# Copyright (c) 2023-2025 Arm Limited. All rights reserved.
+# Copyright (c) 2025 Arm Limited. All rights reserved.
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -14,9 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Python VSI Video Client module
-# This module provides a client interface for communicating with a VSI (Virtual Streaming Interface) video server.
-# It allows configuration, streaming, and frame transfer operations for video data, typically used in hardware simulation or testing environments.
+# Python VSI Audio Client module
+# This module provides a client interface for communicating with a VSI (Virtual Streaming Interface) audio server.
+# It allows configuration, streaming, and audio data transfer operations, typically used in hardware simulation or testing environments.
 
 try:
     import time
@@ -27,19 +27,19 @@ try:
     from os import path, getcwd
     from os import name as os_name
 except ImportError as err:
-    print(f"VSI:Video:ImportError: {err}")
+    print(f"VSI:Audio:ImportError: {err}")
     raise
 except Exception as e:
-    print(f"VSI:Video:Exception: {type(e).__name__}")
+    print(f"VSI:Audio:Exception: {type(e).__name__}")
     raise
 
 logger = logging.getLogger(__name__)
 
 
-class VideoClient:
+class AudioClient:
     """
-    Client for communicating with the VSI video server using Python's multiprocessing connection.
-    Provides methods to configure the stream, send/receive frames, and control the server.
+    Client for communicating with the VSI audio server using Python's multiprocessing connection.
+    Provides methods to configure the stream, send/receive audio data, and control the server.
     """
     def __init__(self):
         # Server command codes
@@ -49,22 +49,23 @@ class VideoClient:
         self.STREAM_CONFIGURE = 4
         self.STREAM_ENABLE    = 5
         self.STREAM_DISABLE   = 6
-        self.FRAME_READ       = 7
-        self.FRAME_WRITE      = 8
+        self.AUDIO_READ       = 7
+        self.AUDIO_WRITE      = 8
         self.CLOSE_SERVER     = 9
-        # Color space codes
-        self.GRAYSCALE8       = 0
-        self.RGB888           = 1
-        self.BGR565           = 2
-        self.YUV420           = 3
-        self.NV12             = 4
-        self.NV21             = 5
+
+        # Audio format codes
+        self.PCM_S8           = 0
+        self.PCM_S16LE        = 1
+        self.PCM_S24LE        = 2
+        self.PCM_S32LE        = 3
+        self.PCM_F32LE        = 4
+
         # Connection object
         self.conn = None
 
     def connectToServer(self, address, authkey):
         """
-        Attempt to connect to the VSI video server at the given address with the provided authkey.
+        Attempt to connect to the VSI audio server at the given address with the provided authkey.
 
         Args:
             address: The (IP, port) tuple for the server to connect to.
@@ -85,9 +86,9 @@ class VideoClient:
 
     def setMode(self, mode):
         """
-        Set the mode of the video stream (input/output).
+        Set the mode of the audio stream (input/output).
         Args:
-            mode: 0 for input, 1 for output.
+            mode: 1 for input, 2 for output.
         Returns:
             True if the mode is valid, False otherwise.
         """
@@ -98,7 +99,7 @@ class VideoClient:
 
     def setDevice(self, device):
         """
-        Set the video streaming device index (input/output).
+        Set the audio streaming device index (input/output).
         Args:
             device: The device index value to set on the server.
         Returns:
@@ -111,7 +112,7 @@ class VideoClient:
 
     def setFilename(self, filename):
         """
-        Set the filename for the video stream on the server.
+        Set the filename for the audio stream on the server.
         Args:
             filename: The name of the file to set on the server.
         Returns:
@@ -122,25 +123,24 @@ class VideoClient:
 
         return filename_valid
 
-    def configureStream(self, frame_width, frame_height, frame_rate, color_format):
+    def configureStream(self, channels, sample_rate, sample_bits):
         """
-        Configure the video stream parameters on the server.
+        Configure the audio stream parameters on the server.
         Args:
-            frame_width: Width of the video frame.
-            frame_height: Height of the video frame.
-            frame_rate: Frame rate in frames per second.
-            color_format: Color format code.
+            channels: Number of audio channels (1=mono, 2=stereo).
+            sample_rate: Sample rate in Hz (e.g., 44100, 48000).
+            sample_bits: Bit depth (8, 16, 24, 32).
         Returns:
             True if configuration is valid, False otherwise.
         """
-        self.conn.send([self.STREAM_CONFIGURE, frame_width, frame_height, frame_rate, color_format])
+        self.conn.send([self.STREAM_CONFIGURE, channels, sample_rate, sample_bits])
         configuration_valid = self.conn.recv()
 
         return configuration_valid
 
     def enableStream(self):
         """
-        Enable the video stream on the server in the specified mode (input/output).
+        Enable the audio stream on the server in the specified mode (input/output).
         Returns:
             `True` if the stream is active, `False` otherwise.
         """
@@ -151,7 +151,7 @@ class VideoClient:
 
     def disableStream(self):
         """
-        Disable the video stream on the server.
+        Disable the audio stream on the server.
         Returns:
             True if the stream is no longer active, False otherwise.
         """
@@ -160,27 +160,29 @@ class VideoClient:
 
         return stream_active
 
-    def readFrame(self):
+    def readAudio(self, size):
         """
-        Request a video frame from the server.
+        Request audio data from the server.
+        Args:
+            size: Number of bytes to read.
         Returns:
-            tuple: (data, eos) where data is a Bytearray of frame data and eos is a Boolean indicating end-of-stream.
+            tuple: (data, eos) where data is a Bytearray of audio data and eos is a Boolean indicating end-of-stream.
         """
-        self.conn.send([self.FRAME_READ])
+        self.conn.send([self.AUDIO_READ, size])
         data = self.conn.recv_bytes()
         eos  = self.conn.recv()
 
         return data, eos
 
-    def writeFrame(self, data):
+    def writeAudio(self, data):
         """
-        Send a video frame to the server.
+        Send audio data to the server.
         Args:
-            data: Bytearray of frame data to write.
+            data: Bytearray of audio data to write.
         Returns:
             None
         """
-        self.conn.send([self.FRAME_WRITE])
+        self.conn.send([self.AUDIO_WRITE])
         self.conn.send_bytes(data)
 
     def closeServer(self):
@@ -203,10 +205,9 @@ CONTROL                   = 0     # Regs[0]  // Control: enable, mode, continuou
 STATUS                    = 0     # Regs[1]  // Status: active, eos, file_name, file_valid
 DEVICE                    = -1    # Regs[2]  // Streaming device
 FILENAME                  = ""    # Regs[3]  // Filename string array
-FRAME_WIDTH               = 300   # Regs[4]  // Requested frame width
-FRAME_HEIGHT              = 300   # Regs[5]  // Requested frame height
-FRAME_RATE                = 0     # Regs[6]  // Frame rate
-FRAME_COLOR               = 0     # Regs[7]  // Frame color space
+CHANNELS                  = 1     # Regs[4]  // Number of audio channels
+SAMPLE_RATE               = 16000 # Regs[5]  // Sample rate
+SAMPLE_BITS               = 16    # Regs[6]  // Bits per sample
 
 
 # CONTROL register bit definitions
@@ -230,23 +231,22 @@ STATUS_FILE_NAME_Msk      = 1<<3    # File name latched/received
 STATUS_FILE_VALID_Msk     = 1<<4    # File is valid
 
 
-# Global variables for video client and filename handling
-Video                     = VideoClient()
-
+# Global variables for audio client and filename handling
+Audio                     = AudioClient()
 
 
 def cleanup():
     """
-    Close the VSI Video Server on exit.
+    Close the VSI Audio Server on exit.
     Returns:
         None
     """
-    Video.closeServer()
+    Audio.closeServer()
 
 
 def init(address, authkey):
     """
-    Initialize connection to the VSI Video Server and start the server process if not already running.
+    Initialize connection to the VSI Audio Server and start the server process if not already running.
     Args:
         address: Tuple (IP, port) for the server.
         authkey: Authorization key for server connection.
@@ -255,11 +255,11 @@ def init(address, authkey):
     """
 
     base_dir = path.dirname(__file__)
-    server_path = path.join(base_dir, 'vsi_video_server.py')
+    server_path = path.join(base_dir, 'vsi_audio_server.py')
 
-    logger.info("Start video server")
+    logger.info("Start audio server")
     if path.isfile(server_path):
-        # Start Video Server as a subprocess
+        # Start Audio Server as a subprocess
         if os_name == 'nt':
             py_cmd = 'python'
         else:
@@ -270,9 +270,9 @@ def init(address, authkey):
               f"--authkey {authkey}"
         subprocess.Popen(cmd, shell=True)
 
-        # Connect to Video Server
-        Video.connectToServer(address, authkey)
-        if Video.conn == None:
+        # Connect to Audio Server
+        Audio.connectToServer(address, authkey)
+        if Audio.conn == None:
             logger.error("Server not connected")
     else:
         logger.error(f"Server script not found: {server_path}")
@@ -280,7 +280,7 @@ def init(address, authkey):
     # Register clean-up function
     atexit.register(cleanup)
 
-    if Video.conn == None:
+    if Audio.conn == None:
         return False
     else:
         return True
@@ -306,13 +306,13 @@ def rdDataDMA(size):
     Args:
         size: Number of bytes to read (multiple of 4).
     Returns:
-        data: Bytearray of frame data.
+        data: Bytearray of audio data.
     """
     global STATUS
 
     if (STATUS & STATUS_ACTIVE_Msk) != 0:
 
-        data, eos = Video.readFrame()
+        data, eos = Audio.readAudio(size)
         if eos:
             STATUS |= STATUS_EOS_Msk
             logger.debug("rdDataDMA: STATUS register updated: EOS bit set")
@@ -331,14 +331,14 @@ def wrDataDMA(data, size):
     Write data to the server (simulate DMA memory-to-peripheral transfer).
 
     Args:
-        data: Bytearray of frame data to write.
+        data: Bytearray of audio data to write.
         size: Number of bytes to write (multiple of 4).
     """
     global STATUS
 
     if (STATUS & STATUS_ACTIVE_Msk) != 0:
 
-        Video.writeFrame(data)
+        Audio.writeAudio(data)
 
         # Set DATA bit after the block of data is written
         STATUS |= STATUS_DATA_Msk
@@ -356,12 +356,12 @@ def wrCONTROL(value):
 
     if ((value ^ CONTROL) & CONTROL_MODE_Msk) != 0:
         # MODE changed
-        mode_valid = Video.setMode((value & CONTROL_MODE_Msk) >> CONTROL_MODE_Pos)
+        mode_valid = Audio.setMode((value & CONTROL_MODE_Msk) >> CONTROL_MODE_Pos)
         if mode_valid:
             logger.info("wrCONTROL: CONTROL register updated: MODE changed")
         else:
             # Reset Mode
-            Video.setMode(0)
+            Audio.setMode(0)
             value &= ~CONTROL_MODE_Msk
             logger.error("wrCONTROL: CONTROL register updated: MODE cleared")
 
@@ -371,10 +371,10 @@ def wrCONTROL(value):
             logger.info("wrCONTROL: CONTROL register updated: ENABLE bit set")
 
             # Configure stream
-            configuration_valid = Video.configureStream(FRAME_WIDTH, FRAME_HEIGHT, FRAME_RATE, FRAME_COLOR)
+            configuration_valid = Audio.configureStream(CHANNELS, SAMPLE_RATE, SAMPLE_BITS)
             if configuration_valid:
                 # Configuration is valid, enable stream
-                server_active = Video.enableStream()
+                server_active = Audio.enableStream()
 
                 if server_active:
                     STATUS |=  STATUS_ACTIVE_Msk
@@ -385,7 +385,7 @@ def wrCONTROL(value):
                 logger.error("wrCONTROL: configure stream failed")
         else:
             logger.info("wrCONTROL: CONTROL register updated: ENABLE bit cleared")
-            Video.disableStream()
+            Audio.disableStream()
 
             STATUS &= ~STATUS_ACTIVE_Msk
             logger.info("wrCONTROL: STATUS register updated: ACTIVE bit cleared")
@@ -422,7 +422,7 @@ def wrDEVICE(value):
         None
     """
     global DEVICE
-    DEVICE = Video.setDevice(value)
+    DEVICE = Audio.setDevice(value)
     logger.info(f"wrDEVICE: DEVICE register set to {DEVICE}")
 
 
@@ -474,7 +474,7 @@ def wrFILENAME(value):
         STATUS |= STATUS_FILE_NAME_Msk
         logger.debug("wrFILENAME: STATUS register updated: FILE_NAME bit set")
 
-        if Video.setFilename(FILENAME) == True:
+        if Audio.setFilename(FILENAME) == True:
             STATUS |= STATUS_FILE_VALID_Msk
             logger.debug("wrFILENAME: STATUS register updated: FILE_VALID bit set")
         else:
@@ -491,7 +491,7 @@ def rdRegs(index):
     Returns:
         value: Value read (32-bit)
     """
-    global CONTROL, DEVICE, FRAME_WIDTH, FRAME_HEIGHT, FRAME_RATE, FRAME_COLOR
+    global CONTROL, DEVICE, CHANNELS, SAMPLE_RATE, SAMPLE_BITS
     value = 0
 
     if   index == 0:
@@ -503,13 +503,11 @@ def rdRegs(index):
     elif index == 3:
         value = rdFILENAME()
     elif index == 4:
-        value = FRAME_WIDTH
+        value = CHANNELS
     elif index == 5:
-        value = FRAME_HEIGHT
+        value = SAMPLE_RATE
     elif index == 6:
-        value = FRAME_RATE
-    elif index == 7:
-        value = FRAME_COLOR
+        value = SAMPLE_BITS
 
     return value
 
@@ -525,7 +523,7 @@ def wrRegs(index, value):
     Returns:
         value: Value written (32-bit)
     """
-    global STATUS, FRAME_WIDTH, FRAME_HEIGHT,  FRAME_RATE, FRAME_COLOR
+    global STATUS, CHANNELS, SAMPLE_RATE, SAMPLE_BITS
 
     if   index == 0:
         wrCONTROL(value)
@@ -536,12 +534,10 @@ def wrRegs(index, value):
     elif index == 3:
         wrFILENAME(value)
     elif index == 4:
-        FRAME_WIDTH = value
+        CHANNELS = value
     elif index == 5:
-        FRAME_HEIGHT = value
+        SAMPLE_RATE = value
     elif index == 6:
-        FRAME_RATE = value
-    elif index == 7:
-        FRAME_COLOR = value
+        SAMPLE_BITS = value
 
     return value
