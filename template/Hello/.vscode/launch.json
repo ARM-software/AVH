@@ -1,0 +1,185 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "AVH-SSE-300",
+        "type": "arm-debugger.configdb",
+        "request": "launch",
+        "cdbEntry": "Arm SubSystem FVP::Corstone SSE-300 Ethos-U55 (MPS3)::Bare Metal Debug::Bare Metal Debug::Cortex-M55",
+        "cdbEntryParams": {
+          "model_params": "-C mps3_board.v_path=\"${workspaceFolder}\"/Board/Corstone-300/vsi/python",
+          "model_params_file": [
+            "${workspaceFolder}/Board/Corstone-300/fvp_config.txt"
+          ]
+        },
+        "programs": [
+          "${command:arm-debugger.getApplicationFile}"
+        ],
+        "runControl": {
+          "debugFromEntrypoint": true
+        }
+      },
+      {
+        "name": "AVH-SSE-300-U55",
+        "type": "arm-debugger.configdb",
+        "request": "launch",
+        "cdbEntry": "Arm SubSystem FVP::Corstone SSE-300 Ethos-U55 (MPS3)::Bare Metal Debug::Bare Metal Debug::Cortex-M55",
+        "cdbEntryParams": {
+          "model_params": "-C mps3_board.v_path=\"${workspaceFolder}\"/board/Corstone-300/vsi/python",
+          "model_params_file": [
+            "${workspaceFolder}/Board/Corstone-300/fvp_config.txt"
+          ]
+        },
+        "programs": [
+          "${command:arm-debugger.getApplicationFile}"
+        ],
+        "runControl": {
+          "debugFromEntrypoint": true
+        }
+      },
+      {
+        "name": "AVH-SSE-300-U65",
+        "type": "arm-debugger.configdb",
+        "request": "launch",
+        "cdbEntry": "Arm SubSystem FVP::Corstone SSE-300 Ethos-U65 (MPS3)::Bare Metal Debug::Bare Metal Debug::Cortex-M55",
+        "cdbEntryParams": {
+          "model_params": "-C mps3_board.v_path=\"${workspaceFolder}\"/board/Corstone-300/vsi/python",
+          "model_params_file": [
+            "${workspaceFolder}/Board/Corstone-300/fvp_config.txt"
+          ]
+        },
+        "programs": [
+          "${command:arm-debugger.getApplicationFile}"
+        ],
+        "runControl": {
+          "debugFromEntrypoint": true
+        }
+      },
+      {
+        "name": "AVH-SSE-310",
+        "type": "arm-debugger.configdb",
+        "request": "launch",
+        "cdbEntry": "Arm SubSystem FVP::Corstone SSE-310 Ethos-U55 (MPS3)::Bare Metal Debug::Bare Metal Debug::Cortex-M85",
+        "cdbEntryParams": {
+          "model_params": "-C mps3_board.v_path=\"${workspaceFolder}\"/board/Corstone-310/vsi/python",
+          "model_params_file": [
+            "${workspaceFolder}/Board/Corstone-310/fvp_config.txt"
+          ]
+        },
+        "programs": [
+          "${command:arm-debugger.getApplicationFile}"
+        ],
+        "runControl": {
+          "debugFromEntrypoint": true
+        }
+      },
+      {
+        "name": "AVH-SSE-310-U55",
+        "type": "arm-debugger.configdb",
+        "request": "launch",
+        "cdbEntry": "Arm SubSystem FVP::Corstone SSE-310 Ethos-U55 (MPS3)::Bare Metal Debug::Bare Metal Debug::Cortex-M85",
+        "cdbEntryParams": {
+          "model_params": "-C mps3_board.v_path=\"${workspaceFolder}\"/board/Corstone-310/vsi/python",
+          "model_params_file": [
+            "${workspaceFolder}/Board/Corstone-310/fvp_config.txt"
+          ]
+        },
+        "programs": [
+          "${command:arm-debugger.getApplicationFile}"
+        ],
+        "runControl": {
+          "debugFromEntrypoint": true
+        }
+      },
+      {
+        "name": "AVH-SSE-310-U65",
+        "type": "arm-debugger.configdb",
+        "request": "launch",
+        "cdbEntry": "Arm SubSystem FVP::Corstone SSE-310 Ethos-U65 (MPS3)::Bare Metal Debug::Bare Metal Debug::Cortex-M85",
+        "cdbEntryParams": {
+          "model_params": "-C mps3_board.v_path=\"${workspaceFolder}\"/board/Corstone-310/vsi/python",
+          "model_params_file": [
+            "${workspaceFolder}/Board/Corstone-310/fvp_config.txt"
+          ]
+        },
+        "programs": [
+          "${command:arm-debugger.getApplicationFile}"
+        ],
+        "runControl": {
+          "debugFromEntrypoint": true
+        }
+      },
+      {
+        "name": "AVH-SSE-315",
+        "type": "arm-debugger.configdb",
+        "request": "launch",
+        "cdbEntry": "Arm SubSystem FVP::Corstone SSE-315::Bare Metal Debug::Bare Metal Debug::Cortex-M85",
+        "cdbEntryParams": {
+          "model_params": "-C mps4_board.v_path=\"${workspaceFolder}\"/board/Corstone-315/vsi/python",
+          "model_params_file": [
+            "${workspaceFolder}/Board/Corstone-315/fvp_config.txt"
+          ]
+        },
+        "programs": [
+          "${command:arm-debugger.getApplicationFile}"
+        ],
+        "runControl": {
+          "debugFromEntrypoint": true
+        }
+      },
+      {
+        "name": "AVH-SSE-315-U65",
+        "type": "arm-debugger.configdb",
+        "request": "launch",
+        "cdbEntry": "Arm SubSystem FVP::Corstone SSE-315::Bare Metal Debug::Bare Metal Debug::Cortex-M85",
+        "cdbEntryParams": {
+          "model_params": "-C mps4_board.v_path=\"${workspaceFolder}\"/board/Corstone-315/vsi/python",
+          "model_params_file": [
+            "${workspaceFolder}/Board/Corstone-315/fvp_config.txt"
+          ]
+        },
+        "programs": [
+          "${command:arm-debugger.getApplicationFile}"
+        ],
+        "runControl": {
+          "debugFromEntrypoint": true
+        }
+      },
+      {
+        "name": "AVH-SSE-320",
+        "type": "arm-debugger.configdb",
+        "request": "launch",
+        "cdbEntry": "Arm SubSystem FVP::Corstone SSE-320::Bare Metal Debug::Bare Metal Debug::Cortex-M85",
+        "cdbEntryParams": {
+          "model_params": "-C mps4_board.v_path=\"${workspaceFolder}\"/board/Corstone-320/vsi/python",
+          "model_params_file": [
+            "${workspaceFolder}/Board/Corstone-320/fvp_config.txt"
+          ]
+        },
+        "programs": [
+          "${command:arm-debugger.getApplicationFile}"
+        ],
+        "runControl": {
+          "debugFromEntrypoint": true
+        }
+      },
+      {
+        "name": "AVH-SSE-320-U85",
+        "type": "arm-debugger.configdb",
+        "request": "launch",
+        "cdbEntry": "Arm SubSystem FVP::Corstone SSE-320::Bare Metal Debug::Bare Metal Debug::Cortex-M85",
+        "cdbEntryParams": {
+          "model_params": "-C mps4_board.v_path=\"${workspaceFolder}\"/board/Corstone-320/vsi/python",
+          "model_params_file": [
+            "${workspaceFolder}/Board/Corstone-320/fvp_config.txt"
+          ]
+        },
+        "programs": [
+          "${command:arm-debugger.getApplicationFile}"
+        ],
+        "runControl": {
+          "debugFromEntrypoint": true
+        }
+      }
+    ]
+}

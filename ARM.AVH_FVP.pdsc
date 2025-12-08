@@ -55,6 +55,13 @@
       <accept Bvendor="ARM" Bname="SSE-320"/>
     </condition>
 
+    <condition id="Arm FVP">
+      <description>Collection of supported Arm FVPs</description>
+      <accept condition="Corstone-300"/>
+      <accept condition="Corstone-310"/>
+      <accept condition="Corstone-315"/>
+      <accept condition="Corstone-320"/>
+    </condition>
   </conditions>
 
   <components>
@@ -165,6 +172,10 @@
 
     <clayer type="Board" path="board/Corstone-320" file="Board.clayer.yml"     copy-to="Board/Corstone-320" condition="Corstone-320"/>
     <clayer type="Board" path="board/Corstone-320" file="Board-U85.clayer.yml" copy-to="Board/Corstone-320" condition="Corstone-320"/>
+
+    <template name="Hello" path="template/Hello" file="Hello.csolution.yml" copy-to="Hello" condition="Arm FVP">
+      <description>Create a Hello World application for Arm FVP model</description>
+    </template>
   </csolution>
 
 </package>
