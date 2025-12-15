@@ -26,7 +26,7 @@ jobs:
 
       - name: Cache Doxygen 1.13.2
         id: cache-doxygen
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: /opt/doxygen-1.13.2
           key: doxygen-1.13.2-${{ runner.os }}
