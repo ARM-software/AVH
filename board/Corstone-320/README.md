@@ -20,10 +20,16 @@ Device: SSE-320-FVP
 | CMSIS-Driver           | Peripheral | Connection
 |:-----------------------|:-----------|:----------------------
 | Driver_USART0          | UART0      | STDOUT, STDERR
+| CMSIS-Driver VIO       | VIO        | CMSIS_VIO
 | Driver_vStreamAudioIn  | VSI0       | CMSIS_VSTREAM_AUDIO_IN
 | Driver_vStreamAudioOut | VSI1       | CMSIS_VSTREAM_AUDIO_OUT
 | Driver_vStreamVideoIn  | VSI4       | CMSIS_VSTREAM_VIDEO_IN
 | Driver_vStreamVideoOut | VSI6       | CMSIS_VSTREAM_VIDEO_OUT
+
+### CMSIS-Driver Virtual I/O mapping
+
+VIO driver interfaces with the `arm_vio.py` Python stub implementation which
+stores and loads signal values.
 
 ### CMSIS-Driver vStream configuration
 

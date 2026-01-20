@@ -8,6 +8,7 @@ layer:
     - connect: Corstone-300-U65
       provides:
         - CMSIS_USART
+        - CMSIS_VIO
         - CMSIS_VSTREAM_AUDIO_IN
         - CMSIS_VSTREAM_AUDIO_OUT
         - CMSIS_VSTREAM_VIDEO_IN
@@ -33,6 +34,7 @@ layer:
     - component: CMSIS:CORE
 
     - component: CMSIS Driver:USART
+    - component: CMSIS Driver:VIO
     - component: CMSIS Driver:vStream:AudioIn
     - component: CMSIS Driver:vStream:AudioOut
     - component: CMSIS Driver:vStream:VideoIn
