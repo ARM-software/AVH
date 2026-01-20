@@ -39,3 +39,9 @@ stores and loads signal values.
 | Driver_vStreamAudioOut | 16-bit PCM audio,      16000 samples/second
 | Driver_vStreamVideoIn  | RGB888 video,          resolution 1280 x 720 (W x H)
 | Driver_vStreamVideoOut | RGB888 video,          resolution  480 x 800 (W x H)
+
+### FVP Configuration File
+
+| File               | Description
+|:-------------------|:-------------
+| fvp_config.txt     | Corstone-310 FVP without Ethos-U or with Ethos-U55/U65

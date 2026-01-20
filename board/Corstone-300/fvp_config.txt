@@ -1,7 +1,7 @@
 # Parameters:
 # instance.parameter=value       #(type, mode) default = 'def value' : description : [min..max]
 #------------------------------------------------------------------------------
-ethosu.num_macs=128                                   # (int   , init-time) default = '0x80'   : Number of 8x8 MACs performed per cycle (32, 64, 128, or 256). : [0x20:0x100]
+ethosu.num_macs=256                                   # (int   , init-time) default = '0x80'   : Number of 8x8 MACs performed per cycle (32, 64, 128, or 256). : [0x20:0x100]
 mps3_board.uart0.shutdown_on_eot=1                    # (bool  , init-time) default = '0'      : Shutdown simulation when a EOT (ASCII 4) char is transmitted (useful for regression tests when semihosting is not available)
 mps3_board.visualisation.disable-visualisation=1      # (bool  , init-time) default = '0'      : Enable/disable visualisation
 #------------------------------------------------------------------------------
