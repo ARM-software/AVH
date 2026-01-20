@@ -19,7 +19,7 @@ Device: SSE-300-MPS3
 
 | CMSIS-Driver           | Peripheral | Connection
 |:-----------------------|:-----------|:----------------------
-| Driver_USART0          | UART0      | STDOUT, STDERR
+| Driver_USART0          | UART0      | STDIN, STDOUT, STDERR
 | CMSIS-Driver VIO       | VIO        | CMSIS_VIO
 | Driver_vStreamAudioIn  | VSI0       | CMSIS_VSTREAM_AUDIO_IN
 | Driver_vStreamAudioOut | VSI1       | CMSIS_VSTREAM_AUDIO_OUT
