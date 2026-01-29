@@ -97,7 +97,7 @@
    <component Cclass="CMSIS Driver" Cgroup="vStream" Csub="VideoIn" Cversion="1.0.0" Capiversion="1.0.0" condition="vStream">
       <description>Video Input vStream implementation for Arm FVPs</description>
       <RTE_Components_h>
-        #define RTE_VSTREAM_AUDIOIN
+        #define RTE_VSTREAM_VIDEOIN
       </RTE_Components_h>
       <files>
         <file category="doc"     name="Documentation/simulation/html/group__arm__vsi.html"/>
@@ -111,7 +111,7 @@
    <component Cclass="CMSIS Driver" Cgroup="vStream" Csub="VideoOut" Cversion="1.0.0" Capiversion="1.0.0" condition="vStream">
       <description>Video Output vStream implementation for Arm FVPs</description>
       <RTE_Components_h>
-        #define RTE_VSTREAM_AUDIOOUT
+        #define RTE_VSTREAM_VIDEOOUT
       </RTE_Components_h>
       <files>
         <file category="doc"     name="Documentation/simulation/html/group__arm__vsi.html"/>
