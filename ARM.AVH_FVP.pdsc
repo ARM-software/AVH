@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package schemaVersion="1.7.28" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.28/schema/PACK.xsd">
+<package schemaVersion="1.7.56" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.56/schema/PACK.xsd">
   <name>AVH_FVP</name>
   <vendor>ARM</vendor>
   <description>Virtual Interfaces for Arm FVPs</description>
@@ -33,26 +33,26 @@
 
     <condition id="Corstone-300">
       <description>Requirements for Corstone-310 FVP</description>
-      <accept Dvendor="ARM" Dname="SSE-300-MPS3"/>
-      <accept Bvendor="ARM" Bname="V2M-MPS3-SSE-300-FVP"/>
+      <accept Dvendor="ARM:82" Dname="SSE-300-MPS3"/>
+      <accept Bvendor="ARM"    Bname="V2M-MPS3-SSE-300-FVP"/>
     </condition>
     
     <condition id="Corstone-310">
       <description>Requirements for Corstone-310 FVP</description>
-      <accept Dvendor="ARM" Dname="SSE-310-MPS3_FVP"/>
-      <accept Bvendor="ARM" Bname="V2M-MPS3-SSE-310"/>
+      <accept Dvendor="ARM:82" Dname="SSE-310-MPS3_FVP"/>
+      <accept Bvendor="ARM"    Bname="V2M-MPS3-SSE-310"/>
     </condition>
     
     <condition id="Corstone-315">
       <description>Requirements for Corstone-315 FVP</description>
-      <accept Dvendor="ARM" Dname="SSE-315-FVP"/>
-      <accept Bvendor="ARM" Bname="SSE-315"/>
+      <accept Dvendor="ARM:82" Dname="SSE-315-FVP"/>
+      <accept Bvendor="ARM"    Bname="SSE-315"/>
     </condition>
 
     <condition id="Corstone-320">
       <description>Requirements for Corstone-320 FVP</description>
-      <accept Dvendor="ARM" Dname="SSE-320-FVP"/>
-      <accept Bvendor="ARM" Bname="SSE-320"/>
+      <accept Dvendor="ARM:82" Dname="SSE-320-FVP"/>
+      <accept Bvendor="ARM"    Bname="SSE-320"/>
     </condition>
 
     <condition id="Arm FVP">
