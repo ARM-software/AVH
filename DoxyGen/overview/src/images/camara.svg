@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <g stroke="#00E5FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- webcam body -->
+    <rect x="14" y="16" width="36" height="22" rx="11"/>
+    <!-- lens -->
+    <circle cx="32" cy="27" r="6"/>
+    <circle cx="32" cy="27" r="2.5"/>
+    <!-- tiny indicator -->
+    <circle cx="44" cy="22" r="1.3"/>
+    <!-- stand -->
+    <path d="M26 38v6c0 2.2-1.8 4-4 4h-2"/>
+    <path d="M38 38v6c0 2.2 1.8 4 4 4h2"/>
+    <path d="M20 48h24"/>
+  </g>
+</svg>
