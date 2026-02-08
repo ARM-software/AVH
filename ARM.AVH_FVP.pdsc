@@ -2,7 +2,7 @@
 <package schemaVersion="1.7.56" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.56/schema/PACK.xsd">
   <name>AVH_FVP</name>
   <vendor>ARM</vendor>
-  <description>Virtual Interfaces for Arm FVPs</description>
+  <description overview="Overview/Overview.md">Virtual Interfaces and Developer Resources for Arm FVP Simulation Models</description>
   <url>https://github.com/ARM-software/AVH/</url>
   <repository type="git">https://github.com/ARM-software/AVH.git</repository>
   <license>LICENSE</license>
@@ -15,6 +15,12 @@
         - Add vSocket driver
     </release>
   </releases>
+
+  <requirements>
+    <packages>
+      <package vendor="ARM"  name="CMSIS"          version="5.9.0-0"/>
+    </packages>
+  </requirements>
 
   <conditions>
     <condition id="VIO">

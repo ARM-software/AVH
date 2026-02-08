@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <g stroke="#00E5FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- top -->
+    <ellipse cx="32" cy="14" rx="18" ry="7"/>
+    <path d="M14 14v10c0 3.9 8.1 7 18 7s18-3.1 18-7V14"/>
+    <path d="M14 24c0 3.9 8.1 7 18 7s18-3.1 18-7"/>
+
+    <!-- middle -->
+    <path d="M14 24v10c0 3.9 8.1 7 18 7s18-3.1 18-7V24"/>
+    <path d="M14 34c0 3.9 8.1 7 18 7s18-3.1 18-7"/>
+
+    <!-- bottom -->
+    <path d="M14 34v10c0 3.9 8.1 7 18 7s18-3.1 18-7V34"/>
+    <path d="M14 44c0 3.9 8.1 7 18 7s18-3.1 18-7"/>
+  </g>
+</svg>
