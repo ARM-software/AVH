@@ -149,25 +149,59 @@
   </components>
 
   <examples>
-    <example name="FVP_Hello" folder="examples/FVP_Hello" doc="README.md">
-      <description>Output "Hello World"; runs on FVP simulator showing basic setup</description>
-    </template>
-
-    <example name="FVP_Audio" folder="example/vStream_Audio" doc="README.md">
-      <description>Audio Input/Output data streaming; runs on FVP simulator</description>
+    <example name="FVP_Hello" folder="example/FVP_Hello" doc="README.md">
+      <description>Pre-configured for FVP simulation models. Outputs "Hello World"</description>
+      <board vendor="ARM" name="V2M-MPS3-SSE-300-FVP"/>
+      <board vendor="ARM" name="V2M-MPS3-SSE-310"/>
+      <board vendor="ARM" name="SSE-315"/>
+      <board vendor="ARM" name="SSE-320"/>
       <project>
-        <environment name="csolution" load="vStream_Audio.csolution.yml"/>
+        <environment name="csolution" load="FVP_Hello.csolution.yml"/>
+      </project>
+    </example>
+    <example name="FVP_Hello" folder="example/FVP_Hello" doc="README.md">
+      <description>Pre-configured for FVP simulation models. Outputs "Hello World"</description>
+      <project>
+        <environment name="csolution" load="FVP_Hello.csolution.yml"/>
       </project>
     </example>
 
-    <example name="FVP_Video" folder="example/vStream_Video" doc="README.md">
-      <description>Video Input/Output data streaming; runs on FVP simulator</description>
+    <example name="FVP_Audio" folder="example/FVP_Audio" doc="README.md">
+      <description>Audio Input/Output data streaming. Pre-configured for FVP simulation models.</description>
+      <board vendor="ARM" name="V2M-MPS3-SSE-300-FVP"/>
+      <board vendor="ARM" name="V2M-MPS3-SSE-310"/>
+      <board vendor="ARM" name="SSE-315"/>
+      <board vendor="ARM" name="SSE-320"/>
       <project>
-        <environment name="csolution" load="vStream_Video.csolution.yml"/>
+        <environment name="csolution" load="FVP_Audio.csolution.yml"/>
+      </project>
+    </example>
+    <example name="FVP_Audio" folder="example/FVP_Audio" doc="README.md">
+      <description>Audio Input/Output data streaming. Pre-configured for FVP simulation models.</description>
+      <project>
+        <environment name="csolution" load="FVP_Audio.csolution.yml"/>
+      </project>
+    </example>
+
+    <example name="FVP_Video" folder="example/FVP_Video" doc="README.md">
+      <description>Video Input/Output data streaming. Pre-configured for FVP simulation models.</description>
+      <board vendor="ARM" name="V2M-MPS3-SSE-300-FVP"/>
+      <board vendor="ARM" name="V2M-MPS3-SSE-310"/>
+      <board vendor="ARM" name="SSE-315"/>
+      <board vendor="ARM" name="SSE-320"/>
+      <project>
+        <environment name="csolution" load="FVP_Video.csolution.yml"/>
+      </project>
+    </example>
+    <example name="FVP_Video" folder="example/FVP_Video" doc="README.md">
+      <description>Video Input/Output data streaming. Pre-configured for FVP simulation models.</description>
+      <project>
+        <environment name="csolution" load="FVP_Video.csolution.yml"/>
       </project>
     </example>
   </examples>
 
+<!--
   <csolution>
     <clayer type="Board" path="board/Corstone-300" file="Board.clayer.yml"     copy-to="Board/Corstone-300" condition="Corstone-300"/>
     <clayer type="Board" path="board/Corstone-300" file="Board-U55.clayer.yml" copy-to="Board/Corstone-300" condition="Corstone-300"/>
@@ -182,10 +216,6 @@
 
     <clayer type="Board" path="board/Corstone-320" file="Board.clayer.yml"     copy-to="Board/Corstone-320" condition="Corstone-320"/>
     <clayer type="Board" path="board/Corstone-320" file="Board-U85.clayer.yml" copy-to="Board/Corstone-320" condition="Corstone-320"/>
-
-    <template name="FVP_Hello" path="examples/FVP_Hello" file="FVPHello.csolution.yml" copy-to="Hello" condition="Arm FVP">
-      <description>Hello World Hello World application for Arm FVP model</description>
-    </template>
-  </csolution>
-
+  </csolution> 
+-->
 </package>
