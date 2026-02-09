@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Version: 2.1
 # Date: 2023-04-19
 # This bash script generates AVH Documentation:
@@ -12,7 +12,7 @@
 set -o pipefail
 
 # Set version of gen pack library
-REQUIRED_GEN_PACK_LIB="0.11.3"
+REQUIRED_GEN_PACK_LIB="0.13.0"
 
 DIRNAME=$(dirname $(readlink -f $0))
 DOXYGEN=$(which doxygen 2>/dev/null)

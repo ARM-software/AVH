@@ -48,13 +48,13 @@ PROJECT_NAME           = Infrastructure
 # could be handy for archiving the generated documentation or if some version
 # control system is used.
 
-PROJECT_NUMBER         = "Version 2.1.0"
+PROJECT_NUMBER         = "Version 2.2.0"
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewers a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "AVH FVP Infrastructure"
+PROJECT_BRIEF          = "Infrastructure"
 
 # With the PROJECT_LOGO tag one can specify a logo or an icon that is included
 # in the documentation. The maximum height of the logo should not exceed 55
@@ -996,16 +996,9 @@ INPUT                  = ./src/main.md \
                          ./src/avh_gh_actions.md \
                          ./src/avh_desktop.md \
                          ./src/avh_mdk_vscode.md \
-                         ./src/avh_mdk_uv4.md \
-                         ./src/avh_beta.md \
-                         ./src/avh_gh_runner.md \
-                         ./src/avh_gh_inventory.md \
-                         ./src/avh_ami.md \
-                         ./src/avh_ami_inventory.md \
-                         ./src/avh_ami_github.md \
-                         ./src/avh_ami_jenkins.md \
-                         ./src/avh_ami_ds.md \
-                         ./src/avhclient.md
+                         ./src/avh_mdk_uv4.md
+
+
 
 # This tag can be used to specify the character encoding of the source files
 # that Doxygen parses. Internally Doxygen uses the UTF-8 encoding. Doxygen uses

@@ -1,14 +1,20 @@
 # Overview {#mainpage}
 
-The **AVH Fixed Virtual Platforms (AVH FVPs)** provide functionally accurate simulation models of Arm-based Cortex-M CPUs and Corstone-3xx Subsystems.
+The **Arm Fixed Virtual Platforms (Arm FVPs)** provide functionally accurate simulation models of Arm-based Cortex-M
+CPUs and Corstone-3xx subsystems.
 
-The AVH FVP models are standalone programs that can be executed in a target environment. See \ref Models for a list of FVPs provided in the AVH context.
+The models are standalone programs that can be executed in a target environment. See \ref Models for a list of FVPs
+provided in this context.
 
-Section \ref using gives an overview how to run an embedded program on a target AVH FVP model using command line interface. [Infrastructure chapter](../../infrastructure/html/index.html) provides details on how to obtain AVH FVPs and use them in various cloud-native or desktop environments workflows, such as GitHub and Keil MDK.
+Section \ref using gives an overview how to run an embedded program on a target Arm FVP model using command line
+interface. [Infrastructure chapter](../../infrastructure/html/index.html) provides details on how to obtain Arm FVPs
+and use them in various cloud-native or desktop environments workflows, such as GitHub and Keil MDK.
 
 ## Available Models {#Models}
 
-The AVH FVP simulation models build a subset of [Arm Fast Models Fixed Virtual Platforms](https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms) with extensions for \ref arm_cmvp.
+The Arm FVP simulation models build a subset of
+[Arm Fast Models Fixed Virtual Platforms](https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms)
+with extensions for \ref arm_cmvp.
 
 The table below lists the available models:
 
@@ -55,17 +61,30 @@ It is recommended to use Corstone-300 FVP models for Cortex-M55.    </td></tr>
 <td>FVP_MPS2_Cortex-M0       </td><td>Cortex-M0        </td><td>[ARM Cortex-M0 SMM on V2M-MPS2 (AppNote AN382)](https://developer.arm.com/documentation/dai0382)    </td></tr>
 </table>
 
+> **Note**
+> Arm FVPs are only available for Windows and Linux hosts. If you use macOS, a Docker-based approach helps you
+> to run Arm FVPs on your machine. Refer to [FVPs-on-Mac](https://github.com/Arm-Examples/FVPs-on-Mac) to get started.
+
 ## Virtual Interfaces {#Virtual_Interfaces}
 
-The AVH FVPs implement various Virtual Interfaces that can be used to stimulate the application under test.
+The Arm Virtual Hardware FVPs implement various virtual interfaces that can be used to stimulate the application under
+test.
 
 ![AVH Virtual Interfaces](./images/Virtual_Interfaces.png "FVPs with Virtual Interfaces")
 
- - The \ref arm_vio interface controls simple I/O such as LED and switches.
- - The \ref arm_vsi provides up to 8 channels for data streaming.
- - The \ref arm_vsocket connects the user application to [BSD sockets](https://en.wikipedia.org/wiki/Berkeley_sockets) on the Host computer for IP network connectivity.
+- The \ref arm_vio interface controls simple I/O such as LED and switches.
+- The \ref arm_vsi provides up to 8 channels for data streaming.
+- The \ref arm_vsocket connects the user application to [BSD sockets](https://en.wikipedia.org/wiki/Berkeley_sockets)
+  on the host computer for IP network connectivity.
 
-Both \ref arm_vio "VIO" and \ref arm_vsi "VSI" connect to local python scripts and enable flexible scripting for test automation. Eight VSI interfaces are available and may be used in parallel to stream simultaneous multi-channel inputs and outputs. The interfaces are tailored for simulation, but can also map to physical target hardware, for example to a video camera as a VSI input.
+Both \ref arm_vio "VIO" and \ref arm_vsi "VSI" connect to local python scripts and enable flexible scripting for test
+automation. Eight VSI interfaces are available and may be used in parallel to stream simultaneous multi-channel inputs
+and outputs. The interfaces are tailored for simulation, but can also map to physical target hardware, for example to a
+video camera as a VSI input.
 
-In addition the **Event Recorder Capturing** provides an interface for the [Event Recorder](https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_overview.html) API. This software component enables event annotations in the application code or software component libraries. The **Event Recorder** provides visibility to the dynamic execution of an application, enables RTOS awareness, and [Event Execution Statistics](https://www.keil.com/pack/doc/compiler/EventRecorder/html/group__Event__Execution__Statistic.html) which helps to optimize the timing of complex algorithms.
-
+In addition the **Event Recorder Capturing** provides an interface for the
+[Event Recorder](https://arm-software.github.io/CMSIS-View/latest/evr.html) API. This software component enables event
+annotations in the application code or software component libraries. **Event Recorder** provides visibility to the
+dynamic execution of an application, enables RTOS awareness, and
+[Event Statistics](https://arm-software.github.io/CMSIS-View/latest/ev_stat.html) which helps to optimize the timing of
+complex algorithms.
