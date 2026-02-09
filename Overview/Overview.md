@@ -27,15 +27,16 @@ The Python-based peripheral scripts enable rapid prototyping and testing without
 
 The AVH-FVP pack includes ready-to-run examples:
 
-- **Hello** - Simple application that demonstrates FVP setup and debug output. Ideal starting point for new projects.
-- **vStream_Audio** - Audio streaming demonstration using vStream API for audio input/output (VSI0-1). Captures audio samples and streams them through the audio output with configurable sample rates, bit depths, and channels. I/O via data files or host system peripherals.
-- **vStream_Video** - Video streaming demonstration using vStream API for video input/output (VSI4-5). Captures video frames and displays them with configurable resolution and color formats. I/O via data files or host system peripherals.
+- **FVP_Hello** - Simple application that demonstrates FVP setup and debug output. Ideal starting point for new projects.
+- **FVP_Audio** - Audio streaming demonstration using [vStream API](https://arm-software.github.io/CMSIS_6/latest/Driver/group__vstream__interface__gr.html) for audio input/output (VSI0-1). Captures audio samples and streams them through the audio output with configurable sample rates, bit depths, and channels.
+- **FVP_Video** - Video streaming demonstration using [vStream API](https://arm-software.github.io/CMSIS_6/latest/Driver/group__vstream__interface__gr.html) for video input/output (VSI4-5). Captures video frames and displays them with configurable resolution and color formats.
 
-These examples are configured for the [FVP Corstone platforms (SSE-300, SSE-310, SSE-315, SSE-320)](https://arm-software.github.io/AVH/main/simulation/html/index.html) and work out-of-the-box with pre-configured FVP simulation settings. They can be built using CMSIS-Toolbox or Keil Studio.
+These examples are configured for the [FVP Corstone platforms (SSE-300, SSE-310, SSE-315, SSE-320)](https://arm-software.github.io/AVH/main/simulation/html/index.html) and work out-of-the-box with pre-configured FVP simulation settings. They can be built using CMSIS-Toolbox or Keil Studio. The FVP_Audio and FVP_Video examples use Python scripts to access data files on the host system. With configuration options, the host system peripherals can also be used for I/O.
 
-With a [compatible Software Layer: Board)](https://open-cmsis-pack.github.io/cmsis-toolbox/build-overview/#software-layers) the examples can be tested on FVP simulation models or physical hardware boards.
+Adding a compatible [Software Layer: Board](https://open-cmsis-pack.github.io/cmsis-toolbox/build-overview/#software-layers) the examples can be tested on FVP simulation models or physical hardware boards. To run these examples on a physical board you may use the [Reference Application](https://open-cmsis-pack.github.io/cmsis-toolbox/ReferenceApplications/) workflow Keil Studio adds a compatible board layer from a BSP.
 
-![vStream Examples](Examples.png "vStream Audio and Video Example")
+![FVP Examples](Examples.png "FVP Audio and Video Example")
+
 ## Getting Started
 
 1. **Install the pack**: Add the pack `ARM::AVH_FVP` to your development environment.
