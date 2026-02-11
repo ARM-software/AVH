@@ -1,5 +1,6 @@
 # A solution is a collection of related projects that share same base configuration.
 solution:
+  description: vStream Video example solution
   created-for: CMSIS-Toolbox@2.12.0
   cdefault: # use CMSIS-Toolbox default Compiler options
 
@@ -7,16 +8,8 @@ solution:
   select-compiler:
     - compiler: AC6
     - compiler: GCC
-    - compiler: IAR
     - compiler: CLANG
-
-  # List of miscellaneous tool-specific controls
-  misc:
-    - for-compiler: AC6 # GDB requires DWARF 5, remove when using uVision Debugger
-      C-CPP:
-        - -gdwarf-5
-      ASM:
-        - -gdwarf-5
+    - compiler: IAR
 
   # List the packs that define the device and/or board.
   packs:
@@ -37,4 +30,4 @@ solution:
 
   # List related projects.
   projects:
-    - project: ./Hello.cproject.yml
+    - project: ./FVP_Video.cproject.yml

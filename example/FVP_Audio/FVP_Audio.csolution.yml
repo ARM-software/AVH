@@ -30,4 +30,4 @@ solution:
 
   # List related projects.
   projects:
-    - project: ./vStream_Audio.cproject.yml
+    - project: ./FVP_Audio.cproject.yml
