@@ -1,0 +1,5 @@
+# OpenCV: Open Source Computer Vision library
+opencv-python
+
+# PyAudio: Cross-platform audio I/O for Python
+PyAudio

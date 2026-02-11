@@ -1,0 +1,17 @@
+# Parameters:
+# instance.parameter=value       #(type, mode) default = 'def value' : description : [min..max]
+#------------------------------------------------------------------------------
+mps4_board.subsystem.ethosu.num_macs=1024             # (int   , init-time) default = '0x400'  : Number of 8x8 MACs performed per cycle (128, 256, 512, 1024, or 2048). : [0x80:0x800]
+mps4_board.telnetterminal0.quiet=1                    # (bool  , init-time) default = '0'      : Avoid output on stdout/stderr
+mps4_board.telnetterminal0.start_telnet=0             # (bool  , init-time) default = '1'      : Start telnet if nothing connected
+mps4_board.telnetterminal1.quiet=1                    # (bool  , init-time) default = '0'      : Avoid output on stdout/stderr
+mps4_board.telnetterminal1.start_telnet=0             # (bool  , init-time) default = '1'      : Start telnet if nothing connected
+mps4_board.telnetterminal2.quiet=1                    # (bool  , init-time) default = '0'      : Avoid output on stdout/stderr
+mps4_board.telnetterminal2.start_telnet=0             # (bool  , init-time) default = '1'      : Start telnet if nothing connected
+mps4_board.telnetterminal5.quiet=1                    # (bool  , init-time) default = '0'      : Avoid output on stdout/stderr
+mps4_board.telnetterminal5.start_telnet=0             # (bool  , init-time) default = '1'      : Start telnet if nothing connected
+mps4_board.uart0.out_file=-                           # (string, init-time) default = ''       : Output file to hold data written by the UART (use '-' to send all output to stdout)
+mps4_board.uart0.shutdown_on_eot=1                    # (bool  , init-time) default = '0'      : Shutdown simulation when a EOT (ASCII 4) char is transmitted (useful for regression tests when semihosting is not available)
+mps4_board.visualisation.disable-visualisation=1      # (bool  , init-time) default = '0'      : Enable/disable visualisation
+vis_hdlcd.disable_visualisation=1                     # (bool  , init-time) default = '0'      : Enable/disable visualisation
+#------------------------------------------------------------------------------

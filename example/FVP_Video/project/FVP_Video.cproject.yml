@@ -1,0 +1,46 @@
+# A project translates into one executable or library.
+project:
+  description: vStream Video Input/Output streaming example
+
+  # List the packs that define the project software components.
+  packs:
+    - pack: ARM::CMSIS@>=6.0.0
+    - pack: ARM::CMSIS-RTX
+
+  # List connections used to identify compatible software layers.
+  connections:
+    - connect: Board Layer
+      consumes:
+        - CMSIS_VSTREAM_VIDEO_IN
+        - CMSIS_VSTREAM_VIDEO_OUT
+        - STDOUT
+      provides:
+        - CMSIS-RTOS2
+
+  # List components to use for your application.
+  # A software component is a re-usable unit that may be configurable.
+  components:
+    - component: CMSIS:OS Tick:SysTick
+    - component: CMSIS:RTOS2:Keil RTX5&Source
+
+  # List of source groups and files added to a project.
+  groups:
+    - group: Application
+      files:
+        - file: app_main.c
+
+    - group: Documentation
+      files:
+        - file: ../README.md
+
+  # List of layers used in a project.
+  layers:
+    - layer: $Board-Layer$
+      type: Board
+
+  # List executable file formats to be generated.
+  output:
+    type:
+      - elf
+      - bin
+      - map

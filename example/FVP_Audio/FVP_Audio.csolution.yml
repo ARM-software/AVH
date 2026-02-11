@@ -1,0 +1,96 @@
+# A solution is a collection of related projects that share same base configuration.
+solution:
+  description: vStream Audio example solution
+  created-for: CMSIS-Toolbox@2.12.0
+  cdefault: # use CMSIS-Toolbox default Compiler options
+
+  # Compilers that can be selected
+  select-compiler:
+    - compiler: AC6
+    - compiler: GCC
+    - compiler: CLANG
+    - compiler: IAR
+
+  # List the packs that define the device and/or board.
+  packs:
+    - pack: ARM::AVH_FVP
+
+  # List different hardware targets that are used to deploy the solution.
+  target-types:
+    # Arm Corstone-300 targets
+    - type: SSE-300
+      board: V2M-MPS3-SSE-300-FVP
+      device: SSE-300-MPS3
+      variables:
+        - Board-Layer: ../board/Corstone-300/Board.clayer.yml
+      target-set:
+        - set: "SSE-300 FVP"
+          debugger:
+            name: Arm-FVP
+            model: FVP_Corstone_SSE-300
+            config-file: ./board/Corstone-300/fvp_config.txt
+            args: -C mps3_board.v_path=./board/Corstone-300/vsi/python/
+          images:
+            - project-context: FVP_Audio.Debug
+
+    # Arm Corstone-310 targets
+    - type: SSE-310
+      board: V2M-MPS3-SSE-310
+      device: SSE-310-MPS3_FVP
+      variables:
+        - Board-Layer: ../board/Corstone-310/Board.clayer.yml
+      target-set:
+        - set: "SSE-310 FVP"
+          debugger:
+            name: Arm-FVP
+            model: FVP_Corstone_SSE-310
+            config-file: ./board/Corstone-310/fvp_config.txt
+            args: -C mps3_board.v_path=./board/Corstone-310/vsi/python/
+          images:
+            - project-context: FVP_Audio.Debug
+
+    # Arm Corstone-315 targets
+    - type: SSE-315
+      board: SSE-315
+      device: SSE-315-FVP
+      variables:
+        - Board-Layer: ../board/Corstone-315/Board.clayer.yml
+      target-set:
+        - set: "SSE-315 FVP"
+          debugger:
+            name: Arm-FVP
+            model: FVP_Corstone_SSE-315
+            config-file: ./board/Corstone-315/fvp_config.txt
+            args: -C mps4_board.v_path=./board/Corstone-315/vsi/python/
+          images:
+            - project-context: FVP_Audio.Debug
+
+    # Arm Corstone-320 targets
+    - type: SSE-320
+      board: SSE-320
+      device: SSE-320-FVP
+      variables:
+        - Board-Layer: ../board/Corstone-320/Board.clayer.yml
+      target-set:
+        - set: "SSE-320 FVP"
+          debugger:
+            name: Arm-FVP
+            model: FVP_Corstone_SSE-320
+            config-file: ./board/Corstone-320/fvp_config.txt
+            args: -C mps4_board.v_path=./board/Corstone-320/vsi/python/
+          images:
+            - project-context: FVP_Audio.Debug
+
+  # List of different build configurations.
+  build-types:
+    - type: Debug
+      debug: on
+      optimize: none
+
+    - type: Release
+      debug: off
+      optimize: balanced
+
+  # List related projects.
+  projects:
+    - project: ./project/FVP_Audio.cproject.yml
