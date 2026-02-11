@@ -1,6 +1,6 @@
-# vStream Video
+# FVP Video
 
-The **vStream Video** project demonstrates the CMSIS-Driver vStream API for handling
+The **FVP Video** project demonstrates the CMSIS-Driver vStream API for handling
 video input and output streams.
 
 It shows how to capture video frames from an input stream and output them through a video output stream.

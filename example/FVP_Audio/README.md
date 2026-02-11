@@ -1,6 +1,6 @@
-# vStream Audio
+# FVP Audio
 
-The **vStream Audio** project demonstrates the CMSIS-Driver vStream API for handling
+The **FVP Audio** project demonstrates the CMSIS-Driver vStream API for handling
 audio input and output streams.
 
 It shows how to capture audio samples from an input stream and output them through a audio output stream.

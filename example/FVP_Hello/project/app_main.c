@@ -39,6 +39,7 @@ __NO_RETURN void app_main_thread (void *argument) {
     osDelay(1000U);
   }
   osDelay(osWaitForever);
+  for(;;);
 }
 
 /*
