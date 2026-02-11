@@ -201,7 +201,6 @@
     </example>
   </examples>
 
-<!--
   <csolution>
     <clayer type="Board" path="board/Corstone-300" file="Board.clayer.yml"     copy-to="Board/Corstone-300" condition="Corstone-300"/>
     <clayer type="Board" path="board/Corstone-300" file="Board-U55.clayer.yml" copy-to="Board/Corstone-300" condition="Corstone-300"/>
@@ -217,5 +216,4 @@
     <clayer type="Board" path="board/Corstone-320" file="Board.clayer.yml"     copy-to="Board/Corstone-320" condition="Corstone-320"/>
     <clayer type="Board" path="board/Corstone-320" file="Board-U85.clayer.yml" copy-to="Board/Corstone-320" condition="Corstone-320"/>
   </csolution> 
--->
 </package>
