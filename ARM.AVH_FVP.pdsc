@@ -37,8 +37,42 @@
       <require Cclass="CMSIS"  Cgroup="RTOS2"/>
     </condition>
 
+    <condition id="ARMCM_VHT">
+      <description>Requirements for MPS2 FVPs part of Cortex_DFP</description>
+      <accept Dvendor="ARM:82" Dname="ARMCM0"/>
+      <accept Dvendor="ARM:82" Dname="ARMCM0plus"/>
+      <accept Dvendor="ARM:82" Dname="ARMCM3"/>
+      <accept Dvendor="ARM:82" Dname="ARMCM4"/>
+      <accept Dvendor="ARM:82" Dname="ARMCM7"/>
+      <accept Dvendor="ARM:82" Dname="ARMCM23"/>
+      <accept Dvendor="ARM:82" Dname="ARMCM33"/>
+      <accept Dvendor="ARM:82" Dname="ARMCM35P"/>
+      <accept Dvendor="ARM:82" Dname="ARMCM52"/>
+      <accept Dvendor="ARM:82" Dname="ARMCM55"/>
+      <accept Dvendor="ARM:82" Dname="ARMCM85"/>
+    </condition>
+
+    <condition id="CMSDK_VHT">
+      <description>Requirements for MPS2 FVPs part of V2M-MPS2_CMx</description>
+      <accept Dvendor="ARM:82" Dname="CMSDK_CM0_VHT"/>
+      <accept Dvendor="ARM:82" Dname="CMSDK_CM0plus_VHT"/>
+      <accept Dvendor="ARM:82" Dname="CMSDK_CM3_VHT"/>
+      <accept Dvendor="ARM:82" Dname="CMSDK_CM4_VHT"/>
+      <accept Dvendor="ARM:82" Dname="CMSDK_CM4_FP_VHT"/>
+      <accept Dvendor="ARM:82" Dname="CMSDK_CM7_VHT"/>
+      <accept Dvendor="ARM:82" Dname="CMSDK_CM7_SP_VHT"/>
+      <accept Dvendor="ARM:82" Dname="CMSDK_CM7_DP_VHT"/>
+    </condition>
+
+    <condition id="IOTKit_VHT">
+      <description>Requirements for MPS2 FVPs part of V2M-MPS2_IOTKit</description>
+      <accept Dvendor="ARM:82" Dname="IOTKit_CM23_VHT"/>
+      <accept Dvendor="ARM:82" Dname="IOTKit_CM33_VHT"/>
+      <accept Dvendor="ARM:82" Dname="IOTKit_CM33_FP_VHT"/>
+    </condition>
+
     <condition id="Corstone-300">
-      <description>Requirements for Corstone-310 FVP</description>
+      <description>Requirements for Corstone-300 FVP</description>
       <accept Dvendor="ARM:82" Dname="SSE-300-MPS3"/>
       <accept Bvendor="ARM"    Bname="V2M-MPS3-SSE-300-FVP"/>
     </condition>
@@ -63,15 +97,36 @@
 
     <condition id="Arm FVP">
       <description>Collection of supported Arm FVPs</description>
+      <accept condition="ARMCM_VHT"/>
+      <accept condition="CMSDK_VHT"/>
+      <accept condition="IOTKit_VHT"/>
       <accept condition="Corstone-300"/>
       <accept condition="Corstone-310"/>
       <accept condition="Corstone-315"/>
       <accept condition="Corstone-320"/>
     </condition>
+
+    <condition id="VIO FVP">
+      <description>Requirement for VIO Driver for FVPs</description>
+      <accept condition="Arm FVP"/>
+      <accept condition="VIO"/>
+    </condition>
+
+    <condition id="vStream FVP">
+      <description>Requirement for vStream Driver for FVPs</description>
+      <accept condition="Arm FVP"/>
+      <accept condition="vStream"/>
+    </condition>
+
+    <condition id="VSocket FVP">
+      <description>Requirement for VSocket Driver for FVPs</description>
+      <accept condition="Arm FVP"/>
+      <accept condition="VSocket"/>
+    </condition>
   </conditions>
 
   <components>
-    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="VIO" Cversion="2.0.0" Capiversion="1.0.0" condition="VIO">
+    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="VIO" Cversion="2.0.0" Capiversion="1.0.0" condition="VIO FVP">
       <description>Virtual I/O implementation for Arm FVPs</description>
       <files>
         <file category="doc"     name="Documentation/simulation/html/group__arm__vio.html"/>
@@ -79,7 +134,7 @@
       </files>
     </component>
 
-   <component Cclass="CMSIS Driver" Cgroup="vStream" Csub="AudioIn" Cversion="1.0.0" Capiversion="1.0.0" condition="vStream">
+   <component Cclass="CMSIS Driver" Cgroup="vStream" Csub="AudioIn" Cversion="1.0.0" Capiversion="1.0.0" condition="vStream FVP">
       <description>Audio Input vStream implementation for Arm FVPs</description>
       <RTE_Components_h>
         #define RTE_VSTREAM_AUDIOIN
@@ -93,7 +148,7 @@
       </files>
     </component>
 
-   <component Cclass="CMSIS Driver" Cgroup="vStream" Csub="AudioOut" Cversion="1.0.0" Capiversion="1.0.0" condition="vStream">
+   <component Cclass="CMSIS Driver" Cgroup="vStream" Csub="AudioOut" Cversion="1.0.0" Capiversion="1.0.0" condition="vStream FVP">
       <description>Audio Output vStream implementation for Arm FVPs</description>
       <RTE_Components_h>
         #define RTE_VSTREAM_AUDIOOUT
@@ -107,7 +162,7 @@
       </files>
     </component>
 
-   <component Cclass="CMSIS Driver" Cgroup="vStream" Csub="VideoIn" Cversion="1.0.0" Capiversion="1.0.0" condition="vStream">
+   <component Cclass="CMSIS Driver" Cgroup="vStream" Csub="VideoIn" Cversion="1.0.0" Capiversion="1.0.0" condition="vStream FVP">
       <description>Video Input vStream implementation for Arm FVPs</description>
       <RTE_Components_h>
         #define RTE_VSTREAM_VIDEOIN
@@ -121,7 +176,7 @@
       </files>
     </component>
 
-   <component Cclass="CMSIS Driver" Cgroup="vStream" Csub="VideoOut" Cversion="1.0.0" Capiversion="1.0.0" condition="vStream">
+   <component Cclass="CMSIS Driver" Cgroup="vStream" Csub="VideoOut" Cversion="1.0.0" Capiversion="1.0.0" condition="vStream FVP">
       <description>Video Output vStream implementation for Arm FVPs</description>
       <RTE_Components_h>
         #define RTE_VSTREAM_VIDEOOUT
@@ -135,7 +190,7 @@
       </files>
     </component>
 
-    <component Cclass="IoT Utility" Cgroup="Socket" Csub="VSocket" Capiversion="1.2.0" Cversion="1.0.0" condition="VSocket">
+    <component Cclass="IoT Utility" Cgroup="Socket" Csub="VSocket" Capiversion="1.2.0" Cversion="1.0.0" condition="VSocket FVP">
       <description>IoT Socket implementation for Arm FVPs</description>
       <RTE_Components_h>
         #define RTE_IoT_Socket                  /* IoT Socket */
