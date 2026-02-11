@@ -45,9 +45,9 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Arm Virtual Hardware
-   &#160;<span id="projectnumber">Version 2.1.0</span>
+   &#160;<span id="projectnumber">Version 2.2.0</span>
    </div>
-   <div id="projectbrief">AVH FVP Solutions Overview</div>
+   <div id="projectbrief">Solution Overview</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -131,23 +131,27 @@ $(function(){initNavTree('User_Benefits.html',''); initResizable(true); });
 <div class="textblock"><p><a class="anchor" id="md_src_2benefits"></a></p>
 <h1><a class="anchor" id="No_Hardware"></a>
 Test without Hardware</h1>
-<p>AVH FVP models allow to verify your code without the need for physical hardware which provides a robust test environment that enables:</p><ul>
+<p>Arm FVP models allow to verify your code without the need for physical hardware which provides a robust test environment that enables:</p>
+<ul>
 <li>Early software development for faster time-to-market</li>
 <li>Select optimal target device once the software workload is analysed</li>
 <li>Re-target applications to production hardware with driver abstractions</li>
 </ul>
 <h1><a class="anchor" id="Verify_Benefits"></a>
 Verify Correctness</h1>
-<p>AVH FVP simulation models are validated with the same process as the CPU IP. Specially it allows you to:</p><ul>
-<li>Perform algorithm testing with identical logical behaviour of the target device</li>
+<p>The models are validated with the same process as the CPU IP. Specially it allows you to:</p>
+<ul>
+<li>Perform algorithm testing with identical logical behavior of the target device</li>
 <li>Precisely repeat complex input patterns in CI/CD test environments</li>
-<li>Analyse software behaviour with event annotations</li>
+<li>Analyze software behavior with event annotations</li>
 </ul>
 <h1><a class="anchor" id="Perf_Benefits"></a>
 Evaluate Performance</h1>
-<p>Software algorithms for Digital Signal Processing (DSP) or Machine Learning (ML) frequently require significant CPU resources and need to be optimized for the target hardware. Comparing performance of such "load heavy" algorithms requires that they can be automatically executed with different configurations parameters but using identical input. The timing in AVH FVP models is based on a instruction count, therefore it is not timing accurate. However the results can still be used for performance estimation and A/B comparison of algorithms. <br  />
+<p>Software algorithms for digital signal processing (DSP) or machine learning (ML) frequently require significant CPU resources and need to be optimized for the target hardware. Comparing performance of such "load heavy" algorithms requires that they can be automatically executed with different configurations parameters but using identical input.</p>
+<p>The timing in Arm FVP models is based on a instruction count, therefore it is not timing accurate. However, the results can still be used for performance estimation and A/B comparison of algorithms. <br  />
 </p>
-<p><b>AVH FVP</b> simulation models allow users to test their programs at scale with reproducible input patterns. This allows you to validate and optimize application performance. Usage examples are:</p><ul>
+<p><b>Arm FVP</b> simulation models allow users to test their programs at scale with reproducible input patterns. This allows you to validate and optimize application performance. Usage examples are:</p>
+<ul>
 <li>Compare speed of different implementations of an algorithm (A/B test).</li>
 <li>Optimize resources (i.e. RTOS memory buffers for stream processing) towards application requirements.</li>
 </ul>
@@ -158,8 +162,9 @@ Continuous Testing</h1>
 <img src="effort_comparison.png" alt=""/>
 <div class="caption">
 Comparison of test efforts in CI and no CI workflows</div></div>
-    <p><a href="../../infrastructure/html/index.html">AVH FVP Infrastructure</a> with integration in tools such as Keil MDK and GitHub Actions simplifies setup of CI workflows.</p>
-<p>For unit and integration tests virtual targets offer additional advantages over hardware, including:</p><ul>
+    <p><a href="../../infrastructure/html/index.html">Arm FVP Infrastructure</a> with integration in tools such as Keil MDK and GitHub Actions simplifies setup of CI workflows.</p>
+<p>For unit and integration tests, virtual targets offer additional advantages over hardware, including:</p>
+<ul>
 <li><b>Speed</b> - no overhead for flashing the application on physical hardware. This saves time on small and fast unit tests.</li>
 <li><b>Scale</b> - virtual platforms can scale to run many tests in parallel. This makes virtual platforms more cost-effective than a farm of physical hardware.</li>
 <li><b>Maintenance</b> – unlike physical hardware, virtual platforms do not overheat, wear out from overuse, break from misuse, or use physical space and resources.</li>

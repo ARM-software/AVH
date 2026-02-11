@@ -1,7 +1,7 @@
 var searchData=
 [
   ['backlog_0',['backlog',['../group__arm__vsocket__api.html#a1793b1ff583250c6861250872d36a86b',1,'vSocketListenIO_t.param']]],
-  ['based_20projects_20for_20avh_20fvps_1',['CMSIS-based projects for AVH FVPs',['../avh_fvp_cmsis.html',1,'']]],
+  ['based_20projects_1',['CMSIS-based projects',['../avh_fvp_cmsis.html',1,'']]],
   ['block_5finterval_2',['block_interval',['../group__arm__vsi__sensor.html#ab191558740b72798db4fd9f3ea0e3d4c',1,'sensorConfig_t.u.dma']]],
   ['block_5fnum_3',['block_num',['../group__arm__vsi__sensor.html#aaff8298df3466188fd843e8123e4d2d8',1,'sensorConfig_t.u.dma']]],
   ['block_5fsize_4',['block_size',['../group__arm__vsi__sensor.html#a471827d86551eb9b51f054d563c85636',1,'sensorConfig_t.u.dma']]],

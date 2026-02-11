@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AVH FVP models: Using AVH FVPs</title>
+<title>Arm FVP models: Using Arm FVPs</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="extra_navtree.css" rel="stylesheet" type="text/css"/>
@@ -45,9 +45,9 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Arm Virtual Hardware
-   &#160;<span id="projectnumber">Version 2.1.0</span>
+   &#160;<span id="projectnumber">Version 2.2.0</span>
    </div>
-   <div id="projectbrief">AVH FVP Models</div>
+   <div id="projectbrief">Arm FVP Simulation Models</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -125,18 +125,19 @@ $(function(){initNavTree('using.html',''); initResizable(true); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Using AVH FVPs</div></div>
+  <div class="headertitle"><div class="title">Using Arm FVPs</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_src_2using"></a></p>
-<p>This section gives an overview on how to use the <b>Arm Fixed Virtual Platforms (FVPs)</b> in command line interface.</p>
-<p><a href="../../infrastructure/html/index.html">Infrastructure chapter</a> provides details on how to obtain AVH FVPs and use them in various cloud-native workflows or desktop setups, such as GitHub and Keil MDK.</p>
+<p>This section gives an overview on how to use the <b>Arm FVPs</b> command line interface.</p>
+<p><a href="../../infrastructure/html/index.html">Infrastructure chapter</a> provides details on how to obtain Arm FVPs and use them in various cloud-native workflows or desktop setups, such as GitHub and Keil MDK.</p>
 <h1><a class="anchor" id="Execution"></a>
 Running User Applications in CLI</h1>
 <p>The FVP models can be executed from command prompt by using the model name followed by the model options. Development tools may abstract the execution with GUI, but the underlying approach stays the same.</p>
-<p>Below is an example of the command for running a program on the FVP model for Corstone-300 with Ethos-U55 in Linux environment:</p>
+<p>Below is an example of the command for running a program on the FVP model for Corstone-300 with Ethos-U55 in a Linux environment:</p>
 <div class="fragment"><div class="line">FVP_Corstone_SSE-300_Ethos-U55 -a project.axf -C mps3_board.v_path=./vsi_py/ -f fvp_config.txt --simlimit 24 --stat</div>
-</div><!-- fragment --><p>Where:</p><ul>
+</div><!-- fragment --><p>Where:</p>
+<ul>
 <li><code>FVP_Corstone_SSE-300_Ethos-U55</code> is the simulation model name. Note that on Windows the executable files shall be used, for example <code>FVP_Corestone_SSE-300_Ethos-U55.exe</code>.</li>
 <li><code>-a</code> (or <code>--application</code>) option specifies the application binary file to run on the model (<code>project.axf</code> in this example).</li>
 <li><code>-f</code> (or <code>--config-file</code>) specifies the configuration file for the simulation model (<code>fvp_config.txt</code> in this case). See <a class="el" href="#Config">Model Configuration</a>.</li>
@@ -144,35 +145,37 @@ Running User Applications in CLI</h1>
 <li><code>--stat</code> instructs to print run statistics on simulation exit.</li>
 <li><code>--simlimit</code> specifies the maximum number of seconds to simulate.</li>
 </ul>
-<p>The available command options can be listed using the <code>--help</code> option. See chapter <a href="https://developer.arm.com/documentation/100966/latest/Getting-Started-with-Fixed-Virtual-Platforms/FVP-command-line-options">FVP-command-line-options</a> in the FVP Reference Guide for additional documentations.</p>
+<p>The available command options can be listed using the <code>--help</code> option. Refer to <a href="https://developer.arm.com/documentation/100966/latest/Getting-Started-with-Fixed-Virtual-Platforms/FVP-command-line-options">FVP command line options</a>.</p>
 <h1><a class="anchor" id="Config"></a>
 Model Configuration</h1>
-<p>The operation of the FVP models can be configured at start-time by providing following command-line options:</p><ul>
+<p>The operation of the FVP models can be configured at start-time by providing following command-line options:</p>
+<ul>
 <li>using <code>-C</code> (or <code>--parameter</code>) option to configure individual parameters.</li>
 <li>using option <code>-f</code> (or <code>--config-file</code>) followed by path to the text file with configuration parameters.</li>
 </ul>
 <p>The configuration parameters are model-specific and follow syntax <code>instance.parameter= &lt;value&gt;</code>, where <code>instance</code> specifies a simulated instance, such as CPU, interface, bus, memory, peripheral, etc. and can be also hierarchical.</p>
-<p>All parameters available for a target model including default setting and brief description can be obtained with the command option <code>-l</code> (or <code>--list-params</code>). Because of the large number of parameters, it is convinient to print them into a text file. For example:</p>
+<p>All parameters available for a target model including default setting and brief description can be obtained with the command option <code>-l</code> (or <code>--list-params</code>). Because of the large number of parameters, it is convenient to print them into a text file. For example:</p>
 <div class="fragment"><div class="line">FVP_Corstone_SSE-300_Ethos-U55 --list-params &gt; config.txt</div>
-</div><!-- fragment --><p>In a simple case the content of the configuration file could be as shown below for FVP_Corstone_SSE-300 targets:</p>
-<div class="fragment"><div class="line"># Parameters:</div>
-<div class="line"># instance.parameter=value       #(type, mode) default = &#39;def value&#39; : description : [min..max]</div>
+</div><!-- fragment --><p>In a simple case, the configuration file for a Corstone-300 target could look like this:</p>
+<div class="fragment"><div class="line"><span class="preprocessor"># Parameters:</span></div>
+<div class="line"><span class="preprocessor"># instance.parameter=value       #(type, mode) default = &#39;def value&#39; : description : [min..max]</span></div>
+<div class="line"><span class="preprocessor">#------------------------------------------------------------------------------</span></div>
+<div class="line">core_clk.mul=100000000                              # (int   , init-time) <span class="keywordflow">default</span> = <span class="stringliteral">&#39;0x17d7840&#39;</span> : Clock Rate Multiplier. This parameter is not exposed via CADI and can only be set in LISA</div>
+<div class="line">mps3_board.telnetterminal0.start_telnet=0           # (bool  , init-time) default = <span class="stringliteral">&#39;1&#39;</span>      : Start telnet if nothing connected</div>
+<div class="line">mps3_board.uart0.out_file=-                         # (string, init-time) default = <span class="stringliteral">&#39;&#39;</span>       : Output file to hold data written by the UART (use <span class="stringliteral">&#39;-&#39;</span> to send all output to stdout)</div>
+<div class="line">mps3_board.visualisation.disable-visualisation=1    # (bool  , init-time) default = <span class="stringliteral">&#39;0&#39;</span>      : Enable/disable visualisation</div>
+<div class="line">cpu0.semihosting-enable=1                           # (bool  , init-time) default = <span class="stringliteral">&#39;0&#39;</span>      : Enable semihosting SVC traps. Applications that do not use semihosting must set this parameter to false.</div>
 <div class="line">#------------------------------------------------------------------------------</div>
-<div class="line">core_clk.mul=100000000                              # (int   , init-time) default = &#39;0x17d7840&#39; : Clock Rate Multiplier. This parameter is not exposed via CADI and can only be set in LISA</div>
-<div class="line">mps3_board.telnetterminal0.start_telnet=0           # (bool  , init-time) default = &#39;1&#39;      : Start telnet if nothing connected</div>
-<div class="line">mps3_board.uart0.out_file=-                         # (string, init-time) default = &#39;&#39;       : Output file to hold data written by the UART (use &#39;-&#39; to send all output to stdout)</div>
-<div class="line">mps3_board.visualisation.disable-visualisation=1    # (bool  , init-time) default = &#39;0&#39;      : Enable/disable visualisation</div>
-<div class="line">cpu0.semihosting-enable=1                           # (bool  , init-time) default = &#39;0&#39;      : Enable semihosting SVC traps. Applications that do not use semihosting must set this parameter to false.</div>
-<div class="line">#------------------------------------------------------------------------------</div>
-</div><!-- fragment --><p>Where:</p><ul>
-<li><b>core_clk.mul=100000000</b> specifies the virtual time, in this case 100MHz CPU clock.</li>
-<li><b>mps3_board.telnetterminal0.start_telnet=0</b> disables the Telnet connectivity.</li>
-<li><b>mps3_board.uart0.out_file=-</b> UART output is send to stdout.</li>
-<li><b>mps3_board.visualisation.disable-visualisation=1</b> disables the graphical user interface of the FVP.</li>
-<li><b>cpu0.semihosting-enable=1</b> enables <a class="el" href="hints.html#semihosting">semihosting in the FVP</a>.</li>
+</div><!-- fragment --><p>Where:</p>
+<ul>
+<li><code>core_clk.mul=100000000</code> specifies the virtual time, in this case 100 MHz CPU clock.</li>
+<li><code>mps3_board.telnetterminal0.start_telnet=0</code> disables the Telnet connectivity.</li>
+<li><code>mps3_board.uart0.out_file=-</code> UART output is send to stdout.</li>
+<li><code>mps3_board.visualisation.disable-visualisation=1</code> disables the graphical user interface of the FVP.</li>
+<li><code>cpu0.semihosting-enable=1</code> enables <a class="el" href="hints.html#semihosting">semihosting in the FVP</a>.</li>
 </ul>
-<p>Note that instances implemented in the model can be obtained with the command option <code>--list-instances</code> that returns instance names and corresponding Fast Model component type, version and brief description. Section <a href="https://developer.arm.com/documentation/100964/latest/Fast-Models-components">Fast Models components</a> explains all the components available with FastModel technology and can be used for finding more information about a specific instance in the FVP.</p>
-<p>For additional details also see chapter <a href="https://developer.arm.com/documentation/100966/latest/Getting-Started-with-Fixed-Virtual-Platforms/Configuring-the-model">Configuring the model</a> in the Getting Started with Fixed Virtual Platforms Guide. </p>
+<p>Note that instances implemented in the model can be obtained with the command option <code>--list-instances</code> that returns instance names and corresponding model component type, version and brief description. Section <a href="https://developer.arm.com/documentation/100964/latest/Fast-Models-components">Fast Models components</a> explains all the components available with Fast Model technology and can be used for finding more information about a specific instance in the FVP.</p>
+<p>For additional details, see chapter <a href="https://developer.arm.com/documentation/100966/latest/Getting-Started-with-Fixed-Virtual-Platforms/Configuring-the-model">Configuring the model</a> in the Getting Started with Fixed Virtual Platforms Guide. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

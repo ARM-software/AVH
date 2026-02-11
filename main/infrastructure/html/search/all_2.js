@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['2_0',['AMI v1.2.2',['../ami_inventory.html#ami_inventory_122',1,'']]],
-  ['2_200_1',['AMI v1.2.0',['../ami_inventory.html#ami_inventory_120',1,'']]],
-  ['2_201_2',['AMI v1.2.1',['../ami_inventory.html#ami_inventory_121',1,'']]],
-  ['2_202_3',['AMI v1.2.2',['../ami_inventory.html#ami_inventory_122',1,'']]],
-  ['2_203_4',['AMI v1.2.3',['../ami_inventory.html#ami_inventory_123',1,'']]]
+  ['cli_0',['Command Line Interface (CLI)',['../avh_desktop.html#desktop_cli',1,'']]],
+  ['cmsis_20actions_1',['Setup with CMSIS-Actions',['../avh_gh_actions.html#arm_cmsis_actions',1,'']]],
+  ['command_20line_20interface_20cli_2',['Command Line Interface (CLI)',['../avh_desktop.html#desktop_cli',1,'']]],
+  ['configuration_3',['Project Configuration',['../run_mdk_uv4.html#mdk_uv4_project_config',1,'']]],
+  ['configuration_4',['configuration',['../run_mdk_uv4.html#mdk_uv4_fvp_debug',1,'Run and debug configuration'],['../run_mdk_vscode.html#mdk_vscode_vcpkg',1,'vcpkg configuration']]],
+  ['configurations_5',['Running multiple configurations',['../avh_gh_actions.html#avh_gh_matrix',1,'']]],
+  ['csolution_20projects_6',['Using csolution projects',['../run_mdk_uv4.html#mdk_uv4_csolution',1,'']]]
 ];

@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AVH FVP models: CMSIS-based projects for AVH FVPs</title>
+<title>Arm FVP models: CMSIS-based projects</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="extra_navtree.css" rel="stylesheet" type="text/css"/>
@@ -45,9 +45,9 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Arm Virtual Hardware
-   &#160;<span id="projectnumber">Version 2.1.0</span>
+   &#160;<span id="projectnumber">Version 2.2.0</span>
    </div>
-   <div id="projectbrief">AVH FVP Models</div>
+   <div id="projectbrief">Arm FVP Simulation Models</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -125,15 +125,15 @@ $(function(){initNavTree('avh_fvp_cmsis.html',''); initResizable(true); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">CMSIS-based projects for AVH FVPs</div></div>
+  <div class="headertitle"><div class="title">CMSIS-based projects</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_src_2avh__fvp__cmsis"></a></p>
-<p>To enable embedded software development for AVH FVP targets, Arm provides necessary device definitions, startup code, Board Support Packages and simple examples in <a href="https://www.open-cmsis-pack.org/">Open-CMSIS-Pack format</a>. The same CMSIS-based concept is followed for AVH FVP targets as also used for 10000+ real hardware devices. This significantly simplifes project management in IDEs such as Keil MDK, allows straightforward integration of other software components, and improves application portability.</p>
-<p>Table below lists AVH FVPs with the corresponding CMSIS Packs that implement device/board support, as well as target device names.</p>
+<p>To enable embedded software development for Arm FVP targets, Arm provides necessary device definitions, startup code, board support packages and simple examples in <a href="https://www.open-cmsis-pack.org/">Open-CMSIS-Pack format</a>. The same CMSIS-based concept is followed for Arm FVP targets as also used for more than 12000 real hardware devices. This significantly simplifies project management in IDEs such as Keil MDK, allows straightforward integration of other software components, and improves application portability.</p>
+<p>Table below lists FVPs with the corresponding CMSIS-Packs that implement device/board support, as well as target device names.</p>
 <table class="doxtable" style="width:115%">
 <tr>
-<th style="width:27%">AVH FVP Model Name </th><th style="width:25%">CMSIS Packs with DFP/BSP<sup> (1)</sup> </th><th style="width:17%">Device name</th><th>Description </th></tr>
+<th style="width:27%">Arm FVP Model Name </th><th style="width:25%">CMSIS Packs with DFP/BSP<sup> (1)</sup> </th><th style="width:17%">Device name</th><th>Description </th></tr>
 <tr>
 <td>FVP_Corstone_SSE-320</td><td><a href="https://www.keil.arm.com/packs/sse_320_bsp-arm">ARM.SSE_320_BSP</a></td><td><a href="https://www.keil.arm.com/devices/arm-sse-320-fvp"><code>SSE-320-FVP</code></a></td><td>Corstone-320 subsystem </td></tr>
 <tr>
@@ -192,9 +192,7 @@ FP variant - with Floating Point Unit (FPU) support </td></tr>
 </td></tr>
 </table>
 <blockquote class="doxtable">
-<p><b>Note</b></p><ul>
-<li><sup> (1)</sup> The BSP packs listed here (ending with "_BSP") also contain device definition as provided in the correponding "Device Name" cell and do not require separate device family pack (DFP). </li>
-</ul>
+<p><b>Note</b> <sup>(1)</sup> The BSP packs listed here (ending with "_BSP") also contain device definition as provided in the corresponding "Device Name" cell and do not require separate device family pack (DFP). </p>
 </blockquote>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

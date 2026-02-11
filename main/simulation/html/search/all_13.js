@@ -7,6 +7,6 @@ var searchData=
   ['use_20cases_4',['Use Cases',['../group__arm__vsi__cases.html',1,'VSI Use Cases'],['../group__arm__vsocket__cases.html',1,'VSocket Use Cases']]],
   ['useful_20hints_20and_20tips_5',['Useful Hints and Tips',['../hints.html',1,'']]],
   ['user_20applications_20in_20cli_6',['Running User Applications in CLI',['../using.html#Execution',1,'']]],
-  ['using_20avh_20fvps_7',['Using AVH FVPs',['../using.html',1,'']]],
+  ['using_20arm_20fvps_7',['Using Arm FVPs',['../using.html',1,'']]],
   ['using_20vio_8',['Using VIO',['../group__arm__vio__cases.html',1,'']]]
 ];

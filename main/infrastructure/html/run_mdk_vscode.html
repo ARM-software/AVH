@@ -45,9 +45,9 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Arm Virtual Hardware
-   &#160;<span id="projectnumber">Version 2.1.0</span>
+   &#160;<span id="projectnumber">Version 2.2.0</span>
    </div>
-   <div id="projectbrief">AVH FVP Infrastructure</div>
+   <div id="projectbrief">Infrastructure</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -129,31 +129,29 @@ $(function(){initNavTree('run_mdk_vscode.html',''); initResizable(true); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_src_2avh__mdk__vscode"></a></p>
-<p>This section explains how Arm Fixed Virtual Platforms (FVP) can be used with <a href="https://www.keil.arm.com">Keil Studio for VS Code (MDK v6)</a> for developing and debugging embedded applications on a local computer.</p>
+<p>This section explains how Arm FVPs can be used with <a href="https://www.keil.arm.com">Keil Studio</a> for developing and debugging embedded applications on a local computer.</p>
 <h1><a class="anchor" id="mdk_vscode_install"></a>
 Tools Installation</h1>
 <ul>
-<li>Download and Install <a href="https://code.visualstudio.com/">Visual Studio Code</a> if not installed yet.</li>
+<li>Download and install <a href="https://code.visualstudio.com/">Visual Studio Code</a> if not installed yet.</li>
 <li>Install <a href="https://developer.arm.com/documentation/109350/latest/Installation/Keil-Studio-installation">Arm Keil Studio Pack</a> in Visual Studio Code.</li>
-<li>Ensure that a user-based license is <a href="https://developer.arm.com/documentation/108029/latest/Activate-your-license-to-use-Arm-tools">activated</a>. Either a <a href="https://www.keil.arm.com/mdk-community">Keil MDK-Community edition</a> (evaluation and non-commercial use) or an <a href="https://www.keil.arm.com/keil-mdk/#mdk-v6-editions">MDK-Professional</a> (commercial use) is required for running AVH FVP models.</li>
+<li>Ensure that a user-based license is <a href="https://developer.arm.com/documentation/108029/latest/Activate-your-license-to-use-Arm-tools">activated</a>. Either an <a href="https://www.keil.arm.com/mdk-community">MDK-Community edition</a> (evaluation and non-commercial use) or an <a href="https://www.keil.arm.com/keil-mdk/#mdk-v6-editions">MDK-Professional</a> (commercial use) is required for running Arm FVP models.</li>
 </ul>
 <h1><a class="anchor" id="mdk_vscode_fvp_targets"></a>
 Target selection</h1>
-<p>Keil Studio natively supports the <a href="https://www.open-cmsis-pack.org/">Open-CMSIS-Pack format</a> for device support and management of software components. See <a href="../../simulation/html/avh_fvp_cmsis.html">CMSIS-based projects for AVH FVPs</a> for the list of the device family packs and BSP packs required for use with AVH FVPs.</p>
+<p>Keil Studio natively supports the <a href="https://www.open-cmsis-pack.org/">Open-CMSIS-Pack format</a> for device support and management of software components. See <a href="../../simulation/html/avh_fvp_cmsis.html">CMSIS-based projects for AVH FVPs</a> for the list of the device family packs and BSP packs required for use with Arm FVPs.</p>
 <ul>
 <li>When opening an existing <a href="https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/YML-Input-Format.md">csolution project</a> in Keil Studio, all necessary packs for the target will be automatically installed.</li>
+<li>When creating a new solution, you need to select a target device that corresponds to the Arm FVP model according to the table in <a href="../../simulation/html/avh_fvp_cmsis.html">CMSIS-based projects for AVH FVPs</a>.</li>
 </ul>
-<ul>
-<li>When creating a new solution you need to select a target device that correponds to the AVH FVP model according to the table in <a href="../../simulation/html/avh_fvp_cmsis.html">CMSIS-based projects for AVH FVPs</a>. Follow the instructions provided in <a href="https://developer.arm.com/documentation/109350/v6/Create-new-applications/Create-a-new-solution-using-the-Keil-Studio-VS-Code-extensions">Create a new solution using the Keil Studio VS Code extensions</a>.</li>
-</ul>
-<p>You can view the device name defined for the target in the project csolution.yml file, or by clicking the <em>Manage solution settings</em> button in the CMSIS view, as shown on the image below. <a href="https://developer.arm.com/documentation/108029/latest/Arm-CMSIS-Solution-extension/Set-a-context-for-your-solution">Set a context for your solution</a> explains the concept in details.</p>
+<p>You can view the device name defined for the target in the project <code>csolution.yml</code> file, or by clicking the <em>Manage solution settings</em> button in the <b>CMSIS</b> view, as shown on the image below. <a href="https://mdk-packs.github.io/vscode-cmsis-solution-docs/manage_settings.html">Manage solutions</a> explains the concept in details.</p>
 <div class="image">
 <img src="mdk_vscode_mng_solution.png" alt=""/>
 <div class="caption">
 CMSIS Manage solution settings</div></div>
     <h1><a class="anchor" id="mdk_vscode_vcpkg"></a>
 vcpkg configuration</h1>
-<p>Keil Studio relies on <a href="https://developer.arm.com/documentation/108029/latest/Arm-Environment-Manager-extension">Arm Environment Manager extension</a> to setup development environment from Arm Tools Artifactory using Microsoft vcpkg. The vcpkg manifest file <code>vcpkg_configuration.json</code> shall contain the requirement for AVH FVPs models, in the same way as explained in <a class="el" href="avh_fvp_artifactory.html#avh_fvp_vcpkg">Download with vcpkg</a>. For example:</p>
+<p>Keil Studio relies on the <a href="https://marketplace.visualstudio.com/items?itemName=Arm.environment-manager">Arm Tools Environment Manager</a> extension to setup the development environment from Arm Tools Artifactory using Microsoft vcpkg. The vcpkg manifest file <code>vcpkg_configuration.json</code> must contain the requirement for Arm FVPs models, in the same way as explained in <a class="el" href="avh_fvp_artifactory.html#avh_fvp_vcpkg">Download with vcpkg</a>. For example:</p>
 <div class="fragment"><div class="line">{</div>
 <div class="line">  &quot;registries&quot;: [</div>
 <div class="line">    {</div>
@@ -163,17 +161,18 @@ vcpkg configuration</h1>
 <div class="line">    }</div>
 <div class="line">  ],</div>
 <div class="line">  &quot;requires&quot;: {</div>
-<div class="line">    &quot;arm:models/arm/avh-fvp&quot;: &quot;^11.27.31&quot;</div>
+<div class="line">    &quot;arm:models/arm/avh-fvp&quot;: &quot;^11.30.29&quot;</div>
 <div class="line">  }</div>
 <div class="line">}</div>
-</div><!-- fragment --><p>Note that in Keil Studio also other artifacts are usually present for build and debug tasks such as cmsis-toolbox, compiler toolchain, and others.</p>
+</div><!-- fragment --><blockquote class="doxtable">
+<p><b>Note</b> In Keil Studio other tools are usually also present for build and debug tasks such as CMSIS-Toolbox, a compiler toolchain, and others. </p>
+</blockquote>
 <h1><a class="anchor" id="mdk_vscode_build"></a>
-Program Build</h1>
-<p>Follow the instructions provided in the <a href="https://developer.arm.com/documentation/108029/0000/Get-started-with-an-example-project/Build-the-example-project">Build the example project</a> in the Arm Keil Studio for VS Code User's Guide.</p>
+Build</h1>
+<p>Follow the instructions provided in the <a href="https://mdk-packs.github.io/vscode-cmsis-solution-docs/build_run.html">Build</a> chapter in the Keil Studio User's Guide.</p>
 <h1><a class="anchor" id="mdk_vscode_program_run"></a>
-Program Run and Debug</h1>
-<p>In Keil Studio you can run a program on the target without using the debugger. See <a href="https://developer.arm.com/documentation/109350/latest/Create-new-applications/Create-a-new-solution-using-the-Keil-Studio-VS-Code-extensions/Run-the-solution">Run the solution</a> for steps how to configure corresponding task for AVH FVPs.</p>
-<p>To be able to debug your program, you must create a corresponding launch configuration, as explained in <a href="https://developer.arm.com/documentation/109350/v6/Create-new-applications/Create-a-new-solution-using-the-Keil-Studio-VS-Code-extensions/Debug-the-solution">Debug the solution</a>. </p>
+Run</h1>
+<p>In Keil Studio, you can run a program on the target without using the debugger. See <a href="https://mdk-packs.github.io/vscode-cmsis-solution-docs/debug.html#arm-fvps">Arm FVPs</a> for steps how to configure this. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

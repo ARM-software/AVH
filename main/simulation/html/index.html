@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AVH FVP models: Overview</title>
+<title>Arm FVP models: Overview</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="extra_navtree.css" rel="stylesheet" type="text/css"/>
@@ -45,9 +45,9 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Arm Virtual Hardware
-   &#160;<span id="projectnumber">Version 2.1.0</span>
+   &#160;<span id="projectnumber">Version 2.2.0</span>
    </div>
-   <div id="projectbrief">AVH FVP Models</div>
+   <div id="projectbrief">Arm FVP Simulation Models</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -129,12 +129,12 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="mainpage"></a></p>
-<p>The <b>AVH Fixed Virtual Platforms (AVH FVPs)</b> provide functionally accurate simulation models of Arm-based Cortex-M CPUs and Corstone-3xx Subsystems.</p>
-<p>The AVH FVP models are standalone programs that can be executed in a target environment. See <a class="el" href="#Models">Available Models</a> for a list of FVPs provided in the AVH context.</p>
-<p>Section <a class="el" href="using.html">Using AVH FVPs</a> gives an overview how to run an embedded program on a target AVH FVP model using command line interface. <a href="../../infrastructure/html/index.html">Infrastructure chapter</a> provides details on how to obtain AVH FVPs and use them in various cloud-native or desktop environments workflows, such as GitHub and Keil MDK.</p>
+<p>The <b>Arm Fixed Virtual Platforms (Arm FVPs)</b> provide functionally accurate simulation models of Arm-based Cortex-M CPUs and Corstone-3xx subsystems.</p>
+<p>The models are standalone programs that can be executed in a target environment. See <a class="el" href="#Models">Available Models</a> for a list of FVPs provided in this context.</p>
+<p>Section <a class="el" href="using.html">Using Arm FVPs</a> gives an overview how to run an embedded program on a target Arm FVP model using command line interface. <a href="../../infrastructure/html/index.html">Infrastructure chapter</a> provides details on how to obtain Arm FVPs and use them in various cloud-native or desktop environments workflows, such as GitHub and Keil MDK.</p>
 <h1><a class="anchor" id="Models"></a>
 Available Models</h1>
-<p>The AVH FVP simulation models build a subset of <a href="https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms">Arm Fast Models Fixed Virtual Platforms</a> with extensions for <a class="el" href="group__arm__cmvp.html">Virtual Interfaces Overview</a>.</p>
+<p>The Arm FVP simulation models build a subset of <a href="https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms">Arm Fast Models Fixed Virtual Platforms</a> with extensions for <a class="el" href="group__arm__cmvp.html">Virtual Interfaces Overview</a>.</p>
 <p>The table below lists the available models:</p>
 <table class="doxtable">
 <tr>
@@ -186,9 +186,12 @@ Ethos-U55 </td><td><a href="https://developer.arm.com/documentation/100966/lates
 <tr>
 <td>FVP_MPS2_Cortex-M0 </td><td>Cortex-M0 </td><td><a href="https://developer.arm.com/documentation/dai0382">ARM Cortex-M0 SMM on V2M-MPS2 (AppNote AN382)</a>  </td></tr>
 </table>
+<blockquote class="doxtable">
+<p><b>Note</b> Arm FVPs are only available for Windows and Linux hosts. If you use macOS, a Docker-based approach helps you to run Arm FVPs on your machine. Refer to <a href="https://github.com/Arm-Examples/FVPs-on-Mac">FVPs-on-Mac</a> to get started. </p>
+</blockquote>
 <h1><a class="anchor" id="Virtual_Interfaces"></a>
 Virtual Interfaces</h1>
-<p>The AVH FVPs implement various Virtual Interfaces that can be used to stimulate the application under test.</p>
+<p>The Arm Virtual Hardware FVPs implement various virtual interfaces that can be used to stimulate the application under test.</p>
 <div class="image">
 <img src="Virtual_Interfaces.png" alt=""/>
 <div class="caption">
@@ -196,10 +199,10 @@ FVPs with Virtual Interfaces</div></div>
     <ul>
 <li>The <a class="el" href="group__arm__vio.html">Virtual Input/Output (VIO)</a> interface controls simple I/O such as LED and switches.</li>
 <li>The <a class="el" href="group__arm__vsi.html">Virtual Streaming Interface (VSI)</a> provides up to 8 channels for data streaming.</li>
-<li>The <a class="el" href="group__arm__vsocket.html">Virtual Socket Interface (VSocket)</a> connects the user application to <a href="https://en.wikipedia.org/wiki/Berkeley_sockets">BSD sockets</a> on the Host computer for IP network connectivity.</li>
+<li>The <a class="el" href="group__arm__vsocket.html">Virtual Socket Interface (VSocket)</a> connects the user application to <a href="https://en.wikipedia.org/wiki/Berkeley_sockets">BSD sockets</a> on the host computer for IP network connectivity.</li>
 </ul>
 <p>Both <a class="el" href="group__arm__vio.html">VIO</a> and <a class="el" href="group__arm__vsi.html">VSI</a> connect to local python scripts and enable flexible scripting for test automation. Eight VSI interfaces are available and may be used in parallel to stream simultaneous multi-channel inputs and outputs. The interfaces are tailored for simulation, but can also map to physical target hardware, for example to a video camera as a VSI input.</p>
-<p>In addition the <b>Event Recorder Capturing</b> provides an interface for the <a href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/er_overview.html">Event Recorder</a> API. This software component enables event annotations in the application code or software component libraries. The <b>Event Recorder</b> provides visibility to the dynamic execution of an application, enables RTOS awareness, and <a href="https://www.keil.com/pack/doc/compiler/EventRecorder/html/group__Event__Execution__Statistic.html">Event Execution Statistics</a> which helps to optimize the timing of complex algorithms. </p>
+<p>In addition the <b>Event Recorder Capturing</b> provides an interface for the <a href="https://arm-software.github.io/CMSIS-View/latest/evr.html">Event Recorder</a> API. This software component enables event annotations in the application code or software component libraries. <b>Event Recorder</b> provides visibility to the dynamic execution of an application, enables RTOS awareness, and <a href="https://arm-software.github.io/CMSIS-View/latest/ev_stat.html">Event Statistics</a> which helps to optimize the timing of complex algorithms. </p>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->

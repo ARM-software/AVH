@@ -24,14 +24,12 @@
 */
 var NAVTREE =
 [
-  [ "Examples", "index.html", [
-    [ "Legacy and experimental", "examples_beta.html", "examples_beta" ]
-  ] ]
+  [ "Examples", "index.html", ]
 ];
 
 var NAVTREEINDEX =
 [
-"ATS-Keyword.html"
+"index.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

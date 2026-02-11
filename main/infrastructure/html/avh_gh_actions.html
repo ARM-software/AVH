@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Infrastructure: AVH FVPs with Arm GitHub Actions</title>
+<title>Infrastructure: Arm GitHub Actions</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="extra_navtree.css" rel="stylesheet" type="text/css"/>
@@ -45,9 +45,9 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Arm Virtual Hardware
-   &#160;<span id="projectnumber">Version 2.1.0</span>
+   &#160;<span id="projectnumber">Version 2.2.0</span>
    </div>
-   <div id="projectbrief">AVH FVP Infrastructure</div>
+   <div id="projectbrief">Infrastructure</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -125,37 +125,36 @@ $(function(){initNavTree('avh_gh_actions.html',''); initResizable(true); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">AVH FVPs with Arm GitHub Actions</div></div>
+  <div class="headertitle"><div class="title">Arm GitHub Actions</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_src_2avh__gh__actions"></a></p>
 <p>GitHub Actions allow you to automate build, test, and deployment pipelines for GitHub-based projects.</p>
-<p>A GitHub Actions workflow executes your commands on a Virtual Machine (GitHub Runner) that is hosted either directly by GitHub or can be self-hosted. It is event-driven, meaning that you can run a series of commands on a specified event such as push of a new commit or creation of a pull request. Refer to <a href="https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions">Introduction to GitHub Actions</a> for information about the components of GitHub Actions.</p>
-<p>This section explains how to setup your GitHub Actions environment for executing programs on AVH FVPs.</p>
+<p>A GitHub Actions workflow executes your commands on a virtual machine (GitHub Runner) that is hosted either directly by GitHub or can be self-hosted. It is event-driven, meaning that you can run a series of commands on a specified event such as push of a new commit or creation of a pull request. Refer to <a href="https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions">Introduction to GitHub Actions</a> for information about the components of GitHub Actions.</p>
+<p>This section explains how to setup your GitHub Actions environment for executing programs on Arm FVPs.</p>
 <h1><a class="anchor" id="arm_cmsis_actions"></a>
 Setup with CMSIS-Actions</h1>
-<p>Arm provides several GitHub Actions that simplify installation of AVH FVPs and other Arm Tools within your GitHub CI workflows. Following actions are maintained in the <a href="https://github.com/ARM-software/cmsis-actions">github.com/ARM-software/cmsis-actions</a> repository:</p>
+<p>Arm provides several GitHub Actions that simplify installation of Arm FVPs and other Arm Tools within your GitHub CI workflows. The following actions are maintained in the <a href="https://github.com/ARM-software/cmsis-actions">cmsis-actions</a> repository:</p>
 <ul>
-<li><b>vcpkg action</b> performs environment setup from Arm Tools Artifactory based on vcpkg configuration.<br  />
-This follows the concept explained in <a class="el" href="avh_fvp_artifactory.html#avh_fvp_vcpkg">Download with vcpkg</a>.<br  />
- Following step can be added to the workflow to execute this action: <div class="fragment"><div class="line">- name: Setup vcpkg environment</div>
+<li><p class="startli">The <b>vcpkg</b> action performs the environment setup from Arm Tools Artifactory based on vcpkg configuration (refer to <a class="el" href="avh_fvp_artifactory.html#avh_fvp_vcpkg">Download with vcpkg</a>).<br  />
+ The following step can be added to the workflow to execute this action:</p>
+<div class="fragment"><div class="line">- name: Setup vcpkg environment</div>
 <div class="line">  uses: ARM-software/cmsis-actions/vcpkg@v1</div>
 <div class="line">  with:</div>
 <div class="line">    config: &quot;./vcpkg-configuration.json&quot;</div>
 <div class="line">    vcpkg-downloads: &quot;${{ github.workspace }}/.vcpkg/downloads&quot;</div>
 <div class="line">    cache: &quot;-&quot;</div>
 </div><!-- fragment --></li>
+<li>The <b>armlm</b> action activates an Arm user based license (UBL) for Arm Tools on your GitHub Runner.<br  />
+ For example, add the following step to your workflow to activate an MDK-Community license that allows evaluation and open-source usage of Arm Tools:</li>
 </ul>
-<ul>
-<li><b>armlm action</b> activates an Arm user based license (UBL) for Arm Tools on your GitHub Runner.<br  />
- For example add the following step to your workflow to activate a Keil-MDK Community license that allows evaluation and open-source usage of Arm Tools: <div class="fragment"><div class="line">- name: Activate Arm license</div>
+<div class="fragment"><div class="line">- name: Activate Arm license</div>
 <div class="line">  uses: ARM-software/cmsis-actions/armlm@v1</div>
-</div><!-- fragment --> The activated environment is preserved into <code>$GITHUB_PATH</code> and <code>$GITHUB_ENV</code> so that it can be used by subsequent steps.</li>
-</ul>
-<p>The actions execute on the GitHub Runner operations for vcpkg-based tool download and license activation as explained in the <a class="el" href="avh_fvp_artifactory.html">AVH FVPs in Arm Tools Artifactory</a>.</p>
+</div><!-- fragment --><p>The activated environment is preserved into <code>$GITHUB_PATH</code> and <code>$GITHUB_ENV</code> so that it can be used by subsequent steps.</p>
+<p>The actions execute on the GitHub Runner operations for vcpkg-based tool download and license activation as explained in the <a class="el" href="avh_fvp_artifactory.html">Arm Tools Artifactory</a>.</p>
 <h1><a class="anchor" id="avh_gh_run"></a>
 Program Execution</h1>
-<p>After AVH FVPs and other tools are installed and activated on the GitHub Runner (see <a class="el" href="#arm_cmsis_actions">Setup with CMSIS-Actions</a>) you can use the command line interface for building your project (e.g with <code>cbuild</code> utility) and run the firmware on an AVH FVP target (see <a href="../../simulation/html/using.html#Execution">Running User Applications in CLI</a>).</p>
+<p>After Arm FVPs and other tools are installed and activated on the GitHub Runner (see <a class="el" href="#arm_cmsis_actions">Setup with CMSIS-Actions</a>), you can use the command line interface for building your project (e.g with <code>cbuild</code> utility) and run the firmware on an Arm FVP target (see <a href="../../simulation/html/using.html#Execution">Running User Applications in CLI</a>).</p>
 <p>For example, the code snippet below adds to a GitHub Actions workflow a step with program execution on Corstone-320 FVP target:</p>
 <div class="fragment"><div class="line">name: Execute</div>
 <div class="line">        run: |</div>
@@ -164,17 +163,17 @@ Program Execution</h1>
 </div><!-- fragment --><p>Also see <a href="../../simulation/html/hints.html#ci_frameworks">Execution in CI frameworks</a> for useful hints about running FVPs in CI workflows.</p>
 <h1><a class="anchor" id="avh_gh_matrix"></a>
 Running multiple configurations</h1>
-<p>Software often needs to be tested in multiple configurations, with different toolchains and on different platforms. To simplify job definition for such variations you can use <a href="https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs">matrix strategy in GitHub Action</a>.</p>
-<p>For example the code snapshot below defines a two-dimensional matrix for Corstone-320/315/310/300 targets with Arm Compiler 6, GCC and Clang:</p>
+<p>Software often needs to be tested in multiple configurations, with different toolchains and on different platforms. To simplify job definition for such variations, you can use a <a href="https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs">matrix strategy in GitHub Actions</a>.</p>
+<p>For example, the code snapshot below defines a two-dimensional matrix for Corstone-320/315/310/300 targets with Arm Compiler 6, GCC and Clang:</p>
 <div class="fragment"><div class="line">matrix:</div>
 <div class="line">  target: [CS320, CS315, CS310, CS300]</div>
 <div class="line">  compiler: [AC6, GCC, Clang]</div>
-</div><!-- fragment --><p>And then in your job descriptions you can use <code>${{ matrix.target }}</code> and <code>${{ matrix.compiler }}</code> variables, that GitHub Actions will automatically iterate over for you.</p>
-<p>See <a href="https://github.com/Arm-Examples/AVH-Hello">AVH-Hello</a> as a simple example where such matrix strategy is implemented for building the program with different toolchains and for different AVH FVP targets.</p>
-<p>Note that use of <a href="https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/YML-Input-Format.md">csolution project format</a> greatly simplifies project definition and build for different target types and build configurations. It well integrates with the GitHub Actions matrix for CI jobs.</p>
+</div><!-- fragment --><p>Then, you can use in your job descriptions <code>${{ matrix.target }}</code> and <code>${{ matrix.compiler }}</code> variables, that GitHub Actions will automatically iterate over for you.</p>
+<p>See <a href="https://github.com/Arm-Examples/AVH-Hello">AVH-Hello</a> as a simple example where such matrix strategy is implemented for building the program with different toolchains and for different Arm FVP targets.</p>
+<p>Note that use of the <a href="https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/YML-Input-Format.md">csolution project format</a> greatly simplifies project definition and build for different target types and build configurations. It well integrates with the GitHub Actions matrix for CI jobs.</p>
 <h1><a class="anchor" id="avh_ci_template"></a>
 Examples</h1>
-<p>See chapter <a href="../../examples/html/index.html">Examples</a> for reference implementations that use <a class="el" href="#arm_cmsis_actions">CMSIS-Actions</a> for environment setup and subsequently perform project build and program execution on AVH FVP targets. Refer to the project's <code>./github/workflows/</code> directory for the implemented GitHub Actions workflows. </p>
+<p>See chapter <a href="../../examples/html/index.html">Examples</a> for reference implementations that use <a class="el" href="#arm_cmsis_actions">CMSIS-Actions</a> for environment setup and subsequently perform project build and program execution on Arm FVP targets. Refer to the project's <code>./github/workflows/</code> directory for the implemented GitHub Actions workflows. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

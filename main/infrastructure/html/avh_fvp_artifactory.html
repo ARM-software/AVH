@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Infrastructure: AVH FVPs in Arm Tools Artifactory</title>
+<title>Infrastructure: Arm Tools Artifactory</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="extra_navtree.css" rel="stylesheet" type="text/css"/>
@@ -45,9 +45,9 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Arm Virtual Hardware
-   &#160;<span id="projectnumber">Version 2.1.0</span>
+   &#160;<span id="projectnumber">Version 2.2.0</span>
    </div>
-   <div id="projectbrief">AVH FVP Infrastructure</div>
+   <div id="projectbrief">Infrastructure</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -125,26 +125,31 @@ $(function(){initNavTree('avh_fvp_artifactory.html',''); initResizable(true); })
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">AVH FVPs in Arm Tools Artifactory</div></div>
+  <div class="headertitle"><div class="title">Arm Tools Artifactory</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_src_2avh__artifactory"></a></p>
-<p>The AVH FVP models can be universally obtained from <a href="https://www.keil.arm.com/artifacts/">Arm Tools Artifactory</a> that also contains other useful develepment tools, such as Arm Compiler, GCC toolchain, CMSIS-Toolbox.</p>
-<p>You can either download the AVH FVPs <a class="el" href="#avh_fvp_download">directly</a> or rely on the environment setup via the <a class="el" href="#avh_fvp_vcpkg">vcpkg configuration</a> in the project. Additionally a user-based license needs to be <a class="el" href="#avh_fvp_lic_act">activated</a>.</p>
-<p>Note that AVH FVPs integrations in <a class="el" href="avh_gh_actions.html">GitHub Actions</a> or <a class="el" href="avh_desktop.html">desktop IDEs</a> may provide own built-in mechanisms for environment setup and vcpkg configuration support. Refer to corresponding documentation sections for details.</p>
+<p>The Arm FVP models can be universally obtained from <a href="https://www.keil.arm.com/artifacts/">Arm Tools Artifactory</a> that also contains other useful development tools, such as Arm Compiler, GCC toolchain, CMSIS-Toolbox.</p>
+<p>You can either download the FVPs <a class="el" href="#avh_fvp_download">directly</a> or rely on the environment setup via the <a class="el" href="#avh_fvp_vcpkg">vcpkg configuration</a> in the project. Additionally, a user-based license needs to be <a class="el" href="#avh_fvp_lic_act">activated</a>.</p>
+<blockquote class="doxtable">
+<p><b>Note</b></p><ul>
+<li>Arm FVP integrations in <a class="el" href="avh_gh_actions.html">GitHub Actions</a> or <a class="el" href="avh_desktop.html">desktop IDEs</a> may provide their own built-in mechanisms for environment setup and vcpkg configuration support. Refer to corresponding documentation sections for details.</li>
+<li>Arm FVPs are not available for macOS. Refer to <a href="https://github.com/Arm-Examples/FVPs-on-Mac">FVPs-on-Mac</a> for a workaround using a Docker container. </li>
+</ul>
+</blockquote>
 <h1><a class="anchor" id="avh_fvp_download"></a>
 Direct download</h1>
-<p>You can download individual tool artifacts from Arm Tools Artifactory directly using URLs. The AVH FVPs can be found at <a href="https://artifacts.tools.arm.com/avh/">https://artifacts.tools.arm.com/avh/</a>, are organized by release version and packaged for supported host operating systems such as Linux on Arm (AArch64), Windows on x86, and Linux on x86.</p>
-<p>For example to download AVH FVP v11.27.31 for use on Linux with Arm-based CPUs, run the following commands:</p>
-<div class="fragment"><div class="line">wget https://artifacts.tools.arm.com/avh/11.27.31/avh-linux-aarch64_11.27_31_Linux64_armv8l.tgz</div>
-<div class="line">tar zxvf avh-linux-aarch64_11.27_31_Linux64_armv8l.tgz</div>
-</div><!-- fragment --><p>In this example, the avh-fvp artifact is downloaded and the extracted models are available locally in <code>./avh-linux-aarch64/bin/models/</code> directory.</p>
+<p>You can download individual tool artifacts directly using the URL. The Arm FVPs can be found at <a href="https://artifacts.tools.arm.com/avh/">https://artifacts.tools.arm.com/avh/</a> and are organized by release version and packaged for supported host operating systems such as Linux on Arm (AArch64), Windows on x86, and Linux on x86.</p>
+<p>For example to download AVH FVP v11.30.29 for use on Linux with Arm-based CPUs, run the following commands:</p>
+<div class="fragment"><div class="line">wget https://artifacts.tools.arm.com/avh/11.30.29/avh-linux-aarch64_11.30_29_Linux64_armv8l.tgz</div>
+<div class="line">tar zxvf avh-linux-aarch64_11.30_29_Linux64_armv8l.tgz</div>
+</div><!-- fragment --><p>In this example, the artifact is downloaded with <code>wget</code> and extracted. The models are then available locally in <code>./avh-linux-aarch64/bin/models/</code> directory.</p>
 <h1><a class="anchor" id="avh_fvp_vcpkg"></a>
 Download with vcpkg</h1>
 <p>vcpkg is a package management utility that can be used to easily configure and recreate your development environment.</p>
-<p>Learning path article <a href="https://learn.arm.com/learning-paths/microcontrollers/vcpkg-tool-installation/">Install tools on the command line using vcpkg</a> provides detailed information on how to install vcpkg on your machine and use it to retrieve specific tool artifacts.</p>
-<p>The package management via vcpkg is natively integrated into Keil Studio for VS Code and is configured in many Arm references examples. It is also simplified for use in GitHub CI/CD workflows as explained in <a class="el" href="avh_gh_actions.html">AVH FVPs with Arm GitHub Actions</a>.</p>
-<p>For AVH FVPs the <code>vcpkg_configuration.json</code> file shall contain <code>"arm:models/arm/avh-fvp"</code> entry to ensure the download of the models. For example:</p>
+<p>The learning path article <a href="https://learn.arm.com/learning-paths/microcontrollers/vcpkg-tool-installation/">Install tools on the command line using vcpkg</a> provides detailed information on how to install vcpkg on your machine and use it to retrieve specific tool artifacts.</p>
+<p>vcpkg is natively integrated into Keil Studio and is configured in many Arm references examples. It is also used in GitHub CI/CD workflows as explained in <a class="el" href="avh_gh_actions.html">Arm GitHub Actions</a>.</p>
+<p>For Arm FVPs, the <code>vcpkg_configuration.json</code> file must contain an <code>"arm:models/arm/avh-fvp"</code> entry to ensure the download of the models. For example:</p>
 <div class="fragment"><div class="line">{</div>
 <div class="line">  &quot;registries&quot;: [</div>
 <div class="line">    {</div>
@@ -154,18 +159,18 @@ Download with vcpkg</h1>
 <div class="line">    }</div>
 <div class="line">  ],</div>
 <div class="line">  &quot;requires&quot;: {</div>
-<div class="line">    &quot;arm:models/arm/avh-fvp&quot;: &quot;^11.27.31&quot;</div>
+<div class="line">    &quot;arm:models/arm/avh-fvp&quot;: &quot;^11.30.29&quot;</div>
 <div class="line">  }</div>
 <div class="line">}</div>
 </div><!-- fragment --><h1><a class="anchor" id="avh_fvp_lic_act"></a>
 License management</h1>
-<p>AVH FVPs as well as other Arm Tools provided in the Arm Tools Artifactory require an active <a href="https://developer.arm.com/Tools%20and%20Software/User-based%20Licensing">Arm user-based license (UBL)</a> for their operation.</p>
-<p>Arm tools artifacts include the license management utility armlm that shall be used to <a href="https://developer.arm.com/documentation/102516/1-3/Activate-and-deactivate-your-product-license">activate and deactivate</a> a UBL license in your environment.</p>
-<p>For evaluation and non-commercial use you can activate an <a href="https://www.keil.arm.com/keil-mdk/#mdk-v6-editions">MDK-Community Edition</a> that also enables AVH FVPs. Use the following command for that:</p>
+<p>Arm FVPs, as well as other Arm Tools provided in the Arm Tools Artifactory, require an active <a href="https://developer.arm.com/Tools%20and%20Software/User-based%20Licensing">Arm user-based license (UBL)</a> for their operation.</p>
+<p>Arm tools artifacts include the license management utility <code>armlm</code> that is used to <a href="https://developer.arm.com/documentation/102516/1-3/Activate-and-deactivate-your-product-license">activate and deactivate</a> a UBL license in your environment.</p>
+<p>For evaluation and non-commercial use you can activate an <a href="https://www.keil.arm.com/keil-mdk/#mdk-v6-editions">MDK-Community Edition</a> that also enables Arm FVPs. Use the following command for that:</p>
 <div class="fragment"><div class="line">armlm activate -product KEMDK-COM0 -server https://mdk-preview.keil.arm.com</div>
-</div><!-- fragment --><p>For commercial use you need to obtain a license for <a href="https://www.keil.arm.com/keil-mdk/#mdk-v6-editions">MDK-Professional edition</a> or <a href="https://www.arm.com/products/development-tools/success-kits">Arm Success Kit</a>.</p>
+</div><!-- fragment --><p>For commercial use, you need to obtain a license for <a href="https://www.keil.arm.com/keil-mdk/#mdk-v6-editions">MDK-Professional edition</a> or <a href="https://www.arm.com/products/development-tools/success-kits">Arm Success Kit</a>.</p>
 <blockquote class="doxtable">
-<p><b>Note</b> Your use of an Arm tool is subject to your acceptance of the End User License Agreement for Arm Software Development Tools, located within the 'license_terms' folder of the downloaded archive. By installing and using the Arm tool, you agree to be bound by the terms and conditions of the end user license agreement. </p>
+<p><b>Note</b> Your use of an Arm tool is subject to your acceptance of the End User License Agreement for Arm Software Development Tools, located within the <code>license_terms</code> folder of the downloaded archive. By installing and using the Arm tool, you agree to be bound by the terms and conditions of the end user license agreement. </p>
 </blockquote>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

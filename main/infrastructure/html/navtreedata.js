@@ -26,25 +26,24 @@ var NAVTREE =
 [
   [ "Infrastructure", "index.html", [
     [ "Overview", "index.html", null ],
-    [ "AVH FVPs in Arm Tools Artifactory", "avh_fvp_artifactory.html", [
+    [ "Arm Tools Artifactory", "avh_fvp_artifactory.html", [
       [ "Direct download", "avh_fvp_artifactory.html#avh_fvp_download", null ],
       [ "Download with vcpkg", "avh_fvp_artifactory.html#avh_fvp_vcpkg", null ],
       [ "License management", "avh_fvp_artifactory.html#avh_fvp_lic_act", null ]
     ] ],
-    [ "AVH FVPs with Arm GitHub Actions", "avh_gh_actions.html", [
+    [ "Arm GitHub Actions", "avh_gh_actions.html", [
       [ "Setup with CMSIS-Actions", "avh_gh_actions.html#arm_cmsis_actions", null ],
       [ "Program Execution", "avh_gh_actions.html#avh_gh_run", null ],
       [ "Running multiple configurations", "avh_gh_actions.html#avh_gh_matrix", null ],
       [ "Examples", "avh_gh_actions.html#avh_ci_template", null ]
     ] ],
-    [ "AVH FVPs on Desktop", "avh_desktop.html", "avh_desktop" ],
-    [ "Experimental Environments", "avh_beta.html", "avh_beta" ]
+    [ "Desktop Usage", "avh_desktop.html", "avh_desktop" ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"AWS.html"
+"avh_desktop.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

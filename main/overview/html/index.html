@@ -45,9 +45,9 @@
   <td id="projectlogo" style="padding: 1em;"><img alt="Logo" src="arm.png"/></td>
   <td style="padding-left: 2em; padding-bottom: 1em;padding-top: 1em;">
    <div id="projectname">Arm Virtual Hardware
-   &#160;<span id="projectnumber">Version 2.1.0</span>
+   &#160;<span id="projectnumber">Version 2.2.0</span>
    </div>
-   <div id="projectbrief">AVH FVP Solutions Overview</div>
+   <div id="projectbrief">Solution Overview</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -128,32 +128,26 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
   <div class="headertitle"><div class="title">Introduction </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a href="https://www.arm.com/products/development-tools/simulation/virtual-hardware">Arm Virtual Hardware (AVH)</a> covers various solutions for software development on Arm-based processors using virtual targets. This includes virtual simulation models, their cloud-native deployments and integrations with development tools.</p>
-<p>AVH supports the software development cycle of embedded, IoT, and ML applications and provides essential components for effective integration into Continuous Integration/Continuous Delivery (<a href="https://en.wikipedia.org/wiki/CI/CD">CI/CD</a>) and <a href="https://en.wikipedia.org/wiki/MLOps">MLOps</a> development flows.</p>
+<div class="textblock"><p><a href="https://www.arm.com/products/development-tools/simulation/virtual-hardware">Arm Virtual Hardware</a> covers various solutions for software development on Arm-based processors using virtual targets. This includes <a href="https://developer.arm.com/Tools%20and%20Software/Fixed%20Virtual%20Platforms">Arm FVP</a> simulation models, their cloud-native deployments and integrations with development tools.</p>
+<p>Arm Virtual Hardware supports the software development cycle of embedded, IoT, and ML applications and provides essential components for effective integration into Continuous Integration/Continuous Delivery (<a href="https://en.wikipedia.org/wiki/CI/CD">CI/CD</a>) and <a href="https://en.wikipedia.org/wiki/MLOps">MLOps</a> development flows.</p>
 <div class="image">
 <img src="avh_overview.png" alt=""/>
 <div class="caption">
-AVH FVP: Arm Virtual Hardware with Fixed Virtual Platforms - Overview</div></div>
-    <blockquote class="doxtable">
-<p><b>Note:</b></p><ul>
-<li>This documentation is dedicated to the <b>AVH FVPs</b>: Arm Virtual Hardware with Fixed Virtual Platforms.</li>
-<li>For details about Arm Virtual Hardware board models powered by <b>Corellium</b> refer to <a href="https://support.avh.corellium.com/">Corellium AVH Support Center</a>. </li>
-</ul>
-</blockquote>
-<h1><a class="anchor" id="avh_models"></a>
-AVH FVP Models</h1>
-<p>AVH FVP simulation models are standalone programs that gets executed in the target environment and enable execution of firmware programs on virtual targets.</p>
+Arm Virtual Hardware FVPs - Overview</div></div>
+    <h1><a class="anchor" id="avh_models"></a>
+Simulation Models</h1>
+<p>Arm FVP simulation models are standalone programs that gets executed in the target environment and enable execution of firmware programs on virtual targets. They are:</p>
 <ul>
 <li>Precise simulation models of Arm Cortex-M based reference platforms, such as Corstone-3xx. Learn more at <a href="../../simulation/html/index.html">Simulation</a>.</li>
 <li>Available for cloud-native and desktop environments. See <a href="../../infrastructure/html/index.html">Infrastructure</a> for details.</li>
 </ul>
 <h1><a class="anchor" id="avh_integrations"></a>
-AVH FVP Infrastructure</h1>
-<p>Arm Virtual Hardware models integrate well in various tools and services for development, debug, testing as well as CI/CD and MLOps flows. AVH FVPs are already supported within many Arm tools, as well as by third-party vendors. See <a href="../../infrastructure/html/index.html">Infrastructure</a> for more details.</p>
+Infrastructure</h1>
+<p>Arm Virtual Hardware models integrate well in various tools and services for development, debug, testing as well as CI/CD and MLOps flows. Arm FVPs are already supported within many Arm tools, as well as by third-party vendors. See <a href="../../infrastructure/html/index.html">Infrastructure</a> for more details.</p>
 <h1><a class="anchor" id="avh_dev"></a>
-AVH FVP Developer Resources</h1>
-<p>Various Resources explain how to integrate Arm Virtual Hardware into workflows common for generic embedded software development, CI testing and MLOps.</p>
-<p>Usage examples show typical use cases and range from audio processing, ML algorithm testing, up to IoT applications that interface to Cloud Service providers and Over-the-Air Firware Updates (OTAU).</p>
+Developer Resources</h1>
+<p>Various resources explain how to integrate Arm Virtual Hardware into workflows common for generic embedded software development, CI testing and MLOps.</p>
+<p>Usage examples show typical use cases and range from audio processing, ML algorithm testing, up to IoT applications that interface to cloud service providers and over-the-air firmware Updates (OTA).</p>
 <p>This documentation is structured into following chapters:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -161,15 +155,15 @@ AVH FVP Developer Resources</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><a href="index.html"><b>Overview</b></a>   </td><td class="markdownTableBodyLeft">Introduces <b>Arm Virtual Hardware</b> along with the top-level structure.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><a href="../../simulation/html/index.html"><b>Simulation</b></a>   </td><td class="markdownTableBodyLeft">Explains the AVH FVP simulation technology and the virtual interfaces.    </td></tr>
+<td class="markdownTableBodyLeft"><a href="../../simulation/html/index.html"><b>Simulation</b></a>   </td><td class="markdownTableBodyLeft">Explains the FVP simulation technology and the virtual interfaces.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><a href="../../infrastructure/html/index.html"><b>Infrastructure</b></a>   </td><td class="markdownTableBodyLeft">Describes key integrations of AVH FVPs locally and in the cloud.    </td></tr>
+<td class="markdownTableBodyLeft"><a href="../../infrastructure/html/index.html"><b>Infrastructure</b></a>   </td><td class="markdownTableBodyLeft">Describes key integrations of FVPs locally and in the cloud.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><a href="../../examples/html/index.html"><b>Examples</b></a>   </td><td class="markdownTableBodyLeft">Guides through the examples that demonstrate how to use AVH FVPs.   </td></tr>
+<td class="markdownTableBodyLeft"><a href="../../examples/html/index.html"><b>Examples</b></a>   </td><td class="markdownTableBodyLeft">Guides through the examples that demonstrate how to use FVPs.   </td></tr>
 </table>
 <h1><a class="anchor" id="Support"></a>
 Feedback and Support</h1>
-<p>Arm Virtual Hardware is supported via this <a href="https://community.arm.com/support-forums/f/arm-virtual-hardware-forum">Arm forum</a>. </p>
+<p>Use the <a href="https://github.com/ARM-software/AVH/issues">Issues</a> tab on the GitHub repository to raise any concerns. </p>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->

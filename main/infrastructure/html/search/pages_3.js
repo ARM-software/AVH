@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['environments_0',['Experimental Environments',['../avh_beta.html',1,'']]],
-  ['experimental_20environments_1',['Experimental Environments',['../avh_beta.html',1,'']]]
+  ['keil_20µvision_0',['Use with Keil µVision',['../run_mdk_uv4.html',1,'avh_desktop']]],
+  ['keil_20studio_1',['Use with Keil Studio',['../run_mdk_vscode.html',1,'avh_desktop']]]
 ];

@@ -5,7 +5,7 @@ var searchData=
   ['ci_20frameworks_2',['Execution in CI frameworks',['../hints.html#ci_frameworks',1,'']]],
   ['clear_3',['Clear',['../group__arm__vsi__api.html#adc30bc0c7914db5918da4263fce93ad2',1,'ARM_VSI_Type.IRQ']]],
   ['cli_4',['Running User Applications in CLI',['../using.html#Execution',1,'']]],
-  ['cmsis_20based_20projects_20for_20avh_20fvps_5',['CMSIS-based projects for AVH FVPs',['../avh_fvp_cmsis.html',1,'']]],
+  ['cmsis_20based_20projects_5',['CMSIS-based projects',['../avh_fvp_cmsis.html',1,'']]],
   ['codes_6',['Video Driver Return Codes',['../group__video__drv__errors.html',1,'']]],
   ['color_20formats_7',['Video Driver Color Formats',['../group__video__drv__colors.html',1,'']]],
   ['configuration_8',['Model Configuration',['../using.html#Config',1,'']]],
