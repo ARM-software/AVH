@@ -1,14 +1,8 @@
-# CMSIS-based projects {#avh_fvp_cmsis}
+# CMSIS Support {#avh_fvp_cmsis}
 
-To enable embedded software development for Arm FVP targets, Arm provides necessary device definitions, startup code,
-board support packages and simple examples in
-[Open-CMSIS-Pack format](https://www.open-cmsis-pack.org/). The same CMSIS-based concept is followed for Arm FVP
-targets as also used for more than 12000 real hardware devices. This significantly simplifies project management in
-IDEs such as Keil MDK, allows straightforward integration of other software components, and improves application
-portability.
+Arm provides comprehensive CMSIS support for FVP targets in [Open-CMSIS-Pack format](https://www.open-cmsis-pack.org/), including device definitions, startup code, board support packages, and examples.
 
-Table below lists FVPs with the corresponding CMSIS-Packs that implement device/board support, as well as target device
-names.
+The following table lists available FVP models with their corresponding CMSIS-Packs and device names:
 
 <table class="doxtable" style="width:115%">
 <tr>
@@ -53,6 +47,26 @@ names.
 
 </table>
 
-> **Note**
-> <sup>(1)</sup> The BSP packs listed here (ending with "_BSP") also contain device definition as provided in the
-> corresponding "Device Name" cell and do not require separate device family pack (DFP).
+**Note:** <sup>(1)</sup> BSP packs (suffixed with "_BSP") include both board support and device definitions, eliminating the need for a separate Device Family Pack (DFP).
+
+## Software Layers
+
+The AVH_FVP pack provides board support layers for Corstone FVP platforms in the `board/` folder. Each board layer includes hardware-specific configurations, drivers, and setup for running applications on FVP simulation models.
+
+| Folder                 | Description |
+|:-----------------------|:------------|
+| `./board/Corstone-300` | Board layer for Corstone-300 FVP with optional Ethos-U55/U65 |
+| `./board/Corstone-310` | Board layer for Corstone-310 FVP with optional Ethos-U55/U65 |
+| `./board/Corstone-315` | Board layer for Corstone-315 FVP with optional Ethos-U65 |
+| `./board/Corstone-320` | Board layer for Corstone-320 FVP with optional Ethos-U85 |
+
+Each folder contains a **README** with implementation details and multiple **CSolution layer files** (`*.clayer.yml`) that configure different hardware variants. The postfix in the `*.clayer.yml` filename determines the Ethos-U NPU configuration:
+
+| Layer File | NPU Configuration | Description |
+|:-----------|:------------------|:------------|
+| `Board.clayer.yml` | None | Cortex-M system only, no Ethos-U NPU |
+| `Board-U55.clayer.yml` | Ethos-U55 | Cortex-M system + Ethos-U55 NPU (256 MACs) |
+| `Board-U65.clayer.yml` | Ethos-U65 | Cortex-M system + Ethos-U65 NPU |
+| `Board-U85.clayer.yml` | Ethos-U85 | Cortex-M system + Ethos-U85 NPU |
+
+Refer to [CMSIS-Toolbox - Software Layers](https://open-cmsis-pack.github.io/cmsis-toolbox/build-overview/#software-layers) for more information on using layers in projects.

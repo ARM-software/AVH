@@ -48,24 +48,27 @@ The following table shows how VSI channels are assigned in the provided implemen
 ### Implementation Details
 
 **vStream Implementations** (`vstream/` folder):
+
 - **Audio Channels (VSI 0-1)**: Implement CMSIS-Driver vStream_AudioIn and vStream_AudioOut interfaces
-  - Support various audio formats (8/16/24/32-bit samples, mono/stereo, multiple sample rates)
-  - Connect to system audio devices or audio files (WAV format)
-  - Use audio servers for inter-process communication with the FVP
+    - Support various audio formats (8/16/24/32-bit samples, mono/stereo, multiple sample rates)
+    - Connect to system audio devices or audio files (WAV format)
+    - Use audio servers for inter-process communication with the FVP
   
 - **Video Channels (VSI 4-7)**: Implement CMSIS-Driver vStream_VideoIn and vStream_VideoOut interfaces
-  - Support multiple color formats (Grayscale, RGB888, BGR565)
-  - Configurable frame dimensions and frame rates
-  - Connect to system cameras, video files, or display windows
-  - Use video servers for efficient frame data transfer
+    - Support multiple color formats (Grayscale, RGB888, BGR565)
+    - Configurable frame dimensions and frame rates
+    - Connect to system cameras, video files, or display windows
+    - Use video servers for efficient frame data transfer
 
 **Sensor Implementation** (`sensor/` folder):
+
 - **VSI 2**: Generic sensor interface with templates for various sensor types
-  - Supports accelerometer, gyroscope, temperature, and other sensor data
-  - Flexible data injection from files or algorithmic generation
-  - Configurable sampling rates and data formats
+    - Supports accelerometer, gyroscope, temperature, and other sensor data
+    - Flexible data injection from files or algorithmic generation
+    - Configurable sampling rates and data formats
 
 **Legacy Implementations**:
+
 - `audio/` folder contains legacy audio implementations (replaced by vstream)
 - `video/` folder contains legacy video implementations (replaced by vstream)
 
@@ -86,6 +89,3 @@ For custom peripherals, you can reassign VSI channels as needed:
 - Implement custom peripheral behavior in the Python script.
 
 This flexibility allows you to simulate virtually any memory-mapped peripheral with streaming data requirements.
-
-
-
