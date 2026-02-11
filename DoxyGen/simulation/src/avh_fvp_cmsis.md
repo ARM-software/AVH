@@ -1,12 +1,18 @@
-# CMSIS-based projects for AVH FVPs {#avh_fvp_cmsis}
+# CMSIS-based projects {#avh_fvp_cmsis}
 
-To enable embedded software development for AVH FVP targets, Arm provides necessary device definitions, startup code, Board Support Packages and simple examples in [Open-CMSIS-Pack format](https://www.open-cmsis-pack.org/). The same CMSIS-based concept is followed for AVH FVP targets as also used for 10000+ real hardware devices. This significantly simplifes project management in IDEs such as Keil MDK, allows straightforward integration of other software components, and improves application portability.
+To enable embedded software development for Arm FVP targets, Arm provides necessary device definitions, startup code,
+board support packages and simple examples in
+[Open-CMSIS-Pack format](https://www.open-cmsis-pack.org/). The same CMSIS-based concept is followed for Arm FVP
+targets as also used for more than 12000 real hardware devices. This significantly simplifies project management in
+IDEs such as Keil MDK, allows straightforward integration of other software components, and improves application
+portability.
 
-Table below lists AVH FVPs with the corresponding CMSIS Packs that implement device/board support, as well as target device names.
+Table below lists FVPs with the corresponding CMSIS-Packs that implement device/board support, as well as target device
+names.
 
 <table class="doxtable" style="width:115%">
 <tr>
-<th style="width:27%">AVH FVP Model Name   </th><th style="width:25%">CMSIS Packs with DFP/BSP<sup> (1)</sup>  </th><th style="width:17%">Device name</th><th>Description</th></tr>
+<th style="width:27%">Arm FVP Model Name   </th><th style="width:25%">CMSIS Packs with DFP/BSP<sup> (1)</sup>  </th><th style="width:17%">Device name</th><th>Description</th></tr>
 <tr>
 <td>FVP_Corstone_SSE-320</td><td>[ARM.SSE_320_BSP](https://www.keil.arm.com/packs/sse_320_bsp-arm)</td><td>[`SSE-320-FVP`](https://www.keil.arm.com/devices/arm-sse-320-fvp)</td><td>Corstone-320 subsystem</td></tr>
 <tr>
@@ -48,4 +54,5 @@ Table below lists AVH FVPs with the corresponding CMSIS Packs that implement dev
 </table>
 
 > **Note**
-> - <sup> (1)</sup> The BSP packs listed here (ending with "_BSP") also contain device definition as provided in the correponding "Device Name" cell and do not require separate device family pack (DFP).
+> <sup>(1)</sup> The BSP packs listed here (ending with "_BSP") also contain device definition as provided in the
+> corresponding "Device Name" cell and do not require separate device family pack (DFP).

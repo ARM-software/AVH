@@ -6,6 +6,14 @@
 <th>Changes</th>
 </tr>
 <tr>
+<td>2.2.0 (Feb x, 2026)</td>
+<td>
+ - Reworked documentation
+ - Updated example projects
+ - Updated the Arm FVP artifacts to version 11.30.29.
+</td>
+</tr>
+<tr>
 <td>2.1.0 (Oct 4, 2024)</td>
 <td>
  - Added AVH FVP models:

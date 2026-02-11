@@ -81,3 +81,9 @@ uv2csolution.log
 
 # legacy intermediate project file
 *.cprj
+
+# BUilt HTML documentation
+Documentation/examples/**
+Documentation/infrastructure/**
+Documentation/overview/**
+Documentation/simulation/**
