@@ -31,7 +31,7 @@ project:
 
     - group: Documentation
       files:
-        - file: README.md
+        - file: ../README.md
 
   # List of layers used in a project.
   layers:

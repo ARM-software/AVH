@@ -21,7 +21,7 @@ solution:
       board: V2M-MPS3-SSE-300-FVP
       device: SSE-300-MPS3
       variables:
-        - Board-Layer: ./board/Corstone-300/Board.clayer.yml
+        - Board-Layer: ../board/Corstone-300/Board.clayer.yml
       target-set:
         - set: "SSE-300 FVP"
           debugger:
@@ -36,7 +36,7 @@ solution:
       board: V2M-MPS3-SSE-310
       device: SSE-310-MPS3_FVP
       variables:
-        - Board-Layer: ./board/Corstone-310/Board.clayer.yml
+        - Board-Layer: ../board/Corstone-310/Board.clayer.yml
       target-set:
         - set: "SSE-310 FVP"
           debugger:
@@ -51,7 +51,7 @@ solution:
       board: SSE-315
       device: SSE-315-FVP
       variables:
-        - Board-Layer: ./board/Corstone-315/Board.clayer.yml
+        - Board-Layer: ../board/Corstone-315/Board.clayer.yml
       target-set:
         - set: "SSE-315 FVP"
           debugger:
@@ -66,7 +66,7 @@ solution:
       board: SSE-320
       device: SSE-320-FVP
       variables:
-        - Board-Layer: ./board/Corstone-320/Board.clayer.yml
+        - Board-Layer: ../board/Corstone-320/Board.clayer.yml
       target-set:
         - set: "SSE-320 FVP"
           debugger:
@@ -89,4 +89,4 @@ solution:
 
   # List related projects.
   projects:
-    - project: ./FVP_Video.cproject.yml
+    - project: ./project/FVP_Video.cproject.yml
