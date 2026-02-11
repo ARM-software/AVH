@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Arm FVP models: CMSIS-based projects</title>
+<title>Arm FVP models: CMSIS Support</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="extra_navtree.css" rel="stylesheet" type="text/css"/>
@@ -125,12 +125,12 @@ $(function(){initNavTree('avh_fvp_cmsis.html',''); initResizable(true); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">CMSIS-based projects</div></div>
+  <div class="headertitle"><div class="title">CMSIS Support</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_src_2avh__fvp__cmsis"></a></p>
-<p>To enable embedded software development for Arm FVP targets, Arm provides necessary device definitions, startup code, board support packages and simple examples in <a href="https://www.open-cmsis-pack.org/">Open-CMSIS-Pack format</a>. The same CMSIS-based concept is followed for Arm FVP targets as also used for more than 12000 real hardware devices. This significantly simplifies project management in IDEs such as Keil MDK, allows straightforward integration of other software components, and improves application portability.</p>
-<p>Table below lists FVPs with the corresponding CMSIS-Packs that implement device/board support, as well as target device names.</p>
+<p>Arm provides comprehensive CMSIS support for FVP targets in <a href="https://www.open-cmsis-pack.org/">Open-CMSIS-Pack format</a>, including device definitions, startup code, board support packages, and examples.</p>
+<p>The following table lists available FVP models with their corresponding CMSIS-Packs and device names:</p>
 <table class="doxtable" style="width:115%">
 <tr>
 <th style="width:27%">Arm FVP Model Name </th><th style="width:25%">CMSIS Packs with DFP/BSP<sup> (1)</sup> </th><th style="width:17%">Device name</th><th>Description </th></tr>
@@ -191,9 +191,36 @@ FP variant - with Floating Point Unit (FPU) support </td></tr>
 <p class="endtd"></p>
 </td></tr>
 </table>
-<blockquote class="doxtable">
-<p><b>Note</b> <sup>(1)</sup> The BSP packs listed here (ending with "_BSP") also contain device definition as provided in the corresponding "Device Name" cell and do not require separate device family pack (DFP). </p>
-</blockquote>
+<p><b>Note:</b> <sup>(1)</sup> BSP packs (suffixed with "_BSP") include both board support and device definitions, eliminating the need for a separate Device Family Pack (DFP).</p>
+<h1><a class="anchor" id="autotoc_md0"></a>
+Software Layers</h1>
+<p>The AVH_FVP pack provides board support layers for Corstone FVP platforms in the <code>board/</code> folder. Each board layer includes hardware-specific configurations, drivers, and setup for running applications on FVP simulation models.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Folder   </th><th class="markdownTableHeadLeft">Description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>./board/Corstone-300</code>   </td><td class="markdownTableBodyLeft">Board layer for Corstone-300 FVP with optional Ethos-U55/U65    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>./board/Corstone-310</code>   </td><td class="markdownTableBodyLeft">Board layer for Corstone-310 FVP with optional Ethos-U55/U65    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>./board/Corstone-315</code>   </td><td class="markdownTableBodyLeft">Board layer for Corstone-315 FVP with optional Ethos-U65    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>./board/Corstone-320</code>   </td><td class="markdownTableBodyLeft">Board layer for Corstone-320 FVP with optional Ethos-U85   </td></tr>
+</table>
+<p>Each folder contains a <b>README</b> with implementation details and multiple <b>CSolution layer files</b> (<code>*.clayer.yml</code>) that configure different hardware variants. The postfix in the <code>*.clayer.yml</code> filename determines the Ethos-U NPU configuration:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Layer File   </th><th class="markdownTableHeadLeft">NPU Configuration   </th><th class="markdownTableHeadLeft">Description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>Board.clayer.yml</code>   </td><td class="markdownTableBodyLeft">None   </td><td class="markdownTableBodyLeft">Cortex-M system only, no Ethos-U NPU    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>Board-U55.clayer.yml</code>   </td><td class="markdownTableBodyLeft">Ethos-U55   </td><td class="markdownTableBodyLeft">Cortex-M system + Ethos-U55 NPU (256 MACs)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>Board-U65.clayer.yml</code>   </td><td class="markdownTableBodyLeft">Ethos-U65   </td><td class="markdownTableBodyLeft">Cortex-M system + Ethos-U65 NPU    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>Board-U85.clayer.yml</code>   </td><td class="markdownTableBodyLeft">Ethos-U85   </td><td class="markdownTableBodyLeft">Cortex-M system + Ethos-U85 NPU   </td></tr>
+</table>
+<p>Refer to <a href="https://open-cmsis-pack.github.io/cmsis-toolbox/build-overview/#software-layers">CMSIS-Toolbox - Software Layers</a> for more information on using layers in projects. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

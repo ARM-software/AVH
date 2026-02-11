@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"group__audio__drv__defines.html#ga1b7bf37c6c56ad17414478d6dc7a62ac":[4,2,2,0,1,12],
 "group__audio__drv__defines.html#ga1c054890d0d31601c71ede31ae8d9f7c":[4,2,2,0,1,2],
 "group__audio__drv__defines.html#ga1c69ec4dab365737f5bb2e3977a244a0":[4,2,2,0,1,8],
 "group__audio__drv__defines.html#ga25cc0b8c5c4e6d0a504a084e7a2b5b2f":[4,2,2,0,1,13],

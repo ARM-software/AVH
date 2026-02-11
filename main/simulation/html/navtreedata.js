@@ -39,7 +39,9 @@ var NAVTREE =
       [ "Execution timing", "hints.html#timing", null ],
       [ "Execution stop", "hints.html#stop", null ]
     ] ],
-    [ "CMSIS-based projects", "avh_fvp_cmsis.html", null ],
+    [ "CMSIS Support", "avh_fvp_cmsis.html", [
+      [ "Software Layers", "avh_fvp_cmsis.html#autotoc_md0", null ]
+    ] ],
     [ "API Reference", "topics.html", "topics" ]
   ] ]
 ];
@@ -47,7 +49,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "avh_fvp_cmsis.html",
-"group__audio__drv__defines.html#ga1c054890d0d31601c71ede31ae8d9f7c"
+"group__audio__drv__defines.html#ga1b7bf37c6c56ad17414478d6dc7a62ac"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

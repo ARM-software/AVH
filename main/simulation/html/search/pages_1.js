@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['based_20projects_0',['CMSIS-based projects',['../avh_fvp_cmsis.html',1,'']]]
+  ['cmsis_20support_0',['CMSIS Support',['../avh_fvp_cmsis.html',1,'']]]
 ];

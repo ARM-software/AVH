@@ -1,6 +1,7 @@
 var NAVTREEINDEX0 =
 {
 "avh_fvp_cmsis.html":[3],
+"avh_fvp_cmsis.html#autotoc_md0":[3,0],
 "group__arm__cmvp.html":[4,0],
 "group__arm__vio.html":[4,1],
 "group__arm__vio__api.html":[4,1,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "group__arm__vsocket__api.html#structvSocketSetOptIO__t_8param":[4,3,0,28],
 "group__arm__vsocket__cases.html":[4,3,1],
 "group__audio__drv__defines.html":[4,2,2,0,1],
-"group__audio__drv__defines.html#ga19fd4bec18bcaa695ce70e60785346fa":[4,2,2,0,1,0],
-"group__audio__drv__defines.html#ga1b7bf37c6c56ad17414478d6dc7a62ac":[4,2,2,0,1,12]
+"group__audio__drv__defines.html#ga19fd4bec18bcaa695ce70e60785346fa":[4,2,2,0,1,0]
 };
