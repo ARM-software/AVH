@@ -33,15 +33,15 @@ The AVH-FVP pack includes ready-to-run examples:
 
 These examples are configured for the [FVP Corstone platforms (SSE-300, SSE-310, SSE-315, SSE-320)](https://arm-software.github.io/AVH/main/simulation/html/index.html) and work out-of-the-box with pre-configured FVP simulation settings. They can be built using CMSIS-Toolbox or Keil Studio. The FVP_Audio and FVP_Video examples use Python scripts to access data files on the host system. With configuration options, the host system peripherals can also be used for I/O.
 
-Adding a compatible [Software Layer: Board](https://open-cmsis-pack.github.io/cmsis-toolbox/build-overview/#software-layers) the examples can be tested on FVP simulation models or physical hardware boards. To run these examples on a physical board you may use the [Reference Application](https://open-cmsis-pack.github.io/cmsis-toolbox/ReferenceApplications/) workflow Keil Studio adds a compatible board layer from a BSP.
+By adding a compatible [Software Layer: Board](https://open-cmsis-pack.github.io/cmsis-toolbox/build-overview/#software-layers), the examples can be tested on FVP simulation models or physical hardware boards. To run these examples on a physical board, you may use the [Reference Application](https://open-cmsis-pack.github.io/cmsis-toolbox/ReferenceApplications/) workflow, where Keil Studio adds a compatible board layer from a BSP.
 
 ![FVP Examples](Examples.png "FVP Audio and Video Example")
 
 ## Getting Started
 
 1. **Install the pack**: Add the pack `ARM::AVH_FVP` to your development environment.
-2. **Run Hello example**: Build and run the Hello example on your chosen FVP Corstone platform to verify setup.
-3. **Explore vStream examples**: Try vStream_Audio or vStream_Video example to experience Virtual Interfaces in action.
+2. **Run Hello example**: Build and run the FVP_Hello example on your chosen FVP Corstone platform to verify setup.
+3. **Explore vStream examples**: Try FVP_Audio or FVP_Video example to experience Virtual Interfaces in action.
 
 ## Additional Resources
 

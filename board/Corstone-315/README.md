@@ -2,7 +2,12 @@
 
 ## Board Layer for Corstone-315 FVP
 
-Device: SSE-315-FVP
+This layer works for:
+
+```yml
+  board: ARM::SSE-315
+  device: ARM::SSE-315-FVP
+```
 
 ### System Configuration
 

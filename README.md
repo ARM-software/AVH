@@ -3,39 +3,29 @@
 
 # Arm Virtual Hardware FVPs: Developer Resources
 
-This repository explains the use of
-[Arm Virtual Hardware on Fixed Virtual Platforms](https://arm-software.github.io/AVH/main/simulation/html/index.html).
+The repository contains developer resources, examples, and reference implementations for [Arm Fixed Virtual Platforms (FVP)](https://www.arm.com/products/development-tools/simulation/fixed-virtual-platforms) with **Virtual Interfaces**.
 
-The [documentation](https://arm-software.github.io/AVH/main/overview/html/index.html) describes how to integrate Arm
-FVPs into typical [CI/CD](https://developer.arm.com/servers-and-cloud-computing/cicd-on-arm) workflows as well as
-desktop development environments. Additional interface drivers are provided that map to virtual targets and physical
-hardware along with Python scripts for I/O simulation.
+FVP simulation models of [Arm Cortex-M reference platforms](https://arm-software.github.io/AVH/main/simulation/html/index.html) run directly on your host system (Windows or Linux), providing accurate virtual hardware targets for firmware validation. FVP simulation models are included in [Keil MDK](https://www.keil.arm.com/) and integrate seamlessly with Keil Studio, command-line environments, and [CI/CD workflows](https://github.com/Arm-Examples/.github/blob/main/profile/CICD.md).
 
-## Examples
+## Related
 
-The table below lists some of the example projects that demonstrate the usage of
-[Arm FVPs](https://arm-software.github.io/AVH/main/simulation/html/index.html). Also see
-[Example Projects](https://arm-software.github.io/AVH/main/examples/html/index.html) in the documentation.
+- The content of this repository is available as `ARM::AVH_FVP` Pack on [keil.arm.com/packs](https://www.keil.arm.com/packs)
+- [Keil Studio](https://www.keil.arm.com/)
+- [AVH FVP Documentation](https://arm-software.github.io/AVH/main/overview/html/index.html)
+- More [Arm-Examples that use FVP simulation](https://github.com/search?q=topic%3Afvp+org%3AArm-Examples+fork%3Atrue&type=repositories)
 
-| Examples       | Description            |
-|---             |---                     |
-| [AVH-Hello](https://github.com/Arm-Examples/AVH-Hello)   | Hello world example for [Arm FVPs](https://arm-software.github.io/AVH/main/simulation/html/index.html). The [GitHub workflow](https://github.com/Arm-Examples/AVH-Hello/blob/main/.github/workflows/hello-ci.yml) supports build and run actions for different [targets](https://github.com/Arm-Examples/AVH-Hello/blob/main/.github/workflows/hello-ci.yml#L22). |
-| [AVH_CI_Template](https://github.com/Arm-Examples/AVH_CI_Template)   | Simple example for unit test automation that uses [GitHub Actions](https://github.com/features/actions) on a [GitHub-hosted runner](https://docs.github.com/en/actions/concepts/runners/github-hosted-runners). |
-| [AVH-VSI Examples](https://github.com/Arm-Examples/AVH-VSI)   | Demonstrates how to use the [Virtual Streaming Interface (VSI)](https://arm-software.github.io/AVH/main/simulation/html/group__arm__vsi.html) for feeding sensor or video data to an application running on an [Arm FVP Model](https://arm-software.github.io/AVH/main/overview/html/index.html). |
-| [AVH-MLOps](https://github.com/ARM-software/AVH-MLOps)   | A set of tools, software components, and examples showcasing MLOps systems with [Arm FVPs](https://arm-software.github.io/AVH/main/simulation/html/index.html). |
-| [CMSIS-Core Validation](https://github.com/ARM-software/CMSIS_6/tree/main/CMSIS/CoreValidation)   | Test suite to verify the correct operation of the [CMSIS-Core](https://arm-software.github.io/CMSIS_6/latest/Core/index.html) functionality on various Cortex-M cores by using different toolchains and [Arm FVPs](https://arm-software.github.io/AVH/main/simulation/html/index.html). |
-| [CMSIS-RTOS2 Validation](https://github.com/Arm-Software/CMSIS-RTOS2_Validation)   | Test suite for validating [CMSIS-RTOS2](https://arm-software.github.io/CMSIS_6/latest/RTOS2/index.html) implementations on various Cortex-M cores by using different toolchains and [Arm FVPs](https://arm-software.github.io/AVH/main/simulation/html/index.html). |
+## Files and Directories
 
-## Directory Structure
+This is a list of the relevant files and directories.
 
-The content of this repository:
-
-| Directory      | Description |
-|---             |--- |
-| [interface](https://github.com/ARM-software/AVH/tree/main/interface)                 | [Virtual Interface APIs](https://arm-software.github.io/AVH/main/simulation/html/group__arm__cmvp.html) with drivers and Python scripts. |
-| [DoxyGen](https://github.com/ARM-software/AVH/tree/main/DoxyGen)                     | Doxygen sources for Arm Virtual Hardware FVP documentation. |
-| [Documentation](https://github.com/ARM-software/AVH/tree/main/Documentation)         | Temporary output directory for the [documentation](https://arm-software.github.io/AVH/main/overview/html/index.html). |
-| [.github/workflows](https://github.com/ARM-software/AVH/tree/main/.github/workflows) | GitHub action for publishing. |
+Directory                       | Description
+:-------------------------------|:------------
+[overview](./Overview)          | Overview of AVH_FVP content.
+[example](./example)            | [Example projects](https://arm-software.github.io/AVH/main/examples/html/index.html) that show usage of FVP simulation models.
+[board](./board)                | Board support layers for various Arm Corstone FVP (Fixed Virtual Platform) targets.
+[interface](./interface)        | [Virtual Interface APIs](https://arm-software.github.io/AVH/main/simulation/html/group__arm__cmvp.html) with drivers and Python scripts.
+[DoxyGen](./DoxyGen)            | Doxygen sources for documentation.
+[.github/workflows](./.github/workflows) | GitHub action for publishing and validation.
 
 ## Issues
 

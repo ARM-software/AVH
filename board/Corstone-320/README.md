@@ -2,7 +2,12 @@
 
 ## Board Layer for Corstone-320 FVP
 
-Device: SSE-320-FVP
+This layer works for:
+
+```yml
+  board: ARM::SSE-320
+  device: ARM::SSE-320-FVP
+```
 
 ### System Configuration
 

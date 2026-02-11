@@ -2,7 +2,12 @@
 
 ## Board Layer for Corstone-300 FVP
 
-Device: SSE-300-MPS3
+This layer works for:
+
+```yml
+  board: ARM::V2M-MPS3-SSE-300-FVP
+  device: ARM::SSE-300-MPS3
+```
 
 ### System Configuration
 
