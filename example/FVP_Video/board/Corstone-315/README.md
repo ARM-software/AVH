@@ -45,3 +45,16 @@ stores and loads signal values.
 | File               | Description
 |:-------------------|:-------------
 | fvp_config.txt     | Corstone-315 FVP without Ethos-U or with Ethos-U65
+
+### Python Requirements
+
+vStream Audio and Video implementations for VSI depend on PyAudio and OpenCV
+libraries for Python. Use [requirements.txt](requirements.txt) to install
+required Python packages:
+
+- opencv-python
+- PyAudio
+
+```bash
+pip install -r requirements.txt
+```
