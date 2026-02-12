@@ -6,15 +6,23 @@ This document describes how to generate Doxygen-style documentation.
 
 ### Windows
 
-- Install Doxygen (verified to work with v1.13.2) - https://www.doxygen.nl/download.html
-- Install Graphviz (verified to work with v4.73) - http://www.graphviz.org/download/
 - Install bash shell (for example git bash for Windows)
-- Download PlantUML compiled Jar under Apache license (verified to work with v1.2021.8):
-    - download link:  https://sourceforge.net/projects/plantuml/files/plantuml-jar-asl-1.2021.8.zip/download
-    - PlantUML page: https://plantuml.com/
-    - extract downloaded .zip file
-    - add path to plantuml.jar file extracted above to the environment PATH
-    - additional PlantUML documentation: https://plantuml-documentation.readthedocs.io/en/latest/index.html
+- Install [Doxygen](https://www.doxygen.nl/download.html) (verified to work with v1.13.2)
+- Install [Graphviz](http://www.graphviz.org/download/) (verified to work with v14.1.2)
+- Install Java (PlantUML requires Java)
+  - Check whether Java is already installed, run `java --version` from the command line
+  - If not installed, download and install [prebuilt OpenJDK Binaries](https://adoptium.net/temurin/releases) (verified to work with v25.0.2)
+- Download [PlantUML compiled Jar under Apache license](https://github.com/plantuml/plantuml/releases/download/v1.2026.1/plantuml-asl-1.2026.1.jar) (verified to work with v1.2026.1):
+  - Optional: check [download page](https://plantuml.com/download) for latest version
+  - Copy downloaded plantuml-asl-x.jar file to C:/Tools/plantuml/ (or any other directory)
+  - Create plantuml.bat with content (adjust if you use different path):
+
+    ```text
+    @echo off
+    java -jar C:/Tools/plantuml/plantuml-asl-1.2026.1.jar %*
+    ```
+
+  - Add path to plantuml.bat to the environment PATH
 
 ### Linux and macOS
 
@@ -39,3 +47,6 @@ Directory      | Description
 .\Doxygen\\&lt;<i>component</i>&gt;\\src\        | Text files describing the <i>&lt;component</i>&gt;
 .\Doxygen\\&lt;<i>component</i>&gt;\\src\images\ | Graphic files used by *.txt files
 .\Documentation\                  | Documentation output folder
+
+### Notes
+- Check [additional PlantUML documentation](https://plantuml-documentation.readthedocs.io/en/latest/index.html)
