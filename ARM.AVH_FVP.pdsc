@@ -40,7 +40,7 @@
     <condition id="ARMCM_VHT">
       <description>Requirements for MPS2 FVPs part of Cortex_DFP</description>
       <accept Dvendor="ARM:82" Dname="ARMCM0"/>
-      <accept Dvendor="ARM:82" Dname="ARMCM0plus"/>
+      <accept Dvendor="ARM:82" Dname="ARMCM0P"/>
       <accept Dvendor="ARM:82" Dname="ARMCM3"/>
       <accept Dvendor="ARM:82" Dname="ARMCM4"/>
       <accept Dvendor="ARM:82" Dname="ARMCM7"/>
