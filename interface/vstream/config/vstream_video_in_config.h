@@ -27,7 +27,7 @@
 // <i> Common frame widths: 320, 640, 800, 1024.
 // <i> Default: 640
 #ifndef VIDEO_IN_FRAME_WIDTH
-#define VIDEO_IN_FRAME_WIDTH      320
+#define VIDEO_IN_FRAME_WIDTH      640
 #endif
 
 // <o> Frame height
@@ -35,7 +35,7 @@
 // <i> Common frame heights: 240, 480, 600, 768.
 // <i> Default: 480
 #ifndef VIDEO_IN_FRAME_HEIGHT
-#define VIDEO_IN_FRAME_HEIGHT     240
+#define VIDEO_IN_FRAME_HEIGHT     480
 #endif
 
 // <o> Frame rate

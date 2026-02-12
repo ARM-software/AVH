@@ -28,12 +28,12 @@
 
 /* Define the video stream frame width in pixels. */
 #ifndef VIDEO_FRAME_WIDTH
-#define VIDEO_FRAME_WIDTH       320
+#define VIDEO_FRAME_WIDTH       640
 #endif
 
 /* Define the video stream frame height in pixels. */
 #ifndef VIDEO_FRAME_HEIGHT
-#define VIDEO_FRAME_HEIGHT      240
+#define VIDEO_FRAME_HEIGHT      480
 #endif
 
 /* Define the video stream bytes per pixel */
