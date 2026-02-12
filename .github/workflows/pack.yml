@@ -30,7 +30,7 @@ jobs:
           doxygen-version: 1.13.2
           packchk-version: 1.4.4
           gen-doc-script: ./DoxyGen/gen_doc.sh
-          doc-path: ./Documentation/html/
+          doc-path: ./Documentation
           gen-pack-script: ./gen_pack.sh --no-preprocess
           gen-pack-output: ./output
           gh-pages-branch: ""
