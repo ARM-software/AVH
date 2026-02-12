@@ -20,6 +20,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install packages required to generate documentation
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y graphviz plantuml
+
       - name: Fetch tags
         if: github.event_name == 'release'
         run: |
