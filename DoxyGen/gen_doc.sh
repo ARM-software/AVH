@@ -56,6 +56,9 @@ find_doxygen "${REQ_DXY_VERSION}"
 GVDOT="$(find_utility dot)"
 report_utility "dot" "$GVDOT" $?
 PLANTUML="$(find_utility plantuml)"
+if [[ -z "$PLANTUML" ]]; then
+  PLANTUML="$(type -p plantuml.bat)"
+fi
 report_utility "plantuml" "$PLANTUML" $?
 
 ###############################################
