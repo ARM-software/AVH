@@ -38,5 +38,5 @@ jobs:
           doc-path: ./Documentation
           gen-pack-script: ./gen_pack.sh --no-preprocess
           gen-pack-output: ./output
-          gh-pages-branch: ""
-          gh-pages-deploy: ""
+          gh-pages-branch: gh-pages
+          gh-pages-deploy: gh-pages.yml
