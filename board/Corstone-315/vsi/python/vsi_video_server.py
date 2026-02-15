@@ -1,4 +1,4 @@
-# Copyright (c) 2023-2025 Arm Limited. All rights reserved.
+# Copyright (c) 2023-2026 Arm Limited. All rights reserved.
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -53,9 +53,8 @@ image_file_extensions = ('bmp', 'png', 'jpg')
 video_fourcc          = {'wmv' : 'WMV1', 'avi' : 'MJPG', 'mp4' : 'mp4v'}
 
 # Mode Input/Output
-MODE_VIDEO_NONE       = 0
-MODE_VIDEO_INPUT      = 1
-MODE_VIDEO_OUTPUT     = 2
+MODE_VIDEO_INPUT      = 0
+MODE_VIDEO_OUTPUT     = 1
 
 class VideoServer:
     """Implements a TCP server for video streaming and frame I/O.
@@ -98,7 +97,7 @@ class VideoServer:
         self.listener         = Listener(address, authkey=authkey.encode('utf-8'))
         self.device           = 0
         self.filename         = None
-        self.mode             = None
+        self.mode             = MODE_VIDEO_INPUT
         self.active           = False
         self.video            = True
         self.stream           = None
@@ -118,24 +117,21 @@ class VideoServer:
 
         Args:
             mode: The I/O mode (input or output).
+        Returns:
+            Current mode value.
         """
-        mode_valid = False
-
         if mode == MODE_VIDEO_INPUT:
             self.mode = MODE_VIDEO_INPUT
             logger.info("_setMode: set stream mode to Input")
-            mode_valid = True
 
         elif mode == MODE_VIDEO_OUTPUT:
             self.mode = MODE_VIDEO_OUTPUT
             logger.info("_setMode: set stream mode to Output")
-            mode_valid = True
 
         else:
-            self.mode = MODE_VIDEO_NONE
-            logger.error("_setMode: invalid mode")
+            logger.error(f"_setMode: invalid mode {mode}, keeping current mode")
 
-        return mode_valid
+        return self.mode
 
     def _setDevice(self, device):
         """
@@ -314,11 +310,6 @@ class VideoServer:
         Returns:
             None
         """
-
-        if self.mode != MODE_VIDEO_INPUT and self.mode != MODE_VIDEO_OUTPUT:
-            logger.error("_enableStream: invalid mode")
-            return
-
         if self.active:
             logger.info("_enableStream: stream already active")
             return
@@ -360,7 +351,7 @@ class VideoServer:
                     self.frame_ratio = video_fps / self.frame_rate
                     logger.debug(f"_enableStream: source/target frame ratio={self.frame_ratio}")
 
-            elif self.mode == MODE_VIDEO_OUTPUT:
+            if self.mode == MODE_VIDEO_OUTPUT:
                 # Output mode: write to video file or display window
                 if self.filename != None:
                     # Filename specified: output to file
@@ -686,8 +677,8 @@ class VideoServer:
             payload = recv[1:] # Payload
 
             if   cmd == self.SET_MODE:
-                mode_valid = self._setMode(payload[0])
-                conn.send(mode_valid)
+                current_mode = self._setMode(payload[0])
+                conn.send(current_mode)
 
             elif cmd == self.SET_DEVICE:
                 device_valid = self._setDevice(payload[0])
