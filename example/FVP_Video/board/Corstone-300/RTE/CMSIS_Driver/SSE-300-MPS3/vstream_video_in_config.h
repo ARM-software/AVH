@@ -64,7 +64,7 @@
 // <i> Defines the name of the video file to be used for streaming.
 // <i> Default: "" (use streaming device instead of file)
 #ifndef VIDEO_IN_FILENAME
-#define VIDEO_IN_FILENAME         ""
+#define VIDEO_IN_FILENAME         "./sample/video_in.mp4"
 #endif
 
 #endif
