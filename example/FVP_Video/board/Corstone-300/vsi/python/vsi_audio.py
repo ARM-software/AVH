@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Arm Limited. All rights reserved.
+# Copyright (c) 2025-2026 Arm Limited. All rights reserved.
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -88,14 +88,14 @@ class AudioClient:
         """
         Set the mode of the audio stream (input/output).
         Args:
-            mode: 1 for input, 2 for output.
+            mode: 0 for input, 1 for output.
         Returns:
-            True if the mode is valid, False otherwise.
+            Current mode value (0=input, 1=output).
         """
         self.conn.send([self.SET_MODE, mode])
-        mode_valid = self.conn.recv()
+        current_mode = self.conn.recv()
 
-        return mode_valid
+        return current_mode
 
     def setDevice(self, device):
         """
@@ -214,13 +214,12 @@ SAMPLE_BITS               = 16    # Regs[6]  // Bits per sample
 CONTROL_ENABLE_Pos        = 0
 CONTROL_ENABLE_Msk        = 1<<CONTROL_ENABLE_Pos
 CONTROL_MODE_Pos          = 1
-CONTROL_MODE_Msk          = 3<<CONTROL_MODE_Pos
-CONTROL_CONTINUOUS_Pos    = 3
+CONTROL_MODE_Msk          = 1<<CONTROL_MODE_Pos
+CONTROL_CONTINUOUS_Pos    = 2
 CONTROL_CONTINUOUS_Msk    = 1<<CONTROL_CONTINUOUS_Pos
 
-CONTROL_MODE_NONE         = 0
-CONTROL_MODE_IN           = 1
-CONTROL_MODE_OUT          = 2
+CONTROL_MODE_IN           = 0
+CONTROL_MODE_OUT          = 1
 
 
 # STATUS register bit definitions
@@ -355,15 +354,13 @@ def wrCONTROL(value):
     global CONTROL, STATUS
 
     if ((value ^ CONTROL) & CONTROL_MODE_Msk) != 0:
-        # MODE changed
-        mode_valid = Audio.setMode((value & CONTROL_MODE_Msk) >> CONTROL_MODE_Pos)
-        if mode_valid:
-            logger.info("wrCONTROL: CONTROL register updated: MODE changed")
+        # MODE bit changed
+        if (value & CONTROL_MODE_Msk) != 0:
+            logger.info("wrCONTROL: CONTROL register updated: MODE bit set")
+            Audio.setMode(CONTROL_MODE_OUT)
         else:
-            # Reset Mode
-            Audio.setMode(0)
-            value &= ~CONTROL_MODE_Msk
-            logger.error("wrCONTROL: CONTROL register updated: MODE cleared")
+            logger.info("wrCONTROL: CONTROL register updated: MODE bit cleared")
+            Audio.setMode(CONTROL_MODE_IN)
 
     if ((value ^ CONTROL) & CONTROL_ENABLE_Msk) != 0:
         # ENABLE bit changed
