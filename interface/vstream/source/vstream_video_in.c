@@ -1,5 +1,5 @@
 /*---------------------------------------------------------------------------
- * Copyright (c) 2025 Arm Limited (or its affiliates).
+ * Copyright (c) 2025-2026 Arm Limited (or its affiliates).
  * All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -45,12 +45,9 @@
 /* CONTROL register definitions */
 #define CONTROL_ENABLE_Pos      0U                             /* Cleared= Disabled, Set= Enabled  */
 #define CONTROL_ENABLE_Msk      (1UL << CONTROL_ENABLE_Pos)
-#define CONTROL_MODE_Pos        1U                             /* Bits 2:1                         */
-#define CONTROL_MODE_Msk        (3UL << CONTROL_MODE_Pos)      /* 0= Disabled, 1= Input, 2= Output */
-#define CONTROL_MODE_NONE       (0U << CONTROL_MODE_Pos)
-#define CONTROL_MODE_IN         (1U << CONTROL_MODE_Pos)
-#define CONTROL_MODE_OUT        (2U << CONTROL_MODE_Pos)
-#define CONTROL_CONTINUOUS_Pos  3U                             /* Cleared= Single, Set= Continuous */
+#define CONTROL_MODE_Pos        1U                             /* Cleared= Input, Set= Output      */
+#define CONTROL_MODE_Msk        (1UL << CONTROL_MODE_Pos)
+#define CONTROL_CONTINUOUS_Pos  2U                             /* Cleared= Single, Set= Continuous */
 #define CONTROL_CONTINUOUS_Msk  (1UL << CONTROL_CONTINUOUS_Pos)
 
 /* STATUS register definitions */
@@ -174,7 +171,7 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
   VideoIn->DMA.Control   = 0U;
   VideoIn->IRQ.Clear     = IRQ_TIMER_OVERFLOW_Msk;
   VideoIn->IRQ.Enable    = IRQ_TIMER_OVERFLOW_Msk;
-  VideoIn->CONTROL       = CONTROL_MODE_IN;
+  VideoIn->CONTROL       = 0U;
 
   /* Set video configuration */
   VideoIn->DEVICE       = VIDEO_IN_DEVICE;

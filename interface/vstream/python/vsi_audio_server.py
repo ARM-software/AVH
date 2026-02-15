@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Arm Limited. All rights reserved.
+# Copyright (c) 2025-2026 Arm Limited. All rights reserved.
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -53,9 +53,8 @@ default_authkey       = 'vsi_audio'
 supported_files  = ['wav']
 
 # Mode Input/Output
-MODE_AUDIO_NONE       = 0
-MODE_AUDIO_INPUT      = 1
-MODE_AUDIO_OUTPUT     = 2
+MODE_AUDIO_INPUT      = 0
+MODE_AUDIO_OUTPUT     = 1
 
 class AudioServer:
     """Implements a TCP server for audio streaming and sample I/O.
@@ -92,7 +91,7 @@ class AudioServer:
         self.listener         = Listener(address, authkey=authkey.encode('utf-8'))
         self.device           = 0
         self.filename         = None
-        self.mode             = None
+        self.mode             = MODE_AUDIO_INPUT
         self.active           = False
         self.eos              = False
         self.stream           = None
@@ -112,24 +111,21 @@ class AudioServer:
 
         Args:
             mode: The I/O mode (input or output).
+        Returns:
+            Current mode value.
         """
-        mode_valid = False
-
         if mode == MODE_AUDIO_INPUT:
             self.mode = MODE_AUDIO_INPUT
             logger.info("_setMode: set stream mode to Input")
-            mode_valid = True
 
         elif mode == MODE_AUDIO_OUTPUT:
             self.mode = MODE_AUDIO_OUTPUT
             logger.info("_setMode: set stream mode to Output")
-            mode_valid = True
 
         else:
-            self.mode = MODE_AUDIO_NONE
-            logger.error("_setMode: invalid mode")
+            logger.error(f"_setMode: invalid mode {mode}, keeping current mode")
 
-        return mode_valid
+        return self.mode
 
     def _setDevice(self, device):
         """
@@ -314,7 +310,7 @@ class AudioServer:
         except Exception as e:
             logger.warning(f"Error getting default devices: {e}")
 
-        if (self.mode == MODE_AUDIO_INPUT):
+        if self.mode == MODE_AUDIO_INPUT:
             # Log input devices
             logger.info("--- INPUT DEVICES ---")
             if input_devices:
@@ -329,7 +325,7 @@ class AudioServer:
 
             rval = default_input['index']
 
-        if (self.mode == MODE_AUDIO_OUTPUT):
+        if self.mode == MODE_AUDIO_OUTPUT:
             # Log output devices
             logger.debug("--- OUTPUT DEVICES ---")
             if output_devices:
@@ -378,10 +374,6 @@ class AudioServer:
         Returns:
             None
         """
-        if self.mode != MODE_AUDIO_INPUT and self.mode != MODE_AUDIO_OUTPUT:
-            logger.error("_enableStream: invalid mode")
-            return
-
         if self.active:
             logger.info("_enableStream: stream already active")
             return
@@ -411,7 +403,7 @@ class AudioServer:
                     )
                     self.stream.start_stream()
 
-                elif self.mode == MODE_AUDIO_OUTPUT:
+                if self.mode == MODE_AUDIO_OUTPUT:
                     logger.debug("_enableStream: use speakers for output streaming")
                     self.stream = self.pyaudio_obj.open(
                         format=audio_format,
@@ -446,7 +438,7 @@ class AudioServer:
 
                     logger.info(f"_enableStream: input file properties: channels={file_channels}, rate={file_rate}, bits={file_bits}")
 
-                elif self.mode == MODE_AUDIO_OUTPUT:
+                if self.mode == MODE_AUDIO_OUTPUT:
                     self.wave_file = wave.open(file, 'wb')
                     self.wave_file.setnchannels(self.channels)
                     self.wave_file.setsampwidth(self.sample_bits // 8)
@@ -597,8 +589,8 @@ class AudioServer:
             payload = recv[1:] # Payload
 
             if   cmd == self.SET_MODE:
-                mode_valid = self._setMode(payload[0])
-                conn.send(mode_valid)
+                current_mode = self._setMode(payload[0])
+                conn.send(current_mode)
 
             elif cmd == self.SET_DEVICE:
                 device_valid = self._setDevice(payload[0])
@@ -632,6 +624,7 @@ class AudioServer:
 
             elif cmd == self.CLOSE_SERVER:
                 self.stop()
+
 
     def stop(self):
         """
