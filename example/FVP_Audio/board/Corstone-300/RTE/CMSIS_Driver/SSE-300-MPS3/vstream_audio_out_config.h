@@ -54,7 +54,7 @@
 // <i> Defines the name of the audio file to be used for streaming.
 // <i> Default: "" (use streaming device instead of file)
 #ifndef AUDIO_OUT_FILENAME
-#define AUDIO_OUT_FILENAME        ""
+#define AUDIO_OUT_FILENAME        "./sample/audio_out.wav"
 #endif
 
 #endif
