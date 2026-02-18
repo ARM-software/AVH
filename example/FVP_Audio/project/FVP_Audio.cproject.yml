@@ -28,6 +28,7 @@ project:
     - group: Application
       files:
         - file: app_main.c
+        - file: app_config.h
 
     - group: Documentation
       files:
@@ -42,5 +43,5 @@ project:
   output:
     type:
       - elf
-      - bin
+      - hex
       - map
