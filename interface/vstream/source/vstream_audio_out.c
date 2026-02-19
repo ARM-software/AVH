@@ -164,7 +164,7 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
   hAudioOut.eos       = 0U;
   hAudioOut.flags     = 0U;
 
-  /* Initialize Audio Input peripheral */
+  /* Initialize Audio Output peripheral */
   AudioOut->Timer.Control = 0U;
   AudioOut->DMA.Control   = 0U;
   AudioOut->IRQ.Clear     = IRQ_TIMER_OVERFLOW_Msk;
@@ -172,7 +172,6 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
   AudioOut->CONTROL       = CONTROL_MODE_Msk;
 
   /* Set audio configuration */
-  AudioOut->DEVICE      = AUDIO_OUT_DEVICE;
   AudioOut->CHANNELS    = AUDIO_OUT_CHANNELS;
   AudioOut->SAMPLE_BITS = AUDIO_OUT_SAMPLE_BITS;
   AudioOut->SAMPLE_RATE = AUDIO_OUT_SAMPLE_RATE;
@@ -188,6 +187,15 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
     for (i = 0; i < len; i++) {
       AudioOut->FILENAME = fn[i];
     }
+
+    if ((AudioOut->STATUS & STATUS_FILE_NAME_Msk) == 0U) {
+      /* File name is invalid */
+      return VSTREAM_ERROR;
+    }
+  }
+  else {
+    /* File not specified, set streaming device */
+    AudioOut->DEVICE = AUDIO_OUT_DEVICE;
   }
 
   /* Enable peripheral interrupts */
@@ -211,7 +219,7 @@ static int32_t Uninitialize (void) {
   __DSB();
   __ISB();
 
-  /* De-initialize Audio Input peripheral */
+  /* De-initialize Audio Output peripheral */
   AudioOut->Timer.Control = 0U;
   AudioOut->DMA.Control   = 0U;
   AudioOut->IRQ.Clear     = IRQ_TIMER_OVERFLOW_Msk;

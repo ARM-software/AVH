@@ -189,6 +189,11 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
     for (i = 0; i < len; i++) {
       VideoOut->FILENAME = fn[i];
     }
+
+    if ((VideoOut->STATUS & STATUS_FILE_NAME_Msk) == 0U) {
+      /* File name is invalid */
+      return VSTREAM_ERROR;
+    }
   }
 
   /* Enable peripheral interrupts */

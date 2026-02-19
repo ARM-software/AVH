@@ -172,11 +172,11 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
   AudioIn->CONTROL       = 0U;
 
   /* Set audio configuration */
-  AudioIn->DEVICE      = AUDIO_IN_DEVICE;
   AudioIn->CHANNELS    = AUDIO_IN_CHANNELS;
   AudioIn->SAMPLE_BITS = AUDIO_IN_SAMPLE_BITS;
   AudioIn->SAMPLE_RATE = AUDIO_IN_SAMPLE_RATE;
 
+  /* Set filename if specified */
   fn = AUDIO_IN_FILENAME;
   len = strlen(fn);
 
@@ -188,6 +188,15 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
     for (i = 0; i < len; i++) {
       AudioIn->FILENAME = fn[i];
     }
+
+    if ((AudioIn->STATUS & STATUS_FILE_NAME_Msk) == 0U) {
+      /* File not found */
+      return VSTREAM_ERROR;
+    }
+  }
+  else {
+    /* File not specified, set streaming device */
+    AudioIn->DEVICE = AUDIO_IN_DEVICE;
   }
 
   /* Enable peripheral interrupts */

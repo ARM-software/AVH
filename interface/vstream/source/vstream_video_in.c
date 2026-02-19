@@ -174,12 +174,12 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
   VideoIn->CONTROL       = 0U;
 
   /* Set video configuration */
-  VideoIn->DEVICE       = VIDEO_IN_DEVICE;
   VideoIn->FRAME_WIDTH  = VIDEO_IN_FRAME_WIDTH;
   VideoIn->FRAME_HEIGHT = VIDEO_IN_FRAME_HEIGHT;
   VideoIn->FRAME_COLOR  = VIDEO_IN_FRAME_COLOR;
   VideoIn->FRAME_RATE   = VIDEO_IN_FRAME_RATE;
 
+  /* Set filename if specified */
   fn = VIDEO_IN_FILENAME;
   len = strlen(fn);
 
@@ -191,6 +191,15 @@ static int32_t Initialize (vStreamEvent_t event_cb) {
     for (i = 0; i < len; i++) {
       VideoIn->FILENAME = fn[i];
     }
+
+    if ((VideoIn->STATUS & STATUS_FILE_NAME_Msk) == 0U) {
+      /* File not found */
+      return VSTREAM_ERROR;
+    }
+  }
+  else {
+    /* File not specified, set streaming device */
+    VideoIn->DEVICE = VIDEO_IN_DEVICE;
   }
 
   /* Enable peripheral interrupts */
