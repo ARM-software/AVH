@@ -1,5 +1,5 @@
-/*---------------------------------------------------------------------------
- * Copyright (c) 2025 Arm Limited (or its affiliates). All rights reserved.
+/*
+ * Copyright 2025-2026 Arm Limited and/or its affiliates.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -14,7 +14,7 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *---------------------------------------------------------------------------*/
+ */
 
 #include <stdio.h>
 #include <string.h>
@@ -23,74 +23,23 @@
 #include "cmsis_vstream.h"
 
 #include "cmsis_os2.h"
-#include "main.h"
+#include "app_main.h"
+#include "app_config.h"
 
+/* Attributes for the app_main thread */
+const osThreadAttr_t thread_attr_main  = { .name = "app_main" };
 
-/* Define the number of audio channels in stream (1=Mono, 2=Stereo) */
-#ifndef AUDIO_CHANNELS
-#define AUDIO_CHANNELS          2
-#endif
-
-/* Define the number of bits per sample (8-bit, 16-bit, 24-bit, 32-bit) */
-#ifndef AUDIO_SAMPLE_BITS
-#define AUDIO_SAMPLE_BITS       16
-#endif
-
-/* Define the number of samples per second (8000, 16000, 44100, 48000) */
-#ifndef AUDIO_SAMPLE_RATE
-#define AUDIO_SAMPLE_RATE       16000
-#endif
-
-
-/* Define input and output block size */
-#define IN_BLOCK_SIZE           (AUDIO_SAMPLE_RATE * (AUDIO_SAMPLE_BITS/8) * AUDIO_CHANNELS)
-#define OUT_BLOCK_SIZE          (AUDIO_SAMPLE_RATE * (AUDIO_SAMPLE_BITS/8) * AUDIO_CHANNELS)
-
-/* Define number of blocks in input and output buffers */
-#define IN_BLOCK_CNT            (1U)
-#define OUT_BLOCK_CNT           (1U)
-
-/* References to the underlying CMSIS vStream driver */
-extern vStreamDriver_t            Driver_vStreamAudioIn;
-#define vStream_AudioIn         (&Driver_vStreamAudioIn)
-
-extern vStreamDriver_t            Driver_vStreamAudioOut;
-#define vStream_AudioOut        (&Driver_vStreamAudioOut)
+/* ID of the app_main thread */
+osThreadId_t thread_id_main;
 
 /* Input and output stream buffers */
-uint8_t audio_in_buf[IN_BLOCK_SIZE * IN_BLOCK_CNT]    __attribute__((aligned(32)));
-uint8_t audio_out_buf[OUT_BLOCK_SIZE * OUT_BLOCK_CNT] __attribute__((aligned(32)));
-
-/* Thread attributes */
-const osThreadAttr_t thread_attr_main  = { .name = "app_main" };
-const osThreadAttr_t thread_attr_stdin = { .name = "stdin"    };
-
-/* Thread IDs */
-osThreadId_t thread_id_main;
-osThreadId_t thread_id_stdin;
+uint8_t audio_in_buf[AUDIO_BUF_BLOCK_SIZE * AUDIO_BUF_BLOCK_CNT]  __attribute__((aligned(32)));
+uint8_t audio_out_buf[AUDIO_BUF_BLOCK_SIZE * AUDIO_BUF_BLOCK_CNT] __attribute__((aligned(32)));
 
 /* Define stream related thread flags */
-#define FRAME_RECEIVED          1
-#define FRAME_SENT              2
-#define END_OF_STREAM           4
-
-/*
-  Thread that waits for stdin characters.
-*/
-__NO_RETURN void thread_stdin (void *argument) {
-  int ch;
-
-  printf("Press any key to stop streaming...\n");
-
-  while (1) {
-    ch = getchar();
-    if (ch != EOF) {
-      /* Signal end of stream */
-      osThreadFlagsSet(thread_id_main, END_OF_STREAM);
-    }
-    osDelay(100);
-  }
-}
+#define FRAME_RECEIVED          (1U << 0)
+#define FRAME_SENT              (1U << 1)
+#define END_OF_STREAM           (1U << 2)
 
 /*
   Input Stream Event Callback
@@ -120,80 +69,64 @@ void AudioOut_Event_Callback (uint32_t event) {
 }
 
 /*
+  Initialize streams.
+
+  This function initializes the input and output streams, registers the
+  event callbacks and sets up the stream buffers.
+*/
+static void init_streams (void) {
+  int32_t rval;
+  void *out_block;
+
+  /* Setup input stream */
+  rval = vStream_AudioIn->Initialize(AudioIn_Event_Callback);
+  ASSERT(rval == VSTREAM_OK);
+
+  rval = vStream_AudioIn->SetBuf(audio_in_buf, sizeof(audio_in_buf), AUDIO_BUF_BLOCK_SIZE);
+  ASSERT(rval == VSTREAM_OK);
+
+  /* Setup output stream */
+  rval = vStream_AudioOut->Initialize(AudioOut_Event_Callback);
+  ASSERT(rval == VSTREAM_OK);
+
+  rval = vStream_AudioOut->SetBuf(audio_out_buf, sizeof(audio_out_buf), AUDIO_BUF_BLOCK_SIZE);
+  ASSERT(rval == VSTREAM_OK);
+
+  /* Output stream will fail to start without data to output.  */
+  /* Prepare first block of data and release it to the driver. */
+  out_block = vStream_AudioOut->GetBlock();
+  ASSERT(out_block != NULL);
+
+  memset(out_block, 0x00, AUDIO_BUF_BLOCK_SIZE);
+
+  rval = vStream_AudioOut->ReleaseBlock();
+  ASSERT(rval == VSTREAM_OK);
+}
+
+/*
   Application main thread.
 */
 __NO_RETURN void app_main_thread (void *argument) {
   int32_t  rval;
+  uint32_t count;
   uint32_t flags;
   void *in_block;
   void *out_block;
 
-  /* Create stdin thread */
-  thread_id_stdin = osThreadNew(thread_stdin, NULL, &thread_attr_stdin);
-  if (thread_id_stdin == NULL) {
-    printf("Failed to create stdin thread.\n");
-  }
+  /* Initialize input and output streams */
+  init_streams();
 
-  /* Initialize Audio Input Stream */
-  rval = vStream_AudioIn->Initialize(AudioIn_Event_Callback);
-  if (rval != VSTREAM_OK) {
-    printf("Failed to initialize audio input stream.\n");
-    for(;;);
-  }
-
-  /* Set Input Audio buffer */
-  rval = vStream_AudioIn->SetBuf(audio_in_buf, sizeof(audio_in_buf), IN_BLOCK_SIZE);
-  if (rval != VSTREAM_OK) {
-    printf("Failed to set audio input buffer.\n");
-    for(;;);
-  }
-
-  /* Initialize Audio Output Stream */
-  rval = vStream_AudioOut->Initialize(AudioOut_Event_Callback);
-  if (rval != VSTREAM_OK) {
-    printf("Failed to initialize audio output stream.\n");
-    for(;;);
-  }
-
-  /* Set Output Audio buffer */
-  rval = vStream_AudioOut->SetBuf(audio_out_buf, sizeof(audio_out_buf), OUT_BLOCK_SIZE);
-  if (rval != VSTREAM_OK) {
-    printf("Failed to set audio output buffer.\n");
-    for(;;);
-  }
-
-  /* Get a pointer to a block of memory for the output samples */
-  out_block = vStream_AudioOut->GetBlock();
-  if (out_block == NULL) {
-    printf("Failed to get a pointer to audio output block.\n");
-    for(;;);
-  }
-
-  /* Clear output frame */
-  memset(out_block, 0x00, OUT_BLOCK_SIZE);
-
-  /* Release a block of memory holding the output samples */
-  rval = vStream_AudioOut->ReleaseBlock();
-  if (rval != VSTREAM_OK) {
-    printf("Failed to release audio output block.\n");
-  }
-
-  /* Start audio output */
-  rval = vStream_AudioOut->Start(VSTREAM_MODE_CONTINUOUS);
-  if (rval != VSTREAM_OK) {
-    printf("Failed to start audio output stream.\n");
-    for(;;);
-  }
-
-  /* Start audio capture */
+  /* Start input and output streams */
   rval = vStream_AudioIn->Start(VSTREAM_MODE_CONTINUOUS);
-  if (rval != VSTREAM_OK) {
-    printf("Failed to start audio input stream.\n");
-    for(;;);
-  }
+  ASSERT(rval == VSTREAM_OK);
 
-  /* Continuous streaming loop */
-  while(1) {
+  rval = vStream_AudioOut->Start(VSTREAM_MODE_CONTINUOUS);
+  ASSERT(rval == VSTREAM_OK);
+
+  printf("Audio streaming started...\n");
+
+  /* Input to Output copy loop */
+  for (count = 0; (AUDIO_TOTAL_BLOCKS == 0) || (count < AUDIO_TOTAL_BLOCKS); count++) {
 
     /* Wait for new audio input samples */
     flags = osThreadFlagsWait(FRAME_RECEIVED | END_OF_STREAM, osFlagsWaitAny, osWaitForever);
@@ -204,54 +137,35 @@ __NO_RETURN void app_main_thread (void *argument) {
     }
     /* Get a pointer to a block of memory holding the input samples */
     in_block = vStream_AudioIn->GetBlock();
-    if (in_block == NULL) {
-      printf("Failed to get a pointer to audio input block.\n");
-      break;
-    }
+    ASSERT(in_block != NULL);
 
     /* Wait for available output block */
     osThreadFlagsWait(FRAME_SENT, osFlagsWaitAny, osWaitForever);
 
     /* Get a pointer to a block of memory for the output samples */
     out_block = vStream_AudioOut->GetBlock();
-    if (out_block == NULL) {
-      printf("Failed to get a pointer to audio output block.\n");
-      break;
-    }
+    ASSERT(out_block != NULL);
 
-    /* Copy input frame to output frame */
-    memcpy(out_block, in_block, OUT_BLOCK_SIZE);
+    /* Copy audio samples from input to output */
+    memcpy(out_block, in_block, AUDIO_BUF_BLOCK_SIZE);
 
     /* Release a block of memory holding the input audio */
     rval = vStream_AudioIn->ReleaseBlock();
-    if (rval != VSTREAM_OK) {
-      printf("Failed to release audio input block.\n");
-      break;
-    }
+    ASSERT(rval == VSTREAM_OK);
 
-    /* Release a block of memory holding the output audio */
+    /* Release a block of memory for the output audio */
     rval = vStream_AudioOut->ReleaseBlock();
-    if (rval != VSTREAM_OK) {
-      printf("Failed to release audio output block.\n");
-      break;
-    }
+    ASSERT(rval == VSTREAM_OK);
   }
 
-  /* Stop input stream */
+  /* End of stream, stop streaming */
   rval = vStream_AudioIn->Stop();
-  if (rval != VSTREAM_OK) {
-    printf("Failed to stop input stream.\n");
-    for(;;);
-  }
+  ASSERT(rval == VSTREAM_OK);
 
-  /* Stop output stream */
   rval = vStream_AudioOut->Stop();
-  if (rval != VSTREAM_OK) {
-    printf("Failed to stop output stream.\n");
-    for(;;);
-  }
+  ASSERT(rval == VSTREAM_OK);
 
-  printf("Audio streaming stopped.\n");
+  printf("Audio streaming stopped.\x04\n");
   for(;;);
 }
 

@@ -17,7 +17,6 @@ solution:
 
   # List different hardware targets that are used to deploy the solution.
   target-types:
-    # Arm Corstone-300 targets
     - type: SSE-300
       board: V2M-MPS3-SSE-300-FVP
       device: SSE-300-MPS3
@@ -33,7 +32,6 @@ solution:
           images:
             - project-context: FVP_Audio.Debug
 
-    # Arm Corstone-310 targets
     - type: SSE-310
       board: V2M-MPS3-SSE-310
       device: SSE-310-MPS3_FVP
@@ -49,7 +47,6 @@ solution:
           images:
             - project-context: FVP_Audio.Debug
 
-    # Arm Corstone-315 targets
     - type: SSE-315
       board: SSE-315
       device: SSE-315-FVP
@@ -65,7 +62,6 @@ solution:
           images:
             - project-context: FVP_Audio.Debug
 
-    # Arm Corstone-320 targets
     - type: SSE-320
       board: SSE-320
       device: SSE-320-FVP

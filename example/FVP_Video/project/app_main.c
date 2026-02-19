@@ -1,5 +1,5 @@
-/*---------------------------------------------------------------------------
- * Copyright (c) 2025 Arm Limited (or its affiliates). All rights reserved.
+/*
+ * Copyright 2025-2026 Arm Limited and/or its affiliates.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -14,7 +14,7 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *---------------------------------------------------------------------------*/
+ */
 
 #include <stdio.h>
 #include <string.h>
@@ -23,75 +23,23 @@
 #include "cmsis_vstream.h"
 
 #include "cmsis_os2.h"
-#include "main.h"
+#include "app_main.h"
+#include "app_config.h"
 
+/* Attributes for the app_main thread */
+const osThreadAttr_t thread_attr_main  = { .name = "app_main" };
 
-/* Define the video stream frame width in pixels. */
-#ifndef VIDEO_FRAME_WIDTH
-#define VIDEO_FRAME_WIDTH       640
-#endif
-
-/* Define the video stream frame height in pixels. */
-#ifndef VIDEO_FRAME_HEIGHT
-#define VIDEO_FRAME_HEIGHT      480
-#endif
-
-/* Define the video stream bytes per pixel */
-#ifndef VIDEO_PIXEL_SIZE 
-#define VIDEO_PIXEL_SIZE        3
-#endif
-
-
-/* Define input and output block size (frame width x frame height x bytes per pixel) */
-#define IN_BLOCK_SIZE           (VIDEO_FRAME_WIDTH  * VIDEO_FRAME_HEIGHT  * VIDEO_PIXEL_SIZE)
-#define OUT_BLOCK_SIZE          (VIDEO_FRAME_WIDTH  * VIDEO_FRAME_HEIGHT  * VIDEO_PIXEL_SIZE)
-
-/* Define number of blocks in input and output buffers */
-#define IN_BLOCK_CNT            (2U)
-#define OUT_BLOCK_CNT           (2U)
-
-/* References to the underlying CMSIS vStream driver */
-extern vStreamDriver_t            Driver_vStreamVideoIn;
-#define vStream_VideoIn         (&Driver_vStreamVideoIn)
-
-extern vStreamDriver_t            Driver_vStreamVideoOut;
-#define vStream_VideoOut        (&Driver_vStreamVideoOut)
-
+/* ID of the app_main thread */
+osThreadId_t thread_id_main;
 
 /* Input and output stream buffers */
-uint8_t video_in_buf[IN_BLOCK_SIZE * IN_BLOCK_CNT]    __attribute__((aligned(32)));
-uint8_t video_out_buf[OUT_BLOCK_SIZE * OUT_BLOCK_CNT] __attribute__((aligned(32)));
-
-/* Thread attributes */
-const osThreadAttr_t thread_attr_main  = { .name = "app_main" };
-const osThreadAttr_t thread_attr_stdin = { .name = "stdin"    };
-
-/* Thread IDs */
-osThreadId_t thread_id_main;
-osThreadId_t thread_id_stdin;
+uint8_t video_in_buf[VIDEO_IN_BUF_BLOCK_SIZE * VIDEO_IN_BUF_BLOCK_CNT]    __attribute__((aligned(32)));
+uint8_t video_out_buf[VIDEO_OUT_BUF_BLOCK_SIZE * VIDEO_OUT_BUF_BLOCK_CNT] __attribute__((aligned(32)));
 
 /* Define stream related thread flags */
-#define FRAME_RECEIVED          1
-#define FRAME_SENT              2
-#define END_OF_STREAM           4
-
-/*
-  Thread that waits for stdin characters.
-*/
-__NO_RETURN void thread_stdin (void *argument) {
-  int ch;
-
-  printf("Press any key to stop streaming...\n");
-
-  while (1) {
-    ch = getchar();
-    if (ch != EOF) {
-      /* Signal end of stream */
-      osThreadFlagsSet(thread_id_main, END_OF_STREAM);
-    }
-    osDelay(100);
-  }
-}
+#define FRAME_RECEIVED          (1U << 0)
+#define FRAME_SENT              (1U << 1)
+#define END_OF_STREAM           (1U << 2)
 
 /*
   Input Stream Event Callback
@@ -121,80 +69,64 @@ void VideoOut_Event_Callback (uint32_t event) {
 }
 
 /*
+  Initialize streams.
+
+  This function initializes the input and output streams, registers the
+  event callbacks and sets up the stream buffers.
+*/
+static void init_streams (void) {
+  int32_t rval;
+  void *out_block;
+
+  /* Setup input stream */
+  rval = vStream_VideoIn->Initialize(VideoIn_Event_Callback);
+  ASSERT(rval == VSTREAM_OK);
+
+  rval = vStream_VideoIn->SetBuf(video_in_buf, sizeof(video_in_buf), VIDEO_IN_BUF_BLOCK_SIZE);
+  ASSERT(rval == VSTREAM_OK);
+
+  /* Setup output stream */
+  rval = vStream_VideoOut->Initialize(VideoOut_Event_Callback);
+  ASSERT(rval == VSTREAM_OK);
+
+  rval = vStream_VideoOut->SetBuf(video_out_buf, sizeof(video_out_buf), VIDEO_OUT_BUF_BLOCK_SIZE);
+  ASSERT(rval == VSTREAM_OK);
+
+  /* Output stream will fail to start without data to output.  */
+  /* Prepare first block of data and release it to the driver. */
+  out_block = vStream_VideoOut->GetBlock();
+  ASSERT(out_block != NULL);
+
+  memset(out_block, 0x00, VIDEO_OUT_BUF_BLOCK_SIZE);
+
+  rval = vStream_VideoOut->ReleaseBlock();
+  ASSERT(rval == VSTREAM_OK);
+}
+
+/*
   Application main thread.
 */
 __NO_RETURN void app_main_thread (void *argument) {
   int32_t  rval;
+  uint32_t count;
   uint32_t flags;
   void *in_block;
   void *out_block;
 
-  /* Create stdin thread */
-  thread_id_stdin = osThreadNew(thread_stdin, NULL, &thread_attr_stdin);
-  if (thread_id_stdin == NULL) {
-    printf("Failed to create stdin thread.\n");
-  }
+  /* Initialize input and output streams */
+  init_streams();
 
-  /* Initialize Video Input Stream */
-  rval = vStream_VideoIn->Initialize(VideoIn_Event_Callback);
-  if (rval != VSTREAM_OK) {
-    printf("Failed to initialize video input stream.\n");
-    for(;;);
-  }
-
-  /* Set Input Video buffer */
-  rval = vStream_VideoIn->SetBuf(video_in_buf, sizeof(video_in_buf), IN_BLOCK_SIZE);
-  if (rval != VSTREAM_OK) {
-    printf("Failed to set video input buffer.\n");
-    for(;;);
-  }
-
-  /* Initialize Video Output Stream */
-  rval = vStream_VideoOut->Initialize(VideoOut_Event_Callback);
-  if (rval != VSTREAM_OK) {
-    printf("Failed to initialize video output stream.\n");
-    for(;;);
-  }
-
-  /* Set Output Video buffer */
-  rval = vStream_VideoOut->SetBuf(video_out_buf, sizeof(video_out_buf), OUT_BLOCK_SIZE);
-  if (rval != VSTREAM_OK) {
-    printf("Failed to set video output buffer.\n");
-    for(;;);
-  }
-
-  /* Get a pointer to a block of memory for the output frame */
-  out_block = vStream_VideoOut->GetBlock();
-  if (out_block == NULL) {
-    printf("Failed to get a pointer to video output block.\n");
-    for(;;);
-  }
-
-  /* Clear output frame */
-  memset(out_block, 0x00, OUT_BLOCK_SIZE);
-
-  /* Release a block of memory holding the output frame */
-  rval = vStream_VideoOut->ReleaseBlock();
-  if (rval != VSTREAM_OK) {
-    printf("Failed to release video output block.\n");
-  }
-
-  /* Start video output */
-  rval = vStream_VideoOut->Start(VSTREAM_MODE_CONTINUOUS);
-  if (rval != VSTREAM_OK) {
-    printf("Failed to start video output stream.\n");
-    for(;;);
-  }
-
-  /* Start video capture */
+  /* Start input and output streams */
   rval = vStream_VideoIn->Start(VSTREAM_MODE_CONTINUOUS);
-  if (rval != VSTREAM_OK) {
-    printf("Failed to start video input stream.\n");
-    for(;;);
-  }
+  ASSERT(rval == VSTREAM_OK);
 
-  /* Continuous streaming loop */
-  while(1) {
+  rval = vStream_VideoOut->Start(VSTREAM_MODE_CONTINUOUS);
+  ASSERT(rval == VSTREAM_OK);
+
+  printf("Video streaming started...\n");
+
+  /* Input to Output copy loop */
+  for (count = 0; (VIDEO_TOTAL_BLOCKS == 0) || (count < VIDEO_TOTAL_BLOCKS); count++) {
 
     /* Wait for new video input frame */
     flags = osThreadFlagsWait(FRAME_RECEIVED | END_OF_STREAM, osFlagsWaitAny, osWaitForever);
@@ -206,55 +138,35 @@ __NO_RETURN void app_main_thread (void *argument) {
 
     /* Get a pointer to a block of memory holding the input frame */
     in_block = vStream_VideoIn->GetBlock();
-    if (in_block == NULL) {
-      printf("Failed to get a pointer to video input block.\n");
-      break;
-    }
+    ASSERT(in_block != NULL);
 
     /* Wait for available output frame */
     osThreadFlagsWait(FRAME_SENT, osFlagsWaitAny, osWaitForever);
 
     /* Get a pointer to a block of memory for the output frame */
     out_block = vStream_VideoOut->GetBlock();
-    if (out_block == NULL) {
-      printf("Failed to get a pointer to video output block.\n");
-      break;
-    }
+    ASSERT(out_block != NULL);
 
-    /* Copy input frame to output frame */
-    memcpy(out_block, in_block, OUT_BLOCK_SIZE);
-
+    /* Copy input frame to output frame with cropping */
+    frame_copy(in_block, out_block);
 
     /* Release a block of memory holding the input frame */
     rval = vStream_VideoIn->ReleaseBlock();
-    if (rval != VSTREAM_OK) {
-      printf("Failed to release video input block.\n");
-      break;
-    }
+    ASSERT(rval == VSTREAM_OK);
 
     /* Release a block of memory holding the output frame */
     rval = vStream_VideoOut->ReleaseBlock();
-    if (rval != VSTREAM_OK) {
-      printf("Failed to release video output block.\n");
-      break;
-    }
+    ASSERT(rval == VSTREAM_OK);
   }
 
-  /* Stop input stream */
+  /* End of stream, stop streaming */
   rval = vStream_VideoIn->Stop();
-  if (rval != VSTREAM_OK) {
-    printf("Failed to stop input stream.\n");
-    for(;;);
-  }
+  ASSERT(rval == VSTREAM_OK);
 
-  /* Stop output stream */
   rval = vStream_VideoOut->Stop();
-  if (rval != VSTREAM_OK) {
-    printf("Failed to stop output stream.\n");
-    for(;;);
-  }
+  ASSERT(rval == VSTREAM_OK);
 
-  printf("Video streaming stopped.\n");
+  printf("Video streaming stopped.\x04\n");
   for(;;);
 }
 
