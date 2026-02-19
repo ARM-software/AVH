@@ -24,6 +24,7 @@
 
 #include "cmsis_os2.h"
 #include "app_main.h"
+#include "app_config.h"
 
 /* Attributes for the app_main thread */
 const osThreadAttr_t thread_attr_main  = { .name = "app_main" };
@@ -73,7 +74,7 @@ void AudioOut_Event_Callback (uint32_t event) {
   This function initializes the input and output streams, registers the
   event callbacks and sets up the stream buffers.
 */
-void init_streams (void) {
+static void init_streams (void) {
   int32_t rval;
   void *out_block;
 
@@ -136,33 +137,25 @@ __NO_RETURN void app_main_thread (void *argument) {
     }
     /* Get a pointer to a block of memory holding the input samples */
     in_block = vStream_AudioIn->GetBlock();
-    if (in_block == NULL) {
-      break;
-    }
+    ASSERT(in_block != NULL);
 
     /* Wait for available output block */
     osThreadFlagsWait(FRAME_SENT, osFlagsWaitAny, osWaitForever);
 
     /* Get a pointer to a block of memory for the output samples */
     out_block = vStream_AudioOut->GetBlock();
-    if (out_block == NULL) {
-      break;
-    }
+    ASSERT(out_block != NULL);
 
     /* Copy audio samples from input to output */
     memcpy(out_block, in_block, AUDIO_BUF_BLOCK_SIZE);
 
     /* Release a block of memory holding the input audio */
     rval = vStream_AudioIn->ReleaseBlock();
-    if (rval != VSTREAM_OK) {
-      break;
-    }
+    ASSERT(rval == VSTREAM_OK);
 
     /* Release a block of memory for the output audio */
     rval = vStream_AudioOut->ReleaseBlock();
-    if (rval != VSTREAM_OK) {
-      break;
-    }
+    ASSERT(rval == VSTREAM_OK);
   }
 
   /* End of stream, stop streaming */
@@ -172,7 +165,7 @@ __NO_RETURN void app_main_thread (void *argument) {
   rval = vStream_AudioOut->Stop();
   ASSERT(rval == VSTREAM_OK);
 
-  printf("Audio streaming stopped.\n");
+  printf("Audio streaming stopped.\x04\n");
   for(;;);
 }
 

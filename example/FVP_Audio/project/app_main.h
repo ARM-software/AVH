@@ -19,8 +19,7 @@
 #ifndef APP_MAIN_H_
 #define APP_MAIN_H_
 
-#include <assert.h>
-#include <stdlib.h>
+#include <stdio.h>
 
 #include "vstream_audio_in.h"
 #include "vstream_audio_out.h"
@@ -45,7 +44,7 @@
 #define ASSERT(expr)            do { \
                                   if (!(expr)) { \
                                     printf("ASSERT FAILED: %s, %s, line %d\n", #expr, __FILE__, __LINE__); \
-                                    exit(0); \
+                                    for(;;); \
                                   } \
                                 } while (0)
 #endif
