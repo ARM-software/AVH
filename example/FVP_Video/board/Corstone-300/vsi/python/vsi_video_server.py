@@ -26,9 +26,9 @@ try:
     import cv2
     import numpy as np
 except ImportError as err:
-    print(f"VSI:Video:Server:ImportError: {err}")
+    raise SystemExit(f"VSI:Video:Server:ImportError: {err}") from err
 except Exception as e:
-    print(f"VSI:Video:Server:Exception: {type(e).__name__}")
+    raise SystemExit(f"VSI:Video:Server:Exception: {type(e).__name__}: {e}") from e
 
 logger = logging.getLogger(__name__)
 

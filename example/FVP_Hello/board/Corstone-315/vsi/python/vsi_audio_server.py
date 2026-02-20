@@ -28,9 +28,9 @@ try:
     import pyaudio
     import numpy as np
 except ImportError as err:
-    print(f"VSI:Audio:Server:ImportError: {err}")
+    raise SystemExit(f"VSI:Audio:Server:ImportError: {err}") from err
 except Exception as e:
-    print(f"VSI:Audio:Server:Exception: {type(e).__name__}")
+    raise SystemExit(f"VSI:Audio:Server:Exception: {type(e).__name__}: {e}") from e
 
 logger = logging.getLogger(__name__)
 
