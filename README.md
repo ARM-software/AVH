@@ -1,9 +1,10 @@
-[![License](https://img.shields.io/github/license/ARM-software/AVH?label)](https://github.com/ARM-software/AVH/blob/main/LICENSE)
-[![Build pack](https://img.shields.io/github/actions/workflow/status/ARM-software/AVH/pack.yml?logo=arm&logoColor=0091bd&label=Build%20pack)](./.github/workflows/pack.yml)
-[![Publish documentation](https://img.shields.io/github/actions/workflow/status/ARM-software/AVH/gh-pages.yml?logo=arm&logoColor=0091bd&label=Publish%20documentation)](./.github/workflows/gh-pages.yml)
+[![License](https://img.shields.io/github/license/ARM-software/AVH?label=License)](https://github.com/ARM-software/AVH/blob/main/LICENSE)
 [![Build_Run_FVP_Audio](https://img.shields.io/github/actions/workflow/status/ARM-software/AVH/Build_Run_FVP_Audio.yml?logo=arm&logoColor=0091bd&label=Build_Run_FVP_Audio)](./.github/workflows/Build_Run_FVP_Audio.yml)
 [![Build_Run_FVP_Hello](https://img.shields.io/github/actions/workflow/status/ARM-software/AVH/Build_Run_FVP_Hello.yml?logo=arm&logoColor=0091bd&label=Build_Run_FVP_Hello)](./.github/workflows/Build_Run_FVP_Hello.yml)
 [![Build_Run_FVP_Video](https://img.shields.io/github/actions/workflow/status/ARM-software/AVH/Build_Run_FVP_Video.yml?logo=arm&logoColor=0091bd&label=Build_Run_FVP_Video)](./.github/workflows/Build_Run_FVP_Video.yml)
+[![Build pack](https://img.shields.io/github/actions/workflow/status/ARM-software/AVH/pack.yml?logo=arm&logoColor=0091bd&label=Build%20pack)](./.github/workflows/pack.yml)
+[![Publish documentation](https://img.shields.io/github/actions/workflow/status/ARM-software/AVH/gh-pages.yml?logo=arm&logoColor=0091bd&label=Publish%20documentation)](./.github/workflows/gh-pages.yml)
+
 
 # Arm Virtual Hardware FVPs: Developer Resources
 
