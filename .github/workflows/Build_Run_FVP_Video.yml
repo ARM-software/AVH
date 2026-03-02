@@ -154,13 +154,13 @@ jobs:
         fi
 
     - name: Upload FVP UART output log
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: ${{matrix.context.proj}}_${{matrix.context.build_type}}_${{matrix.context.target_type}}_${{matrix.toolchain.name}}.log
         path: ./example/FVP_Video/${{matrix.context.proj}}_${{matrix.context.build_type}}_${{matrix.context.target_type}}_${{matrix.toolchain.name}}.log
 
     - name: Upload Video file
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: ${{matrix.context.proj}}_${{matrix.context.build_type}}_${{matrix.context.target_type}}_${{matrix.toolchain.name}}.VideoOut.mp4
         path: ./example/FVP_Video/sample/VideoOut.mp4
