@@ -64,7 +64,13 @@
 /* ARM UART Controller CMSDK */
 #ifdef RTE_USART0
 #define UART0_CMSDK_S
+#ifdef UART0_BASE_S_TMP
+/* Workaround for UART0 CMSDK base address mismatch */
+extern struct uart_cmsdk_dev_t UART0_CMSDK_DEV_S_TMP;
+#define UART0_CMSDK_DEV UART0_CMSDK_DEV_S_TMP
+#else
 #define UART0_CMSDK_DEV UART0_CMSDK_DEV_S
+#endif
 #endif
 #ifdef RTE_USART1
 #define UART1_CMSDK_S

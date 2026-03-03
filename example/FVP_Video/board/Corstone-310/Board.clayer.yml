@@ -24,7 +24,7 @@ layer:
 
   packs:
     - pack: ARM::CMSIS
-    - pack: ARM::CMSIS-Compiler@^2.1.0
+    - pack: ARM::CMSIS-Compiler@^2.2.0
     - pack: ARM::AVH_FVP
     - pack: ARM::V2M_MPS3_SSE_310_BSP@1.4.0
 
@@ -39,9 +39,9 @@ layer:
     - component: CMSIS Driver:vStream:VideoOut
 
     - component: CMSIS-Compiler:CORE
-    - component: CMSIS-Compiler:STDERR:Custom
-    - component: CMSIS-Compiler:STDIN:Custom
-    - component: CMSIS-Compiler:STDOUT:Custom
+    - component: CMSIS-Compiler:STDERR:UART&CMSIS
+    - component: CMSIS-Compiler:STDIN:UART&CMSIS
+    - component: CMSIS-Compiler:STDOUT:UART&CMSIS
 
     - component: Device:Definition
     - component: Device:Startup&C Startup
@@ -56,7 +56,6 @@ layer:
       files:
         - file: ./main.c
         - file: ./main.h
-        - file: ./retarget_stdio.c
 
   linker:
     - regions: ./regions_SSE-310.h
