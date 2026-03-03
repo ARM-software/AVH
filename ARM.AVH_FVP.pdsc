@@ -257,18 +257,18 @@
   </examples>
 
   <csolution>
-    <clayer type="Board" path="board/Corstone-300" file="Board.clayer.yml"     copy-to="Board/Corstone-300" condition="Corstone-300"/>
-    <clayer type="Board" path="board/Corstone-300" file="Board-U55.clayer.yml" copy-to="Board/Corstone-300" condition="Corstone-300"/>
-    <clayer type="Board" path="board/Corstone-300" file="Board-U65.clayer.yml" copy-to="Board/Corstone-300" condition="Corstone-300"/>
+    <clayer type="Board" path="board/Corstone-300" file="Board.clayer.yml"     copy-to="board/Corstone-300" condition="Corstone-300"/>
+    <clayer type="Board" path="board/Corstone-300" file="Board-U55.clayer.yml" copy-to="board/Corstone-300" condition="Corstone-300"/>
+    <clayer type="Board" path="board/Corstone-300" file="Board-U65.clayer.yml" copy-to="board/Corstone-300" condition="Corstone-300"/>
 
-    <clayer type="Board" path="board/Corstone-310" file="Board.clayer.yml"     copy-to="Board/Corstone-310" condition="Corstone-310"/>
-    <clayer type="Board" path="board/Corstone-310" file="Board-U55.clayer.yml" copy-to="Board/Corstone-310" condition="Corstone-310"/>
-    <clayer type="Board" path="board/Corstone-310" file="Board-U65.clayer.yml" copy-to="Board/Corstone-310" condition="Corstone-310"/>
+    <clayer type="Board" path="board/Corstone-310" file="Board.clayer.yml"     copy-to="board/Corstone-310" condition="Corstone-310"/>
+    <clayer type="Board" path="board/Corstone-310" file="Board-U55.clayer.yml" copy-to="board/Corstone-310" condition="Corstone-310"/>
+    <clayer type="Board" path="board/Corstone-310" file="Board-U65.clayer.yml" copy-to="board/Corstone-310" condition="Corstone-310"/>
 
-    <clayer type="Board" path="board/Corstone-315" file="Board.clayer.yml"     copy-to="Board/Corstone-315" condition="Corstone-315"/>
-    <clayer type="Board" path="board/Corstone-315" file="Board-U65.clayer.yml" copy-to="Board/Corstone-315" condition="Corstone-315"/>
+    <clayer type="Board" path="board/Corstone-315" file="Board.clayer.yml"     copy-to="board/Corstone-315" condition="Corstone-315"/>
+    <clayer type="Board" path="board/Corstone-315" file="Board-U65.clayer.yml" copy-to="board/Corstone-315" condition="Corstone-315"/>
 
-    <clayer type="Board" path="board/Corstone-320" file="Board.clayer.yml"     copy-to="Board/Corstone-320" condition="Corstone-320"/>
-    <clayer type="Board" path="board/Corstone-320" file="Board-U85.clayer.yml" copy-to="Board/Corstone-320" condition="Corstone-320"/>
+    <clayer type="Board" path="board/Corstone-320" file="Board.clayer.yml"     copy-to="board/Corstone-320" condition="Corstone-320"/>
+    <clayer type="Board" path="board/Corstone-320" file="Board-U85.clayer.yml" copy-to="board/Corstone-320" condition="Corstone-320"/>
   </csolution> 
 </package>

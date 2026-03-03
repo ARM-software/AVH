@@ -21,6 +21,25 @@
 
 #include "main.h"
 
+#ifdef UART0_BASE_S_TMP
+/* Workaround for UART0 CMSDK base address mismatch */
+#include "uart_cmsdk_drv.h"
+
+static const struct uart_cmsdk_dev_cfg_t UART0_CMSDK_DEV_CFG_S_TMP = {
+  .base = 0x58203000 + 0x01100000,
+  .default_baudrate = 115200
+};
+static struct uart_cmsdk_dev_data_t UART0_CMSDK_DEV_DATA_S_TMP = {
+  .state = 0,
+  .system_clk = 0,
+  .baudrate = 0
+};
+struct uart_cmsdk_dev_t UART0_CMSDK_DEV_S_TMP = {
+  &(UART0_CMSDK_DEV_CFG_S_TMP),
+  &(UART0_CMSDK_DEV_DATA_S_TMP)
+};
+#endif
+
 int main (void) {
 
   /* Initialize STDIO */

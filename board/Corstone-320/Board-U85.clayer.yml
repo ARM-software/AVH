@@ -5,7 +5,7 @@ layer:
   for-device: ARM::SSE-320-FVP
 
   connections:
-    - connect: Corstone-320
+    - connect: Corstone-320-U85
       provides:
         - CMSIS_USART
         - CMSIS_VIO
@@ -22,13 +22,14 @@ layer:
     - CMSIS_target_header: \"Corstone-320.h\"
     - ETHOSU85
     - ARM_MODEL_USE_PMU_COUNTERS
+    - UART0_BASE_S_TMP
 
   packs:
     - pack: ARM::CMSIS
-    - pack: ARM::CMSIS-Compiler@^2.1.0
+    - pack: ARM::CMSIS-Compiler@^2.2.0
     - pack: ARM::ethos-u-core-driver@^1.25.2
     - pack: ARM::AVH_FVP
-    - pack: ARM::SSE_320_BSP@1.0.0
+    - pack: ARM::SSE_320_BSP@1.1.0
 
   components:
     - component: CMSIS:CORE
@@ -41,9 +42,9 @@ layer:
     - component: CMSIS Driver:vStream:VideoOut
 
     - component: CMSIS-Compiler:CORE
-    - component: CMSIS-Compiler:STDERR:Custom
-    - component: CMSIS-Compiler:STDIN:Custom
-    - component: CMSIS-Compiler:STDOUT:Custom
+    - component: CMSIS-Compiler:STDERR:UART&CMSIS
+    - component: CMSIS-Compiler:STDIN:UART&CMSIS
+    - component: CMSIS-Compiler:STDOUT:UART&CMSIS
 
     - component: Device:Definition
     - component: Device:Startup&C Startup
@@ -61,7 +62,6 @@ layer:
         - file: ./main.c
         - file: ./main.h
         - file: ./ethos_setup.c
-        - file: ./retarget_stdio.c
 
   linker:
     - regions: ./regions_SSE-320.h
