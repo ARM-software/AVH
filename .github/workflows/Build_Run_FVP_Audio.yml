@@ -118,9 +118,8 @@ jobs:
         ${{ matrix.context.model }} \
         -a ./out/${{matrix.context.proj}}/${{matrix.context.target_type}}/${{matrix.context.build_type}}/${{matrix.context.proj}}.${{matrix.toolchain.ext}} \
         -f ./board/${{matrix.context.layer}}/fvp_config.txt \
-        -C ${{matrix.context.mps}}_board.v_path=./board/${{matrix.context.layer}}/vsi/python/ \
         -C ${{matrix.context.mps}}_board.uart0.out_file=${{matrix.context.proj}}_${{matrix.context.build_type}}_${{matrix.context.target_type}}_${{matrix.toolchain.name}}.log \
-        --simlimit 30
+        --simlimit 100
 
     - name: Show UART output
       working-directory: ./example/FVP_Audio
@@ -129,8 +128,6 @@ jobs:
         cat ${{matrix.context.proj}}_${{matrix.context.build_type}}_${{matrix.context.target_type}}_${{matrix.toolchain.name}}.log
 
     - name: Check UART output
-      # Disable SSE-320 output check due to known issue with FVP UART output
-      if: matrix.context.target_type != 'SSE-320'
       working-directory: ./example/FVP_Audio
       run: |
         echo "Check FVP UART output:"
