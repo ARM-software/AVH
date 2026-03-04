@@ -73,7 +73,7 @@ class AudioClient:
         Returns:
             None
         """
-        for _ in range(50):
+        for _ in range(40):
             try:
                 self.conn = Client(address, authkey=authkey.encode('utf-8'))
                 if isinstance(self.conn, Connection):
@@ -82,7 +82,7 @@ class AudioClient:
                     self.conn = None
             except Exception:
                 self.conn = None
-            time.sleep(0.01)
+            time.sleep(0.05)
 
     def setMode(self, mode):
         """
