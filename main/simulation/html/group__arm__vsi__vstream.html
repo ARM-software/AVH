@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Arm FVP models: VSI Use Cases</title>
+<title>Arm FVP models: vStream via VSI</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="extra_navtree.css" rel="stylesheet" type="text/css"/>
@@ -99,7 +99,7 @@ $(function() { codefold.init(0); });
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('group__arm__vsi__cases.html',''); initResizable(true); });
+$(function(){initNavTree('group__arm__vsi__vstream.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -127,34 +127,30 @@ $(function(){initNavTree('group__arm__vsi__cases.html',''); initResizable(true);
 <div class="header">
   <div class="summary">
 <a href="#groups">Content</a>  </div>
-  <div class="headertitle"><div class="title">VSI Use Cases<div class="ingroups"><a class="el" href="group__arm__vsi.html">Virtual Streaming Interface (VSI)</a></div></div></div>
+  <div class="headertitle"><div class="title">vStream via VSI<div class="ingroups"><a class="el" href="group__arm__vsi.html">Virtual Streaming Interface (VSI)</a> &raquo; <a class="el" href="group__arm__vsi__cases.html">VSI Use Cases</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Use Cases for Virtual Streaming Interface (VSI)  
+<p>Fixed-size blocks streaming interface.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="groups" name="groups"></a>
 Content</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a></td></tr>
-<tr class="memdesc:group__arm__vsi__audio"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio file streaming interface. <br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__vstream__c__implementation.html">vStream C Implementation</a></td></tr>
+<tr class="memdesc:group__vstream__c__implementation"><td class="mdescLeft">&#160;</td><td class="mdescRight">vStream C Implementation. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vsi__video.html">Video via VSI</a></td></tr>
-<tr class="memdesc:group__arm__vsi__video"><td class="mdescLeft">&#160;</td><td class="mdescRight">Video file streaming interface. <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vsi__sensor.html">Sensor via VSI</a></td></tr>
-<tr class="memdesc:group__arm__vsi__sensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sensor data streaming interface. <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arm__vsi__vstream.html">vStream via VSI</a></td></tr>
-<tr class="memdesc:group__arm__vsi__vstream"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fixed-size blocks streaming interface. <br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__vstream__py__implementation.html">VSI Python for vStream</a></td></tr>
+<tr class="memdesc:group__vstream__py__implementation"><td class="mdescLeft">&#160;</td><td class="mdescRight">VSI Python for vStream. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description</h2>
-<p>Use Cases for Virtual Streaming Interface (VSI) </p>
-<p><a class="el" href="group__arm__vsi.html">Virtual Streaming Interface (VSI)</a> is a general purpose peripheral for implementing data streaming support on Arm FVPs.</p>
-<p><a class="el" href="group__arm__vsi__audio.html">Audio via VSI</a> implements VSI-based audio data streaming with local audio wave file and so simulates audio I/O peripheral in the system.</p>
-<p><a class="el" href="group__arm__vsi__video.html">Video via VSI</a> implements VSI-based video data streaming with local video or image files. Alternatively, PC's camera can be used as video input and PC's display as video output.</p>
-<p><a class="el" href="group__arm__vsi__vstream.html">vStream via VSI</a> implements VSI-based audio and video streaming using the standardized CMSIS-Driver vStream interface. It supports both file-based and live device-based streaming for audio input/output and video input/output. </p>
+<p>Fixed-size blocks streaming interface. </p>
+<p>The vStream via VSI use case is implemented for AVH FVPs based on the general-purpose <a class="el" href="group__arm__vsi.html">Virtual Streaming Interface (VSI)</a>.</p>
+<p>It provides a <a href="https://arm-software.github.io/CMSIS_6/latest/Driver/group__vstream__interface__gr.html">CMSIS-Driver vStream</a> implementation for audio and video data streaming, offering a standardized interface to interact with streaming devices. This allows seamless development on the FVP simulation environment and direct deployment on physical hardware without changing the application code.</p>
+<p>The vStream implementation consists of:</p><ul>
+<li><a class="el" href="group__vstream__c__implementation.html">vStream C Implementation</a> — CMSIS-Driver vStream C implementation for the FVP firmware.</li>
+<li><a class="el" href="group__vstream__py__implementation.html">VSI Python for vStream</a> — Python VSI scripts that bridge the firmware to host audio and video devices. </li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

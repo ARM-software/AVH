@@ -11,6 +11,7 @@ var searchData=
   ['driver_20api_20functions_8',['Driver API Functions',['../group__audio__drv__functions.html',1,'Audio Driver API Functions'],['../group__sensor__drv__functions.html',1,'Sensor Driver API Functions'],['../group__video__drv__functions.html',1,'Video Driver API Functions']]],
   ['driver_20channel_20definitions_9',['Video Driver Channel definitions',['../group__video__drv__ch__params.html',1,'']]],
   ['driver_20color_20formats_10',['Video Driver Color Formats',['../group__video__drv__colors.html',1,'']]],
-  ['driver_20event_20defines_11',['Video Driver Event Defines',['../group__video__drv__events.html',1,'']]],
-  ['driver_20return_20codes_12',['Video Driver Return Codes',['../group__video__drv__errors.html',1,'']]]
+  ['driver_20configuration_11',['Driver configuration',['../group__vstream__c__implementation.html#autotoc_md8',1,'']]],
+  ['driver_20event_20defines_12',['Video Driver Event Defines',['../group__video__drv__events.html',1,'']]],
+  ['driver_20return_20codes_13',['Video Driver Return Codes',['../group__video__drv__errors.html',1,'']]]
 ];

@@ -110,6 +110,7 @@ var NAVTREEINDEX0 =
 "group__arm__vsi__video.html#ab22b96a3efad48f5a542f46c1b224800":[4,2,2,1,2,0],
 "group__arm__vsi__video.html#ac644e277e4294dfe0f43640cbce9ddbe":[4,2,2,1,2,1],
 "group__arm__vsi__video.html#structVideoDrv__Status__t":[4,2,2,1,2],
+"group__arm__vsi__vstream.html":[4,2,2,3],
 "group__arm__vsocket.html":[4,3],
 "group__arm__vsocket__api.html":[4,3,0],
 "group__arm__vsocket__api.html#a03e1a515673725df3ad77d39737e4d6b":[4,3,0,0,4],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "group__arm__vsocket__api.html#structvSocketSetOptIO__t":[4,3,0,13],
 "group__arm__vsocket__api.html#structvSocketSetOptIO__t_8param":[4,3,0,28],
 "group__arm__vsocket__cases.html":[4,3,1],
-"group__audio__drv__defines.html":[4,2,2,0,1],
-"group__audio__drv__defines.html#ga19fd4bec18bcaa695ce70e60785346fa":[4,2,2,0,1,0]
+"group__audio__drv__defines.html":[4,2,2,0,1]
 };

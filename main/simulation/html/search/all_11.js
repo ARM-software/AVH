@@ -38,5 +38,6 @@ var searchData=
   ['status_35',['Status',['../group__arm__vsi__api.html#aec53a8c4f07baed5d8825072c89799be',1,'ARM_VSI_Type.IRQ']]],
   ['stop_36',['Execution stop',['../hints.html#stop',1,'']]],
   ['streaming_20interface_20vsi_37',['Virtual Streaming Interface (VSI)',['../group__arm__vsi.html',1,'']]],
-  ['support_38',['CMSIS Support',['../avh_fvp_cmsis.html',1,'']]]
+  ['streaming_20operation_38',['streaming operation',['../group__vstream__c__implementation.html#autotoc_md9',1,'Audio streaming operation'],['../group__vstream__c__implementation.html#autotoc_md10',1,'Video streaming operation']]],
+  ['support_39',['CMSIS Support',['../avh_fvp_cmsis.html',1,'']]]
 ];

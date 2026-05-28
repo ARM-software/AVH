@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"group__audio__drv__defines.html#ga19fd4bec18bcaa695ce70e60785346fa":[4,2,2,0,1,0],
 "group__audio__drv__defines.html#ga1b7bf37c6c56ad17414478d6dc7a62ac":[4,2,2,0,1,12],
 "group__audio__drv__defines.html#ga1c054890d0d31601c71ede31ae8d9f7c":[4,2,2,0,1,2],
 "group__audio__drv__defines.html#ga1c69ec4dab365737f5bb2e3977a244a0":[4,2,2,0,1,8],
@@ -78,6 +79,8 @@ var NAVTREEINDEX1 =
 "group__video__drv__functions.html#ga963660475d743daa2f2ae1a87d409f3a":[4,2,2,1,0,11],
 "group__video__drv__functions.html#gaa88d8f3200ab45ace8660724cab233e3":[4,2,2,1,0,0],
 "group__video__drv__functions.html#gae7bed6c8b6e83eef0ef54f510a3c948a":[4,2,2,1,0,3],
+"group__vstream__c__implementation.html":[4,2,2,3,0],
+"group__vstream__py__implementation.html":[4,2,2,3,1],
 "hints.html":[2],
 "hints.html#ci_frameworks":[2,1],
 "hints.html#console":[2,0],
