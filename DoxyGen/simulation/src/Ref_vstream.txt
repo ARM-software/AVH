@@ -1,0 +1,175 @@
+/**
+\addtogroup arm_vsi_vstream vStream via VSI
+\ingroup arm_vsi_cases
+\brief Fixed-size blocks streaming interface.
+\details
+
+The vStream via VSI use case is implemented for AVH FVPs based on the general-purpose \ref arm_vsi.
+
+It provides a [CMSIS-Driver vStream](https://arm-software.github.io/CMSIS_6/latest/Driver/group__vstream__interface__gr.html)
+implementation for audio and video data streaming, offering a standardized interface to interact with streaming devices.
+This allows seamless development on the FVP simulation environment and direct deployment on physical hardware without changing the application code.
+
+The vStream implementation consists of:
+ - \ref vstream_c_implementation — CMSIS-Driver vStream C implementation for the FVP firmware.
+ - \ref vstream_py_implementation — Python VSI scripts that bridge the firmware to host audio and video devices.
+
+
+\defgroup vstream_c_implementation vStream C Implementation
+\ingroup arm_vsi_vstream
+\brief vStream C Implementation.
+\details
+
+The vStream C implementation provides the [CMSIS-Driver vStream](https://arm-software.github.io/CMSIS-Driver/main/group__vStream__interface__gr.html)
+interface for the AVH FVPs. The C driver communicates with the FVP simulation layer by reading and writing VSI
+peripheral registers, which the corresponding Python scripts interpret and forward to the Audio or Video Server.
+
+The following files implement the vStream C driver:
+
+Item                                                                                                                                                       | Description
+:----------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------
+[./interface/vstream/source/vstream_audio_in.c](https://github.com/ARM-software/AVH/blob/main/interface/vstream/source/vstream_audio_in.c)                 | vStream AudioIn driver implementation for AVH FVPs. Exposes `Driver_vStreamAudioIn` on VSI instance 0.
+[./interface/vstream/source/vstream_audio_in.h](https://github.com/ARM-software/AVH/blob/main/interface/vstream/source/vstream_audio_in.h)                 | vStream AudioIn driver header file.
+[./interface/vstream/config/vstream_audio_in_config.h](https://github.com/ARM-software/AVH/blob/main/interface/vstream/config/vstream_audio_in_config.h)   | Configuration header for the AudioIn driver.
+[./interface/vstream/source/vstream_audio_out.c](https://github.com/ARM-software/AVH/blob/main/interface/vstream/source/vstream_audio_out.c)               | vStream AudioOut driver implementation for AVH FVPs. Exposes `Driver_vStreamAudioOut` on VSI instance 1.
+[./interface/vstream/source/vstream_audio_out.h](https://github.com/ARM-software/AVH/blob/main/interface/vstream/source/vstream_audio_out.h)               | vStream AudioOut driver header file.
+[./interface/vstream/config/vstream_audio_out_config.h](https://github.com/ARM-software/AVH/blob/main/interface/vstream/config/vstream_audio_out_config.h) | Configuration header for the AudioOut driver.
+[./interface/vstream/source/vstream_video_in.c](https://github.com/ARM-software/AVH/blob/main/interface/vstream/source/vstream_video_in.c)                 | vStream VideoIn driver implementation for AVH FVPs. Exposes `Driver_vStreamVideoIn` on VSI instance 4.
+[./interface/vstream/source/vstream_video_in.h](https://github.com/ARM-software/AVH/blob/main/interface/vstream/source/vstream_video_in.h)                 | vStream VideoIn driver header file.
+[./interface/vstream/config/vstream_video_in_config.h](https://github.com/ARM-software/AVH/blob/main/interface/vstream/config/vstream_video_in_config.h)   | Configuration header for the VideoIn driver.
+[./interface/vstream/source/vstream_video_out.c](https://github.com/ARM-software/AVH/blob/main/interface/vstream/source/vstream_video_out.c)               | vStream VideoOut driver implementation for AVH FVPs. Exposes `Driver_vStreamVideoOut` on VSI instance 6.
+[./interface/vstream/source/vstream_video_out.h](https://github.com/ARM-software/AVH/blob/main/interface/vstream/source/vstream_video_out.h)               | vStream VideoOut driver header file.
+[./interface/vstream/config/vstream_video_out_config.h](https://github.com/ARM-software/AVH/blob/main/interface/vstream/config/vstream_video_out_config.h) | Configuration header for the VideoOut driver.
+
+### Driver configuration
+
+The vStream driver behavior is controlled at compile-time through configuration header files located in `./interface/vstream/config/`.
+These files are copied to the project and can be modified to adapt the stream parameters to the application requirements.
+
+<b>Audio stream configuration</b>
+
+Configuration options for the audio vStream drivers are:
+
+Parameter                 | Description                                             | Available Options                    | Configuration Macro
+:-------------------------|:--------------------------------------------------------|:-------------------------------------|:--------------------------------
+Number of channels        | Number of audio channels in the stream                  | Mono (1), Stereo (2)                 | `AUDIO_[IN\|OUT]_CHANNELS`
+Bits per sample           | Number of bits of information in each sample            | 8, 16, 24, or 32                     | `AUDIO_[IN\|OUT]_SAMPLE_BITS`
+Sample rate               | Number of audio samples captured or played per second   | 8000, 16000, 44100, or 48000 Hz      | `AUDIO_[IN\|OUT]_SAMPLE_RATE`
+Streaming device index    | System index of the audio device                        | -1 for system default, 0, 1, ...     | `AUDIO_[IN\|OUT]_DEVICE`
+Audio file name           | Name of the WAV file to read from or write to           | Path string, or empty to use device  | `AUDIO_[IN\|OUT]_FILENAME`
+
+When `AUDIO_IN_FILENAME` / `AUDIO_OUT_FILENAME` is set to a non-empty string, the driver streams audio data from or
+to the specified WAV file. When left empty, the streaming device index (`AUDIO_IN_DEVICE` / `AUDIO_OUT_DEVICE`)
+is used to select an audio hardware device, where `-1` selects the system default device.
+
+<b>Video stream configuration</b>
+
+Configuration options for the video vStream drivers are:
+
+Parameter     | Description                                                 | Available Options                         | Configuration Macro
+:-------------|:------------------------------------------------------------|:------------------------------------------|:--------------------------------
+Frame width   | Video stream frame width in pixels                          | User-defined (e.g. 320, 640, 1280)        | `VIDEO_[IN\|OUT]_FRAME_WIDTH`
+Frame height  | Video stream frame height in pixels                         | User-defined (e.g. 240, 480, 720)         | `VIDEO_[IN\|OUT]_FRAME_HEIGHT`
+Frame rate    | Video stream frame rate in frames per second                | User-defined (e.g. 15, 25, 30, 60)        | `VIDEO_[IN\|OUT]_FRAME_RATE`
+Color format  | Video frame pixel color space                               | Grayscale8, RGB888, BGR565, YUV420, NV12, NV21 | `VIDEO_[IN\|OUT]_FRAME_COLOR`
+Device index  | System index of the video capture device (input only)       | -1 for system default, 0, 1, ...          | `VIDEO_[IN\|OUT]_DEVICE`
+File name     | Name of the video or image file to read from or write to    | Path string, or empty to use device       | `VIDEO_[IN\|OUT]_FILENAME`
+
+When `VIDEO_IN_FILENAME` is set to a non-empty string, the VideoIn driver reads frames from the specified video or
+image file. When left empty, the device index (`VIDEO_IN_DEVICE`) selects the camera to use, where `-1` selects
+the system default device.
+
+For VideoOut, when `VIDEO_OUT_FILENAME` is set to a non-empty string, frames are written to the specified video file.
+When left empty, frames are displayed in an OpenCV window on the host.
+
+### Audio streaming operation
+
+The audio streaming flow for input and output follows a common pattern based on the CMSIS-Driver vStream API:
+
+ 1. At FVP model start or reset, the VSI peripheral calls `init()` in the relevant Python scripts.
+    For AudioIn this is `arm_vsi0.py`, for AudioOut `arm_vsi1.py`.
+    Each script starts the Audio Server (`vsi_audio_server.py`) in the background and establishes a TCP connection to it.
+ 2. The application calls `Driver_vStreamAudioIn.Initialize()` or `Driver_vStreamAudioOut.Initialize()`, registering
+    an optional callback function for stream events. The driver writes the audio configuration (channels, sample bits,
+    sample rate, device or filename) to the VSI peripheral registers, which the Python script forwards to the Audio Server.
+ 3. The application calls `SetBuf()` to assign a circular DMA buffer divided into fixed-size blocks. The VSI DMA
+    is configured to transfer one block at a time, synchronized by the VSI Timer.
+ 4. The application calls `Start()` with `VSTREAM_MODE_CONTINUOUS` or `VSTREAM_MODE_SINGLE` to begin streaming.
+    The VSI Timer is programmed with an interval derived from the configured sample rate and block size to deliver
+    one audio block per timer period.
+ 5. While streaming, the `VSTREAM_EVENT_DATA` callback event signals that a completed block is available.
+    The application calls `GetBlock()` to obtain a pointer to the block and processes the data, then calls
+    `ReleaseBlock()` to return the block to the driver for reuse.
+    If the application does not release blocks fast enough, a `VSTREAM_EVENT_OVERFLOW` event is generated.
+ 6. When the end of the audio file is reached, the `VSTREAM_EVENT_EOS` event is generated.
+ 7. The application calls `Stop()` to halt streaming and `Uninitialize()` to release resources.
+
+### Video streaming operation
+
+The video streaming flow for input and output follows the same pattern as audio streaming, adapted for frame-based data:
+
+ 1. At FVP model start or reset, the VSI peripheral calls `init()` in the relevant Python scripts.
+    For VideoIn channel 0 this is `arm_vsi4.py`, for VideoOut channel 0 `arm_vsi5.py`.
+    Each script starts the Video Server (`vsi_video_server.py`) in the background and establishes a TCP connection to it.
+ 2. The application calls `Driver_vStreamVideoIn.Initialize()` or `Driver_vStreamVideoOut.Initialize()`, registering
+    an optional callback function for stream events. The driver writes the video configuration (frame width, height,
+    frame rate, color format, device or filename) to the VSI peripheral registers, which the Python script forwards
+    to the Video Server. The Video Server performs any required color space conversion and frame resizing.
+ 3. The application calls `SetBuf()` to assign a circular DMA buffer sized to hold one or more video frames.
+ 4. The application calls `Start()` with `VSTREAM_MODE_CONTINUOUS` or `VSTREAM_MODE_SINGLE` to begin streaming.
+    The VSI Timer is programmed with an interval derived from the configured frame rate.
+ 5. While streaming, the `VSTREAM_EVENT_DATA` callback event signals that a complete frame is available.
+    The application calls `GetBlock()` to obtain a pointer to the frame buffer and passes it to the processing
+    algorithm, then calls `ReleaseBlock()` to return the buffer to the driver for reuse.
+    If the application does not release frames fast enough, a `VSTREAM_EVENT_OVERFLOW` event is generated.
+ 6. When the end of the video file or image sequence is reached, the `VSTREAM_EVENT_EOS` event is generated.
+ 7. The application calls `Stop()` to halt streaming and `Uninitialize()` to release resources.
+
+@{
+@}
+
+
+\defgroup vstream_py_implementation VSI Python for vStream
+\ingroup arm_vsi_vstream
+\brief VSI Python for vStream.
+\details
+
+The VSI Python scripts bridge the C driver running on the FVP firmware to the Audio or Video Server running on the
+host. Each script corresponds to one VSI peripheral instance and is loaded by the FVP at model start. The scripts
+use a client-server architecture: the `arm_vsi*.py` scripts act as thin clients that relay register writes from the
+firmware to a background server process, which interfaces with the host audio or video hardware.
+
+The following files implement the VSI Python layer for vStream:
+
+Item                                                                                                                                                          | Description
+:-------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------
+[./interface/vstream/python/arm_vsi0.py](https://github.com/ARM-software/AVH/blob/main/interface/vstream/python/arm_vsi0.py)                                  | VSI Python script for AudioIn (VSI instance 0). Bridges the FVP to the Audio Server.
+[./interface/vstream/python/arm_vsi1.py](https://github.com/ARM-software/AVH/blob/main/interface/vstream/python/arm_vsi1.py)                                  | VSI Python script for AudioOut (VSI instance 1). Bridges the FVP to the Audio Server.
+[./interface/vstream/python/arm_vsi4.py](https://github.com/ARM-software/AVH/blob/main/interface/vstream/python/arm_vsi4.py)                                  | VSI Python script for VideoIn channel 0 (VSI instance 4). Bridges the FVP to the Video Server.
+[./interface/vstream/python/arm_vsi5.py](https://github.com/ARM-software/AVH/blob/main/interface/vstream/python/arm_vsi5.py)                                  | VSI Python script for VideoOut channel 0 (VSI instance 5). Bridges the FVP to the Video Server.
+[./interface/vstream/python/arm_vsi6.py](https://github.com/ARM-software/AVH/blob/main/interface/vstream/python/arm_vsi6.py)                                  | VSI Python script for VideoIn channel 1 (VSI instance 6). Bridges the FVP to the Video Server.
+[./interface/vstream/python/arm_vsi7.py](https://github.com/ARM-software/AVH/blob/main/interface/vstream/python/arm_vsi7.py)                                  | VSI Python script for VideoOut channel 1 (VSI instance 7). Bridges the FVP to the Video Server.
+[./interface/vstream/python/vsi_audio.py](https://github.com/ARM-software/AVH/blob/main/interface/vstream/python/vsi_audio.py)                              | VSI Audio client module. Handles communication between the VSI Python scripts and the Audio Server.
+[./interface/vstream/python/vsi_audio_server.py](https://github.com/ARM-software/AVH/blob/main/interface/vstream/python/vsi_audio_server.py)              | Audio Server module. Implements a TCP server for audio streaming using PyAudio.
+[./interface/vstream/python/vsi_video.py](https://github.com/ARM-software/AVH/blob/main/interface/vstream/python/vsi_video.py)                                              | VSI Video client module. Handles communication between the VSI Python scripts and the Video Server.
+[./interface/vstream/python/vsi_video_server.py](https://github.com/ARM-software/AVH/blob/main/interface/vstream/python/vsi_video_server.py)              | Video Server module. Implements a TCP server for video streaming using OpenCV.
+
+### Python requirements
+
+In addition to the base Python environment, the VSI vStream use case requires the following Python packages:
+
+ - **Audio streaming**: PyAudio package for audio device access. Run the following command to install it with pip:
+\code{.sh}
+pip install pyaudio
+\endcode
+
+ - **Video streaming**: OpenCV Python package for camera and video file access. Run the following command to install it with pip:
+\code{.sh}
+pip install opencv-python
+\endcode
+
+@{
+@}
+
+*/
+// End vStream via VSI

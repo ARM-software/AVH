@@ -13,7 +13,7 @@
 
 \ref arm_vsi_video implements VSI-based video data streaming with local video or image files. Alternatively, PC's camera can be used as video input and PC's display as video output.
 
-Other examples for VSI peripherals will be added in future as well.
+\ref arm_vsi_vstream implements VSI-based audio and video streaming using the standardized CMSIS-Driver vStream interface. It supports both file-based and live device-based streaming for audio input/output and video input/output.
 
 */
 
