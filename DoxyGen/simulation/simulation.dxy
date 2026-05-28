@@ -1009,6 +1009,7 @@ INPUT                  = ./src/main.md \
                          ./src/Ref_audio.txt \
                          ./src/Ref_video.txt \
                          ./src/Ref_sensor.txt \
+                         ./src/Ref_vstream.txt \
                          ../../interface/audio/include/audio_drv.h \
                          ../../interface/video/include/video_drv.h \
                          ../../interface/sensor/include/sensor_drv.h

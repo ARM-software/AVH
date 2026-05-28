@@ -22,7 +22,7 @@ the \ref arm_vsi_py "VSI Python scripts" that implement peripheral behavior in t
 The path to the VSI python scripts is provided to the FVP using the configuration parameter `v_path`. Section \ref Execution gives an example.
  
 Section \ref arm_vsi_cases explains in detail the reference implementations of VSI-based peripherals.
-Specifically \ref arm_vsi_audio implementing audio streaming input from a local audio wave file and \ref arm_vsi_video implementing video streaming from a local video or image file.
+Specifically \ref arm_vsi_audio implementing audio streaming input from a local audio wave file, \ref arm_vsi_video implementing video streaming from a local video or image file, and \ref arm_vsi_vstream implementing audio and video streaming using the CMSIS-Driver vStream interface.
 
 Access to the VSI peripherals is defined in the following files:
 
