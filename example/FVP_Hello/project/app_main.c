@@ -23,7 +23,6 @@
 
 /* Thread attributes */
 const osThreadAttr_t thread_attr_main  = { .name = "app_main" };
-const osThreadAttr_t thread_attr_stdin = { .name = "stdin"    };
 
 /* Thread IDs */
 osThreadId_t thread_id_main;
