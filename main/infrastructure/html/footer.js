@@ -1,3 +1,3 @@
 function writeFooter()  {
-    document.write('Generated on Tue Jul 14 2026 15:15:09 for PROJECT_NAME           = Infrastructure Version 2.2.0 by Arm Ltd. All rights reserved.');
+    document.write('Generated on Wed Jul 15 2026 13:50:47 for PROJECT_NAME           = Infrastructure Version 2.2.0 by Arm Ltd. All rights reserved.');
 };
