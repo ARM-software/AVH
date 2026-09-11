@@ -57,10 +57,10 @@
 #define SRAM_VM1_NS_LIMIT               (SRAM_VM1_NS_BASE + SRAM_VM1_NS_SIZE - 1)
 
 /*---------------------------------------------------------------------------*/
-/*                         Secure QSPI Flash Regions                         */
+/*                         Non-Secure QSPI Flash Regions                     */
 /*---------------------------------------------------------------------------*/
 
-/* QSPI Flash - Secure */
+/* QSPI Flash - Non-Secure */
 #define QSPI_FLASH_NS_BASE              0x28000000
 #define QSPI_FLASH_NS_SIZE              0x00800000    /* 8MB */
 #define QSPI_FLASH_NS_LIMIT             (QSPI_FLASH_NS_BASE + QSPI_FLASH_NS_SIZE - 1)
