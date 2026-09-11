@@ -16,8 +16,8 @@
  * limitations under the License.
  *---------------------------------------------------------------------------*/
 
-#ifndef SSE320_MEMMAP_NS_H
-#define SSE320_MEMMAP_NS_H
+#ifndef SSE315_MEMMAP_NS_H
+#define SSE315_MEMMAP_NS_H
 
 /*============================================================================*/
 /*                           NON-SECURE MEMORY REGIONS                        */
@@ -99,4 +99,4 @@
 #define DDR4_6_NS_SIZE                  0x10000000    /* 256MB */
 #define DDR4_6_NS_LIMIT                 (DDR4_6_NS_BASE + DDR4_6_NS_SIZE - 1)
 
-#endif /* SSE320_MEMMAP_NS_H */
+#endif /* SSE315_MEMMAP_NS_H */
