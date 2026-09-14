@@ -22,7 +22,6 @@ layer:
     - pack: ARM::CMSIS
     - pack: ARM::CMSIS-Compiler@^2.2.0
     - pack: ARM::CMSIS-Ethos-U@^1.0.0-0
-    - pack: ARM::AVH_FVP
     - pack: ARM::SSE_315_BSP@1.0.0
 
   components:

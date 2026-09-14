@@ -21,7 +21,6 @@ layer:
   packs:
     - pack: ARM::CMSIS
     - pack: ARM::CMSIS-Compiler@^2.2.0
-    - pack: ARM::AVH_FVP
     - pack: ARM::V2M_MPS3_SSE_300_BSP@1.5.0
 
   components:
