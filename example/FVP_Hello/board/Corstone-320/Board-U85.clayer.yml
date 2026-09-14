@@ -21,13 +21,14 @@ layer:
   define:
     - CMSIS_target_header: \"Corstone-320.h\"
     - ETHOSU85
+    - ETHOSU_MACS: 256
     - ARM_MODEL_USE_PMU_COUNTERS
     - UART0_BASE_S_TMP
 
   packs:
     - pack: ARM::CMSIS
     - pack: ARM::CMSIS-Compiler@^2.2.0
-    - pack: ARM::ethos-u-core-driver@^1.25.2
+    - pack: ARM::CMSIS-Ethos-U@^1.0.0-0
     - pack: ARM::AVH_FVP
     - pack: ARM::SSE_320_BSP@1.1.0
 

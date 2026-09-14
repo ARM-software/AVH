@@ -21,12 +21,13 @@ layer:
   define:
     - CMSIS_target_header: \"Corstone-315.h\"
     - ETHOSU65
+    - ETHOSU_MACS: 256
     - ARM_MODEL_USE_PMU_COUNTERS
 
   packs:
     - pack: ARM::CMSIS
     - pack: ARM::CMSIS-Compiler@^2.2.0
-    - pack: ARM::ethos-u-core-driver@^1.25.2
+    - pack: ARM::CMSIS-Ethos-U@^1.0.0-0
     - pack: ARM::AVH_FVP
     - pack: ARM::SSE_315_BSP@1.0.0
 
