@@ -16,7 +16,7 @@ layer:
         - STDIN
         - STDOUT
         - STDERR
-        - Heap: 786432
+        - Heap: 98304
 
   define:
     - CMSIS_target_header: \"Corstone-310.h\"

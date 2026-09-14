@@ -13,7 +13,7 @@ This layer works for:
 
 | System Component        | Setting
 |:------------------------|:----------------------------------
-| Heap                    | 768 kB (configured in linker file)
+| Heap                    |  96 kB (configured in linker file)
 | Stack (MSP)             |  32 kB (configured in linker file)
 
 ### STDIO mapping
