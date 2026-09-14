@@ -29,10 +29,10 @@ DEFAULT_ARGS=(-c "v")
 # Default: empty (all folders)
 #
 PACK_DIRS="
-  board
   Documentation
   example
   interface
+  layer
   Overview
 "
 
