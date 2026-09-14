@@ -1,0 +1,59 @@
+layer:
+  type: Board
+  description: Base configuration of SSE-300 FVP with Ethos U55
+  for-board: ARM::V2M-MPS3-SSE-300-FVP
+  for-device: ARM::SSE-300-MPS3
+
+  connections:
+    - connect: Corstone-300-U55
+      provides:
+        - CMSIS_USART
+        - CMSIS_VIO
+        - STDIN
+        - STDOUT
+        - STDERR
+        - Heap: 786432
+
+  define:
+    - CMSIS_target_header: \"Corstone-300.h\"
+    - ETHOSU55
+    - CORSTONE300_FVP
+    - ARM_MODEL_USE_PMU_COUNTERS
+
+  packs:
+    - pack: ARM::CMSIS
+    - pack: ARM::CMSIS-Compiler@^2.2.0
+    - pack: ARM::ethos-u-core-driver@^1.25.2
+    - pack: ARM::AVH_FVP
+    - pack: ARM::V2M_MPS3_SSE_300_BSP@1.5.0
+
+  components:
+    - component: CMSIS:CORE
+
+    - component: CMSIS Driver:USART
+    - component: CMSIS Driver:VIO
+
+    - component: CMSIS-Compiler:CORE
+    - component: CMSIS-Compiler:STDERR:UART&CMSIS
+    - component: CMSIS-Compiler:STDIN:UART&CMSIS
+    - component: CMSIS-Compiler:STDOUT:UART&CMSIS
+
+    - component: Device:Definition
+    - component: Device:Startup&C Startup
+
+    - component: Device:Native Driver:SysCounter
+    - component: Device:Native Driver:SysTimer
+    - component: Device:Native Driver:Timeout
+    - component: Device:Native Driver:UART
+
+    - component: Machine Learning:NPU Support:Ethos-U Driver&Generic U55
+
+  groups:
+    - group: Board
+      files:
+        - file: ./main.c
+        - file: ./main.h
+        - file: ./ethos_setup.c
+
+  linker:
+    - regions: ./regions_SSE-300.h
