@@ -42,8 +42,6 @@ define memory mem with size = 4G;
   define region ROM3_region = [];
 #endif
 
-define region ROM_region = ROM0_region |  ROM1_region | ROM2_region | ROM3_region;
-
 #if __RAM0_SIZE > 0
   define region RAM0_region = mem:[from __RAM0_BASE to (__RAM0_BASE+__RAM0_SIZE-1)];
 #else
@@ -68,8 +66,6 @@ define region ROM_region = ROM0_region |  ROM1_region | ROM2_region | ROM3_regio
   define region RAM3_region = [];
 #endif
 
-define region RAM_region = RAM0_region | RAM1_region | RAM2_region | RAM3_region;
-
 do not initialize  { section .noinit };
 initialize by copy { readwrite };
 if (isdefinedsymbol(__USE_DLIB_PERTHREAD))
@@ -80,15 +76,16 @@ if (isdefinedsymbol(__USE_DLIB_PERTHREAD))
 
 place at address mem:__ROM0_BASE { readonly section .intvec };
 
-if (!isempty(ROM_region))
+if (!isempty(ROM1_region))
 {
-  place in ROM_region  { readonly };
+  place in ROM1_region { readonly };
 }
 
-if (!isempty(RAM_region))
+if (!isempty(RAM0_region))
 {
   define block CSTACK     with alignment = 8, size = __STACK_SIZE     { };
   define block PROC_STACK with alignment = 8, size = 0 { };
   define block HEAP       with alignment = 8, size = __HEAP_SIZE       { };
-  place in RAM_region  { readwrite, block CSTACK, block PROC_STACK, block HEAP };
+  place in RAM0_region { readwrite, block PROC_STACK, block HEAP };
+  place at end of RAM0_region { block CSTACK };
 }
