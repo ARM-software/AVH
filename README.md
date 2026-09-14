@@ -27,7 +27,7 @@ Directory                       | Description
 :-------------------------------|:------------
 [overview](./Overview)          | Overview of AVH_FVP content.
 [example](./example)            | [Example projects](https://arm-software.github.io/AVH/main/examples/html/index.html) that show usage of FVP simulation models.
-[board](./board)                | Board support layers for various Arm Corstone FVP (Fixed Virtual Platform) targets.
+[layer](./layer)                | Board support layers for various Arm Corstone FVP (Fixed Virtual Platform) targets.
 [interface](./interface)        | [Virtual Interface APIs](https://arm-software.github.io/AVH/main/simulation/html/group__arm__cmvp.html) with drivers and Python scripts.
 [DoxyGen](./DoxyGen)            | Doxygen sources for documentation.
 [.github/workflows](./.github/workflows) | GitHub action for publishing and validation.
