@@ -1,0 +1,53 @@
+layer:
+  type: Board
+  description: Board setup for AI/ML
+  for-board: ARM::V2M-MPS3-SSE-310
+  for-device: ARM::SSE-310-MPS3_FVP
+
+  connections:
+    - connect: Corstone-310
+      provides:
+        - CMSIS_USART
+        - CMSIS_VIO
+        - STDIN
+        - STDOUT
+        - STDERR
+        - Heap: 786432
+
+  define:
+    - CMSIS_target_header: \"Corstone-310.h\"
+    - ARM_MODEL_USE_PMU_COUNTERS
+
+  packs:
+    - pack: ARM::CMSIS
+    - pack: ARM::CMSIS-Compiler@^2.2.0
+    - pack: ARM::AVH_FVP
+    - pack: ARM::V2M_MPS3_SSE_310_BSP@1.4.0
+
+  components:
+    - component: CMSIS:CORE
+
+    - component: CMSIS Driver:USART
+    - component: CMSIS Driver:VIO
+
+    - component: CMSIS-Compiler:CORE
+    - component: CMSIS-Compiler:STDERR:UART&CMSIS
+    - component: CMSIS-Compiler:STDIN:UART&CMSIS
+    - component: CMSIS-Compiler:STDOUT:UART&CMSIS
+
+    - component: Device:Definition
+    - component: Device:Startup&C Startup
+
+    - component: Device:Native Driver:SysCounter
+    - component: Device:Native Driver:SysTimer
+    - component: Device:Native Driver:Timeout
+    - component: Device:Native Driver:UART
+
+  groups:
+    - group: Board
+      files:
+        - file: ./main.c
+        - file: ./main.h
+
+  linker:
+    - regions: ./regions_SSE-310.h
