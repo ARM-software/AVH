@@ -20,9 +20,7 @@ layer:
 
   define:
     - CMSIS_target_header: \"Corstone-320.h\"
-    - ETHOSU85
     - ETHOSU_MACS: 256
-    - ARM_MODEL_USE_PMU_COUNTERS
     - UART0_BASE_S_TMP
 
   packs:

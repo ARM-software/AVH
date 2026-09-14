@@ -20,7 +20,6 @@ layer:
 
   define:
     - CMSIS_target_header: \"Corstone-310.h\"
-    - ARM_MODEL_USE_PMU_COUNTERS
 
   packs:
     - pack: ARM::CMSIS

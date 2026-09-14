@@ -16,10 +16,8 @@ layer:
 
   define:
     - CMSIS_target_header: \"Corstone-300.h\"
-    - ETHOSU65
     - ETHOSU_MACS: 256
     - CORSTONE300_FVP
-    - ARM_MODEL_USE_PMU_COUNTERS
 
   packs:
     - pack: ARM::CMSIS
