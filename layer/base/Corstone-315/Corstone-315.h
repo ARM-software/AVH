@@ -28,7 +28,7 @@
 #define RETARGET_STDIO_UART 0
 
 // CMSIS Drivers
-extern ARM_DRIVER_USART Driver_USART0;          /* Serial           */
+extern ARM_DRIVER_USART Driver_USART0;          /* Serial */
 
 #ifdef CMSIS_shield_header
 #include CMSIS_shield_header
