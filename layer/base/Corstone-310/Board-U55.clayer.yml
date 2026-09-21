@@ -28,7 +28,7 @@ layer:
     - component: CMSIS:CORE
 
     - component: CMSIS Driver:USART
-    - component: CMSIS Driver:VIO
+    - component: CMSIS Driver:VIO:Virtual
 
     - component: CMSIS-Compiler:CORE
     - component: CMSIS-Compiler:STDERR:UART&CMSIS
