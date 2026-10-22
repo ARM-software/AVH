@@ -87,5 +87,26 @@ if (!isempty(RAM0_region))
   define block PROC_STACK with alignment = 8, size = 0 { };
   define block HEAP       with alignment = 8, size = __HEAP_SIZE       { };
   place in RAM0_region { readwrite, block PROC_STACK, block HEAP };
+#if defined (__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3U)
+  /* Reserve the stack seal immediately above the stack. */
+  define block STACKSEAL with alignment = 8, size = 8 { };
+  define block CSTACK_WITH_SEAL with fixed order { block CSTACK, block STACKSEAL };
+  place at end of RAM0_region { block CSTACK_WITH_SEAL };
+#else
   place at end of RAM0_region { block CSTACK };
+#endif
 }
+
+/* Ethos-U writable area */
+#if __RAM1_SIZE > 0
+  do not initialize { section ethos_arena };
+  define block ETHOS_ARENA with alignment = 32
+    { section ethos_arena };
+  place in RAM1_region { block ETHOS_ARENA };
+#endif
+
+/* Ethos-U model, command stream and constants */
+#if __ROM2_SIZE > 0
+  define block ETHOS_MODEL with alignment = 32 { readonly section ethos_model };
+  place in ROM2_region { block ETHOS_MODEL };
+#endif

@@ -79,6 +79,12 @@ PHDRS
     ram PT_LOAD;
     ram_init PT_LOAD;
     tls PT_TLS;
+#if __RAM1_SIZE > 0
+    ethos_ram PT_LOAD;
+#endif
+#if __ROM2_SIZE > 0
+    ethos_model PT_LOAD;
+#endif
 }
 
 SECTIONS
@@ -315,6 +321,20 @@ SECTIONS
     {
         . += __STACKSEAL_SIZE;
     } >RAM0 :ram
+#endif
+
+    /* Ethos-U writable area */
+#if __RAM1_SIZE > 0
+    .ethos_arena (NOLOAD) : ALIGN(32) {
+        *(ethos_arena)
+    } >RAM1 AT>RAM1 :ethos_ram
+#endif
+
+    /* Ethos-U model, command stream and constants */
+#if __ROM2_SIZE > 0
+    .ethos_model : ALIGN(32) {
+        *(ethos_model)
+    } >ROM2 AT>ROM2 :ethos_model
 #endif
 
     /* Throw away C++ exception handling information */

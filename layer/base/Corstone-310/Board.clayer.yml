@@ -1,6 +1,6 @@
 layer:
   type: Board
-  description: Board setup for AI/ML
+  description: Base configuration of SSE-310 FVP
   for-board: ARM::V2M-MPS3-SSE-310
   for-device: ARM::SSE-310-MPS3_FVP
 
@@ -19,7 +19,7 @@ layer:
 
   packs:
     - pack: ARM::CMSIS
-    - pack: ARM::CMSIS-Compiler@^2.2.0
+    - pack: ARM::CMSIS-Compiler@^2.3.0
     - pack: ARM::V2M_MPS3_SSE_310_BSP@1.4.0
 
   components:
@@ -44,8 +44,8 @@ layer:
   groups:
     - group: Board
       files:
-        - file: ./main.c
-        - file: ./main.h
+        - file: main.c
+        - file: main.h
 
   linker:
-    - regions: ./regions_SSE-310.h
+    - regions: RTE/Device/SSE-310-MPS3_FVP/regions_SSE-310.h

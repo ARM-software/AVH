@@ -30,7 +30,7 @@ Each board folder contains a **README** with implementation details and multiple
 | Layer File             | NPU Configuration | Description                                |
 |:-----------------------|:------------------|:-------------------------------------------|
 | `Board.clayer.yml`     | None              | Cortex-M system only, no Ethos-U NPU       |
-| `Board-U55.clayer.yml` | Ethos-U55         | Cortex-M system + Ethos-U55 NPU (256 MACs) |
+| `Board-U55.clayer.yml` | Ethos-U55         | Cortex-M system + Ethos-U55 NPU            |
 | `Board-U65.clayer.yml` | Ethos-U65         | Cortex-M system + Ethos-U65 NPU            |
 | `Board-U85.clayer.yml` | Ethos-U85         | Cortex-M system + Ethos-U85 NPU            |
 
