@@ -1,6 +1,6 @@
 layer:
   type: Board
-  description: Board setup for AI/ML with Ethos U65
+  description: Base configuration of SSE-310 FVP with Ethos U65
   for-board: ARM::V2M-MPS3-SSE-310
   for-device: ARM::SSE-310-MPS3_FVP
 
@@ -13,15 +13,16 @@ layer:
         - STDOUT
         - STDERR
         - Heap: 98304
+      consumes:
+        - CMSIS-RTOS2
 
   define:
     - CMSIS_target_header: \"Corstone-310.h\"
-    - ETHOSU_MACS: 256
 
   packs:
     - pack: ARM::CMSIS
-    - pack: ARM::CMSIS-Compiler@^2.2.0
-    - pack: ARM::CMSIS-Ethos-U@^1.0.0-0
+    - pack: ARM::CMSIS-Compiler@^2.3.0
+    - pack: ARM::CMSIS-Ethos-U@^1.0.0
     - pack: ARM::V2M_MPS3_SSE_310_BSP@1.4.0
 
   components:
@@ -44,13 +45,17 @@ layer:
     - component: Device:Native Driver:UART
 
     - component: Machine Learning:NPU Support:Ethos-U Driver&Generic U65
+      define:
+        - ETHOSU_MACS: 256
 
   groups:
     - group: Board
       files:
-        - file: ./main.c
-        - file: ./main.h
-        - file: ./ethos_setup.c
+        - file: main.c
+        - file: main.h
+        - file: ethos_setup.c
+        - file: ethosu_os_rtos2.c
+        - file: ethosu_dcache.c
 
   linker:
-    - regions: ./regions_SSE-310.h
+    - regions: RTE/Device/SSE-310-MPS3_FVP/regions_SSE-310.h

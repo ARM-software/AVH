@@ -1,6 +1,6 @@
 layer:
   type: Board
-  description: Board setup for AI/ML
+  description: Base configuration of SSE-315 FVP
   for-board: ARM::SSE-315
   for-device: ARM::SSE-315-FVP
 
@@ -19,7 +19,7 @@ layer:
 
   packs:
     - pack: ARM::CMSIS
-    - pack: ARM::CMSIS-Compiler@^2.2.0
+    - pack: ARM::CMSIS-Compiler@^2.3.0
     - pack: ARM::SSE_315_BSP@1.0.0
 
   components:
@@ -44,8 +44,8 @@ layer:
   groups:
     - group: Board
       files:
-        - file: ./main.c
-        - file: ./main.h
+        - file: main.c
+        - file: main.h
 
   linker:
-    - regions: ./regions_SSE-315.h
+    - regions: RTE/Device/SSE-315-FVP/regions_SSE-315.h
