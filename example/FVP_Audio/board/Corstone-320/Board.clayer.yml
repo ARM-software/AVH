@@ -1,6 +1,6 @@
 layer:
   type: Board
-  description: Board setup for AI/ML
+  description: Configuration of SSE-320 FVP for AI/ML
   for-board: ARM::SSE-320
   for-device: ARM::SSE-320-FVP
 
@@ -20,13 +20,12 @@ layer:
 
   define:
     - CMSIS_target_header: \"Corstone-320.h\"
-    - UART0_BASE_S_TMP
 
   packs:
-    - pack: ARM::CMSIS
-    - pack: ARM::CMSIS-Compiler@^2.2.0
     - pack: ARM::AVH_FVP
-    - pack: ARM::SSE_320_BSP@1.1.0
+    - pack: ARM::CMSIS
+    - pack: ARM::CMSIS-Compiler@^2.3.0
+    - pack: ARM::SSE_320_BSP@^2.0.0
 
   components:
     - component: CMSIS:CORE
@@ -54,8 +53,8 @@ layer:
   groups:
     - group: Board
       files:
-        - file: ./main.c
-        - file: ./main.h
+        - file: main.c
+        - file: main.h
 
   linker:
-    - regions: ./regions_SSE-320.h
+    - regions: RTE/Device/SSE-320-FVP/regions_SSE-320.h

@@ -1,5 +1,5 @@
-/*---------------------------------------------------------------------------
- * Copyright (c) 2024 Arm Limited (or its affiliates). All rights reserved.
+/*
+ * Copyright 2024-2026 Arm Limited and/or its affiliates.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -14,7 +14,7 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *---------------------------------------------------------------------------*/
+ */
 
 #include "RTE_Components.h"
 #include  CMSIS_device_header
@@ -30,6 +30,15 @@ int main (void) {
   /* Initialize Ethos NPU */
   ethos_setup();
   #endif
+
+  /* Set VSI interrupt priorities */
+  NVIC_SetPriority(ARM_VSI0_IRQn, 7U);
+  NVIC_SetPriority(ARM_VSI1_IRQn, 7U);
+  NVIC_SetPriority(ARM_VSI2_IRQn, 7U);
+  NVIC_SetPriority(ARM_VSI3_IRQn, 7U);
+  NVIC_SetPriority(ARM_VSI4_IRQn, 7U);
+  NVIC_SetPriority(ARM_VSI5_IRQn, 7U);
+  NVIC_SetPriority(ARM_VSI6_IRQn, 7U);
 
   return (app_main());
 }

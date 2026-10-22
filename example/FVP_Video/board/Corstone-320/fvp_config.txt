@@ -1,6 +1,7 @@
 # Parameters:
 # instance.parameter=value       #(type, mode) default = 'def value' : description : [min..max]
 #------------------------------------------------------------------------------
+mps4_board.subsystem.ethosu.extra_args="--fast"       # (string, init-time) default = ''       : To activate fast processing mode, which significantly improves the performance of the model, set this parameter to "--fast". In fast mode, NPU performance counters are not representative of counters on real hardware. We recommend you do not use any other value without instructions from Arm Technical Support.
 mps4_board.subsystem.ethosu.num_macs=256              # (int   , init-time) default = '0x400'  : Number of 8x8 MACs performed per cycle (128, 256, 512, 1024, or 2048). : [0x80:0x800]
 mps4_board.telnetterminal0.quiet=1                    # (bool  , init-time) default = '0'      : Avoid output on stdout/stderr
 mps4_board.telnetterminal0.start_telnet=0             # (bool  , init-time) default = '1'      : Start telnet if nothing connected

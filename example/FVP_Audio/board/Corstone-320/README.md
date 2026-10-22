@@ -1,20 +1,29 @@
 # Board: Arm SSE-320
 
-## Board Layer for Corstone-320 FVP
+## Board Layers for Corstone-320 FVP
 
-This layer works for:
+These layers work for:
 
 ```yml
   board: ARM::SSE-320
   device: ARM::SSE-320-FVP
 ```
 
+Select one layer matching the application's NPU requirements:
+
+| Layer file           | Use in Application
+|:---------------------|:------------------------
+| Board.clayer.yml     | Without Ethos-U support
+| Board-U85.clayer.yml | With Ethos-U85 support
+
+Use the corresponding FVP configuration file listed below.
+
 ### System Configuration
 
 | System Component        | Setting
 |:------------------------|:----------------------------------
-| Heap                    |  96 kB (configured in linker file)
-| Stack (MSP)             |  32 kB (configured in linker file)
+| Heap                    |  96 kB (configured in regions header)
+| Stack (MSP)             |  4 kB (configured in regions header)
 
 ### STDIO mapping
 
@@ -42,14 +51,14 @@ stores and loads signal values.
 |:-----------------------|:----------------------------------------------------
 | Driver_vStreamAudioIn  | 16-bit PCM audio,      16000 samples/second
 | Driver_vStreamAudioOut | 16-bit PCM audio,      16000 samples/second
-| Driver_vStreamVideoIn  | RGB888 video,          resolution 1280 x 720 (W x H)
-| Driver_vStreamVideoOut | RGB888 video,          resolution  480 x 800 (W x H)
+| Driver_vStreamVideoIn  | RGB888 video,          resolution 640 x 480 (W x H)
+| Driver_vStreamVideoOut | RGB888 video,          resolution 640 x 480 (W x H)
 
 ### FVP Configuration File
 
 | File               | Description
 |:-------------------|:-------------
-| fvp_config.txt     | Corstone-320 FVP without Ethos-U or with Ethos-U85
+| fvp_config.txt     | Corstone-320 FVP without or with an Ethos-U85-256
 
 ### Python Requirements
 
