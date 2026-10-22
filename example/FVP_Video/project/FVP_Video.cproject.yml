@@ -4,7 +4,7 @@ project:
 
   # List the packs that define the project software components.
   packs:
-    - pack: ARM::CMSIS@>=6.0.0
+    - pack: ARM::CMSIS@^6.0.0
     - pack: ARM::CMSIS-RTX
 
   # List connections used to identify compatible software layers.

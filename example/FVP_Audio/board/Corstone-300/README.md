@@ -1,20 +1,30 @@
 # Board: Arm V2M-MPS3-SSE-300-FVP
 
-## Board Layer for Corstone-300 FVP
+## Board Layers for Corstone-300 FVP
 
-This layer works for:
+These layers work for:
 
 ```yml
   board: ARM::V2M-MPS3-SSE-300-FVP
   device: ARM::SSE-300-MPS3
 ```
 
+Select one layer matching the application's NPU requirements:
+
+| Layer file           | Use in Application
+|:---------------------|:------------------------
+| Board.clayer.yml     | Without Ethos-U support
+| Board-U55.clayer.yml | With Ethos-U55 support
+| Board-U65.clayer.yml | With Ethos-U65 support
+
+Use the corresponding FVP configuration file listed below.
+
 ### System Configuration
 
 | System Component        | Setting
 |:------------------------|:----------------------------------
-| Heap                    |  96 kB (configured in linker file)
-| Stack (MSP)             |  32 kB (configured in linker file)
+| Heap                    |  96 kB (configured in regions header)
+| Stack (MSP)             |  4 kB (configured in regions header)
 
 ### STDIO mapping
 
@@ -42,8 +52,8 @@ stores and loads signal values.
 |:-----------------------|:----------------------------------------------------
 | Driver_vStreamAudioIn  | 16-bit PCM audio,      16000 samples/second
 | Driver_vStreamAudioOut | 16-bit PCM audio,      16000 samples/second
-| Driver_vStreamVideoIn  | RGB888 video,          resolution 1280 x 720 (W x H)
-| Driver_vStreamVideoOut | RGB888 video,          resolution  480 x 800 (W x H)
+| Driver_vStreamVideoIn  | RGB888 video,          resolution 640 x 480 (W x H)
+| Driver_vStreamVideoOut | RGB888 video,          resolution 640 x 480 (W x H)
 
 ### FVP Configuration File
 

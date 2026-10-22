@@ -1,6 +1,6 @@
 layer:
   type: Board
-  description: Board setup for AI/ML
+  description: Configuration of SSE-310 FVP for AI/ML
   for-board: ARM::V2M-MPS3-SSE-310
   for-device: ARM::SSE-310-MPS3_FVP
 
@@ -22,9 +22,9 @@ layer:
     - CMSIS_target_header: \"Corstone-310.h\"
 
   packs:
-    - pack: ARM::CMSIS
-    - pack: ARM::CMSIS-Compiler@^2.2.0
     - pack: ARM::AVH_FVP
+    - pack: ARM::CMSIS
+    - pack: ARM::CMSIS-Compiler@^2.3.0
     - pack: ARM::V2M_MPS3_SSE_310_BSP@1.4.0
 
   components:
@@ -53,8 +53,8 @@ layer:
   groups:
     - group: Board
       files:
-        - file: ./main.c
-        - file: ./main.h
+        - file: main.c
+        - file: main.h
 
   linker:
-    - regions: ./regions_SSE-310.h
+    - regions: RTE/Device/SSE-310-MPS3_FVP/regions_SSE-310.h

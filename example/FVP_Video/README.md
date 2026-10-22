@@ -15,7 +15,7 @@ If input and output stream resolutions differ the input frame is centered within
 output frame and/or cropped when required.
 
 Streaming stops after receiving the `END_OF_STREAM` event or can be configured to
-stop after `AUDIO_STREAM_DURATION` seconds.
+stop after `VIDEO_STREAM_DURATION` seconds.
 
 The example uses CMSIS-RTOS2 for thread management and event-driven processing.
 
